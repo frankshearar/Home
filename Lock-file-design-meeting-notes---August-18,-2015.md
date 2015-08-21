@@ -1,5 +1,7 @@
 # Lock file design meeting notes
 
+This topic can be discussed further here: https://github.com/NuGet/Home/issues/1233
+
 Meeting questions with answers noted below:
 * When is a lock file with IsLocked=true allowed to change
   * If dependencies have changed
