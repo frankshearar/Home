@@ -11,4 +11,6 @@ Similarly issues raised by the community that don't yet clearly fall into a "Yes
 ###Why are we doing it
 It keeps ideas alive and floating around, and doesn't force us to make decisions like we do when we triage issues into milestones. It keeps actual issues we want to execute on short and to the point.
 
+###Design meeting notes
+
 #### [August 14, 2015](https://github.com/nuget/Home/wiki/Design-Meeting-Notes---August-14,-2015)
