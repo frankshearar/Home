@@ -14,3 +14,4 @@ It keeps ideas alive and floating around, and doesn't force us to make decisions
 ###Design meeting notes
 
 #### [August 14, 2015](https://github.com/nuget/Home/wiki/Design-Meeting-Notes---August-14,-2015)
+#### [August 18, 2015](https://github.com/NuGet/Home/wiki/Lock-file-design-meeting-notes---August-18,-2015)
