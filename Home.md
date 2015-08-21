@@ -15,6 +15,6 @@ It keeps ideas alive and floating around, and doesn't force us to make decisions
 
 ####[Lock file design, August 18, 2015](https://github.com/NuGet/Home/wiki/Lock-file-design-meeting-notes---August-18,-2015)
 
-####[UI design, August 20, 2015)(https://github.com/NuGet/Home/wiki/NuGet-UI-design-meeting-notes-August-20-2015)
+####[UI design, August 20, 2015](https://github.com/NuGet/Home/wiki/NuGet-UI-design-meeting-notes-August-20-2015)
 
 In this meeting we covered the top bar of the package management dialog.
