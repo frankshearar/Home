@@ -1,8 +1,8 @@
-# Lock file design meeting notes
-
 In this meeting we covered lock file design, package install and update scenarios for locked projects, and discussed how the current project locking scenarios could be improved by introducing a snapshot file to store only the locked package versions.
 
 Please use the design meeting [discussion issue](https://github.com/NuGet/Home/issues/1233) to provide feedback, ask questions, etc.
+
+### Lock file scenarios
 
 Meeting questions with answers noted below:
 * When is a lock file with IsLocked=true allowed to change
@@ -23,9 +23,13 @@ Lock files are the view for a single project. They contain transitive references
 
 Restoring on build as it happens today is wrong.
 
+#### Restricting package version changes
+
 A tool was originally planned to make a project.json file ready for release which locks all the versions in the project.json file. (Make release)
 
 A feature could be added to stop automatic floating. Ex: project.json has 1.0.0  if only 1.0.1 exists due to the source changing and no packages are asking for 1.0.1 the restore would fail. This is not currently implemented today.
+
+### Snapshot file proposal
 
 A possible option for fixing the lock file issue today is adding a 3rd file which contains the actual versions of all packages used. There are open questions on validation between the snapshot, lock file, and project.json file.
 * This fixes the lock file size issue
