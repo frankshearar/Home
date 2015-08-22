@@ -1,6 +1,8 @@
 # Lock file design meeting notes
 
-This topic can be discussed further here: https://github.com/NuGet/Home/issues/1233
+In this meeting we covered lock file design, package install and update scenarios for locked projects, and discussed how the current project locking scenarios could be improved by introducing a snapshot file to store only the locked package versions.
+
+Please use the design meeting [discussion issue](https://github.com/NuGet/Home/issues/1233) to provide feedback, ask questions, etc.
 
 Meeting questions with answers noted below:
 * When is a lock file with IsLocked=true allowed to change
