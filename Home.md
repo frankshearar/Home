@@ -13,16 +13,9 @@ It keeps ideas alive and floating around, and doesn't force us to make decisions
 
 ###Design meeting notes
 
-####[Design Meeting Notes   8 12 2015 Sync with Managed Languages Team]
+####[UI design, August 21, 2015](https://github.com/NuGet/Home/wiki/NuGet-UI-design-meeting-notes-August-21,-2015)
 
-Discussing several limitations of project.json + msbuild scenarios. Particularly support for xunit (or other test runners) requiring copy local.
-
-Planning a force copy by Update I, and need further discussion on package spec to perhaps include it as an RID?
-
-####[Lock file design, August 18, 2015](https://github.com/NuGet/Home/wiki/Lock-file-design-meeting-notes---August-18,-2015)
-In this meeting we covered lock file design, package install and update scenarios for locked projects, and discussed how the current project locking scenarios could be improved by introducing a snapshot file to store only the locked package versions.
-
-Please use the design meeting [discussion issue](https://github.com/NuGet/Home/issues/1233) to provide feedback, ask questions, etc.
+Follow up meeting to the one on the 20th where we discussed the layout of the list and the middle panel. Next meeting planned for the week of Aug 31st
 
 ####[UI design, August 20, 2015](https://github.com/NuGet/Home/wiki/NuGet-UI-design-meeting-notes-August-20-2015)
 
@@ -30,6 +23,13 @@ In this meeting we covered the design for the top bar of the package management 
 
 Please use the design meeting [discussion issue](https://github.com/NuGet/Home/issues/1236) to provide feedback, ask questions, etc.
 
-####[UI design, August 21, 2015](https://github.com/NuGet/Home/wiki/NuGet-UI-design-meeting-notes-August-21,-2015)
+####[Lock file design, August 18, 2015](https://github.com/NuGet/Home/wiki/Lock-file-design-meeting-notes---August-18,-2015)
+In this meeting we covered lock file design, package install and update scenarios for locked projects, and discussed how the current project locking scenarios could be improved by introducing a snapshot file to store only the locked package versions.
 
-Follow up meeting to the one on the 20th where we discussed the layout of the list and the middle panel. Next meeting planned for the week of Aug 31st
+Please use the design meeting [discussion issue](https://github.com/NuGet/Home/issues/1233) to provide feedback, ask questions, etc.
+
+####[Design Meeting Notes   8 12 2015 Sync with Managed Languages Team](https://github.com/NuGet/Home/wiki/MsBuild---project.json---xunit-Design-meeting-notes-August,-12-2015)
+
+Discussing several limitations of project.json + msbuild scenarios. Particularly support for xunit (or other test runners) requiring copy local.
+
+Planning a force copy by Update I, and need further discussion on package spec to perhaps include it as an RID?
