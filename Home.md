@@ -13,6 +13,12 @@ It keeps ideas alive and floating around, and doesn't force us to make decisions
 
 ###Design meeting notes
 
+####[Design Meeting Notes   8 12 2015 Sync with Managed Languages Team]
+
+Discussing several limitations of project.json + msbuild scenarios. Particularly support for xunit (or other test runners) requiring copy local.
+
+Planning a force copy by Update I, and need further discussion on package spec to perhaps include it as an RID?
+
 ####[Lock file design, August 18, 2015](https://github.com/NuGet/Home/wiki/Lock-file-design-meeting-notes---August-18,-2015)
 In this meeting we covered lock file design, package install and update scenarios for locked projects, and discussed how the current project locking scenarios could be improved by introducing a snapshot file to store only the locked package versions.
 
