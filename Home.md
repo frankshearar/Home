@@ -28,7 +28,7 @@ In this meeting we covered lock file design, package install and update scenario
 
 Please use the design meeting [discussion issue](https://github.com/NuGet/Home/issues/1233) to provide feedback, ask questions, etc.
 
-####[Design Meeting Notes   8 12 2015 Sync with Managed Languages Team](https://github.com/NuGet/Home/wiki/MsBuild---project.json---xunit-Design-meeting-notes-August,-12-2015)
+####[MsBuild/project.json/xunit Design meeting notes August, 12 2015](https://github.com/NuGet/Home/wiki/MsBuild---project.json---xunit-Design-meeting-notes-August,-12-2015)
 
 Discussing several limitations of project.json + msbuild scenarios. Particularly support for xunit (or other test runners) requiring copy local.
 
