@@ -28,7 +28,7 @@ Bug to file: NuGet should error out unless you have an RID that is applicable.
 
 ####Next day followup
 
-1. For the suggestion that NuGet should fail a restore if there’s no applicable native/runtime asset for your RID, filed (bug 1173)[https://github.com/nuget/home/issues/1173). I don’t think it’s a “need” right now, so NuGet folks feel free to triage as needed (moved to 3.3)
+1. For the suggestion that NuGet should fail a restore if there’s no applicable native/runtime asset for your RID, filed (bug 1173)[https://github.com/nuget/home/issues/1173]. I don’t think it’s a “need” right now, so NuGet folks feel free to triage as needed (moved to 3.3)
 1. For the suggestion that we should always copy assets for desktop-targeting class libraries, filed DevDiv bug gist below.
 1. analyzer spec to be added to nugetdocs (done)
 
