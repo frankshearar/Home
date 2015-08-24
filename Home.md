@@ -23,3 +23,7 @@ Please use the design meeting [discussion issue](https://github.com/NuGet/Home/i
 In this meeting we covered the design for the top bar of the package management dialog.
 
 Please use the design meeting [discussion issue](https://github.com/NuGet/Home/issues/1236) to provide feedback, ask questions, etc.
+
+####[UI design, August 21, 2015](https://github.com/NuGet/Home/wiki/NuGet-UI-design-meeting-notes-August-21,-2015)
+
+Follow up meeting to the one on the 20th where we discussed the layout of the list and the middle panel. Next meeting planned for the week of Aug 31st
