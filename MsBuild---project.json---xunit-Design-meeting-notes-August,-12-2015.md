@@ -32,6 +32,9 @@ Bug to file: NuGet should error out unless you have an RID that is applicable.
 1. For the suggestion that we should always copy assets for desktop-targeting class libraries, filed DevDiv bug gist below.
 1. analyzer spec to be added to nugetdocs (done)
 
+####How to get copylocal to work (Agressive)
+Set `CopyNuGetImplementations` to `True` in msbuild. See - `C:\Program Files (x86)\MSBuild\Microsoft\NuGet\Microsoft.NuGet.targets` line 15, or equivalent path
+
 ####Gist of DevDiv bug:
  
 1. Create a new desktop class library.
