@@ -27,3 +27,4 @@ We came up with the following sketch as a starting point for a more detailed des
 1. Include Prerelease checkbox is now right of the search text box, as it is a filter on search (well mostly)
 1. Package source was moved to the top right, since it is not very often the thing to change. Particularly as we want to introduce back the support for "All sources".
 
+####Note: Ignore the font, color, and exact placement and exact sizing of elements. This is an early draft.
