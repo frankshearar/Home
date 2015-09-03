@@ -13,6 +13,10 @@ It keeps ideas alive and floating around, and doesn't force us to make decisions
 
 ###Design meeting notes
 
+####[Csproj to Xproj, September 2, 2015](https://github.com/NuGet/Home/wiki/Csproj-to-Xproj-reference-design-meeting-notes-September-2,-2015)
+
+This meeting discussed the design and scenarios for supporting references between Csproj and Xproj projects.
+
 ####[UI design, August 21, 2015](https://github.com/NuGet/Home/wiki/NuGet-UI-design-meeting-notes-August-21,-2015)
 
 Follow up meeting to the one on the 20th where we discussed the layout of the list and the middle panel. Next meeting planned for the week of Aug 31st
