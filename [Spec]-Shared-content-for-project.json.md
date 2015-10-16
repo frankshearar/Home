@@ -81,3 +81,6 @@ Items from the shared folder in the nupkg are displayed in the lock file under s
   }
 }
 ```
+
+## PP transforms
+PP transforms in NuGet work by replacing all tokens with the corresponding msbuild property value. Tokens are written in the format: $word$. Transforms in the shared folder will be limited to a specific set of properties which will be supported in both msbuild and DNX. Today $rootnamespace$ accounts for 90% of the tokens used in .pp transforms on nuget.org.
