@@ -84,3 +84,14 @@ Items from the shared folder in the nupkg are displayed in the lock file under s
 
 ## PP transforms
 PP transforms in NuGet work by replacing all tokens with the corresponding msbuild property value. Tokens are written in the format: $word$. Transforms in the shared folder will be limited to a specific set of properties which will be supported in both msbuild and DNX. Today $rootnamespace$ accounts for 90% of tokens usage in .pp transforms on nuget.org.
+
+### PP token parsing
+A PP token is defined with $'s in the format $word$. A word is a contiguous string of word characters as defined by: https://msdn.microsoft.com/en-us/library/20bw873z.aspx#WordCharacter
+
+The escape sequence for $ is $$. When the parser encounters $$ it will return a single $ as text. $$ is not allowed inside a token word, it is only for text outside of tokens.
+
+When a token has been identified NuGet replaces the token string with the corresponding property value. All other text is written out to the file as-is.
+
+The current NuGet tokenizing code is available here:
+https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectManagement/Utility/Tokenizer.cs
+
