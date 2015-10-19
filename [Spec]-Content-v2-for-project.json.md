@@ -16,7 +16,7 @@ Pattern:
 
 Language and TxM agnostic content:
 
-*/shared/any/any/config.xml*
+*/contentFiles/any/any/config.xml*
 
 net45 content for all languages:
 
