@@ -1,7 +1,7 @@
-Shared content for project.json
-This spec covers NuGet support for packaging immutable content items with build properties.
+Content v2 is immutable shared content for project.json
+This spec covers NuGet support for packaging content items with build properties.
 
-Examples of shared content:
+Examples of content v2:
 * Images that are embedded as resources
 * Source files that are compiled
 * PP files that are transformed to match the project they are included in
@@ -12,7 +12,7 @@ A new folder will be used in the nupkg for shared content. All items in the shar
 
 Pattern:
 
-*/shared/{codeLanguage}/{TxM}/{any?}*
+*/contentFiles/{codeLanguage}/{TxM}/{any?}*
 
 Language and TxM agnostic content:
 
@@ -20,17 +20,17 @@ Language and TxM agnostic content:
 
 net45 content for all languages:
 
-*/shared/any/net45/config.xml*
+*/contentFiles/any/net45/config.xml*
 
 CSharp specific content for net45 and up:
 
-*/shared/cs/net45/config.xml*
+*/contentFiles/cs/net45/config.xml*
 
 ## Nuspec
-Nuspecs can contain a shared section which applies additional properties to items in the shared folder.
+Nuspecs can contain a contentFiles section which applies additional properties to items in the contentFiles folder.
 
 ```xml
-<shared>
+<contentFiles>
     <!-- Embed image resources -->
     <files include="any/any/images/dnf.png" buildAction="EmbeddedResource" />
     <files include="any/any/images/ui.png" buildAction="EmbeddedResource" />
@@ -41,12 +41,12 @@ Nuspecs can contain a shared section which applies additional properties to item
     <!-- Copy run.cmd to the output folder and keep the directory structure -->
     <files include="cs/uap10.0/scripts/run.cmd" buildAction="None" copyToOutput="true" />
     <!-- All other files in shared are compiled and use the default options -->
-</shared>
+</contentFiles>
 ```
 
 ## Lock file
-Items from the shared folder in the nupkg are displayed in the lock file under shared for target packages. 
-### Shared item properties
+Items from the contentFiles folder in the nupkg are displayed in the lock file under contentFiles for target packages. 
+### ContentFiles item properties
 
 |Property|Type|Description|
 |-------------|------|----------------------------------------------------|
@@ -60,18 +60,18 @@ Items from the shared folder in the nupkg are displayed in the lock file under s
 ```json
 "SharedContentA/1.0.0": {
   "shared": {
-     "shared/cs/uap10.0/code/util.cs": {
+     "contentFiles/cs/uap10.0/code/util.cs": {
             "buildAction": "compile",
             "codeLanguage": "cs",
             "copyToOutput": false
           },
-     "shared/cs/uap10.0/code/Foo.cs.pp": {
+     "contentFiles/cs/uap10.0/code/Foo.cs.pp": {
             "buildAction": "compile",
             "codeLanguage": "cs",
             "copyToOutput": false,
             "ppOutputPath": "code/Foo.cs"
        },
-     "shared/cs/uap10.0/scripts/run.cmd": {
+     "contentFiles/cs/uap10.0/scripts/run.cmd": {
             "buildAction": "None",
             "codeLanguage": "cs",
             "copyToOutput": true,
