@@ -95,3 +95,5 @@ When a token has been identified NuGet replaces the token string with the corres
 The current NuGet tokenizing code is available here:
 https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectManagement/Utility/Tokenizer.cs
 
+### Error handling
+If the msbuild property for a token does not have a value NuGet throws an InvalidOperationException with the message "The replacement token '{0}' has no value." MSBuild and DNX will need to support this also by failing the build with a similar error message letting the user know which property needs to be set in order to use the package.
