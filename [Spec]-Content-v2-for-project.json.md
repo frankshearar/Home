@@ -59,7 +59,7 @@ Items from the contentFiles folder in the nupkg are displayed in the lock file u
 ### Example
 ```json
 "SharedContentA/1.0.0": {
-  "shared": {
+  "contentFiles": {
      "contentFiles/cs/uap10.0/code/util.cs": {
             "buildAction": "compile",
             "codeLanguage": "cs",
