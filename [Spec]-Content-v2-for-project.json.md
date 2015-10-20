@@ -61,22 +61,22 @@ Items from the contentFiles folder in the nupkg are displayed in the lock file u
 "SharedContentA/1.0.0": {
   "contentFiles": {
      "contentFiles/cs/uap10.0/code/util.cs": {
-            "buildAction": "compile",
-            "codeLanguage": "cs",
-            "copyToOutput": false
-          },
+       "buildAction": "compile",
+       "codeLanguage": "cs",
+       "copyToOutput": false
+      },
      "contentFiles/cs/uap10.0/code/Foo.cs.pp": {
-            "buildAction": "compile",
-            "codeLanguage": "cs",
-            "copyToOutput": false,
-            "ppOutputPath": "code/Foo.cs"
-       },
+       "buildAction": "compile",
+       "codeLanguage": "cs",
+       "copyToOutput": false,
+       "ppOutputPath": "code/Foo.cs"
+     },
      "contentFiles/cs/uap10.0/scripts/run.cmd": {
-            "buildAction": "None",
-            "codeLanguage": "cs",
-            "copyToOutput": true,
-            "outputPath": "scripts/run.cmd"
-        }
+       "buildAction": "None",
+       "codeLanguage": "cs",
+       "copyToOutput": true,
+       "outputPath": "scripts/run.cmd"
+     }
     }
   }
 }
