@@ -34,15 +34,39 @@ Nuspecs can contain a contentFiles section which applies additional properties t
     <!-- Embed image resources -->
     <files include="any/any/images/dnf.png" buildAction="EmbeddedResource" />
     <files include="any/any/images/ui.png" buildAction="EmbeddedResource" />
-    <files include="cs/uap10.0/images/dnf.png" buildAction="EmbeddedResource" />
-    <files include="cs/uap10.0/images/ui.png" buildAction="EmbeddedResource" />
+    <!-- Embed all image resources under contentFiles/cs/ using a wild card -->
+    <files include="cs/**/*.png" buildAction="EmbeddedResource" />
     <!-- Copy config.xml to the root of the output folder -->
     <files include="cs/uap10.0/config/config.xml" buildAction="None" copyToOutput="true" flatten="true" />
     <!-- Copy run.cmd to the output folder and keep the directory structure -->
-    <files include="cs/uap10.0/scripts/run.cmd" buildAction="None" copyToOutput="true" />
+    <!-- Include everything in the scripts folder except exe files -->
+    <files include="cs/uap10.0/scripts/*" exclude="**/*.exe"  buildAction="None" copyToOutput="true" />
     <!-- All other files in shared are compiled and use the default options -->
 </contentFiles>
 ```
+
+The include and exclude properties on contentFiles/files elements support wildcards using the aspnet syntax.
+https://github.com/aspnet/FileSystem
+
+If multiple entries match the same file all entries will be applied. The top most entry will override the lower entries if there is a conflict for the same attribute.
+
+The contentFiles section is optional, by default all files in the nupkg contentFiles directory will use the default attribute values shown below.
+
+### Nuspec files attributes
+|Attribute|Description|
+|-------------|----------------------------------------------------|
+|include|[Required attribute] Include provides either a file path or a wild card path. All matching files from the contentFiles folder will have the attributes for that files node applied. Examples: ``**/*``, ``**/*.cs``, ``any/any/myfile.txt``, ``**/net*/*``.|
+|exclude|Exclude provides either a file path or a wild card path. All matching files will be excluded from the include.|
+|buildAction|Build action taken by msbuild for the content items. Examples: ``None``, ``Compile``|
+|copyToOutput|If True the content items will be copied to the build output folder|
+|flatten|If False the content items will be copied to the build output folder using the full folder structure from the nupkg. This path will be relative to the TxM folder. Example: cs/net45/config/data.xml -> config/data.xml|
+
+#### Attributes defaults
+|Attribute|Value|
+|-------------|----------------------------------------------------|
+|buildAction|Compile|
+|copyToOutput|False|
+|flatten|False|
 
 ## Lock file
 Items from the contentFiles folder in the nupkg are displayed in the lock file under contentFiles for target packages. 
