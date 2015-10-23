@@ -11,20 +11,22 @@ Examples of content v2:
 A new folder will be used in the nupkg for shared content. All items in the shared folder must have a code language folder and a TxM folder.  Within the TxM folder sub folders can also exist.
 
 Pattern:
-
-*/contentFiles/{codeLanguage}/{TxM}/{any?}*
+``/contentFiles/{codeLanguage}/{TxM}/{any?}``
 
 Language and TxM agnostic content:
-
-*/contentFiles/any/any/config.xml*
+``/contentFiles/any/any/config.xml``
 
 net45 content for all languages:
-
-*/contentFiles/any/net45/config.xml*
+``/contentFiles/any/net45/config.xml``
 
 CSharp specific content for net45 and up:
+``/contentFiles/cs/net45/config.xml``
 
-*/contentFiles/cs/net45/config.xml*
+Empty folders can use ``_._`` to opt out of providing content for certain combinations of language and TxM:
+```
+/contentFiles/vb/any/code.vb
+/contentFiles/cs/any/_._
+```
 
 ## Nuspec
 Nuspecs can contain a contentFiles section which applies additional properties to items in the contentFiles folder.
