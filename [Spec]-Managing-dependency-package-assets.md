@@ -29,7 +29,7 @@ Excluding content files from a package
   "dependencies": {
     "packageA": {
       "version": "1.0.0",
-      "excludeFlags": "contentFiles"
+      "exclude": "contentFiles"
     }
   }
 }
@@ -41,7 +41,7 @@ Including only runtime components for a package:
   "dependencies": {
     "packageA": {
       "version": "1.0.0",
-      "includeFlags": "runtime"
+      "include": "runtime"
     }
   }
 }
@@ -53,7 +53,7 @@ Content v2 is turned off for transitive dependencies by default. Packages must o
 ```xml
 <dependencies>
   <group>
-    <dependency id="packageB" version="1.0.0" includeFlags="all" />
+    <dependency id="packageB" version="1.0.0" include="all" />
   </group>
 </dependencies>
 ```
@@ -62,15 +62,48 @@ If only the content file are needed from a dependency a package may exclude all 
 ```xml
 <dependencies>
   <group>
-    <dependency id="packageB" version="1.0.0" includeFlags="contentFiles" excludeFlags="all" />
+    <dependency id="packageB" version="1.0.0" include="contentFiles" exclude="all" />
   </group>
 </dependencies>
 ```
 
 ### Content v2 behavior
 
-Content v2 is disabled by default for all package dependencies except for those referenced directly by the project in project.json. Transitive packages coming from other packages and from other projects will not bring in content unless the package or project has opted into it using the needed includeFlags.
+Content v2 is disabled by default for all package dependencies except for those referenced directly by the project in project.json. Transitive packages coming from other packages and from other projects will not bring in content unless the package or project has opted into it using the needed include.
 
+### Parent Excludes
+Projects may have dependencies and includes that are not needed by consumers of the project. For example if ProjectA depends on a package *X* which has content files, ProjectB should not transitively depend on package *X* since the content was compiled into ProjectA and will come from that assembly.
+
+To solve this the includes on dependency edges can be thought of in two ways.
+* Behavior that applies to my dependencies (for this project)
+* Behavior that applies to myself (for consumers of this project)
+
+To define additional excludes for consumers of the project the ``parentExclude`` property is used. In the below example the content only package is used by the project, but consumers of the project do not get the dependency.
+
+```json
+{
+  "dependencies": {
+    "contentOnlyPackage": {
+      "version": "1.0.0",
+      "parentExclude": "all"
+    }
+  }
+}
+```
+
+A build time only dependency can be created by excluding the compile section of the target and then hiding the package from consumers of the project. When this project is packed packageA will not be included as a dependency.
+
+```json
+{
+  "dependencies": {
+    "packageA": {
+      "version": "1.0.0",
+      "exclude": "compile",
+      "parentExclude": "all"
+    }
+  }
+}
+```
 
 ### Examples
 
@@ -85,7 +118,7 @@ In the above example the project will reference content included in packages A a
 Project
  |-(all)-> A -(+contentFiles)-> B -(+contentFiles)-> C
 ```
-When includeFlags="contentFiles" is used on all dependency edges in the nuspec content will flow transitively for packages A, B, and C.
+When include="contentFiles" is used on all dependency edges in the nuspec content will flow transitively for packages A, B, and C.
 
 ```
 Project
