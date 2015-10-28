@@ -11,7 +11,6 @@ Include flags are defined on dependency edges, not on the packages themselves. P
 |Compile|Lock file compile section of the target|
 |Build|MSBuild targets and properties in the build folder|
 |Native|Native folder|
-|Dependencies|Package dependencies|
 |None|Empty|
 |All|All flags|
 
