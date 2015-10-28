@@ -91,7 +91,7 @@ When includeFlags="contentFiles" is used on all dependency edges in the nuspec c
 Project
  |-(all)-> A -(-build)-> B -(-compile)-> C
 ```
-C will have both build and compile excluded since both of these were block by parent packages.
+C will have both build and compile excluded since both of these were blocked by parent packages.
 
 ```
 Project
