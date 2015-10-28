@@ -1,6 +1,6 @@
 This spec covers the design for including and excluding parts of dependency packages. 
 
-Include flags are defined on dependency edges, not on the packages themselves. Projects and packages are treated the same with the exception that direct project references will include content by default. Packages receive an intersection of the edge flags when walking down the dependency graph. The set of flags for each package target id is the union of the flags applied from the walk. This is explained further in the examples.
+Include flags are defined on dependency edges, not on the packages themselves. Projects and packages are treated the same with the exception that direct project references will include content by default. Packages receive an intersection of the edge flags when walking down the dependency graph. The set of flags for each package target id is the union of the flags applied from the walk. Flags for direct project dependencies will override all other flags. This is explained further in the examples.
 
 ### Include Flags
 
@@ -138,4 +138,4 @@ Project
  |-(all)-> A -(+build)-> B
  |-(-build)-> B
 ```
-In the reverse of the previous example, if the project excludes the build folder from B it will still be included since another package has included it. Users can force B to behave as defined by the project by excluding dependencies for A.
+In the reverse of the previous example, if the project excludes the build folder from B it will override the other flags and B will exclude the build section from the target. This allows users to force package behaviors when needed.
