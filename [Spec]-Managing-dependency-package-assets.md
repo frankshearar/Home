@@ -90,15 +90,27 @@ To define additional excludes for consumers of the project the ``parentExclude``
 }
 ```
 
-A build time only dependency can be created by excluding the compile section of the target and then hiding the package from consumers of the project. When this project is packed packageA will not be included as a dependency.
+A build time only dependency can be created by excluding the dependency for the consumers of the project. When this project is packed packageA will not be included as a dependency.
 
 ```json
 {
   "dependencies": {
     "packageA": {
       "version": "1.0.0",
-      "exclude": "compile",
       "parentExclude": "all"
+    }
+  }
+}
+```
+
+A private dependency can be created by excluding the compile section for the consumers of the project.
+
+```json
+{
+  "dependencies": {
+    "packageA": {
+      "version": "1.0.0",
+      "parentExclude": "compile"
     }
   }
 }
