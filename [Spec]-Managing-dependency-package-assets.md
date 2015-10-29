@@ -74,8 +74,8 @@ Content v2 is disabled by default for all package dependencies except for those 
 Projects may have dependencies and includes that are not needed by consumers of the project. For example if ProjectA depends on a package *X* which has content files, ProjectB should not transitively depend on package *X* since the content was compiled into ProjectA and will come from that assembly.
 
 To solve this the includes on dependency edges can be thought of in two ways.
-* Behavior that applies to my dependencies (for this project)
-* Behavior that applies to myself (for consumers of this project)
+* Behavior that applies to myself (for this project)
+* Behavior that applies to my dependencies (for consumers of this project)
 
 To define additional excludes for consumers of the project the ``parentExclude`` property is used. In the below example the content only package is used by the project, but consumers of the project do not get the dependency.
 
