@@ -6,13 +6,13 @@ Include flags are defined on dependency edges, not on the packages themselves. P
 
 |Flag|Description|
 |-------------|----------------------------------------------------|
-|ContentFiles|Content v2 items|
-|Runtime|Includes the Runtime, Resources, and FrameworkAssemblies sections of the target|
-|Compile|Lock file compile section of the target|
-|Build|MSBuild targets and properties in the build folder|
-|Native|Native folder|
-|None|Empty|
-|All|All flags|
+|contentFiles|Content v2 items|
+|runtime|Includes the Runtime, Resources, and FrameworkAssemblies sections of the target|
+|compile|Lock file compile section of the target|
+|build|MSBuild targets and properties in the build folder|
+|native|Native folder|
+|none|Empty|
+|all|All flags|
 
 |Dependency edge|Default|
 |-------------|----------------------------------------------------|
