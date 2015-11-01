@@ -14,12 +14,6 @@ Include flags are defined on dependency edges, not on the packages themselves. P
 |none|Empty|
 |all|All flags|
 
-|Dependency edge|Default|
-|-------------|----------------------------------------------------|
-|direct project reference|All flags including contentFiles|
-|package -> package|All flags except contentFiles|
-
-
 ### Project.json 
 
 Excluding content files from a package
@@ -48,7 +42,7 @@ Including only runtime components for a package:
 
 ### Nuspec
 
-Content v2 is turned off for transitive dependencies by default. Packages must opt in to allowing content to flow up from dependency packages. By specifying All as the include flag *contentFiles* will be turned on.
+Content v2 is turned off for transitive dependencies by default. Packages must opt in to allowing content to flow up from dependency packages. By specifying *all* as the include flag *contentFiles* will be turned on.
 ```xml
 <dependencies>
   <group>
@@ -57,34 +51,46 @@ Content v2 is turned off for transitive dependencies by default. Packages must o
 </dependencies>
 ```
 
-If only the content file are needed from a dependency a package may exclude all other pieces and just include content. This will also exclude dependencies for that package.
+Dependency items may also provide an exclude property instead of listing out each part of the package to include. By defining ``exclude="build"`` the dependency packageB will not add msbuild targets and prop files to the project.
 ```xml
 <dependencies>
   <group>
-    <dependency id="packageB" version="1.0.0" include="contentFiles" exclude="all" />
+    <dependency id="packageB" version="1.0.0" exclude="build" />
   </group>
 </dependencies>
 ```
+
+### Multiple flags
+
+The *include* and *exclude* properties for both project.json and nuspec dependencies support comma delimited flags.
+
+``"build,native,runtime"``
+
+### Flag precedence
+
+Exclude takes precedence over include. 
+
+`"include": "runtime,compile", "exclude": "compile"`` is equivalent to `'"include": "runtime"``
 
 ### Content v2 behavior
 
 Content v2 is disabled by default for all package dependencies except for those referenced directly by the project in project.json. Transitive packages coming from other packages and from other projects will not bring in content unless the package or project has opted into it using the needed include.
 
-### Parent Excludes
-Projects may have dependencies and includes that are not needed by consumers of the project. For example if ProjectA depends on a package *X* which has content files, ProjectB should not transitively depend on package *X* since the content was compiled into ProjectA and will come from that assembly.
+### Suppress Parent
+Projects may have dependencies that are not needed by consumers of the project. For example if ProjectA depends on a package *X* which has content files, ProjectB should not transitively depend on package *X* since the content was compiled into ProjectA and will come from that assembly.
 
 To solve this the includes on dependency edges can be thought of in two ways.
 * Behavior that applies to myself (for consumers of this project)
 * Behavior that applies to my dependencies (for this project)
 
-To define additional excludes for consumers of the project the ``parentExclude`` property is used. In the below example the content only package is used by the project, but consumers of the project do not get the dependency.
+To define additional excludes for consumers of the project the ``suppressParent`` property is used. In the below example the content only package is used by the project, but consumers of the project do not get the dependency.
 
 ```json
 {
   "dependencies": {
     "contentOnlyPackage": {
       "version": "1.0.0",
-      "parentExclude": "all"
+      "suppressParent": "all"
     }
   }
 }
@@ -97,20 +103,20 @@ A build time only dependency can be created by excluding the dependency for the 
   "dependencies": {
     "packageA": {
       "version": "1.0.0",
-      "parentExclude": "all"
+      "suppressParent": "all"
     }
   }
 }
 ```
 
-A private dependency can be created by excluding the compile section for the consumers of the project.
+A private dependency can be created by excluding the compile section for consumers of the project.
 
 ```json
 {
   "dependencies": {
     "packageA": {
       "version": "1.0.0",
-      "parentExclude": "compile"
+      "suppressParent": "compile"
     }
   }
 }
