@@ -70,7 +70,7 @@ The *include* and *exclude* properties for both project.json and nuspec dependen
 
 Exclude takes precedence over include. 
 
-`"include": "runtime,compile", "exclude": "compile"`` is equivalent to `'"include": "runtime"``
+``"include": "runtime,compile", "exclude": "compile"`` is equivalent to ``"include": "runtime"``
 
 ### Content v2 behavior
 
