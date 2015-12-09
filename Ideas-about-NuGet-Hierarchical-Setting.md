@@ -16,3 +16,4 @@ We should address those issues in new configuration setting.
 
 1. On each NuGet.config window, it should show information about clear tag, NuGet.config location and priority for current NuGet.config.
 
+Discussion bug for NuGet Hierarchical Setting : https://github.com/NuGet/Home/issues/1820
