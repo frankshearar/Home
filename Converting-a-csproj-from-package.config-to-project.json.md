@@ -1,0 +1,1 @@
+This is a place holder for walking through converting a non asp.net 5 project from packages.config to project.json
