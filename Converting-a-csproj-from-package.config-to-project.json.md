@@ -60,7 +60,7 @@ The side effects are
 * Uninstall the package, you can use the UI, or the powershell console, if you know what the package did to the project, you can also hand edit the changes (2c).
 
 **UI:**
-
+![ns json](https://cloud.githubusercontent.com/assets/1238711/11911284/e01937ae-a5c5-11e5-89fa-5f43eaad077a.png)
 
 **PowerShell console:** uninstall-package newtonsoft.json -Force 
 
