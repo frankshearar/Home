@@ -15,6 +15,7 @@ Other project types that do not yet officially support project.json can still be
 3. Transitive restore (allowing defining just top level dependencies)
 4. P2P dependency flow (allowing for a top level app to always pick up dependencies from class libraries it depends on, without explicitly installing them).
 
+For comments and discussion - please use - https://github.com/NuGet/Home/issues/1857
 ### Getting started
 Imagine a simple class library that installed Newtonsoft.Json package.
 
