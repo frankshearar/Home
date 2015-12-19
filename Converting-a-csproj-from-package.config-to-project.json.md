@@ -60,8 +60,11 @@ The side effects are
 * Uninstall the package, you can use the UI, or the powershell console, if you know what the package did to the project, you can also hand edit the changes (2c).
 
 UI: 
+
 PowerShell console: uninstall-package newtonsoft.json -Force 
+
 Manually: remove the lines:
+
 ```xml
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
           <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
