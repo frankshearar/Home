@@ -54,24 +54,21 @@ The side effects are
   </ItemGroup>
 ```
 
-What to change:
+#### Making the change
+* Make a copy of packages.config and the csproj file and better yet, checkin/commit the project, so you can roll back or compare if things go wrong.
 
-1. Make a copy of packages.config and the csproj file and better yet, checkin/commit the project, so you can roll back or compare if things go wrong.
+* Uninstall the package, you can use the UI, or the powershell console, if you know what the package did to the project, you can also hand edit the changes (2c).
 
-2. Uninstall the package, you can use the UI (2a), or the powershell console (2b), if you know what the package did to the project, you can also hand edit the changes (2c).
-
-2.a
-
-2.b uninstall-package newtonsoft.json -Force
-
-2.c remove the lines:
+UI: 
+PowerShell console: uninstall-package newtonsoft.json -Force 
+Manually: remove the lines:
 ```xml
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
           <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
           <Private>True</Private>
         </Reference>
 ```
-3. Create the following empty file and name it project.json
+* Create the following empty file and name it project.json
 
 ```json
     {
@@ -86,9 +83,9 @@ What to change:
         }
     }
 ```
-4. Reload the solution (there is currently a bug where switching from packages.config to project.json requires a reload of the project).
+* Reload the solution (there is currently a bug where switching from packages.config to project.json requires a reload of the project).
 
-5. Build or restore packages (Right Click on the Solution level).
+* Build or restore packages (Right Click on the Solution level).
 
 ####Your project now uses project.json
 
