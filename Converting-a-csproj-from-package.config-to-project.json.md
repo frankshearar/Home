@@ -73,12 +73,12 @@ The side effects are
           <Private>True</Private>
         </Reference>
 ```
-* Create the following empty file and name it project.json
+* Create the following file to the root of the project and name it project.json
 
 ```json
     {
         "dependencies": {
-        "Newtonsoft.Json": "7.0.1"
+            "Newtonsoft.Json": "7.0.1"
         },
         "frameworks": {
             "net45": { }
@@ -88,6 +88,11 @@ The side effects are
         }
     }
 ```
+
+Note: I added the Newtonsoft.json dependency, it can be added through editing the file, and relying on intellisense from the editor, or by using the standard nuget user interface.
+
+The runtimes section is important for console apps, or anything that needs to deploy dlls to the output folder. It tells msbuild to copy windows dlls from the package to the output folder after build.
+
 * Reload the solution (there is currently a bug where switching from packages.config to project.json requires a reload of the project).
 
 * Build or restore packages (Right Click on the Solution level).
@@ -111,7 +116,7 @@ The side effects are
     </ItemGroup>
 ```
 
-The references get added at build time, and do not show up in the project. You can see them in the references tree in visual studio with a NuGet icon.
+Note that you cannot see references in the csproj file, the references get added at build time, and do not show up in the project. You can see them in the references tree in visual studio with a NuGet icon.
 
 ### What doesn't work yet
 Project types that's rely heavily on content packages and xdt transforms, won't work with project.json at the moment. The biggest ones are the MVC/Web API/Web Forms applications that pull in dependencies like jQuery, or expect nuget packages to modify web.config automatically for them.
