@@ -125,5 +125,6 @@ For these project types you can move to using bower in combination with grunt/gu
 
 ### 3rd part projects/blogs related to this
 A conversion script - https://github.com/wgtmpeters/nugetprojectjson
+
 Marc Gravell's blog on DNX - http://blog.marcgravell.com/2015/11/the-road-to-dnxpart-3.html
 
