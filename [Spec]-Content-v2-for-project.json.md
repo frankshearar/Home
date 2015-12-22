@@ -1,6 +1,8 @@
 Content v2 is immutable shared content for project.json
 This spec covers NuGet support for packaging content items with build properties.
 
+*note* if your project is using packages.config to define packages, this feature is explicitly turned off. See https://github.com/NuGet/Home/wiki/Converting-a-csproj-from-package.config-to-project.json on how to port over to project.json 
+
 Examples of content v2:
 * Images that are embedded as resources
 * Source files that are compiled
