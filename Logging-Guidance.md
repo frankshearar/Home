@@ -6,3 +6,5 @@ This spec covers Logging in NuGet.exe and NuGet.CommandLine.Xplat as it appears 
 4. Warnings will not be written to the error stream
 5. An informational summary will be written without any INFO label on it, to make it easily human readable
 6. Colors will be applied in the console to Warning and Error
+
+Longer term we might consider adding pivots to log messages to associate them with the project, the package, and the particular HTTP call made. There is a bug open to suggest a single integer can represent the stream of work, but I think we actually need 2 or 3 of them as specified above.
