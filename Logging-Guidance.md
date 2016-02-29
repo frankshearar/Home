@@ -25,3 +25,5 @@ The following core requirements should be met:
    - Error
    - The logging interface also includes a method to log summary lines, although "summary" is not a different log level.
 1. We might consider adding pivots to log messages to associate them with the project, the package, target (RID + TxM), or even the particular HTTP call made. There is a bug open to suggest a single integer can represent the stream of work, but I think we actually need 2 or 3 of them as specified above.
+1. What command line arguments should be provided to change logging output. Currently we have a switch `--verbosity <log level>`.
+   - Should there be a way to disable summaries?
