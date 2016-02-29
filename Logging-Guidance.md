@@ -19,8 +19,8 @@ The following core requirements should be met:
 1. What are the log levels? Currently, there are the following levels, in descending order of verbosity:
    - Debug
    - Verbose
-   - Information
-   - Minimal
+   - Information (default)
+   - Minimal (logging at this level should be reminiscent of `--quiet`)
    - Warning
    - Error
    - The logging interface also includes a method to log summary lines, although "summary" is not a different log level.
