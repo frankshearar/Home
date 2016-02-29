@@ -1,4 +1,4 @@
-This specification covers Logging in NuGet.exe and NuGet.CommandLine.Xplat as it appears in the console and output streams.
+This specification covers Logging in NuGet.exe and NuGet.CommandLine.Xplat as it appears in the console and output streams. As the dotnet CLI experience calls into NuGet.CommandLine.Xplat for some commands, this specification applies there as well.
 
 1. Logging will keep a prefix of the log level: `info`, `warn`, `error` and the like next to each method showing in the console. This allows for understanding the logs if they get piped into a file/
 1. Logging will write all messages to the output stream, STDOUT, only and never to the error stream, STDERR.
