@@ -27,8 +27,9 @@ NuGet defines the unique identity of a package to be the package id and version.
 Within NuGet the metadata section of a version will be largely ignored. This information is passed along and could be displayed in the UI, but it has no impact on version equality, comparisons or ranges since it is not part of the package identity.
 
 Examples of the normalized version for the unique identity string
+
 | Non-normalized | Normalized |
-| ----- | -----|
+| ----- | ----- |
 | 1.0.01 | 1.0.1 |
 | 1.0.0.0 | 1.0.0 |
 | 1.0 | 1.0.0 |
