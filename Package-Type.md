@@ -4,6 +4,28 @@
 
 The goal of this document is to propose a way for .NET CLI tool packages to be marked in such a way that NuGet tooling can install these packages to the `"tools"` node of a project.json. Without this proposal, packages (tool or otherwise) will be installed to the `"dependencies"` node, which is the current functionality for all existing packages.
 
+Here's an example of a project.json file with a `"tools"` dependency.
+
+```json
+{
+  "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "NETStandard.Library": "1.5.0-rc2-24008"
+  },
+  "frameworks": {
+    "netstandardapp1.5": {
+      "imports": "dnxcore50"
+    }
+  },
+  "tools": {
+    "dotnet-hello": "1.0.0"
+  }
+}
+```
+
 ## History
 
 Today, there is nofirst class notion of package type. However, packages can be used for different things based on their content. The most common use for a package is to be an assembly used at run-time. However, other packages drop static content in your project, provide executable tools, provide MSBuild targets, or have templated code files. Packages can also contain no content at all and simply pull in other packages (i.e. metapackages). Aside from inspecting the folder structure of the package, there is no way to differentiate between packages.
@@ -31,3 +53,22 @@ Every package contains a .nuspec file which provides metadata and dependency inf
   </metadata>
 </package>
 ```
+
+## Proposal
+
+My proposal is to introduce a new child node to the `<metadata>` element which allows tooling to act differently for .NET CLI tools.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    ...
+    <types>
+      <tool />
+      <dotnet-tool />
+    </types>
+  </metadata>
+</package>
+```
+
+## Thoughts
