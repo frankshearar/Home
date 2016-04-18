@@ -76,6 +76,27 @@ Supported children of the `<types>` element are:
 
 ## Additional concerns
 
+### Multiple types
+
+Although there is currently no need for multiple package types, the intent of this design is to allow for a package to have multiple types. For example, if a package can be treated both as a .NET CLI tool and, say, a "Win32 tool", we could mark the package like this:
+
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
+  &lt;metadata&gt;
+    ...
+    <b>&lt;types&gt;
+      &lt;dotnet-cli-tool /&gt;
+      &lt;win32-tool /&gt;
+    &lt;/types&gt;</b>
+  &lt;/metadata&gt;
+&lt;/package&gt;
+</pre>
+
+### Existing packages
+
+Treatment of existing packages will not change. Since the notion of type is not a single-valued or required concept, existing packages need to type to be inferred.
+
 ### Searchability and indexing
 
 If we wanted to provide a feature on NuGet.org to search for any kind of tool package, we could build knowledge into the search index to look for the `<dotnet-cli-tool>`. However, if someone introduces a new kind of tool package that is not meant for the .NET CLI, e.g. `<win32-tool>`, we would have to add an additional rule to the server asserting that <win32-tool>` is also a tool should be included in the generic tool search.
