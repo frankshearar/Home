@@ -56,22 +56,27 @@ Every package contains a .nuspec file which provides metadata and dependency inf
 
 ## Proposal
 
-My proposal is to introduce a new element under  `<metadata>` which allows tooling to act differently for .NET CLI tools. The element is `<types>` and will start with one supported child element:
+My proposal is to introduce a new child node to the `<metadata>` element which allows tooling to act differently for .NET CLI tools. The new child element is the `<types>` element. This `<types>` element can contain zero or more child elements that indicate types of this package.
 
-  - `<dotnet-cli-tool />` - indicates this tool is a .NET CLI tool and should be installed to the `<tools>` node of the project.json.
+Supported children of the `<types>` element are:
 
-In general, as with the rest of the .nuspec, children of the `<types>` element that are not recognized should be ignored. Multiple types are supported.
+- `<dotnet-cli-tool>` - indicates that this package is a .NET CLI tool and should be installed to the `"tools"` node of the consuming project.json file.
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
-  <metadata>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
+  &lt;metadata&gt;
     ...
-    <types>
-      <dotnet-cli-tool />
-    </types>
-  </metadata>
-</package>
-```
+    <b>&lt;types&gt;
+      &lt;dotnet-cli-tool /&gt;
+    &lt;/types&gt;</b>
+  &lt;/metadata&gt;
+&lt;/package&gt;
+</pre>
 
-## Thoughts
+## Additional concerns
+
+### Searchability and indexing
+
+If we wanted to provide a feature on NuGet.org to search for any kind of tool package, we could build knowledge into the search index to look for the `<dotnet-cli-tool>`. However, if someone introduces a new kind of tool package that is not meant for the .NET CLI, e.g. `<win32-tool>`, the 
+
