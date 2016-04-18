@@ -78,5 +78,21 @@ Supported children of the `<types>` element are:
 
 ### Searchability and indexing
 
-If we wanted to provide a feature on NuGet.org to search for any kind of tool package, we could build knowledge into the search index to look for the `<dotnet-cli-tool>`. However, if someone introduces a new kind of tool package that is not meant for the .NET CLI, e.g. `<win32-tool>`, the 
+If we wanted to provide a feature on NuGet.org to search for any kind of tool package, we could build knowledge into the search index to look for the `<dotnet-cli-tool>`. However, if someone introduces a new kind of tool package that is not meant for the .NET CLI, e.g. `<win32-tool>`, we would have to add an additional rule to the server asserting that <win32-tool>` is also a tool should be included in the generic tool search.
 
+To address this problem, we could also mark this tool with an additional type:
+
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
+  &lt;metadata&gt;
+    ...
+    <b>&lt;types&gt;
+      &lt;dotnet-cli-tool /&gt;
+      &lt;tool /&gt;
+    &lt;/types&gt;</b>
+  &lt;/metadata&gt;
+&lt;/package&gt;
+</pre>
+
+This would allow any indexing procedure to write more generic code searching for the `<tool>` element. 
