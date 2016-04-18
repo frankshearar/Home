@@ -64,8 +64,7 @@ My proposal is to introduce a new child node to the `<metadata>` element which a
   <metadata>
     ...
     <types>
-      <tool />
-      <dotnet-tool />
+      <dotnet-cli-tool />
     </types>
   </metadata>
 </package>
