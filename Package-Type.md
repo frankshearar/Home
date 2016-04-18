@@ -74,6 +74,10 @@ Supported children of the `<types>` element are:
 
 ## Additional concerns
 
+### Existing packages
+
+Treatment of existing packages will not change. Since the notion of type is not a single-valued or required concept, existing packages need to type to be inferred.
+
 ### Multiple types
 
 Although there is currently no need for multiple package types, the intent of this design is to allow for a package to have multiple types. For example, if a package can be treated both as a .NET CLI tool and, say, a "Win32 tool", we could mark the package like this:
@@ -90,10 +94,6 @@ Although there is currently no need for multiple package types, the intent of th
   &lt;/metadata&gt;
 &lt;/package&gt;
 </pre>
-
-### Existing packages
-
-Treatment of existing packages will not change. Since the notion of type is not a single-valued or required concept, existing packages need to type to be inferred.
 
 ### Searchability and indexing
 
