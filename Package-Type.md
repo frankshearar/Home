@@ -56,7 +56,11 @@ Every package contains a .nuspec file which provides metadata and dependency inf
 
 ## Proposal
 
-My proposal is to introduce a new child node to the `<metadata>` element which allows tooling to act differently for .NET CLI tools.
+My proposal is to introduce a new element under  `<metadata>` which allows tooling to act differently for .NET CLI tools. The element is `<types>` and will start with one supported child element:
+
+  - `<dotnet-cli-tool />` - indicates this tool is a .NET CLI tool and should be installed to the `<tools>` node of the project.json.
+
+In general, as with the rest of the .nuspec, children of the `<types>` element that are not recognized should be ignored. Multiple types are supported.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
