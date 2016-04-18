@@ -116,4 +116,4 @@ To address this problem, we could also mark this tool with an additional type:
 &lt;/package&gt;
 </pre>
 
-This would allow any indexing procedure to write more generic code searching for the `<tool>` element. 
+This would allow any indexing procedure to write more generic code searching for the `<tool>` element. For this to work, however, an additional burden would be placed on the tool producer (either explicit user intervention or `pack` command code) to add this additional element every time a `<dotnet-cli-tool>` is produced.
