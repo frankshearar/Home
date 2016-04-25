@@ -80,7 +80,7 @@ For example, this could be the project.json of the `dotnet-hello` tool described
 
 ```json
 {
-  "version": "1.0.0-*",
+  "version": "2.0.0-*",
   "compilationOptions": {
     "emitEntryPoint": true
   },
