@@ -72,6 +72,32 @@ Supported children of the `<types>` element are:
 &lt;/package&gt;
 </pre>
 
+## Creation
+
+To create a package that can operate as a .NET CLI tool, I propose one option (in addition to manually editing the input .nuspec file). We can add additional metadata to the project.json of the .NET tool that is being created.
+
+For example, this could be the project.json of the `dotnet-hello` tool described above.
+
+```json
+{
+  "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "NETStandard.Library": "1.5.0-rc2-24008"
+  },
+  "frameworks": {
+    "netstandardapp1.5": {
+      "imports": "dnxcore50"
+    }
+  },
+  "packageTypes": [
+    { "type": "dotnet-cli-tool" }
+  ]
+}
+```
+
 ## Additional concerns
 
 ### Existing packages
