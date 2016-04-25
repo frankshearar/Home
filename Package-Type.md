@@ -102,7 +102,7 @@ For example, this could be the project.json of the `dotnet-hello` tool described
 
 ### Existing packages
 
-Treatment of existing packages will not change. Since the notion of type is not a single-valued or required concept, existing packages need to type to be inferred.
+Treatment of existing packages will not change. Since the notion of type is not a single-valued or required concept, existing packages do not need any type to be explicitly added or even inferred.
 
 ### Multiple types
 
