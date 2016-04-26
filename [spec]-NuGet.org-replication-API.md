@@ -46,3 +46,7 @@ This is really just a point to the flat container {packageId}/index.json
 2. Prototype command
 
 XXX.exe Replicate -Source https://api.nuget.org/v3/index.json -Cursor File.Cursor -Output {folder/pushserveruri} -Structure {flat/v3(default)} -glob {e.g. microsoft.*} -owner {microsoft|aspnet} -allVersions (default is latest) -PreRelease
+
+#### Samples
+
+* ng.exe’s Ligtning command (to regenerate registration blobs) has an example of fetching the latest state of all packages from catalog: https://github.com/NuGet/NuGet.Services.Metadata/blob/searchcloud/src/Ng/Lightning.cs#L172
