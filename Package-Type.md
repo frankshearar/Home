@@ -54,27 +54,24 @@ Every package contains a .nuspec file which provides metadata and dependency inf
 
 ## Proposal
 
-My proposal is to introduce a new child node to the `<metadata>` element which allows tooling to act differently for .NET CLI tools. The new child element is the `<types>` element. This `<types>` element can contain zero or more child elements that indicate types of this package.
+My proposal is to introduce a new type of child node to the `<metadata>` element which allows tooling to act differently for .NET CLI tools. The new child element is the `<packageType>` element. There can be zero or more `<packageType>` elements that indicate types of this package. Each `<packageType>` element must have a `type` attribute. Supported values of the `type` attribute are:
 
-Supported children of the `<types>` element are:
-
-- `<dotnet-cli-tool>` - indicates that this package is a .NET CLI tool and should be installed to the `"tools"` node of the consuming project.json file.
+- `dotnet-cli-tool` - indicates that this package is a .NET CLI tool and should be installed to the `"tools"` node of the consuming project.json file.
+- `dependency` - indicates that this package is a dependency. All packages without any explicit `<packageType>` are assumed to be of the `dependency` type. This includes are packages predating this specification.
 
 <pre>
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
   &lt;metadata&gt;
     ...
-    <b>&lt;types&gt;
-      &lt;dotnet-cli-tool /&gt;
-    &lt;/types&gt;</b>
+    <b>&lt;packageType type="dotnet-cli-tool" /&gt;</b>
   &lt;/metadata&gt;
 &lt;/package&gt;
 </pre>
 
-## Creation
+## Tool Creation
 
-To create a package that can operate as a .NET CLI tool, I propose one option (in addition to manually editing the input .nuspec file). We can add additional metadata to the project.json of the .NET tool that is being created.
+To create a package that can operate as a .NET CLI tool, I propose one option (in addition to manually editing the input .nuspec file). The developer adds a `"packageType"` key to the existing `"packOptions"` node of the project.json of the .NET tool that is being created.
 
 For example, this could be the project.json of the `dotnet-hello` tool described above.
 
@@ -92,52 +89,16 @@ For example, this could be the project.json of the `dotnet-hello` tool described
       "imports": "dnxcore50"
     }
   },
-  "packageTypes": [
-    { "type": "dotnet-cli-tool" }
-  ]
+  "packOptions": {
+    "packageType": "dotnet-cli-tool"
+  }
 }
 ```
 
-## Additional concerns
+The format of a package type string is exactly like a package ID. That is, a package type is a case-insensitive string matching the regular expression `^\w+([_.-]\w+)*$` having at least one character and at most 100 characters. 
 
-### Existing packages
+Any string following these rules can be specified as the `packageType` in a project.json. The pack command will simply copy this string to the output .nuspec `<packageType>` node. If no value is specified, the pack command will default to a package value `<packageType type="dependency" />`.
+
+## Existing packages
 
 Treatment of existing packages will not change. Since the notion of type is not a single-valued or required concept, existing packages do not need any type to be explicitly added or even inferred.
-
-### Multiple types
-
-Although there is currently no need for multiple package types, the intent of this design is to allow for a package to have multiple types. For example, if a package can be treated both as a .NET CLI tool and, say, a "Win32 tool", we could mark the package like this:
-
-<pre>
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
-  &lt;metadata&gt;
-    ...
-    <b>&lt;types&gt;
-      &lt;dotnet-cli-tool /&gt;
-      &lt;win32-tool /&gt;
-    &lt;/types&gt;</b>
-  &lt;/metadata&gt;
-&lt;/package&gt;
-</pre>
-
-### Searchability and indexing
-
-If we wanted to provide a feature on NuGet.org to search for any kind of tool package, we could build knowledge into the search index to look for the `<dotnet-cli-tool>`. However, if someone introduces a new kind of tool package that is not meant for the .NET CLI, e.g. `<win32-tool>`, we would have to add an additional rule to the server asserting that <win32-tool>` is also a tool should be included in the generic tool search.
-
-To address this problem, we could also mark this tool with an additional type:
-
-<pre>
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
-  &lt;metadata&gt;
-    ...
-    <b>&lt;types&gt;
-      &lt;dotnet-cli-tool /&gt;
-      &lt;tool /&gt;
-    &lt;/types&gt;</b>
-  &lt;/metadata&gt;
-&lt;/package&gt;
-</pre>
-
-This would allow any indexing procedure to write more generic code searching for the `<tool>` element. For this to work, however, an additional burden would be placed on the tool producer (either explicit user intervention or `pack` command code) to add this additional element every time a `<dotnet-cli-tool>` is produced.
