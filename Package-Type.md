@@ -71,7 +71,7 @@ My proposal is to introduce a new type of child node to the `<metadata>` element
 
 ## Tool Creation
 
-To create a package that can operate as a .NET CLI tool, I propose one option (in addition to manually editing the input .nuspec file). The developer adds a `"packageType"` key to the existing `"packOptions"` node of the project.json of the .NET tool that is being created.
+To create a package that can operate as a .NET CLI tool, there is one option (in addition to manually editing the input .nuspec file to a `<packageType>` node. The developer adds a `"packageType"` key to the existing `"packOptions"` node of the project.json of the .NET tool that is being created.
 
 For example, this could be the project.json of the `dotnet-hello` tool described above.
 
@@ -97,7 +97,17 @@ For example, this could be the project.json of the `dotnet-hello` tool described
 
 The format of a package type string is exactly like a package ID. That is, a package type is a case-insensitive string matching the regular expression `^\w+([_.-]\w+)*$` having at least one character and at most 100 characters. 
 
-Any string following these rules can be specified as the `packageType` in a project.json. The pack command will simply copy this string to the output .nuspec `<packageType>` node. If no value is specified, the pack command will default to a package value `<packageType type="dependency" />`.
+Any string following these rules can be specified as the `packageType` in a project.json. The pack command will simply copy this string to the output .nuspec `<packageType>` node. If no value is specified, the pack command will default to a package type of `<packageType type="dependency" />`.
+
+## Installation
+
+The behavior of NuGet's install command will be modified so that when a `dotnet-cli-tool` package is being installed to a .NET CLI project.json file, the package will be added to the `"tools"` node instead of the `"dependencies"` node. Installation of `dotnet-cli-tool` packages to non-.NET CLI project.json or to packages.config behaves exactly as a dependency.
+
+If a package has no explicit package type, the package is assumed to be a dependency. If a package has an unrecognized (not `dotnet-cli-tool` or `dependency`) type or more than one type, the installation fails.
+
+## Restoration
+
+A package's `<packageType>` does not effect NuGet's restore operation. For example, if a project has a transitive dependency that is a `dotnet-cli-tool`.
 
 ## Existing packages
 
