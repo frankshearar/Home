@@ -113,6 +113,8 @@ The format of a package type string is exactly like a package ID. That is, a pac
 
 Any string following these rules can be specified as the `packageType` in a project.json. The pack command will simply copy this string to the output .nuspec `<packageType>` node. If no value is specified, the pack command will default to a package type of `<packageType type="dependency" />`.
 
+If more than one value is supplied (e.g. via a JSON array), the pack command fails.
+
 ## Installation
 
 The behavior of NuGet's install command will be modified so that when a `dotnet-cli-tool` package is being installed to a .NET CLI project.json file, the package will be added to the `"tools"` node instead of the `"dependencies"` node. Installation of `dotnet-cli-tool` packages to non-.NET CLI project.json or to packages.config behaves exactly as a dependency.
