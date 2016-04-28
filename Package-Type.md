@@ -59,12 +59,26 @@ My proposal is to introduce a new type of child node to the `<metadata>` element
 - `dotnet-cli-tool` - indicates that this package is a .NET CLI tool and should be installed to the `"tools"` node of the consuming project.json file.
 - `dependency` - indicates that this package is a dependency. All packages without any explicit `<packageType>` are assumed to be of the `dependency` type. This includes are packages predating this specification.
 
+### dotnet-cli-tool .nuspec
+
 <pre>
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
   &lt;metadata&gt;
     ...
     <b>&lt;packageType type="dotnet-cli-tool" /&gt;</b>
+  &lt;/metadata&gt;
+&lt;/package&gt;
+</pre>
+
+### dependency .nuspec
+
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
+  &lt;metadata&gt;
+    ...
+    <b>&lt;packageType type="dependency" /&gt;</b>
   &lt;/metadata&gt;
 &lt;/package&gt;
 </pre>
