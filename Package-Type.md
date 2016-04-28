@@ -128,7 +128,7 @@ If a package has no explicit package type, the package is assumed to be a depend
 
 ## Restoration
 
-A package's `<packageType>` does not effect NuGet's restore operation. For example, if a project has a transitive dependency that happens to be a `dotnet-cli-tool`, this package is treated as a normal dependency.
+A package's `<packageType>` does not affect NuGet's restore operation. For example, if a project has a transitive dependency that happens to be a `dotnet-cli-tool`, this package is treated as a normal dependency.
 
 For a `dotnet-cli-tool` to be treated as a tool and to be invokable as `dotnet hello`, it must be mentioned explicitly in the consuming project's `"tools"` node. Conversely, a package in the `"tools"` node cannot be used as a dependency. 
 
