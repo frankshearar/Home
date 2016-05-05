@@ -69,7 +69,7 @@ My proposal is to introduce a new type of child node to the `<metadata>` element
 - `DotnetCliTool` - indicates that this package is a .NET CLI tool and should be installed to the `"tools"` node of the consuming project.json file.
 - `Dependency` - indicates that this package is a dependency. All packages without any explicit `<packageType>` are assumed to be of the `Dependency` type. This includes are packages predating this specification.
 
-In both cases, the version should not be specified and defaults to `0.0`.
+In both cases, the version should not be specified. The version defaults to `0.0` when not specified.
 
 ### DotnetCliTool .nuspec
 
