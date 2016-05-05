@@ -3,6 +3,10 @@
 If you have any ideas or concerns with this design, please comment on the following GitHub issue:
 https://github.com/NuGet/Home/issues/2476
 
+## Revisions
+
+- **2016-04-28** - Initial accepted design.
+
 ## Goal
 
 The goal of this document is to propose a way for .NET CLI tool packages to be marked in such a way that NuGet tooling can install these packages to the `"tools"` node of a project.json. Without this proposal, packages (tool or otherwise) will be installed to the `"dependencies"` node, which is the current functionality for all existing packages.
