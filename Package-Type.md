@@ -6,6 +6,7 @@ https://github.com/NuGet/Home/issues/2476
 ## Revisions
 
 - **2016-04-28** - Initial accepted design.
+- **2016-05-05** - Change style of package type names and add notion of version.
 
 ## Goal
 
@@ -65,29 +66,31 @@ Every package contains a .nuspec file which provides metadata and dependency inf
 
 My proposal is to introduce a new type of child node to the `<metadata>` element which allows tooling to act differently for .NET CLI tools. The new child element is the `<packageType>` element. There can be zero or more `<packageType>` elements that indicate types of this package. Each `<packageType>` element must have a `type` attribute. Supported values of the `type` attribute are:
 
-- `dotnet-cli-tool` - indicates that this package is a .NET CLI tool and should be installed to the `"tools"` node of the consuming project.json file.
-- `dependency` - indicates that this package is a dependency. All packages without any explicit `<packageType>` are assumed to be of the `dependency` type. This includes are packages predating this specification.
+- `DotnetCliTool` - indicates that this package is a .NET CLI tool and should be installed to the `"tools"` node of the consuming project.json file.
+- `Dependency` - indicates that this package is a dependency. All packages without any explicit `<packageType>` are assumed to be of the `Dependency` type. This includes are packages predating this specification.
 
-### dotnet-cli-tool .nuspec
+In both cases, the version should not be specified and defaults to `0.0`.
+
+### DotnetCliTool .nuspec
 
 <pre>
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
   &lt;metadata&gt;
     ...
-    <b>&lt;packageType type="dotnet-cli-tool" /&gt;</b>
+    <b>&lt;packageType type="DotnetCliTool" /&gt;</b>
   &lt;/metadata&gt;
 &lt;/package&gt;
 </pre>
 
-### dependency .nuspec
+### Dependency .nuspec
 
 <pre>
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
   &lt;metadata&gt;
     ...
-    <b>&lt;packageType type="dependency" /&gt;</b>
+    <b>&lt;packageType type="Dependency" /&gt;</b>
   &lt;/metadata&gt;
 &lt;/package&gt;
 </pre>
@@ -113,28 +116,28 @@ For example, this could be the project.json of the `dotnet-hello` tool described
     }
   },
   "packOptions": {
-    "packageType": "dotnet-cli-tool"
+    "packageType": "DotnetCliTool"
   }
 }
 ```
 
 The format of a package type string is exactly like a package ID. That is, a package type is a case-insensitive string matching the regular expression `^\w+([_.-]\w+)*$` having at least one character and at most 100 characters. 
 
-Any string following these rules can be specified as the `packageType` in a project.json. The pack command will simply copy this string to the output .nuspec `<packageType>` node. If no value is specified, the pack command will default to a package type of `<packageType type="dependency" />`.
+Any string following these rules can be specified as the `packageType` in a project.json. The pack command will simply copy this string to the output .nuspec `<packageType>` node. If no value is specified, the pack command will default to a package type of `<packageType type="Dependency" />`.
 
 If more than one value is supplied (e.g. via a JSON array), the pack command fails.
 
 ## Installation
 
-The behavior of NuGet's install command will be modified so that when a `dotnet-cli-tool` package is being installed to a .NET CLI project.json file, the package will be added to the `"tools"` node instead of the `"dependencies"` node. Installation of `dotnet-cli-tool` packages to non-.NET CLI project.json or to packages.config behaves exactly as a dependency.
+The behavior of NuGet's install command will be modified so that when a `dotnetCliTool` package is being installed to a .NET CLI project.json file, the package will be added to the `"tools"` node instead of the `"dependencies"` node. Installation of `dotnetCliTool` packages to non-.NET CLI project.json or to packages.config behaves exactly as a dependency.
 
-If a package has no explicit package type, the package is assumed to be a dependency. If a package has an unrecognized (not `dotnet-cli-tool` or `dependency`) type or more than one type, the installation fails.
+If a package has no explicit package type, the package is assumed to be a dependency. If a package has an unrecognized (not `DotnetCliTool` or `Dependency`) type or more than one type, the installation fails.
 
 ## Restoration
 
-A package's `<packageType>` does not affect NuGet's restore operation. For example, if a project has a transitive dependency that happens to be a `dotnet-cli-tool`, this package is treated as a normal dependency.
+A package's `<packageType>` does not affect NuGet's restore operation. For example, if a project has a transitive dependency that happens to be a `DotnetCliTool`, this package is treated as a normal dependency.
 
-For a `dotnet-cli-tool` to be treated as a tool and to be invokable with, say, `dotnet hello`, it must be mentioned explicitly in the consuming project's `"tools"` node. Conversely, a package in the `"tools"` node cannot be used as a dependency. 
+For a `DotnetCliTool` to be treated as a tool and to be invokable with, say, `dotnet hello`, it must be mentioned explicitly in the consuming project's `"tools"` node. Conversely, a package in the `"tools"` node cannot be used as a dependency. 
 
 ## Existing packages
 
