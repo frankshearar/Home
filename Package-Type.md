@@ -7,6 +7,7 @@ https://github.com/NuGet/Home/issues/2476
 
 - **2016-04-28** - Initial accepted design.
 - **2016-05-05** - Change style of package type names and add notion of version.
+- **2016-05-06** - Add extended example of a custom package type.
 
 ## Goal
 
@@ -142,3 +143,33 @@ For a `DotnetCliTool` to be treated as a tool and to be invokable with, say, `do
 ## Existing packages
 
 Treatment of existing packages will not change. Since the notion of type is not a single-valued or required concept, existing packages do not need any type to be explicitly added or even inferred.
+
+## Other Package Types
+
+As mentioned in the [Tool Creation](#Installation) section, the `"packageType"` property under `"packOptions"` in a project.json can be set to any string adhering to the aforementioned format rules.
+
+For example, suppose a package creator was using NuGet packages to deliver a Windows desktop executable under the `tools` .nupkg directory. The package creator and consumer would then come to some agreement on a package type string. In this example, the package type string could be `Win32Tool`.
+
+The package creator would then craft a package with the following .nuspec:
+
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
+  &lt;metadata&gt;
+    ...
+    <b>&lt;packageType type="Win32Tool" /&gt;</b>
+  &lt;/metadata&gt;
+&lt;/package&gt;
+</pre>
+
+This .nuspec could be created my manually editing the .nuspec file provided to the pack command. Alternatively, the package type could be specified in the project.json file.
+
+<pre>
+{
+  ...
+  "packOptions": {
+    <b>"packageType": "Win32Tool"</b>
+  }
+}
+</pre>
+
