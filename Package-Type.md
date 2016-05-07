@@ -175,6 +175,6 @@ This .nupkg could be created by manually editing the .nuspec file provided to th
 }
 </pre>
 
-Finally, the package consumer would implement a client that downloads and extracts packages that have this package type. A well behaved client should only support a specific list of package types since package type is the first class way of knowing that a package was intended for scenarios supported by the client.
+Finally, the package consumer would implement a client that downloads and extracts packages that have this package type (perhaps using NuGet client code to restore the package). A well behaved client should only interact with a specific list of package types. Package type is the first class way of knowing that a package was intended for scenarios supported by the client.
 
 Other experiences can be improved by observing the package type. For example, package discovery (e.g. a search UI on a website) filter based on this package type.
