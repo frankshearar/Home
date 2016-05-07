@@ -148,6 +148,8 @@ Treatment of existing packages will not change. Since the notion of type is not 
 
 As mentioned in the [Tool Creation](#Installation) section, the `"packageType"` property under `"packOptions"` in a project.json can be set to any string adhering to the aforementioned format rules.
 
+Do note that the NuGet client (NuGet in Visual Studio) will reject installation of unrecognized package types.
+
 For example, suppose a package creator was using NuGet packages to deliver a Windows desktop executable under the `tools` .nupkg directory. The package creator and consumer would then come to some agreement on a package type string. In this example, the package type string could be `Win32Tool`.
 
 The package creator would craft a package with the following .nuspec:
