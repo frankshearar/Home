@@ -130,7 +130,7 @@ If more than one value is supplied (e.g. via a JSON array), the pack command fai
 
 ## Installation
 
-The behavior of NuGet's install command will be modified so that when a `dotnetCliTool` package is being installed to a .NET CLI project.json file, the package will be added to the `"tools"` node instead of the `"dependencies"` node. Installation of `dotnetCliTool` packages to non-.NET CLI project.json or to packages.config behaves exactly as a dependency.
+The behavior of NuGet's install command will be modified so that when a `DotnetCliTool` package is being installed to a .NET CLI project.json file, the package will be added to the `"tools"` node instead of the `"dependencies"` node. Installation of `DotnetCliTool` packages to non-.NET CLI project.json or to packages.config behaves exactly as a dependency.
 
 If a package has no explicit package type, the package is assumed to be a dependency. If a package has an unrecognized (not `DotnetCliTool` or `Dependency`) type or more than one type, the installation fails.
 
@@ -150,7 +150,7 @@ As mentioned in the [Tool Creation](#Installation) section, the `"packageType"` 
 
 For example, suppose a package creator was using NuGet packages to deliver a Windows desktop executable under the `tools` .nupkg directory. The package creator and consumer would then come to some agreement on a package type string. In this example, the package type string could be `Win32Tool`.
 
-The package creator would then craft a package with the following .nuspec:
+The package creator would craft a package with the following .nuspec:
 
 <pre>
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
@@ -162,7 +162,7 @@ The package creator would then craft a package with the following .nuspec:
 &lt;/package&gt;
 </pre>
 
-This .nuspec could be created my manually editing the .nuspec file provided to the pack command. Alternatively, the package type could be specified in the project.json file.
+This .nupkg could be created by manually editing the .nuspec file provided to the pack command. Alternatively, the package type could be specified in the project.json file.
 
 <pre>
 {
@@ -173,3 +173,6 @@ This .nuspec could be created my manually editing the .nuspec file provided to t
 }
 </pre>
 
+Finally, the package consumer would implement a client that downloads and extracts packages that have this package type. A well behaved client should only support a specific list of package types since package type is the first class way of knowing that a package was intended for scenarios supported by the client.
+
+Other experiences can be improved by observing the package type. For example, package discovery (e.g. a search UI on a website) filter based on this package type.
