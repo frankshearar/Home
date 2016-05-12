@@ -1,6 +1,10 @@
 ##Welcome to the NuGet team Wiki.
 
-We plan to use this Wiki for tracking design discussions, for now this is a "playground".
+The NuGet Team Wiki will be primarily used for 3 things:-
+
+1. Documenting and updating product roadmap
+2. Design Meeting notes
+3. NuGet product specifications
 
 ###The intent of this area
 
