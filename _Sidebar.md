@@ -1,9 +1,8 @@
 ### Product Roadmap
 ***
 
-[Roadmap](https://github.com/NuGet/Home/wiki/Roadmap)
-
-[Using ZenHub](https://www.zenhub.io/)
+* [Roadmap](https://github.com/NuGet/Home/wiki/Roadmap)
+* [How to use ZenHub](https://www.zenhub.io/)
 
 ### Design Meeting Notes
 ***
