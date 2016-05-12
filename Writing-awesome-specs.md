@@ -1,3 +1,8 @@
+* Create a new wiki page using the spec template below to jot your thoughts down.
+* Create an issue to track the feature or link an existing issue to the new wiki page.
+* Send a mail with a link to the wiki page to the core team alias.
+* Campaign offline or in a meeting for the feature :)
+
 # Title
 _title of the proposal_
 
