@@ -49,4 +49,8 @@ XXX.exe Replicate -Source https://api.nuget.org/v3/index.json -Cursor File.Curso
 
 #### Samples
 
-* ng.exe’s Ligtning command (to regenerate registration blobs) has an example of fetching the latest state of all packages from catalog: https://github.com/NuGet/NuGet.Services.Metadata/blob/searchcloud/src/Ng/Lightning.cs#L172
+* ng.exe’s Lightning command (to regenerate registration blobs) has an example of fetching the latest state of all packages from catalog: https://github.com/NuGet/NuGet.Services.Metadata/blob/searchcloud/src/Ng/Lightning.cs#L172
+
+#### Notes
+
+* The service index.json has a Catalog/3.0.0 entry which can be used to determine the catalog root.
