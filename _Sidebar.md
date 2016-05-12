@@ -5,6 +5,9 @@
 
 [Using ZenHub](https://www.zenhub.io/)
 
+### Design Meeting Notes
+***
+
 ### Specs
 ***
 
@@ -19,7 +22,3 @@
 
 
 #### Archived
-
-
-### Design Meeting Notes
-***
