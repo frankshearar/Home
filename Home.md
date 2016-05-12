@@ -1,4 +1,4 @@
-##Welcome to the NuGet team Wiki.
+##Welcome to the NuGet team Wiki
 
 The NuGet Team Wiki will be primarily used for 3 things:-
 
