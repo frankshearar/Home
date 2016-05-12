@@ -2,7 +2,7 @@
 
 The NuGet Team Wiki will be primarily used for 3 things:-
 
-1. Documenting and updating the product roadmap
+1. Documenting and updating the [product roadmap](https://github.com/NuGet/Home/wiki/Roadmap)
 2. Design meeting notes
 3. NuGet product specifications
 
@@ -13,3 +13,4 @@ The [product roadmap](https://github.com/NuGet/Home/wiki/Roadmap) is constantly 
 We will create design discussion summaries for each design discussion and create a wiki page and a corresponding issue with the _Discussion_ label in the Future milestone. These issues will stay open for a relatively long amount of time, and are for free and open discussion. They can turn into actionable issues, or remain in discussion state.
 
 ### NuGet product specifications
+Product specifications enable the team to put forward ideas, get the discussion going within the team and the community and finally have a well thought out proposal ready for implementation. This will generally only be used by the NuGet team. As always, the community can always open issues to put forward their proposals. Provided it aligns with our priorities, roadmap and vision of NuGet, the NuGet team will work with you to formalize that into a product specification.
