@@ -4,18 +4,18 @@ This document gives an overview of the planned schedule and themes for NuGet fro
 
 ## Schedule
 
-| Milestone|Release|
+| Milestone|Release Week|
 |---|---|
-| 3.4.4 RC|   |
-| 3.4.4 RTM|   |
-| 2.1.2 RC|   |
-| 2.1.2 RTM|   |
-| 3.4.5  RC|   |
-| 3.4.5  RC|   |
-| 3.5  Beta|
-| 3.5 RC|   |
-| 3.5 RTM|   |
-| 3.6 Beta|   |
+| 3.4.4 RC|  May 9th, 2016|
+| 3.4.4 RTM| May 16th, 2016|
+| 2.1.2 RC|  May 16th, 2016|
+| 2.1.2 RTM| May 23rd, 2016|
+| 3.4.5  RC| June 20th, 2016|
+| 3.4.5  RTM| June 27th, 2016|
+| 3.5  Beta| June 27th, 2016|
+| 3.5 RC|  Aug 27th, 2016 |
+| 3.5 RTM| Nov 15th, 2016|
+| 3.6 Beta| Jan 20th, 20167
 |Future| NA
 
 ## Themes
