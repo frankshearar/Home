@@ -14,7 +14,7 @@ However, there are some open issues here that need to be thought through:-
 * The timeline is a bit fuzzy at this point. Early adopters of this tool might have to do 2-3(max) upgrades over time to completely move over to the new standard.
 
 ## Who is the customer?
-_Who is the customer that is running into the problem. Which customers would dance for joy and donate to save the space unicorns foundation on getting this feature. Customers here could be individuals, nuget customer segments (package authors, consumers), enterprises, partners within Microsoft, external partners etc..._
+Every Visual Studio user not using NuGet Standard 3.0 is a potential customer. We want to get users to move away from the dependency management hell some of them are finding themselves in. Future investments will be primarily on top of NuGet Standard 3.0 and we want to bring all our customers in for a ride. Currently, users have to use either read blogs or this [doc] (https://github.com/NuGet/Home/wiki/Converting-a-csproj-from-package.config-to-project.json) to this themselves. Package authors and consumers both will be hugely benefit from this change.
 
 ## Evidence
 _What is the evidence that behoves us to act?_
