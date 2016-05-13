@@ -17,8 +17,6 @@ However, there are some open issues here that need to be thought through:-
 Every Visual Studio user not using NuGet Standard 3.0 is a potential customer. We want to get users to move away from the dependency management hell some of them are finding themselves in. Future investments will be primarily on top of NuGet Standard 3.0 and we want to bring all our customers in for a ride. Currently, users have to use either read blogs or this [doc] (https://github.com/NuGet/Home/wiki/Converting-a-csproj-from-package.config-to-project.json) to this themselves. Package authors and consumers both will be hugely benefit from this change.
 
 ## Evidence
-_What is the evidence that behoves us to act?_
-_Evidence can be impassioned tweets or mails, mile long conversations in issues, rants on blogs, sweet sweet data from telemetry!!! If you can show pain, you can rally the troops._
+-- Yishai's section
 
 ## Solution
-_Detailed explanation of the solution. The more pictures/code snippets based on the feature the merrier. Pictures keep folks awake when reading specs._
