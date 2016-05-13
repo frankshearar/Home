@@ -35,4 +35,4 @@ This document gives an overview of the planned schedule and themes for NuGet fro
 
 ### 3.6 - Performance, Diagnostics, Upgraders
 
-**Planned features:** Staging, 
+**Planned features:** Staging, Component Level Dependency Management
