@@ -84,26 +84,21 @@ This feature will need to evolve over a period of time so we will introduce a ne
    * A dialog comes up explaining to the user the exact changes that will happen to the project
       * Icon: Information
       * Text: <Detailed explanation of what this will mean>
+      * Analysis Results
+        * If there are any missing packages, we will not allow users to proceed (no OK button)
+        * Show Results (issues that could happen if packages have content files, packages from install.ps1)
       * We need two options
         * Collapse dependencies (By Default)
         * Keep dependencies flat
       * Buttons: Cancel, OK
    * User clicks on Cancel - Dialog goes away
-   * User clicks Convert (Tim: This could be combined into the previous dialog)
-		a. Analyzing Project Dialog
-			i. Icon: Information
-			ii. Show results (Missing packages)
-				1) Cant convert 
-			iii. Show Results (issues that could happen if packages have content files, packages from install.ps1)
-				1) Buttons: Cancel, Ok
-				2) Need design help
-		b. We bring up the standard VS blocking UI progress bar (Like Restore)
-			i. The following steps are documented in the dialog
-				1) Removal of packages.config <probably instantaneous>
-				2) Adding of project.json <probably instantaneous>
-				3) Adding top level packages
-				4) Restoring packages
-		c. Completion Dialog
-			i. Result: Conversation was complete
-			ii. Text: Please build and run your solution to verify that all packages are available
-			iii. Text: If this doesn’t work out, we have backed up changes file to …… Please refer to doc to revert your project
+   * User clicks OK
+      * We bring up the standard VS blocking UI progress bar (Like Restore). The following steps are documented in the dialog
+	* Removal of packages.config <probably instantaneous>
+        * Adding of project.json <probably instantaneous>
+        * Adding top level packages
+        * Restoring packages
+   * Completion Dialog
+      * Result: Upgrade Complete
+      * **Text:** Please build and run your solution to verify that all packages are available
+      * ** Text:** If you run into any issue and would like to revert, we have backed up changed files to _Location _. Follow the directions described in the following document to revert the changes.
