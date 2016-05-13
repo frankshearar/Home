@@ -21,6 +21,9 @@ Every Visual Studio user not using NuGet Standard 3.0 is a potential customer. W
 
 ## Solution
 
+### Non Goals
+While a solution level upgrade experience is desirable, we will start with project level upgrade first.
+
 ### Experimental Features
 This feature will need to evolve over a period of time so we will introduce a new Experimental features option that will be by default turned off. Have a single _Enable experimental features_ check-box in the General Page of NuGet Package Manager in Tools->Options.
 
@@ -64,3 +67,43 @@ This feature will need to evolve over a period of time so we will introduce a ne
 * Windows 8.1 Store and Phone 
 * Silverlight
 * Lightswitch
+
+### Surfacing in Visual Studio
+* Below Manage NuGet Packages in Project Context Menu and Top level menu.
+* In the context menu for packages.config.
+* In the Package Manager UI as a info bar that can be turned off.
+
+**Command Text:** _Upgrade to NuGet 3.4 Standard_
+
+**Info Bar Text:** _Upgrade to NuGet 3.4 Standard_
+
+//TODO (Mockups)
+
+### Upgrader flow
+* User clicks on the Upgrade Command
+   * A dialog comes up explaining to the user the exact changes that will happen to the project
+      * Icon: Information
+      * Text: <Detailed explanation of what this will mean>
+      * We need two options
+        * Collapse dependencies (By Default)
+        * Keep dependencies flat
+      * Buttons: Cancel, OK
+   * User clicks on Cancel - Dialog goes away
+   * User clicks Convert (Tim: This could be combined into the previous dialog)
+		a. Analyzing Project Dialog
+			i. Icon: Information
+			ii. Show results (Missing packages)
+				1) Cant convert 
+			iii. Show Results (issues that could happen if packages have content files, packages from install.ps1)
+				1) Buttons: Cancel, Ok
+				2) Need design help
+		b. We bring up the standard VS blocking UI progress bar (Like Restore)
+			i. The following steps are documented in the dialog
+				1) Removal of packages.config <probably instantaneous>
+				2) Adding of project.json <probably instantaneous>
+				3) Adding top level packages
+				4) Restoring packages
+		c. Completion Dialog
+			i. Result: Conversation was complete
+			ii. Text: Please build and run your solution to verify that all packages are available
+			iii. Text: If this doesn’t work out, we have backed up changes file to …… Please refer to doc to revert your project
