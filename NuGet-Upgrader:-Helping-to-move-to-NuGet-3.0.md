@@ -20,3 +20,47 @@ Every Visual Studio user not using NuGet Standard 3.0 is a potential customer. W
 -- Yishai's section
 
 ## Solution
+
+### Experimental Features
+This feature will need to evolve over a period of time so we will introduce a new Experimental features option that will be by default turned off. Have a single _Enable experimental features_ check-box in the General Page of NuGet Package Manager in Tools->Options.
+
+**Text**: _Enable experimental features_
+
+**Info Icon:** Not designed yet, we need to have a link that points to doc page that talks about experimental features
+
+//TODO (Mockup)
+
+### Supported Frameworks, Languages and Project Types
+
+**Languages (If MSBuild based)**
+* C#
+* VB
+* C++/CLI
+* F#? - Need to discuss with ML?
+* C++? - No
+
+**Supported Frameworks**
+* All Versions (E.g 1.1.1,  2.0, 3.X. 4.X.) + PCL Profiles
+
+**Supported Projects**
+* WPF
+* WinForms
+* Console App
+* Class Libraries
+* PCLs
+* Windows Service
+* VS Extensibility
+* Test 
+* Web (ASP.NET 4)
+* Android
+* iOS
+* Office Projects
+* VS Extensibility
+* WCF
+* Workflow
+* Test 
+
+**Blacklist(No new investments here)**
+* Windows 8.1 Store and Phone 
+* Silverlight
+* Lightswitch
