@@ -102,3 +102,5 @@ This feature will need to evolve over a period of time so we will introduce a ne
       * Result: Upgrade Complete
       * **Text:** Please build and run your solution to verify that all packages are available
       * ** Text:** If you run into any issue and would like to revert, we have backed up changed files to _Location _. Follow the directions described in the following document to revert the changes.
+
+![](https://github.com/NuGet/Home/blob/dev/resources/upgraderImage.png)
