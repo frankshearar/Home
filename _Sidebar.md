@@ -15,15 +15,13 @@
 ***
 
 #### Incubation 
-
-* [NuGet Upgrader](https://github.com/NuGet/Home/wiki/NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0)
 * [Package Sources Analyzer] (https://github.com/NuGet/Home/wiki/Package-Sources-Analyzer)
-* [Package Type](https://github.com/NuGet/Home/wiki/Package-Type)
 
 #### Reviewing
+* [NuGet Upgrader](https://github.com/NuGet/Home/wiki/NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0)
 
 #### Reviewed
-
+* [Package Type](https://github.com/NuGet/Home/wiki/Package-Type)
 
 #### Implemented
 
