@@ -17,4 +17,37 @@ Any customer who has a slow network, works offline and online, has NuGet.Server 
 TBD
 
 ## Solution
-_Detailed explanation of the solution. The more pictures/code snippets based on the feature the merrier. Pictures keep folks awake when reading specs._
+
+### Scenarios that hit a file share/ server (ordered in terms of priority)
+ 
+  * Update: Checking for updates. Fetching and installing packages.
+  * Package restore
+  * Browse/Search; Search in package manager UI and list in PMC
+  * Install
+  * Detailed metadata fetch (Click on package)
+  * PowerShell autocomplete
+  * Consolidate
+
+### Diagnostics Scenarios (Ordered in terms of priority)
+
+  * Server is not accessible: Server is not available or server can't be reached
+  * Server is slow: Package has a large number of versions (1000+ CI feeds). Server implementation is not optimal for large version set
+  * FileShare is not efficient
+  * vNext (Requires proxy rules): Semantic understanding of what packages are being downloaded per source
+
+### Priority of experiences
+  * VS
+  * PMC
+  * NuGet.xplat
+  * Nuget.exe
+
+### Walkthrough
+  * User opens Visual Studio
+  * User open  package manager UI
+  * Sees an update and hits install
+  * We detected 1-N issues
+  * We bring up a UI that shows what the issues are
+  * This UI will have single disable for duration command, disable for all time command
+  * On clicking this package manager enters into temp disable mode, we show some indicator that you are this in this mode.
+  * You can either get out of the temp disable mode by using some command in VS or restart VS
+  * If the user clicks permanently disable, then there is no highlight forever and goes through normal flow.
