@@ -50,10 +50,12 @@ The value must contain the full path or paths to the fallback package folders. M
 </configuration>
 ```
 
-Folders may be defined in NuGet.Config using the ``fallbackPackageFolders`` section. Unlike ``packageSources`` only ``add`` is supported here.
+Folders may be defined in NuGet.Config using the ``fallbackPackageFolders`` section. Unlike ``packageSources`` only ``add`` and ``clear`` are supported here, folders may not be individually removed.
 
 Ordering is based on the location of the NuGet.Config file and the order within the file. Entries at the top of the list are used first. Config files nearest to the project are ordered before config files in a higher level parent directory. Machine wide settings are applied last and have the lowest precedence. 
 
-#### Tools
+### API
+
+### Tools
 The ``.tools`` folder will be ignored for fallback folders. The lock files for tools may only exist at the user level.
 
