@@ -39,6 +39,20 @@ The value must contain the full path or paths to the fallback package folders. M
 
 ##### NuGet.Config
 
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <fallbackPackageFolders>
+    <add key="Shared" value="\\server\sharedPackages" />
+    <add key="MachineWide" value="e:\machineWide" />
+    <add key="Relative" value="..\..\global" />
+  </fallbackPackageFolders>
+</configuration>
+```
+
+Folders may be defined in NuGet.Config using the ``fallbackPackageFolders`` section. Unlike ``packageSources`` only ``add`` is supported here.
+
+Ordering is based on the location of the NuGet.Config file and the order within the file. Entries at the top of the list are used first. Config files nearest to the project are ordered before config files in a higher level parent directory. Machine wide settings are applied last and have the lowest precedence. 
 
 #### Tools
 The ``.tools`` folder will be ignored for fallback folders. The lock files for tools may only exist at the user level.
