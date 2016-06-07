@@ -32,12 +32,13 @@ Fallback packages folders are never modified by NuGet restore. New packages will
 
 Fallback folders may be defined using either an environment variable or *NuGet.Config*. If the environment variable is non-empty *NuGet.Config* will be ignored.
 
-#### Environment variable
+##### Environment variable
 Environment variable: ``NUGET_FALLBACK_PACKAGES``
 
 The value must contain the full path or paths to the fallback package folders. Multiple paths may be included by setting the value to a ``;`` delimited list.
 
-#### NuGet.Config
+##### NuGet.Config
+
 
 #### Tools
 The ``.tools`` folder will be ignored for fallback folders. The lock files for tools may only exist at the user level.
