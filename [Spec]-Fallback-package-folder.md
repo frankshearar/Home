@@ -1,6 +1,6 @@
-# Fallback packages folder
+# Fallback package folder
 
-Fallback packages folders allow packages to be shared across users and machines to reduce disk space. These folders are treated as fallback folders for the primary global packages folder (``%USERPROFILE%\.nuget\packages``). They differ from package sources in that the package assets will be referenced directly and will not be copied into the user's packages folder.
+Fallback package folders allow packages to be shared across users and machines to reduce disk space. These folders are treated as fallback folders for the primary global packages folder (``%USERPROFILE%\.nuget\packages``). They differ from package sources in that the package assets will be referenced directly and will not be copied into the user's packages folder.
 
 The concept of a fallback package folder can be thought of as a GAC for nupkgs.
 
@@ -10,7 +10,7 @@ The goal of the fallback packages folder is to reduce disk space. Common package
 ### Precedence
 Package folders have an order of precedence. During restore and build the user's packages folder should be checked first for a package, then each fallback packages folder in order. Once a package has been found the search stops. Search is based on the id and version of the package only. Where the package was originally downloaded from and other asset information is not considered.
 
-The user's package folder is *always* overrides fallback packages folders.
+The user's package folder is *always* overrides fallback package folders.
 
 ### Folder format
 Fallback package folders must use the NuGet v3 folder format of ``{id-lowercase}/{version-lowercase)/{package contents}``. This is the same format as the user package folder format.
@@ -26,7 +26,7 @@ The folder may optionally contain the nupkg under: ``{id-lowercase}.{version-low
 This format may be created today using ``nuget.exe add`` or ``nuget.exe init``. It may also be created by copying an existing user packages folder that has been created by ``dotnet restore``.
 
 ### Immutable
-Fallback packages folders are never modified by NuGet restore. New packages will be installed only to the user's packages folder.
+Fallback package folders are never modified by NuGet restore. New packages will be installed only to the user's packages folder.
 
 ### Defining fallback folders
 
