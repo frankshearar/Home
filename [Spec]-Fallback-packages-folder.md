@@ -55,6 +55,14 @@ Folders may be defined in NuGet.Config using the ``fallbackPackageFolders`` sect
 Ordering is based on the location of the NuGet.Config file and the order within the file. Entries at the top of the list are used first. Config files nearest to the project are ordered before config files in a higher level parent directory. Machine wide settings are applied last and have the lowest precedence. 
 
 ### API
+TODO
+
+### Error Handling
+All fallback package folders specified *must* exist. If the root directory does not exist or any errors are encountered when attempting to access packages in the folder an exception will be thrown. 
+
+This behavior avoids silent failures which could result in unexpected downloads and decreased performance. For example if a fallback package folder is hosted on a network share and the machine is temporarily offline the restore or build should fail.
+
+Note that the user's package folder may not exist, and may never be created if all necessary packages exist in the fallback package folders.
 
 ### Tools
 The ``.tools`` folder will be ignored for fallback folders. The lock files for tools may only exist at the user level.
