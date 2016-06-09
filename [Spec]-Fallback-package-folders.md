@@ -167,3 +167,12 @@ Note that the user's package folder may not exist, and may never be created if a
 The ``.tools`` folder will be ignored for fallback folders. The lock files for tools may only exist at the user level.
 
 Packages for tools may be provided by fallback folders.
+
+### MSBuild macros
+MSBuild targets and props files for project.json replace the global folder path with ``NuGetPackageRoot``. For fallback folders this can now be one of several paths.
+
+For the first iteration of fallback folders if any fallback folders are used the ``NuGetPackageRoot`` macro will be left out. This may be updated in the future to contain macros for each fallback folder if that scenario makes sense.
+
+### Open questions
+
+1. Are settings loaded from the project directory or the solution directory? NuGet will use the solution root if a restore is performed against the solution however this may cause issues for build or other tools which may load the settings from the project root.
