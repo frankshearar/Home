@@ -1,4 +1,4 @@
-# NuGet Package Sources Analyzer
+# NuGet Package Sources Diagnostics
 
 ## Problem
 Customers often complain of performance issues with retrieving packages in search, installing and updating packages. Often when we analyze these individual issues, we find that in a large percentage of cases the issues users are seeing are due to the following. Package Sources here refer to:- File shares, NuGet.Server's, 3rd party repositories and NuGet.org.
