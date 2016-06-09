@@ -55,7 +55,106 @@ Folders may be defined in NuGet.Config using the ``fallbackPackageFolders`` sect
 Ordering is based on the location of the NuGet.Config file and the order within the file. Entries at the top of the list are used first. Config files nearest to the project are ordered before config files in a higher level parent directory. Machine wide settings are applied last and have the lowest precedence. 
 
 ### API
-TODO
+
+There are two main helpers for working with fallback folders. The first is *INuGetPathContext* which is created with *NuGetPathContext.Create(projectRoot)*, it contains all relevant folders paths. The second is *FallbackPackagePathResolver* which acts on the folder paths to find locate the package.
+
+```cs
+public interface INuGetPathContext
+{
+    /// <summary>
+    /// User packages folder directory.
+    /// </summary>
+    string UserPackagesFolder { get; }
+
+    /// <summary>
+    /// Fallback packages folder locations.
+    /// </summary>
+    IReadOnlyList<string> FallbackPackagesFolders { get; }
+
+    /// <summary>
+    /// Http file cache.
+    /// </summary>
+    string HttpCache { get; }
+}
+```
+
+```cs
+public class FallbackPackagePathResolver
+{
+    /// <summary>
+    /// Creates a package folder path resolver that scans multiple folders to find a package.
+    /// </summary>
+    /// <param name="pathContext">NuGet paths loaded from NuGet.Config settings.</param>
+    public FallbackPackagePathResolver(INuGetPathContext pathContext);
+
+    /// <summary>
+    /// Returns the root directory of an installed package.
+    /// </summary>
+    /// <param name="packageId">Package id.</param>
+    /// <param name="version">Package version.</param>
+    /// <returns>Returns the path if the package exists in any of the folders. Null if the package does not exist.</returns>
+    public string GetPackageDirectory(string packageId, string version);
+
+    /// <summary>
+    /// Returns the root directory of an installed package.
+    /// </summary>
+    /// <param name="packageId">Package id.</param>
+    /// <param name="version">Package version.</param>
+    /// <returns>Returns the path if the package exists in any of the folders. Null if the package does not exist.</returns>
+    public string GetPackageDirectory(string packageId, NuGetVersion version);
+}
+```
+
+##### Example
+The example below loads NuGet.Config settings and creates a helper containing all relevant NuGet Paths using *NuGetPathContext.Create(projectPath)*. Using *FallbackPackagePathResolver* these directories are searched and the first folder found to contain the package id and version is returned.
+
+Required packages: *NuGet.Configuration*, *NuGet.Packaging*.
+
+```cs
+using System;
+using System.Linq;
+using NuGet.Configuration;
+using NuGet.Packaging;
+
+namespace Example
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Load settings for a project and find the package folder paths.
+            var nugetPaths = NuGetPathContext.Create(@"C:\src\json-ld.net");
+
+            // User package folder
+            Console.WriteLine($"User folder: {nugetPaths.UserPackagesFolder}");
+
+            // Fallback package folders
+            var fallbackFolders = nugetPaths.FallbackPackagesFolders.Any()
+                ? string.Join(", ", nugetPaths.FallbackPackagesFolders)
+                : "none";
+            Console.WriteLine($"Fallback folders: {fallbackFolders}");
+
+            // Create a path resolver to search the package folders.
+            var pathResolver = new FallbackPackagePathResolver(nugetPaths);
+
+            // Get the path of the first package folder containing System.Runtime.
+            var packagePath = pathResolver.GetPackageDirectory("System.Runtime", "4.1.0-rc2-24027");
+
+            // If the package was not found the path resolver will return null.
+            if (packagePath == null)
+            {
+                Console.WriteLine("Unable to find package!");
+                Environment.Exit(1);
+            }
+            else
+            {
+                // C:\Users\username\.nuget\packages\System.Runtime\4.1.0-rc2-24027
+                Console.WriteLine(packagePath);
+            }
+        }
+    }
+}
+```
 
 ### Error Handling
 All fallback package folders specified *must* exist. If the root directory does not exist or any errors are encountered when attempting to access packages in the folder an exception will be thrown. 
@@ -67,3 +166,4 @@ Note that the user's package folder may not exist, and may never be created if a
 ### Tools
 The ``.tools`` folder will be ignored for fallback folders. The lock files for tools may only exist at the user level.
 
+Packages for tools may be provided by fallback folders.
