@@ -12,6 +12,8 @@
 * [Aug 12, 2015 - MsBuild/project.json](https://github.com/NuGet/Home/wiki/MsBuild---project.json---xunit-Design-meeting-notes-August,-12-2015)
 
 ### Specs
+
+[Template] (https://github.com/NuGet/Home/wiki/Writing-and-reviewing-awesome-specs)
 ***
 
 #### Incubation 
@@ -22,6 +24,7 @@
 
 #### Reviewed
 * [Package Type](https://github.com/NuGet/Home/wiki/Package-Type)
+* [Replication API] (https://github.com/NuGet/Home/wiki/%5Bspec%5D-NuGet.org-replication-API)
 
 #### Implemented
 
