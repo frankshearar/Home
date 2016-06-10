@@ -162,9 +162,8 @@ All package folders will be listed in project.lock.json in order under *packageF
 ```json
 {
   "packageFolders": {
-    "C:\\Users\username\\.nuget\packages": {},
-    "E:\\packages": {},
-    "\\\\server\\fallback": {}
+    "/home/username/.nuget/packages": {},
+    "/store/packages": {}
   }
 }
 ```
