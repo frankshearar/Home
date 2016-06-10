@@ -156,6 +156,21 @@ namespace Example
 }
 ```
 
+### Package folders in project.lock.json
+All package folders will be listed in project.lock.json in order under *packageFolders*.
+
+```json
+{
+  "packageFolders": {
+    "C:\\Users\username\\.nuget\packages": {},
+    "E:\\packages": {},
+    "\\\\server\\fallback": {}
+  }
+}
+```
+
+These paths will use OS specific absolute paths.
+
 ### Error Handling
 All fallback package folders specified *must* exist. If the root directory does not exist or any errors are encountered when attempting to access packages in the folder an exception will be thrown. 
 
@@ -171,7 +186,7 @@ Packages for tools may be provided by fallback folders.
 ### MSBuild macros
 MSBuild targets and props files for project.json replace the global folder path with ``NuGetPackageRoot``. For fallback folders this can now be one of several paths.
 
-For the first iteration of fallback folders if any fallback folders are used the ``NuGetPackageRoot`` macro will be left out. This may be updated in the future to contain macros for each fallback folder if that scenario makes sense.
+The user package folder will continue to use the ``NuGetPackageRoot`` macro, fallback folders will not have a macro.
 
 ### Open questions
 
