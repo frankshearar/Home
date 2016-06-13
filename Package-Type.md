@@ -137,7 +137,7 @@ If more than one value is supplied (e.g. via a JSON array), the pack command fai
 
 The behavior of NuGet's install command will be modified so that when a `DotnetCliTool` package is being installed to a .NET CLI project.json file, the package will be added to the `"tools"` node instead of the `"dependencies"` node. Installation of `DotnetCliTool` packages to non-.NET CLI project.json or to packages.config behaves exactly as a dependency.
 
-If a package has no explicit package type, the package is assumed to be a dependency. If a package has an unrecognized (not `DotnetCliTool` or `Dependency`) type or more than one type, the installation fails.
+If a package has no explicit package type, the package is assumed to be a dependency. If a package has an unrecognized (not `DotnetCliTool` or `Dependency`) type, the installation fails. Installation of the `DotnetCliTool` package type is only supported on .NET Core project.json projects. If there is more than one package type, installation fails.
 
 ## Restoration
 
