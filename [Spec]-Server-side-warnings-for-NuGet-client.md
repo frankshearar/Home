@@ -10,10 +10,10 @@ This spec proposes an approach to add server-side warnings support to all HTTP c
 
 ## Solution
 
-The server can return a NuGet-specific HTTP header, `NuGet-Warning`. When encountered in any HTTP response from a NuGet server, the NuGet client will display a warning message.
+The server can return a NuGet-specific HTTP header, `X-NuGet-Warning`. When encountered in any HTTP response from a NuGet server, the NuGet client will display a warning message.
 
-_Note the `NuGet-Warning` header is not mandatory. When not present, no warning messages should be displayed. The header can occur multiple times. For each value of the header, a warning message must be shown_
+_Note the `X-NuGet-Warning` header is not mandatory. When not present, no warning messages should be displayed. The header can occur multiple times. For each value of the header, a warning message must be shown_
 
-Here's an example where the API key of the user is about to expire. The server responded with a `NuGet-Warning` header that held the full warning text:
+Here's an example where the API key of the user is about to expire. The server responded with a `X-NuGet-Warning` header that held the full warning text:
 
 ![](https://cloud.githubusercontent.com/assets/880728/15927309/233633da-2e41-11e6-8a2d-191a4c750d51.png)
