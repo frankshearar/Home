@@ -8,6 +8,7 @@ https://github.com/NuGet/Home/issues/2476
 - **2016-04-28** - Initial accepted design.
 - **2016-05-05** - Change style of package type names and add notion of version.
 - **2016-05-06** - Add extended example of a custom package type.
+- **2016-06-13** - Added parent `<packageTypes>` element, since the .nuspec XSD uses `<xsd:all>`.
 
 ## Goal
 
@@ -37,7 +38,7 @@ Here's an example of a project.json file with a `"tools"` dependency.
 
 ## History
 
-Today, there is nofirst class notion of package type. However, packages can be used for different things based on their content. The most common use for a package is to be an assembly used at run-time. However, other packages drop static content in your project, provide executable tools, provide MSBuild targets, or have templated code files. Packages can also contain no content at all and simply pull in other packages (i.e. metapackages). Aside from inspecting the folder structure of the package, there is no way to differentiate between packages.
+Today, there is no first class notion of package type. However, packages can be used for different things based on their content. The most common use for a package is to be an assembly used at run-time. However, other packages drop static content in your project, provide executable tools, provide MSBuild targets, or have templated code files. Packages can also contain no content at all and simply pull in other packages (i.e. metapackages). Aside from inspecting the folder structure of the package, there is no way to differentiate between packages.
 
 ## Today's .nuspec
 
@@ -65,7 +66,7 @@ Every package contains a .nuspec file which provides metadata and dependency inf
 
 ## Proposal
 
-My proposal is to introduce a new type of child node to the `<metadata>` element which allows tooling to act differently for .NET CLI tools. The new child element is the `<packageType>` element. There can be zero or more `<packageType>` elements that indicate types of this package. Each `<packageType>` element must have a `type` attribute. Supported values of the `type` attribute are:
+My proposal is to introduce a new type of child node to the `<metadata>` element which allows tooling to act differently for .NET CLI tools. The new child element is a `<packageTypes>` element with one or more `<packageType>` children. There can be zero or more `<packageType>` elements that indicate types of this package. Each `<packageType>` element must have a `type` attribute. Supported values of the `type` attribute are:
 
 - `DotnetCliTool` - indicates that this package is a .NET CLI tool and should be installed to the `"tools"` node of the consuming project.json file.
 - `Dependency` - indicates that this package is a dependency. All packages without any explicit `<packageType>` are assumed to be of the `Dependency` type. This includes are packages predating this specification.
@@ -79,7 +80,9 @@ In both cases, the version should not be specified. The version defaults to `0.0
 &lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
   &lt;metadata&gt;
     ...
-    <b>&lt;packageType type="DotnetCliTool" /&gt;</b>
+    <b>&lt;packageTypes&gt;
+      &lt;packageType type="DotnetCliTool" /&gt;
+    &lt;/packageTypes&gt;</b>
   &lt;/metadata&gt;
 &lt;/package&gt;
 </pre>
@@ -91,14 +94,16 @@ In both cases, the version should not be specified. The version defaults to `0.0
 &lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
   &lt;metadata&gt;
     ...
-    <b>&lt;packageType type="Dependency" /&gt;</b>
+    <b>&lt;packageTypes&gt;
+      &lt;packageType type="Dependency" /&gt;
+    &lt;/packageTypes&gt;</b>
   &lt;/metadata&gt;
 &lt;/package&gt;
 </pre>
 
 ## Tool Creation
 
-To create a package that can operate as a .NET CLI tool, there is one option (in addition to manually editing the input .nuspec file to a `<packageType>` node. The developer adds a `"packageType"` key to the existing `"packOptions"` node of the project.json of the .NET tool that is being created.
+To create a package that can operate as a .NET CLI tool, there is one option (in addition to manually editing the input .nuspec file to add a `<packagesTypes>` and `<packageType>` node. The developer adds a `"packageType"` key to the existing `"packOptions"` node of the project.json of the .NET tool that is being created.
 
 For example, this could be the project.json of the `dotnet-hello` tool described above.
 
@@ -159,7 +164,9 @@ The package creator would craft a package with the following .nuspec:
 &lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
   &lt;metadata&gt;
     ...
-    <b>&lt;packageType type="Win32Tool" /&gt;</b>
+    <b>&lt;packageTypes&gt;
+      &lt;packageType type="Win32Tool" /&gt;
+    &lt;/packageTypes&gt;</b>
   &lt;/metadata&gt;
 &lt;/package&gt;
 </pre>
