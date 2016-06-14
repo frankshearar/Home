@@ -2,6 +2,7 @@
 
 ## Problem
 A large number of customers who are not UWP, .NET Core, and ASP.NET Core are currently using packages.config. Packages.config has several drawbacks, namely
+* Solution level packages folder
 * Flat dependency lists. Dependencies that are not directly referenced end up in packages.config making dependency management hard.
 * Packages.config projects enable modification of Project files (reference data is duplicated) and makes clean uninstall almost impossible
 * Finally, there is large security risk in enabling the execution of custom powershell scripts (Install.ps1) during packages install and unknown set of changes happening to your project.
@@ -10,14 +11,14 @@ Currently, converting from packages.config to nuget/project.json is a hard probl
 
 ## Open Issues
 However, there are some open issues here that need to be thought through:-
-* We have not still decided on whether there will be a project/nuget.json or if all the dependencies will flow into the csproj.
-* The timeline is a bit fuzzy at this point. Early adopters of this tool might have to do 2-3(max) upgrades over time to completely move over to the new standard.
+
+* Transition to MSBuild projects: Dependencies in the neat future are going to be part of MSBuild projects. The tentative timeline for this is fall of this year. We need evaluate if there is additional burden for developers to move twice to the new format.
 
 ## Who is the customer?
 Every Visual Studio user not using NuGet Standard 3.0 is a potential customer. We want to get users to move away from the dependency management hell some of them are finding themselves in. Future investments will be primarily on top of NuGet Standard 3.0 and we want to bring all our customers in for a ride. Currently, users have to use either read blogs or this [doc] (https://github.com/NuGet/Home/wiki/Converting-a-csproj-from-package.config-to-project.json) to this themselves. Package authors and consumers both will be hugely benefit from this change.
 
 ## Evidence
--- Yishai's section
+During a number of customer calls and during the User Study, we have seen that customers are running into issues that can be essentially solved with project.json on a day to day basis.
 
 ## Solution
 
