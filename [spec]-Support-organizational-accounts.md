@@ -62,4 +62,4 @@ This section describes additional features to the organizational accounts.
 
 ## Discussion
 
-There are many things that can be done with organizational accounts and ideally, there is a discussion on the above spec first. An issue has been created for this discussion: TODO
+There are many things that can be done with organizational accounts and ideally, there is a discussion on the above spec first. An issue has been created for this discussion: https://github.com/NuGet/NuGetGallery/issues/3084
