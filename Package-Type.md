@@ -159,7 +159,7 @@ Treatment of existing packages will not change. Since the notion of type is not 
 
 ## Other Package Types
 
-As mentioned in the [Tool Creation](#Installation) section, the `"packageType"` property under `"packOptions"` in a project.json can be set to any string adhering to the aforementioned format rules.
+As mentioned in the [Tool Creation](#tool-creation) section, the `"packageType"` property under `"packOptions"` in a project.json can be set to any string adhering to the aforementioned format rules.
 
 Do note that the NuGet client (NuGet in Visual Studio) will reject installation of unrecognized package types.
 
