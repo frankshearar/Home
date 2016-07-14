@@ -34,7 +34,7 @@ The primary requirement is to implement these changes for package resore using p
 * no cache should be populated when using packages.config, package identity or project.json 
 * the v2 machine cache, the Global Packages Folder and the v3 http cache should not be populated when -DirectDownload is specified
 
-The help text of the new -NoCaching option should read:
+The help text of the new -DirectDownload option should read:
 ```
-  -NoCaching  Download directly without populating the global package cache.
+  -DirectDownload  Download directly without populating the global package cache.
 ```
