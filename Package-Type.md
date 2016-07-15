@@ -112,17 +112,15 @@ For example, this could be the project.json of the `dotnet-hello` tool described
 
 ```json
 {
-  "version": "2.0.0-*",
-  "compilationOptions": {
+  "version": "2.0.0",
+  "buildOptions": {
     "emitEntryPoint": true
   },
   "dependencies": {
-    "NETStandard.Library": "1.5.0-rc2-24008"
+    "Microsoft.NETCore.App": "1.0.0"
   },
   "frameworks": {
-    "netstandardapp1.5": {
-      "imports": "dnxcore50"
-    }
+    "netcoreapp1.0": {}
   },
   "packOptions": {
     "packageType": "DotnetCliTool"
