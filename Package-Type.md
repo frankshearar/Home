@@ -11,6 +11,7 @@ https://github.com/NuGet/Home/issues/2476
 - **2016-06-13** - Added parent `<packageTypes>` element, since the .nuspec XSD uses `<xsd:all>`.
 - **2016-06-13** - Update the .nuspec XML namespace to match the new schema.
 - **2016-07-07** - Clarify installation of unsupported package type to non-.NET Core projects.
+- **2016-07-14** - Do not use a new XML namespace in the .nuspec when package types are used.
 
 ## Goal
 
@@ -79,7 +80,7 @@ In both cases, the version should not be specified. The version defaults to `0.0
 
 <pre>
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;package xmlns="<b>http://schemas.microsoft.com/packaging/2016/04/nuspec.xsd</b>"&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
   &lt;metadata&gt;
     ...
     <b>&lt;packageTypes&gt;
@@ -93,7 +94,7 @@ In both cases, the version should not be specified. The version defaults to `0.0
 
 <pre>
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;package xmlns="<b>http://schemas.microsoft.com/packaging/2016/04/nuspec.xsd</b>"&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
   &lt;metadata&gt;
     ...
     <b>&lt;packageTypes&gt;
@@ -169,7 +170,7 @@ The package creator would craft a package with the following .nuspec:
 
 <pre>
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;package xmlns="<b>http://schemas.microsoft.com/packaging/2016/04/nuspec.xsd</b>"&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"&gt;
   &lt;metadata&gt;
     ...
     <b>&lt;packageTypes&gt;
