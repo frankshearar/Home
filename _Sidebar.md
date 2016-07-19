@@ -29,6 +29,6 @@
 * [Replication API] (https://github.com/NuGet/Home/wiki/%5Bspec%5D-NuGet.org-replication-API)
 
 #### Implemented
-
+* [Batch Events](https://github.com/NuGet/Home/wiki/Batch-Events)
 
 #### Archived
