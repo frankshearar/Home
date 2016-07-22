@@ -15,6 +15,7 @@ If you wish to contribute code to either the NuGet client or the gallery, please
 
 ##Contributing to the NuGet Documentation
 If you wish to contribute code to the NuGet documentation or spotted an error, please read the following guidance.
+
 [Contributing documentation](https://github.com/NuGet/NuGetDocs/wiki/Contributing-to-NuGet-Documentation)
 
 ##Other
