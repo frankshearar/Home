@@ -1,5 +1,4 @@
-### 
-[[Contribute to NuGet|Contribute-to-NuGet]]
+### [[Contribute to NuGet|Contribute-to-NuGet]]
 
 ### Product Roadmap
 ***
