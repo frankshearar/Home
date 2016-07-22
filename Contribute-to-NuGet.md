@@ -1,5 +1,6 @@
 ##Contributing to NuGet Client
 The NuGet client includes both the Visual Studio add-in as well as the NuGet command line interface and the NuGet.Core package.
+
 [[Project Guidelines|How-to-contribute]]  |  Setting up the NuGet Development Environment  |  Coding Guidelines  |  Understanding Release Branches
 
 ##Contributing to NuGet Gallery
