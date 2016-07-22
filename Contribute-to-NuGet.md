@@ -5,11 +5,11 @@ The NuGet client includes both the Visual Studio add-in as well as the NuGet com
 
 ##Contributing to NuGet Gallery
 NuGet Gallery services include the set of all services that run the Web site, the service API, the search service, etc.
-[[Branding the NuGet Gallery|/NuGetGallery/wiki/Branding-the-NuGet-Gallery]]  |  Building and Running the NuGet Gallery
+[Branding the NuGet Gallery](https://github.com/NuGet/NuGetGallery/wiki/Branding-the-NuGet-Gallery)  |  [Building and Running the NuGet Gallery](https://github.com/NuGet/NuGetGallery/blob/master/README.md)
 
 ##Testing the NuGet Client And Gallery
 If you wish to contribute code to either the NuGet client or the gallery, please read the relevant test plan document as it provides insight into how your contribution will be tested prior to being released into production.
-Test Plan for NuGet Client  |  Test Plan for NuGet Gallery  |  Running/ Writing Functional Tests for NuGet Client/ Gallery
+[Test Plan for NuGet Client](https://github.com/NuGet/Home/wiki/NuGet-Client-Test-Plan)  |  [Test Plan for NuGet Gallery](https://github.com/NuGet/Home/wiki/NuGet-Gallery-Test-Plan)  |  [Running/ Writing Functional Tests for NuGet Client/ Gallery](https://github.com/NuGet/Home/wiki/Functional-Testing)
 
 ##Contributing to the NuGet Documentation
 If you wish to contribute code to the NuGet documentation or spotted an error, please read the following guidance.
