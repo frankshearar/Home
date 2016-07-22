@@ -17,6 +17,7 @@ If you wish to contribute code to either the NuGet client or the gallery, please
 If you wish to contribute code to the NuGet documentation or spotted an error, please read the following guidance.
 [Contributing documentation](https://github.com/NuGet/NuGetDocs/wiki/Contributing-to-NuGet-Documentation)
 
-Other
+##Other
 The following additional resources describe different aspects of the NuGet project itself.
+
 [NuGet's Ecosystem]()  |  [Governance Model for NuGet]()
