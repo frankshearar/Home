@@ -5,6 +5,7 @@ The NuGet client includes both the Visual Studio add-in as well as the NuGet com
 
 ##Contributing to NuGet Gallery
 NuGet Gallery services include the set of all services that run the Web site, the service API, the search service, etc.
+
 [Branding the NuGet Gallery](https://github.com/NuGet/NuGetGallery/wiki/Branding-the-NuGet-Gallery)  |  [Building and Running the NuGet Gallery](https://github.com/NuGet/NuGetGallery/blob/master/README.md)
 
 ##Testing the NuGet Client And Gallery
