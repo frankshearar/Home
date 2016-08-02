@@ -124,8 +124,8 @@ This could potentially be fixed by the gallery checking the user agent and exclu
 | Unblock SemVer 2.0.0 in pack and add tests | client | 0.5 |
 | Restore tests for project.json | client | done |
 | install/update/restore tests for packages.config | client | 1.0 |
-| Add local folder resources for v2 and v3 formats (port from nuget.core.dll or project.json restore) | client | 2.0 |
-| Add unzipped repository resource for templates (port from nuget.core.dll) | client | 1.0 |
+| Add local folder resources for v2 and v3 formats (port from nuget.core.dll or project.json restore) | client | done |
+| Add unzipped repository resource for templates (port from nuget.core.dll) | client | done |
 | Perf testing for file new project scenarios | client | 2.0 |
 | Update NuGet.Server to use v3 libraries | nuget.server | 6.0 |
 | nuget.org gallery support | gallery | ? |
