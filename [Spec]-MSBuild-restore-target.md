@@ -11,6 +11,29 @@ The restore target will gather all msbuild data and pass it into the restore tas
 1. Download packages
 1. Write assets file, targets, and props
 
+## Restore properties
+Additional restore settings may come from MSBuild properties.
+
+| Property | Multiple | Description |
+| -------- | ------- | ----------- |
+| RestoreSources | ``;`` delimited | List of package sources |
+| RestorePackagesPath | | User packages directory path |
+| RestoreDisableParallel | | Limit downloads to one at a time |
+| RestoreConfigFile | | nuget.config file |
+| RestoreNoCache | |  Avoid using the web cache if set to *true* |
+| RestoreIgnoreFailedSource | | Ignoring failing or missing package sources if set to *true* |
+| RestoreForceEnglishOutput | | Outputs english only if set to *true* |
+| RestoreTaskAssemblyFile | | Path to NuGet.Build.Tasks.dll |
+| RestoreGraphProjectInput | ``;`` delimited  | list of projects to restore, this should contain absolute paths |
+
+**Example**
+
+```msbuild
+<PropertyGroup>
+   <RestoreIgnoreFailedSource>true</RestoreIgnoreFailedSource>
+<PropertyGroup>
+```
+
 
 ## .dg file format
 
