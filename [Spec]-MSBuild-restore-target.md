@@ -1,5 +1,7 @@
 # MSBuild restore target
 
+As part of the move from xproj to MSBuild package restore will move to an MSbuild target. Previous restore entry points such as *nuget.exe restore* and *dotnet.exe restore* will start using this target to restore .NET Core projects.
+
 ## Restoring packages using the restore target
 
 The restore target will gather all msbuild data and pass it into the restore task in NuGet.Build.Tasks, this task is a wrapper for the existing restore command from NuGet.Commands.
@@ -25,6 +27,7 @@ Additional restore settings may come from MSBuild properties.
 | RestoreForceEnglishOutput | | Outputs english only if set to *true* |
 | RestoreTaskAssemblyFile | | Path to NuGet.Build.Tasks.dll |
 | RestoreGraphProjectInput | ``;`` delimited  | list of projects to restore, this should contain absolute paths |
+| RestoreOutputPath | | Output directory, by default the obj folder is used |
 
 **Example**
 
@@ -33,6 +36,16 @@ Additional restore settings may come from MSBuild properties.
    <RestoreIgnoreFailedSource>true</RestoreIgnoreFailedSource>
 <PropertyGroup>
 ```
+
+## Restore outputs
+
+Restore will create the following files in the build obj folder
+
+| File | Description |
+| ---- | ----------- |
+| project.assets.json | Previously project.lock.json |
+| project.generated.targets | References to msbuild targets contained in packages |
+| project.generated.props | References to msbuild props contained in packages |
 
 
 ## .dg file format
@@ -59,3 +72,8 @@ The file format is basic and consists of ``|`` delimited lines that are prefixed
 The project to project entries represent edges in the project graph, restore adds these edges to the restore graph along with the package references to create a full graph of all dependencies for the project when building the lock file.
 
 Properties such as *RestoreOutputPath* are used by restore to determine where the assets file, generated targets, and generated props.
+
+## Open issues
+
+* Could the same msbuild target be used from Visual Studio?
+* msbuild /t:restore solution.sln needs a target in the metaproj
