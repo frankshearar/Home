@@ -22,7 +22,7 @@
 #### Incubation 
 * [Package Sources Analyzer] (https://github.com/NuGet/Home/wiki/Package-Sources-Analyzer)
 * [Aggressive No Caching Mode] (https://github.com/NuGet/Home/wiki/Aggressive-No-Caching-option-for-nuget.exe)
-* [Adding locals command to dotnet cli](https://github.com/NuGet/Home/wiki/Adding-locals-command-to-dotnet-cli)
+* [locals command in dotnet cli](https://github.com/NuGet/Home/wiki/Adding-locals-command-to-dotnet-cli)
 
 #### Reviewing
 * [NuGet Upgrader](https://github.com/NuGet/Home/wiki/NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0)
