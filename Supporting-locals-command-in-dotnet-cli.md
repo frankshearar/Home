@@ -1,6 +1,6 @@
 
 # Title
-Adding locals command to dotnet cli.
+Support locals command in dotnet CLI.
 
 ## Problem
 Currently we do not have a cross platform implementation of nuget locals command.
