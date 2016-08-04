@@ -14,7 +14,7 @@ Package authors
 
 nuget.exe push options are defined here: [NuGet Push Command Options](https://docs.nuget.org/consume/command-line-reference#push-command-options)
 
-The proposal is to insert a command into the dotnet CLI to target nuget, and push will be a option of that command (with the potential for other options). The dotnet CLI will route all arguments to the push command, ensuring behavior consistent with nuget.exe push. Examples of the new command line are:
+The proposal is to insert a command into the dotnet CLI to target nuget, and push will be an option of that command (with the potential for other options). The dotnet CLI will route all arguments to the push command, ensuring behavior consistent with nuget.exe push. Examples of the new command line are:
 
 dotnet nuget push foo.nupkg 4003d786-cc37-4004-bfdf-c4f3e8ef9b3a
 
