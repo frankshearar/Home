@@ -43,12 +43,10 @@ Specify the path to the package and your API key to push the package to the serv
     </tr>
     <tr>
         <td>source</td>
-        <td>Specifies the server URL. Starting with NuGet 3.4.2, this is 
-        a mandatory parameter unless the NuGet.config file specifies a 
+        <td>Specifies the server URL. This is a mandatory parameter unless the NuGet.config file specifies a 
         DefaultPushSource value.
         <br />
-        Starting with NuGet 2.5, if nuget.exe identifies a UNC/folder 
-        source, it will copy the file to the source.
+        if dotnet nuget push identifies a UNC/folder source, it will copy the file to the source.
         </td>
     </tr>
     <tr>
