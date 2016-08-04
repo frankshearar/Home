@@ -13,7 +13,7 @@ Add a dotnet locals command to the dotnet cli. I am currently looking into what 
 I will update this doc as I investigate further.
 
 # Usage 
-dotnet nuget locals [options]
+`dotnet nuget locals [options]`
 
 Locals Command Options - 
 
@@ -37,4 +37,4 @@ Locals Command Options -
 </table>
 
 # Example
-dotnet nuget locals \<all | http-cache | global-packages\> -clear
+`dotnet nuget locals \<all | http-cache | global-packages\> -clear`
