@@ -15,7 +15,7 @@ nuget cli users who currently do not have a way to clear nuget cache using dotne
 Add a dotnet locals command to the dotnet cli. I am currently looking into what behavior will be supported. For now assuming that all the behavior stays the same as before. I will update this doc as I investigate further.
 
 ## Usage 
-dotnet locals [options]
+dotnet nuget locals [options]
 
 Locals Command Options - 
 
@@ -39,4 +39,4 @@ Locals Command Options -
 </table>
 
 ## Example
-dotnet locals \<all | http-cache | packages-cache | global-packages\> -clear
+dotnet nuget locals \<all | http-cache | packages-cache | global-packages\> -clear
