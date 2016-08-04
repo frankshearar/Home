@@ -37,4 +37,4 @@ Locals Command Options -
 </table>
 
 # Example
-`dotnet nuget locals \<all | http-cache | global-packages\> -clear`
+`dotnet nuget locals <all | http-cache | global-packages> -clear`
