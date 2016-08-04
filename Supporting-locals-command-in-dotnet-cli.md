@@ -1,22 +1,18 @@
-
-# Title
-Support locals command in dotnet CLI.
-
-## Problem
+# Problem
 Currently we do not have a cross platform implementation of nuget locals command.
 
-## Who is the customer?
+# Who is the customer?
 nuget cli users currently do not have a way to clear nuget cache using dotnet cli.
 
-## Evidence
+# Evidence
 Working on it.
 
-## Solution
+# Solution
 Add a dotnet locals command to the dotnet cli. I am currently looking into what behavior will be supported. For now assuming that all the behavior stays the same as before, except there will be no option for clearing package-cache, since it is no longer used. 
 
 I will update this doc as I investigate further.
 
-## Usage 
+# Usage 
 dotnet nuget locals [options]
 
 Locals Command Options - 
@@ -40,5 +36,5 @@ Locals Command Options -
     </tr>
 </table>
 
-## Example
+# Example
 dotnet nuget locals \<all | http-cache | global-packages\> -clear
