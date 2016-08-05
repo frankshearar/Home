@@ -24,7 +24,6 @@ Additional restore settings may come from MSBuild properties.
 | RestoreConfigFile | | nuget.config file |
 | RestoreNoCache | |  Avoid using the web cache if set to *true* |
 | RestoreIgnoreFailedSource | | Ignoring failing or missing package sources if set to *true* |
-| RestoreForceEnglishOutput | | Outputs english only if set to *true* |
 | RestoreTaskAssemblyFile | | Path to NuGet.Build.Tasks.dll |
 | RestoreGraphProjectInput | ``;`` delimited  | list of projects to restore, this should contain absolute paths |
 | RestoreOutputPath | | Output directory, by default the obj folder is used |
