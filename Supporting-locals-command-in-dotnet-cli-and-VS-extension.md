@@ -38,3 +38,9 @@ Locals Command Options -
 
 # Example
 `dotnet nuget locals <all | http-cache | global-packages> -clear`
+
+
+# Questions
+
+1. What is the difference between running locals from CLI or from VS extension?
+2. What is the impact of running locals from VS extension on the open solutions?
