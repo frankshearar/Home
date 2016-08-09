@@ -66,7 +66,7 @@ V3 sources will use normalized versions for urls, nupkg names, and other places 
 | ------------- | -----:|
 | NuGet.Server | No |
 | NuGet.org | No |
-| MyGet.org | No |
+| MyGet.org | Yes |
 | VisualStudio.com | Yes |
 
 ## Client compatibility
