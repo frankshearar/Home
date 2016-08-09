@@ -14,10 +14,12 @@ Floating to a specific set of versions becomes easier with multiple release labe
 Metadata can be displayed in the NuGet UI version drop down list to make it easier to identity which version of a package to use when looking for a specific change.
 
 ### Examples of SemVer 2.0.0 versions
+```
 1.0.0-beta.20.5
 2.4.1-pre.0.134+git.hash.5aa7fa8324af609bcdb43a90e54ee076d1a6b067
 2.4.1-pre.0.134+buildagent.12.date.2016.3.31.config.debug
 1.0.1+security.patch.2349
+```
 
 ## Spec
 
