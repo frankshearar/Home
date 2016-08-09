@@ -72,12 +72,20 @@ V3 sources will use normalized versions for urls, nupkg names, and other places 
 ## Client compatibility
 
 ### NuGet Client 2.11.0
-NuGet Client 2.11.0 and below do not support SemVer 2.0.0
+NuGet Client 2.12.0 and below do not support SemVer 2.0.0
 
-### NuGet Client 3.0.0-3.4.1
+### NuGet Client 3.0.0-3.4.4
 3.0.0 and up support SemVer 2.0.0 with a limited capacity. Local folders and shares are unable to parse versions with multiple release labels or metadata due to the use of NuGet.Core.dll from the older 2.11.0 client.
 
 Project.json restore supports SemVer 2.0.0 and is able to read local folders correctly since it does not depend on NuGet.Core.dll. In some scenarios metadata is written to the disk folder path which causes. Multiple release labels are supported.
+
+### NuGet Client 3.5.0-rc1
+
+Starting in NuGet Client 3.5.0-rc1 has added SemVer 2.0.0 for supported for local folders and UNC shares.
+
+NuGet.exe supports SemVer 2.0.0 for the majority of scenarios but still needs work in the following areas
+* List command
+* Pack - SemVer 2.0.0 is blocked to avoid conflicts for NuGet.org
 
 ## Entry points
 
