@@ -16,7 +16,6 @@ Authors|Authors||Needs discussion on default
 Owners|N/A|Not present in NuSpec|
 Description|Description|empty
 Copyright|Copyright|empty
-Summary|N/A|Not present in NuSpec|Being removed
 RequireLicenseAcceptance|PackageRequireLicenseAcceptance|false
 LicenseUrl|PackageLicenseUrl|empty
 ProjectUrl|PackageProjectUrl|empty
