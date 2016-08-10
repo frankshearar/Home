@@ -10,11 +10,11 @@ In order for msbuild to be able to gather all the inputs, all metadata from proj
 
 Attribute/NuSpec Value| MSBuild Property | Default | Notes
 --- | --- | --- | ---
-Id|PackageId|AssemblyName|
-Version|PackageVersion|Version|
+Id|PackageId|AssemblyName|$(AssemblyName) from msbuild
+Version|PackageVersion|Version|New $(Version) property from msbuild, is semver compatible
 Authors|Authors||Needs discussion on default
 Owners|N/A|Not present in NuSpec|
-Description|Description|empty
+Description|Description|empty|Description is required attribute for packing, so need to re-consider default value.
 Copyright|Copyright|empty
 RequireLicenseAcceptance|PackageRequireLicenseAcceptance|false
 LicenseUrl|PackageLicenseUrl|empty
@@ -25,3 +25,8 @@ ReleaseNotes|PackageReleaseNotes|empty
 RepositoryUrl|RepositoryUrl|empty
 RepositoryType|RepositoryType|empty
 PackageType|`<PackageType>DotNetCliTool, 1.0.0.0;Package, 2.0.0.0</PackageType>`||NuGet will go offline and figure this out
+
+
+In addition, the following nuspec properties will no longer be supported in csproj file :
+* Title
+* Summary
