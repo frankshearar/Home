@@ -7,15 +7,16 @@ As part of an effort to move restore, build, package and publish to a unified ms
 
 ## Solution
 In order for msbuild to be able to gather all the inputs, all metadata from project.json and nuspec will move into csproj file. Below is how the new metadata would look like in csproj, and how it will map to output nuspec:
-Attribute/NuSpec value|MSBuild Property|Default|Notes
-----------|----------|---------|------
+
+Attribute/NuSpec Value| MSBuild Property | Default | Notes
+--- | --- | --- | ---
 Id|PackageId|AssemblyName|
 Version|PackageVersion|Version|
-Authors|Authors|
+Authors|Authors||Needs discussion on default
 Owners|N/A|Not present in NuSpec|
 Description|Description|empty
 Copyright|Copyright|empty
-Summary|N/A|Not present in NuSpec|
+Summary|N/A|Not present in NuSpec|Being removed
 RequireLicenseAcceptance|PackageRequireLicenseAcceptance|false
 LicenseUrl|PackageLicenseUrl|empty
 ProjectUrl|PackageProjectUrl|empty
@@ -24,4 +25,4 @@ Tags|PackageTags|empty
 ReleaseNotes|PackageReleaseNotes|empty
 RepositoryUrl|RepositoryUrl|empty
 RepositoryType|RepositoryType|empty
-PackageType|<PackageType>DotNetCliTool, 1.0.0.0;Package, 2.0.0.0</PackageType>|NuGet will go offline and figure this out
+PackageType|`<PackageType>DotNetCliTool, 1.0.0.0;Package, 2.0.0.0</PackageType>`||NuGet will go offline and figure this out
