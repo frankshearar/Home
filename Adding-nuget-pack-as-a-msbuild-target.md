@@ -1,6 +1,7 @@
 # Title
 Adding pack as a msbuild target for csproj.
-
+## Feedback
+All feedback can be provided on the tracking issue: https://github.com/NuGet/Home/issues/2995
 ## Problem
 As part of an effort to move restore, build, package and publish to a unified msbuild pipeline in cross platform environments, we need to have a fully .NET Core implementation of pack. dotnet pack will need to be replaced to call into the new pack target in msbuild that can run cross platform and support cross targeting scenarios. As a result, project.json will go away and all metadata and package references from nuspec and project.json will move into csproj.
 
@@ -30,3 +31,32 @@ PackageType|`<PackageType>DotNetCliTool, 1.0.0.0;Package, 2.0.0.0</PackageType>`
 In addition, the following nuspec properties will no longer be supported in csproj file :
 * Title
 * Summary
+
+###Pack Target Inputs
+Properties:
+* PackageVersion
+* PackageId
+* Authors
+* Description
+* Copyright
+* PackageRequireLicenseAcceptance
+* PackageLicenseUrl
+* PackageProjectUrl
+* PackageIconUrl
+* PackageReleaseNotes
+* PackageTags
+* PackageOutputPath
+* Configuration
+* AssemblyName
+* IncludeSymbols
+* PackageTypes
+* IsTool
+* RepositoryUrl
+* RepositoryType
+
+Items:
+* SourceFiles (if IncludeSymbols = true).
+* PackageFiles (needs design, but basically means the list of content files to be included).
+* TargetPath (cross targeting scenarios).
+* TargetFrameworks (cross targeting scenarios).
+* ProjectReferences (has a custom serialization format, more details coming up).
