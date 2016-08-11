@@ -63,10 +63,15 @@ The file format is basic and consists of ``|`` delimited lines that are prefixed
 **Example of a project with one reference**
 ```
 #:/src/myProj.csproj
+$:netstandard1.6
++:RestoreOuputType|netcore
 +:RestoreOuputPath|/src/myProj/obj/
++:RestoreFrameworks|netstandard1.6
 =:/src/myProj.csproj|/src/myChildProj.csproj
 #:/src/myChildProj.csproj
++:RestoreOuputType|netcore
 +:RestoreOuputPath|/src/myChildProj/obj/
++:RestoreFrameworks|netstandard1.3
 ```
 
 | Character | Description |
@@ -89,5 +94,6 @@ Properties in the .dg file
 
 ## Open issues
 
-* Could the same msbuild target be used from Visual Studio?
+* Is it possible to get the same behavior between msbuild and Visual Studio
 * msbuild /t:restore solution.sln needs a target in the metaproj
+* should RID restores go into different files such as project.assets.{RID}.json
