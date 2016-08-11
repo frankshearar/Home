@@ -60,3 +60,26 @@ Items:
 * TargetPath (cross targeting scenarios).
 * TargetFrameworks (cross targeting scenarios).
 * ProjectReferences (has a custom serialization format, more details coming up).
+
+###Scenarios
+####Package References
+TODO: Link to the spec for package reference, which is still being designed.
+####Project to Project References
+Project to Project references will be, by default, be considered as nuget package references. However, this behavior can be overridden in the following manner:
+    
+     <ProjectReference Include="..\UwpLibrary2\UwpLibrary2.csproj">
+         <Project>{25dcfe98-02b7-403a-b73d-6282d9801aa1}</Project>
+         <Name>UwpLibrary2</Name>
+         <TreatAsPackageReference>false</TreatAsPackageReference>
+     </ProjectReference>
+
+If a referenced project's output DLL is to be copied over to the nuget package, then **ReferenceOutputAssembly should not be set as false**. This is because the output DLL of the referenced project is copied from the output directory of the project being packed.
+
+If IsPackageReference is not specified, or is set to true, then the ProjectReference will actually be added as a Package Reference in the output nuspec, and no DLLs will be copied.
+
+Note that this behavior is recursive - so if a ProjectReference has TreatAsProjectReference set to false, it's project to project references will also be treated in the same manner.
+
+####Including Content in package
+####Cross Targeting
+####IncludeSymbols
+####IsTool
