@@ -109,10 +109,10 @@ If a file of type = Compile, is outside the project folder, then it is just adde
 If msbuild /t:pack /p:IsTool=true, all output files, as specified in the Output Assemblies scenario, are copied to the tools folder instead of the lib folder.
 
 ###Command Line Switches Being Killed
-BasePath
-Build
-MSBuildVersion
-IncludeReferencedProjects
-ExcludeEmptyDirectories
-Properties
-Exclude
+* BasePath
+* Build
+* MSBuildVersion
+* IncludeReferencedProjects
+* ExcludeEmptyDirectories
+* Properties
+* Exclude
