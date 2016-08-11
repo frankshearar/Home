@@ -96,9 +96,14 @@ As per the details available right now, Target frameworks are defined in the csp
     <TargetFramework Include=".NetFramework,v4.6" />
   </ItemGroup>
 
-The @(TargetPath) will be a list of all the output paths (path to the output assembly) with their associated TargetFramework metadata. NuGet pack will convert these full target framework names to short folder names in the resulting nupkg.
+The @(TargetPath) will be a list of all the output paths (path to the output assembly) with their associated TargetFramework metadata. NuGet pack will convert these full target framework names to short folder names (in above case net45 and net46) in the resulting nupkg.
 
 Note that details on Cross Targeting are still being finalized, so this may change.
 
 ####IncludeSymbols
+If msbuild /t:pack /p:IncludeSymbols=true , then the corresponding pdb files are copied along with .dll/.exe/.winmd/.xml . Also, all files of type = Compile are copied over to src\\\<ProjectName>\ preserving the relative path directory structure in the resulting nupkg. The same also happens for any ProjectReference which has \<TreatAsPackageReference> set to false.
+
+If a file of type = Compile, is outside the project folder, then it is just added to src\\\<ProjectName>\\ .
+
 ####IsTool
+If msbuild /t:pack /p:IsTool=true, all output files, as specified in the Output Assemblies scenario are copied to the tools folder instead of the lib folder.
