@@ -62,6 +62,13 @@ Items:
 * ProjectReferences (has a custom serialization format, more details coming up).
 
 ###Scenarios
+####Output Assemblies
+NuGet pack will copy the output assemblies from the directory list obtained from $(TargetDir) (This will be a list of directories in Cross-Targeting scenario) . The output assemblies to be copied depend on the following criteria:
+* Any filename that matches the $(AssemblyName) & has the extension .exe,.dll,.xml or .winmd (or .pdb if IncludeSymbols=true).
+* Any filename that matches the AssemblyName of a ProjectReference that does not have ReferenceOutputAssembly=false and has the extension .exe,.dll,.xml or .winmd (or .pdb if IncludeSymbols=true).
+
+Note that ProjectReference assemblies are only searched for in host project's output directory in the corresponding target framework folder. They are copied out to lib\\\<TargetFrameworkShortName>\\\<fileName>
+
 ####Package References
 TODO: Link to the spec for package reference, which is still being designed.
 ####Project to Project References
@@ -73,13 +80,25 @@ Project to Project references will be, by default, be considered as nuget packag
          <TreatAsPackageReference>false</TreatAsPackageReference>
      </ProjectReference>
 
-If a referenced project's output DLL is to be copied over to the nuget package, then **ReferenceOutputAssembly should not be set as false**. This is because the output DLL of the referenced project is copied from the output directory of the project being packed.
+If a referenced project's output DLL is to be copied over to the nuget package, then **ReferenceOutputAssembly should not be set as false**. This is because the output DLL of the referenced project is copied from the output directory of the project being packed. For more details on ReferenceOutputAssembly , check out : https://blogs.msdn.microsoft.com/kirillosenkov/2015/04/04/how-to-have-a-project-reference-without-referencing-the-actual-binary/
 
 If IsPackageReference is not specified, or is set to true, then the ProjectReference will actually be added as a Package Reference in the output nuspec, and no DLLs will be copied.
 
 Note that this behavior is recursive - so if a ProjectReference has TreatAsProjectReference set to false, it's project to project references will also be treated in the same manner.
 
 ####Including Content in package
+Currently being discussed with MSBuild team. More details coming soon.
+
 ####Cross Targeting
+As per the details available right now, Target frameworks are defined in the csproj in an item list (called TargetFramework right now) where the identity maps to $(TargetFrameworkIdentity),$(TargetFrameworkVersion) - no NuGet short names.
+  <ItemGroup>
+    <TargetFramework Include=".NetFramework,v4.5" />
+    <TargetFramework Include=".NetFramework,v4.6" />
+  </ItemGroup>
+
+The @(TargetPath) will be a list of all the output paths (path to the output assembly) with their associated TargetFramework metadata. NuGet pack will convert these full target framework names to short folder names in the resulting nupkg.
+
+Note that details on Cross Targeting are still being finalized, so this may change.
+
 ####IncludeSymbols
 ####IsTool
