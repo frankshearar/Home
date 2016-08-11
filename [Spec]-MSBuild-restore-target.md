@@ -46,6 +46,13 @@ Restore will create the following files in the build obj folder
 | project.generated.targets | References to msbuild targets contained in packages |
 | project.generated.props | References to msbuild props contained in packages |
 
+### Multiple asset files per project
+
+project.assets.json will be placed in the intermediate folder for a specific target framework. Instead of containing all combinations of frameworks and RIDs it will contain a single framework.
+
+The restore task will read target frameworks from the project file and then restore for all frameworks.
+
+RIDs will be passed into msbuild, these will then flow through to NuGet restore and will create additional runtime graphs in the assets file.
 
 ## .dg file format
 
@@ -65,12 +72,20 @@ The file format is basic and consists of ``|`` delimited lines that are prefixed
 | Character | Description |
 | --------- | ----------- |
 | **#** | Entry point, these projects will be restored. This also marks the beginning of a section for a project, all entries below this are considered part of that project until another section is encountered. |
+| **$** | Restore output separator, this allows for multiple restore outputs. Format ``Comment`` |
 | **+** | Property value. Format ``Name|Value`` |
 | **=** | Project to project reference. Format ``Parent|Child`` |
 
 The project to project entries represent edges in the project graph, restore adds these edges to the restore graph along with the package references to create a full graph of all dependencies for the project when building the lock file.
 
-Properties such as *RestoreOutputPath* are used by restore to determine where the assets file, generated targets, and generated props.
+Properties in the .dg file
+
+| Property  | Description |
+| --------- | ----------- |
+| RestoreOutputPath | Output location, this is typically the intermediate folder |
+| RestoreOutputType | Restore type, if set to netcore assets will be placed in the output path with the new names. |
+| RestoreFrameworks | A set of target frameworks to restore for. |
+| RestoreRuntimes   | A set of RIDs to restore for, these will be combined with all target frameworks. |
 
 ## Open issues
 
