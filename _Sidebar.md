@@ -29,6 +29,7 @@
 * [NuGet Upgrader](https://github.com/NuGet/Home/wiki/NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0)
 * [SemVer 2.0.0](https://github.com/NuGet/Home/wiki/SemVer-2.0.0-support)
 * [Adding nuget pack as a msbuild target](https://github.com/NuGet/Home/wiki/Adding-nuget-pack-as-a-msbuild-target)
+* [Restore target](https://github.com/NuGet/Home/wiki/%5BSpec%5D-MSBuild-restore-target)
 
 #### Reviewed
 * [Package Type](https://github.com/NuGet/Home/wiki/Package-Type)
