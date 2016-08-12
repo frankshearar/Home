@@ -8,21 +8,21 @@ Any person or entity which has registered and has a nuget.org account.
 The volume of account deletion requests is showing an upward trend. We have received 5 requests in the past 30 days. Also, to adhere to privacy laws we must allow the user to delete all personally identifiable information (PII) including their account.
 
 ##Solution
-###Delete button
+###Delete
 Add a "Delete Account" button under  https://www.nuget.org/account that triggers the following workflow:
 
-1.	When clicked, if the account has associated packages
-		a. If the account being deleted is the only owner, provide information about adding co-owners. The user can choose to not add a co-owner and we should provide information that in this case, the package will be re-parented under a <deleted account>
-		b. If the associated package has additional authors, the account being deleted is simply removed from the list of owners for that package. The co-owners get a notification that an account has been marked for deletion.
+1. When clicked, if the account has associated packages
+  a. If the account being deleted is the only owner, provide information about adding co-owners. The user can choose to not add a co-owner and we should provide information that in this case, the package will be re-parented under a <deleted account>
+ b. If the associated package has additional authors, the account being deleted is simply removed from the list of owners for that package. The co-owners get a notification that an account has been marked for deletion.
+2. Next, ask for a confirmation with a clear message that the user understands the implication (see Legal section below) and that he/she has 30 days to change their mind.
+3. When the user confirms, mark the account for deletion and display the date when the deletion would happen.
+4. When marked for deletion, we freeze all activity which means the user can’t change any account settings or push packages.
+5. The account page is greyed out with the message that the account is marked for deletion along with the date on which that will happen and a button to “Reactivate account”.
 
-2.	Next, ask for a confirmation with a clear message that the user understands the implication (see Legal section below) and that he/she has 30 days to change their mind
-3.	When the user confirms, mark the account for deletion and display the date when the deletion would happen
-4.	When marked for deletion, we freeze all activity which means the user can’t change any account settings or push packages.
-5.	The account page is greyed out with the message that the account is marked for deletion along with the date on which that will happen and a button to “Reactivate account”
+### Re-activate
 
-### Re-activate button
-If the user clicks “Reactivate account”, ask confirmation and display a message with the implications.
-If the user confirms, all functionality is restored
-The co-owners of all packages get a notfica
+1. If the user clicks “Reactivate account”, ask confirmation and display a message with the implications.
+2. If the user confirms, all functionality is restored.
+3/ The co-owners of all packages get a notification stating that the account has been reactivated.
 
 
