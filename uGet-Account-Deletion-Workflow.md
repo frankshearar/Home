@@ -1,5 +1,3 @@
-# NuGet Account Deletion Workflow
-
 ##  Problem
 Today there is no self-service option for a user to delete his/her NuGet account. Even if we do a get a genuine request to delete an account, we don’t have a way to do it since that would result in the orphaned packages.
 
