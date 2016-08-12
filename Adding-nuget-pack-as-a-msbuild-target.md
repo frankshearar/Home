@@ -118,3 +118,4 @@ If msbuild /t:pack /p:IsTool=true, all output files, as specified in the Output 
 * ExcludeEmptyDirectories
 * Properties
 * Exclude
+* NonInteractive
