@@ -53,6 +53,8 @@ Properties:
 * IsTool
 * RepositoryUrl
 * RepositoryType
+* NoPackageAnalysis
+* MinClientVersion
 
 Items:
 * SourceFiles (if IncludeSymbols = true).
