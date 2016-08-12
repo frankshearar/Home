@@ -25,7 +25,7 @@ Tags|PackageTags|empty
 ReleaseNotes|PackageReleaseNotes|empty
 RepositoryUrl|RepositoryUrl|empty
 RepositoryType|RepositoryType|empty
-PackageType|`<PackageType>DotNetCliTool, 1.0.0.0;Package, 2.0.0.0</PackageType>`||NuGet will go offline and figure this out
+PackageType|`<PackageType>DotNetCliTool, 1.0.0.0;Package, 2.0.0.0</PackageType>`||
 
 
 In addition, the following nuspec properties will no longer be supported in csproj file :
