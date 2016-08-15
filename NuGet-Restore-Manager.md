@@ -57,5 +57,6 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 	- When nominating CPS supplies project dir, intermediate dir, restore output type (uap, netcore), dg graph
 - [ ] How to block the build until we have full info from VS?
 	- Virtual Project?
+	- The queuing method returns a task (IVSTask). NRM would “complete” the task once a no-op restore is done…or a restore. VS/project system would block build while any tasks are still not complete.
 - [ ] Throttling and dials to control how often a restore can happen.
-- [ ] Coordination with Project system … should they show 1000 errors…
+- [ ] Coordination with Project system. Should they show 1000 errors?
