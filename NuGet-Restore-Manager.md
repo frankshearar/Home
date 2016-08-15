@@ -15,10 +15,6 @@ User experience in VS "15" is broken when working with .NET Core and UWP project
 ## Who is the customer?
 Software developers using Visual Studio "15" to build .NET Core and UWP applications and libraries.
 
-## Evidence
-_What is the evidence that behaves us to act?_
-_Evidence can be impassioned tweets or mails, mile long conversations in issues, rants on blogs, sweet sweet data from telemetry!!! If you can show pain, you can rally the troops._
-
 ## Current Behavior
 In VS2015 NuGet employs different mechanisms to initiate restore operation.
 
@@ -29,17 +25,35 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 | Xproj style project.json | Restore happens (.net core project system does this) | Restore happens (.net core project system does this) | Adaptions to UI requests are made right then. |
 		
 
+## Solution
+### Future VS15 Behavior
+| Project Model | Project Open | Project.json File Save | Package Manager UI | Settings Change, dependent project happens, lock file gone | Project Build |
+| --- | --- | --- | --- | --- | --- |
+| csproj + project.json (for both UWP or .NET Core) | Restore Happens | Restore Happens | Adaptions to UI requests are made right then. | Restore Happens | |
+	 
 Support .NET Core and UWP projects.
 Replace WebTools restore.
 Enable intellisense early as restore happens.
 Restore on build, avoid modal restore popup. 
 Support VS "15" project update scenario
 No-op optimization.
-project.json changes.
+Monitor project.json changes.
 Have unified architecture to support all VS project models
 
-## Solution
-### Design meeting notes
+Throttling and dials to control how often a restore can happen.
+Coordination with Project system … should they show 1000 errors…
+
+NuGet.RestoreManager.dll
+Loads fast- either as a 2nd packagedef in vsix or as a new mef component exported from vsix
+No dependencies.
+Understands when a restore is needed.
+- Packages.config – read xml file, and verify packages are installed in proj package folder.
+- UWP – lightweight noop pass – does assets file exist…are all libraries listed in the lock file installed in fallback folders/or user package folder.
+	- Is nuget.config newer than assets file. if p.j file is different than the one used to build the assets file…
+- Csproj only
+
+
+### Open Issues
 - [ ] How to bootstrap N.R.M. on project open or new?
 	- Mef component
 	- Second packagedef in vsix
