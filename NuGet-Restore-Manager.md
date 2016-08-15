@@ -1,6 +1,15 @@
 # NuGet Restore Manager
+Introducing NuGet Restore Manager - inified component handling restore operations in VS "15" in efficient and user friendly fashion.
 
 ## Problem
+User experience in VS "15" is broken when working with .NET Core and UWP projects (or any other project facilitating project.json dependency management). 
+
+- Intellisense feature is not available until build is started or "Restore NuGet Packages" menu is clicked. This problem occurs when existing project was checked out from a git repository with no project.lock.json file added.
+
+- Changes made to project.json (or msbuild project file in future) via manual file editing are not reflected in Intellisense immediately. Restore operation is not triggered automatically. NuGet Package Manager UI won't suggest restoring packages as it does in packages.config world.
+
+- Restore operation blocks UI with showing modal restore popup dialog.
+ 
 In VS2015 NuGet employs different mechanisms to initiate restore operation.
 Support .NET Core and UWP projects.
 Replace WebTools restore.
