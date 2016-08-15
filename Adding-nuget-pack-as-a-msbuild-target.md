@@ -107,6 +107,8 @@ If msbuild /t:pack /p:IncludeSymbols=true , then the corresponding pdb files are
 
 If a file of type = Compile, is outside the project folder, then it is just added to src\\\<ProjectName>\\.
 
+Note that setting IncludeSymbols= true creates a regular package AND a symbols package.
+
 ####IsTool
 If msbuild /t:pack /p:IsTool=true, all output files, as specified in the Output Assemblies scenario, are copied to the tools folder instead of the lib folder.
 
