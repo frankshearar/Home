@@ -30,28 +30,15 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 | Project Model | Project Open | Project.json File Save | Package Manager UI | Settings Change, dependent project happens, lock file gone | Project Build |
 | --- | --- | --- | --- | --- | --- |
 | csproj + project.json (for both UWP or .NET Core) | Restore Happens | Restore Happens | Adaptions to UI requests are made right then. | Restore Happens | |
-	 
-Support .NET Core and UWP projects.
-Replace WebTools restore.
-Enable intellisense early as restore happens.
-Restore on build, avoid modal restore popup. 
-Support VS "15" project update scenario
-No-op optimization.
-Monitor project.json changes.
-Have unified architecture to support all VS project models
 
-Throttling and dials to control how often a restore can happen.
-Coordination with Project system … should they show 1000 errors…
-
-NuGet.RestoreManager.dll
-Loads fast- either as a 2nd packagedef in vsix or as a new mef component exported from vsix
-No dependencies.
-Understands when a restore is needed.
-- Packages.config – read xml file, and verify packages are installed in proj package folder.
-- UWP – lightweight noop pass – does assets file exist…are all libraries listed in the lock file installed in fallback folders/or user package folder.
-	- Is nuget.config newer than assets file. if p.j file is different than the one used to build the assets file…
-- Csproj only
-
+### Tenets
+1. Native support for .NET Core and UWP projects restore. Replace WebTools restore.
+2. Unified architecture for all VS project models.
+3. Lightweight restore agent (NuGet.RestoreManager.dll). Loads fast- either as a 2nd packagedef in vsix or as a new mef component exported from vsix. No dependencies.
+4. Understand when a restore is needed.
+  * Packages.config – read xml file, and verify packages are installed in proj package folder.
+  * UWP – lightweight noop pass – does assets file exist…are all libraries listed in the lock file installed in fallback folders/or user package folder. Is nuget.config newer than assets file. if p.j file is different than the one used to build the assets file…
+  * Csproj only
 
 ### Open Issues
 - [ ] How to bootstrap N.R.M. on project open or new?
@@ -70,3 +57,5 @@ Understands when a restore is needed.
 	- When nominating CPS supplies project dir, intermediate dir, restore output type (uap, netcore), dg graph
 - [ ] How to block the build until we have full info from VS?
 	- Virtual Project?
+- [ ] Throttling and dials to control how often a restore can happen.
+- [ ] Coordination with Project system … should they show 1000 errors…
