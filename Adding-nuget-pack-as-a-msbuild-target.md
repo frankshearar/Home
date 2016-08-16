@@ -13,9 +13,9 @@ Attribute/NuSpec Value| MSBuild Property | Default | Notes
 --- | --- | --- | ---
 Id|PackageId|AssemblyName|$(AssemblyName) from msbuild
 Version|PackageVersion|Version|New $(Version) property from msbuild, is semver compatible. Could be “1.0.0”, “1.0.0-beta”, or “1.0.0-beta-00345”. 
-Authors|Authors||Needs discussion on default
+Authors|Authors|| username of the current user will be the default value
 Owners|N/A|Not present in NuSpec|
-Description|Description|empty|Description is required attribute for packing, so need to re-consider default value.
+Description|Description|empty|"Package Description"
 Copyright|Copyright|empty
 RequireLicenseAcceptance|PackageRequireLicenseAcceptance|false
 LicenseUrl|PackageLicenseUrl|empty
