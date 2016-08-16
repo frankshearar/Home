@@ -49,6 +49,7 @@ Properties:
 * Configuration
 * AssemblyName
 * IncludeSymbols
+* IncludeSource
 * PackageTypes
 * IsTool
 * RepositoryUrl
