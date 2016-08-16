@@ -40,9 +40,9 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 4. Build is "blocked" during restore in-progress
 4. Understand when a restore is needed.
   * Packages.config – read xml file, and verify packages are installed in proj package folder.
-  * UWP – lightweight noop pass – does assets file exist…are all libraries listed in the lock file installed in fallback folders/or user package folder. Is nuget.config newer than assets file. if project.json file is different than the one used to build the assets file…
-  * Csproj old style - the same as UWP except theres no project.json, so watch for csproj file changes.
-  * Csproj with CPS - restore projects are nominated by CPS.
+  * UWP – lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Is nuget.config newer than assets file. if project.json file is different than the one used to build the assets file…
+  * Csproj with package refs only - the same as UWP except theres no project.json, so watch for csproj file changes.
+  * Csproj with package refs and CPS - restore projects are nominated by CPS.
 
 ### Open Issues
 - [ ] How to bootstrap N.R.M. on project open or new?
@@ -52,17 +52,23 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 	- Packages.config - project directories, packages directory
 		- NuGet.Config discovery is expensive
 	- UWP Project.json - dg info (needs to keep updated)
+        - Csproj with package refs only - dg info (updated), plus whatever restore algorithm needs ??? 
+        - Csproj with package refs and CPS - not needed at bootstrap time, see below
 - [ ] *any* changes watcher
 	- Project.json
-	- Settings changes
+        - .csproj in Csproj with package refs only.
+        - packages.config is not monitored today. POR is the same for the NRM.
+	- Settings changes (nuget.config)
+          - What if user adds new nuget.config in a search path?
 	- Dependency changes / dg info for uwp (check if we need this as separate update)
-	- Lock file presence
+	- Assets file presence
 - [ ] CPS "Restore Nominator" Capability - csproj integration, capabilities?
-	- When nominating CPS supplies project dir, intermediate dir, restore output type (uap, netcore), dg graph
+	- When nominating, CPS supplies project dir, intermediate dir, restore output type (uap, netcore), dg graph
 - [ ] How to block the build until we have full info from VS?
 	- Virtual Project?
 	- The queuing method returns a task (IVSTask). NRM would “complete” the task once a no-op restore is done…or a restore. VS/project system would block build while any tasks are still not complete.
 - [ ] Throttling and dials to control how often a restore can happen.
-- [ ] Coordination with Project system. Should they show 1000 errors?
+- [ ] Surfacing restore errors regardless of when restore happens.
+- [ ] Coordination with Project system. Should they show 1000 intellisense errors before restore is done?
 - [ ] UI Notification of restore process… ideally, we show progress bar in vs status bar.
 - [ ] Coordinate VS restore with command line restore
