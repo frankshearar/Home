@@ -64,6 +64,8 @@ Items:
 * ProjectReferences (has a custom serialization format, more details coming up).
 
 ###Scenarios
+####PackageIconUrl
+As part of the change for feature, https://github.com/NuGet/Home/issues/2582, PackageIconUrl will eventually be changed PackageIconUri and can be relative path to a icon file which will included at the root of the resulting package.
 ####Output Assemblies
 NuGet pack will copy the output assemblies from the directory list obtained from $(TargetDir) (This will be a list of directories in Cross-Targeting scenario) . The output assemblies to be copied depend on the following criteria:
 * Any filename that matches the $(AssemblyName) & has the extension .exe,.dll,.xml or .winmd (or .pdb if IncludeSymbols=true).
