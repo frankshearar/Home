@@ -66,12 +66,13 @@ The file format is basic and consists of ``|`` delimited lines that are prefixed
 $:netstandard1.6
 +:RestoreOuputType|netcore
 +:RestoreOuputPath|/src/myProj/obj/
-+:RestoreFrameworks|netstandard1.6
++:RestoreFramework|netstandard1.6
++:RestoreRuntime|win7-x64
 =:/src/myProj.csproj|/src/myChildProj.csproj
 #:/src/myChildProj.csproj
 +:RestoreOuputType|netcore
 +:RestoreOuputPath|/src/myChildProj/obj/
-+:RestoreFrameworks|netstandard1.3
++:RestoreFramework|netstandard1.3
 ```
 
 | Character | Description |
