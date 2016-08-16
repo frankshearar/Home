@@ -1,5 +1,5 @@
 # NuGet Restore Manager
-Introducing NuGet Restore Manager - unified component handling restore operations in VS "15" in efficient and user friendly fashion.
+Introducing NuGet Restore Manager (NRM) - unified component handling restore operations in VS "15" in efficient and user friendly fashion.
 
 ## Problem
 User experience in VS "15" is broken when working with .NET Core and UWP projects (or any other project facilitating project.json dependency management). 
@@ -45,7 +45,7 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
   * Csproj with package refs and CPS - restore projects are nominated by CPS.
 
 ### Open Issues
-- [ ] How to bootstrap N.R.M. on project open or new?
+- [ ] How to bootstrap NRM on project open or new?
 	- Mef component
 	- Second packagedef in vsix
 - [ ] How to get info from VS at bootstrap time? 
