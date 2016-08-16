@@ -26,19 +26,23 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 		
 
 ## Solution
-### Future VS15 Behavior
+### Future VS "15" Restore Behavior
 | Project Model | Project Open | Project.json File Save | Package Manager UI | Settings Change, dependent project happens, lock file gone | Project Build |
 | --- | --- | --- | --- | --- | --- |
-| csproj + project.json (for both UWP or .NET Core) | Restore Happens | Restore Happens | Adaptions to UI requests are made right then. | Restore Happens | |
+| csproj + project.json (with auto restore enabled) | Restore Happens | Restore Happens | Adaptions to UI requests are made right then. | Restore Happens | Restore is assumed to be not needed. |
+| no automatic restore | | | same | | Restore happens |
+
 
 ### Tenets
 1. Native support for .NET Core and UWP projects restore. Replace WebTools restore.
 2. Unified architecture for all VS project models.
 3. Lightweight restore agent (NuGet.RestoreManager.dll). Loads fast- either as a 2nd packagedef in vsix or as a new mef component exported from vsix. No dependencies.
+4. Build is "blocked" during restore in-progress
 4. Understand when a restore is needed.
   * Packages.config – read xml file, and verify packages are installed in proj package folder.
-  * UWP – lightweight noop pass – does assets file exist…are all libraries listed in the lock file installed in fallback folders/or user package folder. Is nuget.config newer than assets file. if p.j file is different than the one used to build the assets file…
-  * Csproj only
+  * UWP – lightweight noop pass – does assets file exist…are all libraries listed in the lock file installed in fallback folders/or user package folder. Is nuget.config newer than assets file. if project.json file is different than the one used to build the assets file…
+  * Csproj old style - the same as UWP except theres no project.json, so watch for csproj file changes.
+  * Csproj with CPS - restore projects are nominated by CPS.
 
 ### Open Issues
 - [ ] How to bootstrap N.R.M. on project open or new?
