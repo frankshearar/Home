@@ -111,7 +111,8 @@ If msbuild /t:pack /p:IncludeSymbols=true , then the corresponding pdb files are
 All files of type = Compile are copied over to src\\\<ProjectName>\ preserving the relative path directory structure in the resulting nupkg. The same also happens for any ProjectReference which has \<TreatAsPackageReference> set to false.
 
 If a file of type = Compile, is outside the project folder, then it is just added to src\\\<ProjectName>\\.
-This should be used in conjunction with IncludeSymbols to have any effect.
+
+IncludeSource should be used in conjunction with IncludeSymbols to have any effect.
 
 ####IsTool
 If msbuild /t:pack /p:IsTool=true, all output files, as specified in the Output Assemblies scenario, are copied to the tools folder instead of the lib folder.
