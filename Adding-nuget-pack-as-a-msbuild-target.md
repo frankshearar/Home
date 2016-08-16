@@ -12,7 +12,7 @@ In order for msbuild to be able to gather all the inputs, all metadata from proj
 Attribute/NuSpec Value| MSBuild Property | Default | Notes
 --- | --- | --- | ---
 Id|PackageId|AssemblyName|$(AssemblyName) from msbuild
-Version|PackageVersion|Version|New $(Version) property from msbuild, is semver compatible
+Version|PackageVersion|Version|New $(Version) property from msbuild, is semver compatible. Could be “1.0.0”, “1.0.0-beta”, or “1.0.0-beta-00345”. 
 Authors|Authors||Needs discussion on default
 Owners|N/A|Not present in NuSpec|
 Description|Description|empty|Description is required attribute for packing, so need to re-consider default value.
