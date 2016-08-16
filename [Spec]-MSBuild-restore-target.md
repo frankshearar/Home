@@ -66,13 +66,13 @@ The file format is basic and consists of ``|`` delimited lines that are prefixed
 $:netstandard1.6
 +:RestoreOuputType|netcore
 +:RestoreOuputPath|/src/myProj/obj/
-+:RestoreFramework|netstandard1.6
-+:RestoreRuntime|win7-x64
++:Framework|netstandard1.6
++:Runtime|win7-x64
 =:/src/myProj.csproj|/src/myChildProj.csproj
 #:/src/myChildProj.csproj
 +:RestoreOuputType|netcore
 +:RestoreOuputPath|/src/myChildProj/obj/
-+:RestoreFramework|netstandard1.3
++:Framework|netstandard1.3
 ```
 
 | Character | Description |
@@ -90,8 +90,8 @@ Properties in the .dg file
 | --------- | ----------- |
 | RestoreOutputPath | Output location, this is typically the intermediate folder |
 | RestoreOutputType | Restore type, if set to netcore assets will be placed in the output path with the new names. |
-| RestoreFrameworks | A set of target frameworks to restore for. |
-| RestoreRuntimes   | A set of RIDs to restore for, these will be combined with all target frameworks. |
+| Framework | A target frameworks to restore for. |
+| Runtime   | An optional RID to restore for. |
 
 ## Open issues
 
