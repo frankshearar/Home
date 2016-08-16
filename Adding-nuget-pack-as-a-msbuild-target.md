@@ -116,13 +116,3 @@ IncludeSource should be used in conjunction with IncludeSymbols to have any effe
 
 ####IsTool
 If msbuild /t:pack /p:IsTool=true, all output files, as specified in the Output Assemblies scenario, are copied to the tools folder instead of the lib folder.
-
-###Command Line Switches Being Killed
-* BasePath
-* Build
-* MSBuildVersion
-* IncludeReferencedProjects
-* ExcludeEmptyDirectories
-* Properties
-* Exclude
-* NonInteractive
