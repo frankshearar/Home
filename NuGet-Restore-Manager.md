@@ -35,40 +35,61 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 
 ### Tenets
 1. Native support for .NET Core and UWP projects restore. Replace WebTools restore.
-2. Unified architecture for all VS project models.
-3. Lightweight restore agent (NuGet.RestoreManager.dll). Loads fast- either as a 2nd packagedef in vsix or as a new mef component exported from vsix. No dependencies.
-4. Build is "blocked" during restore in-progress
-4. Understand when a restore is needed.
+1. Unified architecture for all VS project models.
+1. Lightweight restore agent (NuGet.RestoreManager.dll). Loads fast- either as a 2nd packagedef in vsix or as a new mef component exported from vsix. No dependencies.
+1. Project load cannot be blocked by NRM. Avoid any heavy activity within time to first edit.
+1. Restore is the first part of build.
+1. Understand when a restore is needed.
   * Packages.config – read xml file, and verify packages are installed in proj package folder.
-  * UWP – lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Is nuget.config newer than assets file. if project.json file is different than the one used to build the assets file…
-  * Csproj with package refs only - the same as UWP except theres no project.json, so watch for csproj file changes.
+  * UWP – lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Minimize the package is installed verification (compare hashes of inputs). Are nuget.config files same that were used to build assets files. if project.json file is different than the one used to build the assets file…
+  * Csproj with package refs only - the same as UWP except theres no project.json. Don't watch for csproj file changes. Listen to project system event (new event that needs to be raised by legacy project system)
   * Csproj with package refs and CPS - restore projects are nominated by CPS.
+
+
+Separate Note: will we have a ResolvePackageReferences. So that we can have a target add a packageref
+
+In VS, we do not call msbuild. We call restore with appropriate state.
 
 ### Open Issues
 - [ ] How to bootstrap NRM on project open or new?
-	- Mef component
-	- Second packagedef in vsix
+  * Export a MEF component
+  * Second packagedef in vsix. Have an async package -- v2 vsix can do it.
 - [ ] How to get info from VS at bootstrap time? 
-	- Packages.config - project directories, packages directory
-		- NuGet.Config discovery is expensive
-	- UWP Project.json - dg info (needs to keep updated)
-        - Csproj with package refs only - dg info (updated), plus whatever restore algorithm needs ??? 
-        - Csproj with package refs and CPS - not needed at bootstrap time, see below
+  * Packages.config - project directories, packages directory
+    * NuGet.Config discovery is expensive.
+    * Don't use com marshalling, marshall ourselves (JTF), run at a priority less than user input [NOTE: do this more places…in NuGet code]
+  * UWP Project.json - dg info (needs to keep updated)
+    * can be gotten from solutionbuildmanager.getprojectdependencies(). We don't need updates … we just get the projectdependencies() when we decide the project likely needs to be restored.
+  * Csproj with package refs only - dg info (updated), plus whatever restore algorithm needs ??? 
+  * Csproj with package refs and CPS - not needed at bootstrap time, see below. cps will find us via a mef import
 - [ ] *any* changes watcher
-	- Project.json
-        - .csproj in Csproj with package refs only.
-        - packages.config is not monitored today. POR is the same for the NRM.
-	- Settings changes (nuget.config)
-          - What if user adds new nuget.config in a search path?
-	- Dependency changes / dg info for uwp (check if we need this as separate update)
-	- Assets file presence
+  * Project.json
+  * .csproj not needed to be watched.
+  * packages.config is not monitored today. POR is the same for the NRM.
+  * Settings changes (nuget.config)
+    * What if user adds new nuget.config in a search path? User needs to force a restore. [use vs file monitor…much better than .net fx one]
+  * Note: need logic for a blank file on how to persist projectref
+  * Dependency changes / dg info for uwp (check if we need this as separate update)
+  * Assets file presence
 - [ ] CPS "Restore Nominator" Capability - csproj integration, capabilities?
-	- When nominating, CPS supplies project dir, intermediate dir, restore output type (uap, netcore), dg graph
+  * When nominating, CPS supplies project dir, intermediate dir, restore output type (uap, netcore), dg graph. This info could be done either way. Pass in from nominator, or query async apis at that point.
 - [ ] How to block the build until we have full info from VS?
-	- Virtual Project?
-	- The queuing method returns a task (IVSTask). NRM would “complete” the task once a no-op restore is done…or a restore. VS/project system would block build while any tasks are still not complete.
+  * Virtual Project?
+  * The queuing method returns a task (IVSTask). NRM would “complete” the task once a no-op restore is done…or a restore. 
+VS/project system would block build while any tasks are still not complete.
+We either need to have a non-project that can participate?
+Or we need to use a virtual project?
+Or we have onbuild event…we kick vs into build state and we cancel the original build.  After restore you kick off build again.
+ 
+SolutionBuildManager sjhould provide an async pre-build event. We would drain all restores…then build
+
 - [ ] Throttling and dials to control how often a restore can happen.
 - [ ] Surfacing restore errors regardless of when restore happens.
 - [ ] Coordination with Project system. Should they show 1000 intellisense errors before restore is done?
+While restore happens do not show errors
+How does VS know? Need to pull in Roslyn IDE --- Jason/Kevin/etc…
+Restore fails … doing a build … how can these errors still show?
+Show the errors in the asset file, or next to the assets file? who puts them back in the error list. How does that work for CPS/csproj.
+
 - [ ] UI Notification of restore process… ideally, we show progress bar in vs status bar.
 - [ ] Coordinate VS restore with command line restore
