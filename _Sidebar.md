@@ -27,6 +27,7 @@
 * [[NuGet Restore Manager|NuGet-Restore-Manager]]
 * [Account Deletion Workflow](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow)
 * [Add Clear Cache button to VS Package Manager Console](https://github.com/NuGet/Home/wiki/Add-Clear-Cache-button-to-VS-Package-Manager-options)
+* [Search by Package Type](https://github.com/NuGet/Home/wiki/Search-by-Package-Type)
 
 #### Reviewing
 * [NuGet Upgrader](https://github.com/NuGet/Home/wiki/NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0)
