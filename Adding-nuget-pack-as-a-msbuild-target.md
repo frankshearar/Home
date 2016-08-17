@@ -94,7 +94,7 @@ Note that this behavior is recursive - so if a ProjectReference has TreatAsProje
 ####Including Content in package
 There are two proposed approaches:
 
-SCENARIO 1 :
+**OPTION 1 :**
 Add extra metadata to existing \<Content> item . By default everything of type "Content" gets included for pack, unless you override by specifying something like:
 
      <Content Include="..\win7-x64\libuv.txt">
@@ -128,7 +128,20 @@ Setting visible to false prevents VS from showing the file in the Solution Explo
 The downside of this approach is that you end up modifying the Content item collection to exclude certain files from being packed. For build generated files, this will break build if they are included in content with \<CopyToOutputDirectory> set to anything but Never.
 
 
-SCENARIO 2:
+**OPTION 2:**
+Have a new item collection called \<PackageContent> :
+
+    <PackageContent Include="ReadMe.txt" />
+    <PackageContent Include="..\win7-x86\libuv.dll">
+        <PackagePath>runtimes\win7-x86\native\</PackagePath>
+    </PackageContent>
+    <PackageContent Include="..\win7-x64\libuv.dll">
+        <Pack>false</Pack>
+    </PackageContent>
+
+This does not modify the Content item collection, and the default metadata for this Item is set such that Visible = false, and CopyToOutputDirectory = false.
+Users can just add their build generated files into PackageContent and leave the Content item collection unchanged. They can also exclude/include files from other referenced projects to be packed into the package without including it into the Content.
+
 
 
 ####Cross Targeting
