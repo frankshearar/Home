@@ -139,6 +139,8 @@ Have a new item collection called \<PackageContent> :
         <Pack>false</Pack>
     </PackageContent>
 
+In addition to Content, setting \<Pack> and \<PackagePath> on Content would also work as expected.
+
 This does not modify the Content item collection, and the default metadata for this Item is set such that Visible = false, and CopyToOutputDirectory = false.
 Users can just add their build generated files into PackageContent and leave the Content item collection unchanged. They can also exclude/include files from other referenced projects to be packed into the package without including it into the Content. If files are excluded/included from the top level project and a referenced project, then pack respects the top level project's packing decision.
 
