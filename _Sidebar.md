@@ -23,7 +23,7 @@
 * [Package Sources Analyzer] (https://github.com/NuGet/Home/wiki/Package-Sources-Diagnostics)
 * [Aggressive No Caching Mode] (https://github.com/NuGet/Home/wiki/Aggressive-No-Caching-option-for-nuget.exe)
 * [Support nuget push command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-nuget-push-scenarios-in-dotnet-CLI)
-* [Support nuget locals command in dotnet CLI](https://github.com/NuGet/Home/wiki/Supporting-locals-command-in-dotnet-cli)
+* [Support nuget locals command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-locals-command-in-dotnet-cli)
 * [[NuGet Restore Manager|NuGet-Restore-Manager]]
 * [Account Deletion Workflow](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow)
 * [Add Clear Cache button to VS Package Manager Console](https://github.com/NuGet/Home/wiki/Add-Clear-Cache-button-to-VS-Package-Manager-options)
