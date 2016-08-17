@@ -8,14 +8,12 @@ Currently we do not have a cross platform implementation of nuget locals command
 ## Who is the customer?
 nuget cli users who currently do not have a way to clear nuget cache using dotnet cli.
 
-## Evidence
-??
-
 ## Solution
 Add a dotnet locals command to the dotnet cli. I am currently looking into what behavior will be supported. For now assuming that all the behavior stays the same as before. I will update this doc as I investigate further.
 
 ## Usage 
 dotnet nuget locals [options]
+dotnet nuget locals \<all | http-cache | global-packages\> \<--clear | -c | --list | -l\>
 
 Locals Command Options - 
 
@@ -39,4 +37,10 @@ Locals Command Options -
 </table>
 
 ## Example
-dotnet nuget locals \<all | http-cache | global-packages\> -clear
+`dotnet nuget locals --clear all`
+
+`dotnet nuget locals --list http-cache`
+
+`dotnet nuget locals -l temp`
+
+`dotnet nuget locals -c global-packages`
