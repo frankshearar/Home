@@ -25,7 +25,7 @@ Tags|PackageTags|empty
 ReleaseNotes|PackageReleaseNotes|empty
 RepositoryUrl|RepositoryUrl|empty
 RepositoryType|RepositoryType|empty
-PackageType|`<PackageType>DotNetCliTool, 1.0.0.0;Package, 2.0.0.0</PackageType>`||
+PackageType|`<PackageType>DotNetCliTool, 1.0.0.0;Dependency, 2.0.0.0</PackageType>`||
 
 
 In addition, the following nuspec properties will no longer be supported in csproj file :
