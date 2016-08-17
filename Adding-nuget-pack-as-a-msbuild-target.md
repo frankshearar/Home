@@ -92,7 +92,44 @@ If IsPackageReference is not specified, or is set to true, then the ProjectRefer
 Note that this behavior is recursive - so if a ProjectReference has TreatAsProjectReference set to false, it's project to project references will also be treated in the same manner.
 
 ####Including Content in package
-Currently being discussed with MSBuild team. More details coming soon.
+There are two proposed approaches:
+
+SCENARIO 1 :
+Add extra metadata to existing \<Content> item . By default everything of type "Content" gets included for pack, unless you override by specifying something like:
+
+     <Content Include="..\win7-x64\libuv.txt">
+         <Pack>false</Pack>
+     </Content>
+
+Everything gets added to the root of the package folder content, unless you specify a target path: 
+
+     <Content Include="..\win7-x64\libuv.txt">
+         <Pack>true</Pack>
+         <PackagePath>content\myfiles</PackagePath>
+     </Content>
+
+Packing of content files is recursive too. Content files from any project to project reference, which has TreatAsPackageReference set to false, are also copied in the similar manner and the same rules apply.
+
+If you wish to prevent copying of a content from another project into your nuget package, you can do something like:
+
+     <Content Include="..\..\project2\readme.txt">
+         <Pack>false</Pack>
+     </Content>
+
+Similarly, you can override the behavior in the referenced project and include a file to be packed which would have otherwise been excluded: 
+     <Content Include="..\..\project2\readme.txt">
+         <Pack>true</Pack>
+         <PackagePath>content\myfiles</PackagePath>
+         <Visible>false</Visible>
+     </Content>
+
+Setting visible to false prevents VS from showing the file in the Solution Explorer.
+
+The downside of this approach is that you end up modifying the Content item collection to exclude certain files from being packed. For build generated files, this will break build if they are included in content with \<CopyToOutputDirectory> set to anything but Never.
+
+
+SCENARIO 2:
+
 
 ####Cross Targeting
 As per the details available right now, Target frameworks are defined in the csproj in an item list (called TargetFramework right now) where the identity maps to $(TargetFrameworkIdentity),$(TargetFrameworkVersion) - no NuGet short names.
