@@ -29,8 +29,9 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 ### Future VS "15" Restore Behavior
 | Project Model | Project Open | Project.json File Save | Package Manager UI | Settings Change, dependent project happens, lock file gone | Project Build |
 | --- | --- | --- | --- | --- | --- |
-| csproj + project.json (with auto restore enabled) | Restore Happens | Restore Happens | Adaptions to UI requests are made right then. | Restore Happens | Restore is assumed to be not needed. |
-| no automatic restore | | | same | | Restore happens |
+| automatic restore | Restore Happens | Restore Happens | Adaptions to UI requests are made right then. | Restore Happens | Restore is assumed to be not needed. |
+| on-build only | | | same | | Restore happens |
+| manual only | | | | | |
 
 
 ### Tenets
