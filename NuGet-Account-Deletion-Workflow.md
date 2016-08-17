@@ -25,4 +25,14 @@ Add a "Delete Account" button under  https://www.nuget.org/account that triggers
 2. If the user confirms, all functionality is restored.
 3/ The co-owners of all packages get a notification stating that the account has been reactivated.
 
+###Ghost Account (Delete User)
+design of the ghost account
+name of the ghost user
+associated email address
+
+###Duplicate account username check
+We must preserve uniqueness of the username name across all accounts that were ever created on nuget.org including accounts that have been deleted. For example, if I create an account with the username "karann-msft" and delete it, no one should ever be able to create an account with the same username.
+
+
+
 
