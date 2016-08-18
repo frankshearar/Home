@@ -94,10 +94,10 @@ VS/project system would block build while any tasks are still not complete.
 ### Open Issues
 - [ ] Throttling and dials to control how often a restore can happen.
 - [ ] Surfacing restore errors regardless of when restore happens.
+  * Restore fails … doing a build … how can these errors still show?
+  * Show the errors in the asset file, or next to the assets file? who puts them back in the error list. How does that work for CPS/csproj.
 - [ ] Coordination with Project system. Should they show 1000 intellisense errors before restore is done?
-While restore happens do not show errors
-How does VS know? Need to pull in Roslyn IDE --- Jason/Kevin/etc…
-Restore fails … doing a build … how can these errors still show?
-Show the errors in the asset file, or next to the assets file? who puts them back in the error list. How does that work for CPS/csproj.
+  * While restore happens do not show errors
+  * How does VS know? Notify Language Service.
 - [ ] UI Notification of restore process… ideally, we show progress bar in vs status bar.
 - [ ] Coordinate VS restore with command line restore
