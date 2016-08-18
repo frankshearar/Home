@@ -63,13 +63,14 @@ Exports MEF restore component/service.
 
 | Project Model | When | Description
 | --- | --- | --- |
-| All | <sub>*any* changes watcher</sub> | <sub>Project.json<br>Note: need logic for a blank file on how to persist projectref<br>Dependency changes / dg info for uwp (check if we need this as separate update)<br>Assets file presence</sub>
-| | <sub>Settings changes (nuget.config)</sub> | <sub>NuGet.Config discovery is expensive.<br>What if user adds new nuget.config in a search path? User needs to force a restore.<br>[use VS file monitor…much better than .net fx one]>/sub>
+| All | <sub>*any* changes watcher</sub> | <sub></sub>
+| | <sub>Settings changes (nuget.config)</sub> | <sub>NuGet.Config discovery is expensive.<br>What if user adds new nuget.config in a search path? User needs to force a restore.<br>[use VS file monitor…much better than .net fx one]</sub>
 | Packages.config | <sub>Always</sub> | <sub>read xml file, and verify packages are installed in project packages folder.</sub>
 | | <sub>Bootstrap</sub> | <sub>Read project directories, packages directory.<br>Don't use com marshalling, marshall ourselves (JTF)<br>Run at a priority less than user input<br>[NOTE: do this more places…in NuGet code]</sub>
 | | <sub>Tracking Changes| <sub>packages.config is not monitored today. POR is the same for the NRM.</sub>
-| UWP | <sub>Always</sub> | <sub>lightweight noop pass:<br>– does assets file exist<br>- are all libraries listed in the assets file installed in fallback folders/or user package folder.<br>- Minimize the package is installed verification (compare hashes of inputs).<br>- Are nuget.config files same that were used to build assets files.<br>- if project.json file is different than the one used to build the assets file…</sub>
+| UWP | <sub>Always</sub> | <sub>lightweight noop pass:<br>- does assets file exist<br>- are all libraries listed in the assets file installed in fallback folders/or user package folder.<br>- Minimize the package is installed verification (compare hashes of inputs).<br>- Are nuget.config files same that were used to build assets files.<br>- if project.json file is different than the one used to build the assets file…</sub>
 | | <sub>Bootstrap</sub> | <sub>dg info (needs to keep updated)<br>can be gotten from `SolutionBuildManager.GetProjectDependencies()`.<br>We don't need updates … we just get the `projectdependencies()` when we decide the project likely needs to be restored.</sub>
+| | <sub>Tracking Changes | <sub>Project.json<br>Note: need logic for a blank file on how to persist projectref<br>Dependency changes / dg info for uwp (check if we need this as separate update)<br>Assets file presence</sub>
 | Csproj with package refs only | <sub>Always</sub> | <sub>the same as UWP except theres no project.json.</sub>
 | | <sub>Bootstrap</sub> | <sub>Get dg info (updated), plus whatever restore algorithm needs ???</sub>
 | | <sub>Tracking Changes | <sub>Don't watch for `.csproj` file changes.<br>Listen to project system event (new event that needs to be raised by legacy project system).</sub>
@@ -77,19 +78,20 @@ Exports MEF restore component/service.
 | | <sub>Bootstrap</sub> | <sub>No action is needed at bootstrap time. CPS will find us via the MEF import</sub>
 | | <sub>Tracking Changes | <sub></sub>
 
-### Open Issues
-- [ ] CPS "Restore Nominator" Capability - csproj integration, capabilities?
-  * When nominating, CPS supplies project dir, intermediate dir, restore output type (uap, netcore), dg graph. This info could be done either way. Pass in from nominator, or query async apis at that point.
-- [ ] How to block the build until we have full info from VS?
-  * Virtual Project?
+### CPS "Restore Nominator" Capability
+When nominating, CPS supplies project dir, intermediate dir, restore output type (uap, netcore), dg graph. This info could be done either way. Pass in from nominator, or query async apis at that point.
+
+### Blocking the build until restore is complete
+`SolutionBuildManager` should provide an async pre-build event. We would drain all restores…then build
+
+Alternatives:
   * The queuing method returns a task (IVSTask). NRM would “complete” the task once a no-op restore is done…or a restore. 
 VS/project system would block build while any tasks are still not complete.
-We either need to have a non-project that can participate?
-Or we need to use a virtual project?
-Or we have onbuild event…we kick vs into build state and we cancel the original build.  After restore you kick off build again.
- 
-SolutionBuildManager sjhould provide an async pre-build event. We would drain all restores…then build
+  * We either need to have a non-project that can participate?
+  * Or we need to use a virtual project?
+  * Or `OnBuild` event…we kick vs into build state and we cancel the original build.  After restore you kick off build again.
 
+### Open Issues
 - [ ] Throttling and dials to control how often a restore can happen.
 - [ ] Surfacing restore errors regardless of when restore happens.
 - [ ] Coordination with Project system. Should they show 1000 intellisense errors before restore is done?
