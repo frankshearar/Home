@@ -20,27 +20,22 @@ If the phrase and password check pass:
 
 1. The account is deleted immediately - the user is logged out and will no longer be able to login with the same credentials
 2. https://www.nuget.org/profiles/username redirects to the ghost account profile
-2. the username is stored as a hash (this will be used to dedupe)
-3. The account will be removed as the owner and author from all associated packages
-4. All orphaned packages will be re-parented under the ghost account
+2. the username is stored in a non-retrievable form (this is to ensure compliance with privacy guidelines)
+3. The account will be removed as the owner from all associated packages
+4. All orphaned packages will be re-parented under the ghost account and the and the author field will be overwritten with "Deleted User"
 
 ###Ghost Account (Deleted User)
-The username for the ghost account will be "Deleted User"
-The profile page for this user will not show any associated packages or related statistics.
-
-
-design of the ghost account
-name of the ghost user
-associated email address
+1. The username for the ghost account will be "Deleted User"
+2. The profile page for this user will not show any associated packages or related statistics.
+3. Clicking on contact owner on a package that has been re-parented under the ghost account will take the user to the [Contact Us](https://www.nuget.org/policies/Contact) page
 
 ###Duplicate account username check
-We must preserve uniqueness of the username name across all accounts that were ever created on nuget.org including accounts that have been deleted. For example, if I create an account with the username "karann-msft" and delete it, no one should ever be able to create an account with the same username.
+During new account creation, a check must be added to de-duplicate against deleted accounts as well. 
 
 ##Solution - Cadillac version
 Below is the advanced workflow with the cooling period safeguard that gives the user 'x' number of days to change his/her mind. Based on feedback, we can consider investing in implementing this.
 
 ###Delete
-
 
 1. When clicked, if the account has associated packages
   * If the account being deleted is the only owner, provide information about adding co-owners. The user can choose to not add a co-owner and we should provide information that in this case, the package will be re-parented under a <deleted account>
