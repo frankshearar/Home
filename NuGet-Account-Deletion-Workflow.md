@@ -26,14 +26,16 @@ If the phrase and password check pass:
 3. the username is stored in a non-retrievable form (this is to ensure compliance with privacy guidelines)
 4. The account will be removed as the owner from all associated packages
 5. All orphaned packages will be re-parented under a ghost account and the author field will be overwritten with "Deleted User"
+6. The co-owners get an email stating that an owner account has been deleted and hence removed as one of the owners of the package.
 
 ###Ghost Account (Deleted User)
 1. The username for the ghost account will be "Deleted User"
 2. The profile page for this user will not show any associated packages or related statistics.
 3. Clicking on contact owner on a package that has been re-parented under the ghost account will take the user to the [Contact Us](https://www.nuget.org/policies/Contact) page
 
-###Duplicate account username check
-During new account creation, a check must be added to de-duplicate against deleted accounts as well. 
+###Deleted account history and Duplicate account username check
+1. Usernames of all deleted account must be stored. They must be stored in a way that does not allow us to retrieve them directly (similar to passwords) but does allow us to block someone from creating new accounts with the same username.
+2. During new account creation, a check must be added to de-duplicate against usernames of deleted accounts. 
 
 ###SLA
 Ideally, the account should be deleted immediately. However, to provide room for error, as a matter of policy, we will commit to a 5 business day time-frame to complete the operation i.e. deleting the account, removing association from packages and re-parenting the packages. Our privacy policy will be updated to stipulate the same.
@@ -63,7 +65,7 @@ Below is the advanced workflow with the cooling period safeguard that gives the 
 
 1. If the user clicks “Reactivate account”, ask confirmation and display a message with the implications.
 2. If the user confirms, all functionality is restored.
-3/ The co-owners of all packages get a notification stating that the account has been reactivated.
+3. The co-owners of all packages get a notification stating that the account has been reactivated.
 
 
 
