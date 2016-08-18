@@ -18,20 +18,24 @@ Software developers using Visual Studio "15" to build .NET Core and UWP applicat
 ## Current Behavior
 In VS2015 NuGet employs different mechanisms to initiate restore operation.
 
+<!--
+<sub>...</sub> is used to make font size small
+-->
+
 | Project Model | Project Open | Sidecar File Save | Package Manager UI | Project Build |
 | --- | --- | --- | --- | --- |
-| Packages.config | If restore is needed and any NuGet UI is open, we’ll yellow bar notify them to “restore” via clicking a button. | Not a scenario to only edit the file, because you wouldn’t get references added or packages downloaded. *websites are different… | Adaptions to UI requests are made right then. | Build will do a restore, if one is needed. |
-| UWP style project.json | | | Adaptions to UI requests are made right then. | Restore happens (currently started by NuGet vsix in OnBuild event – downside is that the vsix needs to be loaded before build) |
-| Xproj style project.json | Restore happens (.net core project system does this) | Restore happens (.net core project system does this) | Adaptions to UI requests are made right then. |
+| Packages.config | <sub>If restore is needed and any NuGet UI is open, we’ll yellow bar notify them to “restore” via clicking a button.</sub> | <sub>Not a scenario to only edit the file, because you wouldn’t get references added or packages downloaded. *websites are different…</sub> | <sub>Adaptions to UI requests are made right then.</sub> | <sub>Build will do a restore, if one is needed.</sub>
+| UWP style project.json | | | <sub>Adaptions to UI requests are made right then.</sub> | <sub>Restore happens (currently started by NuGet vsix in OnBuild event – downside is that the vsix needs to be loaded before build)</sub>
+| Xproj style project.json | <sub>Restore happens (.net core project system does this)</sub> | <sub>Restore happens (.net core project system does this)</sub> | <sub>Adaptions to UI requests are made right then.</sub>
 		
 
 ## Solution
 ### Future VS "15" Restore Behavior
 | Project Model | Project Open | Project.json File Save | Package Manager UI | Settings Change, dependent project happens, lock file gone | Project Build |
 | --- | --- | --- | --- | --- | --- |
-| automatic restore | Restore Happens | Restore Happens | Adaptions to UI requests are made right then. | Restore Happens | Restore is assumed to be not needed. |
-| on-build only | | | same | | Restore happens |
-| manual only | | | | | |
+| automatic restore | <sub>Restore Happens</sub> | <sub>Restore Happens</sub> | <sub>Adaptions to UI requests are made right then.</sub> | <sub>Restore Happens</sub> | <sub>Restore is assumed to be not needed.</sub>
+| on-build only | | | <sub>same</sub> | | <sub>Restore happens</sub>
+| manual only
 
 
 ### Tenets
@@ -43,28 +47,28 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 1. Restore is the first part of build.
 1. Evaluate when a restore is needed.
 
+## Design Notes
+
 Separate Note: will we have a ResolvePackageReferences. So that we can have a target add a packageref
 
 In VS, we do not call msbuild. We call restore with appropriate state.
 
-## Design Notes
-
-### Bootstrapping NRM
-
-Define second packagedef in vsix by introducing new `VsPackage` inheriting from `AsyncPackage`.
+### Bootstrap the NRM
+Define second packagedef in vsix by introducing new `VsPackage`
+Inherits from `AsyncPackage`.
 Loads on specific `UIContext` asynchronously.
 Exports MEF restore component/service.
 
-1. Evaluate when a restore is needed.
-  * Packages.config – read xml file, and verify packages are installed in proj package folder.
-  * UWP – lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Minimize the package is installed verification (compare hashes of inputs). Are nuget.config files same that were used to build assets files. if project.json file is different than the one used to build the assets file…
-  * Csproj with package refs only - the same as UWP except theres no project.json. Don't watch for csproj file changes. Listen to project system event (new event that needs to be raised by legacy project system)
-  * Csproj with package refs and CPS - restore projects are nominated by CPS.
+### Evaluate when a restore is needed.
+
+| Project Model | Bootstrap Time | Changes Tracking
+| --- | --- | --- |
+| Packages.config | read xml file, and verify packages are installed in proj package folder.
+| UWP | lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Minimize the package is installed verification (compare hashes of inputs). Are nuget.config files same that were used to build assets files. if project.json file is different than the one used to build the assets file…
+| Csproj with package refs only | the same as UWP except theres no project.json. Don't watch for csproj file changes. Listen to project system event (new event that needs to be raised by legacy project system)
+| Csproj with package refs and CPS | restore projects are nominated by CPS.
 
 ### Open Issues
-- [ ] How to bootstrap NRM on project open or new?
-  * Export a MEF component
-  * Second packagedef in vsix. Have an async package -- v2 vsix can do it.
 - [ ] How to get info from VS at bootstrap time? 
   * Packages.config - project directories, packages directory
     * NuGet.Config discovery is expensive.
