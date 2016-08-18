@@ -54,19 +54,22 @@ Separate Note: will we have a ResolvePackageReferences. So that we can have a ta
 In VS, we do not call msbuild. We call restore with appropriate state.
 
 ### Bootstrap the NRM
-Define second packagedef in vsix by introducing new `VsPackage`
+Define second packagedef in vsix by introducing new `VsPackage`.
 Inherits from `AsyncPackage`.
 Loads on specific `UIContext` asynchronously.
 Exports MEF restore component/service.
 
-### Evaluate when a restore is needed.
+### Evaluate when restore is needed
 
-| Project Model | Bootstrap Time | Changes Tracking
+| Project Model | When | Description
 | --- | --- | --- |
-| Packages.config | read xml file, and verify packages are installed in proj package folder.
-| UWP | lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Minimize the package is installed verification (compare hashes of inputs). Are nuget.config files same that were used to build assets files. if project.json file is different than the one used to build the assets file…
-| Csproj with package refs only | the same as UWP except theres no project.json. Don't watch for csproj file changes. Listen to project system event (new event that needs to be raised by legacy project system)
-| Csproj with package refs and CPS | restore projects are nominated by CPS.
+| All 
+| Packages.config | | <sub>read xml file, and verify packages are installed in proj package folder.</sub>
+| | <sub>Bootstrap</sub> | <sub>Read project directories, packages directory. NuGet.Config discovery is expensive. Don't use com marshalling, marshall ourselves (JTF), run at a priority less than user input [NOTE: do this more places…in NuGet code]</sub>
+| | <sub>Tracking Changes| <sub>packages.config is not monitored today. POR is the same for the NRM.</sub>
+| UWP | | <sub>lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Minimize the package is installed verification (compare hashes of inputs). Are nuget.config files same that were used to build assets files. if project.json file is different than the one used to build the assets file…</sub>
+| Csproj with package refs only | | <sub>the same as UWP except theres no project.json. Don't watch for csproj file changes. Listen to project system event (new event that needs to be raised by legacy project system).</sub>
+| Csproj with package refs and CPS | | <sub>restore projects are nominated by CPS.</sub>
 
 ### Open Issues
 - [ ] How to get info from VS at bootstrap time? 
