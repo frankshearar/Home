@@ -43,6 +43,10 @@ Ideally, the account should be deleted immediately. However, to provide room for
   * Legal - From the legal side, since we already say that any personal information that you put into the package will be public information, I do not think we have to change the privacy statement in that aspect 
 2. What about the links on the orphaned package page - [Project Site]() and [License]()?
 
+##Feedback
+**[Tracking Issue](https://github.com/NuGet/Home/issues/3335)** - 
+Please comment on the issue for any questions/suggestions/criticism/praise that you may have for this feature.
+
 ##Solution - Cadillac version
 Below is the advanced workflow with the cooling period safeguard that gives the user 'x' number of days to change his/her mind. Based on feedback, we can consider investing in implementing this.
 
