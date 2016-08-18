@@ -1,8 +1,8 @@
 ##  Problem
 Today there is no self-service option for a user to delete his/her NuGet account. Even if we do get a genuine request to delete an account, we don’t have a clean way to do it since that would result in orphaned packages.
 
-**[Tracking Issue](https://github.com/NuGet/Home/issues/3335)**
-Please comment on the above issue for any questions/suggestions/criticism/praise that you may have for this spec.
+**[Tracking Issue](https://github.com/NuGet/Home/issues/3335)** - 
+Please comment on the issue for any questions/suggestions/criticism/praise that you may have for this spec.
 
 ## Who is the customer?
 Any person or entity which has registered and has a nuget.org account.
