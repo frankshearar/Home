@@ -44,4 +44,4 @@
 #### Archived
 
 #### Templates
-[[Template|Writing-and-reviewing-awesome-specs]]
+* [[Template|Writing-and-reviewing-awesome-specs]]
