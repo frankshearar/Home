@@ -16,7 +16,6 @@
 
 ### Specs
 
-[[Template|Writing-and-reviewing-awesome-specs]]
 ***
 
 #### Incubation 
@@ -43,3 +42,6 @@
 * [Batch Events](https://github.com/NuGet/Home/wiki/Batch-Events)
 
 #### Archived
+
+#### Templates
+[[Template|Writing-and-reviewing-awesome-specs]]
