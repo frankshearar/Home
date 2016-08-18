@@ -37,6 +37,9 @@ If the phrase and password check pass:
 2. The profile page for this user will not show any associated packages or related statistics.
 3. Clicking on contact owner on a package that has been re-parented under the ghost account will take the user to the [Contact Us](https://www.nuget.org/policies/Contact) page
 
+###Contact Us Page
+We will update the contact us page with details around Deleted user contact. i.e. the NuGet team will only respond to copyright license issues and we do not support individual packages.
+
 ###Deleted account history and Duplicate account username check
 1. Usernames of all deleted account must be stored. They must be stored in a way that does not allow us to retrieve them directly (similar to passwords) but does allow us to block someone from creating new accounts with the same username.
 2. During new account creation, a check must be added to de-duplicate against usernames of deleted accounts. 
