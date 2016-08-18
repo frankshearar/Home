@@ -35,21 +35,31 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 
 
 ### Tenets
-1. Native support for .NET Core and UWP projects restore. Replace WebTools restore.
 1. Unified architecture for all VS project models.
-1. Lightweight restore agent (NuGet.RestoreManager.dll). Loads fast- either as a 2nd packagedef in vsix or as a new mef component exported from vsix. No dependencies.
-1. Project load cannot be blocked by NRM. Avoid any heavy activity within time to first edit.
+1. Native support for .NET Core restore. Replace WebTools restore.
+1. Lightweight restore agent (NuGet.RestoreManager.dll). Loads fast. No dependencies.
+  1. Project load cannot be blocked by NRM. Avoid any heavy activity within time to first edit.
+1. Export MEF restore packages service. Implements standard "generic" restore service interface.
 1. Restore is the first part of build.
-1. Understand when a restore is needed.
-  * Packages.config – read xml file, and verify packages are installed in proj package folder.
-  * UWP – lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Minimize the package is installed verification (compare hashes of inputs). Are nuget.config files same that were used to build assets files. if project.json file is different than the one used to build the assets file…
-  * Csproj with package refs only - the same as UWP except theres no project.json. Don't watch for csproj file changes. Listen to project system event (new event that needs to be raised by legacy project system)
-  * Csproj with package refs and CPS - restore projects are nominated by CPS.
-
+1. Evaluate when a restore is needed.
 
 Separate Note: will we have a ResolvePackageReferences. So that we can have a target add a packageref
 
 In VS, we do not call msbuild. We call restore with appropriate state.
+
+## Design Notes
+
+### Bootstrapping NRM
+
+Define second packagedef in vsix by introducing new `VsPackage` inheriting from `AsyncPackage`.
+Loads on specific `UIContext` asynchronously.
+Exports MEF restore component/service.
+
+1. Evaluate when a restore is needed.
+  * Packages.config – read xml file, and verify packages are installed in proj package folder.
+  * UWP – lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Minimize the package is installed verification (compare hashes of inputs). Are nuget.config files same that were used to build assets files. if project.json file is different than the one used to build the assets file…
+  * Csproj with package refs only - the same as UWP except theres no project.json. Don't watch for csproj file changes. Listen to project system event (new event that needs to be raised by legacy project system)
+  * Csproj with package refs and CPS - restore projects are nominated by CPS.
 
 ### Open Issues
 - [ ] How to bootstrap NRM on project open or new?
