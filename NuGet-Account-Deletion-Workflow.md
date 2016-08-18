@@ -5,14 +5,14 @@ Today there is no self-service option for a user to delete his/her NuGet account
 Any person or entity which has registered and has a nuget.org account.
 
 ## Evidence
-The volume of account deletion requests is showing an upward trend. We have received 5 requests in the past 30 days. Also, to adhere to privacy laws we must allow the user to delete all personally identifiable information (PII) including their account.
+The volume of account deletion requests is showing an upward trend. We have received 5 requests in the past 60 days. Also, to comply with privacy guidelines we must allow the user to delete all personally identifiable information (PII) including their account.
 
 ##Solution
 Add a "Delete Account" button under  https://www.nuget.org/account that triggers the following workflow:
 
 1. Expands the Delete account section (similar to profile picture, by clicking 'more info')
 2. Clearly states the consequences of proceeding with this action (along with a link to a new doc with detailed information)
-3. User has to type the phrase - "delete my account"
+3. User has to type the phrase "delete my account" in the box prvovided for it
 4. User has to type the password
 5. Click on "Delete my account" button
 
@@ -20,9 +20,9 @@ If the phrase and password check pass:
 
 1. The account is deleted immediately - the user is logged out and will no longer be able to login with the same credentials
 2. https://www.nuget.org/profiles/username redirects to the ghost account profile
-2. the username is stored in a non-retrievable form (this is to ensure compliance with privacy guidelines)
-3. The account will be removed as the owner from all associated packages
-4. All orphaned packages will be re-parented under the ghost account and the and the author field will be overwritten with "Deleted User"
+3. the username is stored in a non-retrievable form (this is to ensure compliance with privacy guidelines)
+4. The account will be removed as the owner from all associated packages
+5. All orphaned packages will be re-parented under a ghost account and the author field will be overwritten with "Deleted User"
 
 ###Ghost Account (Deleted User)
 1. The username for the ghost account will be "Deleted User"
@@ -32,11 +32,14 @@ If the phrase and password check pass:
 ###Duplicate account username check
 During new account creation, a check must be added to de-duplicate against deleted accounts as well. 
 
+##Open Questions
+1. What about the information contained in the nuspec inside the package?
+2. What about the links on the orphaned package page - [Project Site]() and [License]()
+
 ##Solution - Cadillac version
 Below is the advanced workflow with the cooling period safeguard that gives the user 'x' number of days to change his/her mind. Based on feedback, we can consider investing in implementing this.
 
 ###Delete
-
 1. When clicked, if the account has associated packages
   * If the account being deleted is the only owner, provide information about adding co-owners. The user can choose to not add a co-owner and we should provide information that in this case, the package will be re-parented under a <deleted account>
   * If the associated package has additional authors, the account being deleted is simply removed from the list of owners for that package. The co-owners get a notification that an account has been marked for deletion.
