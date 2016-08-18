@@ -7,18 +7,4 @@ TBD
 
 ## Themes
 
-### 3.4.4 - Quality improvements
-
-**Planned features:** No features
-
-### 3.4.5 - Performance, Diagnostics, Upgraders
-
-**Planned features:** NuGet Format/Version Upgrader, Package Sources Analyze
-
-### 3.5 - Performance, Diagnostics, Upgraders
-
-**Planned features:** Package Type, SemVer 2.0.0 support, NuGet Format/Version Upgrader, Package Sources Analyze, NuGet.org security
-
-### 3.6 - Performance, Diagnostics, Upgraders
-
-**Planned features:** Staging, Component Level Dependency Management
+TBD
