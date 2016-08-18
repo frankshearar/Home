@@ -19,7 +19,7 @@ Add a "Delete Account" button under  https://www.nuget.org/account that triggers
 If the phrase and password check pass:
 
 1. The account is deleted immediately - the user is logged out and will no longer be able to login with the same credentials
-2. https://www.nuget.org/profiles/<username> redirects to the ghost account profile
+2. https://www.nuget.org/profiles/username redirects to the ghost account profile
 2. the username is stored as a hash (this will be used to dedupe)
 3. The account will be removed as the owner and author from all associated packages
 4. All orphaned packages will be re-parented under the ghost account
