@@ -8,11 +8,11 @@ Any person or entity which has registered and has a nuget.org account.
 The volume of account deletion requests is showing an upward trend. We have received 5 requests in the past 60 days. Also, to comply with privacy guidelines we must allow the user to delete all personally identifiable information (PII) including their account.
 
 ##Solution
-Add a "Delete Account" button under  https://www.nuget.org/account that triggers the following workflow:
+Add a "Delete Account" section under  https://www.nuget.org/account that triggers the following workflow:
 
-1. Expands the Delete account section (similar to profile picture, by clicking 'more info')
+1. Clicking on more info expands the Delete account section (similar to profile picture, by clicking 'more info')
 2. Clearly states the consequences of proceeding with this action (along with a link to a new doc with detailed information)
-3. User has to type the phrase "delete my account" in the box prvovided for it
+3. User has to type the phrase "delete my account" in the box provided for it
 4. User has to type the password
 5. Click on "Delete my account" button
 
