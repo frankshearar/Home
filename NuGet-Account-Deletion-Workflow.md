@@ -8,9 +8,25 @@ Any person or entity which has registered and has a nuget.org account.
 The volume of account deletion requests is showing an upward trend. We have received 5 requests in the past 30 days. Also, to adhere to privacy laws we must allow the user to delete all personally identifiable information (PII) including their account.
 
 ##Solution
+Add a "Delete Account" button under  https://www.nuget.org/account that triggers the following workflow:
+1. Expands the Delete account section (similar to profile picture, by clicking 'more info')
+2. Clearly states the consequences of proceeding with this action (along with a link to a new doc with detailed information)
+3. User has to type the phrase - "delete my account"
+4. User has to type the password
+5. Click on "Delete my account" button
+
+If the phrase and password check pass:
+1. The account is deleted immediately - the user is logged out and will no longer be able to login with the same credentials
+2. https://www.nuget.org/profiles/<username> redirects to the ghost account profile
+2. the username is stored as a hash (this will be used to dedupe)
+3. The account will be removed as the owner and author from all associated packages
+4. All orphaned packages will be re-parented under the ghost account
+
+###Ghost Account (Deleted User)
+The username for the ghost account will be "Deleted User"
+The profile page for this user will not show any associated packages or related statistics.
 
 
-###Ghost Account (Delete User)
 design of the ghost account
 name of the ghost user
 associated email address
@@ -22,11 +38,11 @@ We must preserve uniqueness of the username name across all accounts that were e
 Below is the advanced workflow with the cooling period safeguard that gives the user 'x' number of days to change his/her mind. Based on feedback, we can consider investing in implementing this.
 
 ###Delete
-Add a "Delete Account" button under  https://www.nuget.org/account that triggers the following workflow:
+
 
 1. When clicked, if the account has associated packages
-  a. If the account being deleted is the only owner, provide information about adding co-owners. The user can choose to not add a co-owner and we should provide information that in this case, the package will be re-parented under a <deleted account>
- b. If the associated package has additional authors, the account being deleted is simply removed from the list of owners for that package. The co-owners get a notification that an account has been marked for deletion.
+  * If the account being deleted is the only owner, provide information about adding co-owners. The user can choose to not add a co-owner and we should provide information that in this case, the package will be re-parented under a <deleted account>
+  * If the associated package has additional authors, the account being deleted is simply removed from the list of owners for that package. The co-owners get a notification that an account has been marked for deletion.
 2. Next, ask for a confirmation with a clear message that the user understands the implication (see Legal section below) and that he/she has 30 days to change their mind.
 3. When the user confirms, mark the account for deletion and display the date when the deletion would happen.
 4. When marked for deletion, we freeze all activity which means the user can’t change any account settings or push packages.
