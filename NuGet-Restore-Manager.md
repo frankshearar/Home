@@ -64,15 +64,15 @@ Exports MEF restore component/service.
 | Project Model | When | Description
 | --- | --- | --- |
 | All | <sub>*any* changes watcher</sub> | <sub>Project.json<br>.csproj not needed to be watched.<br>Note: need logic for a blank file on how to persist projectref<br>Dependency changes / dg info for uwp (check if we need this as separate update)<br>Assets file presence</sub>
-| | <sub>Settings changes (nuget.config)</sub> | <sub>What if user adds new nuget.config in a search path? User needs to force a restore. [use vs file monitor…much better than .net fx one]>/sub>
+| | <sub>Settings changes (nuget.config)</sub> | <sub>NuGet.Config discovery is expensive.<br>What if user adds new nuget.config in a search path? User needs to force a restore. [use vs file monitor…much better than .net fx one]>/sub>
 | Packages.config | <sub>Always</sub> | <sub>read xml file, and verify packages are installed in proj package folder.</sub>
-| | <sub>Bootstrap</sub> | <sub>Read project directories, packages directory.<br/>NuGet.Config discovery is expensive.<br>Don't use com marshalling, marshall ourselves (JTF)<br>Run at a priority less than user input [NOTE: do this more places…in NuGet code]</sub>
+| | <sub>Bootstrap</sub> | <sub>Read project directories, packages directory.<br>Don't use com marshalling, marshall ourselves (JTF)<br>Run at a priority less than user input [NOTE: do this more places…in NuGet code]</sub>
 | | <sub>Tracking Changes| <sub>packages.config is not monitored today. POR is the same for the NRM.</sub>
-| UWP | | <sub>lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Minimize the package is installed verification (compare hashes of inputs). Are nuget.config files same that were used to build assets files. if project.json file is different than the one used to build the assets file…</sub>
-| | <sub>Bootstrap</sub> | <sub>dg info (needs to keep updated)<br>can be gotten from solutionbuildmanager.getprojectdependencies(). We don't need updates … we just get the projectdependencies() when we decide the project likely needs to be restored.</sub>
-| Csproj with package refs only | | <sub>the same as UWP except theres no project.json. Don't watch for csproj file changes. Listen to project system event (new event that needs to be raised by legacy project system).</sub>
+| UWP | <sub>Always</sub> | <sub>lightweight noop pass:<br>\– does assets file exist<br>\-are all libraries listed in the assets file installed in fallback folders/or user package folder.<br>Minimize the package is installed verification (compare hashes of inputs).<br>Are nuget.config files same that were used to build assets files.<br>if project.json file is different than the one used to build the assets file…</sub>
+| | <sub>Bootstrap</sub> | <sub>dg info (needs to keep updated)<br>can be gotten from `SolutionBuildManager.GetProjectDependencies()`.<br>We don't need updates … we just get the `projectdependencies()` when we decide the project likely needs to be restored.</sub>
+| Csproj with package refs only | <sub>Always</sub> | <sub>the same as UWP except theres no project.json.<br>Don't watch for `.csproj` file changes.<br>Listen to project system event (new event that needs to be raised by legacy project system).</sub>
 | | <sub>Bootstrap</sub> | <sub>dg info (updated), plus whatever restore algorithm needs ???</sub>
-| Csproj with package refs and CPS | | <sub>restore projects are nominated by CPS.</sub>
+| Csproj with package refs and CPS | <sub>Always</sub> | <sub>restore projects are nominated by CPS.</sub>
 | | <sub>Bootstrap</sub> | <sub>not needed at bootstrap time, see below. cps will find us via a mef import</sub>
 
 ### Open Issues
