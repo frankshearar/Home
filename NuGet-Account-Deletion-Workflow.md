@@ -34,7 +34,7 @@ During new account creation, a check must be added to de-duplicate against delet
 
 ##Open Questions
 1. What about the information contained in the nuspec inside the package?
-2. What about the links on the orphaned package page - [Project Site]() and [License]()
+2. What about the links on the orphaned package page - [Project Site]() and [License]()?
 
 ##Solution - Cadillac version
 Below is the advanced workflow with the cooling period safeguard that gives the user 'x' number of days to change his/her mind. Based on feedback, we can consider investing in implementing this.
