@@ -42,7 +42,7 @@ In VS2015 NuGet employs different mechanisms to initiate restore operation.
 1. Unified architecture for all VS project models.
 1. Native support for .NET Core restore. Replace WebTools restore.
 1. Lightweight restore agent (NuGet.RestoreManager.dll). Loads fast. No dependencies.
-  1. Project load cannot be blocked by NRM. Avoid any heavy activity within time to first edit.
+  * Project load cannot be blocked by NRM. Avoid any heavy activity within time to first edit.
 1. Export MEF restore packages service. Implements standard "generic" restore service interface.
 1. Restore is the first part of build.
 1. Evaluate when a restore is needed.
@@ -63,32 +63,19 @@ Exports MEF restore component/service.
 
 | Project Model | When | Description
 | --- | --- | --- |
-| All 
-| Packages.config | | <sub>read xml file, and verify packages are installed in proj package folder.</sub>
-| | <sub>Bootstrap</sub> | <sub>Read project directories, packages directory. NuGet.Config discovery is expensive. Don't use com marshalling, marshall ourselves (JTF), run at a priority less than user input [NOTE: do this more places…in NuGet code]</sub>
+| All | <sub>*any* changes watcher</sub> | <sub>Project.json<br>.csproj not needed to be watched.<br>Note: need logic for a blank file on how to persist projectref<br>Dependency changes / dg info for uwp (check if we need this as separate update)<br>Assets file presence</sub>
+| | <sub>Settings changes (nuget.config)</sub> | <sub>What if user adds new nuget.config in a search path? User needs to force a restore. [use vs file monitor…much better than .net fx one]>/sub>
+| Packages.config | <sub>Always</sub> | <sub>read xml file, and verify packages are installed in proj package folder.</sub>
+| | <sub>Bootstrap</sub> | <sub>Read project directories, packages directory.<br/>NuGet.Config discovery is expensive.<br>Don't use com marshalling, marshall ourselves (JTF)<br>Run at a priority less than user input [NOTE: do this more places…in NuGet code]</sub>
 | | <sub>Tracking Changes| <sub>packages.config is not monitored today. POR is the same for the NRM.</sub>
 | UWP | | <sub>lightweight noop pass – does assets file exist…are all libraries listed in the assets file installed in fallback folders/or user package folder. Minimize the package is installed verification (compare hashes of inputs). Are nuget.config files same that were used to build assets files. if project.json file is different than the one used to build the assets file…</sub>
+| | <sub>Bootstrap</sub> | <sub>dg info (needs to keep updated)<br>can be gotten from solutionbuildmanager.getprojectdependencies(). We don't need updates … we just get the projectdependencies() when we decide the project likely needs to be restored.</sub>
 | Csproj with package refs only | | <sub>the same as UWP except theres no project.json. Don't watch for csproj file changes. Listen to project system event (new event that needs to be raised by legacy project system).</sub>
+| | <sub>Bootstrap</sub> | <sub>dg info (updated), plus whatever restore algorithm needs ???</sub>
 | Csproj with package refs and CPS | | <sub>restore projects are nominated by CPS.</sub>
+| | <sub>Bootstrap</sub> | <sub>not needed at bootstrap time, see below. cps will find us via a mef import</sub>
 
 ### Open Issues
-- [ ] How to get info from VS at bootstrap time? 
-  * Packages.config - project directories, packages directory
-    * NuGet.Config discovery is expensive.
-    * Don't use com marshalling, marshall ourselves (JTF), run at a priority less than user input [NOTE: do this more places…in NuGet code]
-  * UWP Project.json - dg info (needs to keep updated)
-    * can be gotten from solutionbuildmanager.getprojectdependencies(). We don't need updates … we just get the projectdependencies() when we decide the project likely needs to be restored.
-  * Csproj with package refs only - dg info (updated), plus whatever restore algorithm needs ??? 
-  * Csproj with package refs and CPS - not needed at bootstrap time, see below. cps will find us via a mef import
-- [ ] *any* changes watcher
-  * Project.json
-  * .csproj not needed to be watched.
-  * packages.config is not monitored today. POR is the same for the NRM.
-  * Settings changes (nuget.config)
-    * What if user adds new nuget.config in a search path? User needs to force a restore. [use vs file monitor…much better than .net fx one]
-  * Note: need logic for a blank file on how to persist projectref
-  * Dependency changes / dg info for uwp (check if we need this as separate update)
-  * Assets file presence
 - [ ] CPS "Restore Nominator" Capability - csproj integration, capabilities?
   * When nominating, CPS supplies project dir, intermediate dir, restore output type (uap, netcore), dg graph. This info could be done either way. Pass in from nominator, or query async apis at that point.
 - [ ] How to block the build until we have full info from VS?
@@ -108,6 +95,5 @@ While restore happens do not show errors
 How does VS know? Need to pull in Roslyn IDE --- Jason/Kevin/etc…
 Restore fails … doing a build … how can these errors still show?
 Show the errors in the asset file, or next to the assets file? who puts them back in the error list. How does that work for CPS/csproj.
-
 - [ ] UI Notification of restore process… ideally, we show progress bar in vs status bar.
 - [ ] Coordinate VS restore with command line restore
