@@ -9,6 +9,7 @@ The volume of account deletion requests is showing an upward trend. We have rece
 
 ##Solution
 Add a "Delete Account" button under  https://www.nuget.org/account that triggers the following workflow:
+
 1. Expands the Delete account section (similar to profile picture, by clicking 'more info')
 2. Clearly states the consequences of proceeding with this action (along with a link to a new doc with detailed information)
 3. User has to type the phrase - "delete my account"
@@ -16,6 +17,7 @@ Add a "Delete Account" button under  https://www.nuget.org/account that triggers
 5. Click on "Delete my account" button
 
 If the phrase and password check pass:
+
 1. The account is deleted immediately - the user is logged out and will no longer be able to login with the same credentials
 2. https://www.nuget.org/profiles/<username> redirects to the ghost account profile
 2. the username is stored as a hash (this will be used to dedupe)
