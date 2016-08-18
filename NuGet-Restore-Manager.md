@@ -63,17 +63,19 @@ Exports MEF restore component/service.
 
 | Project Model | When | Description
 | --- | --- | --- |
-| All | <sub>*any* changes watcher</sub> | <sub>Project.json<br>.csproj not needed to be watched.<br>Note: need logic for a blank file on how to persist projectref<br>Dependency changes / dg info for uwp (check if we need this as separate update)<br>Assets file presence</sub>
-| | <sub>Settings changes (nuget.config)</sub> | <sub>NuGet.Config discovery is expensive.<br>What if user adds new nuget.config in a search path? User needs to force a restore. [use vs file monitor…much better than .net fx one]>/sub>
-| Packages.config | <sub>Always</sub> | <sub>read xml file, and verify packages are installed in proj package folder.</sub>
-| | <sub>Bootstrap</sub> | <sub>Read project directories, packages directory.<br>Don't use com marshalling, marshall ourselves (JTF)<br>Run at a priority less than user input [NOTE: do this more places…in NuGet code]</sub>
+| All | <sub>*any* changes watcher</sub> | <sub>Project.json<br>Note: need logic for a blank file on how to persist projectref<br>Dependency changes / dg info for uwp (check if we need this as separate update)<br>Assets file presence</sub>
+| | <sub>Settings changes (nuget.config)</sub> | <sub>NuGet.Config discovery is expensive.<br>What if user adds new nuget.config in a search path? User needs to force a restore.<br>[use VS file monitor…much better than .net fx one]>/sub>
+| Packages.config | <sub>Always</sub> | <sub>read xml file, and verify packages are installed in project packages folder.</sub>
+| | <sub>Bootstrap</sub> | <sub>Read project directories, packages directory.<br>Don't use com marshalling, marshall ourselves (JTF)<br>Run at a priority less than user input<br>[NOTE: do this more places…in NuGet code]</sub>
 | | <sub>Tracking Changes| <sub>packages.config is not monitored today. POR is the same for the NRM.</sub>
-| UWP | <sub>Always</sub> | <sub>lightweight noop pass:<br>\– does assets file exist<br>\-are all libraries listed in the assets file installed in fallback folders/or user package folder.<br>Minimize the package is installed verification (compare hashes of inputs).<br>Are nuget.config files same that were used to build assets files.<br>if project.json file is different than the one used to build the assets file…</sub>
+| UWP | <sub>Always</sub> | <sub>lightweight noop pass:<br>– does assets file exist<br>- are all libraries listed in the assets file installed in fallback folders/or user package folder.<br>- Minimize the package is installed verification (compare hashes of inputs).<br>- Are nuget.config files same that were used to build assets files.<br>- if project.json file is different than the one used to build the assets file…</sub>
 | | <sub>Bootstrap</sub> | <sub>dg info (needs to keep updated)<br>can be gotten from `SolutionBuildManager.GetProjectDependencies()`.<br>We don't need updates … we just get the `projectdependencies()` when we decide the project likely needs to be restored.</sub>
-| Csproj with package refs only | <sub>Always</sub> | <sub>the same as UWP except theres no project.json.<br>Don't watch for `.csproj` file changes.<br>Listen to project system event (new event that needs to be raised by legacy project system).</sub>
-| | <sub>Bootstrap</sub> | <sub>dg info (updated), plus whatever restore algorithm needs ???</sub>
+| Csproj with package refs only | <sub>Always</sub> | <sub>the same as UWP except theres no project.json.</sub>
+| | <sub>Bootstrap</sub> | <sub>Get dg info (updated), plus whatever restore algorithm needs ???</sub>
+| | <sub>Tracking Changes | <sub>Don't watch for `.csproj` file changes.<br>Listen to project system event (new event that needs to be raised by legacy project system).</sub>
 | Csproj with package refs and CPS | <sub>Always</sub> | <sub>restore projects are nominated by CPS.</sub>
-| | <sub>Bootstrap</sub> | <sub>not needed at bootstrap time, see below. cps will find us via a mef import</sub>
+| | <sub>Bootstrap</sub> | <sub>No action is needed at bootstrap time. CPS will find us via the MEF import</sub>
+| | <sub>Tracking Changes | <sub></sub>
 
 ### Open Issues
 - [ ] CPS "Restore Nominator" Capability - csproj integration, capabilities?
