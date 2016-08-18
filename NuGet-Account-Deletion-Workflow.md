@@ -28,6 +28,10 @@ If the phrase and password check pass:
 5. All orphaned packages will be re-parented under a ghost account and the author field will be overwritten with "Deleted User"
 6. The co-owners get an email stating that an owner account has been deleted and hence removed as one of the owners of the package.
 
+![collapsed](Home/resources/AccountDeletionWorkflow/Account Page - Delete account collapsed.png)
+
+![expanded](Home/resources/AccountDeletionWorkflow/Account Page - Delete account expanded.png)
+
 ###Ghost Account (Deleted User)
 1. The username for the ghost account will be "Deleted User"
 2. The profile page for this user will not show any associated packages or related statistics.
