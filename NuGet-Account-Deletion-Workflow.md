@@ -1,7 +1,7 @@
 ##  Problem
 Today there is no self-service option for a user to delete his/her NuGet account. Even if we do get a genuine request to delete an account, we don’t have a clean way to do it since that would result in orphaned packages.
 
-**[Tracking Issue](https://github.com/NuGet/Home/issues/3335)** - 
+**[Tracking Issue](https://github.com/NuGet/NuGetGallery/issues/3204)** - 
 Please comment on the issue for any questions/suggestions/criticism/praise that you may have for this feature.
 
 ## Who is the customer?
@@ -44,7 +44,7 @@ Ideally, the account should be deleted immediately. However, to provide room for
 2. What about the links on the orphaned package page - [Project Site]() and [License]()?
 
 ##Feedback
-**[Tracking Issue](https://github.com/NuGet/Home/issues/3335)** - 
+**[Tracking Issue](https://github.com/NuGet/NuGetGallery/issues/3204)** - 
 Please comment on the issue for any questions/suggestions/criticism/praise that you may have for this feature.
 
 ##Solution - Cadillac version
