@@ -1,6 +1,7 @@
 ## Revisions
 
-- **2016-08-16** - Initial spec.
+- **2016-08-17** - Initial spec draft
+- **2016-08-19** - Initial review completed
 
 # Search by Package Type and Query Language Surfacing
 
