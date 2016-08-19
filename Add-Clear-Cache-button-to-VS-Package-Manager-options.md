@@ -17,11 +17,11 @@ The result will be displayed in a label below the Clear cache button along with 
 
 ## Screenshots
 
-![Clear Cache Button](https://cloud.githubusercontent.com/assets/10507120/17796340/96a187d8-6574-11e6-808b-077eab738780.png)
+![Clear Cache Button](https://cloud.githubusercontent.com/assets/10507120/17826473/f9382e90-6625-11e6-9b3d-a7bc19b779f6.png)
 
-![Waiting for Clear cache operation](https://cloud.githubusercontent.com/assets/10507120/17796346/9c0885f0-6574-11e6-8843-3259e40d0180.png)
+![Waiting for Clear cache operation](https://cloud.githubusercontent.com/assets/10507120/17826480/0471d0cc-6626-11e6-9939-dc8056e9d1da.png)
 
-![Success Message](https://cloud.githubusercontent.com/assets/10507120/17796349/9f3c3ed8-6574-11e6-9fc4-0629f51150f3.png)
+![Success Message](https://cloud.githubusercontent.com/assets/10507120/17826479/0470cd76-6626-11e6-95f6-4fd1f935773d.png)
 
-![Failure Message](https://cloud.githubusercontent.com/assets/10507120/17796352/a3d44c24-6574-11e6-8b25-7b698d86b71a.png)
+![Failure Message](https://cloud.githubusercontent.com/assets/10507120/17826485/1176b8c8-6626-11e6-87e4-82beebf69dec.png)
 ***
