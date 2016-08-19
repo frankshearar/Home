@@ -43,7 +43,7 @@ Typing this will bring up a dropdown that will display all the possible tags a u
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageTypeSearch/SearchPrompt-Dropdown.png)
 
-These entries are selectable, and one is clicked, the selected tag will be entered into the search bar. For example, selecting the Id entry will add `Id` to the search bar. This will allow the user to enter the package id they are searching for. 
+These entries are selectable, and one is clicked, the selected tag will be entered into the search bar. For example, selecting the Id entry will add `Id:` to the search bar. This will allow the user to enter the package id they are searching for. 
 
 #### Operator Tooltip
 The alternative is including an info button to the side of the search bar. 
