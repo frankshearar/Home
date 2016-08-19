@@ -1,4 +1,4 @@
-##Customer Facing Aspects
+##Customer Facing View
 Add a "Delete Account" section under  https://www.nuget.org/account that triggers the following workflow:
 
 1. Clicking on more info expands the Delete account section (similar to profile picture, by clicking 'more info')
