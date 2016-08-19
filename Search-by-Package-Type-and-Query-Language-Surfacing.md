@@ -34,7 +34,7 @@ The following operators are available for the user to search with:
 * `Owner:` Package’s Owner
 * `PackageType:` Package Type
 
-**Search Operator Dropdown**
+#### Search Operator Dropdown
 To better surface the ability to use tags with searching, the VS Client Search Bar should include a prompt to type `'?'` in the search bar to bring up search options. 
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageTypeSearch/SearchPrompt.png)
@@ -45,7 +45,7 @@ Typing this will bring up a dropdown that will display all the possible tags a u
 
 These entries are selectable, and one is clicked, the selected tag will be entered into the search bar. For example, selecting the Id entry will add `Id` to the search bar. This will allow the user to enter the package id they are searching for. 
 
-**Operator Tooltip**
+#### Operator Tooltip
 The alternative is including an info button to the side of the search bar. 
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageTypeSearch/InfoButton.png)
