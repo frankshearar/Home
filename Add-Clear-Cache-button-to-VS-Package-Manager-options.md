@@ -13,7 +13,7 @@ The call is similar as `nuget locals -clear all` from nuget CLI or `dotnet nuget
 
 <strike>The result is displayed on a popup/message box.</strike>
 
-The result will be displayed in a label below the Clear cache button along with the time stamp of completion of the operation. The screenshots below have been updated.
+The result will be displayed in a label below the Clear cache button along with the time stamp of completion of the operation. The error messages also contain a link to a help page. The screenshots below have been updated.
 
 ## Screenshots
 
