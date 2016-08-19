@@ -24,3 +24,35 @@ A user can specify anything to be a Package Type, though only two are officially
 
 Searching with a type will return all packages of that specified type. The `[TYPE]` string is not case-sensitive.
 
+### Query Language Surfacing
+To increase awareness of the existing search functionalities, we should expose the existing search operators to users via tooltips. There are two different options to show the available functionalities. 
+
+The following operators are available for the user to search with:
+* `Name:` Package Name
+* `Id:` Package ID
+* `Author:` Package’s Author
+* `Owner:` Package’s Owner
+* `PackageType:` Package Type
+
+**Search Operator Dropdown**
+To better surface the ability to use tags with searching, the VS Client Search Bar should include a prompt to type `'?'` in the search bar to bring up search options. 
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PackageTypeSearch/SearchPrompt.png)
+
+Typing this will bring up a dropdown that will display all the possible tags a user can use for their queries. 
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PackageTypeSearch/SearchPrompt-Dropdown.png)
+
+These entries are selectable, and one is clicked, the selected tag will be entered into the search bar. For example, selecting the Id entry will add `Id` to the search bar. This will allow the user to enter the package id they are searching for. 
+
+**Operator Tooltip**
+The alternative is including an info button to the side of the search bar. 
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PackageTypeSearch/InfoButton.png)
+
+Upon clicking on the info button, a tooltip will appear that displays all the search tags available to the user.
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PackageTypeSearch/InfoButton-Tooltip.png)
+
+The user will then be able to type the tag into the search bar to better filter their searches.
+
