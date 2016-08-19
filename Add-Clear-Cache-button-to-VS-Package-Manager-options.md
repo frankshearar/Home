@@ -5,7 +5,7 @@ Allow users to clear NuGet cache from within Visual Studio
 Package authors, consumers.
 
 ## Evidence
-Button existed on previous version of NuGet.
+Button existed on previous version of NuGet. This work is related to [enabling locals](https://github.com/NuGet/Home/wiki/Support-locals-command-in-dotnet-cli) command in dotnet cli.
 
 ## Solution
 Add a button to the VS Package Manager options which calls into the LocalsCommandRunner.cs from NuGet.Core.CommandLine.Commands. 
