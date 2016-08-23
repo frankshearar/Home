@@ -15,6 +15,30 @@ The volume of account deletion requests is showing an upward trend. We have rece
 * [Phase 1 - Service Request Model](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow-(Service-Request-Model))
 * [Phase 2 - Self Service Model](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow-(Self-Service-Model))
 
+###Ghost Account (Deleted User)
+1. The username for the ghost account will be "Deleted User"
+2. The profile page for this user will not show any associated packages or related statistics.
+3. Clicking on contact owner on a package that has been re-parented under the ghost account will take the user to the [Contact Us](https://www.nuget.org/policies/Contact) page
+
+###Contact Us Page
+We will update the contact us page with details around Deleted user contact. i.e. the NuGet team will only respond to copyright license issues and we do not support individual packages.
+
+###Deleted account history and Duplicate account username check
+1. Usernames of all deleted account must be stored. They must be stored in a way that does not allow us to retrieve them directly (similar to passwords) but does allow us to block someone from creating new accounts with the same username.
+2. During new account creation, a check must be added to de-duplicate against usernames of deleted accounts. 
+
+###SLA
+Ideally, the account should be deleted immediately. However, to provide room for error, as a matter of policy, we will commit to a 5 business day time-frame to complete the operation i.e. deleting the account, removing association from packages and re-parenting the packages. Our privacy policy will be updated to stipulate the same.
+
+##Open Questions
+1. What about the information contained in the nuspec inside the package?
+  * Legal - From the legal side, since we already say that any personal information that you put into the package will be public information, I do not think we have to change the privacy statement in that aspect 
+2. What about the links on the orphaned package page - [Project Site]() and [License]()?
+
+##Feedback
+**[Tracking Issue](https://github.com/NuGet/NuGetGallery/issues/3204)** - 
+Please comment on the issue for any questions/suggestions/criticism/praise that you may have for this feature.
+
 
 
 
