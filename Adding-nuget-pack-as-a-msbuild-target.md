@@ -92,7 +92,6 @@ If IsPackageReference is not specified, or is set to true, then the ProjectRefer
 Note that this behavior is recursive - so if a ProjectReference has TreatAsProjectReference set to false, it's project to project references will also be treated in the same manner.
 
 ####Including Content in package
-There are two proposed approaches:
 
 Add extra metadata to existing \<Content> item . By default everything of type "Content" gets included for pack, unless you override by specifying something like:
 
@@ -100,7 +99,7 @@ Add extra metadata to existing \<Content> item . By default everything of type "
          <Pack>false</Pack>
      </Content>
 
-Everything gets added to the root of the package folder content, unless you specify a target path: 
+Everything gets added to the root of the **content** and **contentFiles** folder within a package, unless you specify a package path: 
 
      <Content Include="..\win7-x64\libuv.txt">
          <Pack>true</Pack>
@@ -108,6 +107,7 @@ Everything gets added to the root of the package folder content, unless you spec
      </Content>
 
 PackagePath can be a semicolon delimited set of target paths.
+Specifying an empty pacakge path would add the file to the root of the package.
 
 Packing of content files is recursive too. Content files from any project to project reference, which has TreatAsPackageReference set to false, are also copied in the similar manner and the same rules apply.
 
