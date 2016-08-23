@@ -12,9 +12,8 @@ The volume of account deletion requests is showing an upward trend. We have rece
 
 ##Solution
 
-* [Phase 1 - Customer facing view](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow-(Customer-View))
-* [Phase 2 - Admin view](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow-(Admin-View))
-* Phase 3 - batch changes to packages - TBD
+* [Phase 1 - Service Request Model](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow-(Customer-View))
+* [Phase 2 - Self Service Model](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow-(Admin-View))
 
 
 
