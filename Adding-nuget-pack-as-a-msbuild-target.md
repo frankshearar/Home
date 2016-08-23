@@ -107,6 +107,8 @@ Everything gets added to the root of the package folder content, unless you spec
          <PackagePath>content\myfiles</PackagePath>
      </Content>
 
+PackagePath can be a semicolon delimited set of target paths.
+
 Packing of content files is recursive too. Content files from any project to project reference, which has TreatAsPackageReference set to false, are also copied in the similar manner and the same rules apply.
 
 If you wish to prevent copying of a content from another project into your nuget package, you can do something like:
