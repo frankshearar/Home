@@ -116,6 +116,7 @@ If you wish to prevent copying of a content from another project into your nuget
      </Content>
 
 Similarly, you can override the behavior in the referenced project and include a file to be packed which would have otherwise been excluded: 
+     
      <Content Include="..\..\project2\readme.txt">
          <Pack>true</Pack>
          <PackagePath>content\myfiles</PackagePath>
