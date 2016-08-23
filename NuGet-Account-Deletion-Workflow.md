@@ -12,7 +12,7 @@ The volume of account deletion requests is showing an upward trend. We have rece
 
 ##Solution
 
-* [Phase 1 - Service Request Model](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow-(Customer-View))
+* [Phase 1 - Service Request Model](/NuGet-Account-Deletion-Workflow-(Service-Request-Model))
 * [Phase 2 - Self Service Model](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow-(Admin-View))
 
 
