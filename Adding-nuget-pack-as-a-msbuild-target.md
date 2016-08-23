@@ -94,7 +94,6 @@ Note that this behavior is recursive - so if a ProjectReference has TreatAsProje
 ####Including Content in package
 There are two proposed approaches:
 
-**OPTION 1 :**
 Add extra metadata to existing \<Content> item . By default everything of type "Content" gets included for pack, unless you override by specifying something like:
 
      <Content Include="..\win7-x64\libuv.txt">
@@ -124,25 +123,6 @@ Similarly, you can override the behavior in the referenced project and include a
      </Content>
 
 Setting visible to false prevents VS from showing the file in the Solution Explorer.
-
-The downside of this approach is that you end up modifying the Content item collection to exclude certain files from being packed. For build generated files, this will break build if they are included in content with \<CopyToOutputDirectory> set to anything but Never.
-
-
-**OPTION 2:**
-Have a new item collection called \<PackageContent> :
-
-    <PackageContent Include="ReadMe.txt" />
-    <PackageContent Include="..\win7-x86\libuv.dll">
-        <PackagePath>runtimes\win7-x86\native\</PackagePath>
-    </PackageContent>
-    <PackageContent Include="..\win7-x64\libuv.dll">
-        <Pack>false</Pack>
-    </PackageContent>
-
-In addition to Content, setting \<Pack> and \<PackagePath> on Content would also work as expected.
-
-This does not modify the Content item collection, and the default metadata for this Item is set such that Visible = false, and CopyToOutputDirectory = false.
-Users can just add their build generated files into PackageContent and leave the Content item collection unchanged. They can also exclude/include files from other referenced projects to be packed into the package without including it into the Content. If files are excluded/included from the top level project and a referenced project, then pack respects the top level project's packing decision.
 
 ####Cross Targeting
 As per the details available right now, Target frameworks are defined in the csproj in an item list (called TargetFramework right now) where the identity maps to $(TargetFrameworkIdentity),$(TargetFrameworkVersion) - no NuGet short names.
