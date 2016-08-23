@@ -129,7 +129,7 @@ Setting visible to false prevents VS from showing the file in the Solution Explo
 
 There is also a new MSBuild property $(IncludeContentInPack), which defaults to true. If this is set to false on any project, then the content from that project or it's project to project dependencies are not included in the nuget package.
 
-**Apart from Content items, the \<Pack> and \<PackagePath> metadata can also be set on files with Build Action = Compile or None. **
+**Apart from Content items, the \<Pack> and \<PackagePath> metadata can also be set on files with Build Action = Compile or None.**
 
 ####Cross Targeting
 As per the details available right now, Target frameworks are defined in the csproj in an item list (called TargetFramework right now) where the identity maps to $(TargetFrameworkIdentity),$(TargetFrameworkVersion) - no NuGet short names.
