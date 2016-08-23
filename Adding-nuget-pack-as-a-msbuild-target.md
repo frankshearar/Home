@@ -125,6 +125,8 @@ Similarly, you can override the behavior in the referenced project and include a
 
 Setting visible to false prevents VS from showing the file in the Solution Explorer.
 
+There is also a new MSBuild property $(IncludeContentInPack), which defaults to true. If this is set to false on any project, then the content from that project or it's project to project dependencies are not included in the nuget package.
+
 ####Cross Targeting
 As per the details available right now, Target frameworks are defined in the csproj in an item list (called TargetFramework right now) where the identity maps to $(TargetFrameworkIdentity),$(TargetFrameworkVersion) - no NuGet short names.
   <ItemGroup>
