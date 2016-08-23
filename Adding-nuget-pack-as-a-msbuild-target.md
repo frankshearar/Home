@@ -107,7 +107,14 @@ Everything gets added to the root of the **content** and **contentFiles** folder
      </Content>
 
 PackagePath can be a semicolon delimited set of target paths.
-Specifying an empty pacakge path would add the file to the root of the package.
+Specifying an empty package path would add the file to the root of the package.
+     
+     <Content Include="..\win7-x64\libuv.txt">
+         <Pack>true</Pack>
+         <PackagePath>content\myfiles;content\sample;;</PackagePath>
+     </Content>
+
+The above will add libuv.txt to content\myfiles , content\sample and the root of the package.
 
 Packing of content files is recursive too. Content files from any project to project reference, which has TreatAsPackageReference set to false, are also copied in the similar manner and the same rules apply.
 
