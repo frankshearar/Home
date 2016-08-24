@@ -12,5 +12,8 @@
 6. After receiving the request to delete an account, the account must be deleted within SLA time-frame
 7. The SLA time-frame is 60 days 
 
+
+***
+
 [[Account Deletion Workflow|NuGet-Account-Deletion-Workflow]]
  
