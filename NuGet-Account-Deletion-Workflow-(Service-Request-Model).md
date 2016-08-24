@@ -3,7 +3,7 @@
 2. Dialog explaining the implications and a link to the documentation (for more details) is displayed
 3. The list of child packages is displayed along with the language which conveys that by proceeding the user understands that he/she will be relinquishing ownership of these packages.
 ![Dialog explaining the implications and a link to the documentation](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Account%20Page%20-%20Delete%20account%20expanded%20-%20request.png)
-2. User fills out the form and clicks "Yes, Delete my NuGet Account"
+2. User fills out the form and clicks "Yes, delete this Account"
 ![request submitted](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Account%20Page%20-%20Delete%20account%20expanded%20-%20request%20submitted.png?raw=true)
 3. Admin team reviews the request
 4. The account can be immediately deleted if one of the following conditions is met
