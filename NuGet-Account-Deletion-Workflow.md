@@ -28,7 +28,7 @@ We will update the contact us page with details around Deleted user contact. i.e
 2. During new account creation, a check must be added to de-duplicate against usernames of deleted accounts. 
 
 ###SLA
-Ideally, the account should be deleted immediately. However, to provide room for error, as a matter of policy, we will commit to a 5 business day time-frame to complete the operation i.e. deleting the account, removing association from packages and re-parenting the packages. Our privacy policy will be updated to stipulate the same.
+As a matter of policy, we will commit to a 60 day time-frame to complete the operation i.e. brokering transfer of ownership of packages at risk of being orphaned, removing association from packages, re-parenting the packages, and deleting the account. Our privacy policy will be updated to stipulate the same.
 
 ##Open Questions
 1. What about the information contained in the nuspec inside the package?
