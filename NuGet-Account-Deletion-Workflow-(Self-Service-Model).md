@@ -21,6 +21,9 @@ If the phrase and password check pass:
 ![expanded](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Account%20Page%20-%20Delete%20account%20expanded.png)
 
 
+***
+[[Account Deletion Workflow|NuGet-Account-Deletion-Workflow]]
+***
 
 ##Solution - Cadillac version
 Below is the advanced workflow with the cooling period safeguard that gives the user 'x' number of days to change his/her mind. Based on feedback, we can consider investing in implementing this.
