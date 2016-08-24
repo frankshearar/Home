@@ -35,7 +35,7 @@
 * [Restore target](https://github.com/NuGet/Home/wiki/%5BSpec%5D-MSBuild-restore-target)
 
 #### Reviewed
-* [Package Type %5BPacking%5B](https://github.com/NuGet/Home/wiki/Package-Type-%5BPacking%5D)
+* [Package Type \[Packing\]](https://github.com/NuGet/Home/wiki/Package-Type-%5BPacking%5D)
 * [Replication API] (https://github.com/NuGet/Home/wiki/%5Bspec%5D-NuGet.org-replication-API)
 
 #### Implemented
