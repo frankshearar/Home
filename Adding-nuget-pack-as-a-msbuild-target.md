@@ -89,7 +89,7 @@ If a referenced project's output DLL is to be copied over to the nuget package, 
 
 If IsPackageReference is not specified, or is set to true, then the ProjectReference will actually be added as a Package Reference in the output nuspec, and no DLLs will be copied.
 
-Note that this behavior is recursive - so if a ProjectReference has TreatAsProjectReference set to false, it's project to project references will also be treated in the same manner.
+Note that this behavior is recursive - so if a ProjectReference has TreatAsPackageReference set to false, it's project to project references will also be treated in the same manner.
 
 ####Including Content in package
 
