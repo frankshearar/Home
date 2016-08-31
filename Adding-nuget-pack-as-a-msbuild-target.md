@@ -76,6 +76,7 @@ Note that ProjectReference assemblies are only searched for in host project's ou
 
 ####Package References
 TODO: Link to the spec for package reference, which is still being designed.
+
 ####Project to Project References
 Project to Project references will be, by default, be considered as nuget package references. However, this behavior can be overridden in the following manner:
     
@@ -87,7 +88,7 @@ Project to Project references will be, by default, be considered as nuget packag
 
 If a referenced project's output DLL is to be copied over to the nuget package, then **ReferenceOutputAssembly should not be set as false**. This is because the output DLL of the referenced project is copied from the output directory of the project being packed. For more details on ReferenceOutputAssembly , check out : https://blogs.msdn.microsoft.com/kirillosenkov/2015/04/04/how-to-have-a-project-reference-without-referencing-the-actual-binary/
 
-If IsPackageReference is not specified, or is set to true, then the ProjectReference will actually be added as a Package Reference in the output nuspec, and no DLLs will be copied.
+If TreatAsPackageReference is not specified, or is set to true, then the ProjectReference will actually be added as a Package Reference in the output nuspec, and no DLLs will be copied.
 
 Note that this behavior is recursive - so if a ProjectReference has TreatAsPackageReference set to false, it's project to project references will also be treated in the same manner.
 
@@ -160,5 +161,8 @@ If a file of type = Compile, is outside the project folder, then it is just adde
 ####IsTool
 If msbuild /t:pack /p:IsTool=true, all output files, as specified in the Output Assemblies scenario, are copied to the tools folder instead of the lib folder. Note that this is different from a DotNetCliTool which is specified by setting the PackageType in csproj file.
 
-####Adding reference to other PCLs or TFMs
-More details coming soon.
+####Framework Assembly References or Reference to DLL on disk
+There can be three scenarios here:
+**a) Reference to an existing dll on disk** - In this case there will be a hint path, this will be the source path from where the DLL will be picked up. If <Pack> metadata is set on this Reference, it will be copied to the lib folder. If \<PackagePath> metadata is set too, it will be copied to the path denoted by \<PackagePath>
+**b) Reference to an assembly in GAC** - If there is no hint path to a \<Reference>, these will be by default ignored by pack since these are assemblies from the GAC. This can be changed by setting \<Pack> metadata to true, in which case, this would be added to frameworkAssemblies in nuspec along with targetFramework based on any conditions provided.
+**c) Reference to a DLL that comes from a nupkg** - These by default have custom metadata like NuGetSourceType set to package, the nupkg should be added as a dependency.
