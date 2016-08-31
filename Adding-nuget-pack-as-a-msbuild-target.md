@@ -163,6 +163,9 @@ If msbuild /t:pack /p:IsTool=true, all output files, as specified in the Output 
 
 ####Framework Assembly References or Reference to DLL on disk
 There can be three scenarios here:
+
 **a) Reference to an existing dll on disk** - In this case there will be a hint path, this will be the source path from where the DLL will be picked up. If <Pack> metadata is set on this Reference, it will be copied to the lib folder. If \<PackagePath> metadata is set too, it will be copied to the path denoted by \<PackagePath>
+
 **b) Reference to an assembly in GAC** - If there is no hint path to a \<Reference>, these will be by default ignored by pack since these are assemblies from the GAC. This can be changed by setting \<Pack> metadata to true, in which case, this would be added to frameworkAssemblies in nuspec along with targetFramework based on any conditions provided.
+
 **c) Reference to a DLL that comes from a nupkg** - These by default have custom metadata like NuGetSourceType set to package, the nupkg should be added as a dependency.
