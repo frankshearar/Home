@@ -92,6 +92,12 @@ If TreatAsPackageReference is not specified, or is set to true, then the Project
 
 Note that this behavior is recursive - so if a ProjectReference has TreatAsPackageReference set to false, it's project to project references will also be treated in the same manner.
 
+If a ProjectReference is treated as a PackageReference, then you can also add the following metadata to your project reference:
+
+\<IncludeAssets>
+\<ExcludeAssets>
+\<PrivateAssets>
+
 ####Including Content in package
 
 Add extra metadata to existing \<Content> item . By default everything of type "Content" gets included for pack, unless you override by specifying something like:
