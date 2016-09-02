@@ -95,7 +95,9 @@ Note that this behavior is recursive - so if a ProjectReference has TreatAsPacka
 If a ProjectReference is treated as a PackageReference, then you can also add the following metadata to your project reference:
 
 \<IncludeAssets>
+
 \<ExcludeAssets>
+
 \<PrivateAssets>
 
 ####Including Content in package
