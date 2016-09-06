@@ -16,7 +16,7 @@
 12. A final email notification is sent after the account has been deleted.
 
 ##UI Mocks
-
+![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide2.PNG?raw=true)
 ###User Facing
 
 ###Admin Facing
