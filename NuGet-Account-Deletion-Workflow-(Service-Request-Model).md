@@ -29,7 +29,7 @@
 ###Admin Facing
 ![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide9.1.PNG?raw=true)
 ![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide9.2.PNG?raw=true)
-![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide10.PNG?raw=true)
+![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide11.png?raw=true)
 
 ***
 [[Account Deletion Workflow|NuGet-Account-Deletion-Workflow]]
