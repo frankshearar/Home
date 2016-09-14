@@ -8,7 +8,7 @@ Customers often complain of performance issues with retrieving packages in searc
   * User is offline
   * The backing file shares of NuGet.org are either not optimized or very large.
 
-We want to proactively inform of the users of these issues, so they can take corrective action and/or give them an option to temporarily disable certain sources for a period of time of the session.
+We want to proactively inform the users of these issues, so they can take corrective action and/or give them an option to temporarily disable certain sources for a period of time of the session.
 
 ## Who is the customer?
 Any customer who has a slow network, works offline and online, has NuGet.Server installations and have package sources behind corporate firewalls.
