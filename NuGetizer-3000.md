@@ -1,0 +1,1 @@
+Placeholder for NuGetizer-3000 spec.
