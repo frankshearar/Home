@@ -6,10 +6,10 @@ We need to migrate xproj/project.json data to msbuild based data structures in V
 
 ## Solution
 ### Simple case
-`<PackageReference Include="NuGet.Versioning">
-  <Version>3.6.0</Version>
-</PackageReference>
-<!-- this means the same as 3.6.0 in project.json today, which is >=3.6.0, preferring the lowest -->`
+    <PackageReference Include="NuGet.Versioning">
+        <Version>3.6.0</Version>
+    </PackageReference>
+    <!-- this means the same as 3.6.0 in project.json today, which is >=3.6.0, preferring the lowest -->
 
 #### FAQ about “/3.6.0” as part of the Include:
 1. [ESJ] One set of scenarios that might be interesting is giving targets the ability to examine/control the versioning of PackageReference items.  That’s straightforward if Version is metadata, less so if it is part of a string.  I agree though that brevity is a higher priority here.  Perhaps you have a target that runs and produces an intermediate that converts these to Items + meta-data.
