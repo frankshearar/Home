@@ -5,14 +5,15 @@ We need to migrate xproj/project.json data to msbuild based data structures in V
 .NET Core developers
 
 ## Solution
-### Simple case
+### Simple case for Preview 5 OOB
     <PackageReference Include="NuGet.Versioning">
         <Version>3.6.0</Version>
     </PackageReference>
 This means the same as 3.6.0 in project.json today, which is >=3.6.0, preferring the lowest.
 
-In RC milestone, MsBuild will enable all metadata to be specified as a attribute or child element
+### Simple case for RC
     <PackageReference Include="NuGet.Versioning" Version="3.6.0" />
+In RC milestone, MsBuild will enable all metadata to be specified as a attribute or child element
 
 #### FAQ about “/3.6.0” as part of the Include:
 1. [ESJ] One set of scenarios that might be interesting is giving targets the ability to examine/control the versioning of PackageReference items.  That’s straightforward if Version is metadata, less so if it is part of a string.  I agree though that brevity is a higher priority here.  Perhaps you have a target that runs and produces an intermediate that converts these to Items + meta-data.
