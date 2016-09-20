@@ -15,11 +15,6 @@ This means the same as 3.6.0 in project.json today, which is >=3.6.0, preferring
     <PackageReference Include="NuGet.Versioning" Version="3.6.0" />
 In RC milestone, MsBuild will enable all metadata to be specified as a attribute or child element
 
-#### FAQ about “/3.6.0” as part of the Include:
-1. [ESJ] One set of scenarios that might be interesting is giving targets the ability to examine/control the versioning of PackageReference items.  That’s straightforward if Version is metadata, less so if it is part of a string.  I agree though that brevity is a higher priority here.  Perhaps you have a target that runs and produces an intermediate that converts these to Items + meta-data.
-[YG] 
-Targets controlling the versions of packagerefs would become a chicken and egg thing eventually, and will get in the way of how the UI works. But we could still probably support it with a library that can decompose/recompose. Alternatively we can have a “brevity” format and an expanded format. I’m not in love with the latter suggestion because it adds more edge cases and confusion.
-
 ### Conditioned on a TFM
     <PackageReference Include="NuGet.Versioning" Condition = "'$(TargetFramework)' == 'netstandard10'>
       <Version>3.6.0</Version>
