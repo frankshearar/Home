@@ -90,11 +90,11 @@ If we are able to get rid of the need for type=platform, we’d like to make typ
 
 ###Coming soon
 Potential addition of package control:
-•	Hash
-•	PublicKey
-•	Signature
-•	FeedName
-•	FeedUrl
+* Hash
+* PublicKey
+* Signature
+* FeedName
+* FeedUrl
 
 ###PackageReference and ProjectReference Duality
 There should be a transformation between ProjectReference and PackageReference that keeps the result of the build identical.
