@@ -9,9 +9,9 @@ We need to migrate xproj/project.json data to msbuild based data structures in V
     <PackageReference Include="NuGet.Versioning">
         <Version>3.6.0</Version>
     </PackageReference>
-    <!-- this means the same as 3.6.0 in project.json today, which is >=3.6.0, preferring the lowest -->
+This means the same as 3.6.0 in project.json today, which is >=3.6.0, preferring the lowest.
 
-    <!-- in RC milestone, MsBuild will enable all metadata to be specified as a attribute or child element -->
+In RC milestone, MsBuild will enable all metadata to be specified as a attribute or child element:
     <PackageReference Include="NuGet.Versioning" Version="3.6.0" />
 
 #### FAQ about “/3.6.0” as part of the Include:
