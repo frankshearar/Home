@@ -20,12 +20,8 @@
 
 #### Incubation 
 * [Package Sources Analyzer] (https://github.com/NuGet/Home/wiki/Package-Sources-Diagnostics)
-* [Aggressive No Caching Mode] (https://github.com/NuGet/Home/wiki/Aggressive-No-Caching-option-for-nuget.exe)
-* [Support nuget push command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-nuget-push-scenarios-in-dotnet-CLI)
-* [Support nuget locals command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-locals-command-in-dotnet-cli)
 * [[NuGet Restore Manager|NuGet-Restore-Manager]]
 * [Account Deletion Workflow](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow)
-* [Add Clear Cache button to VS Package Manager Console](https://github.com/NuGet/Home/wiki/Add-Clear-Cache-button-to-VS-Package-Manager-options)
 * [Search by Package Type and Query Language Surfacing](https://github.com/NuGet/Home/wiki/Search-by-Package-Type-and-Query-Language-Surfacing)
 * [Multiple API Keys](https://github.com/NuGet/Home/wiki/Multiple-API-Keys)
 
@@ -35,13 +31,17 @@
 * [Adding nuget pack as a msbuild target](https://github.com/NuGet/Home/wiki/Adding-nuget-pack-as-a-msbuild-target)
 * [Restore target](https://github.com/NuGet/Home/wiki/%5BSpec%5D-MSBuild-restore-target)
 
+
 #### Reviewed
-* [Package Type \[Packing\]](https://github.com/NuGet/Home/wiki/Package-Type-%5BPacking%5D)
 * [Replication API] (https://github.com/NuGet/Home/wiki/%5Bspec%5D-NuGet.org-replication-API)
 
 #### Implemented
 * [Batch Events](https://github.com/NuGet/Home/wiki/Batch-Events)
-
+* [Aggressive No Caching Mode] (https://github.com/NuGet/Home/wiki/Aggressive-No-Caching-option-for-nuget.exe)
+* [Package Type \[Packing\]](https://github.com/NuGet/Home/wiki/Package-Type-%5BPacking%5D)
+* [Add Clear Cache button to VS Package Manager Console](https://github.com/NuGet/Home/wiki/Add-Clear-Cache-button-to-VS-Package-Manager-options)
+* [Support nuget push command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-nuget-push-scenarios-in-dotnet-CLI)
+* [Support nuget locals command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-locals-command-in-dotnet-cli)
 #### Archived
 
 #### Templates
