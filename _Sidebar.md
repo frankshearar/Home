@@ -42,6 +42,7 @@
 * [Add Clear Cache button to VS Package Manager Console](https://github.com/NuGet/Home/wiki/Add-Clear-Cache-button-to-VS-Package-Manager-options)
 * [Support nuget push command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-nuget-push-scenarios-in-dotnet-CLI)
 * [Support nuget locals command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-locals-command-in-dotnet-cli)
+
 #### Archived
 
 #### Templates
