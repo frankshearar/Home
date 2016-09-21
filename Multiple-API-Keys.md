@@ -2,7 +2,7 @@
 
 ## Problem
 
-Currently, NuGet.org users can only create a Single API key for all their projects. For large GitHub organizations, it is nessecary that multiple API keys be created that be scoped to specific actions and packages to prevent a single leak from compromising all the packages.
+Currently, NuGet.org users can only create a Single API key for all their packages. For large GitHub organizations, it is necessary that multiple API keys be created that be scoped to specific actions and packages to prevent a single leak from compromising all the packages. In addition, this enables us to hide the API keys after a one-time generation further reducing the risk and enabling users to create keys with specific privileges.
 
 ## Who is the customer?
 _Who is the customer that is running into the problem. Which customers would dance for joy and donate to save the space unicorns foundation on getting this feature. Customers here could be individuals, nuget customer segments (package authors, consumers), enterprises, partners within Microsoft, external partners etc..._
