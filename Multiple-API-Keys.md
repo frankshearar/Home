@@ -23,9 +23,10 @@ The key scenarios we want to enable is the following
 * Enable users to create multiple API keys with a name and expiration range similar to current API keys.
 * Restrict privileges of API keys to one or more packages
 * Restrict key privileges to specific NuGet.org actions like Push, Un-list and Update
+* API Keys are only shown after generation. Any action that closes or navigates away from page will result in the API key being hidden forever.
 * Notify Users on new key creation
 * Maintain Legacy API keys, only new API keys have support for privileges, expiration and scope.
-* Manage API key - Ability to delete any API key including Legacy
+* Manage API key - Ability to delete any API key including Legacy keys
 
 ### User Workflow
 
@@ -48,11 +49,5 @@ The key scenarios we want to enable is the following
 In the interest of space, I have omitted the examples section in the below screen. We should not remove this from the current UI
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/MultipleAPIKeys/InitialMultipleAPIKeys.png)
-
-**Generate API Key**
-
-
-**Manage API Keys** 
-
 
 
