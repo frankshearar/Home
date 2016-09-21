@@ -1,16 +1,8 @@
-
-# Your spec's journey
-* Create a new wiki page using the spec template below, to jot your thoughts down.
-* Create an [issue](https://github.com/NuGet/Home/issues) to track the feature or link an existing issue to the new wiki page. Engage the community on the feature. Feel free to tweet it from the @NuGet handle or ask the PM to tweet it out.
-* Send a mail with a link to the wiki page to the core team alias.
-* Campaign offline or in a meeting for the feature :.
-* Once it is reviewed and signed off, the PM will move it to the Reviewed section.
-
-# Title
-_title of the proposal_
+# Multiple API Keys
 
 ## Problem
-_What is the problem(s) we are trying to solve? Why is it a problem. What horrible workarounds are we subjecting our users too._
+
+Currently, NuGet.org users can only create a Single API key for all their projects. For large GitHub organizations, it is nessecary that multiple API keys be created that be scoped to specific actions and packages to prevent a single leak from compromising all the packages.
 
 ## Who is the customer?
 _Who is the customer that is running into the problem. Which customers would dance for joy and donate to save the space unicorns foundation on getting this feature. Customers here could be individuals, nuget customer segments (package authors, consumers), enterprises, partners within Microsoft, external partners etc..._
