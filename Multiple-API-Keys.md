@@ -18,11 +18,15 @@ Large GitHub organizations or users with multiple packages and contributors
 
 ## Solution
 
-The key user workflows we want to enable is the following
+The key scenarios we want to enable is the following
 
 * Enable users to create multiple API keys with a name and expiration range similar to current API keys.
 * Restrict privileges of API keys to one or more packages
 * Restrict key privileges to specific NuGet.org actions like Push, Un-list and Update
 * Notify Users on new key creation
+
+### User Workflow
+
+* User Logs into NuGet.org
 
 
