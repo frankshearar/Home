@@ -46,5 +46,10 @@ The key scenarios we want to enable is the following
 **Create API Key - Expiration,Name, Packages and Scopes** 
 
 
+**Generate API Key**
+
+
+**Manage API Keys** 
+
 
 
