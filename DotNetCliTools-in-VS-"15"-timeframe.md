@@ -29,15 +29,22 @@ If you wanted to use it as a packageref and a tools ref, you would:
 
 ### tools hive
 why is the tools lock file in .nuget\tools?
+
 consider moving to $(baseintermediatepath)
+
 nuget restore -out ..\foo
+
 solution level restore could do 1 restore per tool
+
 ee - how long does starting msbuild to get a property take.
 
 ### imports
 scenario - something runs on mono on windows.
+
 relied on an API that PInvokes
+
 want to choose a pinvoke-less implementation from nupkg.
+
     <PackageReference Include=”foo.bar”>
       <Version>1.2.3</Version>
       <TreatAs>Net45</TreatAs>
