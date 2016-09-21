@@ -45,6 +45,8 @@ The key scenarios we want to enable is the following
 
 **Create API Key - Expiration,Name, Packages and Scopes** 
 
+In the interest of space, I have omitted the examples section in the below screen. We should not remove this from the current UI
+
 ![](https://github.com/NuGet/Home/blob/dev/resources/MultipleAPIKeys/InitialMultipleAPIKeys.png)
 
 **Generate API Key**
