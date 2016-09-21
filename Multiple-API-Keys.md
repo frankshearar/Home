@@ -24,9 +24,21 @@ The key scenarios we want to enable is the following
 * Restrict privileges of API keys to one or more packages
 * Restrict key privileges to specific NuGet.org actions like Push, Un-list and Update
 * Notify Users on new key creation
+* Maintain Legacy API keys, only new API keys have support for privileges, expiration and scope.
 
 ### User Workflow
 
 * User Logs into NuGet.org
+* Goes to Account Details
+* Clicks on Show details in the API Keys section
+* Navigates to Generate API Key
+* Adds a Name for the the Key
+* Selects the expiration interval (by default set to 365)
+* From the list of packages (all packages owned by the user) selects the packages that the key will apply to (by default none is selected)
+* From the list of following scopes Push, Unlist, Update selects privileges for the key (by default none will be selected)
+* Clicks on Generate API key
+* Copies the API key and saves it in NuGet.config or uses it for a one-time operation
+
+
 
 
