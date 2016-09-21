@@ -9,8 +9,8 @@ Currently, NuGet.org users can only create a Single API key for all their packag
 Large GitHub organizations or users with multiple packages and contributors
 
 ## Evidence
-_What is the evidence that behaves us to act?_
-_Evidence can be impassioned tweets or mails, mile long conversations in issues, rants on blogs, sweet sweet data from telemetry!!! If you can show pain, you can rally the troops._
+* Security Push
+* Feedback from customers during the Expiring API keys discussion
 
 ## Solution
 _Detailed explanation of the solution. The more pictures/code snippets based on the feature the merrier. Pictures keep folks awake when reading specs._
