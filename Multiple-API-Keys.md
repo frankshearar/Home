@@ -2,7 +2,7 @@
 
 ## Issue
 
-https://github.com/NuGet/NuGetGallery/issues/3246
+Feedback on the spec can be given on the following issue - https://github.com/NuGet/NuGetGallery/issues/3246
 
 ## Problem
 
