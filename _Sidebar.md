@@ -27,6 +27,7 @@
 * [Account Deletion Workflow](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow)
 * [Add Clear Cache button to VS Package Manager Console](https://github.com/NuGet/Home/wiki/Add-Clear-Cache-button-to-VS-Package-Manager-options)
 * [Search by Package Type and Query Language Surfacing](https://github.com/NuGet/Home/wiki/Search-by-Package-Type-and-Query-Language-Surfacing)
+* [Multiple API Keys](https://github.com/NuGet/Home/wiki/Multiple-API-Keys)
 
 #### Reviewing
 * [NuGet Upgrader](https://github.com/NuGet/Home/wiki/NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0)
