@@ -13,4 +13,12 @@ Large GitHub organizations or users with multiple packages and contributors
 * Feedback from customers during the Expiring API keys discussion
 
 ## Solution
-_Detailed explanation of the solution. The more pictures/code snippets based on the feature the merrier. Pictures keep folks awake when reading specs._
+
+The key user workflows we want to enable is the following
+
+* Enable users to create multiple API keys with a name and expiration range similar to current API keys.
+* Restrict privileges of API keys to one or more packages
+* Restrict key privileges to specific NuGet.org actions like Push, Un-list and Update
+* Notify Users on new key creation
+
+
