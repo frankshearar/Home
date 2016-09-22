@@ -108,7 +108,7 @@ Add extra metadata to existing \<Content> item . By default everything of type "
          <Pack>false</Pack>
      </Content>
 
-Everything gets added to the root of the **content** and **contentFiles** folder within a package, unless you specify a package path: 
+Everything gets added to the root of the **content** and **contentFiles** folder within a package and preserves the relative directory structure, unless you specify a package path: 
 
      <Content Include="..\win7-x64\libuv.txt">
          <Pack>true</Pack>
