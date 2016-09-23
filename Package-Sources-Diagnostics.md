@@ -27,6 +27,7 @@ TBD
   * Detailed metadata fetch (Click on package)
   * PowerShell autocomplete
   * Consolidate
+ 
 
 ### Diagnostics Scenarios (Ordered in terms of priority)
 
@@ -34,6 +35,9 @@ TBD
   * Server is slow: Package has a large number of versions (1000+ CI feeds). Server implementation is not optimal for large version set
   * FileShare is not efficient
   * vNext (Requires proxy rules): Semantic understanding of what packages are being downloaded per source
+  * Duplicate URLs and equivalent URLs
+  * Server URL points to an invalid server - the endpoint is not a server
+  * when a misbheaving source is an intermittent issue that resolves itself
 
 ### Priority of experiences
   * VS
