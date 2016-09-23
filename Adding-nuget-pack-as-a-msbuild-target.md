@@ -147,6 +147,8 @@ There is also a new MSBuild property $(IncludeContentInPack), which defaults to 
 
 **Apart from Content items, the \<Pack> and \<PackagePath> metadata can also be set on files with Build Action = Compile or None.**
 
+**Note that for pack to append the filename to your package path, your package path must end with the directory separator character, otherwise the package path is treated as the full path including the file name.**
+
 ####Cross Targeting
 As per the details available right now, Target frameworks are defined in the csproj in an item list (called TargetFramework right now) where the identity maps to $(TargetFrameworkIdentity),$(TargetFrameworkVersion) - no NuGet short names.
   <ItemGroup>
