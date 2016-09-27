@@ -10,7 +10,7 @@ Extension SDKs are inherently not very friendly to developers since they require
 First Party Framework SDK authors and ISVs.
 
 ## Evidence
-We have 3 primary customers for this. .NET Native, Store Services and Controls @ Speed from the XAML Framework team.
+We have 3 primary customers for this. .NET Native, Store Services and other partners.
 
 ## Solution
 There are 3 major features that we need to support to in-order to provide a seamless transition for Extension SDK authors to use NuGet.
