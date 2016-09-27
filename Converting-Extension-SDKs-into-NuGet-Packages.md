@@ -1,5 +1,3 @@
-# Converting Extension SDKs into NuGet Packages
-
 ## Issue
 Feedback on the spec can be given on the following issue - https://github.com/NuGet/Home/issues/3509
 
