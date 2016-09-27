@@ -24,3 +24,15 @@ Appx files need to be placed in the following relative location of the NuGet pac
 
     \tool\*
 
+Specifically they should be tied to the architecture of the Appx package. E.g
+
+    \tool\x86\MyTestpackage.appx
+    \tool\x64\MyTestpackage.appx
+    \tool\ARM\MyTestpackage.appx
+    \tool\ARM64\MyTestpackage.appx
+
+The UWP tools are able to parse these paths from the lock file and correspondingly register them during deployment. This is a feature that is unique to first party packages since only they can be store serviced.
+
+
+
+
