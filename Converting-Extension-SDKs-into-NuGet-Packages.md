@@ -22,5 +22,5 @@ Framework SDKs require registration of Appx packages during deployment. This can
 
 Appx files need to be placed in the following relative location of the NuGet package
 
-** \tool\* **
+    \tool\*
 
