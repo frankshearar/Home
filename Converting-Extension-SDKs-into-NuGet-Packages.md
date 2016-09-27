@@ -97,6 +97,16 @@ Some examples of possible combinations of TPV and TPM are given below. Abbreviat
 | TH2 | RS1 |
 | RS1 | RS1 |
 
+There are 2 ways to specify these constraints in NuGet.
+
+Currently we only support the vanilla **uap** or the expanded version **uap10.0* for UAP specific libraries. For targeting specific versions of the UAP platform, you can specify the TPV in the folder name.
+
+E.g, If you want to target RS1 version of the SDK, you can name the folder as the following
+
+    uap10.0.10586.0
+
+
+
 
 
 
