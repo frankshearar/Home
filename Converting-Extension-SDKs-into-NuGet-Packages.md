@@ -13,7 +13,7 @@ First Party Framework SDK authors and ISVs.
 
 ## Evidence
 _What is the evidence that behaves us to act?_
-_Evidence can be impassioned tweets or mails, mile long conversations in issues, rants on blogs, sweet sweet data from telemetry!!! If you can show pain, you can rally the troops._
+We have 3 primary customers for this. .NET Native, Store Services and Controls @ Speed from the XAML Framework team.
 
 ## Solution
 _Detailed explanation of the solution. The more pictures/code snippets based on the feature the merrier. Pictures keep folks awake when reading specs._
