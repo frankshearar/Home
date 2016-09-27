@@ -103,13 +103,26 @@ Currently we only support the vanilla **uap** or the expanded version **uap10.0*
 
 E.g, If you want to target RS1 version of the SDK, you can name the folder as the following
 
-    uap10.0.10586.0
+    \lib\uap10.0.10586.0\*
+    \ref\uap10.0.10586.0\*
 
-This nuget package is applicable to all projects who **TPV is either 10.0.10586.0** or **TPM>= 10.0.10586.0 && TPV<= 10.0.10586.0**
+This nuget package is applicable to all projects who **TPV is either 10.0.10586.0** or **TPM>= 10.0.10586.0 && TPV<= 10.0.10586.0**. **ref** is given here for completeness and is only required if you have a reference assembly that is used to compile the app and there is a different implementation assembly in lib that is copied into the apps output.
 
 If you want to specify hard upper and lower bounds in the applicability of the NuGet package to UWP apps, you can use the following syntax. In this case the applicability of the NuGet package is constrained to apps that have their TPV in the version range specified below.
 
-    uap[10.0.14393.0-10.0.10586.0]
+    \lib\uap[10.0.14393.0-10.0.10586.0]\*
+    \ref\uap[10.0.14393.0-10.0.10586.0]\*
+
+In most cases, developers need to only provide the upper bound, i.e the TPV.
+
+If developers need to specify mulitple versions of the assembly targeting specific versions of the SDK they can do by creating multiple libraries targeting specific versions of the OS. E.g,
+    
+   \lib\uap10.0.14393.0\*
+   \lib\uap10.0.10586.0\*
+   \ref\uap10.0.14393.0\*
+   \ref\uap10.0.10586.0\*
+
+
 
  
 
