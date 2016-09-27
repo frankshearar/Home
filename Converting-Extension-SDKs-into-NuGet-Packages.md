@@ -35,7 +35,9 @@ The UWP tools are able to parse these paths from the lock file and corresponding
 
 ### Extension SDK Manifests
 
-[Extension SDK manifests](https://msdn.microsoft.com/en-us/library/hh768146.aspx) are used to define the metadata around Extension SDKs. NuGet semantics inherently support the vast majority of the metadata in Extension SDK manifests. Therefore customers can choose to either drop in their existing manifest and we will ignore the duplicate fields in favor of the metadata specified in NuGet or they can trim it accordingly.
+[Extension SDK manifests](https://msdn.microsoft.com/en-us/library/hh768146.aspx) are used to define the metadata around Extension SDKs. 
+
+NuGet semantics inherently support the vast majority of the metadata in Extension SDK manifests. Therefore customers can choose to either drop in their existing manifest and we will ignore the duplicate fields in favor of the metadata specified in NuGet or they can trim it accordingly.
 
 A sample full Extension SDK Manifest is given below
 
@@ -55,12 +57,24 @@ A sample full Extension SDK Manifest is given below
       <File Reference = “MySDK.Sprint.winmd” Implementation = “XNASprintImpl.dll”>
       <Registration Type = “Flipper” Implementation = “XNASprintFlipperImpl.dll” />
       <Registration Type = “Flexer” Implementation = “XNASprintFlexerImpl.dll” />
-       <ToolboxItems VSCategory = “Toolbox.Default” />
+      <ToolboxItems VSCategory = “Graph”>
+      <ToolboxItems/>
+      <ToolboxItems BlendCategory = “Controls/sample/Graph”>
+      <ToolboxItems/>
       </File>
     </FileList>
 
 
+The following manifest snippet shows only the set of properties that are recognized by the tooling in Visual Studio when the manifest is read from a NuGet package.
 
+    <FileList>
+      MinVSVersion = “14.0”>
+      <ToolboxItems VSCategory = “Graph”>
+      <ToolboxItems/>
+      <ToolboxItems BlendCategory = “Controls/sample/Graph”>
+      <ToolboxItems/>
+      </File>
+    </FileList>
 
 
 
