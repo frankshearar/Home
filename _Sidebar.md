@@ -29,9 +29,8 @@
 * [NuGetizer 3000](https://github.com/NuGet/Home/wiki/NuGetizer-3000)
 * [NuGet Upgrader](https://github.com/NuGet/Home/wiki/NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0)
 * [SemVer 2.0.0](https://github.com/NuGet/Home/wiki/SemVer-2.0.0-support)
-* [Adding nuget pack as a msbuild target](https://github.com/NuGet/Home/wiki/Adding-nuget-pack-as-a-msbuild-target)
-* [Restore target](https://github.com/NuGet/Home/wiki/%5BSpec%5D-MSBuild-restore-target)
 * [Converting Extension SDKs into NuGet Packages](https://github.com/NuGet/Home/wiki/Converting-Extension-SDKs-into-NuGet-Packages)
+* [Supporting Package Reference in UWP WPF WinForms and Classic Libraries]https://github.com/NuGet/Home/wiki/Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries
 
 #### Reviewed
 * [Replication API] (https://github.com/NuGet/Home/wiki/%5Bspec%5D-NuGet.org-replication-API)
@@ -43,6 +42,8 @@
 * [Add Clear Cache button to VS Package Manager Console](https://github.com/NuGet/Home/wiki/Add-Clear-Cache-button-to-VS-Package-Manager-options)
 * [Support nuget push command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-nuget-push-scenarios-in-dotnet-CLI)
 * [Support nuget locals command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-locals-command-in-dotnet-cli)
+* [Restore target](https://github.com/NuGet/Home/wiki/%5BSpec%5D-MSBuild-restore-target)
+* [Adding nuget pack as a msbuild target](https://github.com/NuGet/Home/wiki/Adding-nuget-pack-as-a-msbuild-target)
 
 #### Archived
 
