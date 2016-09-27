@@ -82,9 +82,9 @@ The semantics of the options in the trimmed manifest are spec'ed out in the orig
 
 ### Supporting Platform Versions in UAP NuGet Packages
 
-UAP packages have a TargetPlatformVersion(TPV) and TargetPlatformMinVersion(TPM) that defines the upper and lower bounds of the OS version where the app can be installed into. TPV further specifies the version of the SDK that the app is compiled against. 
+UAP packages have a **TargetPlatformVersion(TPV)** and **TargetPlatformMinVersion(TPM)** that defines the upper and lower bounds of the OS version where the app can be installed into. TPV further specifies the version of the SDK that the app is compiled against. 
 
-When a NuGet package author creates a UAP library they need to keep in mind these properties when designing and coding their libraries. Using API's outside of the bounds of the platform versions defined in the app will either cause the build to fail or the app to fail at runtime (If due dilligence is not taken into account while using adaptive APIs)
+When a NuGet package author creates a UAP library they need to keep in mind these properties when designing and coding their libraries. Using API's outside of the bounds of the platform versions defined in the app will either cause the build to fail or the app to fail at runtime (If due dilligence is not taken into account while using adaptive APIs).
 
 
 
