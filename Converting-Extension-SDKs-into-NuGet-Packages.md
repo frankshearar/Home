@@ -33,6 +33,34 @@ Specifically they should be tied to the architecture of the Appx package. E.g
 
 The UWP tools are able to parse these paths from the lock file and correspondingly register them during deployment. This is a feature that is unique to first party packages since only they can be store serviced.
 
+### Extension SDK Manifests
+
+[Extension SDK manifests](https://msdn.microsoft.com/en-us/library/hh768146.aspx) are used to define the metadata around Extension SDKs. NuGet semantics inherently support the vast majority of the metadata in Extension SDK manifests. Therefore customers can choose to either drop in their existing manifest and we will ignore the duplicate fields in favor of the metadata specified in NuGet or they can trim it accordingly.
+
+A sample full Extension SDK Manifest is given below
+
+    <FileList>
+      DisplayName = “My SDK”
+      ProductFamilyName = “My SDKs”
+      TargetFramework = “.NETCore, version=v4.5.1; .NETFramework, version=v4.5.1”
+      MinVSVersion = “14.0”
+      MaxPlatformVersion = "8.1"
+      AppliesTo = "WindowsAppContainer + WindowsXAML"
+      SupportPrefer32Bit = “True”
+      SupportedArchitectures = “x86;x64;ARM”
+      SupportsMultipleVersions = “Error”
+      CopyRedistToSubDirectory = “.”
+      DependsOn = “SDKB, version=2.0”
+      MoreInfo = “http://msdn.microsoft.com/MySDK”>
+      <File Reference = “MySDK.Sprint.winmd” Implementation = “XNASprintImpl.dll”>
+      <Registration Type = “Flipper” Implementation = “XNASprintFlipperImpl.dll” />
+      <Registration Type = “Flexer” Implementation = “XNASprintFlexerImpl.dll” />
+       <ToolboxItems VSCategory = “Toolbox.Default” />
+      </File>
+    </FileList>
+
+
+
 
 
 
