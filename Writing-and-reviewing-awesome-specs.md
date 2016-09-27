@@ -6,8 +6,8 @@
 * Campaign offline or in a meeting for the feature :.
 * Once it is reviewed and signed off, the PM will move it to the Reviewed section.
 
-# Title
-_title of the proposal_
+## Issue
+Link to the GitHub issue that tracks the work and discussion
 
 ## Problem
 _What is the problem(s) we are trying to solve? Why is it a problem. What horrible workarounds are we subjecting our users too._
