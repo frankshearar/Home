@@ -121,10 +121,10 @@ In most cases, developers need to only provide the upper bound, i.e the TPV.
 
 If developers need to specify multiple versions of the assembly targeting specific versions of the SDK they can do by creating multiple libraries targeting specific versions of the OS. E.g,
     
-   \lib\uap10.0.14393.0\*
-   \lib\uap10.0.10586.0\*
-   \ref\uap10.0.14393.0\*
-   \ref\uap10.0.10586.0\*
+    \lib\uap10.0.14393.0\*
+    \lib\uap10.0.10586.0\*
+    \ref\uap10.0.14393.0\*
+    \ref\uap10.0.10586.0\*
 
 
 
