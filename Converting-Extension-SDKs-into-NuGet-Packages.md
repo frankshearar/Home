@@ -105,6 +105,14 @@ E.g, If you want to target RS1 version of the SDK, you can name the folder as th
 
     uap10.0.10586.0
 
+This nuget package is applicable to all projects who **TPV is either 10.0.10586.0** or **TPM>= 10.0.10586.0 && TPV<= 10.0.10586.0**
+
+If you want to specify hard upper and lower bounds in the applicability of the NuGet package to UWP apps, you can use the following syntax. In this case the applicability of the NuGet package is constrained to apps that have their TPV in the version range specified below.
+
+    uap[10.0.14393.0-10.0.10586.0]
+
+ 
+
 
 
 
