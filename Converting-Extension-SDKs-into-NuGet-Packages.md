@@ -76,5 +76,9 @@ The following manifest snippet shows only the set of properties that are recogni
       </File>
     </FileList>
 
+Extension SDK manifest needs to be placed in the root of the following NuGet directory
+
+    \tools\
+
 
 
