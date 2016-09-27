@@ -20,18 +20,18 @@ Framework SDKs require registration of Appx packages during deployment. This can
 
 Appx files need to be placed in the following relative location of the NuGet package
 
-    \tool\*
+    \tools\*
 
 Specifically they should be tied to the architecture of the Appx package. E.g
 
-    \tool\x86\chk\MyTestpackage.appx
-    \tool\x86\ret\MyTestpackage.appx
-    \tool\x64\chk\MyTestpackage.appx
-    \tool\x64\ret\MyTestpackage.appx
-    \tool\ARM\chk\MyTestpackage.appx
-    \tool\ARM\ret\MyTestpackage.appx
-    \tool\ARM64\chk\MyTestpackage.appx
-    \tool\ARM64\ret\MyTestpackage.appx
+    \tools\x86\chk\MyTestpackage.appx
+    \tools\x86\ret\MyTestpackage.appx
+    \tools\x64\chk\MyTestpackage.appx
+    \tools\x64\ret\MyTestpackage.appx
+    \tools\ARM\chk\MyTestpackage.appx
+    \tools\ARM\ret\MyTestpackage.appx
+    \tools\ARM64\chk\MyTestpackage.appx
+    \tools\ARM64\ret\MyTestpackage.appx
 
 The UWP tools are able to parse these paths from the lock file and correspondingly register them during deployment. This is a feature that is unique to first party packages since only they can be store serviced.
 
