@@ -31,7 +31,7 @@
 * [SemVer 2.0.0](https://github.com/NuGet/Home/wiki/SemVer-2.0.0-support)
 * [Adding nuget pack as a msbuild target](https://github.com/NuGet/Home/wiki/Adding-nuget-pack-as-a-msbuild-target)
 * [Restore target](https://github.com/NuGet/Home/wiki/%5BSpec%5D-MSBuild-restore-target)
-
+* [Converting Extension SDKs into NuGet Packages](https://github.com/NuGet/Home/wiki/Converting-Extension-SDKs-into-NuGet-Packages)
 
 #### Reviewed
 * [Replication API] (https://github.com/NuGet/Home/wiki/%5Bspec%5D-NuGet.org-replication-API)
