@@ -43,7 +43,7 @@ NuGet semantics inherently support the vast majority of the metadata in Extensio
 
 A sample full Extension SDK Manifest is given below
 
-    <FileList>
+    <FileList
       DisplayName = “My SDK”
       ProductFamilyName = “My SDKs”
       TargetFramework = “.NETCore, version=v4.5.1; .NETFramework, version=v4.5.1”
@@ -71,6 +71,7 @@ The following manifest snippet shows only the set of properties that are recogni
 
     <FileList>
       MinVSVersion = “14.0”>
+      <File Reference = “MySDK.Sprint.winmd” Implementation = “XNASprintImpl.dll”>
       <ToolboxItems VSCategory = “Graph”>
       <ToolboxItems/>
       <ToolboxItems BlendCategory = “Controls/sample/Graph”>
@@ -101,7 +102,6 @@ Some examples of possible combinations of TPV and TPM are given below. Abbreviat
 | TH2 | RS1 |
 | RS1 | RS1 |
 
-There are 2 ways to specify these constraints in NuGet.
 
 Currently we only support the vanilla **uap** or the expanded version **uap10.0* for UAP specific libraries. For targeting specific versions of the UAP platform, you can specify the TPV in the folder name.
 
@@ -112,12 +112,6 @@ E.g, If you want to target RS1 version of the SDK, you can name the folder as th
 
 This nuget package is applicable to all projects who **TPV is either 10.0.10586.0** or **TPM>= 10.0.10586.0 && TPV<= 10.0.10586.0**. **ref** is given here for completeness and is only required if you have a reference assembly that is used to compile the app and there is a different implementation assembly in lib that is copied into the apps output.
 
-If you want to specify hard upper and lower bounds in the applicability of the NuGet package to UWP apps, you can use the following syntax. In this case the applicability of the NuGet package is constrained to apps that have their TPV in the version range specified below.
-
-    \lib\uap[10.0.14393.0-10.0.10586.0]\*
-    \ref\uap[10.0.14393.0-10.0.10586.0]\*
-
-In most cases, developers need to only provide the upper bound, i.e the TPV.
 
 If developers need to specify multiple versions of the assembly targeting specific versions of the SDK they can do by creating multiple libraries targeting specific versions of the OS. E.g,
     
