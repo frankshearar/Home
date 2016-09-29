@@ -39,7 +39,9 @@ We will need to enable these options to be passed to the Install/Update commands
 
 **Argument** - InstallAs
 
-**Possible Values** - *Tool, Dependency (comma separated multiple values)
+**Possible Values** - Tool, Dependency (comma separated multiple values)
+
+### Multi-TFM Support
 
 
 
