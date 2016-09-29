@@ -18,22 +18,11 @@ There are 3 major features that we need to support to in-order to provide a seam
 ### Appx Packages
 Framework SDKs require registration of Appx packages during deployment. This can be accomplished using currently available NuGet semantics.
 
-Appx files need to be placed in the following relative location of the NuGet package
+Package authors need to create a Targets file using existing semantics described [here](https://docs.nuget.org/ndocs/create-packages/creating-a-package#including-msbuild-props-and-targets-in-a-package). In this targets they need to define an ItemGroup that contains the following Item definition for each configuration/architecture combination for your Framework SDK Appx.
 
-    \tools\*
+    <AppxPackageRegistration Configuration="Release" Architecture="x86" Version=”1.3.24201.0” Include="$(MSBuildThisFileDirectory)..\tools\Runtime\x86\Microsoft.NET.Runtime.1.3.appx"/> 
 
-Specifically they should be tied to the architecture of the Appx package. E.g
 
-    \tools\x86\chk\MyTestpackage.appx
-    \tools\x86\ret\MyTestpackage.appx
-    \tools\x64\chk\MyTestpackage.appx
-    \tools\x64\ret\MyTestpackage.appx
-    \tools\ARM\chk\MyTestpackage.appx
-    \tools\ARM\ret\MyTestpackage.appx
-    \tools\ARM64\chk\MyTestpackage.appx
-    \tools\ARM64\ret\MyTestpackage.appx
-
-The UWP tools are able to parse these paths from the lock file and correspondingly register them during deployment. This is a feature that is unique to first party packages since only they can be store serviced.
 
 ### Extension SDK Manifests
 
