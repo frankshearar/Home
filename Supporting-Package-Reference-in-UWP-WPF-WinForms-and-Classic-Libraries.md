@@ -1,8 +1,8 @@
 ## Issue
-Link to the GitHub issue that tracks the work and discussion
+Spec for the work is available here: - https://github.com/NuGet/Home/issues/3561
 
 ## Problem
-_What is the problem(s) we are trying to solve? Why is it a problem. What horrible workarounds are we subjecting our users too._
+Currently there are multiple ways (packages.config, project.json and PackageReference in csproj) of managing dependencies and we want to standardize on one global way of managing dependencies. Its hard on customers to read and understand about multiple ways of managing dependencies. 
 
 ## Who is the customer?
 _Who is the customer that is running into the problem. Which customers would dance for joy and donate to save the space unicorns foundation on getting this feature. Customers here could be individuals, nuget customer segments (package authors, consumers), enterprises, partners within Microsoft, external partners etc..._
