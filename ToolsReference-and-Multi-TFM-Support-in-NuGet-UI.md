@@ -41,8 +41,6 @@ We will need to enable these options to be passed to the Install/Update commands
 
 **Possible Values** - Tool, Dependency (comma separated multiple values)
 
-### Multi-TFM Support
-
 
 
 
