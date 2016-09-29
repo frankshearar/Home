@@ -3,9 +3,8 @@
 ## Issue
 Link to the GitHub issue that tracks the work and discussion.
 
-ToolsReference : https://github.com/NuGet/Home/issues/3505
-
-PackageReference UI: https://github.com/NuGet/Home/issues/3457
+**ToolsReference:** https://github.com/NuGet/Home/issues/3505
+**PackageReference UI:** https://github.com/NuGet/Home/issues/3457
 
 
 ## Problem
