@@ -35,4 +35,13 @@ Users can change the defaults by expanding the options expander in the package d
 
 ### PMC Commands
 
+We will need to enable these options to be passed to the Install/Update commands in the PMC. Currently this work is not planned for the RC time-frame.
+
+**Argument** - InstallAs
+
+**Possible Values** - *Tool, Dependency (comma separated multiple values)
+
+
+
+
 
