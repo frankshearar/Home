@@ -18,7 +18,7 @@ There are 3 major features that we need to support to in-order to provide a seam
 ### Appx Packages
 Framework SDKs require registration of Appx packages during deployment. This can be accomplished using currently available NuGet semantics.
 
-Package authors need to create a Targets file using existing semantics described [here](https://docs.nuget.org/ndocs/create-packages/creating-a-package#including-msbuild-props-and-targets-in-a-package). In this targets they need to define an ItemGroup that contains the following Item definition for each configuration/architecture combination for your Framework SDK Appx.
+Package authors need to create a Targets file using existing semantics described [here](https://docs.nuget.org/ndocs/create-packages/creating-a-package#including-msbuild-props-and-targets-in-a-package). In this target they need to define an ItemGroup that contains the following Item definition for each configuration/architecture combination for your Framework SDK Appx.
 
     <AppxPackageRegistration Configuration="Release" Architecture="x86" Version=”1.3.24201.0” Include="$(MSBuildThisFileDirectory)..\tools\Runtime\x86\Microsoft.NET.Runtime.1.3.appx"/> 
 
