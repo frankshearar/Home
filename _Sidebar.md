@@ -31,6 +31,7 @@
 * [SemVer 2.0.0](https://github.com/NuGet/Home/wiki/SemVer-2.0.0-support)
 * [Converting Extension SDKs into NuGet Packages](https://github.com/NuGet/Home/wiki/Converting-Extension-SDKs-into-NuGet-Packages)
 * [Supporting Package Reference in UWP WPF WinForms and Classic Libraries](https://github.com/NuGet/Home/wiki/Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries)
+* [ToolsReference and Multi TFM Support in NuGet UI](https://github.com/NuGet/Home/wiki/ToolsReference-and-Multi-TFM-Support-in-NuGet-UI)
 
 #### Reviewed
 * [Replication API] (https://github.com/NuGet/Home/wiki/%5Bspec%5D-NuGet.org-replication-API)
