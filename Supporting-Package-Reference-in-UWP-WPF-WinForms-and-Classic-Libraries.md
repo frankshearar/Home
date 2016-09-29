@@ -8,4 +8,12 @@ Currently there are multiple ways (packages.config, project.json and PackageRefe
 All .NET Customers who want to move towards managing dependencies via the model built for project.json.
 
 ## Solution
-_Detailed explanation of the solution. The more pictures/code snippets based on the feature the merrier. Pictures keep folks awake when reading specs._
+
+There are 2 key scenarios at play here.
+
+* Customers who want to move from package.config to PackageReference
+* Customers who want to move from project.json to PackageReference
+
+### Supported VS Versions
+
+One thing to note is that PackageReference support is only available in VS "15" RTM+ versions of Visual Studio. Customers upgrading to PackageReference will be unable to roundtrip their projects with previous versions of Visual Studio including VS 2015
