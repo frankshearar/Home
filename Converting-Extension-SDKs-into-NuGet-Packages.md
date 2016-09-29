@@ -16,7 +16,7 @@ We have 3 primary customers for this. .NET Native, Store Services and other part
 There are 3 major features that we need to support to in-order to provide a seamless transition for Extension SDK authors to use NuGet.
 
 ### Appx Packages
-Framework SDKs require registration of Appx packages during deployment. This can be accomplished using currently available NuGet semantics.
+Framework SDKs require registration of Appx packages during deployment. This can be accomplished using currently available NuGet semantics. This feature is only available for 1st party SDKs.
 
 Package authors need to create a Targets file using existing semantics described [here](https://docs.nuget.org/ndocs/create-packages/creating-a-package#including-msbuild-props-and-targets-in-a-package). In this target they need to define an ItemGroup that contains the following Item definition for each configuration/architecture combination for your Framework SDK Appx.
 
@@ -87,7 +87,7 @@ When a NuGet package author creates a UAP library, they need to keep in mind the
 
 Some examples of possible combinations of TPV and TPM are given below. Abbreviations are used instead of build numbers for brevity.
 
-| TPM | TPV |
+| Target Platform Minimum Version| Target Platform Version|
 |-----|-----|
 | TH  | TH  |
 | TH  | TH2 |
