@@ -2,7 +2,7 @@
 
 # Delete
 ## NuGet.exe delete
-*-Source
+* -Source
 -NoPrompt
  - same as non-interactive?
 -ApiKey
