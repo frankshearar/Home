@@ -3,173 +3,165 @@
 # Delete
 ## NuGet.exe delete
 * -Source
--NoPrompt
- - same as non-interactive?
--ApiKey
--Help
--Verbosity
--NonInteractive
--ConfigFile
--ForceEnglishOutput
+* -NoPrompt
+  same as non-interactive?
+* -ApiKey
+* -Help
+* -Verbosity
+* -NonInteractive
+* -ConfigFile
+* -ForceEnglishOutput
 
 ## NuGet.CommandLine.XPlat.dll delete
--s/--source
---non-interactive
+* -s/--source
+* --non-interactive
     add abbreviated option 
--k/--api-key
---help
---force-english-output 
+* -k/--api-key
+* --help
+* --force-english-output 
     remove this from our commands for consistency in dotnet CLI
---config-file
+* --config-file
     support this
 
-(verbosity is covered via dotnet cli)
+* (verbosity is covered via dotnet cli)
 
 ## dotnet nuget delete
-As per NuGet.CommandLine.XPlat.dll delete
+* As per NuGet.CommandLine.XPlat.dll delete
 
 # Pack
 ## NuGet.exe pack
--OutputDirectory
--BasePath
--Version
--Suffix
--Exclude +
--Symbols
--Tool
--Build
--NoDefaultExcludes
--NoPackageAnalysis
--ExcludeEmptyDirectories
--IncludeReferencedProjects
+* -OutputDirectory
+* -BasePath
+* -Version
+* -Suffix
+* -Exclude +
+* -Symbols
+* -Tool
+* -Build
+* -NoDefaultExcludes
+* -NoPackageAnalysis
+* -ExcludeEmptyDirectories
+* -IncludeReferencedProjects
      going away - no need to propagate to xplat
--Properties +
--MinClientVersion
--MSBuildVersion
+* -Properties +
+* -MinClientVersion
+* -MSBuildVersion
     only a nuget.exe scenario
--Help
--Verbosity
--NonInteractive
+* -Help
+* -Verbosity
+* -NonInteractive
     redundant--don't propagate to xplat
--ForceEnglishOutput
+* -ForceEnglishOutput
 
 ## NuGet.CommandLine.XPlat.dll pack
--b/--base-path
---build
---exclude
--e/--exclude-empty-directories
---min-client-version
---no-default-excludes
---no-package-analysis
--o/--output-directory
--p/--properties
---serviceable
+* -b/--base-path
+* --build
+* --exclude
+* -e/--exclude-empty-directories
+* --min-client-version
+* --no-default-excludes
+* --no-package-analysis
+* -o/--output-directory
+* -p/--properties
+* --serviceable
     move this to metadata
---suffix
--s/-symbols
---verbosity
+* --suffix
+* -s/-symbols
+* --verbosity
      (verbosity is also? covered via dotnet cli)
      --verbosity is special in pack and restore. We need to standardize.
--v/--version
---help
---force-english-output
+* -v/--version
+* --help
+* --force-english-output
     remove this from our commands for consistency in dotnet CLI
---tool
+* --tool
     more design work to do
---analyzers
+* --analyzers
     add?
 
 ## dotnet pack
--o/--output
---no-build
+* -o/--output
+* --no-build
     if build is customized, we don't want to mess with it
---build-base-path
+* --build-base-path
     don't use this
--c/--configuration
+* -c/--configuration
    follow CLI's call on this
---version-suffix
+* --version-suffix
    change to --suffix
--s/--serviceable
+* -s/--serviceable
   move to metadata
 
 # Push
 ## NuGet.exe push
--Source
--ApiKey
--Timeout
--DisableBuffering
--NoSymbols
--Help
--Verbosity
--NonInteractive
--ConfigFile
--ForceEnglishOutput
+* -Source
+* -ApiKey
+* -Timeout
+* -DisableBuffering
+* -NoSymbols
+* -Help
+* -Verbosity
+* -NonInteractive
+* -ConfigFile
+* -ForceEnglishOutput
 
 ## NuGet.CommandLine.XPlat.dll push
--s/--source
--ss/--symbols-source
+* -s/--source
+* -ss/--symbols-source
     remove -ss
--t/--timeout
--k/--api-key
--sk/--symbol-api-key
+* -t/--timeout
+* -k/--api-key
+* -sk/--symbol-api-key
     remove -sk
--d/--disable-buffering
--n/--no-symbols
---help
---force-english-output
---config-file
+* -d/--disable-buffering
+* -n/--no-symbols
+* --help
+* --force-english-output
+* --config-file
    need to support this
 We may need to light up credential providers and --non-interactive here 
-(verbosity is covered via dotnet cli)
+* (verbosity is covered via dotnet cli)
 
 ## dotnet push
-As per NuGet.CommandLine.XPlat.dll push
+* As per NuGet.CommandLine.XPlat.dll push
 
 # Restore
 ## NuGet.exe restore
--RequireConsent
+* -RequireConsent
    research: let's make this less troublesome
--Project2ProjectTimeOut
+* -Project2ProjectTimeOut
    less relevant now. Don't propagate to xplat.
--PackagesDirectory
--SolutionDirectory
--MSBuildVersion
--Source +
--FallbackSource +
--NoCache
--DisableParallelProcessing
--PackageSaveMode
+* -PackagesDirectory
+* -SolutionDirectory
+* -MSBuildVersion
+* -Source +
+* -FallbackSource +
+* -NoCache
+* -DisableParallelProcessing
+* -PackageSaveMode
     more design work, may need to move to xplat when done
--Help
--Verbosity
--NonInteractive
+* -Help
+* -Verbosity
+* -NonInteractive
    move to xplat
--ConfigFile
--ForceEnglishOutput
+* -ConfigFile
+* -ForceEnglishOutput
 
 ## NuGet.CommandLine.XPlat.dll restore
--s/--source
---packages
---disable-parallel
--f/-fallbacksource
---configfile
---no-cache
---infer-runtimes
+* -s/--source
+* --packages
+* --disable-parallel
+* -f/-fallbacksource
+* --configfile
+* --no-cache
+* --infer-runtimes
      going away
---ignore-failed-sources
---legacy-packages-directory
---help
---force-english-output
+* --ignore-failed-sources
+* --legacy-packages-directory
+* --help
+* --force-english-output
     remove this from our commands for consistency in dotnet CLI
---non-interactive
+* --non-interactive
     add here
 
-(verbosity is covered via dotnet cli)
-
-
-
- 
-
-
-
-
+* (verbosity is covered via dotnet cli)
