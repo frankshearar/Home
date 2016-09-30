@@ -32,11 +32,10 @@ If a restore is bringing the wrong assembly, it is possible to exclude that pack
 Next, add your own reference to the appropriate local copy of the dll:
     <Reference Include="Newtonsoft.Json.dll" />
 
-##Issues:
-* Will we create any UI in VS to expose the fact that PackageTargetFallbacks are used/specified: no
-* We should ensure that NuGet logging output includes the fact that a PackageTargetFallback was used, since no compatible TFM was found.
+## Built in NuGet Knowledge about Compat & Fallbacks
 * We need to confirm that NuGet code already knows all the guaranteed compatible TFMs - review with Eric St. John, and others.
 * After we've confirmed our code is complete, we should consider adding some PackageTargetFallbacks into Microsoft targets as well.
 
-
-
+## Other issues
+* Will we create any UI in VS to expose the fact that PackageTargetFallbacks are used/specified: no
+* We should ensure that NuGet logging output includes the fact that a PackageTargetFallback was used, since no compatible TFM was found.
