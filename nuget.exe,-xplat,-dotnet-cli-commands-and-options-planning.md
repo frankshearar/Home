@@ -5,7 +5,7 @@
 * -Source
 * -NoPrompt
 
-  same as non-interactive?
+  same as non-interactive--check this
 * -ApiKey
 * -Help
 * -Verbosity
