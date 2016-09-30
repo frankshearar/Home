@@ -1,3 +1,9 @@
+# Problem
+Inconsitent options across commands in NuGet.exe, the XPlat DLL and dotnet CLI.
+
+# Solution
+(under discussion)
+
 # Commands and options
 
 # Delete
