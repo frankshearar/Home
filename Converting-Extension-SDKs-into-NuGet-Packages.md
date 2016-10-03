@@ -24,6 +24,7 @@ Package authors need to create a Targets file using existing semantics described
       <Configuration>Debug</Configuration>
       <Architecture>x86</Architecture>
       <Version>1.3.24201.0</Version>
+      <Publisher>Microsoft</Publisher>
     </AppxPackageRegistration>
 
 
