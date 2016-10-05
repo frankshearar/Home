@@ -1,20 +1,20 @@
 ## Problem
-How do DotNetCliTools change from Preview2?
+How do DotNetCliTool references change from Preview2?
 
 ## Who is the customer?
-* DotNet Devs using dotnetclitools
-* DotNet Devs building dotnetclitools
+* DotNet Devs using dotnetclitool references
+* DotNet Devs building dotnetclitool references
 
 ## Solution
 ### toolsref in csproj
 We need to finalize on the technique here. Two ideas currently on the table.
 
-#### DotNetCliToolsReference Technique
-    <DotNetCliToolsReference Include="Microsoft.AspNet.EF.Tools" Version="1.0.0" />
+#### DotNetCliToolReference Technique
+    <DotNetCliToolReference Include="Microsoft.AspNet.EF.Tools" Version="1.0.0" />
     [Note .. version won’t work as an attribute until RC…waiting on Msbuild feature. Until then use version child element…]
 
 If you wanted to list it as both a packageref and a tools ref, you would:
-    <DotNetCliToolsReference Include="Microsoft.AspNet.EF.Tools" Version="1.0.0" />
+    <DotNetCliToolReference Include="Microsoft.AspNet.EF.Tools" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNet.EF.Tools" />
 
 #### PackageReference UsePackageAs Technique
