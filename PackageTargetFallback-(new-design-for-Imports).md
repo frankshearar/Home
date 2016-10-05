@@ -25,11 +25,13 @@ PackageTargetFallbacks may have been set in one of Microsoft targets (we are con
 
 ## Replacing one library from a restore graph
 If a restore is bringing the wrong assembly, it is possible to exclude that packages default choice, and replace it with your own choice. First with a top level packagereference, exclude all assets:
+
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1">
         <ExcludeAssets>All</ExcludeAssets>
     </PackageReference>
 
 Next, add your own reference to the appropriate local copy of the dll:
+
     <Reference Include="Newtonsoft.Json.dll" />
 
 ## Built in NuGet Knowledge about Compat & Fallbacks
