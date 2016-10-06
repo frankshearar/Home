@@ -79,6 +79,7 @@ We’ll be talking with CLI folks about making the need for this to go away
 
 ####Type=Build
 If we are able to get rid of the need for type=platform, we’d like to make type=build as simple as:
+
     <PackageReference Include="NuGet.Versioning" Version="3.6.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>            
