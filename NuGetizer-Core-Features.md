@@ -63,13 +63,24 @@ The default behavior of the built-in `GetPackageVersion` target is to set `$(Pac
 
 
 ### Package Files
+ 
+By default, the virtual package will include .NET libraries (from `BuiltProjectOutputGroup`) and their 
+symbols (from `DebugSymbolsProjectOutputGroup`), xml docs (from `DocumentationProjectOutputGroup`), 
+satellite assemblies (from `SatelliteDllsProjectOutputGroup`), framework references 
+(from `'%(ReferencePath.ResolvedFrom)' == '{TargetFrameworkDirectory}'`, and content files (from `ContentFilesProjectOutputGroup`), however platform-specific targets can add additional platform-specific files.
 
-By default, the virtual package will include .NET libraries, xml docs, satellite assemblies and framework references, 
-however platform-specific targets can add additional platform-specific files.
+> NOTE: these are the built-in [common targets output groups](https://github.com/Microsoft/msbuild/blob/master/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L5115).
 
-To opt out of these defaults, set `$(IncludeOutputs)`, `$(IncludeSymbols)` and `$(IncludeFrameworkReferences)` to 
-`false` as needed.
+To opt out of these defaults, set `$(IncludeOutputs)`, `$(IncludeSymbols)`, `$(IncludeFrameworkReferences)` and 
+`$(IncludeContent)` to `false` as needed.
 
+Since [content files](http://docs.nuget.org/ndocs/schema/nuspec#contentfiles-with-visual-studio-2015-update-1-and-later) 
+have particular requirements on placement (code language and target framework are required), support for `None` items 
+is also provided: just annotate them with `IncludeInPackage=true` item metadata, and they will be included as 
+package files in the relative target path they have within the project. So you can, for example, define your own 
+`None` items under a `contentFiles\cs\any\` folder to get them included in consuming C# projects of any target framework.
+
+Ultimately, all these built-in supported item types are turned into `PackageFile` items.
 
 A `PackageFile` item type allows projects and targets to add arbitrary files to the virtual package at the 
 package-relative location specified by the `PackagePath` item metadata. These should not generally need to be 
@@ -102,16 +113,16 @@ to add it to, such as:
 
 This file will end up in `/contentFiles/cs/any/Samples/ApiExample.cs`.
 
-By default, `CodeLanguage` and `TargetFramework` are considered `any`.
+By default, `CodeLanguage` and `TargetFramework` are set to `any`.
 
 #### PackagePath vs TargetPath
 
 When a `PackageFile` provides a `PackagePath`, that is the final relative path within the `nupkg` where the file 
-will end up. 
+will end up and no further processing is performed for them by the `AssignPackagePath` task. 
 
-If is quite common, however, to want the files to end up in whatever the right framework directory is for the kind 
-of file. For example, if you're providing a localized XML intellisense file, you would want it to end up in the 
-right `lib\[TFM]` root folder, under a relative path of (say) `es-AR`. You can achieve this with the `TargetPath` 
+If is quite common, however, to want the files to end up in whatever the right framework directory is depending on 
+the current project's TFM. For example, if you're providing a localized XML intellisense file, you would want it to 
+end up in the right `lib\[TFM]` root folder, under a relative path of (say) `es-AR`. You can achieve this with the `TargetPath` 
 as follows:
 
 ```xml
@@ -122,6 +133,8 @@ as follows:
 ```
 
 If the project being built is a NETStandard 1.6 one, this file will end up in `/lib/netstandard1.6/es-ar/MyLibrary.xml`.
+If you later decide to retarget the project to NETStandard 2.0, no changes will be necessary to the `PackageFile` 
+declaration above.
 
 
 ### Dependencies
