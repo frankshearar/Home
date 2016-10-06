@@ -6,6 +6,9 @@ NuGet currently supports SemVer 1.0.0 with additional support for four part vers
 
 http://semver.org/
 
+### Related specs
+This spec covers the basic client work to support SemVer 2.0.0, there is a significant drawback in this spec because it doesn't provide a backward compatible way for the older client to deal with servers that support SemVer 2.0.0 with the current set of protocols. https://github.com/NuGet/Home/wiki/Semver-2.0.0-Protocol is a suggestion for an expanded V2 & V3 protocol to allow for backward compatibility.
+
 ### Benefits
 SemVer 2.0.0 allows for better sorting of release labels. NuGet users are commonly forced to append extra zeros (NuGet.Client included) when building to avoid running out of room and having the labels sorted incorrectly. For example 1.0.0-beta-09 will come before 1.0.0-beta-10 according to the SemVer 1.0.0 lexicographical sorting.  With SemVer 2.0.0 versions may be written as 1.0.0-beta.9 and 1.0.0-beta.10. These labels are read individually and numerical only labels will be sorted as integers.
 
