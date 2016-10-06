@@ -71,8 +71,7 @@ satellite assemblies (from `SatelliteDllsProjectOutputGroup`), framework referen
 
 > NOTE: these are the built-in [common targets output groups](https://github.com/Microsoft/msbuild/blob/master/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L5115).
 
-To opt out of these defaults, set `$(IncludeOutputs)`, `$(IncludeSymbols)`, `$(IncludeFrameworkReferences)` and 
-`$(IncludeContent)` to `false` as needed.
+To opt out of these defaults, set `$(IncludeOutputsInPackage)`, `$(IncludeSymbolsInPackage)`, `$(IncludeFrameworkReferencesInPackage)` and `$(IncludeContentInPackage)` to `false` as needed.
 
 Since [content files](http://docs.nuget.org/ndocs/schema/nuspec#contentfiles-with-visual-studio-2015-update-1-and-later) 
 have particular requirements on placement (code language and target framework are required), support for `None` items 
@@ -149,12 +148,12 @@ at all.
 
 * The project's project references ("P2P").
 
-Project references can be excluded from the virtual package using the `ReferenceOutputPackage` metadata, 
+Project references can be excluded from the virtual package by setting `IncludeInPackage=false` metadata, 
 which is analogous to [ReferenceOutputAssembly](https://blogs.msdn.microsoft.com/kirillosenkov/2015/04/04/how-to-have-a-project-reference-without-referencing-the-actual-binary/):
 
 ```xml
 <ProjectReference Include="..\OtherProject\OtherProject.csproj">
-    <ReferenceOutputPackage>false</ReferenceOutputPackage>
+    <IncludeInPackage>false</IncludeInPackage>
 ```
 
 When generating its virtual package, a referencing project will call the `GetPackageContents` target on each 
