@@ -125,9 +125,9 @@ The virtual package will implicitly depend on the project's dependencies:
 
 * NuGet packages referenced directly via project.json or `PackageReference` items.
 
-> NOTE: packages.config contains the closure of all dependencies. Typically not what you want 
-> your top level packages to declare dependencies on. So it may be better to not support it 
-> at all.
+**TBD:** packages.config contains the closure of all dependencies. Typically not what you want 
+your top level packages to declare dependencies on. So it may be better to not support it 
+at all.
 
 * The project's project references ("P2P").
 
