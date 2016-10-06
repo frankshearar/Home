@@ -38,7 +38,7 @@ The suggestion is to make versions that are not SemVer 1.0.0 compliant be invisi
 1. The WebSite - Should it highlight semver 2.0 differently (or provide a filter?)
 2. The Catalog - Shouldn't have any affect
 
-### Suggestion
+### Suggestion (rough and not detailed)
 
 1. On the OData side add a query string SemVerLevel=2, without it the server should filter out non compliant SemVer1 
 1. On the search side follow the same pattern
