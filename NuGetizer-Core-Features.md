@@ -34,6 +34,11 @@ If the project is not configured to build a package, no metadata item will be in
 when creating nupkgs, it also allows projects to inspect package metadata and items from the projects that 
 they reference.
 
+> NOTE: The `$(IsPackable)` property can be used in conditions to determine if a project generates an actual
+> nupkg. This property is 'true' if the project defines a 'PackageId'. The built-in 
+> [GetTargetPath](https://github.com/Microsoft/msbuild/blob/30c9fbca0fe96fb49548df3ab40bdd4cb49d4450/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L1730-L1740) target is [redefined and extended](https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.targets#L49-L59) to include this metadata too, so it's easy for MSBuild targets to determine if a project reference 
+> has been 'nugetized' or not, without risking invoking non-existing targets (i.e. 'GetPackageContents').
+
 ### Metadata
 
 Metadata is specified as [project properties](https://github.com/NuGet/Home/wiki/Adding-nuget-pack-as-a-msbuild-target#pack-target-inputs). This metadata can be retrieved from a project in two ways:
