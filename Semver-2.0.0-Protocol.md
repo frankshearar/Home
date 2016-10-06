@@ -1,15 +1,27 @@
 ## Issue
-Link to the GitHub issue that tracks the work and discussion.
+https://github.com/NuGet/Home/issues/3610
 
 ## Problem
-_What is the problem(s) we are trying to solve? Why is it a problem. What horrible workarounds are we subjecting our users too._
+With the introduction of SemVer 2.0.0 support in the client we are now facing the next challenge of making it widely available on servers that serve a large or diverse community of users.
+
+Older versions of the NuGet client (pre 3.5 & 2.14 respectively) do not understand SemVer 2.0.0. That means that when trying to parse a list of available version from a feed, these client will error out badly and will not be able to get to a point where they can download a package.
+
+For example imagine a package on nuget.org that releases pre-release versions with build numbers. Older clients are no longer able to parse through the version metadata and pick a version even if the one they are looking for is a SemVer 1.0.0 compliant.
+
+For example the following available versions for a package will break older clients trying to read it.
+1.0.0
+2.0.0-Beta
+2.0.0-RC.1
+
+Given that we have no time machine available, we can't go back in time and fix older clients to be compliant, but we still want servers to be able to adopt semver 2.0 without forcing all their clients to update.
 
 ## Who is the customer?
-_Who is the customer that is running into the problem. Which customers would dance for joy and donate to save the space unicorns foundation on getting this feature. Customers here could be individuals, nuget customer segments (package authors, consumers), enterprises, partners within Microsoft, external partners etc..._
-
-## Evidence
-_What is the evidence that behaves us to act?_
-_Evidence can be impassioned tweets or mails, mile long conversations in issues, rants on blogs, sweet sweet data from telemetry!!! If you can show pain, you can rally the troops._
+We have two type of customers here
+1. Server owners (including us as the owners of nuget.org) that want to serve a hetrogeneous set of clients
+2. Customers that consume packages from public or private feeds that do not wish to upgrade their visual studio/NuGet extension/nuget.exe on their build server for any reason.
 
 ## Solution
-_Detailed explanation of the solution. The more pictures/code snippets based on the feature the merrier. Pictures keep folks awake when reading specs._
+
+### Lets start with the idea
+
+The suggestion is to make Non SemVer 1.0.0 compliant versions to be invisible to older client. These clients will simply not see the new pre-release versions that will break them.
