@@ -68,11 +68,12 @@ Items:
 ####PackageIconUrl
 As part of the change for feature, https://github.com/NuGet/Home/issues/2582, PackageIconUrl will eventually be changed PackageIconUri and can be relative path to a icon file which will included at the root of the resulting package.
 ####Output Assemblies
-NuGet pack will copy the output assemblies from the directory list obtained from $(TargetDir) (This will be a list of directories in Cross-Targeting scenario) . The output assemblies to be copied depend on the following criteria:
-* Any filename that matches the $(AssemblyName) & has the extension .exe,.dll,.xml or .winmd (or .pdb if IncludeSymbols=true).
-* Any filename that matches the AssemblyName of a ProjectReference that does not have ReferenceOutputAssembly=false and has the extension .exe,.dll,.xml or .winmd (or .pdb if IncludeSymbols=true).
+NuGet pack will copy the output files (which are of extension .exe, .dll, .xml, .winmd). The output files that are copied depend on what MSBuild provides from BuiltOutputProjectGroup target. 
 
-Note that ProjectReference assemblies are only searched for in host project's output directory in the corresponding target framework folder. They are copied out to lib\\\<TargetFrameworkShortName>\\\<fileName>
+There are two msbuild properties that you can use in your project file or command line to control where output assemblies go:
+
+1) IncludeBuildOuput : This is a boolean, which decided whether the build output assemblies should be packed into the nupkg or not.
+2) BuildOutputTargetFolder : Specify the folder in which the output assemblies should go to. The output assemblies (and other output files) are copied into their respective framework folders.
 
 ####Package References
 TODO: Link to the spec for package reference, which is still being designed.
