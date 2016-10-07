@@ -23,5 +23,21 @@ If projects with PackageReference is opened in the downlevel version of NuGet pa
 
 **Message:** Managing NuGet packages through PackageReferences is only supported in Visual Studio 2017 and above. Revert to project.json or packages.config to manage NuGet packages for {ProjectName}. To learn more, refer to following link https://aka.ms/packagereferencesupport
 
+### PackageReference behavior in VS 2017+
+At RTM, PackageReference will only be added if project.json and packages.config are missing in a project and/or a PackageRefernece is detected in the project, If a PackageReference is detected, future references will be added as PackageReference and all NuGet actions will be performed on this basis. 
+
+The user will have to explicitly migrate existing dependencies to PackageReference. Automatic migration will not be available at RTM. In other classic desktop projects or PCLs when a user tries to add the first NuGet package, will bring up a dialog that gives them a choice a using packages.config or PackageReference to manage their dependencies.
+
+**Title:** Choose NuGet Package Management Format
+**Message:** In Visual Studio 2017 and above, NuGet Packages can be managed using PackageReferences in your project file. To learn more about PackageReferences, refer to the following link https://aka.ms/packagereferencesupport
+Buttons: Choose Packages.config, Choose PackageReference
+
+
+
+
+
+
+
+
 
 
