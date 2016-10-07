@@ -16,4 +16,12 @@ There are 2 key scenarios at play here.
 
 ### Supported VS Versions
 
-One thing to note is that PackageReference support is only available in VS "15" RTM+ versions of Visual Studio. Customers upgrading to PackageReference will be unable to roundtrip their projects with previous versions of Visual Studio including VS 2015
+One thing to note is that PackageReference support is only available in VS "15" RTM+ versions of Visual Studio and the corresponding versions of NuGet.exe. Customers upgrading to PackageReference will be unable to roundtrip their projects with previous versions of Visual Studio including VS 2015
+
+### PackageReference behavior in VS 2015
+If projects with PackageReference is opened in the downlevel version of NuGet package manager that will be shipped with VS 2017. We will show a error in the errorlist when a restore is invoked on a project that contains a package reference or any operations through PMC or the Package Manager UI is tried on that project.
+
+**Message:** Managing NuGet packages through PackageReferences is only supported in Visual Studio 2017 and above. Revert to project.json or packages.config to manage NuGet packages for {ProjectName}. To learn more, refer to following link https://aka.ms/packagereferencesupport
+
+
+
