@@ -76,7 +76,7 @@ There are two msbuild properties that you can use in your project file or comman
 2) BuildOutputTargetFolder : Specify the folder in which the output assemblies should go to. The output assemblies (and other output files) are copied into their respective framework folders.
 
 ####Package References
-TODO: Link to the spec for package reference, which is still being designed.
+Spec to Package References : https://github.com/NuGet/Home/wiki/PackageReference-Specification
 
 ####Project to Project References
 Project to Project references will be, by default, be considered as nuget package references. However, this behavior can be overridden in the following manner:
