@@ -43,8 +43,8 @@ they reference.
 
 Metadata is specified as [project properties](https://github.com/NuGet/Home/wiki/Adding-nuget-pack-as-a-msbuild-target#pack-target-inputs). This metadata can be retrieved from a project in two ways:
 
-* Via the `GetPackageContents`, by inspecting the item with the `%(Kind)='Metadata'` metadata.
 * Via the `GetPackageTargetPath` target, which gets just the metadata item, and is analogous to the `GetTargetPath`.
+* Alternatively, via the `GetPackageContents`, by inspecting the item with the `%(Kind)='Metadata'` metadata.
 
 Note that project properties sometimes have the *Package* prefix to disambiguate values, such as `$(PackageRequireLicenseAcceptance)`, `$(PackageLicenseUrl), `$(PackageProjectUrl)` and $(PackageTags). 
 The manifest metadata in retrieved by either of the above ways never contains the *Package* since 
@@ -71,7 +71,9 @@ satellite assemblies (from `SatelliteDllsProjectOutputGroup`), framework referen
 
 > NOTE: these are the built-in [common targets output groups](https://github.com/Microsoft/msbuild/blob/master/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L5115).
 
-To opt out of these defaults, set `$(IncludeOutputsInPackage)`, `$(IncludeSymbolsInPackage)`, `$(IncludeFrameworkReferencesInPackage)` and `$(IncludeContentInPackage)` to `false` as needed.
+To opt out of these defaults, set `$(IncludeOutputsInPackage)`, `$(IncludeSymbolsInPackage)`, `$(IncludeFrameworkReferencesInPackage)` and `$(IncludeContentInPackage)` to `false` as needed. For `Content` items, 
+you can opt out specific items by setting the `IncludeInPackage=false` item metadata instead of turning content 
+inclusion off entirely via `$(IncludeContentInPackage)=false`.
 
 Since [content files](http://docs.nuget.org/ndocs/schema/nuspec#contentfiles-with-visual-studio-2015-update-1-and-later) 
 have particular requirements on placement (code language and target framework are required), support for `None` items 
