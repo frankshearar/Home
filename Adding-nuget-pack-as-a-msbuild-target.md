@@ -73,6 +73,7 @@ NuGet pack will copy the output files (which are of extension .exe, .dll, .xml, 
 There are two msbuild properties that you can use in your project file or command line to control where output assemblies go:
 
 1) IncludeBuildOuput : This is a boolean, which decided whether the build output assemblies should be packed into the nupkg or not.
+
 2) BuildOutputTargetFolder : Specify the folder in which the output assemblies should go to. The output assemblies (and other output files) are copied into their respective framework folders.
 
 ####Package References
