@@ -180,7 +180,6 @@ project's output directory. The `$(PackageOutputPath)` property can be specified
 A `PackOnBuild=true` property causes the `Pack` target to be added as a `BuildDependsOn` post-build step to 
 allow building all NuGets in a solution via `msbuild Foo.sln /p:PackOnBuild=true`.
 
-**TBD:** replace this with a solution level target?
 
 ## Package Projects
 
