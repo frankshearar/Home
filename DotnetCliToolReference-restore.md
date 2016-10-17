@@ -2,7 +2,7 @@
 
 Tool restore files will be written to the ``obj`` folder along side the ``project.assets.json`` file.
 
-Each tool is written to a separate file to track success/failure and related restore errors and warnings.
+Each tool is written to a separate file to track success/failure and related restore errors and warnings individually.
 
 Example path ``myProject\obj\myTool.dotnetclitool.json``
 
