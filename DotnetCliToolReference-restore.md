@@ -133,3 +133,7 @@ public class DotnetCliToolFile
     public IList<FileLogEntry> Log { get; set; } = new List<FileLogEntry>();
 }
 ```
+
+### Open questions
+
+1. The deps file stores package hashes, if an author edits a package on nuget.org and the hash no longer matches the deps from stored in a tool package, will the tool runner allow the package to be used?
