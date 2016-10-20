@@ -115,6 +115,14 @@ If developers need to specify multiple versions of the assembly targeting specif
     \ref\uap10.0.14393.0\*
     \ref\uap10.0.10586.0\*
 
+### Designer Requirements
+
+#### Support C++
+We need to be able to 
+
+
+
+Support Edit Template
 
 
  
