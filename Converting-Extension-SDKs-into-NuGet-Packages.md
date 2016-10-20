@@ -74,9 +74,9 @@ The following manifest snippet shows only the set of properties that are recogni
       </File>
     </FileList>
 
-Extension SDK manifest needs to be placed in the root of the contentFiles directory and is optional. Manifest is primarily required to specify metadata used by the designer tools in Visual Studio and if you are not shipping controls then it is not required.
+Extension SDK manifest needs to be placed in the root of the contentFiles directory and is optional. Manifest is primarily required to specify metadata used by the designer tools in Visual Studio and if you are not shipping controls then it is not required. This manifest needs to be renamed as **VisualStudioToolsManifest.xml** inorder for the tools to pick this up.
 
-    \contentFiles\SDKManifest.xml
+    \contentFiles\**VisualStudioToolsManifest.xml**
 
 The semantics of the options in the trimmed manifest are spec'ed out in the original design of the SDK manifest available [here](https://msdn.microsoft.com/en-us/library/hh768146.aspx). 
 
@@ -105,7 +105,7 @@ E.g, If you want to target RS1 version of the SDK, you can name the folder as th
     \lib\uap10.0.10586.0\*
     \ref\uap10.0.10586.0\*
 
-This nuget package is applicable to all projects who **TPV is either 10.0.10586.0** or **TPM>= 10.0.10586.0 && TPV<= 10.0.10586.0**. **ref** is given here for completeness and is only required if you have a reference assembly that is used to compile the app and there is a different implementation assembly in lib that is copied into the apps output.
+This nuget package is applicable to all projects who's  **TPV>= 10.0.10586.0. **ref** is given here for completeness and is only required if you have a reference assembly that is used to compile the app and there is a different implementation assembly in lib that is copied into the apps output.
 
 
 If developers need to specify multiple versions of the assembly targeting specific versions of the SDK they can do by creating multiple libraries targeting specific versions of the OS. E.g,
