@@ -114,6 +114,10 @@ If developers need to specify multiple versions of the assembly targeting specif
     \ref\uap10.0.14393.0\*
     \ref\uap10.0.10586.0\*
 
+In order to get Min support working, users will needs to author this check in their Target. 
+
+**Sample TBD**
+
 ### Designer Requirements
 
 #### Support C++
