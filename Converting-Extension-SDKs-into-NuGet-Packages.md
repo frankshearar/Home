@@ -27,8 +27,7 @@ Package authors need to create a Targets file using existing semantics described
       <Publisher>Microsoft</Publisher>
     </AppxPackageRegistration>
 
-
-
+The WinMD for the Framework package needs to be part of the AppX since this needs to be compiled by the Store.
 
 ### Extension SDK Manifests
 
