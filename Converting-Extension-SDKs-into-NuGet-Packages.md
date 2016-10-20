@@ -79,6 +79,8 @@ Extension SDK manifest needs to be placed in the root of the contentFiles direct
 
 The semantics of the options in the trimmed manifest are spec'ed out in the original design of the SDK manifest available [here](https://msdn.microsoft.com/en-us/library/hh768146.aspx). 
 
+**Verify toolbox icons**
+
 ### Supporting Platform Versions in UAP NuGet Packages
 
 UAP packages have a **TargetPlatformVersion(TPV)** and **TargetPlatformMinVersion(TPM)** that defines the upper and lower bounds of the OS version where the app can be installed into. TPV further specifies the version of the SDK that the app is compiled against. 
