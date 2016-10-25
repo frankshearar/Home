@@ -33,7 +33,7 @@ The user will have to explicitly migrate existing dependencies to PackageReferen
 
 **Message:** In Visual Studio 2017 and above, NuGet Packages can be managed using PackageReferences in your project file. To learn more about PackageReferences, refer to the following link https://aka.ms/packagereferencesupport
 
-** Checkbox**: Don't show this message again. This will set your default option as packages.config. You can change your default in NuGet settings in Tools and Option.
+**Checkbox**: Don't show this message again. This will set your default option as packages.config. You can change your default in NuGet settings in Tools and Option.
 
 **Buttons**: Choose Packages.config, Choose PackageReference - For classic projects
 
@@ -41,7 +41,7 @@ The user will have to explicitly migrate existing dependencies to PackageReferen
 
 In addition to this we will have a new option in NuGet Options in Visual Studio that will specify the default behavior that is set when users either.
 
-**Set default package management format** - ComboBox with the following options (PackageReference, Packages.config/Project.json)
+**Set default package management format** - ComboBox with the following options (PackageReference, Packages.config or Project.json)
 
 In addition, to this option, we will have another option that will specify whether to show the dialog on first package addition to a new packages.config.
 
