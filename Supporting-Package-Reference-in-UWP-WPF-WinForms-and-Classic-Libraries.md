@@ -29,16 +29,25 @@ At RTM, PackageReference will only be added if project.json and packages.config 
 
 The user will have to explicitly migrate existing dependencies to PackageReference. Automatic migration will not be available at RTM. In other classic desktop projects or PCLs when a user tries to add the first NuGet package, will bring up a dialog that gives them a choice a using packages.config or PackageReference to manage their dependencies.
 
-********************************* TBD***************************************************
 **Title:** Choose NuGet Package Management Format
 
 **Message:** In Visual Studio 2017 and above, NuGet Packages can be managed using PackageReferences in your project file. To learn more about PackageReferences, refer to the following link https://aka.ms/packagereferencesupport
 
-** Checkbox**: Dont show this message again. This will set your default option as packages.config. You can change your default in NuGet settings in Tools and Option.
+** Checkbox**: Don't show this message again. This will set your default option as packages.config. You can change your default in NuGet settings in Tools and Option.
 
-**Buttons**: Choose Packages.config, Choose PackageReference
+**Buttons**: Choose Packages.config, Choose PackageReference - For classic projects
 
-In addition to this we will have a new option in NuGet Options in Visual Studio that will specify the default behavior that is set when users either 
+**Buttons**: Choose project.json, Choose PackageReference - For UWP projects
+
+In addition to this we will have a new option in NuGet Options in Visual Studio that will specify the default behavior that is set when users either.
+
+** Set default package management format ** - ComboBox with the following options (PackageReference, Packages.config/Project.json)
+
+In addition, to this option, we will have another option that will specify whether to show the dialog on first package addition to a new packages.config.
+
+** Show package management format chooser on first package install ** - ComboxBox (Yes, No)
+
+
 
 The default behavior is to keep using packages.config for classic projects. You can use the option to change it to Package References.
 
