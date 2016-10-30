@@ -31,7 +31,7 @@ TBD
 
 ### Diagnostics Scenarios (Ordered in terms of priority)
 
-  * Server is not accessible: Server is not available or server can't be reached
+  * Server is not accessible: Server is not available or server can't be reached. ** Consider the case when searching in all sources finds the package in one source and not in a disabled source, the customer expects that package assuming it has no dependencies to install fine **
   * Server is slow: Package has a large number of versions (1000+ CI feeds). Server implementation is not optimal for large version set
   * FileShare is not efficient
   * vNext (Requires proxy rules): Semantic understanding of what packages are being downloaded per source
