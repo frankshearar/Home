@@ -37,7 +37,7 @@ The user will have to explicitly migrate existing dependencies to PackageReferen
 
 **Radio Buttons**: Choose project.json, Choose PackageReference - For UWP projects
 
-** Text**: To set the default package management format or to not show this dialog on first package install, click here.[Here points to Tools->Options->NuGet Package Manager -> General]
+**Text**: To set the default package management format or to not show this dialog on first package install, click here.[Here points to Tools->Options->NuGet Package Manager -> General]
 
 **Butttons**: Ok
 
