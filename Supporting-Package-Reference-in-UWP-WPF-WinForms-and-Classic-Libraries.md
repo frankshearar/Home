@@ -41,15 +41,13 @@ The user will have to explicitly migrate existing dependencies to PackageReferen
 
 **Butttons**: Ok
 
-In addition to this we will have a new option in NuGet Options in Visual Studio that will specify the default behavior that is set when users either.
+We will have a new option in NuGet Options in Visual Studio that will specify the default behavior that is set when users either.
 
 **Set default package management format** - ComboBox with the following options (PackageReference, Packages.config or Project.json)
 
 In addition, to this option, we will have another option that will specify whether to show the dialog on first package addition to a new packages.config.
 
 **Show package management format chooser on first package install** - ComboxBox (Yes, No)
-
-
 
 The default behavior is to keep using packages.config for classic projects. You can use the option to change it to Package References.
 
