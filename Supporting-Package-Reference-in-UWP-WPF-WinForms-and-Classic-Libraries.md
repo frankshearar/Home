@@ -42,7 +42,7 @@ The user will have to explicitly migrate existing dependencies to PackageReferen
 **Butttons**: Ok
 
 
-![mockup](https://github.com/NuGet/Home/blob/dev/resources/upgraderImage.png)
+![mockup](https://github.com/NuGet/Home/blob/dev/resources/FormatChooser.png)
 
 We will have a new option in NuGet Options in Visual Studio that will specify the default behavior that is set when users either.
 
