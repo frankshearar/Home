@@ -25,6 +25,7 @@
 * [Search by Package Type and Query Language Surfacing](https://github.com/NuGet/Home/wiki/Search-by-Package-Type-and-Query-Language-Surfacing)
 * [Multiple API Keys](https://github.com/NuGet/Home/wiki/Multiple-API-Keys)
 * [Command option consistency](https://github.com/NuGet/Home/wiki/nuget.exe,-xplat,-dotnet-cli-commands-and-options-planning)
+* [Secret Rotation](https://github.com/NuGet/Home/wiki/Secret-Rotation)
 
 #### Reviewing
 * [NuGetizer 3000](https://github.com/NuGet/Home/wiki/NuGetizer-3000)
