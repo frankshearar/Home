@@ -50,7 +50,8 @@ Current default is permissive. New default will be normal.
 
 ###Asset Inclusion
 Include/Exclude/Private Assets
-<!-- below are the default values for these 3 settings, consistent with project.json today 
+<!-- below are the default values for these 3 settings, consistent with project.json today
+
     <PackageReference Include="NuGet.Versioning" Version="3.6.0">
       <IncludeAssets>all</IncludeAssets>
       <ExcludeAssets>none</ExcludeAssets>
