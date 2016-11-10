@@ -11,7 +11,7 @@ can be determined by inspecting the `%(Kind)` metadata, which can be:
 
 Kind| Description
 --- | --- 
-Lib, Symbols, Doc|The assembly, symbols (.pdb) and xml documentation files that end up under the `lib` folder inside the package.
+Lib |The assembly, symbols (.pdb) and xml documentation files that end up under the `lib` folder inside the package.
 Metadata|The package metadata, defined in project properties.
 Dependency|The package dependencies.
 Build, Tools, ContentFiles, Native, Runtimes, Ref, Analyzers, Source|The files in the various [known folders](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Packaging/PackagingConstants.cs#L19-L27) in a package. <br/>TBD: maybe we should remove these from the doc for now? Not clear how some are used currently?
@@ -27,7 +27,8 @@ Common Metadata| Description
 
 
 The `GetPackageContents` target depends on the `GetPackageContentsDependsOn` property, allowing other targets 
-to inject information into the virtual package.
+to inject information into the virtual package. It's also possible to just create a new target and specify 
+`BeforeTargets="GetPackageContents"` instead, to contribute additional items.
 
 The virtual package is returned regardless of whether the project is actually configured to build a package. 
 If the project is not configured to build a package, no metadata item will be included. It is not only used 
@@ -36,8 +37,9 @@ they reference.
 
 > NOTE: The `$(IsPackable)` property can be used in conditions to determine if a project generates an actual
 > nupkg. This property is 'true' if the project defines a 'PackageId'. The built-in 
-> [GetTargetPath](https://github.com/Microsoft/msbuild/blob/30c9fbca0fe96fb49548df3ab40bdd4cb49d4450/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L1730-L1740) target is [redefined and extended](https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.targets#L49-L59) to include this metadata too, so it's easy for MSBuild targets to determine if a project reference 
-> has been 'nugetized' or not, without risking invoking non-existing targets (i.e. 'GetPackageContents').
+> [GetTargetPath](https://github.com/Microsoft/msbuild/blob/30c9fbca0fe96fb49548df3ab40bdd4cb49d4450/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L1730-L1740) target is [redefined and extended](https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.targets#L49-L59) to include this metadata as well as an `IsNuGetized=true` metadata value, so it's easy for MSBuild targets to 
+> determine if a project reference produces a nuget package or not, and if it has been 'nugetized' or not, without 
+> risking invoking non-existing targets (i.e. 'GetPackageContents').
 
 ### Metadata
 
@@ -56,10 +58,11 @@ The version of the package to build can be specified as the `PackageVersion` pro
 
 It is pretty common for this value to be more dynamic, so you can either redefine the `GetPackageVersion` 
 target or add your target to the `GetPackageVersionDependsOn` to populate the `$(PackageVersion)` 
-property. The NuGetizer itself [uses this mechanism](https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.Tasks.targets) to version its package leveraging Git information.
+property. The NuGetizer itself uses this mechanism to version its package leveraging Git information.
 
 The default behavior of the built-in `GetPackageVersion` target is to set `$(PackageVersion)` to 
-`$(Version)` if it's empty by the time the target runs. 
+`$(Version)` if it's empty by the time the target runs, which is the same property used by [.NET Core]
+(https://github.com/dotnet/sdk/blob/master/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.GenerateAssemblyInfo.targets#L120-L122).
 
 
 ### Package Files
@@ -87,9 +90,9 @@ A `PackageFile` item type allows projects and targets to add arbitrary files to 
 package-relative location specified by the `PackagePath` item metadata. These should not generally need to be 
 used directly in project files. Platform-specific targets should add targets to `GetPackageContentsDependsOn` 
 that synthesizes `PackageFile` items as appropriate from platform-specific items such as `Content` and `BundleResource`. 
-You can see a concrete example of this usage in the NuGetizer [build tasks project]https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.Tasks.targets) itself, in the `AddBuiltOutput` target.
+You can see a concrete example of this usage in the NuGetizer [build tasks project]https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.Tasks.targets#L36) itself, in the `AddBuiltOutput` target.
 
-For example, the iOS build targets might do the following, so that the a library's `BundleResource` items would end up in any referencing projects.
+For example, the iOS build targets might do the following, so that a library's `BundleResource` items would end up in any referencing projects.
 
 ```xml
 <PackageFile Include="@(_BundleResourceWithOutputPath)">
@@ -128,7 +131,7 @@ as follows:
 
 ```xml
 <PackageFile Include="MyLibrary.es-AR.xml">
-    <Kind>Doc</Kind>
+    <Kind>Lib</Kind>
     <TargetPath>es-AR\MyLibrary.xml</TargetPath>
 </PackageFile>
 ```
@@ -144,10 +147,6 @@ The virtual package will implicitly depend on the project's dependencies:
 
 * NuGet packages referenced directly via project.json or `PackageReference` items.
 
-**TBD:** packages.config contains the closure of all dependencies. Typically not what you want 
-your top level packages to declare dependencies on. So it may be better to not support it 
-at all.
-
 * The project's project references ("P2P").
 
 Project references can be excluded from the virtual package by setting `IncludeInPackage=false` metadata, 
@@ -159,9 +158,9 @@ which is analogous to [ReferenceOutputAssembly](https://blogs.msdn.microsoft.com
 ```
 
 When generating its virtual package, a referencing project will call the `GetPackageContents` target on each 
-of its project references that have not been excluded from the package. If the referenced virtual package has 
-metadata, it will be added to the project's own virtual package as a package dependency. If the referenced virtual 
-package does not have metadata, will will be merged into the project's own virtual package.
+of its project references that have not been excluded from the package. If the referenced project reference as 
+package metadata, it will be added to the project's own virtual package as a package dependency. Otherwise, its
+outputs are merged into the referencing project's own virtual package.
 
 ### Package Merging
 
@@ -190,7 +189,8 @@ The package project targets consumes the same targets as regular projects. Packa
 
 The only items supported by the package project targets will be `PackageReference`, `PackageFile` and `ProjectReference`.
 
-**TBD:** can easily support project.json NuGet packages too.
+> NOTE; we support project.json and packages.config to define package references too. This allows us to reuse the 
+> NuGet package manager without changes.
 
 `PackageReference`and `PackageFile` allow using package projects to create nupkgs with full control over content and dependencies.
 
@@ -206,13 +206,10 @@ A packaging project can also be used to create metapackages. In this case, it wo
 
 ## IDE Support
 
-A new project flavor will be added for package projects. It will support project references, package references, and files.
+A new project flavor will be added for package projects. It will support project references, package references, and files. Building this project type causes a package to be created.
 
-Package projects and library projects will have a project options panel that allows setting the NuGet metadata.
-
-**TBD:** the only way we can add project options to library projects is by flavoring them "on the fly" on first use of _Create NuGet Package_ context menu.
-
-
-A _Create NuGet Package_ command will be available in the solution tree on solutions and all projects that have package metadata.. It will run the `Pack` target to allow building the package project.
+A _Create NuGet Package_ command is available in the solution tree on solutions and all projects. When it's run for 
+a solution, it will set the `PackOnBuild=true` property and build the solution normally, causing all configured 
+packages to be created. When run for a project, it will first show a dialog with the package metadata (to allow modifications prior to generating the package).
 
 A project template will be added for creating package projects. When run, it will show a dialog prompting the user to provide basic metadata and to choose which frameworks they would like to support.
