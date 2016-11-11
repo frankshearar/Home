@@ -47,6 +47,7 @@
 * [Support nuget locals command in dotnet CLI](https://github.com/NuGet/Home/wiki/Support-locals-command-in-dotnet-cli)
 * [Restore target](https://github.com/NuGet/Home/wiki/%5BSpec%5D-MSBuild-restore-target)
 * [Adding nuget pack as a msbuild target](https://github.com/NuGet/Home/wiki/Adding-nuget-pack-as-a-msbuild-target)
+* [Issue server-side warnings to NuGet client](https://github.com/NuGet/Home/wiki/%5BSpec%5D-Server-side-warnings-for-NuGet-client)
 
 #### Archived
 
