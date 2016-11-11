@@ -2,7 +2,7 @@
 
 ## Problem
 
-The NuGet client issues warnings an errors as they are encountered. For example a warning is shown when running `nuget pack` and package metadata is invalid. Or an error when `nuget push` fails to authenticate with a remote server.
+The NuGet client issues warnings and errors as they are encountered. For example a warning is shown when running `nuget pack` and package metadata is invalid. Or an error when `nuget push` fails to authenticate with a remote server.
 
 Currently, NuGet servers can return errors to the NuGet client using standard HTTP error codes. However adding a warning to responses is not possible.
 
