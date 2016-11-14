@@ -69,6 +69,7 @@ All three of these can include any of the following values:
 * Runtime – are the contents of the runtime folder distributed
 * ContentFiles – are the contents of the contentfiles folder used
 * Build – do the props/targets in the build folder get used
+* Native - are the contents from native assets copied to the output folder for runtime
 * Analyzers – do the analyzers get used
 
 Or, instead:
