@@ -26,6 +26,7 @@
 * [Multiple API Keys](https://github.com/NuGet/Home/wiki/Multiple-API-Keys)
 * [Command option consistency](https://github.com/NuGet/Home/wiki/nuget.exe,-xplat,-dotnet-cli-commands-and-options-planning)
 * [Secret Rotation](https://github.com/NuGet/Home/wiki/Secret-Rotation)
+* [Support dotnet add\update\del packageref](https://github.com/NuGet/Home/wiki/Support-dotnet-ref-add%7Cupdate%7Cdelete-packageref)
 
 #### Reviewing
 * [NuGetizer 3000](https://github.com/NuGet/Home/wiki/NuGetizer-3000)
