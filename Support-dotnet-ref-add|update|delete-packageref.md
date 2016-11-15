@@ -43,13 +43,11 @@ e.g. - `dotnet ref update Newtonsoft.Json ` -> Should be same as ->`dotnet ref u
 		<td>A and B</td>
 		<td>
 <pre>
-	<code>
 		&lt;ItemGroup&gt;
 			&lt;PackageReference Include="Newtonsoft.Json"&gt;
 				&lt;Version&gt;9.0.1&lt;/Version&gt;
 			&lt;/PackageReference&gt;
 		&lt;/ItemGroup&gt;
-	</code>
 </pre>
 		</td>
 	</tr>
@@ -59,14 +57,12 @@ e.g. - `dotnet ref update Newtonsoft.Json ` -> Should be same as ->`dotnet ref u
 		<td>Only A</td>
                 <td>
 <pre>
-	<code>
 		&lt;ItemGroup&gt;
 			&lt;PackageReference Include="Newtonsoft.Json"&gt;
 				&lt;Version&gt;9.0.1&lt;/Version&gt;
 				&lt;TargetFramework&gt;"A"&lt;/TargetFramework&gt;
 			&lt;/PackageReference&gt;
 		&lt;/ItemGroup&gt;
-	</code>
 </pre>
 		</td>
 	</tr>
