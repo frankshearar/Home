@@ -1,3 +1,6 @@
+## Pointer to Published Info on NuGet Docs Site
+<https://docs.nuget.org/ndocs/schema/msbuild-targets#packagetargetfallback>
+
 ## Problem
 Sometimes, when attempting to use a package, the package doesn't have the appropriate TargetFramework supported. Imports provided a way for you to specify, for that case, which TargetFramework's assets to use instead - since you know they are compatible.
 
