@@ -16,7 +16,7 @@ This means the same as 3.6.0 in project.json today, which is >=3.6.0, preferring
 In RC milestone, MsBuild will enable all metadata to be specified as a attribute or child element
 
 ### Conditioned on a TFM
-    <PackageReference Include="NuGet.Versioning" Condition = "'$(TargetFramework)' == 'netstandard10'>
+    <PackageReference Include="NuGet.Versioning" Condition = "'$(TargetFramework)' == 'netstandard10'">
       <Version>3.6.0</Version>
     </PackageReference>
 
