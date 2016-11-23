@@ -38,30 +38,44 @@ e.g. - `dotnet update ref pkg Newtonsoft.Json ` -> Should be same as ->`dotnet r
 	</tr>
 	<tr  bgcolor="#FFFFFF">
 		<td>1</td>
-		<td>A and B</td>
-		<td>A and B</td>
+		<td>netcoreapp1.0 and net46</td>
+		<td>netcoreapp1.0 and net46</td>
 		<td>
 <pre>
-		&lt;ItemGroup&gt;
-			&lt;PackageReference Include="Newtonsoft.Json"&gt;
-				&lt;Version&gt;9.0.1&lt;/Version&gt;
-			&lt;/PackageReference&gt;
-		&lt;/ItemGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="NewtonSoft.Json"&gt;
+      &lt;version&gt;9.0.1&lt;/version&gt;
+    &lt;/PackageReference&gt;
+  &lt;/ItemGroup&gt;
 </pre>
 		</td>
 	</tr>
 	<tr  bgcolor="#FFFFFF">
 		<td>2</td>
-		<td>A and B</td>
-		<td>Only A</td>
+		<td>netcoreapp1.0 and net46</td>
+		<td>netcoreapp1.0</td>
                 <td>
 <pre>
-		&lt;ItemGroup&gt;
-			&lt;PackageReference Include="Newtonsoft.Json"&gt;
-				&lt;Version&gt;9.0.1&lt;/Version&gt;
-				&lt;TargetFramework&gt;"A"&lt;/TargetFramework&gt;
-			&lt;/PackageReference&gt;
-		&lt;/ItemGroup&gt;
+&lt;ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.0' "&gt;
+	&lt;PackageReference Include="NewtonSoft.Json"&gt;
+		&lt;version&gt;9.0.1&lt;/version&gt;
+	&lt;/PackageReference&gt;
+&lt;/ItemGroup&gt;
+</pre>
+		</td>
+	</tr>
+	</tr>
+	<tr  bgcolor="#FFFFFF">
+		<td>3</td>
+		<td>netcoreapp1.0</td>
+		<td>netcoreapp1.0 and net46</td>
+		<td>
+<pre>
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="NewtonSoft.Json"&gt;
+      &lt;version&gt;9.0.1&lt;/version&gt;
+    &lt;/PackageReference&gt;
+  &lt;/ItemGroup&gt;
 </pre>
 		</td>
 	</tr>
