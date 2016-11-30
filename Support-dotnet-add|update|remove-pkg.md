@@ -11,10 +11,15 @@ Any one using dotnet cli.
 The request comes from dotnet cli team that has initiated the process of adding a `dotnet ref add|del|list <id>` command at https://github.com/dotnet/cli/issues/4521
 
 ## Solution
-We should add support for handling `dotnet add|update|del|list pkg <id>` where the type of reference is package reference.
+We should add support for handling `dotnet add|update|remove pkg <id>` where the type of reference is package reference.
 
-* The Flow would be `dotnet add|update|del|list pkg <id>` would invoke dotnet cli, which would pass the information to a NuGet api.
+* The Flow would be `dotnet add|update|remove pkg <id>` would invoke dotnet cli, which would pass the information to a NuGet.xplat api.
 * We will then use msbuild.construction api to perform the task.
+
+
+## Usage 
+dotnet add pkg \<id\> <--version|-v> [--pre-release|-p] [--frameworks|-f] [--no-restore|-n]
+
 
 ## Change Requests
 
