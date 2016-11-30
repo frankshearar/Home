@@ -20,6 +20,10 @@ We should add support for handling `dotnet add|update|remove pkg <id>` where the
 ## Usage 
 dotnet add pkg \<id\> <--version|-v> [--pre-release|-p] [--frameworks|-f] [--no-restore|-n]
 
+dotnet update pkg \<id\> <--version|-v> [--pre-release|-p] [--frameworks|-f] [--no-restore|-n]
+
+dotnet remove pkg \<id\>
+
 
 ## Change Requests
 
