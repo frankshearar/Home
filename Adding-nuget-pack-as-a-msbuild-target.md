@@ -114,15 +114,17 @@ Everything gets added to the root of the **content** and **contentFiles** folder
 
      <Content Include="..\win7-x64\libuv.txt">
          <Pack>true</Pack>
-         <PackagePath>content\myfiles</PackagePath>
+         <PackagePath>content\myfiles\</PackagePath>
      </Content>
+
+If you want to copy all your content only to a specific root folder(s) (instead of **content** and **contentFiles** both), you can use the msbuild property **ContentTargetFolders** , which defaults to "content;contentFiles", but can be set to any other folder names.
 
 PackagePath can be a semicolon delimited set of target paths.
 Specifying an empty package path would add the file to the root of the package.
      
      <Content Include="..\win7-x64\libuv.txt">
          <Pack>true</Pack>
-         <PackagePath>content\myfiles;content\sample;;</PackagePath>
+         <PackagePath>content\myfiles\;content\sample\;;</PackagePath>
      </Content>
 
 The above will add libuv.txt to content\myfiles , content\sample and the root of the package.
@@ -139,7 +141,7 @@ Similarly, you can override the behavior in the referenced project and include a
      
      <Content Include="..\..\project2\readme.txt">
          <Pack>true</Pack>
-         <PackagePath>content\myfiles</PackagePath>
+         <PackagePath>content\myfiles\</PackagePath>
          <Visible>false</Visible>
      </Content>
 
