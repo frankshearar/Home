@@ -7,52 +7,25 @@ How do DotNetCliTool references change from Preview2?
 
 ## Solution
 ### toolsref in csproj
-We need to finalize on the technique here. Two ideas currently on the table.
+Plan of Record for Preview 5 OOB:
 
-#### DotNetCliToolReference Technique
-    <DotNetCliToolReference Include="Microsoft.AspNet.EF.Tools" Version="1.0.0" />
-    [Note .. version won’t work as an attribute until RC…waiting on Msbuild feature. Until then use version child element…]
+              <DotNetCliToolsReference Include="EF.Tools">
+                    <Version>2.0.0</Version>
+              </DotNetCliToolsReference>
 
-If you wanted to list it as both a packageref and a tools ref, you would:
-    <DotNetCliToolReference Include="Microsoft.AspNet.EF.Tools" Version="1.0.0" />
-    <PackageReference Include="Microsoft.AspNet.EF.Tools" />
+              Restore location for Tools Today:
 
-#### PackageReference UsePackageAs Technique
-    <PackageReference Include="Microsoft.AspNet.EF.Tools" Version="1.0.0">
-      <UsePackageAs>DotNetCliTool</UsePackageAs>
-    </PackageReference> 
+%userprofile%\.nuget\tools\EF.Tools\1.0.0
+%userprofile%\.nuget\tools\EF.Tools\2.0.0
+              
+              Restore location for Tools in P5OOB:
 
-If you wanted to use it as a packageref and a tools ref, you would:
-    <PackageReference Include="Microsoft.AspNet.EF.Tools" Version="1.0.0">
-      <UsePackageAs>DotNetCliTool</UsePackageAs>
-    </PackageReference> 
+%userprofile%\.nuget\toolsPreview5\EF.Tools\1.0\project.assets.json
+%userprofile%\.nuget\toolsPreview5\EF.Tools\1.0\<SomeHexHashForImports>\project.assets.json
 
-### tools hive
-why is the tools lock file in .nuget\tools?
+              CLI Team:
+                            Will enhance CLI to be able to run tools that were registered/restored as above.
 
-consider moving to $(baseintermediatepath)
+Plan of Record for Post-Preview 5 OOB:
+There are many issues that people wanted to review/improve in this area. Let’s have the longer term discussion around 9/30 as the P5OOB fires are all out.
 
-nuget restore -out ..\foo
-
-solution level restore could do 1 restore per tool
-
-ee - how long does starting msbuild to get a property take.
-
-### imports
-scenario - something runs on mono on windows.
-
-relied on an API that PInvokes
-
-want to choose a pinvoke-less implementation from nupkg.
-
-    <PackageReference Include=”foo.bar”>
-      <Version>1.2.3</Version>
-      <TreatAs>Net45</TreatAs>
-    </PackageReference>
-    // Which means…<IfYouUseTHisPackageId,Treat it as Net45 />
-
-### - how does cli discover tools?
-[TODO]
-
-### More open issues?
-[1-4 was the set we discussed last time, not sure if there are more]
