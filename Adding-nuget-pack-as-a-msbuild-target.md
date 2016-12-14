@@ -110,14 +110,14 @@ Add extra metadata to existing \<Content> item . By default everything of type "
          <Pack>false</Pack>
      </Content>
 
-Everything gets added to the root of the **content** and **contentFiles\any\\<TFM>** folder within a package and preserves the relative directory structure, unless you specify a package path: 
+Everything gets added to the root of the **content** and **contentFiles\any\ \<TFM>** folder within a package and preserves the relative directory structure, unless you specify a package path: 
 
      <Content Include="..\win7-x64\libuv.txt">
          <Pack>true</Pack>
          <PackagePath>content\myfiles\</PackagePath>
      </Content>
 
-If you want to copy all your content only to a specific root folder(s) (instead of **content** and **contentFiles** both), you can use the msbuild property **ContentTargetFolders** , which defaults to "content;contentFiles", but can be set to any other folder names. Note that just specifying "contentFiles" puts files under "contentFiles\any\\<TFM>" or "contentFiles\\<language>\\<TFM>" based on buildAction.
+If you want to copy all your content only to a specific root folder(s) (instead of **content** and **contentFiles** both), you can use the msbuild property **ContentTargetFolders** , which defaults to "content;contentFiles", but can be set to any other folder names. Note that just specifying "contentFiles" puts files under "contentFiles\any\ \<TFM>" or "contentFiles\ \<language>\ \<TFM>" based on buildAction.
 
 PackagePath can be a semicolon delimited set of target paths.
 Specifying an empty PackagePath string would add the file to the root of the package.
