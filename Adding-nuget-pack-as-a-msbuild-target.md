@@ -80,21 +80,16 @@ There are two msbuild properties that you can use in your project file or comman
 Spec to Package References : https://github.com/NuGet/Home/wiki/PackageReference-Specification
 
 ####Project to Project References
-Project to Project references will be, by default, be considered as nuget package references. However, this behavior can be overridden in the following manner:
+Project to Project references will be, by default, be considered as nuget package references.
     
      <ProjectReference Include="..\UwpLibrary2\UwpLibrary2.csproj">
          <Project>{25dcfe98-02b7-403a-b73d-6282d9801aa1}</Project>
          <Name>UwpLibrary2</Name>
-         <TreatAsPackageReference>false</TreatAsPackageReference>
      </ProjectReference>
 
-If a referenced project's output DLL is to be copied over to the nuget package, then **ReferenceOutputAssembly should not be set as false**. This is because the output DLL of the referenced project is copied from the output directory of the project being packed. For more details on ReferenceOutputAssembly , check out : https://blogs.msdn.microsoft.com/kirillosenkov/2015/04/04/how-to-have-a-project-reference-without-referencing-the-actual-binary/
+If a referenced project is not to be added as a package reference, then **ReferenceOutputAssembly should not be set as false**. This is because the output DLL of the referenced project is copied from the output directory of the project being packed. For more details on ReferenceOutputAssembly , check out : https://blogs.msdn.microsoft.com/kirillosenkov/2015/04/04/how-to-have-a-project-reference-without-referencing-the-actual-binary/
 
-If TreatAsPackageReference is not specified, or is set to true, then the ProjectReference will actually be added as a Package Reference in the output nuspec, and no DLLs will be copied.
-
-Note that this behavior is recursive - so if a ProjectReference has TreatAsPackageReference set to false, it's project to project references will also be treated in the same manner.
-
-If a ProjectReference is treated as a PackageReference, then you can also add the following metadata to your project reference:
+You can also add the following metadata to your project reference:
 
 \<IncludeAssets>
 
