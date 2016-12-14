@@ -110,14 +110,14 @@ Add extra metadata to existing \<Content> item . By default everything of type "
          <Pack>false</Pack>
      </Content>
 
-Everything gets added to the root of the **content** and **contentFiles** folder within a package and preserves the relative directory structure, unless you specify a package path: 
+Everything gets added to the root of the **content** and **contentFiles\any\<TFM>** folder within a package and preserves the relative directory structure, unless you specify a package path: 
 
      <Content Include="..\win7-x64\libuv.txt">
          <Pack>true</Pack>
          <PackagePath>content\myfiles\</PackagePath>
      </Content>
 
-If you want to copy all your content only to a specific root folder(s) (instead of **content** and **contentFiles** both), you can use the msbuild property **ContentTargetFolders** , which defaults to "content;contentFiles", but can be set to any other folder names.
+If you want to copy all your content only to a specific root folder(s) (instead of **content** and **contentFiles** both), you can use the msbuild property **ContentTargetFolders** , which defaults to "content;contentFiles", but can be set to any other folder names. Note that just specifying "contentFiles" puts files under "contentFiles\any\<TFM>" or "contentFiles\<language>\<TFM>" based on buildAction.
 
 PackagePath can be a semicolon delimited set of target paths.
 Specifying an empty PackagePath string would add the file to the root of the package.
@@ -149,7 +149,7 @@ Setting visible to false prevents VS from showing the file in the Solution Explo
 
 There is also a new MSBuild property $(IncludeContentInPack), which defaults to true. If this is set to false on any project, then the content from that project or it's project to project dependencies are not included in the nuget package.
 
-**Apart from Content items, the \<Pack> and \<PackagePath> metadata can also be set on files with Build Action = Compile or None.**
+**Apart from Content items, the \<Pack> and \<PackagePath> metadata can also be set on files with Build Action = Compile, EmbeddedResource, ApplicationDefinition, Page, Resource, SplashScreen, DesignData, DesignDataWithDesignTimeCreatableTypes, CodeAnalysisDictionary, AndroidAsset, AndroidResource, BundleResource or None.**
 
 **Note that for pack to append the filename to your package path, your package path must end with the directory separator character, otherwise the package path is treated as the full path including the file name.**
 
