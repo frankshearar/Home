@@ -12,6 +12,7 @@ https://github.com/NuGet/Home/issues/2476
 - **2016-06-13** - Update the .nuspec XML namespace to match the new schema.
 - **2016-07-07** - Clarify installation of unsupported package type to non-.NET Core projects.
 - **2016-07-14** - Do not use a new XML namespace in the .nuspec when package types are used.
+- **2016-12-16** - Package type name uses the "name" attribute instead of "type".
 
 ## Goal
 
@@ -84,7 +85,7 @@ In both cases, the version should not be specified. The version defaults to `0.0
   &lt;metadata&gt;
     ...
     <b>&lt;packageTypes&gt;
-      &lt;packageType type="DotnetCliTool" /&gt;
+      &lt;packageType name="DotnetCliTool" /&gt;
     &lt;/packageTypes&gt;</b>
   &lt;/metadata&gt;
 &lt;/package&gt;
@@ -98,7 +99,7 @@ In both cases, the version should not be specified. The version defaults to `0.0
   &lt;metadata&gt;
     ...
     <b>&lt;packageTypes&gt;
-      &lt;packageType type="Dependency" /&gt;
+      &lt;packageType name="Dependency" /&gt;
     &lt;/packageTypes&gt;</b>
   &lt;/metadata&gt;
 &lt;/package&gt;
@@ -130,7 +131,7 @@ For example, this could be the project.json of the `dotnet-hello` tool described
 
 The format of a package type string is exactly like a package ID. That is, a package type is a case-insensitive string matching the regular expression `^\w+([_.-]\w+)*$` having at least one character and at most 100 characters. 
 
-Any string following these rules can be specified as the `packageType` in a project.json. The pack command will simply copy this string to the output .nuspec `<packageType>` node. If no value is specified, the pack command will default to a package type of `<packageType type="Dependency" />`.
+Any string following these rules can be specified as the `packageType` in a project.json. The pack command will simply copy this string to the output .nuspec `<packageType>` node. If no value is specified, the pack command will default to a package type of `<packageType name="Dependency" />`.
 
 If more than one value is supplied (e.g. via a JSON array), the pack command fails.
 
@@ -172,7 +173,7 @@ The package creator would craft a package with the following .nuspec:
   &lt;metadata&gt;
     ...
     <b>&lt;packageTypes&gt;
-      &lt;packageType type="Win32Tool" /&gt;
+      &lt;packageType name="Win32Tool" /&gt;
     &lt;/packageTypes&gt;</b>
   &lt;/metadata&gt;
 &lt;/package&gt;
