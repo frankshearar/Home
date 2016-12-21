@@ -34,7 +34,7 @@ e.g. - `dotnet add ref pkg Newtonsoft.Json -p|--prerelease`
 e.g. - `dotnet update ref pkg Newtonsoft.Json -v|--version <version-string>`
 
 * **Empty Version String** - The behavior when user does not specify an exact version should be consistent with other nuget operations.<br>
-e.g. - `dotnet update ref pkg Newtonsoft.Json ` -> Should be same as ->`dotnet ref update Newtonsoft.Json -v|--version '*'`
+e.g. - `dotnet update ref pkg Newtonsoft.Json ` -> Should be same as ->`dotnet ref update Newtonsoft.Json -v|--version '*'`. But we write the resolved version in the csproj file.
 
 * **Multi-Targeting** - We should have support for multi targeting. <br>
 
