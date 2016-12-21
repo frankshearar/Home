@@ -18,11 +18,11 @@ We should add support for handling `dotnet add|update|remove pkg <id>` where the
 
 
 ## Usage 
-dotnet add pkg \<id\> <--version|-v> [--pre-release|-p] [--frameworks|-f] [--no-restore|-n]
+dotnet add package \<id\> [--version|-v] [--framework|-f] [--no-restore|-n] [--source|-s] [--package-directory]
 
-dotnet update pkg \<id\> <--version|-v> [--pre-release|-p] [--frameworks|-f] [--no-restore|-n]
+dotnet update package \<id\> [--version|-v] [--framework|-f] [--no-restore|-n]
 
-dotnet remove pkg \<id\>
+dotnet remove package \<id\>
 
 
 ## Change Requests
