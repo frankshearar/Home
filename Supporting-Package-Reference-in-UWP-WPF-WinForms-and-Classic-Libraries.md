@@ -31,18 +31,25 @@ The user will have to explicitly migrate existing dependencies to PackageReferen
 
 **Title:** Choose NuGet Package Management Format
 
-**Message:** In Visual Studio 2017 and above, NuGet Packages can be managed using PackageReferences in your project file. To learn more about PackageReferences, refer to the following link https://aka.ms/packagereferencesupport
+**Message:** Projects with PackageReference are not supported in Visual Studio 2015 and earlier.
+Learn more about package reference (which will refer to the following link https://aka.ms/packagereferencesupport)
+
+**Text**: Select the NuGet package manager format for App1
 
 **Radio Buttons**: Choose Packages.config, Choose PackageReference - For classic projects
 
 **Radio Buttons**: Choose project.json, Choose PackageReference - For UWP projects
 
-**Text**: To set the default package management format or to not show this dialog on first package install, click here.[Here points to Tools->Options->NuGet Package Manager -> General]
+**CheckBox**: Make this package manager format the default and do not show this dialog again.
+
+**Text**: You can manage these settings in NuGet Settigns
+[Here points to Tools->Options->NuGet Package Manager -> General]
 
 **Butttons**: Ok
 
+**Butttons**: Cancel
 
-![mockup](https://github.com/NuGet/Home/blob/dev/resources/FormatChooser.png)
+![mockup](https://github.com/NuGet/Home/blob/dev/resources/SupportingPackageReference_2.png)
 
 We will have a new option in NuGet Options in Visual Studio that will specify the default behavior that is set when users either.
 
@@ -50,10 +57,11 @@ We will have a new option in NuGet Options in Visual Studio that will specify th
 
 In addition, to this option, we will have another option that will specify whether to show the dialog on first package addition to a new packages.config.
 
-**Show package management format chooser on first package install** - ComboxBox (Yes, No)
+**Do not show the format selector on first package install** - CheckBox(Yes, No)
 
 The default behavior is to keep using packages.config for classic projects. You can use the option to change it to Package References.
 
+![mockup](https://github.com/NuGet/Home/blob/dev/resources/packageSettings.png)
 
 
 
