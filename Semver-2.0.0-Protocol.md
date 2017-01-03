@@ -40,7 +40,7 @@ The suggestion is to make versions that are not SemVer 1.0.0 compliant be invisi
 
 ### Suggestion (rough and not detailed)
 
-1. On the OData side add a query string SemVerLevel=2, without it the server should filter out non compliant SemVer1. The "SemVerLevel" query parameter key is case insensitive.
+1. On the OData side add a query string semVerLevel=2, without it the server should filter out non compliant SemVer1. The "semVerLevel" query parameter key is case insensitive.
 1. On the search side follow the same pattern
 1. On the Registration blob we should expose a new end point RegistrationsBaseUrl-Semver2/3.0.0, this is a little more interesting pattern because servers might not expose it so clients need to opt into it if available or fallback to RegistrationsBaseUrl-Semver2/3.0.0-RC.
 1. For PackageBaseAddress we have two options, I'm preferring the new end point, because it lends to less requests at the expense of more storage.
