@@ -48,7 +48,7 @@ The following endpoints need to support a `semVerLevel` query parameter which de
  - `Search()`
  - `GetUpdates()`
 
-If `semVerLevel=N` is provided (where N is an integer) and N is greater than or equal to 2, SemVer 2.0.0 packages must be visible. If N is less than 2 or `semVerLevel` is excluded, SemVer 2.0.0 package must be excluded.
+If `semVerLevel=N` is provided (where N is an integer) and N is greater than or equal to 2, SemVer 2.0.0 packages must not be filtered out. If N is less than 2 or `semVerLevel` is excluded, SemVer 2.0.0 packages must be filtered out.
 
 The `semVerLevel` query parameter is case insensitive.
 
