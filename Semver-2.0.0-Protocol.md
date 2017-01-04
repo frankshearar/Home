@@ -43,7 +43,6 @@ The suggestion is to make versions that are not SemVer 1.0.0 compliant be invisi
 The following endpoints need to support a `semVerLevel` query parameter which determines whether SemVer 2.0.0 packages should be visible or not. The list of endpoints considered are:
 
  - `Packages()`
- - `Packages(Id='<ID>',Version='<VERSION>')`
  - `FindPackagesById()`
  - `Search()`
  - `GetUpdates()`
@@ -53,6 +52,10 @@ If `semVerLevel=N` is provided (where N is an integer) and N is greater than or 
 The `semVerLevel` query parameter is case insensitive.
 
 The package push and delete endpoints also available via the V2 protocol do not support the `semVerLevel` query parameter. They should always operate on the entire set of packages (not just SemVer 1.0.0 packages).
+
+The following endpoint refers to a specific version of a package and is discovered via one of the previous endpoints. Therefore, SemVer 2.0.0 packages are **not** filtered out. The `semVerLevel` query parameter has no effect on this endpoint.
+
+ - `Packages(Id='<ID>',Version='<VERSION>')`
 
 ### Suggestion (rough and not detailed)
 
