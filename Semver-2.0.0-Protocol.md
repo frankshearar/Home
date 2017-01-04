@@ -38,10 +38,25 @@ The suggestion is to make versions that are not SemVer 1.0.0 compliant be invisi
 1. The WebSite - Should it highlight semver 2.0 differently (or provide a filter?)
 2. The Catalog - Shouldn't have any affect
 
+### V2 (OData) endpoints
+
+The following endpoints need to support a `semVerLevel` query parameter which determines whether SemVer 2.0.0 packages should be visible or not. The list of endpoints considered are:
+
+ - `Packages()`
+ - `Packages(Id='<ID>',Version='<VERSION>')`
+ - `FindPackagesById()`
+ - `Search()`
+ - `GetUpdates()`
+
+If `semVerLevel=N` is provided (where N is an integer) and N is greater than or equal to 2, SemVer 2.0.0 packages must be visible. If N is less than 2 or `semVerLevel` is excluded, SemVer 2.0.0 package must be excluded.
+
+The `semVerLevel` query parameter is case insensitive.
+
+The package push and delete endpoints also available via the V2 protocol do not support the `semVerLevel` query parameter. They should always operate on the entire set of packages (not just SemVer 1.0.0 packages).
+
 ### Suggestion (rough and not detailed)
 
-1. On the OData side add a query string semVerLevel=2, without it the server should filter out non compliant SemVer1. The "semVerLevel" query parameter key is case insensitive.
-1. On the search side follow the same pattern
+1. On the search side follow the same pattern as the OData endpoints
 1. On the Registration blob we should expose a new end point RegistrationsBaseUrl-Semver2/3.0.0, this is a little more interesting pattern because servers might not expose it so clients need to opt into it if available or fallback to RegistrationsBaseUrl-Semver2/3.0.0-RC.
 1. For PackageBaseAddress we have two options, I'm preferring the new end point, because it lends to less requests at the expense of more storage.
 1.1 We can add a new index-Semver2.json file side by side with the existing index.json. 
