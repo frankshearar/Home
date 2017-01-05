@@ -49,13 +49,13 @@ The following endpoints need to support a `semVerLevel` query parameter which de
 
 If `semVerLevel=N` is provided (where N is an integer) and N is greater than or equal to 2, SemVer 2.0.0 packages must not be filtered out. If N is less than 2 or `semVerLevel` is excluded, SemVer 2.0.0 packages must be filtered out.
 
-The `semVerLevel` query parameter is case insensitive.
-
-The package push and delete endpoints also available via the V2 protocol do not support the `semVerLevel` query parameter. They should always operate on the entire set of packages (not just SemVer 1.0.0 packages).
-
 The following endpoint refers to a specific version of a package and is discovered via one of the previous endpoints. Therefore, SemVer 2.0.0 packages are **not** filtered out. The `semVerLevel` query parameter has no effect on this endpoint.
 
  - `Packages(Id='<ID>',Version='<VERSION>')`
+
+The `semVerLevel` query parameter is case insensitive.
+
+The package push and delete endpoints also available via the V2 protocol do not support the `semVerLevel` query parameter. They should always operate on the entire set of packages (not just SemVer 1.0.0 packages).
 
 ### Suggestion (rough and not detailed)
 
