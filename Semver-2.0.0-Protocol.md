@@ -47,7 +47,7 @@ The following endpoints need to support a `semVerLevel` query parameter which de
  - `Search()`
  - `GetUpdates()`
 
-If `semVerLevel=N` is provided (where N is a SemVer 2.0.0 version number) and is greater than or equal to 2.0.0, SemVer 2.0.0 packages must not be filtered out. If N is less than 2.0.0 or `semVerLevel` is excluded, SemVer 2.0.0 packages must be filtered out.
+If `semVerLevel=N` is provided (where N is a SemVer 2.0.0 version number) has a major version greater than or equal to 2, SemVer 2.0.0 packages must not be filtered out. If N has a major version is less than 2 or `semVerLevel` is excluded, SemVer 2.0.0 packages must be filtered out.
 
 The following endpoint refers to a specific version of a package and is discovered via one of the previous endpoints. Therefore, SemVer 2.0.0 packages are **not** filtered out. The `semVerLevel` query parameter has no effect on this endpoint.
 
