@@ -213,3 +213,5 @@ a solution, it will set the `PackOnBuild=true` property and build the solution n
 packages to be created. When run for a project, it will first show a dialog with the package metadata (to allow modifications prior to generating the package).
 
 A project template will be added for creating package projects. When run, it will show a dialog prompting the user to provide basic metadata and to choose which frameworks they would like to support.
+
+A project options page will be available where the PackOnBuild property can be enabled or disabled for a project. This will update the PackOnBuild setting in the project file.
