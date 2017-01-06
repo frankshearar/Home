@@ -31,12 +31,12 @@ The suggestion is to make versions that are not SemVer 1.0.0 compliant be invisi
 1. OData requests
 2. V3 Search
 3. Accessing Registration blobs
-4. Accessing PackageBaseAddress/3.0.0
 
 ### Areas it doesn't affect (or at least adverse affects)
 
 1. The WebSite - Should it highlight semver 2.0 differently (or provide a filter?)
 2. The Catalog - Shouldn't have any affect
+3. Accessing PackageBaseAddress/3.0.0 - Only new clients that support SemVer 2.0.0 use this resource
 
 ### V2 (OData) endpoints
 
@@ -47,7 +47,7 @@ The following endpoints need to support a `semVerLevel` query parameter which de
  - `Search()`
  - `GetUpdates()`
 
-If `semVerLevel=N` is provided (where N is an integer) and N is greater than or equal to 2, SemVer 2.0.0 packages must not be filtered out. If N is less than 2 or `semVerLevel` is excluded, SemVer 2.0.0 packages must be filtered out.
+If `semVerLevel=N` is provided (where N is a SemVer 2.0.0 version number) and is greater than or equal to 2.0.0, SemVer 2.0.0 packages must not be filtered out. If N is less than 2.0.0 or `semVerLevel` is excluded, SemVer 2.0.0 packages must be filtered out.
 
 The following endpoint refers to a specific version of a package and is discovered via one of the previous endpoints. Therefore, SemVer 2.0.0 packages are **not** filtered out. The `semVerLevel` query parameter has no effect on this endpoint.
 
@@ -60,10 +60,4 @@ The package push and delete endpoints also available via the V2 protocol do not 
 ### Suggestion (rough and not detailed)
 
 1. On the search side follow the same pattern as the OData endpoints
-1. On the Registration blob we should expose a new end point RegistrationsBaseUrl-Semver2/3.0.0, this is a little more interesting pattern because servers might not expose it so clients need to opt into it if available or fallback to RegistrationsBaseUrl-Semver2/3.0.0-RC.
-1. For PackageBaseAddress we have two options, I'm preferring the new end point, because it lends to less requests at the expense of more storage.
-1.1 We can add a new index-Semver2.json file side by side with the existing index.json. 
-1.1 We can add a new end point PackageBaseAddress-SemVer2
-
-
-
+1. On the registration blob we should expose a new endpoint RegistrationsBaseUrl/Versioned, with a client version greater than or equal to 3.5.0.
