@@ -57,6 +57,8 @@ The `semVerLevel` query parameter is case insensitive.
 
 The package push and delete endpoints also available via the V2 protocol do not support the `semVerLevel` query parameter. They should always operate on the entire set of packages (not just SemVer 1.0.0 packages).
 
+The `<d:Version>` property for the OData package should still contain the original version string, which may include version metadata (e.g. `1.0.0+git`). The `<d:NormalizedVersion>` property should not contain the version metadata. OData links typically containing the package version (e.g. self, edit, download link) must not contain the version metadata.
+
 ### Suggestion (rough and not detailed)
 
 1. On the search side follow the same pattern as the OData endpoints
