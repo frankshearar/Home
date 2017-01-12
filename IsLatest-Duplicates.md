@@ -43,8 +43,8 @@ Implementation steps (staged rollout):
 * One-time job to populate columns for any packages not yet updated
 * Change UpdateIsLatest in Gallery to use new columns
 
-Pro: Solves duplication issue<br/>
-Con: Does not solve concurrency issue, requires schema change and staged rollout
+*Pro:* Solves duplication issue<br/>
+*Con:* Does not solve concurrency issue, requires schema change and staged rollout
 
 ###2. Enable Optimistic Concurrency
 
@@ -53,10 +53,10 @@ Implementation details:
 * Add ConcurrencyCheck attribute to IsLatest/IsLatestStable columns in EF model
 * Handle new DbUpdateConcurrencyExceptions with retries from Packages and Api controllers
 
-Pro: Solves concurrency issue, simple code change, no DB changes<br/>
-Con: Can break existing scenarios unless new exceptions are handled with retries
+*Pro:* Solves concurrency issue, simple code change, no DB changes<br/>
+*Con:* Can break existing scenarios unless new exceptions are handled with retries
 
-see: [https://github.com/NuGet/NuGetGallery/commit/2b8d0c91d00f9c222b4ddc998dd3facd1c1791ee](2b8d0c9) (Still missing exception handling and retries)
+see: [2b8d0c9](https://github.com/NuGet/NuGetGallery/commit/2b8d0c91d00f9c222b4ddc998dd3facd1c1791ee) (Still missing exception handling and retries)
 
 ###3. Move IsLatest/IsLatestStable calculation (PackageService::UpdateIsLatestAsync) into the DB
 
@@ -65,10 +65,10 @@ Implementation details:
 * Add triggers, along with exclusive lock on all Packages rows for the registration
 * Remove UpdateIsLatest from Gallery
 
-Pro: Solves concurrency issue, by moving calculation to central location with exclusive lock<br/>
-Con: Complicated TSQL code, need new project for DB tests, Gallery needs to re-select to get updates, need perf/stress testing
+*Pro:* Solves concurrency issue, by moving calculation to central location with exclusive lock<br/>
+*Con:* Complicated TSQL code, need new project for DB tests, Gallery needs to re-select to get updates, need perf/stress testing
 
-see: [https://github.com/NuGet/NuGetGallery/commit/57e7eaa54e116fa05abd1e9766f3fae3b44a4970](57e7eaa) (Still missing re-select, has bug with triggers)
+see: [57e7eaa](https://github.com/NuGet/NuGetGallery/commit/57e7eaa54e116fa05abd1e9766f3fae3b44a4970) (Still missing re-select, has bug with triggers)
 
 ###4. Move UpdateIsLatest calculation to background worker
 
@@ -77,8 +77,8 @@ Implementation details:
 * Add exclusive per-registration lock
 * Queue background job processing from Gallery
 
-Pro: Solves concurrency issue, by moving calculation to central location with exclusive lock<br/>
-Con: Adds complexity with new Job and Gallery queuing mechanism
+*Pro:* Solves concurrency issue, by moving calculation to central location with exclusive lock<br/>
+*Con:* Adds complexity with new Job and Gallery queuing mechanism
 
 ###Examples:  
 ```
