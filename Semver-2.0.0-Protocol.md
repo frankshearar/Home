@@ -31,6 +31,7 @@ The suggestion is to make versions that are not SemVer 1.0.0 compliant be invisi
 1. OData requests
 1. V2 autocomplete endpoints
 1. V3 Search
+1. V3 autocomplete endpoints
 1. Accessing Registration blobs
 
 ### Areas it doesn't affect (or at least adverse affects)
@@ -38,7 +39,6 @@ The suggestion is to make versions that are not SemVer 1.0.0 compliant be invisi
 1. The WebSite - Should it highlight semver 2.0 differently (or provide a filter?)
 1. The Catalog - Shouldn't have any affect
 1. Accessing PackageBaseAddress/3.0.0 - Only new clients that support SemVer 2.0.0 use this resource
-1. V3 autocomplete endpoints
 
 ### V2 (OData) endpoints
 
