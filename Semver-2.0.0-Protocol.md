@@ -29,14 +29,16 @@ The suggestion is to make versions that are not SemVer 1.0.0 compliant be invisi
 ### Areas it affects
 
 1. OData requests
-2. V3 Search
-3. Accessing Registration blobs
+1. V2 autocomplete endpoints
+1. V3 Search
+1. Accessing Registration blobs
 
 ### Areas it doesn't affect (or at least adverse affects)
 
 1. The WebSite - Should it highlight semver 2.0 differently (or provide a filter?)
-2. The Catalog - Shouldn't have any affect
-3. Accessing PackageBaseAddress/3.0.0 - Only new clients that support SemVer 2.0.0 use this resource
+1. The Catalog - Shouldn't have any affect
+1. Accessing PackageBaseAddress/3.0.0 - Only new clients that support SemVer 2.0.0 use this resource
+1. V3 autocomplete endpoints
 
 ### V2 (OData) endpoints
 
@@ -61,5 +63,5 @@ The `<d:Version>` property for the OData package should still contain the origin
 
 ### Suggestion (rough and not detailed)
 
-1. On the search side follow the same pattern as the OData endpoints
-1. On the registration blob we should expose a new endpoint RegistrationsBaseUrl/Versioned, with a client version greater than or equal to 3.5.0.
+1. On the search and autocomplete side, follow the same pattern as the OData endpoints.
+1. On the registration blob we should expose a new endpoint `RegistrationsBaseUrl/Versioned`, with a client version greater than or equal to 3.5.0.
