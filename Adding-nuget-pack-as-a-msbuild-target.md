@@ -170,11 +170,12 @@ If a file of type = Compile, is outside the project folder, then it is just adde
 ####IsTool
 If msbuild /t:pack /p:IsTool=true, all output files, as specified in the Output Assemblies scenario, are copied to the tools folder instead of the lib folder. Note that this is different from a DotNetCliTool which is specified by setting the PackageType in csproj file.
 
-####Framework Assembly References or Reference to DLL on disk
-There can be three scenarios here:
+####Packing using a nuspec
+You can use a nuspec file to pack your project, however, you still need to have a project file to import NuGet.Build.Tasks.Pack.targets so that the pack task can be executed.
+The following three msbuild properties are relevant to packing using a nuspec :
 
-**a) Reference to an existing dll on disk** - In this case there will be a hint path, this will be the source path from where the DLL will be picked up. If <Pack> metadata is set on this Reference, it will be copied to the lib folder. If \<PackagePath> metadata is set too, it will be copied to the path denoted by \<PackagePath>
+1. **NuspecFile** -> relative or absolute path to the nuspec file being used for packing
 
-**b) Reference to an assembly in GAC** - If there is no hint path to a \<Reference>, these will be by default ignored by pack since these are assemblies from the GAC. This can be changed by setting \<Pack> metadata to true, in which case, this would be added to frameworkAssemblies in nuspec along with targetFramework based on any conditions provided.
+2. **NuspecProperties** -> semicolon separated list of key=value pairs. Due to the way msbuild command line parsing works, if there is more than one property, you need to specify something like this ```/p:NuspecProperties=\"key1=value1;key2=value2\" ``` 
 
-**c) Reference to a DLL that comes from a nupkg** - These by default have custom metadata like NuGetSourceType set to package, the nupkg should be added as a dependency.
+3. **NuspecBasePath** -> BasePath for the nuspec file.
