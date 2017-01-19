@@ -179,3 +179,11 @@ The following three msbuild properties are relevant to packing using a nuspec :
 2. **NuspecProperties** -> semicolon separated list of key=value pairs. Due to the way msbuild command line parsing works, if there is more than one property, you need to specify something like this ```/p:NuspecProperties=\"key1=value1;key2=value2\" ``` 
 
 3. **NuspecBasePath** -> BasePath for the nuspec file.
+
+If using dotnet.exe to pack your project, use a command-line like :
+
+``` dotnet pack <path to csproj file> /p:NuspecFile=<path to nuspec file> /p:NuspecProperties=<> /p:NuspecBasePath=<Base path>```
+
+If using msbuild to pack your project, use a command-line like :
+
+``` msbuild /t:pack <path to csproj file> /p:NuspecFile=<path to nuspec file> /p:NuspecProperties=<> /p:NuspecBasePath=<Base path>```
