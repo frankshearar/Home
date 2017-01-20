@@ -146,18 +146,7 @@ There is also a new MSBuild property $(IncludeContentInPack), which defaults to 
 
 **Apart from Content items, the \<Pack> and \<PackagePath> metadata can also be set on files with Build Action = Compile, EmbeddedResource, ApplicationDefinition, Page, Resource, SplashScreen, DesignData, DesignDataWithDesignTimeCreatableTypes, CodeAnalysisDictionary, AndroidAsset, AndroidResource, BundleResource or None.**
 
-**Note that for pack to append the filename to your package path, your package path must end with the directory separator character, otherwise the package path is treated as the full path including the file name.**
-
-####Cross Targeting
-As per the details available right now, Target frameworks are defined in the csproj in an item list (called TargetFramework right now) where the identity maps to $(TargetFrameworkIdentity),$(TargetFrameworkVersion) - no NuGet short names.
-  <ItemGroup>
-    <TargetFramework Include=".NetFramework,v4.5" />
-    <TargetFramework Include=".NetFramework,v4.6" />
-  </ItemGroup>
-
-The @(TargetPath) will be a list of all the output paths (path to the output assembly) with their associated TargetFramework metadata. NuGet pack will convert these full target framework names to short folder names (in above case net45 and net46) in the resulting nupkg.
-
-Note that details on Cross Targeting are still being finalized, so this may change.
+**Note that for pack to append the filename to your package path when using globbing patterns, your package path must end with the directory separator character, otherwise the package path is treated as the full path including the file name.**
 
 ####IncludeSymbols
 If msbuild /t:pack /p:IncludeSymbols=true , then the corresponding pdb files are copied along with .dll/.exe/.winmd/.xml . Note that setting IncludeSymbols= true creates a regular package AND a symbols package.
