@@ -34,6 +34,7 @@ In addition, the following nuspec properties will no longer be supported in cspr
 
 ###Pack Target Inputs
 Properties:
+* IsPackable
 * PackageVersion
 * PackageId
 * Authors
@@ -46,8 +47,6 @@ Properties:
 * PackageReleaseNotes
 * PackageTags
 * PackageOutputPath
-* Configuration
-* AssemblyName
 * IncludeSymbols
 * IncludeSource
 * PackageTypes
@@ -56,19 +55,19 @@ Properties:
 * RepositoryType
 * NoPackageAnalysis
 * MinClientVersion
-
-Items:
-* SourceFiles (if IncludeSymbols = true).
-* PackageFiles (needs design, but basically means the list of content files to be included).
-* TargetPath (cross targeting scenarios).
-* TargetFrameworks (cross targeting scenarios).
-* ProjectReferences (has a custom serialization format, more details coming up).
+* IncludeBuildOutput
+* IncludeContentInPack
+* BuildOutputTargetFolder
+* ContentTargetFolders
+* NuspecFile
+* NuspecBasePath
+* NuspecProperties
 
 ###Scenarios
 ####PackageIconUrl
 As part of the change for feature, https://github.com/NuGet/Home/issues/2582, PackageIconUrl will eventually be changed PackageIconUri and can be relative path to a icon file which will included at the root of the resulting package.
 ####Output Assemblies
-NuGet pack will copy the output files (which are of extension .exe, .dll, .xml, .winmd, .pri). The output files that are copied depend on what MSBuild provides from BuiltOutputProjectGroup target. 
+NuGet pack will copy the output files (which are of extension .exe, .dll, .xml, .winmd, .json, .pri). The output files that are copied depend on what MSBuild provides from BuiltOutputProjectGroup target. 
 
 There are two msbuild properties that you can use in your project file or command line to control where output assemblies go:
 
@@ -82,12 +81,7 @@ Spec to Package References : https://github.com/NuGet/Home/wiki/PackageReference
 ####Project to Project References
 Project to Project references will be, by default, be considered as nuget package references.
     
-     <ProjectReference Include="..\UwpLibrary2\UwpLibrary2.csproj">
-         <Project>{25dcfe98-02b7-403a-b73d-6282d9801aa1}</Project>
-         <Name>UwpLibrary2</Name>
-     </ProjectReference>
-
-If a referenced project is not to be added as a package reference, then **ReferenceOutputAssembly should not be set as false**. This is because the output DLL of the referenced project is copied from the output directory of the project being packed. For more details on ReferenceOutputAssembly , check out : https://blogs.msdn.microsoft.com/kirillosenkov/2015/04/04/how-to-have-a-project-reference-without-referencing-the-actual-binary/
+     <ProjectReference Include="..\UwpLibrary2\UwpLibrary2.csproj"/>
 
 You can also add the following metadata to your project reference:
 
@@ -105,51 +99,32 @@ Add extra metadata to existing \<Content> item . By default everything of type "
          <Pack>false</Pack>
      </Content>
 
-Everything gets added to the root of the **content** and **contentFiles\any\ \<TFM>** folder within a package and preserves the relative directory structure, unless you specify a package path: 
+By default, everything gets added to the root of the **content** and **contentFiles\any\ \<TFM>** folder within a package and preserves the relative directory structure, unless you specify a package path: 
 
-     <Content Include="..\win7-x64\libuv.txt">
-         <Pack>true</Pack>
+     <Content Include="folderA\libuv.txt">
          <PackagePath>content\myfiles\</PackagePath>
      </Content>
 
-If you want to copy all your content only to a specific root folder(s) (instead of **content** and **contentFiles** both), you can use the msbuild property **ContentTargetFolders** , which defaults to "content;contentFiles", but can be set to any other folder names. Note that just specifying "contentFiles" puts files under "contentFiles\any\ \<TFM>" or "contentFiles\ \<language>\ \<TFM>" based on buildAction.
+If you want to copy all your content only to a specific root folder(s) (instead of **content** and **contentFiles** both), you can use the msbuild property **ContentTargetFolders** , which defaults to "content;contentFiles", but can be set to any other folder names. Note that just specifying "contentFiles" in the ContentTargetFolders puts files under "contentFiles\any\ \<TFM>" or "contentFiles\ \<language>\ \<TFM>" based on buildAction.
 
 PackagePath can be a semicolon delimited set of target paths.
 Specifying an empty PackagePath string would add the file to the root of the package.
      
-     <Content Include="..\win7-x64\libuv.txt">
+     <Content Include="win7-x64\libuv.txt">
          <Pack>true</Pack>
          <PackagePath>content\myfiles\;content\sample\;\;</PackagePath>
      </Content>
 
 The above will add libuv.txt to content\myfiles , content\sample and the root of the package.
 
-Packing of content files is recursive too. Content files from any project to project reference, which has TreatAsPackageReference set to false, are also copied in the similar manner and the same rules apply.
-
-If you wish to prevent copying of a content from another project into your nuget package, you can do something like:
-
-     <Content Include="..\..\project2\readme.txt">
-         <Pack>false</Pack>
-     </Content>
-
-Similarly, you can override the behavior in the referenced project and include a file to be packed which would have otherwise been excluded: 
-     
-     <Content Include="..\..\project2\readme.txt">
-         <Pack>true</Pack>
-         <PackagePath>content\myfiles\</PackagePath>
-         <Visible>false</Visible>
-     </Content>
-
-Setting visible to false prevents VS from showing the file in the Solution Explorer.
-
-There is also a new MSBuild property $(IncludeContentInPack), which defaults to true. If this is set to false on any project, then the content from that project or it's project to project dependencies are not included in the nuget package.
+There is also a new MSBuild property $(IncludeContentInPack), which defaults to true. If this is set to false on any project, then the content from that project is not included in the nuget package.
 
 **Apart from Content items, the \<Pack> and \<PackagePath> metadata can also be set on files with Build Action = Compile, EmbeddedResource, ApplicationDefinition, Page, Resource, SplashScreen, DesignData, DesignDataWithDesignTimeCreatableTypes, CodeAnalysisDictionary, AndroidAsset, AndroidResource, BundleResource or None.**
 
 **Note that for pack to append the filename to your package path when using globbing patterns, your package path must end with the directory separator character, otherwise the package path is treated as the full path including the file name.**
 
 ####IncludeSymbols
-If msbuild /t:pack /p:IncludeSymbols=true , then the corresponding pdb files are copied along with .dll/.exe/.winmd/.xml . Note that setting IncludeSymbols= true creates a regular package AND a symbols package.
+If msbuild /t:pack /p:IncludeSymbols=true , then the corresponding pdb and mdb files are copied along with .dll/.exe/.winmd/.xml/.json/.pri . Note that setting IncludeSymbols= true creates a regular package AND a symbols package.
 
 ####IncludeSource
 Same as IncludeSymbols, except that it copies source files along with pdbs as well. All files of type = Compile are copied over to src\\\<ProjectName>\ preserving the relative path directory structure in the resulting nupkg. The same also happens for source files of any ProjectReference which has \<TreatAsPackageReference> set to false.
