@@ -14,6 +14,7 @@ Attribute/NuSpec Value| MSBuild Property | Default | Notes
 Id|PackageId|AssemblyName|$(AssemblyName) from msbuild
 Version|PackageVersion|Version|New $(Version) property from msbuild, is semver compatible. Could be “1.0.0”, “1.0.0-beta”, or “1.0.0-beta-00345”. 
 Authors|Authors|username of the current user will be the default value|
+Title|Title|empty|
 Owners|N/A|Not present in NuSpec|
 Description|Description|"Package Description"|
 Copyright|Copyright|empty
@@ -29,7 +30,7 @@ PackageType|`<PackageType>DotNetCliTool, 1.0.0.0;Dependency, 2.0.0.0</PackageTyp
 
 
 In addition, the following nuspec properties will no longer be supported in csproj file :
-* Title
+* Owners
 * Summary
 
 ###Pack Target Inputs
@@ -37,6 +38,7 @@ Properties:
 * IsPackable
 * PackageVersion
 * PackageId
+* Title
 * Authors
 * Description
 * Copyright
