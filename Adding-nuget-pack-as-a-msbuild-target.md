@@ -30,9 +30,10 @@ PackageType|`<PackageType>DotNetCliTool, 1.0.0.0;Dependency, 2.0.0.0</PackageTyp
 
 
 In addition, the following nuspec properties will no longer be supported in csproj file :
+```
 * Owners
 * Summary
-
+```
 ###Pack Target Inputs
 Properties:
 ```
