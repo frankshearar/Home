@@ -95,13 +95,13 @@ You can also add the following metadata to your project reference:
 
 ####Including Content in package
 
-Add extra metadata to existing \<Content> item . By default everything of type "Content" gets included for pack, unless you override by specifying something like:
+Add extra metadata to existing ```<Content>``` item . By default everything of type ```Content``` gets included for Pack, unless you override by specifying something like:
 
      <Content Include="..\win7-x64\libuv.txt">
          <Pack>false</Pack>
      </Content>
 
-By default, everything gets added to the root of the **content** and **contentFiles\any\ \<TFM>** folder within a package and preserves the relative directory structure, unless you specify a package path: 
+By default, everything gets added to the root of the ```content``` and ```contentFiles\any\<TFM>``` folder within a package and preserves the relative directory structure, unless you specify a package path: 
 
      <Content Include="folderA\libuv.txt">
          <PackagePath>content\myfiles\</PackagePath>
