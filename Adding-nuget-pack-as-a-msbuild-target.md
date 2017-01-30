@@ -87,11 +87,11 @@ Project to Project references will be, by default, be considered as nuget packag
 
 You can also add the following metadata to your project reference:
 
-\<IncludeAssets>
-
-\<ExcludeAssets>
-
-\<PrivateAssets>
+```
+<IncludeAssets>
+<ExcludeAssets>
+<PrivateAssets>
+```
 
 ####Including Content in package
 
@@ -107,7 +107,7 @@ By default, everything gets added to the root of the **content** and **contentFi
          <PackagePath>content\myfiles\</PackagePath>
      </Content>
 
-If you want to copy all your content only to a specific root folder(s) (instead of **content** and **contentFiles** both), you can use the msbuild property **ContentTargetFolders** , which defaults to "content;contentFiles", but can be set to any other folder names. Note that just specifying "contentFiles" in the ContentTargetFolders puts files under "contentFiles\any\ \<TFM>" or "contentFiles\ \<language>\ \<TFM>" based on buildAction.
+If you want to copy all your content only to a specific root folder(s) (instead of ```content``` and ```contentFiles``` both), you can use the msbuild property ```ContentTargetFolders```, which defaults to ```content;contentFiles```, but can be set to any other folder names. Note that just specifying ```contentFiles``` in the ContentTargetFolders puts files under ```contentFiles\any\<TFM>``` or ```contentFiles\<language>\<TFM>``` based on buildAction.
 
 PackagePath can be a semicolon delimited set of target paths.
 Specifying an empty PackagePath string would add the file to the root of the package.
@@ -117,24 +117,24 @@ Specifying an empty PackagePath string would add the file to the root of the pac
          <PackagePath>content\myfiles\;content\sample\;\;</PackagePath>
      </Content>
 
-The above will add libuv.txt to content\myfiles , content\sample and the root of the package.
+The above will add ```libuv.txt``` to ```content\myfiles``` , ```content\sample``` and the root of the package.
 
-There is also a new MSBuild property $(IncludeContentInPack), which defaults to true. If this is set to false on any project, then the content from that project is not included in the nuget package.
+There is also a new MSBuild property ```$(IncludeContentInPack)```, which defaults to true. If this is set to false on any project, then the content from that project is not included in the NuGet package.
 
-**Apart from Content items, the \<Pack> and \<PackagePath> metadata can also be set on files with Build Action = Compile, EmbeddedResource, ApplicationDefinition, Page, Resource, SplashScreen, DesignData, DesignDataWithDesignTimeCreatableTypes, CodeAnalysisDictionary, AndroidAsset, AndroidResource, BundleResource or None.**
+**Apart from Content items, the ```<Pack>``` and ```<PackagePath>``` metadata can also be set on files with ```Build Action = Compile, EmbeddedResource, ApplicationDefinition, Page, Resource, SplashScreen, DesignData, DesignDataWithDesignTimeCreatableTypes, CodeAnalysisDictionary, AndroidAsset, AndroidResource, BundleResource or None```.**
 
 **Note that for pack to append the filename to your package path when using globbing patterns, your package path must end with the directory separator character, otherwise the package path is treated as the full path including the file name.**
 
 ####IncludeSymbols
-If msbuild /t:pack /p:IncludeSymbols=true , then the corresponding pdb and mdb files are copied along with .dll/.exe/.winmd/.xml/.json/.pri . Note that setting IncludeSymbols= true creates a regular package AND a symbols package.
+If ```msbuild /t:pack /p:IncludeSymbols=true``` , then the corresponding pdb and mdb files are copied along with ```.dll/.exe/.winmd/.xml/.json/.pri``` . Note that setting ```IncludeSymbols= true``` creates a regular package AND a symbols package.
 
 ####IncludeSource
-Same as IncludeSymbols, except that it copies source files along with pdbs as well. All files of type = Compile are copied over to src\\\<ProjectName>\ preserving the relative path directory structure in the resulting nupkg. The same also happens for source files of any ProjectReference which has \<TreatAsPackageReference> set to false.
+Same as IncludeSymbols, except that it copies source files along with pdbs as well. All files with ```BuildAction = Compile``` are copied over to ```src\<ProjectName>\``` preserving the relative path directory structure in the resulting nupkg. 
 
-If a file of type = Compile, is outside the project folder, then it is just added to src\\\<ProjectName>\\.
+If a file with ```BuildAction = Compile```, is outside the project folder, then it is just added to ```src\<ProjectName>\```.
 
 ####IsTool
-If msbuild /t:pack /p:IsTool=true, all output files, as specified in the Output Assemblies scenario, are copied to the tools folder instead of the lib folder. Note that this is different from a DotNetCliTool which is specified by setting the PackageType in csproj file.
+If ```msbuild /t:pack /p:IsTool=true```, all output files, as specified in the Output Assemblies scenario, are copied to the tools folder instead of the lib folder. Note that this is different from a ```DotNetCliTool``` which is specified by setting the ```PackageType``` in csproj file.
 
 ####Packing using a nuspec
 You can use a nuspec file to pack your project, however, you still need to have a project file to import NuGet.Build.Tasks.Pack.targets so that the pack task can be executed.
