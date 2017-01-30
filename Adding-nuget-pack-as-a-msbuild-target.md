@@ -123,7 +123,22 @@ The above will add ```libuv.txt``` to ```content\myfiles``` , ```content\sample`
 
 There is also a new MSBuild property ```$(IncludeContentInPack)```, which defaults to true. If this is set to false on any project, then the content from that project is not included in the NuGet package.
 
-**Apart from Content items, the ```<Pack>``` and ```<PackagePath>``` metadata can also be set on files with ```Build Action = Compile, EmbeddedResource, ApplicationDefinition, Page, Resource, SplashScreen, DesignData, DesignDataWithDesignTimeCreatableTypes, CodeAnalysisDictionary, AndroidAsset, AndroidResource, BundleResource or None```.**
+**Apart from Content items, the ```<Pack>``` and ```<PackagePath>``` metadata can also be set on files with the following BuildActions :**
+ ```
+Compile
+EmbeddedResource
+ApplicationDefinition
+Page
+Resource
+SplashScreen
+DesignData
+DesignDataWithDesignTimeCreatableTypes
+CodeAnalysisDictionary
+AndroidAsset
+AndroidResource
+BundleResource
+None
+```
 
 **Note that for pack to append the filename to your package path when using globbing patterns, your package path must end with the directory separator character, otherwise the package path is treated as the full path including the file name.**
 
