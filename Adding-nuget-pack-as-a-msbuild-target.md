@@ -35,6 +35,7 @@ In addition, the following nuspec properties will no longer be supported in cspr
 
 ###Pack Target Inputs
 Properties:
+```
 * IsPackable
 * PackageVersion
 * PackageId
@@ -64,12 +65,12 @@ Properties:
 * NuspecFile
 * NuspecBasePath
 * NuspecProperties
-
+```
 ###Scenarios
 ####PackageIconUrl
 As part of the change for feature, https://github.com/NuGet/Home/issues/2582, PackageIconUrl will eventually be changed PackageIconUri and can be relative path to a icon file which will included at the root of the resulting package.
 ####Output Assemblies
-NuGet pack will copy the output files (which are of extension .exe, .dll, .xml, .winmd, .json, .pri). The output files that are copied depend on what MSBuild provides from BuiltOutputProjectGroup target. 
+NuGet pack will copy the output files (which are of extension ```.exe, .dll, .xml, .winmd, .json, .pri```). The output files that are copied depend on what MSBuild provides from BuiltOutputProjectGroup target. 
 
 There are two msbuild properties that you can use in your project file or command line to control where output assemblies go:
 
