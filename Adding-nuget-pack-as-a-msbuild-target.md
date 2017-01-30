@@ -99,7 +99,7 @@ You can also add the following metadata to your project reference:
 
 Add extra metadata to existing ```<Content>``` item . By default everything of type ```Content``` gets included for Pack, unless you override by specifying something like:
 
-     <Content Include="..\win7-x64\libuv.txt">
+     <Content Include="win7-x64\libuv.txt">
          <Pack>false</Pack>
      </Content>
 
