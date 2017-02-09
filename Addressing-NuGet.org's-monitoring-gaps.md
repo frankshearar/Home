@@ -1,1 +1,0 @@
-Since October 11, 2016, we have had eight recorded live site incidents on NuGet.org. These 
