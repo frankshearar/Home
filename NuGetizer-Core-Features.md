@@ -204,6 +204,70 @@ Since the referenced packages did not have metadata, their virtual packages woul
 
 A packaging project can also be used to create metapackages. In this case, it would reference several projects in the solution that have packaging metadata, and thus would build an empty package with dependencies on the packages built by those projects.
 
+## Reference Assembly Generation
+
+Reference assemblies can be generated for one or more Portable Class Library profiles. This is done by adding a ReferenceAssemblyFramework item into the NuGet packaging project.
+
+```xml
+  <ItemGroup>
+    <ReferenceAssemblyFramework Include=".NETPortable,Version=v4.5,Profile=Profile259" />
+  </ItemGroup>
+```
+
+On building the NuGet packaging project a reference assembly will be generated based on the intersection of the assemblies that the NuGet packaging project references.
+
+The reference assembly generation process can be further configured.
+
+### Specifying assembly reference paths
+
+If the reference assembly generation process since it cannot resolve an assembly the path to the assembly can be specified as a property in the NuGet packaging project.
+
+```xml
+  <PropertyGroup>
+      <IntersectionAssemblyReferencePath>/Library/Frameworks/Xamarin.Android.framework/Versions/Current/lib/xbuild-frameworks/MonoAndroid/v7.0;/Some/Other/Path</IntersectionAssemblyReferencePath>
+  </PropertyGroup>
+```
+
+The IntersectionAssemblyReferencePath property accepts a semi-colon delimited list of paths for assemblies to be resolved.
+
+By default the output directory of the projects referenced by the NuGet packaging project will be used as reference paths. To disable this the EnableDefaultIntersectionAssemblyReferencePath property can be set to false.
+
+```xml
+<PropertyGroup>
+  <EnableDefaultIntersectionAssemblyReferencePath>false</EnableDefaultIntersectionAssemblyReferencePath>
+</PropertyGroup>
+```
+
+### Excluding Types
+
+A type can be excluded from the generated reference assembly by specifying the type name in the IntersectionExcludeType property.
+
+```xml
+<PropertyGroup>
+  <IntersectionExcludeType>FullTypeName1;FullTypeName2</IntersectionExcludeType>
+</PropertyGroup>
+```
+
+### Removing Abstract Type Members
+
+The IntersectionRemoveAbstractTypeMembers property can be used to remove abstract members from a type.
+
+```xml
+<PropertyGroup>
+  <IntersectionRemoveAbstractTypeMembers>Type1;Type2</IntersectionRemoveAbstractTypeMembers>
+</PropertyGroup>
+```
+
+### Excluding Assemblies
+
+To exclude an assembly when generating a reference assembly the IntersectionExcludeAssembly item can be used.
+
+```xml
+<ItemGroup>
+  <IntersectionExcludeAssembly Include="path/to/assembly.dll" />
+</ItemGroup>
+```
+
 ## IDE Support
 
 A new project flavor will be added for package projects. It will support project references, package references, and files. Building this project type causes a package to be created.
