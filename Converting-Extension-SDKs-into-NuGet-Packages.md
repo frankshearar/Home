@@ -75,7 +75,7 @@ The following manifest snippet shows only the set of properties that are recogni
 
 Extension SDK manifest needs to be placed in the root of the Tools directory and is optional. Manifest is primarily required to specify metadata used by the designer tools in Visual Studio and if you are not shipping controls then it is not required. This manifest needs to be renamed as **VisualStudioToolsManifest.xml** in order for the tools to pick this up.
 
-    \contentFiles\**VisualStudioToolsManifest.xml**
+    \Tools\**VisualStudioToolsManifest.xml**
 
 The semantics of the options in the trimmed manifest are spec'ed out in the original design of the SDK manifest available [here](https://msdn.microsoft.com/en-us/library/hh768146.aspx). 
 
