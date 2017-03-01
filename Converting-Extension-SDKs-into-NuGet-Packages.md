@@ -64,16 +64,16 @@ A sample full Extension SDK Manifest is given below
 The following manifest snippet shows only the set of properties that are recognized by the tooling in Visual Studio when the manifest is read from a NuGet package.
 
     <FileList>
-      MinVSVersion = “14.0”>
-      <File Reference = “MySDK.Sprint.winmd” Implementation = “XNASprintImpl.dll”>
-      <ToolboxItems VSCategory = “Graph”>
-      <ToolboxItems/>
-      <ToolboxItems BlendCategory = “Controls/sample/Graph”>
+      <File Reference = “YourReferenceAssembly.winmd”>
+      <ToolboxItems VSCategory = “YourFolderName” BlendCategory=" YourFolderName">
+        <Item Type="Namespace.Type1" />
+        <Item Type="Namespace.Type2" />
+        <Item Type="Namespace.TypeEtc" />
       <ToolboxItems/>
       </File>
     </FileList>
 
-Extension SDK manifest needs to be placed in the root of the contentFiles directory and is optional. Manifest is primarily required to specify metadata used by the designer tools in Visual Studio and if you are not shipping controls then it is not required. This manifest needs to be renamed as **VisualStudioToolsManifest.xml** inorder for the tools to pick this up.
+Extension SDK manifest needs to be placed in the root of the Tools directory and is optional. Manifest is primarily required to specify metadata used by the designer tools in Visual Studio and if you are not shipping controls then it is not required. This manifest needs to be renamed as **VisualStudioToolsManifest.xml** in order for the tools to pick this up.
 
     \contentFiles\**VisualStudioToolsManifest.xml**
 
@@ -83,9 +83,9 @@ The semantics of the options in the trimmed manifest are spec'ed out in the orig
 
 ### Supporting Platform Versions in UAP NuGet Packages
 
-UAP packages have a **TargetPlatformVersion(TPV)** and **TargetPlatformMinVersion(TPM)** that defines the upper and lower bounds of the OS version where the app can be installed into. TPV further specifies the version of the SDK that the app is compiled against. 
+UAP packages have a **TargetPlatformVersion(TPV)** and **TargetPlatformMinVersion(TPMV)** that defines the upper and lower bounds of the OS version where the app can be installed into. TPV further specifies the version of the SDK that the app is compiled against. 
 
-When a NuGet package author creates a UAP library, they need to keep in mind these properties when designing and coding their libraries. Using API's outside of the bounds of the platform versions defined in the app will either cause the build to fail or the app to fail at runtime (If due dilligence is not taken into account while using adaptive APIs).
+When a NuGet package author creates a UAP library, they need to keep in mind these properties when designing and coding their libraries. Using API's outside of the bounds of the platform versions defined in the app will either cause the build to fail or the app to fail at runtime (If due diligence is not taken into account while using adaptive APIs).
 
 Some examples of possible combinations of TPV and TPM are given below. Abbreviations are used instead of build numbers for brevity.
 
@@ -106,7 +106,7 @@ E.g, If you want to target RS1 version of the SDK, you can name the folder as th
     \lib\uap10.0.10586.0\*
     \ref\uap10.0.10586.0\*
 
-This nuget package is applicable to all projects who's  **TPV>= 10.0.10586.0. **ref** is given here for completeness and is only required if you have a reference assembly that is used to compile the app and there is a different implementation assembly in lib that is copied into the apps output.
+This nuget package is applicable to all projects whose  **TPMV>= 10.0.10586.0. **ref** is given here for completeness and is only required if you have a reference assembly that is used to compile the app and there is a different implementation assembly in lib that is copied into the apps output.
 
 
 If developers need to specify multiple versions of the assembly targeting specific versions of the SDK they can do by creating multiple libraries targeting specific versions of the OS. E.g,
@@ -115,10 +115,6 @@ If developers need to specify multiple versions of the assembly targeting specif
     \lib\uap10.0.10586.0\*
     \ref\uap10.0.14393.0\*
     \ref\uap10.0.10586.0\*
-
-In order to get Min support working, users will needs to author this check in their Target. 
-
-**Sample TBD**
 
 ### Designer Requirements
 
