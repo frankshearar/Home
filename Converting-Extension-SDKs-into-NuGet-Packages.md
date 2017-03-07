@@ -119,12 +119,11 @@ If developers need to specify multiple versions of the assembly targeting specif
 ### Designer Requirements
 
 #### Support C++
-We need to be able to 
+
+####Support Edit Copy of Template
 
 
-
-Support Edit Template
-
+Note: These features should work in UWP for both project.json and PackageRef
 
  
 
