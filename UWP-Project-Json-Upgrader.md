@@ -46,6 +46,8 @@ The API will look like this:
 
 The Migration is done in three steps:
 
-1) Migrate package dependencies to Package References in csproj.
+1) Migrate package dependencies to ```<PackageReference>``` in csproj.
+
 2) Migrate runtimes in project json to ```<RuntimeIdentifiers>``` in csproj.
-3) Migrate root properties in project json like ****Description, Copyright, Version, Authors, Language****
+
+3) Migrate root properties in project json like ***Description, Copyright, Version, Authors, Language***
