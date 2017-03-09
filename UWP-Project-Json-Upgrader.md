@@ -11,10 +11,10 @@ The API will look like this:
     public interface IVsProjectJsonMigrator
     {
         /// <summary>
-        /// Migrateds a UWP Project.json based project to Package Reference based project.
+        /// Migrates a UWP Project.json based project to Package Reference based project.
         /// </summary>
         /// <param name="project">The DTE project that needs to be migrated</param>
-        Task<IVsProjectJsonMigrateResult> MigrateProjectToPackageRef(Project project);
+        IVsProjectJsonMigrateResult MigrateProjectToPackageRef(string projectUniqueName);
         
     }
 ```
