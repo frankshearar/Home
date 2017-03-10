@@ -6,39 +6,29 @@ The API will look like this:
 
 ```
     /// <summary>
-    /// Contains methods to migrate a UWP project to PackageReference based project.
+    /// Contains methods to migrate a project.json based legacy project to PackageReference based project.
     /// </summary>
-    public interface IVsProjectJsonMigrator
+    public interface IVsProjectJsonToPackageReferenceMigrator
     {
         /// <summary>
         /// Migrates a UWP Project.json based project to Package Reference based project.
         /// </summary>
-        /// <param name="project">The DTE project that needs to be migrated</param>
-        IVsProjectJsonMigrateResult MigrateProjectToPackageRef(string projectUniqueName);
-        
+        /// <param name="projectUniqueName">The full path to the project that needs to be migrated</param>
+        IVsProjectJsonToPackageReferenceMigrateResult MigrateProjectToPackageRef(string projectUniqueName);
+
     }
 ```
 
 ```
     /// <summary>
-    /// Contains the result of the migrate operation on a UWP project
+    /// Contains the result of the migrate operation on a legacy project.json project
     /// </summary>
-    public interface IVsProjectJsonMigrateResult
+    public interface IVsProjectJsonToPackageReferenceMigrateResult
     {
         /// <summary>
         /// Returns the success value of the migration operation.
         /// </summary>
         bool IsSuccess { get; }
-
-        /// <summary>
-        /// If migrate operation was successful, stores the path to the backup project file on disk.
-        /// </summary>
-        string BackupProjectFile { get; }
-
-        /// <summary>
-        /// If migrate operation was successful, stores the path to the backup project.json file on disk.
-        /// </summary>
-        string BackupProjectJsonFile { get; }
 
         /// <summary>
         /// If migrate operation was unsuccessful, stores the error message in the exception.
