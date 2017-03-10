@@ -4,7 +4,7 @@ NuGet will provide an IVS API that UWP Project system can call when a project is
 
 The API will look like this: 
 
-```
+```cs
     /// <summary>
     /// Contains methods to migrate a project.json based legacy project to PackageReference based project.
     /// </summary>
@@ -19,7 +19,7 @@ The API will look like this:
     }
 ```
 
-```
+```cs
     /// <summary>
     /// Contains the result of the migrate operation on a legacy project.json project
     /// </summary>
@@ -41,9 +41,9 @@ The API will look like this:
 
 The Migration is done in three steps:
 
-1) Migrate package dependencies to ```<PackageReference>``` in csproj.
+1) Migrate package dependencies to `<PackageReference>` in csproj.
 
-2) Migrate runtimes in project json to ```<RuntimeIdentifiers>``` in csproj.
+2) Migrate runtimes in project json to `<RuntimeIdentifiers>` in csproj.
 
 3) Saves a backup of the csproj and project.json file in the Backup folder in the directory where csproj file resides.
 
