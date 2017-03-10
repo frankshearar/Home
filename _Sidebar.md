@@ -23,7 +23,6 @@
 * [[NuGet Restore Manager|NuGet-Restore-Manager]]
 * [Account Deletion Workflow](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow)
 * [Search by Package Type and Query Language Surfacing](https://github.com/NuGet/Home/wiki/Search-by-Package-Type-and-Query-Language-Surfacing)
-* [Multiple API Keys](https://github.com/NuGet/Home/wiki/Multiple-API-Keys)
 * [Command option consistency](https://github.com/NuGet/Home/wiki/nuget.exe,-xplat,-dotnet-cli-commands-and-options-planning)
 * [Secret Rotation](https://github.com/NuGet/Home/wiki/Secret-Rotation)
 * [Support dotnet add\update\del packageref](https://github.com/NuGet/Home/wiki/Support-dotnet-add%7Cupdate%7Cremove-pkg)
@@ -41,6 +40,7 @@
 * [Replication API] (https://github.com/NuGet/Home/wiki/%5Bspec%5D-NuGet.org-replication-API)
 
 #### Implemented
+* [Multiple API Keys](https://github.com/NuGet/Home/wiki/Multiple-API-Keys)
 * [Batch Events](https://github.com/NuGet/Home/wiki/Batch-Events)
 * [Aggressive No Caching Mode] (https://github.com/NuGet/Home/wiki/Aggressive-No-Caching-option-for-nuget.exe)
 * [Package Type \[Packing\]](https://github.com/NuGet/Home/wiki/Package-Type-%5BPacking%5D)
