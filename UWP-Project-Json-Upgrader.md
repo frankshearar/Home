@@ -39,6 +39,11 @@ The API will look like this:
         /// If migrate operation was successful, stores the path to the backup project.json file on disk.
         /// </summary>
         string BackupProjectJsonFile { get; }
+
+        /// <summary>
+        /// If migrate operation was unsuccessful, stores the error message in the exception.
+        /// </summary>
+        string ErrorMessage { get; }
     }
 ```
 
@@ -50,4 +55,6 @@ The Migration is done in three steps:
 
 2) Migrate runtimes in project json to ```<RuntimeIdentifiers>``` in csproj.
 
-3) Migrate root properties in project json like ***Description, Copyright, Version, Authors, Language***
+3) Saves a backup of the csproj and project.json file in the Backup folder in the directory where csproj file resides.
+
+4) Saves the project.
