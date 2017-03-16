@@ -14,7 +14,7 @@ The API will look like this:
         /// Migrates a UWP Project.json based project to Package Reference based project.
         /// </summary>
         /// <param name="projectUniqueName">The full path to the project that needs to be migrated</param>
-        IVsProjectJsonToPackageReferenceMigrateResult MigrateProjectJsonToPackageReference(string projectUniqueName);
+        Task<object> MigrateProjectJsonToPackageReferenceAsync(string projectUniqueName);
 
     }
 ```
