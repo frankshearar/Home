@@ -33,13 +33,13 @@
 * [Converting Extension SDKs into NuGet Packages](https://github.com/NuGet/Home/wiki/Converting-Extension-SDKs-into-NuGet-Packages)
 * [Supporting Package Reference in UWP WPF WinForms and Classic Libraries](https://github.com/NuGet/Home/wiki/Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries)
 * [ToolsReference and Multi TFM Support in NuGet UI](https://github.com/NuGet/Home/wiki/ToolsReference-and-Multi-TFM-Support-in-NuGet-UI)
-* [Filter OData query requests](https://github.com/NuGet/Home/wiki/Filter-OData-query-requests)
 
 #### Reviewed
 * [SemVer 2.0.0](https://github.com/NuGet/Home/wiki/SemVer-2.0.0-support)
 * [Replication API] (https://github.com/NuGet/Home/wiki/%5Bspec%5D-NuGet.org-replication-API)
 
 #### Implemented
+* [Filter OData query requests](https://github.com/NuGet/Home/wiki/Filter-OData-query-requests)
 * [Multiple API Keys](https://github.com/NuGet/Home/wiki/Multiple-API-Keys)
 * [Batch Events](https://github.com/NuGet/Home/wiki/Batch-Events)
 * [Aggressive No Caching Mode] (https://github.com/NuGet/Home/wiki/Aggressive-No-Caching-option-for-nuget.exe)
