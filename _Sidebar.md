@@ -35,7 +35,8 @@
 * [ToolsReference and Multi TFM Support in NuGet UI](https://github.com/NuGet/Home/wiki/ToolsReference-and-Multi-TFM-Support-in-NuGet-UI)
 
 #### Reviewed
-* [SemVer 2.0.0](https://github.com/NuGet/Home/wiki/SemVer-2.0.0-support)
+* [SemVer 2.0.0 - client-side](https://github.com/NuGet/Home/wiki/SemVer-2.0.0-support)
+* [SemVer 2.0.0 - server-side](https://github.com/NuGet/Home/wiki/SemVer2-support-for-nuget.org-(server-side))
 * [Replication API] (https://github.com/NuGet/Home/wiki/%5Bspec%5D-NuGet.org-replication-API)
 
 #### Implemented
