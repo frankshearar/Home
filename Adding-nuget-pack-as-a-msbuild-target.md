@@ -34,7 +34,7 @@ In addition, the following nuspec properties will no longer be supported in cspr
 * Owners
 * Summary
 ```
-###Pack Target Inputs
+### Pack Target Inputs
 Properties:
 ```
 * IsPackable
@@ -68,10 +68,10 @@ Properties:
 * NuspecBasePath
 * NuspecProperties
 ```
-###Scenarios
-####PackageIconUrl
+### Scenarios
+#### PackageIconUrl
 As part of the change for feature, https://github.com/NuGet/Home/issues/2582, PackageIconUrl will eventually be changed PackageIconUri and can be relative path to a icon file which will included at the root of the resulting package.
-####Output Assemblies
+#### Output Assemblies
 NuGet pack will copy the output files (which are of extension ```.exe, .dll, .xml, .winmd, .json, .pri```). The output files that are copied depend on what MSBuild provides from BuiltOutputProjectGroup target. 
 
 There are two msbuild properties that you can use in your project file or command line to control where output assemblies go:
@@ -80,10 +80,10 @@ There are two msbuild properties that you can use in your project file or comman
 
 2) **BuildOutputTargetFolder** : Specify the folder in which the output assemblies should go to. The output assemblies (and other output files) are copied into their respective framework folders.
 
-####Package References
+#### Package References
 Spec to Package References : https://github.com/NuGet/Home/wiki/PackageReference-Specification
 
-####Project to Project References
+#### Project to Project References
 Project to Project references will be, by default, be considered as nuget package references.
     
      <ProjectReference Include="..\UwpLibrary2\UwpLibrary2.csproj"/>
@@ -96,7 +96,7 @@ You can also add the following metadata to your project reference:
 <PrivateAssets>
 ```
 
-####Including Content in package
+#### Including Content in package
 
 Add extra metadata to existing ```<Content>``` item . By default everything of type ```Content``` gets included for Pack, unless you override by specifying something like:
 
@@ -143,18 +143,18 @@ None
 
 **Note that for pack to append the filename to your package path when using globbing patterns, your package path must end with the directory separator character, otherwise the package path is treated as the full path including the file name.**
 
-####IncludeSymbols
+#### IncludeSymbols
 If ```msbuild /t:pack /p:IncludeSymbols=true``` , then the corresponding pdb and mdb files are copied along with ```.dll/.exe/.winmd/.xml/.json/.pri``` . Note that setting ```IncludeSymbols= true``` creates a regular package AND a symbols package.
 
-####IncludeSource
+#### IncludeSource
 Same as IncludeSymbols, except that it copies source files along with pdbs as well. All files with ```BuildAction = Compile``` are copied over to ```src\<ProjectName>\``` preserving the relative path directory structure in the resulting nupkg. 
 
 If a file with ```BuildAction = Compile```, is outside the project folder, then it is just added to ```src\<ProjectName>\```.
 
-####IsTool
+#### IsTool
 If ```msbuild /t:pack /p:IsTool=true```, all output files, as specified in the Output Assemblies scenario, are copied to the tools folder instead of the lib folder. Note that this is different from a ```DotNetCliTool``` which is specified by setting the ```PackageType``` in csproj file.
 
-####Packing using a nuspec
+#### Packing using a nuspec
 You can use a nuspec file to pack your project, however, you still need to have a project file to import NuGet.Build.Tasks.Pack.targets so that the pack task can be executed.
 The following three msbuild properties are relevant to packing using a nuspec :
 
