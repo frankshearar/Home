@@ -45,6 +45,7 @@ Properties:
 * Description
 * Copyright
 * PackageRequireLicenseAcceptance
+* DevelopmentDependency
 * PackageLicenseUrl
 * PackageProjectUrl
 * PackageIconUrl
