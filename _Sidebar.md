@@ -19,6 +19,7 @@
 ***
 
 #### Incubation 
+* [NuGet Package Download Plugin](https://github.com/NuGet/Home/wiki/NuGet-Package-Download-Plugin)
 * [Package Sources Analyzer] (https://github.com/NuGet/Home/wiki/Package-Sources-Diagnostics)
 * [[NuGet Restore Manager|NuGet-Restore-Manager]]
 * [Account Deletion Workflow](https://github.com/NuGet/Home/wiki/NuGet-Account-Deletion-Workflow)
