@@ -66,7 +66,7 @@ Protocol errors include:
 All messages must have the following common fields:
 
 1.  Request ID:  a string containing the unique identifier for a request
-2.  Message type:  a string indicating if the message is a "request", "response", or "progress" notification.
+2.  Message type:  a string indicating if the message type (e.g.:  "request", "response", "progress", "fault" or "cancel").
 3.  Method:  a string representing the request (e.g.:  "handshake", "downloadPackage", etc.)
 
 ### Plugin Protocol Version Negotiation
@@ -81,10 +81,10 @@ The following messages are required for supporting the overall download package 
 
 1.  Initialize
     * The request message will contain:
-	NuGet client tool version
-	NuGet client tool effective language.  This takes into consideration the ForceEnglishOutput setting, if used.
-	Verbosity level
-	Response timeout
+      * NuGet client tool version
+      * NuGet client tool effective language.  This takes into consideration the ForceEnglishOutput setting, if used.
+      * Verbosity level
+      * Response timeout
     * A response failure will result in termination of the plugin.
 
 2.  Operation claims query
@@ -105,6 +105,7 @@ The following messages are required for supporting the overall download package 
       * proxy and proxy credentials
       * package ID
       * package version
+      * the file path within the package
     * The response will contain a readable file path for the specified file.
 
 4.  Package download
@@ -120,7 +121,7 @@ The following messages are required for supporting the overall download package 
       * hash algorithm (e.g.:  SHA-512)
     * The response will indicate success or failure.  Success requires the following:
       * the package has been extracted to the specified installation location
-      * a hash file has been written to the specified location
+      * a hash file has been written to the specified location.  This hash file must not exist until all the other files are completely available in the destination.
       * the hash file contents is the SHA-512 hash for the package
 
 5.  Shutdown
