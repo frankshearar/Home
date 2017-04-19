@@ -12,6 +12,7 @@
 ***
 
 #### Incubation 
+* [[Full Support of LSL|Full-support-of-LSL]]
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
 * [[NuGet Restore Manager|NuGet-Restore-Manager]]
