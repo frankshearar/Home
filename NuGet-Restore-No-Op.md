@@ -5,7 +5,8 @@ Currently in all 4 NuGet Clients (NuGet.exe, dotnet.exe, VS Client, MSBuild) we 
 The goal of this feature is to optimize restore so that if the restore result is up-to-date, the corresponding restore operation is not executed. 
 
 ### Benefits
-The benefits are a more seamless restore experience, avoid doing redundant work. 
+The benefits are a faster and more seamless restore experience, avoid doing redundant work when the user has 
+
 ### No-Op Behavior
 | Project Model | NuGet.Exe | VS Client | dotnet.exe | MSBuild |
 | --- | --- | --- | --- | --- |
@@ -14,7 +15,7 @@ The benefits are a more seamless restore experience, avoid doing redundant work.
 | Package Reference | <sub>Covered.</sub> | <sub>Covered.</sub> | <sub>Covered.</sub> | <sub>Covered.</sub>
 
 ### Usage:
-The no-op restore will run by default. If you wish to force a restore, you can use -SkipNoOp as such:
+The no-op restore will run by default. If you wish to skip the no-op, you can use -SkipNoOp as such:
 * NuGet.exe restore MyProject.csproj -SkipNoOp
 * Dotnet.exe restore MyProject.csproj -SkipNoOp
 * MSBuild.exe /t:restore MyProject.csproj /p:SkipNoOp
