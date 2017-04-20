@@ -128,3 +128,5 @@ Running a full restore would resolve 3.6.1 and downloaded that version of the pa
 [AG] I would suggest using -Force, --force or -F, /p:/Force for NuGet.exe, DotNet.exe, MSBuild.exe respectively. 
 
 * Do we change the VS no-op to match the rest?
+
+* Do we add the option to enable/disable No-Op in VS? How do we do that? 
