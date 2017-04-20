@@ -21,6 +21,8 @@ The no-op restore will run by default. If you wish to skip the no-op, you can us
 * MSBuild.exe /t:restore MyProject.csproj /p:SkipNoOp
 * Visual Studio - NuGet Package Manager - TBD 
 
+[AG] I would rather suggest using -Force, --force or -F, /p:/Force for NuGet.exe, DotNet.exe, MSBuild.exe respectively. 
+
 ## Design Specification 
 
 ### What is the input/output to restore
