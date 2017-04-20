@@ -124,6 +124,7 @@ Running a full restore would resolve 3.6.1 and downloaded that version of the pa
 
 ### Open questions
 * Is -SkipNoOp or -Force a good flag?
-[AG] I would rather suggest using -Force, --force or -F, /p:/Force for NuGet.exe, DotNet.exe, MSBuild.exe respectively. 
+
+[AG] I would suggest using -Force, --force or -F, /p:/Force for NuGet.exe, DotNet.exe, MSBuild.exe respectively. 
 
 * Do we change the VS no-op to match the rest?
