@@ -1,7 +1,7 @@
 ## NuGet Restore No-Op
 
 ### What is NuGet Restore No-Op
-Currently in all 4 NuGet Clients (NuGet.exe, dotnet.exe, VS Client, MSBuild) we do a full restore at every restore call 
+Currently in 3 of 4 NuGet Clients (NuGet.exe, dotnet.exe, MSBuild) we do a full restore at every restore call 
 The goal of this feature is to optimize restore so that if the restore result is up-to-date, the corresponding restore operation is not executed. 
 
 ### Benefits
