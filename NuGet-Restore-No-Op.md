@@ -10,7 +10,7 @@ The benefits are a faster and more seamless restore experience, avoid doing redu
 ### No-Op Behavior
 | Project Model | NuGet.Exe | VS Client | dotnet.exe | MSBuild |
 | --- | --- | --- | --- | --- |
-| Packages.config | <sub>Not covered. NuGet.exe restores packages.config projects first</sub> | <sub>Not covered. VS Client restores packages.config projects first</sub> | <sub>Not covered. packages.config projects are ignored</sub> | <sub>Not covered. MSBuild restores packages.config projects first</sub>
+| Packages.config | <sub>Not covered. NuGet.exe restores packages.config projects first</sub> | <sub>Not covered. VS Client restores packages.config projects first</sub> | <sub>Not covered. packages.config projects are ignored</sub> | <sub>Not covered. packages.config projects are ignored</sub>
 | project.json | <sub>Covered.</sub> | <sub>Covered.</sub> | <sub>Covered.</sub> | <sub>Covered.</sub>
 | Package Reference | <sub>Covered.</sub> | <sub>Covered.</sub> | <sub>Covered.</sub> | <sub>Covered.</sub>
 
