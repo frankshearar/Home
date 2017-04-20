@@ -121,3 +121,7 @@ Example:
 At the moment of the first restore, version="3.6.0" was the latest version on the package source.
 Sometime between that restore and the new restore, version="3.6.1" was uploaded to the source. 
 Running a full restore would resolve 3.6.1 and downloaded that version of the package. However since the restore inputs have not changed, restore will think no action needs to be taken.
+
+### Open questions
+Is -SkipNoOp or -Force a good flag?
+Do we change the VS no-op to match the rest?
