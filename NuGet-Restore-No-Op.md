@@ -91,7 +91,7 @@ This json file will live in BaseIntermediateOutputPath next to the project.asset
 At each restore, we will compare the evaluated hash of the dg spec with the one currently in the BaseIntermediateOutputPath if existing.
 If the hashes are the same, we will then verify that the assets.json file exists, and then we will verify all the packages exist on disk. If all those conditions are fulfilled  we will no-op.
 
-Step by step illustration of the added restore logic:
+Step by step list on where we add the no-op logic. 
 
 1. Read Settings (Includes Sources & resolve the paths for the packages folders)
 2. Build DG SPEC
@@ -99,7 +99,7 @@ Step by step illustration of the added restore logic:
 4. Compare hash value with the dgspec value in projectName.nuget.json if existing.  If true GOTO 5
 5. Verify that the project.assets.json file exists. If true GOTO 6
 6. Verify that all packages exist on disk (in packages folder). If this condition is satisfied too, we stop here since we have a no-op restore, otherwise we continue
-7.Restore as usual
+7. Restore as usual
 8. If the restore is successful we write the projectName.nuget.json with the new hash
 	
 Of course in case of a recursive restore we will need to do the same logic for all of the projects.
