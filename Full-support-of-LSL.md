@@ -41,7 +41,10 @@ A project adapter will be introduced to abstract away communication with `EnvDTE
 In LSL mode it facilitates `PackagesConfigReader' to retrieve package references. Works correctly in LSL mode for majority of read-only operations. For install, uninstall, update operations will force load project as it needs to update assembly references in the project.
 
 ### project.json
+Utilizes `JsonPackageSpecReader` to get a PackageSpec for the project.
 
 ### PackageRef
+Relies on `IDeferredProjectWorkspaceService` to get all necessary project data.
 
 ### .NET Core (Roslyn project system)
+Does not support LSL. No action needed.
