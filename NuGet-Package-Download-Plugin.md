@@ -46,6 +46,8 @@ Plugins must be code signed.  Unsigned or untrusted plugins will be reported wit
 ### Plugin Interaction
 NuGet client tools and plugins will communicate with JSON over standard streams (stdin, stdout, stderr).  All data must be UTF-8 encoded.
 
+NuGet client tools will launch a plugin with the argument "-Plugin".  In case a user directly launches a plugin executable without this argument, the plugin can give an informative message instead of waiting for a protocol handshake.
+
 NuGet client tools will query a plugin’s supported operations by passing in the service index for a NuGet source.  A plugin may use the service index to check for the presence of supported service types.  
 
 ### Plugin Protocol
