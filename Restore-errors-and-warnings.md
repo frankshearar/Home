@@ -14,3 +14,5 @@ This document contains a list of all warnings and errors that may occur during r
 | | NuGet.Commands | Input | The folder {0} does not contain a project to restore | path | |
 | | NuGet.Commands | Package | Dependency specified was {0} {1} but ended up with {2} {3} | packages | Version bumped |
 | | NuGet.Commands | Project | Package {0} was restored using {1} instead the project target framework {2}. This may cause compatibility problems | package, framework | imports |
+| | NuGet.Commands | Package | Detected package downgrade: {0} from {1} to {2} | package, versions | Downgrade warning |
+| | NuGet.Commands | Input | Unknown Compatibility Profile: {0} | compat profile | bad input from project |
