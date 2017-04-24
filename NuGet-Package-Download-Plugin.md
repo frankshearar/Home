@@ -17,6 +17,8 @@ To facilitate custom download implementations, NuGet tools will expose a new ext
 To facilitate future investments in cross-platform support, the target platform for these changes will be .NET Core.
 Plugins are optional mechanism for extending NuGet client tool functionality and not required for any current default package download behaviors.
 
+Since VSTS only requires V3 download support, only V3 download support will be implemented.  Plugins will not be able to override V2 package download.
+
 ### General Plugin Requirements
 A plugin must:
 * Have a valid, trusted Authenticode signature.
@@ -42,7 +44,7 @@ Empty paths and paths consisting only of whitespace will be ignored.  A path whi
 Plugins must be code signed.  Unsigned or untrusted plugins will be reported with a warning and skipped.  .NET Core does not have built-in support for code signature verification.  On Windows platforms Authenticode signatures will be verified by PInvoking WinVerifyTrust(...).  Other platforms are not supported, and specifying a plugin on other platforms will fail the overall operation with error detail reported to the user.
 
 ### Plugin Interaction
-NuGet client tools and plugins will communicate with JSON over standard streams (stdin, stdout, stderr).
+NuGet client tools and plugins will communicate with JSON over standard streams (stdin, stdout, stderr).  All data must be UTF-8 encoded.
 
 NuGet client tools will query a plugin’s supported operations by passing in the service index for a NuGet source.  A plugin may use the service index to check for the presence of supported service types.  
 
@@ -75,6 +77,10 @@ Both parties will attempt to negotiate a common protocol version by sending to t
 The connection request will communicate both a protocol version as well as a minimum protocol version for optional backwards compatibility.
 
 Failure to negotiate a common protocol version must result in termination of the plugin.
+
+The protocol will have a 5-second response timeout default.  If a request does not receive a response within this timeout period, it should result in connection termination.  A new response timeout default may be established with an application-level request/response pair.  However, the 5-second timeout default will remain in effect until a new response timeout default is accepted.
+
+During protocol version negotiation, only the following message types are allowed:  request, response, fault.  For example, progress messages cannot be used during the handshake phase to reset the 5-second response timeout default.
 
 ### Application Messages
 The following messages are required for supporting the overall download package operation:
