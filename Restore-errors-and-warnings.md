@@ -48,7 +48,35 @@ Unable to find a stable package 'a' with version >= 1.0.0
   - Found 0 version(s) in https://api.nuget.org/v3/index.json
 ```
 
-## Errors in 4.2.0
+### NU2004
+
+#### Issue
+A ProjectReference points to a file that does not exist.
+
+#### Common causes
+The project file is missing from disk or the reference is incorrect.
+
+#### Example
+
+```
+Project reference does not exist 'c:\a.csproj'. Check that the project reference is valid and that the project file exists.
+```
+
+### NU2005
+
+#### Issue
+The project file exists but no restore information was provided for it.
+
+#### Common causes
+In Visual Studio this could mean that the project is unloaded. From the command line this could mean that the file is corrupt or that it does not contain the custom after imports target needed for restore to read the project.
+
+#### Example
+
+```
+Unable to read project information for 'c:\a.csproj'. The project file may be invalid or missing targets required for restore.
+```
+
+# Errors in 4.2.0
 
 | Code | Project | Group | Message | Fields | Comments |
 |:----:| ------- | ----- | ------- | ------ | -------- |
@@ -81,7 +109,7 @@ Unable to find a stable package 'a' with version >= 1.0.0
 | | NuGet.Protocol | feed | The V2 feed at {0} returned an unexpected status code {1} {2} | | |
 | | NuGet.Protocol | feed | The path {0} for the selected source could not be resolved. | | |
 
-## Warnings in 4.2.0
+# Warnings in 4.2.0
 
 | Code | Project | Group | Message | Fields | Comments |
 |:----:| ------- | ----- | ------- | ------ | -------- |
