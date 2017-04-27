@@ -16,7 +16,7 @@ The correct package source is missing or the package id has a typo.
 ```
 Unable to find package 'a'. No packages exist with this id in source(s): http://dotnet.myget.org/F/nuget-build/, https://api.nuget.org/v3/index.json
 ```
-#### NU2002
+### NU2002
 
 #### Issue
 The package id is found but a version within the specified dependency range cannot be found on any of the sources.
@@ -33,7 +33,7 @@ Unable to find package 'a' with version >= 1.0.0
   - Found 0 version(s) in https://api.nuget.org/v3/index.json
 ```
 
-#### NU2003
+### NU2003
 
 #### Issue
 No stable versions were found in the dependency range. Pre-release versions were found but are not allowed.
