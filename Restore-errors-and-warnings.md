@@ -1,7 +1,54 @@
 This document contains a list of all warnings and errors that may occur during restore.
 
-## Errors
+# Updated Errors in 4.3.0
 
+## Missing packages and projects
+
+### NU2001
+
+#### Issue
+The package id cannot be found on any sources.
+
+#### Common causes
+The correct package source is missing or the package id has a typo.
+
+#### Example
+```
+Unable to find package 'a'. No packages exist with this id in source(s): http://dotnet.myget.org/F/nuget-build/, https://api.nuget.org/v3/index.json
+```
+#### NU2002
+
+#### Issue
+The package id is found but a version within the specified dependency range cannot be found on any of the sources.
+
+#### Common causes
+The correct package source is missing or the dependency range is incorrect. The range might be specified by a package and not the user.
+
+The user may need to switch to an available version if this package is referenced by the project directly.
+
+#### Example
+```
+Unable to find package 'a' with version >= 1.0.0
+  - Found 2839 version(s) in http://dotnet.myget.org/F/nuget-build/  [ Nearest version: 1.0.0-beta ]
+  - Found 0 version(s) in https://api.nuget.org/v3/index.json
+```
+
+#### NU2003
+
+#### Issue
+No stable versions were found in the dependency range. Pre-release versions were found but are not allowed.
+
+#### Common causes
+The project specified a stable version for the dependency range. Users need to change this to include pre-release versions.
+
+#### Example
+```
+Unable to find a stable package 'a' with version >= 1.0.0
+  - Found 2839 version(s) in http://dotnet.myget.org/F/nuget-build/  [ Nearest version: 1.0.0-beta ]
+  - Found 0 version(s) in https://api.nuget.org/v3/index.json
+```
+
+## Errors in 4.2.0
 
 | Code | Project | Group | Message | Fields | Comments |
 |:----:| ------- | ----- | ------- | ------ | -------- |
@@ -34,7 +81,7 @@ This document contains a list of all warnings and errors that may occur during r
 | | NuGet.Protocol | feed | The V2 feed at {0} returned an unexpected status code {1} {2} | | |
 | | NuGet.Protocol | feed | The path {0} for the selected source could not be resolved. | | |
 
-## Warnings
+## Warnings in 4.2.0
 
 | Code | Project | Group | Message | Fields | Comments |
 |:----:| ------- | ----- | ------- | ------ | -------- |
