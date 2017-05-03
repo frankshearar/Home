@@ -84,37 +84,8 @@ var format = new LockFileFormat();
 
 
 ## Assets file example
-```
+```json
 {
-  "version": 3,
-  "targets": {
-    ".NETPlatform,Version=v5.0": {
-      "System.Runtime/4.0.20-beta-22927": {
-        "type": "package",
-        "dependencies": {
-          "Frob": "4.0.20"
-        },
-        "compile": {
-          "ref/dotnet/System.Runtime.dll": {}
-        }
-      }
-    }
-  },
-  "libraries": {
-    "System.Runtime/4.0.20-beta-22927": {
-      "sha512": "sup3rs3cur3",
-      "type": "package",
-      "files": [
-        "System.Runtime.nuspec"
-      ]
-    }
-  },
-  "projectFileDependencyGroups": {
-    "": [
-      "System.Runtime [4.0.10-beta-*, )"
-    ],
-    ".NETPlatform,Version=v5.0": []
-  },
   "logs": [
     {
       "code": "NU1000",
