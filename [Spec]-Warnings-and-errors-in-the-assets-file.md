@@ -4,6 +4,10 @@ Adding messages to the assets file also improves the scenario where a user build
 
 ## Reading log messages example
 
+```cs
+var format = new LockFileFormat();
+```
+
 
 ## Log message interface
 
