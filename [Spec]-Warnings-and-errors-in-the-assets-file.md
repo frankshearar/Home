@@ -110,3 +110,22 @@ foreach (var log in assetsFile.LogMessages)
   ]
 }
 ```
+
+## Helper methods
+
+```cs
+/// <summary>
+/// Get target graphs for the current log message.
+/// </summary>
+public static IEnumerable<LockFileTarget> GetTargetGraphs(this IAssetsLogMessage message, LockFile assetsFile);
+
+/// <summary>
+/// Get the library from each target graph it exists in.
+/// </summary>
+public static IEnumerable<LockFileTargetLibrary> GetTargetLibraries(this IAssetsLogMessage message, LockFile assetsFile);
+
+/// <summary>
+/// Get the library by id from the target graph.
+/// </summary>
+public static LockFileTargetLibrary GetTargetLibrary(this LockFileTarget target, string libraryId);
+```
