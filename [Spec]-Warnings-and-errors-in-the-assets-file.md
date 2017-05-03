@@ -113,6 +113,10 @@ foreach (var log in assetsFile.LogMessages)
 
 ## Helper methods
 
+The following are helpers that can be used to get the actual target graphs that apply to a log message, and also the library entries from the assets file that the log message refers to.
+
+Using these the caller can access the id/version of the package and also the framework and RID of of the target graph.
+
 ```cs
 /// <summary>
 /// Get target graphs for the current log message.
