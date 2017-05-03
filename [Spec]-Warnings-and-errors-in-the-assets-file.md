@@ -11,5 +11,24 @@ var format = new LockFileFormat();
 
 ## Log message interface
 
+```cs
+public interface IAssetsLogMessage
+{
+    LogLevel Level { get; }
+    NuGetLogCode Code { get; }
+    string Message { get; }
+    DateTimeOffset Time { get; }
+    string ProjectPath { get; }
+    WarningLevel WarningLevel { get; }
+    string FilePath { get; }
+    int StartLineNumber { get; }
+    int StartColumnNumber { get; }
+    int EndLineNumber { get; }
+    int EndColumnNumber { get; }
+    string LibraryId { get; }
+    IReadOnlyList<string> TargetGraphs { get; }
+}
+```
+
 
 ## Assets file example
