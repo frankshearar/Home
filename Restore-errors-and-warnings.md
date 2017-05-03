@@ -120,7 +120,7 @@ Unable to read project information for 'c:\a.csproj'. The project file may be in
 | | NuGet.Protocol | Nupkg | The file {0} is corrupt | path | Nupkg is corrupt or unreadable |
 | | NuGet.Protocol | Local | The folder {0} contains an invalid version | path | v3 folder with invalid sub folder |
 | | NuGet.Protocol | Local | ``<File system exception message>`` | | |
-| | NuGet.Commands | Input | The folder {0} does not contain a project to restore | path | |
+| NU1501 | NuGet.Commands | Input | The folder {0} does not contain a project to restore | path | |
 | | NuGet.Commands | Package | Dependency specified was {0} {1} but ended up with {2} {3} | packages | Version bumped |
 | | NuGet.Commands | Project | Package {0} was restored using {1} instead the project target framework {2}. This may cause compatibility problems | package, framework | imports |
 | | NuGet.Commands | Package | Detected package downgrade: {0} from {1} to {2} | package, versions | Downgrade warning |
