@@ -5,9 +5,8 @@ Adding messages to the assets file also improves the scenario where a user build
 ## Reading log messages example
 
 ```cs
-var path = "c:\myproject\obj\project.assets.json";
 var reader = new LockFileFormat();
-var assetsFile = reader.Read(path);
+var assetsFile = reader.Read("c:\myproject\obj\project.assets.json");
 
 foreach (var log in assetsFile.LogMessages)
 {
