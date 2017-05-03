@@ -125,3 +125,4 @@ Unable to read project information for 'c:\a.csproj'. The project file may be in
 | | NuGet.Commands | Project | Package {0} was restored using {1} instead the project target framework {2}. This may cause compatibility problems | package, framework | imports |
 | | NuGet.Commands | Package | Detected package downgrade: {0} from {1} to {2} | package, versions | Downgrade warning |
 | | NuGet.Commands | Input | Unknown Compatibility Profile: {0} | compat profile | bad input from project |
+| | NuGet.Commands | Project | Package {0} was restored using {1} instead the project target framework {2}. This may cause compatibility problems. | package, fallback, framework | | |
