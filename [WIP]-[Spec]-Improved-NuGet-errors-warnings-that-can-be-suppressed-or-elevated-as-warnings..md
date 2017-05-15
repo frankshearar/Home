@@ -44,4 +44,4 @@ As stated in the problem.
 ## Solution
 * All the NuGet warnings will be numbered. List of all the numbered warnings can be found here - **TBD**
 * These errors and warnings will be written into the assets file so that msbuild can output these errors appropriately.
-* [TBD] UI experience for per package warning suppression in a project. 
+* [**TBD**] UI experience for per package warning suppression in a project. 
