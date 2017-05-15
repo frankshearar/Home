@@ -176,6 +176,19 @@ The package does not support the current RuntimeIdentifier. Change the RuntimeId
 System.Example 1.0.0 provides a compile-time reference assembly for a.dll on net461, but there is no compatible run-time assembly.
 ```
 
+### NU1401
+
+#### Issue
+The package requires features or frameworks not currently supported by the installed version of NuGet.
+
+#### Common causes
+Upgrade NuGet to fix the issue.
+
+#### Example
+```
+The 'NuGet.Versioning' package requires NuGet client version '5.0.0' or above, but the current NuGet version is '4.3.0'. To upgrade NuGet, please go to http://docs.nuget.org/consume/installing-nuget.
+```
+
 # Warnings
 
 ## Invalid inputs
