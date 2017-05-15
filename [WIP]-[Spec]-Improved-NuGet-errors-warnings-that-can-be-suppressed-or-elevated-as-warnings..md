@@ -1,5 +1,5 @@
 ## Issue
-[NuGet #4895](https://github.com/NuGet/Home/issues/4895: NET Core 2.0): Register all warnings/errors to assets file (including PackageTargetFallback)
+[NuGet #4895](https://github.com/NuGet/Home/issues/4895): NET Core 2.0: Register all warnings/errors to assets file (including PackageTargetFallback)
 
 ## Problem
 Warnings should be treated as errors or ignored based on developers' use-case. 
