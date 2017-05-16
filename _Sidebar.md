@@ -12,6 +12,7 @@
 ***
 
 #### Incubation 
+* [Improved NuGet errors warnings](https://github.com/NuGet/Home/wiki/%5BWIP%5D-%5BSpec%5D-Improved-NuGet-errors-warnings-that-can-be-suppressed-or-elevated-as-warnings.)
 * [[Full Support of LSL|Full-support-of-LSL]]
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
