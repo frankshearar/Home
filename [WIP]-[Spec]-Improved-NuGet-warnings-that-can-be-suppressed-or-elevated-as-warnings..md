@@ -9,15 +9,22 @@ The following user scenarios are driving this feature:
 4. NuGet warnings should follow warning-levels defined in Project just like any other warnings in the project.
 
 **Scenario-1:** NuGet warnings can be overridden as errors, by the developer from Project properties and/or csproj file
-1. User has a ProjectA that has dependency on PackageZ version 7.1. 
-2. ProjectA also has a dependency on ProjectB that has dependency on package PackageZ ver 7.8.
-3. User builds ProjectA which in turn also builds PackageB and includes PackageZ
-4. PackageZ version 7.1 is used and restored as part of ProjectA build due to the NuGet policy of – ‘Nearest dependency version wins’
-5. User sees a warning being logged 
-6. User can make this warning to be treated as error by going to Project.Properties.Build and specifying the warning number (NU1605) to be treated as error, henceforth.
+1. User creates a new project that references `NuGet.Packaging 3.5.0` that references `NuGet.Versioning 3.5.0`
+2. User now another package dependency `NuGet.Commands 4.0.0` that has dependency to `NuGet.Versioning 4.0.0` as shown in the dependency tree:
+`NuGet.Commands 4.0.0 -> NuGet.Configuration 4.0.0 -> NuGet.Versioning 4.0.0`
+3. User gets a downgrade warning (NU1605):
+
+```
+Detected package downgrade: NuGet.Versioning from 4.0.0 to 3.5.0
+  NuGet.Packaging 3.5.0 -> NuGet.Versioning 3.5.0
+  NuGet.Commands 4.0.0 -> NuGet.Configuration 4.0.0 -> NuGet.Versioning 4.0.0
+```
+
+4. User now adds the warning (NU1605) as error in the Project.Properties.Build UI:
 ![image](https://cloud.githubusercontent.com/assets/14800916/26081463/b1155498-397f-11e7-8c92-f832c1b71339.png)
-7. Alternatively, user can write the following in the csproj file to treat this warning as error:
+5. Alternatively, user can write the following in the csproj file to treat this warning as error:
  `<TreatSpecificWarningsAsErrors>NU1605</TreatSpecificWarningsAsErrors>`
+6. User now sees this downgrade as an error.
 
 **Scenario-2:** NuGet warnings can be suppressed by the developer from Project properties and/or csproj file. 
 1. User creates a new NET Standard 2.0 project
