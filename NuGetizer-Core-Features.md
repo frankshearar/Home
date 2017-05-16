@@ -28,7 +28,11 @@ Common Metadata| Description
 
 The `GetPackageContents` target depends on the `GetPackageContentsDependsOn` property, allowing other targets 
 to inject information into the virtual package. It's also possible to just create a new target and specify 
-`BeforeTargets="GetPackageContents"` instead, to contribute additional items.
+`BeforeTargets="GetPackageContents"` instead, to contribute additional `PackageFile` items or even remove 
+inferred items.
+
+The default package contents inference behavior will automatically discover some default `PackageFile` items 
+too (see [Package Files](#package-files)) before `GetPackageContents` runs. The inference is done in the `InferPackageContents`, which you can also extend with `BeforeTargets` or `AfterTargets` to affect the inference.
 
 The virtual package is returned regardless of whether the project is actually configured to build a package. 
 If the project is not configured to build a package, no metadata item will be included. It is not only used 
@@ -39,7 +43,8 @@ they reference.
 > nupkg. This property is 'true' if the project defines a 'PackageId'. The built-in 
 > [GetTargetPath](https://github.com/Microsoft/msbuild/blob/30c9fbca0fe96fb49548df3ab40bdd4cb49d4450/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L1730-L1740) target is [redefined and extended](https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.targets#L49-L59) to include this metadata as well as an `IsNuGetized=true` metadata value, so it's easy for MSBuild targets to 
 > determine if a project reference produces a nuget package or not, and if it has been 'nugetized' or not, without 
-> risking invoking non-existing targets (i.e. 'GetPackageContents').
+> risking invoking non-existing targets (i.e. 'GetPackageContents'). Alternatively, the same approach was used to 
+> extend the [GetTargetPathWithTargetPlatformMoniker](https://github.com/Microsoft/msbuild/blob/eeecf7bd7fb7af9be893b019828a3d9e28f9158d/src/Tasks/Microsoft.Common.CurrentVersion.targets#L1818-L1821) built-in target [too](https://github.com/NuGet/NuGet.Build.Packaging/blob/a9cb8d600da614b1475e704f934977f616e91576/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.targets#L62-L65).
 
 ### Metadata
 
@@ -90,7 +95,7 @@ A `PackageFile` item type allows projects and targets to add arbitrary files to 
 package-relative location specified by the `PackagePath` item metadata. These should not generally need to be 
 used directly in project files. Platform-specific targets should add targets to `GetPackageContentsDependsOn` 
 that synthesizes `PackageFile` items as appropriate from platform-specific items such as `Content` and `BundleResource`. 
-You can see a concrete example of this usage in the NuGetizer [build tasks project]https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.Tasks.targets#L36) itself, in the `AddBuiltOutput` target.
+You can see a concrete example of this usage in the NuGetizer [build tasks project](https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.Tasks.targets#L36) itself, in the `AddBuiltOutput` target.
 
 For example, the iOS build targets might do the following, so that a library's `BundleResource` items would end up in any referencing projects.
 
