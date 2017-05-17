@@ -30,11 +30,11 @@ A plugin must:
 
 ### Supported Operations
 Package download is the only NuGet operation available for plugins to override.  A plugin providing a custom implementation for package download is responsible for all the following:
-* Providing a list of files in a package and a full path for an individual file to be opened with read access.  Request for this information is independent of a package download request.  This information is necessary for dependency graph resolution in project.json scenarios.
+* Providing package metadata (e.g.:  the package .nuspec).  Request for this information is independent of a package download request.  This information is necessary for dependency graph resolution in project.json scenarios.
 * Package download caching
   * Honoring cache hints (e.g.:  NoCache, DirectDownload, etc.) provided by NuGet client tools.  A plugin's cache is independent of any cache maintained by NuGet client tools.
   * Managing the plugin's own cache (e.g.:  location, concurrency, invalidation, purging, etc.).  Plugin cache management is out of scope for this spec.  (At some future time "nuget locals" functionality could be plumbed through to plugins.)
-* Downloading a package to a location indicated by NuGet client tools.
+* Downloading a package file or files in a package to a location indicated by NuGet client tools.
 
 ### Plugin Discovery
 NuGet tools will discover plugins via a NUGET_PLUGIN_PATHS environment variable.  The environment variable value will be parsed as a semicolon-delimited list of file paths to plugin executables.  The order of plugin file paths is significant.  The first plugin to claim support for an operation and package source will be the sole delegate for that operation and package source.
