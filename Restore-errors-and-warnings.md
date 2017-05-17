@@ -287,7 +287,7 @@ Nearest wins when resolving packages. A nearer package in the graph may have ove
 
 #### Example
 ```
-Detected package downgrade: NuGet.Versioning from 4.0.0 to 3.5.0
+Detected package downgrade: NuGet.Versioning from 4.0.0 to 3.5.0. Reference the package directly from the project to select a different version.
   NuGet.Packaging 3.5.0 -> NuGet.Versioning 3.5.0
   NuGet.Commands 4.0.0 -> NuGet.Configuration 4.0.0 -> NuGet.Versioning 4.0.0
 ```
