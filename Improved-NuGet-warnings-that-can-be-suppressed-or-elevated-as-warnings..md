@@ -3,12 +3,12 @@
 
 ## Problem
 The following user scenarios are driving this feature: 
-1. NuGet warnings can be overridden as errors, by the developer from Project properties and/or csproj file.
-2. NuGet warnings can be suppressed by the developer from Project properties and/or csproj file. 
+1. A NuGet warning can be overridden as errors, by the developer from Project properties and/or csproj file.
+2. A NuGet warning can be suppressed by the developer from Project properties and/or csproj file. 
 3. Per Package NuGet warning can be suppressed by the developer from Project properties and/or csproj file.
 4. NuGet warnings should follow warning-levels defined in Project just like any other warnings in the project.
 
-**Scenario-1:** NuGet warnings can be overridden as errors, by the developer from Project properties and/or csproj file
+**Scenario-1:** A NuGet warning can be overridden as errors, by the developer from Project properties and/or csproj file
 1. User creates a new project that references `NuGet.Packaging 3.5.0` that references `NuGet.Versioning 3.5.0`
 2. User now another package dependency `NuGet.Commands 4.0.0` that has dependency to `NuGet.Versioning 4.0.0` as shown in the dependency tree:
 `NuGet.Commands 4.0.0 -> NuGet.Configuration 4.0.0 -> NuGet.Versioning 4.0.0`
@@ -26,7 +26,7 @@ Detected package downgrade: NuGet.Versioning from 4.0.0 to 3.5.0
  `<TreatSpecificWarningsAsErrors>NU1605</TreatSpecificWarningsAsErrors>`
 6. User now sees this downgrade as an error.
 
-**Scenario-2:** NuGet warnings can be suppressed by the developer from Project properties and/or csproj file. 
+**Scenario-2:** A NuGet warning can be suppressed by the developer from Project properties and/or csproj file. 
 1. User creates a new NET Standard 2.0 project
 2. User add NuGet reference to `Microsoft.Composition` package – this gets added due to PackageTargetFallBack
 3. User sees the following warning(NU1701) as part of each build:
