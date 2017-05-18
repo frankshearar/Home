@@ -63,7 +63,7 @@ Note: If *clear* appears in a set of values Restore will fail with an error mess
 * Adding additional config files (NuGet.Config settings for the directory + an additional config)
 
 ## Work needed
-1. Project system needs to send these new properties during nomination
+1. Project system needs to send these new properties during nomination https://github.com/dotnet/project-system/issues/2225
 1. Add all settings to the dg spec and read it at restore time (mostly complete)
 
 ## Additional considerations
