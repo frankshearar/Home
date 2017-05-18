@@ -16,6 +16,8 @@ To fix this a user could dynamically set a different package folder for each set
 
 ## Project properties
 
+These project properties would be read by restore from both command line restores and from Visual Studio.
+
 | Property | Comments |
 | -------- | -------- |
 | RestoreSources | Feeds used for resolving packages. Equivalent to *--source* in *dotnet restore* |
@@ -59,6 +61,10 @@ Note: If *clear* appears in a set of values Restore will fail with an error mess
 * HTTP cache folder
 * Adding additional sources (NuGet.Config settings + a list of sources)
 * Adding additional config files (NuGet.Config settings for the directory + an additional config)
+
+## Work needed
+1. Project system needs to send these new properties during nomination
+1. Add all settings to the dg spec and read it at restore time (mostly complete)
 
 ## Additional considerations
 * Perf impact of reading three additional properties
