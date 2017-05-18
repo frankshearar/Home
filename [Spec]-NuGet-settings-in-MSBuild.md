@@ -8,6 +8,12 @@ CLI 2.x supports fallback folders and users would benefit from using them, howev
 
 Using MSBuild properties this could be done by setting the fallback folder path in the SDK for 2.x projects. During restore the new property would allow use of the fallback folder, and 1.x projects would not see the folder or would get the folder as a source.
 
+### Packages folder
+
+Restore uses the user packages folder as a source which can often cause packages from other sources to bleed across the machine and into projects not using those sources.
+
+To fix this a user could dynamically set a different package folder for each set of sources they are restoring against. This would ensure that only packages from the current sources were used.
+
 ## Project properties
 
 | Property | Comments |
