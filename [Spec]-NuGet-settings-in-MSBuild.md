@@ -24,6 +24,22 @@ Settings will be determined using the following order.
 1. MSBuild properties
 1. NuGet.Config settings
 
+If a project provides a value for a property it will be used instead of NuGet.Config settings. If no value is provided then NuGet.Config will be read.
+
+Settings will be selected independently similar to how it is done today. For example if a project sets only fallback folders then sources will still be read from NuGet.Config.
+
+### Clear
+``Clear`` is a special property value that will indicate that no value should be used and that NuGet.Config should not be read to find the value either.
+
+Example:
+```xml
+<PropertyGroup>
+  <RestoreFallbackFolders>clear<RestoreFallbackFolders>
+</PropertyGroup>
+```
+
+Note: If *clear* appears in a set of values Restore will fail with an error message telling the user to fix their property values.
+
 ## Supported project types
 * NETCore SDK projects with PackageReferences
 * Legacy projects with PackageReferences
