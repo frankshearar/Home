@@ -159,16 +159,24 @@ The following messages are required for supporting the overall download package 
         * a response code indicating the outcome of the operation
         * an enumerable of package versions if the operation was successful
 
-9.  Handshake
-    * Request direction:  NuGet <-> plugin
+9.  Get service index
+    * Request direction:  plugin -> NuGet
     * The request will contain:
-        * the current plugin protocol version
-        * the minimum supported plugin protocol version
+        * the package source repository location
     * A response will contain:
         * a response code indicating the outcome of the operation
-        * the negotiated protocol version if the operation was successful.  A failure will result in termination of the plugin.
+        * the service index if the operation was successful
 
-10.  Initialize
+10.  Handshake
+     * Request direction:  NuGet <-> plugin
+     * The request will contain:
+         * the current plugin protocol version
+         * the minimum supported plugin protocol version
+     * A response will contain:
+         * a response code indicating the outcome of the operation
+         * the negotiated protocol version if the operation was successful.  A failure will result in termination of the plugin.
+
+11.  Initialize
      * Request direction:  NuGet -> plugin
      * The request will contain:
          * the NuGet client tool version
@@ -177,7 +185,7 @@ The following messages are required for supporting the overall download package 
      * A response will contain:
          * a response code indicating the outcome of the operation.  A failure will result in termination of the plugin.
 
-11.  Log
+12.  Log
      * Request direction:  plugin -> NuGet
      * The request will contain:
          * the log level for the request
@@ -185,14 +193,14 @@ The following messages are required for supporting the overall download package 
      * A response will contain:
          * a response code indicating the outcome of the operation.
 
-12.  Monitor NuGet process exit
+13.  Monitor NuGet process exit
      * Request direction:  NuGet -> plugin
      * The request will contain:
          * the NuGet process ID
      * A response will contain:
          * a response code indicating the outcome of the operation.
 
-13.  Prefetch package
+14.  Prefetch package
      * Request direction:  NuGet -> plugin
      * The request will contain:
          * the package ID and version
@@ -200,7 +208,7 @@ The following messages are required for supporting the overall download package 
      * A response will contain:
          * a response code indicating the outcome of the operation
 
-14.  Set credentials
+15.  Set credentials
      * Request direction:  NuGet -> plugin
      * The request will contain:
          * the package source repository location
@@ -211,7 +219,7 @@ The following messages are required for supporting the overall download package 
      * A response will contain:
          * a response code indicating the outcome of the operation
 
-15.  Set log level
+16.  Set log level
      * Request direction:  NuGet -> plugin
      * The request will contain:
          * the default log level
