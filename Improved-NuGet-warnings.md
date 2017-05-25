@@ -32,6 +32,7 @@ Detected package downgrade: NuGet.Versioning from 4.0.0 to 3.5.0
 3. User sees the following warning(NU1701) as part of each build:
 `Package 'Microsoft.Composition' was restored using 'net461' instead the project target framework 'netstandard2.0'. This may cause compatibility problems.`
 4. User can suppress this warning(NU1701) totally for the project so that any warning w.r.t PackageTargetFallback is never shown for the project in Project.Properties.Build UI as follows:
+
 ![image](https://cloud.githubusercontent.com/assets/14800916/26125901/7623489a-3a38-11e7-8604-d90be0fb6a49.png)
 5. Alternatively, user can suppress this warning(NU1701) by using the following line in the csproj file:
  `<NoWarn>NU1701</NoWarn>`
