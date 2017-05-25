@@ -44,6 +44,7 @@ Detected package downgrade: NuGet.Versioning from 4.0.0 to 3.5.0
 4. User can suppress this warning(NU1701) specific to the package 'Microsoft.Composition' in the package dependency property:
 
 ![image](https://cloud.githubusercontent.com/assets/14800916/26465230/568f8aa8-413f-11e7-91b1-0378b987ddc9.png)
+
 5. User can do the same by specifying the suppression in the csproj file (comma or semi-colon separated list of warnings:
 ```
     <PackageReference Include="Contoso.Base.API" Version="1.0.3">
