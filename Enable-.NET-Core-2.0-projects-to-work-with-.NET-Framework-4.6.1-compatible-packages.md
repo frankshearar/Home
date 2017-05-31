@@ -54,12 +54,43 @@ But if `PackageTargetFallback` is enabled for `net461`, the the following assets
 \ref\net461\libfoo.dll
 \ref\net461\libbar.dll
 ```
-The `\ref\net461` assets are included because in `PackageTargetFallback` mechanism gets evaluated for each of the asset-groups (i.e. build, lib, ref) **locally** and separately. 
+**Current behavior**: The `\ref\net461` assets are included because in `PackageTargetFallback` mechanism gets evaluated for each of the asset-groups (i.e. build, lib, ref) **locally** and separately. 
 
-The expected behavior is that the `PackageTargetFallback` mechanism should be evaluated **globally**. So if a matching asset is found without `PackageTargetFallback` , then `PackageTargetFallback` should not be evaluated for  
+**Expected behavior** The `PackageTargetFallback` mechanism should be evaluated **globally** i.e. if a matching asset is found without `PackageTargetFallback` , then `PackageTargetFallback` should not be evaluated at all. In other words, `PackageTargetFallback` should only kick in when no matching asset if found in the default TFM match mechanism.
 
 ## Solution
 
+The proposed solution is to enable fallback mechanism that is evaluated **globally** as explained above. This mechanism will be called "AssetTargetFallback". The existing `PackageTargetFallback` should be left as is lest we break users that are relying on this mechanism. 
 
+**How does it work**
+Terms:
+`default-tfm-match`: Mechanism to find the best match based on the target framework of the project. 
+`AssetTargetFallback`: Mechanism to find matching assets based on the targets specified using `AssetTargetFallback` 
+`No-ref-and-lib-rule`: If a package does not have a ref and lib asset groups (folders), then the package is deemed compatible even when there is no assets pulled in to the project by NuGet. This is to support meta-packages that have only dependencies and no assets.
 
-  
+Here is how `AssetTargetFallback` mechanism will work:
+
+------------
+
+Step 1. Evaluate if any assets match using default-tfm-match mechanism
+
+Step 2. If #1 returns one or more matching assets, do not evaluate the package for `AssetTargetFallback` assets. Go to **Step S**
+
+Step 3. Else If #1 returns 0 matching assets (including package install failure), Go to **Step 4**
+
+Step 4. Evaluate if any assets match using `AssetTargetFallback` mechanism.
+
+Step 5. If #4 returns one or more matching assets, Go to **Step S**
+
+Step 6. Else If #4 returns 0 matching assets, Go to **Step N**\
+
+...
+
+Step N. Evaluate if `No-ref-and-lib-rule` applies. If **Yes** Go to **Step S**, Else Go to **Step F** 
+
+Step S. Package install ```success```
+
+Step F. Package install ```failed```
+
+------------
+
