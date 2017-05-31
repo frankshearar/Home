@@ -89,7 +89,7 @@ This is just the beginning in our effort to tackle the suite of features regardi
 **Note** - the below list of features is subject to change based on community input and engineering cost. We will be continuously evaluating our efforts in this space so we know which steps to take next.
 
 ## Evolution of Package Identity
-We are starting with the reserved package ID prefix feature to tackle package identity problems as it should provide a lot of value for the required engineering investment, and it is also one of the top asks identified in our customer outreach efforts. We will implement the feature in such a way that it allows for additiional investment over time. Some other things we are considering are listed below:
+We are starting with the reserved package ID prefix feature to tackle package identity problems as it should provide a lot of value for the required engineering investment, and it is also one of the top asks identified in our customer outreach efforts. We will implement the feature in such a way that it allows for additional investment over time. Some other things we are considering are listed below:
 
 * NuGet package *owner* identity verification (an expansion on what we will have already implemented) to allow individual owners to have an identity verification checkmark
 * Allow verified package owners to apply for the verification indicator on individual packages (rather than only verified package ID prefixes)
