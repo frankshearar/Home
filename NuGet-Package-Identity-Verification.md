@@ -111,4 +111,4 @@ In addition to package identity, we realize there are other areas for improvemen
 This is a complex problem to solve with many interested parties. We are trying our best to take the right immediate steps to set us up for success for the entire .NET community. If you have feedback on this document, you can voice your feedback in any of the following ways:
 * Reach out to us on twitter at @nuget or @pmatmic
 * Reach out to me personally at dajaco@microsoft.com
-* Engage in the community discussion on the [GitHub issue](https://github.com/NuGet/Home/issues/1882)
+* Engage in the community discussion on the [GitHub issue](https://github.com/NuGet/Home/issues/5307)
