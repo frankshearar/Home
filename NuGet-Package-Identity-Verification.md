@@ -54,6 +54,11 @@ With our [goals](#goals-for-package-id-prefix-reservation) in mind, we have deve
 ## Application Process for Package ID Prefix Reservation
 The process for applying for a reserved package ID prefix will start off simple and will be documented clearly on [docs.nuget.org](https://docs.microsoft.com/nuget/). We are still working through the exact details of the application process, but as soon as it is available there will be a blog post with a tweet from the nuget twitter @handle. Everything will point back to the documentation. When applying for the package ID prefix, you will need to enumerate the glob pattern of each package ID prefix you want to reserve. You will also need to provide a description of why you believe you should have rights to the prefix, speaking directly to the [criteria](#criteria-for-prefix-reservation) that we will evaluate.    
 
+Some examples of package ID prefixes that could be reserved include:
+* Microsoft.*
+* System.*
+* Newtonsoft.*
+
 When an application is being reviewed and we plan to accept it, we will first provisionally accept the application conditional on the applicant verifying their identity. A guid will be sent to the applicant in a provisional acceptance response mail. The package owner will then be asked to submit an unlisted package to nuget.org with a single .txt file containing the guid string. This is designed so that we can verify the applicant of the reserved package ID prefix is also an administrator on the account of interest.       
 
 ## Application Prioritization
@@ -98,7 +103,7 @@ We are starting with the reserved package ID prefix feature to tackle package id
 ## Additional Package Security Investments
 In addition to package identity, we realize there are other areas for improvement regarding package security and trust. Some of the features we are actively investigating are listed below. 
 * [Two-Factor Authentication on the NuGet Gallery](https://github.com/NuGet/NuGetGallery/issues/3252)
-  * We will enforce 2FA for owners of package ID prefixes as soon as this is available, as well as verified owners, or owners of *any* package with a verified identity 
+  * While we want to make 2FA a feature available to all accounts, we will enforce 2FA for owners of package ID prefixes as soon as this is available, as well as verified owners, or owners of *any* package with a verified identity 
 * [Package Signing](https://github.com/NuGet/Home/issues/2577)
   * This also relates to package identity, but we are looking at it from a code insurance point of view
 
