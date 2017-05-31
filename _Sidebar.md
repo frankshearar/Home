@@ -29,6 +29,7 @@
 * [[Converting Extension SDKs into NuGet Packages|Converting-Extension-SDKs-into-NuGet-Packages]]
 * [[Supporting Package Reference in UWP WPF WinForms and Classic Libraries|Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries]]
 * [[ToolsReference and Multi TFM Support in NuGet UI|ToolsReference-and-Multi-TFM-Support-in-NuGet-UI]]
+* [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 
 #### Reviewed
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
