@@ -12,7 +12,6 @@
 ***
 
 #### Incubation 
-* [Improved NuGet errors warnings](https://github.com/NuGet/Home/wiki/Improved-NuGet-warnings)
 * [[Full Support of LSL|Full-support-of-LSL]]
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
@@ -32,6 +31,7 @@
 * [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 
 #### Reviewed
+* [Improved NuGet errors warnings](https://github.com/NuGet/Home/wiki/Improved-NuGet-warnings)
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]]
 * [[SemVer 2.0.0 - server-side|SemVer2-support-for-nuget.org-(server-side)]]
