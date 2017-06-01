@@ -107,7 +107,7 @@ _Note: **NE** implies the corresponding mechanism was **Not Evaluated** and henc
 | `build\net461\foo.targets`  | The package gets installed because of `No-ref-and-lib-rule` but no assets gets pulled in | `build\net461\foo.targets` | `build\net461\foo.targets`  |
 | `build\netstandard2.0\foo.targets` `build\net461\bar.targets` `lib\netstandard2.0\libfoo.dll` `ref\net461\libbar.dll` | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  | **NE** `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  `ref\net461\libbar.dll` |
 | `build\net461\bar.targets` `ref\net461\libbar.dll` | No matching asset; Package fails to install | `build\net461\bar.targets` `ref\net461\libbar.dll` | `build\net461\bar.targets` `ref\net461\libbar.dll` |
-| `build\bar.targets` `ref\net461\libbar.dll` | `build\bar.targets` | **NE** `build\bar.targets` | `build\net461\bar.targets` `ref\net461\libbar.dll` |
+| `build\bar.targets` `ref\net461\libbar.dll` | `build\bar.targets` | **NE** `build\bar.targets` | `build\bar.targets` `ref\net461\libbar.dll` |
 
 **What happens when both `AssetTargetFallback` and `PackageTargetFallback` are used in a project?**
 
