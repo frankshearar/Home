@@ -82,7 +82,7 @@ Step 4. Evaluate if any assets match using `AssetTargetFallback` mechanism.
 
 Step 5. If #4 returns one or more matching assets, Go to **Step S**
 
-Step 6. Else If #4 returns 0 matching assets, Go to **Step N**\
+Step 6. Else If #4 returns 0 matching assets, Go to **Step N**
 
 ...
 
@@ -94,11 +94,11 @@ Step F. Package install ```failed```
 
 ------------
 
-**How does it behave for different package structures?**
+__**How does it behave for different package structures?**__
 
 For a .NET Standard 2.0 project, following is a table that explains which assets are pulled in, based on different approaches i.e. `default-tfm-match only` without PTF/ATF, with `AssetTargetFallback` ( for net461) and with `PackageTargetFallback` (for net461)
 
-**NE** implies the corresponding mechanism was **Not Evaluated**
+_Note: **NE** implies the corresponding mechanism was **Not Evaluated** !_
 
 | Package structure  | `default-tfm-match only` (netstandard2.0) | `AssetTargetFallback`(net461)  | `PackageTargetFallback`(net461)  | 
 |---|---|---|---|
