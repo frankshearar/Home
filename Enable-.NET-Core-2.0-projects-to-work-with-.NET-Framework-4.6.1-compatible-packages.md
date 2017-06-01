@@ -1,6 +1,6 @@
 [anangaur]** Work in Progress**
 ## Issue
-TBD: Justin
+[#5192](https://github.com/NuGet/Home/issues/5192) Enable .NET Core 2.0 projects to work with .NET Framework 4.6.1 compatible packages 
 
 ## Problem
 .NET Core 2.0 projects should be able to use .NET Framework (upto version 4.6.1) packages. This is enable the new .NET Core 2.0 ecosystem make use of most of the packages on NuGet.org. (~70% of the existing packages have compatible API surface area with .NET Core 2.0)
@@ -94,3 +94,14 @@ Step F. Package install ```failed```
 
 ------------
 
+**How does it behave for different package structures?**
+
+For a .NET Standard 2.0 project, following is a table that explains which assets are pulled in, based on different approaches i.e. `default-tfm-match only` without PTF/ATF, with `AssetTargetFallback` ( for net461) and with `PackageTargetFallback` (for net461)
+
+| Package structure  | `default-tfm-match only` (netstandard2.0) | `AssetTargetFallback`(net461)  | `PackageTargetFallback`(net461)  | 
+|---|---|---|---|
+| build\foo.targets`  | `build\foo.targets`  | `build\foo.targets`  | `build\foo.targets`  |
+| `build\netstandard1.0\foo.targets`  | `build\netstandard1.0\foo.targets`  | `build\netstandard1.0\foo.targets`   | `build\netstandard1.0\foo.targets`  |
+| `build\net461\foo.targets`  | succeeds with no assets  | `build\foo.targets`  | `build\foo.targets`  |
+| `build\netstandard2.0\foo.targets` `build\net461\bar.targets` `lib\netstandard2.0\libfoo.dll` `lib\netstandard2.0\libfoo.dll` `ref\net461\libbar.dll` | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  `ref\net461\libbar.dll` |
+| `build\net461\bar.targets` `ref\net461\libbar.dll` | Fail | `build\net461\bar.targets` `ref\net461\libbar.dll` | `build\net461\bar.targets` `ref\net461\libbar.dll` |
