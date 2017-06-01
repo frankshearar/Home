@@ -98,6 +98,8 @@ Step F. Package install ```failed```
 
 For a .NET Standard 2.0 project, following is a table that explains which assets are pulled in, based on different approaches i.e. `default-tfm-match only` without PTF/ATF, with `AssetTargetFallback` ( for net461) and with `PackageTargetFallback` (for net461)
 
+**NE** implies the corresponding mechanism was **Not Evaluated**
+
 | Package structure  | `default-tfm-match only` (netstandard2.0) | `AssetTargetFallback`(net461)  | `PackageTargetFallback`(net461)  | 
 |---|---|---|---|
 | `build\foo.targets`  | `build\foo.targets`  | **NE** `build\foo.targets`  | **NE** `build\foo.targets`  |
