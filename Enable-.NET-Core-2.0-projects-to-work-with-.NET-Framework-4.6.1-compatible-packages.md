@@ -98,7 +98,7 @@ __**How does it behave for different package structures?**__
 
 For a .NET Standard 2.0 project, following is a table that explains which assets are pulled in, based on different approaches i.e. `default-tfm-match only` without PTF/ATF, with `AssetTargetFallback` ( for net461) and with `PackageTargetFallback` (for net461)
 
-_Note: **NE** implies the corresponding mechanism was **Not Evaluated** !_
+_Note: **NE** implies the corresponding mechanism was **Not Evaluated** and hence the assets pulled in by NuGet is due to default-tfm-match !_
 
 | Package structure  | `default-tfm-match only` (netstandard2.0) | `AssetTargetFallback`(net461)  | `PackageTargetFallback`(net461)  | 
 |---|---|---|---|
