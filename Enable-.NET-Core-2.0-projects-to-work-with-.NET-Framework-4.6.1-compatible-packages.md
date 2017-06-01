@@ -106,3 +106,10 @@ For a .NET Standard 2.0 project, following is a table that explains which assets
 | `build\netstandard2.0\foo.targets` `build\net461\bar.targets` `lib\netstandard2.0\libfoo.dll` `ref\net461\libbar.dll` | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  | **NE** `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  `ref\net461\libbar.dll` |
 | `build\net461\bar.targets` `ref\net461\libbar.dll` | No matching asset; Package fails to install | `build\net461\bar.targets` `ref\net461\libbar.dll` | `build\net461\bar.targets` `ref\net461\libbar.dll` |
 | `build\bar.targets` `ref\net461\libbar.dll` | `build\bar.targets` | **NE** `build\bar.targets` | `build\net461\bar.targets` `ref\net461\libbar.dll` |
+
+**What happens when both `AssetTargetFallback` and `PackageTargetFallback` are used in a project?**
+
+NuGet detects this and outputs an error (**NU1003**):
+```
+The project uses 'AssetTargetFallback' along with deprecated 'PackageTargetFallback' to specify compatible targets to be used when restoring packages. This is not supported. Please remove 'PackageTargetFallback' references from the project environment and re-run restore.
+``` 
