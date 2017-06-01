@@ -113,5 +113,5 @@ _Note: **NE** implies the corresponding mechanism was **Not Evaluated** and henc
 
 NuGet detects this and outputs an error (**NU1003**):
 ```
-The project uses 'AssetTargetFallback' along with deprecated 'PackageTargetFallback' to specify compatible targets to be used when restoring packages. This is not supported. Please remove 'PackageTargetFallback' references from the project environment and re-run restore.
+PackageTargetFallback and AssetTargetFallback cannot be used together. Remove PackageTargetFallback(deprecated) references from the project environment.
 ``` 
