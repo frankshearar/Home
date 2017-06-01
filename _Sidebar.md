@@ -23,6 +23,7 @@
 * [Support dotnet add\update\del packageref](https://github.com/NuGet/Home/wiki/Support-dotnet-add%7Cupdate%7Cremove-pkg)
 
 #### Reviewing
+* [AssetTargetFallback](https://github.com/NuGet/Home/wiki/Enable-.NET-Core-2.0-projects-to-work-with-.NET-Framework-4.6.1-compatible-packages)
 * [[NuGetizer 3000|NuGetizer-3000]]
 * [[NuGet Upgrader|NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0]]
 * [[Converting Extension SDKs into NuGet Packages|Converting-Extension-SDKs-into-NuGet-Packages]]
