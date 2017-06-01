@@ -23,7 +23,6 @@
 * [Support dotnet add\update\del packageref](https://github.com/NuGet/Home/wiki/Support-dotnet-add%7Cupdate%7Cremove-pkg)
 
 #### Reviewing
-* [AssetTargetFallback](https://github.com/NuGet/Home/wiki/Enable-.NET-Core-2.0-projects-to-work-with-.NET-Framework-4.6.1-compatible-packages)
 * [[NuGetizer 3000|NuGetizer-3000]]
 * [[NuGet Upgrader|NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0]]
 * [[Converting Extension SDKs into NuGet Packages|Converting-Extension-SDKs-into-NuGet-Packages]]
@@ -32,6 +31,7 @@
 * [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 
 #### Reviewed
+* [AssetTargetFallback](https://github.com/NuGet/Home/wiki/Enable-.NET-Core-2.0-projects-to-work-with-.NET-Framework-4.6.1-compatible-packages)
 * [Improved NuGet errors warnings](https://github.com/NuGet/Home/wiki/Improved-NuGet-warnings)
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]]
