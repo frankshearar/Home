@@ -100,7 +100,7 @@ For a .NET Standard 2.0 project, following is a table that explains which assets
 
 | Package structure  | `default-tfm-match only` (netstandard2.0) | `AssetTargetFallback`(net461)  | `PackageTargetFallback`(net461)  | 
 |---|---|---|---|
-| build\foo.targets`  | `build\foo.targets`  | `build\foo.targets`  | `build\foo.targets`  |
+| `build\foo.targets`  | `build\foo.targets`  | `build\foo.targets`  | `build\foo.targets`  |
 | `build\netstandard1.0\foo.targets`  | `build\netstandard1.0\foo.targets`  | `build\netstandard1.0\foo.targets`   | `build\netstandard1.0\foo.targets`  |
 | `build\net461\foo.targets`  | succeeds with no assets  | `build\foo.targets`  | `build\foo.targets`  |
 | `build\netstandard2.0\foo.targets` `build\net461\bar.targets` `lib\netstandard2.0\libfoo.dll` `lib\netstandard2.0\libfoo.dll` `ref\net461\libbar.dll` | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  `ref\net461\libbar.dll` |
