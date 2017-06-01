@@ -1,4 +1,4 @@
-[anangaur]** Work in Progress**
+**[InReview]**
 ## Issue
 [#5192](https://github.com/NuGet/Home/issues/5192) Enable .NET Core 2.0 projects to work with .NET Framework 4.6.1 compatible packages 
 
