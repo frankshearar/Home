@@ -23,6 +23,8 @@ These project properties would be read by restore from both command line restore
 | RestoreSources | Feeds used for resolving packages. Equivalent to *--source* in *dotnet restore* |
 | RestoreFallbackFolders | Fallback folders, these are used in the same way the user packages folder is used. |
 | RestorePackagesPath | Path to the user packages folder. All downloaded packages are extracted here. Equivalent to *--packages* in *dotnet restore* |
+| RestoreAdditionalProjectFallbackFolders | Additional fallback folders appended to the resulting list of fallback folders |
+| RestoreAdditionalProjectSources | Additional sources to the resulting list of sources |
 
 ## Order of precedence
 
