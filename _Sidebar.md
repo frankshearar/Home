@@ -31,7 +31,7 @@
 * [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 
 #### Reviewed
-* [AssetTargetFallback](https://github.com/NuGet/Home/wiki/Enable-.NET-Core-2.0-projects-to-work-with-.NET-Framework-4.6.1-compatible-packages)
+* [Enable .NET Core 2.0 projects to work with .NET Framework 4.6.1 compatible packages](https://github.com/NuGet/Home/wiki/Enable-.NET-Core-2.0-projects-to-work-with-.NET-Framework-4.6.1-compatible-packages)
 * [Improved NuGet errors warnings](https://github.com/NuGet/Home/wiki/Improved-NuGet-warnings)
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]]
