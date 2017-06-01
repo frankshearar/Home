@@ -105,3 +105,4 @@ For a .NET Standard 2.0 project, following is a table that explains which assets
 | `build\net461\foo.targets`  | succeeds with no assets  | `build\foo.targets`  | `build\foo.targets`  |
 | `build\netstandard2.0\foo.targets` `build\net461\bar.targets` `lib\netstandard2.0\libfoo.dll` `lib\netstandard2.0\libfoo.dll` `ref\net461\libbar.dll` | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  | `build\netstandard2.0\foo.targets` `lib\netstandard2.0\libfoo.dll`  `ref\net461\libbar.dll` |
 | `build\net461\bar.targets` `ref\net461\libbar.dll` | Fail | `build\net461\bar.targets` `ref\net461\libbar.dll` | `build\net461\bar.targets` `ref\net461\libbar.dll` |
+| `build\bar.targets` `ref\net461\libbar.dll` | `build\bar.targets` | `build\bar.targets` | `build\net461\bar.targets` `ref\net461\libbar.dll` |
