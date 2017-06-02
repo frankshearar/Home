@@ -72,30 +72,11 @@ The default behavior of the built-in `GetPackageVersion` target is to set `$(Pac
 
 ### Package Files
  
-By default, the virtual package will include .NET libraries (from `BuiltProjectOutputGroup`) and their 
-symbols (from `DebugSymbolsProjectOutputGroup`), xml docs (from `DocumentationProjectOutputGroup`), 
-satellite assemblies (from `SatelliteDllsProjectOutputGroup`), framework references 
-(from `'%(ReferencePath.ResolvedFrom)' == '{TargetFrameworkDirectory}'`, and content files (from `ContentFilesProjectOutputGroup`), however platform-specific targets can add additional platform-specific files.
-
-> NOTE: these are the built-in [common targets output groups](https://github.com/Microsoft/msbuild/blob/master/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L5115).
-
-To opt out of these defaults, set `$(IncludeOutputsInPackage)`, `$(IncludeSymbolsInPackage)`, `$(IncludeFrameworkReferencesInPackage)` and `$(IncludeContentInPackage)` to `false` as needed. For `Content` items, 
-you can opt out specific items by setting the `IncludeInPackage=false` item metadata instead of turning content 
-inclusion off entirely via `$(IncludeContentInPackage)=false`.
-
-Since [content files](http://docs.nuget.org/ndocs/schema/nuspec#contentfiles-with-visual-studio-2015-update-1-and-later) 
-have particular requirements on placement (code language and target framework are required), support for `None` items 
-is also provided: just annotate them with `IncludeInPackage=true` item metadata, and they will be included as 
-package files in the relative target path they have within the project. So you can, for example, define your own 
-`None` items under a `contentFiles\cs\any\` folder to get them included in consuming C# projects of any target framework.
-
-Ultimately, all these built-in supported item types are turned into `PackageFile` items.
-
 A `PackageFile` item type allows projects and targets to add arbitrary files to the virtual package at the 
 package-relative location specified by the `PackagePath` item metadata. These should not generally need to be 
-used directly in project files. Platform-specific targets should add targets to `GetPackageContentsDependsOn` 
-that synthesizes `PackageFile` items as appropriate from platform-specific items such as `Content` and `BundleResource`. 
-You can see a concrete example of this usage in the NuGetizer [build tasks project](https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.Tasks.targets#L36) itself, in the `AddBuiltOutput` target.
+used directly in project files unless you want full control of what goes into the package (see #package-file-inference below). Platform-specific targets should add targets to `GetPackageContentsDependsOn` (or are just declared with `BeforeTargets="GetPackageContents"`) that synthesize `PackageFile` items as appropriate from platform-specific items such as `Content` and `BundleResource`. 
+
+You can see a concrete example of this usage in the NuGetizer [build tasks project](https://github.com/NuGet/NuGet.Build.Packaging/blob/bc03917/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.Tasks.targets#L29) itself, in the `AddBuiltOutput` target.
 
 For example, the iOS build targets might do the following, so that a library's `BundleResource` items would end up in any referencing projects.
 
@@ -109,20 +90,59 @@ For example, the iOS build targets might do the following, so that a library's `
 
 `PackageFile` items that have `Kind=Content` may also specify `BuildAction`, `CopyToOutput` and `Flatten` 
 metadata, which map to the corresponding NuGet `contentFiles` [nuspec attributes](http://docs.nuget.org/ndocs/schema/nuspec#contentfiles-with-visual-studio-2015-update-1-and-later).
-Additionally, a `CodeLanguage` metadata can be provided to restrict the language of the consuming projects 
-to add it to, such as:
+Additionally, a `CodeLanguage` and `TargetFramework` metadata can be provided to restrict the language and 
+target framework of the consuming projects to add it to, such as:
 
 ```xml
-<PackageFile Include="ApiExample.cs">
+<PackageFile Include="Samples\ApiExample.cs">
     <Kind>Content</Kind>
     <CodeLanguage>cs</CodeLanguage>
-    <TargetPath>Samples\%(Filename)%(Extension)</TargetPath>
+    <TargetFramework>any</TargetFramework>
 </PackageFile>
 ```
 
 This file will end up in `/contentFiles/cs/any/Samples/ApiExample.cs`.
 
-By default, `CodeLanguage` and `TargetFramework` are set to `any`.
+By default, `CodeLanguage` is set to `any`, and `TargetFramework` is set to the containing project's 
+`TargetFramework`.
+
+### Package File Inference
+
+Obviously, having to specify manually everything that should go into a package would be cumbersome, 
+so NuGetizer provides some default inference behavior that synthesize `PackageFile` items using the 
+following heuristics: 
+
+- If no `$(PrimaryOutputKind)` is specified, it is assumed to be `Lib` (therefore, current project 
+  target framework-specific)
+- If `$(IncludeOutputsInPackage)` is not set to `false`, the virtual package will include .NET libraries 
+  (from `BuiltProjectOutputGroup`) and their symbols (from `DebugSymbolsProjectOutputGroup`), xml docs 
+  (from `DocumentationProjectOutputGroup`) and satellite assemblies (from `SatelliteDllsProjectOutputGroup`) 
+  in the package, with the same `%(Kind)` as `$(PrimaryOutputKind)` 
+- If `$(IncludeFrameworkReferencesInPackage)` is not `false` (defaults to `true` for `$(PrimaryOutputKind)="Lib"`), 
+  framework references (from `'%(ReferencePath.ResolvedFrom)' == '{TargetFrameworkDirectory}'`) are added as 
+  framework dependencies.
+- `@(None)` and `@(Content)` with a `CopyToOutputDirectory` value (both `PreserveNewest` as well as `Always`) are 
+  included relative to the primary output too (i.e. if `$(PrimaryOutputKind)="Lib"` they will be relative to the 
+  framework-specific `lib` folder inside the package).
+- `@(Content)` items without a `CopyToOutputDirectory` value are included as `%(Kind)="Content"` and placed relative to 
+  the `contentFiles` special folder. More details on `contentFiles` below.
+- `@(None)` items without a `CopyToOutputDirectory` metadata are included as `%(Kind)="None"` and placed relative to the package root directory only if the `$(IncludeNoneInPackage)` property is set to 'true'. The preferred way to achieve this 
+  same behavior is to simply use `PackageFile` instead, however.
+
+`Content` inference can be turned off with `$(IncludeContentInPackage)`. As mentioned, `None` inference when 
+via the `$(IncludeNoneInPackage)` is `false` by default.
+
+You can opt out of inference for specific items by adding `%(Pack)="false"` item metadata, such as:
+
+```
+<Content Include="...">
+  <Pack>false</Pack>
+</Content>
+```
+
+Ultimately, all these built-in supported item types are turned into `PackageFile` items, so for `Content` items, the 
+`CodeLanguage`, `TargetFramework`, `BuildAction`, `CopyToOutput` and `Flatten` metadata values behave as explained in the previous section.
+
 
 #### PackagePath vs TargetPath
 
@@ -154,12 +174,12 @@ The virtual package will implicitly depend on the project's dependencies:
 
 * The project's project references ("P2P").
 
-Project references can be excluded from the virtual package by setting `IncludeInPackage=false` metadata, 
+Project references can be excluded from the virtual package by setting `Pack=false` metadata, 
 which is analogous to [ReferenceOutputAssembly](https://blogs.msdn.microsoft.com/kirillosenkov/2015/04/04/how-to-have-a-project-reference-without-referencing-the-actual-binary/):
 
 ```xml
 <ProjectReference Include="..\OtherProject\OtherProject.csproj">
-    <IncludeInPackage>false</IncludeInPackage>
+    <Pack>false</Pack>
 ```
 
 When generating its virtual package, a referencing project will call the `GetPackageContents` target on each 
@@ -192,10 +212,9 @@ A new project type will be introduced, a _Package Project_, with its own build t
 The package project targets consumes the same targets as regular projects. Package projects will also define 
 `Build`, `Clean` and `Rebuild` targets for compatibility with the solution-level targets, however these will be empty.
 
-The only items supported by the package project targets will be `PackageReference`, `PackageFile` and `ProjectReference`.
+The only items supported by the package project targets are `PackageReference`, `PackageFile` and `ProjectReference`.
 
-> NOTE; we support project.json and packages.config to define package references too. This allows us to reuse the 
-> NuGet package manager without changes.
+> NOTE: `Content` files inference is also support like in regular libraries.
 
 `PackageReference`and `PackageFile` allow using package projects to create nupkgs with full control over content and dependencies.
 
