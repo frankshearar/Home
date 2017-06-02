@@ -23,7 +23,11 @@ Detected package downgrade: NuGet.Versioning from 4.0.0 to 3.5.0
 4. User now adds the warning (NU1605) as error in the Project.Properties.Build UI:
 ![image](https://cloud.githubusercontent.com/assets/14800916/26081463/b1155498-397f-11e7-8c92-f832c1b71339.png)
 5. Alternatively, user can write the following in the csproj file to treat this warning as error:
- `<TreatSpecificWarningsAsErrors>NU1605</TreatSpecificWarningsAsErrors>`
+
+  **Was** `<TreatSpecificWarningsAsErrors>NU1605</TreatSpecificWarningsAsErrors>`
+ 
+  **New** `<WarningsAsErrors>NU1605</WarningsAsErrors>` based on https://github.com/dotnet/project-system/pull/2368#issuecomment-305868038
+
 6. User now sees this downgrade as an error.
 
 **Scenario-2:** A NuGet warning can be suppressed by the developer from Project properties and/or csproj file. 
