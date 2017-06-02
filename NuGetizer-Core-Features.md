@@ -41,10 +41,9 @@ they reference.
 
 > NOTE: The `$(IsPackable)` property can be used in conditions to determine if a project generates an actual
 > nupkg. This property is 'true' if the project defines a 'PackageId'. The built-in 
-> [GetTargetPath](https://github.com/Microsoft/msbuild/blob/30c9fbca0fe96fb49548df3ab40bdd4cb49d4450/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L1730-L1740) target is [redefined and extended](https://github.com/NuGet/NuGet.Build.Packaging/blob/dev/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.targets#L49-L59) to include this metadata as well as an `IsNuGetized=true` metadata value, so it's easy for MSBuild targets to 
+> [GetTargetPathWithTargetPlatformMoniker](https://github.com/Microsoft/msbuild/blob/30c9fbc/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L1756-L1759) target is [extended](https://github.com/NuGet/NuGet.Build.Packaging/blob/4fbc5fe/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.targets#L47-L53) to include this metadata as well as an `IsNuGetized=true` metadata value, so it's easy for MSBuild targets to 
 > determine if a project reference produces a nuget package or not, and if it has been 'nugetized' or not, without 
-> risking invoking non-existing targets (i.e. 'GetPackageContents'). Alternatively, the same approach was used to 
-> extend the [GetTargetPathWithTargetPlatformMoniker](https://github.com/Microsoft/msbuild/blob/eeecf7bd7fb7af9be893b019828a3d9e28f9158d/src/Tasks/Microsoft.Common.CurrentVersion.targets#L1818-L1821) built-in target [too](https://github.com/NuGet/NuGet.Build.Packaging/blob/a9cb8d600da614b1475e704f934977f616e91576/src/Build/NuGet.Build.Packaging.Tasks/NuGet.Build.Packaging.targets#L62-L65).
+> risking invoking non-existing targets (i.e. 'GetPackageContents').
 
 ### Metadata
 
