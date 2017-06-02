@@ -16,11 +16,11 @@ The benefits are a faster and more seamless restore experience, avoid doing redu
 | Package Reference | <sub>Covered.</sub> | <sub>Covered.</sub> | <sub>Covered.</sub> | <sub>Covered.</sub>
 
 ### Usage:
-The no-op restore will run by default. If you wish to skip the no-op, you can use -SkipNoOp as such:
-* NuGet.exe restore MyProject.csproj -SkipNoOp
-* Dotnet.exe restore MyProject.csproj -SkipNoOp
-* MSBuild.exe /t:restore MyProject.csproj /p:SkipNoOp
-* Visual Studio - NuGet Package Manager - TBD 
+The no-op restore will run by default. If you wish to skip the no-op, you can use -force as such:
+* NuGet.exe restore MyProject.csproj -force 
+* Dotnet.exe restore MyProject.csproj -force 
+* MSBuild.exe /t:restore MyProject.csproj /p:force 
+* Visual Studio - NuGet Package Manager - rebuild
 
 ## Design Specification 
 
