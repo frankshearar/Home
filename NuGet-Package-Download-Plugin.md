@@ -67,7 +67,7 @@ Protocol errors include:
 * A progress notification received for a request after the response for the request has been received.
 * A response or progress notification not being received within an predefined timeout period.
 
-Due to cross-process race conditions, a cancellation request may be received after the associated request has already been processed.  Since request state is likely cleared immediately after request completion, it is infeasible to distinguish between a cancellation request for a completed request and a cancellation request for a request that was never received.   Therefore, cancellation requests for no currently active request must be ignored without consideration for the request having existed previously.  Symmetrically, a cancellation response received with no currently active request must also be ignored.
+Due to cross-process race conditions, a cancellation request may be received after the associated request has already been processed.  Since request state is likely cleared immediately after request completion, it is infeasible to distinguish between a cancellation request for a completed request and a cancellation request for a request that was never received.   Therefore, cancellation requests without a currently active request must be ignored without consideration for the request having existed previously.  Symmetrically, a cancellation response received without a currently active request must also be ignored.
 
 All messages must have the following common fields:
 
