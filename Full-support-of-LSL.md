@@ -1,4 +1,4 @@
-# [WIP][Spec] Full support of the Lightweight Solution Load
+# [Spec] Full support of the Lightweight Solution Load
 
 ## Problem
 
