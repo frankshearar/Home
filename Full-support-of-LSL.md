@@ -10,27 +10,28 @@ NuGet VS client needs to support LSL mode without breaking it.
 
 Development activity is tracked in NuGet/Home#5058.
 
-### List of NuGet operations per project model
+### List of NuGet operations per NuGet package management project model
 
 Operation|packages.config|project.json|PackageRef|.NET Core
 --- | --- | --- | --- | ---
-Manage packages (solution)| <sub>Supported</sub> | <sub>Supported</sub> | <sub>Supported</sub> | N/A
-Manage packages (project)| <sub>Loads on right-click</sub> | <sub>Loads on right-click</sub> | <sub>Loads on right-click</sub> | N/A
-Install package (PM)| <sub>Loads project</sub>
-Uninstall package (PM)| <sub>Loads project</sub>
-Update package (PM)| <sub>Loads project</sub>
-Execute `init.ps1` (PMC)| <sub>Supported</sub>
-`Add-BindingRedirect` | <sub>Loads project</sub>
-`Find-Package` | <sub>Supported</sub>
-`Get-Package` | <sub>Supported</sub>
-`Get-Project` | <sub>Loads project</sub>
-`Install-Package` | <sub>Loads project</sub>
-`Open-PackagePage` | <sub>Supported</sub>
-`Sync-Package` | <sub>Supported</sub>
-Tab expansion (PMC)| <sub>Supported</sub>
-`Uninstall-Package`| <sub>Loads project</sub>
-`Update-Package` | <sub>Loads project</sub>
-`IVsPackageInstallerServices`| <sub>Supported</sub> | <sub>Supported</sub> | <sub>Supported</sub>
+Restore | <sub>Supported</sub> | <sub>Supported</sub> | <sub>Supported</sub> | <sub>N/A</sub>
+Manage packages (solution)| <sub>Supported</sub> | <sub>Supported</sub> | <sub>Supported</sub> | <sub>N/A</sub>
+Manage packages (project)| <sub>Loads on right-click</sub> | <sub>Loads on right-click</sub> | <sub>Loads on right-click</sub> | <sub>N/A</sub>
+Install package (PM)| <sub>Loads project</sub> | <sub>Supported</sub> | <sub>Loads project</sub> | <sub>N/A</sub>
+Uninstall package (PM)| <sub>Loads project</sub> | <sub>Supported</sub> | <sub>Loads project</sub> | <sub>N/A</sub>
+Update package (PM)| <sub>Loads project</sub> | <sub>Supported</sub> | <sub>Loads project</sub> | <sub>N/A</sub>
+Execute `init.ps1` (PMC)| <sub>Supported</sub> | <sub>Supported</sub> | <sub>Supported</sub> | <sub>N/A</sub>
+`Add-BindingRedirect` | <sub>Loads project</sub> | <sub>Loads project</sub> | <sub>Loads project</sub> | <sub>N/A</sub>
+`Find-Package` | <sub>N/A</sub> | <sub>N/A</sub> | <sub>N/A</sub> | <sub>N/A</sub>
+`Get-Package` | <sub>Supported</sub> | <sub>Supported</sub> | <sub>Supported</sub> | <sub>N/A</sub>
+`Get-Project` | <sub>Loads project</sub> | <sub>Loads project</sub> | <sub>Loads project</sub> | <sub>N/A</sub>
+`Install-Package` | <sub>Loads project</sub> | <sub>Supported</sub> | <sub>Loads project</sub> | <sub>N/A</sub>
+`Open-PackagePage` | <sub>N/A</sub> | <sub>N/A</sub> | <sub>N/A</sub> | <sub>N/A</sub>
+`Sync-Package` | <sub>Supported</sub> | <sub>Supported</sub> | <sub>Loads project</sub> | <sub>N/A</sub>
+Tab expansion (PMC)| <sub>Supported</sub> | <sub>Supported</sub> | <sub>Supported</sub> | <sub>N/A</sub>
+`Uninstall-Package`| <sub>Loads project</sub> | <sub>Supported</sub> | <sub>Loads project</sub> | <sub>N/A</sub>
+`Update-Package` | <sub>Loads project</sub> | <sub>Supported</sub> | <sub>Loads project</sub> | <sub>N/A</sub>
+`IVsPackageInstallerServices`| <sub>Supported</sub> | <sub>Supported</sub> | <sub>Supported</sub> | <sub>N/A</sub>
 
 ### Shared Infrastructure
 
