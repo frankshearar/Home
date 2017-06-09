@@ -42,14 +42,14 @@ For previously existing packages that are on nuget.org that fall under a reserve
 Packages with multiple owners in which at least one of the package owners has the package ID prefix reserved will have the identity verification indicator visual. That said, *only* the package owners which have the package ID prefix reserve will be able to push new package versions. That means it is possible to be an owner on a package but not be able to update the package. The original package ID prefix owner can grant rights to the package ID prefix to multiple owners so each owner can submit packages, but each owner's identity will need to be verified with nuget.org.   
 
 ## Criteria for Prefix Reservation
-With our [goals](#goals-for-package-id-prefix-reservation) in mind, we have developed the following criteria for package ID prefix reservation. Each application will be reviewed on a case-by-case basis. Before any application is accepted, a final review will be done with the .NET Foundation.  
+With our [goals](#goals-for-package-id-prefix-reservation) in mind, we have developed the following criteria for package ID prefix reservation. Each application will be reviewed on a case-by-case basis. Not all criteria needs to be met for an application to be accepted; however, the first and third questions will carry the most weight. If the prefix is not a clear identifier of the applicant, or if the prefix is something common, the application will be rejected. Before any application is accepted, a final review will be done with the .NET Foundation.  
 
 1. Does the package ID prefix properly and clearly identify the package owner?
 2. Are a significant number of the packages that have already been submitted by the owner under the package ID prefix?
 3. Is the package ID prefix something common that should not belong to any individual owner or organization?
 4. Would *not* reserving the package ID prefix cause ambiguity and confusion for the community? 
 5. Are the identifying properties of the packages that match the package ID prefix clear and consistent (esepcailly the package author)?
-6. Does the package owner submit original content under the package ID prefix that provides a tangible benefit to the package consumers? 
+6. [Edit: After additional feedback, we are removing this question from the criteria] ~Does the package owner submit original content under the package ID prefix that provides a tangible benefit to the package consumers?~
 
 ## Application Process for Package ID Prefix Reservation
 The process for applying for a reserved package ID prefix will start off simple and will be documented clearly on [docs.nuget.org](https://docs.microsoft.com/nuget/). We are still working through the exact details of the application process, but as soon as it is available there will be a blog post with a tweet from the nuget twitter @handle. Everything will point back to the documentation. When applying for the package ID prefix, you will need to enumerate the glob pattern of each package ID prefix you want to reserve. You will also need to provide a description of why you believe you should have rights to the prefix, speaking directly to the [criteria](#criteria-for-prefix-reservation) that we will evaluate.    
