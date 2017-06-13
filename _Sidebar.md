@@ -31,14 +31,14 @@
 * [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 
 #### Reviewed
-* [Enable .NET Core 2.0 projects to work with .NET Framework 4.6.1 compatible packages](https://github.com/NuGet/Home/wiki/Enable-.NET-Core-2.0-projects-to-work-with-.NET-Framework-4.6.1-compatible-packages)
-* [Improved NuGet errors warnings](https://github.com/NuGet/Home/wiki/Improved-NuGet-warnings)
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]]
 * [[SemVer 2.0.0 - server-side|SemVer2-support-for-nuget.org-(server-side)]]
 * [[Replication API|[spec]-NuGet.org-replication-API]]
 
 #### Implemented
+* [Enable .NET Core 2.0 projects to work with .NET Framework 4.6.1 compatible packages](https://github.com/NuGet/Home/wiki/Enable-.NET-Core-2.0-projects-to-work-with-.NET-Framework-4.6.1-compatible-packages)
+* [Improved NuGet errors warnings](https://github.com/NuGet/Home/wiki/Improved-NuGet-warnings)
 * [[Filter OData query requests|Filter-OData-query-requests]]
 * [[Multiple API Keys|Multiple-API-Keys]]
 * [[Batch Events|Batch-Events]]
