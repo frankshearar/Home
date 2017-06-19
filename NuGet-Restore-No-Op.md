@@ -114,6 +114,25 @@ Step by step list on where we add the no-op logic.
 	
 Of course in case of a recursive restore we will need to do the same logic for all of the projects.
 
+### Tool No-Op restore
+
+If you're unfamiliar with tools, you can find more info here:
+https://github.com/dotnet/docs/blob/master/docs/core/tools/extensibility.md#per-project-based-extensibility       
+https://github.com/NuGet/Home/wiki/DotnetCliToolReference-restore 
+
+Basically .NET Core projects can have a DotnetCliToolReference item, and when that is present, we will end up running 2 different restores for that project file, 1 of the package reference there, 1 for the tool. 
+The tools contain a reference to the project that declared them, but that's only for logging purposes. The project that declares them does not affect the restore. 
+The tools assets file is in the Packages folders .tools\toolName\version\tfm\
+The cache file of the tool will be * toolName.nuget.cache *. 
+
+An important thing to note here is that within a project, the tool declarations will be deduped, meaning if 10 ASP.NET projects in a solution have the same tool declaration, only 1 restore will happen. 
+Figuring out the cache/assets file path for the tools is not that straightforward, since we don't know what version was actually restored, rather the requested one. Also the requested version could be a floating version, making it even more complex. 
+
+So in the tools case, what we will do, is look at the packages folder and resolve all available versions of requested tool. 
+If one matches, we attempt to use the cache file there. The uniqueName for the tool "project" restore is contains the version range of the requested tool. 
+Meaning in package spec used to generate the hash for the cache file will contain the version range such as [1.0.0,).
+Once the cache/lock files are resolved, the no-op restore continues as before. 
+
 ### Open Issues
 
 
@@ -164,4 +183,24 @@ Here's a table of the presumed behavior (meaning, as far as we know, there might
 
 Tracking issue for these inconsistencies here: [Add issue Number]
 
+#### Tool No-Op issues
+The design for tools has a lot of holes itself, as we bind it to a project, but it's actually global etc. 
+Due to that there's a great amount of cases where tool restore will not work. 
+
+The simple scenario here if we have 2 different version declarations that resolve to the same version. 
+```
+  <ItemGroup>
+    <DotNetCliToolReference Include="dotnet-api-search" Version="0.9.5" />
+  </ItemGroup>
+```
+and 
+```
+  <ItemGroup>
+    <DotNetCliToolReference Include="dotnet-api-search" Version="1.0.0" />
+  </ItemGroup>
+```
+Both these tools restores would resolve to 1.0.0 and both would end up writing to the same cache file.
+In this case we're left at the mercy of the scheduler. Pigeonhole says only 1 restore can no-op, but since these tasks run asynchronously, it may happen that the cache file by the one that CAN no-op has been overriden by another one before we read the cache file. 
+Due to multiple threads trying to access the lock/cache files, there's many inconsistencies in the tool no-op. 
+All the known issues with tool no-op are related to the fact that multiple restores compete for the same assets/cache files. 
 
