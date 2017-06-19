@@ -165,6 +165,8 @@ The workaround is to simply use the force option for scenarios like this.
 * Make the cache expire, based on a timestamp. The timestamp can be either in the cache or just use the timestamp of when the file was written. This doesn't fix the above scenario though, it makes it less likely.
 * Print a warning whenever we no-op on a project that has open ended/ floating dependencies. Caveat is this could become really noisy and users might hate it.
 
+Tracking here: https://github.com/NuGet/Home/issues/5445
+
 #### Cross-Client no-op
 
 The secondary target of this feature is to unify the restore behavior among all our clients. 
@@ -181,9 +183,7 @@ Here's a table of the presumed behavior (meaning, as far as we know, there might
 | Legacy Package Reference projects| <sub>Inconsistent.</sub>| <sub>Consistent.</sub> | <sub>Consistent.</sub> | <sub>Inconsistent.</sub> | <sub>Consistent.</sub> | <sub>Inconsistent.</sub> |
 | Project.Json  | <sub>Consistent</sub> | <sub>Consistent.</sub> | <sub>Consistent.</sub> | <sub>Consistent.</sub> | <sub>Consistent.</sub> | <sub>Consistent.</sub> |
 
-Tracking issue for these inconsistencies here: [Add issue Number]
-
-#### Tool No-Op issues
+Tracking issue for these inconsistencies here: https://github.com/NuGet/Home/issues/5444#### Tool No-Op issues
 The design for tools has a lot of holes itself, as we bind it to a project, but it's actually global etc. 
 Due to that there's a great amount of cases where tool restore will not work. 
 
@@ -204,3 +204,7 @@ In this case we're left at the mercy of the scheduler. Pigeonhole says only 1 re
 Due to multiple threads trying to access the lock/cache files, there's many inconsistencies in the tool no-op. 
 All the known issues with tool no-op are related to the fact that multiple restores compete for the same assets/cache files. 
 
+Tracking here: https://github.com/NuGet/Home/issues/5443
+#### Legacy Package Reference Install followed by a non-force restore does not no-op.
+This is an issue due to the fact that the install command in legacy projects installed top level (no framework), but in the generation of the package spec for the restore, it contains the references in both top level and per tfm.
+Tracked here: https://github.com/NuGet/Home/issues/5419
