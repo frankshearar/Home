@@ -8,7 +8,7 @@ NuGet client in VS is not fully functional in LSL mode. Currently only restore o
 
 NuGet VS client needs to support LSL mode without breaking it.
 
-Development activity is tracked in NuGet/Home#5058.
+Development activity is tracked in [NuGet/Home#5058](https://github.com/nuget/home/issues/5058).
 
 ### List of NuGet operations per NuGet package management project model
 
