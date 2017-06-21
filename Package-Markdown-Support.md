@@ -9,15 +9,16 @@ As part of improving the NuGet Gallery’s package details pages, we would like 
 - [P0]: An author can associate a repository URL with their package, separate from the existing project URL.
 - [P0]: An author can upload a README.md file for display on package page for each specific version, with markdown support.
   - Upload file from client
-  - Download file from (non-persisted) URL, defaulting to the README.md from the repository URL
-- [P0]: An author can choose to opt-in to the README.md feature for future package pushes (pending clarification)
-- [Stretch]: NuGet client support for packing with README.md
+  - Download file from (non-persisted) URL, defaulting to the README.md from the repository URL.
+- [P0]: An author can choose to opt-in to the README.md feature for future package pushes (pending clarification).
+- [Stretch]: NuGet client support for packing with README.md.
 - [Stretch]: GitHub OAuth support and statistics integration.
 
 ## Non-Goals
-- Redesign of other pages (limited to Package Verify/Edit/Details)
-- NuSpec changes (aside from repository URL)
-- Other repository types (limited to GitHub)
+- Dynamic updates to README.md from GitHub.
+- Redesign of other pages (limited to Package Verify/Edit/Details).
+- NuSpec changes (aside from repository URL).
+- Other repository types (limited to GitHub).
 
 ## Solution
 
