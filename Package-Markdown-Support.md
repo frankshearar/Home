@@ -12,6 +12,7 @@ As part of improving the NuGet Gallery’s package details pages, we would like 
   - Download file from (non-persisted) URL, defaulting to the README.md from the repository URL
 - [P0]: An author can choose to opt-in to the README.md feature for future package pushes (pending clarification)
 - [Stretch]: NuGet client support for packing with README.md
+- [Stretch]: GitHub OAuth support and statistics integration.
 
 ## Non-Goals
 - Redesign of other pages (limited to Package Verify/Edit/Details)
