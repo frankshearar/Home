@@ -21,7 +21,6 @@
 * [[Command option consistency|nuget.exe,-xplat,-dotnet-cli-commands-and-options-planning]]
 * [[Secret Rotation|Secret-Rotation]]
 * [Support dotnet add\update\del packageref](https://github.com/NuGet/Home/wiki/Support-dotnet-add%7Cupdate%7Cremove-pkg)
-* [[Package Markdown Support|Package-Markdown-Support]]
 
 #### Reviewing
 * [[NuGetizer 3000|NuGetizer-3000]]
