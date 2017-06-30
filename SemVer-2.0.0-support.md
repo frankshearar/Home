@@ -7,6 +7,12 @@ NuGet currently supports SemVer 1.0.0 with additional support for four part vers
 http://semver.org/
 
 ### Related specs
+The latest specs for SemVer 2.0.0 are here:
+
+[SemVer 2.0.0 - client-side (nuget.exe 4.3)](https://github.com/NuGet/Home/wiki/SemVer-2.0.0-support)
+
+[SemVer 2.0.0 - server-side](https://github.com/NuGet/Home/wiki/SemVer2-support-for-nuget.org-%28server-side%29)
+
 This spec covers the basic client work to support SemVer 2.0.0, there is a significant drawback in this spec because it doesn't provide a backward compatible way for the older client to deal with servers that support SemVer 2.0.0 with the current set of protocols. https://github.com/NuGet/Home/wiki/Semver-2.0.0-Protocol is a suggestion for an expanded V2 & V3 protocol to allow for backward compatibility.
 
 ### Benefits
