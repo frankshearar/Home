@@ -1,5 +1,3 @@
-# Package README.md support
-
 >The following work is in progress by the NuGet.org interns (@fayrose, @jarahsi, @laurenshen) and is expected to be released to preview by end of July 2017.
 >
 >This project was chosen based on feedback that authors and consumers want better package descriptions. Falling under the category of GitHub integrations, this is also related to the following issues:
