@@ -209,7 +209,7 @@ The folder 'c:\projects\a' does not contain a project to restore.
 ### NU1502
 
 #### Issue
-```RuntimeSupports`` contains an invalid profile.
+`RuntimeSupports` contains an invalid profile.
 
 #### Common causes
 The supports profile was not found in a runtime.json file from the current dependency packages.
@@ -217,6 +217,19 @@ The supports profile was not found in a runtime.json file from the current depen
 #### Example
 ```
 Unknown Compatibility Profile: aaa
+```
+
+### NU1503
+
+#### Issue
+A dependency project does not import NuGet's restore targets. This is similar to NU1105 but here the project is skipped and ignored instead of causing all of restore to fail. In complex solutions there are often other types of projects that may not support restore.
+
+#### Common causes
+This can happen for projects that do not import common props/targets which automatically import restore. If the project does not need to be restored this can be ignored. 
+
+#### Example
+```
+Skipping restore for project 'c:\a.csproj'. The project file may be invalid or missing targets required for restore. 
 ```
 
 ## Unexpected package versions
