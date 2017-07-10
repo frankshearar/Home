@@ -334,7 +334,7 @@ The package does not support the project framework.
 
 #### Example
 ```
-Package 'NuGet.Versioning' was restored using 'portable-net45+win8' instead the project target framework 'netstandard1.5'. This may cause compatibility problems.
+Package 'NuGet.Versioning' was restored using 'portable-net45+win8' instead the project target framework 'netstandard1.5'. This package may not be fully compatible with your project.
 ```
 
 ## Feed warnings
