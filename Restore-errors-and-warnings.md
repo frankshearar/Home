@@ -14,6 +14,47 @@ Generic error from NuGet.
 #### Issue
 Generic warning from NuGet.
 
+## Invalid inputs
+
+### NU1001
+
+#### Issue
+The project does not contain one or more frameworks.
+
+#### Common causes
+The project does not contain a `TargetFramework` or `TargetFrameworks` property.
+
+#### Example
+```
+The project projA does not specify any target frameworks in c:\tmp\projA.csproj.
+```
+
+### NU1002
+
+#### Issue
+Invalid combination of inputs along with a CLEAR keyword.
+
+#### Common causes
+CLEAR may not be combined with other inputs.
+
+#### Example
+```
+'CLEAR' cannot be used in conjunction with other values.
+```
+
+### NU1003
+
+#### Issue
+`PackageTargetFallback` and `AssetTargetFallback` provide different behavior for selecting assets and can not be used together.
+
+#### Common causes
+Both `PackageTargetFallback` and `AssetTargetFallback` exist in the project.
+
+#### Example
+```
+PackageTargetFallback and AssetTargetFallback cannot be used together. Remove PackageTargetFallback(deprecated) references from the project environment.
+```
+
 ## Missing packages and projects
 
 ### NU1100
