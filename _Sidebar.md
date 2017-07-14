@@ -12,6 +12,7 @@
 ***
 
 #### Incubation 
+* [[[Feature] Enable repeatable builds for PackageReference based projects|[Feature] Enable repeatable builds for PackageReference based projects]]
 * [[Full Support of LSL|Full-support-of-LSL]]
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
