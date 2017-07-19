@@ -1,6 +1,6 @@
 Currently in **Incubation** stage: work in progress.
 
-The intent of this spec is to discuss it idea further and get more brainstorming on the feature.
+The intent of this spec is to discuss the idea further and get more brainstorming on the feature.
 
 # Issue
 
