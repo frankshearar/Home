@@ -25,8 +25,9 @@ lib
 
 2. Create separate localized satellite package with all satellite assemblies.
 
-In this scenario, all the satellite assemblies can be part of the same package - 
+In this scenario, all the satellite assemblies can be part of the new package which will deliver all the satellite assemblies as the pay load and will contain a package reference to the original package- 
 ```
+
 lib
 └───target_framework
     │   Code.dll
