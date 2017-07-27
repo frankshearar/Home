@@ -12,6 +12,7 @@
 ***
 
 #### Incubation 
+* [[Revamped package upload workflow|Revamped package upload workflow]]
 * [[[Feature] Enable repeatable builds for PackageReference based projects|[Feature] Enable repeatable builds for PackageReference based projects]]
 * [[Full Support of LSL|Full-support-of-LSL]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
