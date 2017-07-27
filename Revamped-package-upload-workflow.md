@@ -2,10 +2,11 @@
 [Revamped package upload workflow](https://github.com/NuGet/Home/issues/5662)
 
 ## Problem
-_What is the problem(s) we are trying to solve? Why is it a problem. What horrible workarounds are we subjecting our users too._
+NuGet packages undergo several steps such as pre-processing, validation and indexing before they are made available on the gallery and for download from the NuGet.org feed. At present there is no way for the publisher to know what is the status, how much time will it take, or if there is a problem with the package. The NuGet team ends up getting several support requests a day
 
 ## Who is the customer?
-_Who is the customer that is running into the problem. Which customers would dance for joy and donate to save the space unicorns foundation on getting this feature. Customers here could be individuals, nuget customer segments (package authors, consumers), enterprises, partners within Microsoft, external partners etc..._
+NuGet package publishers would have an intuitive, self-serve way of knowing the current status of the package and would not have to guess and/or reach out NuGet support.
+Fewer tickets for the NuGet team which means we can spend more time doing awesome things.
 
 ## Evidence
 _What is the evidence that behaves us to act?_
