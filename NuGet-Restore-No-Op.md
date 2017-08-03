@@ -21,7 +21,7 @@ The benefits are a faster and more seamless restore experience, avoid doing redu
 The no-op restore will run by default. If you wish to skip the no-op, you can use -force as such:
 * NuGet.exe restore MyProject.csproj -force 
 * Dotnet.exe restore MyProject.csproj -force 
-* MSBuild.exe /t:restore MyProject.csproj /p:force 
+* MSBuild.exe /t:restore MyProject.csproj /p:RestoreForce
 * Visual Studio - NuGet Package Manager - rebuild
 
 ## Design Specification 
