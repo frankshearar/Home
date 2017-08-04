@@ -22,7 +22,7 @@ The no-op restore will run by default. If you wish to skip the no-op, you can us
 * NuGet.exe restore MyProject.csproj -force 
 * Dotnet.exe restore MyProject.csproj -force 
 * MSBuild.exe /t:restore MyProject.csproj /p:RestoreForce
-* Visual Studio - NuGet Package Manager - rebuild
+* Visual Studio - NuGet Package Manager - rebuild / Clean, which will delete the cache file, and then any restore.
 
 ## Design Specification 
 
