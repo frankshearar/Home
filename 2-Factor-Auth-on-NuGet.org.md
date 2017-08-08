@@ -15,6 +15,8 @@ The key scenarios we want to enable are given below:
 * NuGet.org only supports sign-in through Microsoft Accounts (or possibly GitHub) secured that are secured via 2-FA.
 * NuGet package authors belonging to Organizations with AAD can authenticate on NuGet.org via their AAD instance. These AAD instances need to have 2 FA enabled on them. Eg. MSFT packages require mandatory sign-in through secured @microsoft.com accounts federated through Microsoft Organization on AAD similar to our admin accounts.
 
+**[Open]** How does authentication work for existing team alias logins? How do we migrate such accounts?
+
 ## Solution
 
 The PII stored on NuGet will be the following - Name and Email, All other information is retrieved by the authentication provider when required. The only PII we will store on our end is Name and Email. 
