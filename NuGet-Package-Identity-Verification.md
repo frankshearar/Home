@@ -1,3 +1,10 @@
+Status: **Incubation**
+
+## Issue
+The work for this feature and the discussion around the spec is tracked here Package ID Prefix Reservation [#5307](https://github.com/NuGet/Home/issues/5307)
+
+
+## Problem
 We've heard from our customers loud and clear that there is confusion regarding NuGet package identity today. There are several key identifying properties for NuGet packages, including: package owners, package author, package title, and package ID. Each of these properties serves a unique purpose, but having different identifying metadata can make it difficult for NuGet package consumers to quickly and easily find the right package for consumption.
 
 This spec outlines in detail our immediate plans for engineering investment. In addition, we describe our longer term roadmap for areas of investigation and investment to complete the picture over time. To be able to roll out as quickly as possible, we plan to start small and grow over time. This gives us an additional opportunity to learn from our customers to make sure the final set of features provides the most value to the entire NuGet community. 
