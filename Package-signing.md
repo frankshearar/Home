@@ -1,5 +1,7 @@
 Status: **Incubation**
 
+More info coming soon.
+
 ## Issue
 Package signing [#2577](https://github.com/NuGet/Home/issues/2577)
 
