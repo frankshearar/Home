@@ -1,9 +1,7 @@
 Status: **Incubation**
 
-More info coming soon.
-
 ## Issue
-Package signing [#2577](https://github.com/NuGet/Home/issues/2577)
+The work for this feature and the discussion around the spec is tracked here - **Package signing [#2577](https://github.com/NuGet/Home/issues/2577)**
 
 ## Problem
 TBD
@@ -19,3 +17,4 @@ Verified Authors for NuGet.org and packages [#1882](https://github.com/NuGet/Hom
 NuGet package signing prototype [#5260](https://github.com/NuGet/Home/issues/5260)
 
 ## Solution
+More info coming soon.
