@@ -4,10 +4,10 @@ Status: **Incubation**
 The work for this feature and the discussion around the spec is tracked here - **Package signing [#2577](https://github.com/NuGet/Home/issues/2577)**
 
 ## Problem
-TBD
+More info coming soon.
 
 ## Who is the customer?
-All NuGet users - publishers and consumers
+More info coming soon.
 
 ## Evidence
 Is NuGet vulnerable to this typosquatting attack? [#2974](https://github.com/NuGet/Home/issues/2974)
