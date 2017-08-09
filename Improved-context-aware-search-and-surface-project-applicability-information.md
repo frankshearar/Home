@@ -7,7 +7,5 @@ When a user searches for a package either in a NuGet client or on NuGet.org, we 
 ## Who is the customer?
 All NuGet package consumers
 
-## Evidence
-
-
 ## Solution
+More info coming soon.
