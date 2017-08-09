@@ -1,12 +1,8 @@
-Currently in **Incubation** stage: work in progress.
+Status: **Incubation**
 
-The intent of this spec is to discuss the idea further and get more brainstorming on the feature.
+## Issue
+The work for this feature and the discussion around the spec is tracked here - **Enable repeatable builds for PackageReference based projects [#5602](https://github.com/NuGet/Home/issues/5602)**
 
-# Issue
-
-[Feature] Enable repeatable builds for PackageReference based projects [#5602](https://github.com/NuGet/Home/issues/5602)
-
-This issue can be used to provide the feedback/comments.
 
 # Context
 
