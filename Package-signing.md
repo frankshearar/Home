@@ -13,6 +13,7 @@ All NuGet users - publishers and consumers
 Is NuGet vulnerable to this typosquatting attack? [#2974](https://github.com/NuGet/Home/issues/2974)
 
 Verified Authors for NuGet.org and packages [#1882](https://github.com/NuGet/Home/issues/1882)
+
 NuGet package signing prototype [#5260](https://github.com/NuGet/Home/issues/5260)
 
 ## Solution
