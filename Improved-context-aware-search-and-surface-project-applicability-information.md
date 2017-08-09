@@ -1,3 +1,5 @@
+Status: **Incubation**
+
 ## Issue
 [[Feature] Context aware search and surface project applicability information](https://github.com/NuGet/Home/issues/5725)
 
