@@ -32,6 +32,7 @@
 * [[Supporting Package Reference in UWP WPF WinForms and Classic Libraries|Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries]]
 * [[ToolsReference and Multi TFM Support in NuGet UI|ToolsReference-and-Multi-TFM-Support-in-NuGet-UI]]
 * [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
+* [[Transitive Warning Properties|[Spec]-Transitive-Warning-Properties]]
 
 #### Reviewed
 * [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]]
