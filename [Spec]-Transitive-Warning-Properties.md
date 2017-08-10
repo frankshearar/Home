@@ -77,6 +77,13 @@ Once the resulting collection is generated, the same collection is used for all 
 
 ## Open Questions
 
-1. Turn off transitive `NoWarn` - 
+1. Turn off transitive warning properties - 
+Do we need a way for users to turn off the propagation of warning properties transitively? If so the options are -
+   * Add a switch to restore. - `restore -NotransitiveProperties`
+   * An msbuild property that users can set to true if they do not want transitive warning properties. - `msbuild /t:restores /p:NoTransitiveProperties=True`
 
 2. Transitive `WarningsAsErrors` - 
+Do we need to allow `WarningsAsErrors` to flow transitively as well?
+
+e.g. - `A -> B[WarningsAsErrors=NU1603] -> PkgX[NU1603]`
+In the above case, Project A references project B which has a reference to Package X. If Project B has set NU1603 in `WarningsAsErrors` and package X brings in `NU1603`. Now if we restore Project A then it will trigger the restore for project B and project A. Project B restore will fail since project B has made the warning into an error. But Project A will succeed, since we do not look at transitive `WarningsAsErrors`.
