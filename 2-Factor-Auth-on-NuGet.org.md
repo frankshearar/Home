@@ -18,18 +18,17 @@ The key scenarios we want to enable are given below:
 **[Open]** How does authentication work for existing team alias logins? How do we migrate such accounts?
 
 ## Solution
-
-The PII stored on NuGet will be the following - Name and Email, All other information is retrieved by the authentication provider when required. The only PII we will store on our end is Name and Email. 
+More info coming soon.
 
 ### Personal NuGet.org accounts
 
-We will deprecate NuGet.org accounts not linked to Microsoft Accounts and require authentication to NuGet.org accounts via Microsoft Accounts that are secured by 2 FA. We will prevent Microsoft Accounts being linked that are not secured by 2 FA.
+Current thinking is that we will deprecate NuGet.org accounts not linked to Microsoft Accounts and require authentication to NuGet.org accounts via Microsoft Accounts that are secured by 2 FA. We will prevent Microsoft Accounts being linked that are not secured by 2 FA.
 
 In addition to this, we will consider adding more authentication providers like GitHub and Twitter in the future that are constrained by the principle outlined above.
 
 ### Organization Accounts
 
-Users can choose to authenticate to NuGet.org using their work accounts provided these are federated to Microsoft AAD secured by 2 FA. We will consider exceptions to this on a case by case basis if 2 FA is not required by the Organization (Only physical access - Banks etc...)
+Users can choose to authenticate to NuGet.org using their work accounts provided these are federated to Microsoft AAD secured by 2 FA. 
 
 
 
