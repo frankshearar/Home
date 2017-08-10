@@ -19,16 +19,24 @@ E.g.
 
    b. If Feed has only these versions: 4.0.0, 4.6.0, 5.0.0 then NuGet resolves to 4.6.0 
 
-2. If a range or floating version is specified - NuGet resolves to the highest version specified in that range or that satisfies the floating expression.
+2. If a range or floating version is specified - NuGet resolves to the lowest version specified in that range or that satisfies the floating expression.
 E.g.
+
+   Feed has only these versions for My.Sample.Lib: 4.0.0, 4.6.0, 5.0.0
 
    a. Range is specified:
 		
    `<PackageReference Include="My.Sample.Lib" Version="[4.0.0, 5.0.0]"/>`
 		
-      NuGet resolves to the lowest version specified in the range, if present (i.e. 4.0.0 here) and if not then resolves to the next highest version present in feed for the specified range
+      NuGet resolves to the 4.0.0 here. 
+
+   b. Range is specified contd..
 		
-   b. Floating version is specified:
+   `<PackageReference Include="My.Sample.Lib" Version="[4.1.0, 5.0.0]"/>`
+		
+      NuGet resolves to the 4.6.0 here.
+		
+   c. Floating version is specified:
 	
    `<PackageReference Include="My.Sample.Lib" Version="4.*"/>`
 		
