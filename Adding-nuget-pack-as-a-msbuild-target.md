@@ -140,6 +140,7 @@ AndroidResource
 BundleResource
 None
 ```
+Other pack specific metadata that you can set on any of the above items also includes ``` <PackageCopyToOutput> ``` and ``` <PackageFlatten> ``` which will set CopyToOutput and Flatten values on the contentFiles entry in the output nuspec.
 
 **Note that for pack to append the filename to your package path when using globbing patterns, your package path must end with the directory separator character, otherwise the package path is treated as the full path including the file name.**
 
