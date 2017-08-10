@@ -45,6 +45,8 @@ Combined Example -
 
 ## Problem
 
+Issue - https://github.com/NuGet/Home/issues/5501
+
 Based on the work done above, we allow customers to control the warnings generated in one project. But currently we do not allow customers to control this experience for warnings being generated in a referenced project.
 
 For example - `ProjA -> ProjB -> PkgX[NU1603]`
