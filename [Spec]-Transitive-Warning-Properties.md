@@ -65,4 +65,18 @@ To achieve this we need to traverse the parent project's restore closure to pull
 
 The current implementation is at https://github.com/NuGet/NuGet.Client/tree/dev-anmishr-p2pnowarn.
 
-When a warning is generated in restore, it is passed to `RestoreCollectorLogger`. The logger then checks if it has the needed information to collect the transitive `NoWarn` properties 
+When a warning is generated in restore, it is passed to `RestoreCollectorLogger`. The logger then checks if it has the needed information to collect the transitive `NoWarn` properties i.e. If it has the parent project's `RestoreTargetGraph` and `PackageSpec`.
+
+if the logger has the needed information, it invokes `TransitiveNoWarnUtils.CreatetransitiveWarningProperties`. In that method, for each restore target graphs we seed a queue with the parent project's direct dependencies. Then we traverse the closure in Breadth First style to visit each node in the closure. 
+If the node is a project then we get the warning properties of the project and then merge them with the warning properties seen along the path taken to reach the node.
+If the node is a package then we see if the path taken to this package has any warning properties applicable to this package. If yes, then we intersect that with any warning properties seen on all other paths to the package. If the result is an empty then we stop looking for that package because, we have 1 path with no `Nowarn` and thus it does not matter what other paths have since the warnings from the package will have at least one path for it's warnings.
+
+The resulting collections are stored as a `Dictionary<string, HashSet<NuGetLogCode>>` resulting in a quick look up of a package ID to `NoWarn` Set of `NuGetLogCode`.
+
+Once the resulting collection is generated, the same collection is used for all the other warnings generated as part of the restore.
+
+## Open Questions
+
+1. Turn off transitive `NoWarn` - 
+
+2. Transitive `WarningsAsErrors` - 
