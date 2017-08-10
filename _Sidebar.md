@@ -14,7 +14,7 @@
 #### Incubation 
 * [[2 Factor Auth on NuGet.org]]
 * [[Revamped package upload workflow|Revamped package upload workflow]]
-* [[https://github.com/NuGet/Home/wiki/Enable-repeatable-builds-for-PackageReference-based-projects]]
+* [[Enable repeatable builds for PackageReference based projects]]
 * [[Full Support of LSL|Full-support-of-LSL]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
 * [[NuGet Restore Manager|NuGet-Restore-Manager]]
