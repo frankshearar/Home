@@ -84,6 +84,5 @@ Do we need a way for users to turn off the propagation of warning properties tra
 
 2. Transitive `WarningsAsErrors` - 
 Do we need to allow `WarningsAsErrors` to flow transitively as well?
-
 e.g. - `A -> B[WarningsAsErrors=NU1603] -> PkgX[NU1603]`
 In the above case, Project A references project B which has a reference to Package X. If Project B has set NU1603 in `WarningsAsErrors` and package X brings in `NU1603`. Now if we restore Project A then it will trigger the restore for project B and project A. Project B restore will fail since project B has made the warning into an error. But Project A will succeed, since we do not look at transitive `WarningsAsErrors`.
