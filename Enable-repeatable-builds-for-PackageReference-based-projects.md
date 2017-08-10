@@ -26,7 +26,7 @@ E.g.
 		
    `<PackageReference Include="My.Sample.Lib" Version="[4.0.0, 5.0.0]"/>`
 		
-      NuGet resolves to 5.0.0 is present and if not then resolves to the hishest version present in the specified range.
+      NuGet resolves to the lowest version specified in the range, if present (i.e. 4.0.0 here) and if not then resolves to the next highest version present in feed for the specified range
 		
    b. Floating version is specified:
 	
