@@ -1,4 +1,4 @@
-This spec deals with the need for respecting the `NoWarn` properties from project references and the solution.
+This spec deals with the need for respecting the `NoWarn` properties from project references.
 
 ## Current Status
 
