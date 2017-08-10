@@ -19,7 +19,7 @@ E.g.
 
    b. If Feed has only these versions: 4.0.0, 4.6.0, 5.0.0 then NuGet resolves to 4.6.0 
 
-2. If a range or floating version is specified - NuGet resolves to the lowest version specified in that range or that satisfies the floating expression.
+2. If a range is specified - NuGet resolves to the lowest version specified in that range or that satisfies the floating expression.
 E.g.
 
    Feed has only these versions for My.Sample.Lib: 4.0.0, 4.6.0, 5.0.0
@@ -35,14 +35,19 @@ E.g.
    `<PackageReference Include="My.Sample.Lib" Version="[4.1.0, 5.0.0]"/>`
 		
       NuGet resolves to the 4.6.0 here.
-		
-   c. Floating version is specified:
 	
+3. If a floating version is specified is specified - NuGet resolves to the highest version that satisfies the floating expression.
+E.g.	
+   
+   Floating version is specified:
+
+   (Feed has only these versions for My.Sample.Lib: 4.0.0, 4.6.0, 5.0.0)
+
    `<PackageReference Include="My.Sample.Lib" Version="4.*"/>`
 		
-      NuGet resolves to the highest version that matches the floating expression. If not, then it resolves to next-highest-version-available* on the feed. 
-	
-      * This, IMO, is a bug: https://github.com/NuGet/Home/issues/5097
+    NuGet resolves to 4.6.0 here.
+
+    NuGet resolves to next-highest-version-available* on the feed if there are no versions matching the floating expression. i.e. if 4.0.0 and 4.6.0 were not present on the feed, NuGet would have resolved to 5.0.0 even though the floating expression says 4.*. This, IMO, is a bug: https://github.com/NuGet/Home/issues/5097
 		
 ## Transitive dependency resolution
 In case of transitive dependencies, the resolution is always to the lowest version specified in the dependency version or version ranges as specified here.
