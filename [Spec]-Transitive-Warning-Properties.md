@@ -71,7 +71,7 @@ When a warning is generated in restore, it is passed to `RestoreCollectorLogger`
 
 if the logger has the needed information, it invokes `TransitiveNoWarnUtils.CreatetransitiveWarningProperties`. In that method, for each restore target graphs we seed a queue with the parent project's direct dependencies. Then we traverse the closure in Breadth First style to visit each node in the closure. 
 If the node is a project then we get the warning properties of the project and then merge them with the warning properties seen along the path taken to reach the node.
-If the node is a package then we see if the path taken to this package has any warning properties applicable to this package. If yes, then we intersect that with any warning properties seen on all other paths to the package. If the result is an empty then we stop looking for that package because, we have 1 path with no `Nowarn` and thus it does not matter what other paths have since the warnings from the package will have at least one path for it's warnings.
+If the node is a package then we see if the path taken to this package has any `NoWarn` applicable to this package. If yes, then we intersect that with any `NoWarn` seen on all other paths to the package. If the result is an empty then we stop looking for that package because, we have 1 path with no `Nowarn` and thus it does not matter what other paths have since the warnings from the package will have at least one path for it's warnings.
 
 The resulting collections are stored as a `Dictionary<string, HashSet<NuGetLogCode>>` resulting in a quick look up of a package ID to `NoWarn` Set of `NuGetLogCode`.
 
@@ -79,12 +79,12 @@ Once the resulting collection is generated, the same collection is used for all 
 
 ## Open Questions
 
-1. Turn off transitive warning properties - 
-Do we need a way for users to turn off the propagation of warning properties transitively? If so the options are -
+1. Turn off transitive NoWarn - 
+Do we need a way for users to turn off the propagation of `NoWarn` transitively? If so the options are -
    * Add a switch to restore. - `restore -NotransitiveProperties`
-   * An msbuild property that users can set to true if they do not want transitive warning properties. - `msbuild /t:restores /p:NoTransitiveProperties=True`
+   * An msbuild property that users can set to true if they do not want transitive `NoWarn`. - `msbuild /t:restores /p:NoTransitiveNoWarn=True`
 
 2. Transitive `WarningsAsErrors` - 
 Do we need to allow `WarningsAsErrors` to flow transitively as well?
 e.g. - `A -> B[WarningsAsErrors=NU1603] -> PkgX[NU1603]`
-In the above case, Project A references project B which has a reference to Package X. If Project B has set NU1603 in `WarningsAsErrors` and package X brings in `NU1603`. Now if we restore Project A then it will trigger the restore for project B and project A. Project B restore will fail since project B has made the warning into an error. But Project A will succeed, since we do not look at transitive `WarningsAsErrors`.
+In the above case, Project A references project B which has a reference to Package X. If Project B has set `NU1603` in `WarningsAsErrors` and package X brings in `NU1603`. Now if we restore Project A then it will trigger the restore for project B and project A. Project B restore will fail since project B has made the warning into an error. But Project A will succeed, since we do not look at transitive `WarningsAsErrors`.
