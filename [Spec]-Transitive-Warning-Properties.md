@@ -81,7 +81,7 @@ Once the resulting collection is generated, the same collection is used for all 
 
 1. Turn off transitive NoWarn - 
 Do we need a way for users to turn off the propagation of `NoWarn` transitively? If so the options are -
-   * Add a switch to restore. - `restore -NotransitiveProperties`
+   * Add a switch to restore. - `restore --NotransitiveNoWarn`
    * An msbuild property that users can set to true if they do not want transitive `NoWarn`. - `msbuild /t:restores /p:NoTransitiveNoWarn=True`
 
 2. Transitive `WarningsAsErrors` - 
