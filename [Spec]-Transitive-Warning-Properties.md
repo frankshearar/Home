@@ -84,7 +84,22 @@ Do we need a way for users to turn off the propagation of `NoWarn` transitively?
    * Add a switch to restore. - `restore --NotransitiveNoWarn`
    * An msbuild property that users can set to true if they do not want transitive `NoWarn`. - `msbuild /t:restores /p:NoTransitiveNoWarn=True`
 
+_Discussed internally and decided that this is not needed._
+
 2. Transitive `WarningsAsErrors` - 
 Do we need to allow `WarningsAsErrors` to flow transitively as well?
 e.g. - `A -> B[WarningsAsErrors=NU1603] -> PkgX[NU1603]`
 In the above case, Project A references project B which has a reference to Package X. If Project B has set `NU1603` in `WarningsAsErrors` and package X brings in `NU1603`. Now if we restore Project A then it will trigger the restore for project B and project A. Project B restore will fail since project B has made the warning into an error. But Project A will succeed, since we do not look at transitive `WarningsAsErrors`.
+
+_Discussed internally and decided that this is not needed as if one project restore fails then the solution restore will fail too and further, the parent project build will fail as well._
+
+3. Apply package specific NoWarn to the package's closure - 
+A user requested this scenario at https://github.com/NuGet/Home/issues/5740.
+
+_We discussed this internally and currently we are not implementing this as this allows hiding warnings that slow down restore. However, we did discuss this as part of a larger work in near future._
+
+4. Improve NuGet Error Experience by de-duping same warnings in errors - 
+This came up during the discussion to improve user experience. I have filed a bug to track this - https://github.com/NuGet/Home/issues/5734
+
+5. Double clicking on warnings and errors should take the user to the source - 
+This came up during the discussion to improve user experience. I have filed a bug to track this - https://github.com/NuGet/Home/issues/5748
