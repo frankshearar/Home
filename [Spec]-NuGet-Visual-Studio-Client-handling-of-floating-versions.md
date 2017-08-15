@@ -1,6 +1,6 @@
 ## Issue
 
-The investigation started with [#3788 - NETCore PackageReference with a star is displayed under the updates tab](https://github.com/NuGet/Home/issues/3788), but is related to [#5714 - [Idea] Enhance "available updates" experience to show more critical updates](https://github.com/NuGet/Home/issues/5714) for enhancing the update package experience.
+The investigation started with [#3788 - NETCore PackageReference with a star is displayed under the updates tab](https://github.com/NuGet/Home/issues/3788).
 
 ## Problem
 
