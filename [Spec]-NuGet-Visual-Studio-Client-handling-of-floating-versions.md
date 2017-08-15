@@ -53,9 +53,7 @@ _UI for list item_
 
 _UI for detail control_
 
-The proposed solution involves updating the client to get the actual resolved version for each package from the assets file instead of calculating the minimum version, therefore the version number shown will always portrait the actual version installed. This solution leaves some questions open about how to handle updates in packages with a floating version.
-
-As [@joelverhagen](https://github.com/joelverhagen) mentioned in [#5714](https://github.com/NuGet/Home/issues/5714) there are different scenarios for updating a package and each of them has a different urgency. NuGet Client should provide different signals to show the different types of updates. To clarify what each signal means a tooltip message can be provided. 
+The proposed solution involves updating the client to get the actual resolved version for each package from the assets file instead of calculating the minimum version, therefore the version number shown will always portrait the actual version installed.
 
 For the four scenarios mentioned above the version on the right in the list item, the version on the "Installed" section of the detail view and the bold version of the "Version" dropdown in the detail view should show the actual version resolved, not a minimum calculated by the client. Also, each scenario needs a different experience when an update is available.
 
@@ -65,22 +63,17 @@ The user has the latest version, the client should not show an update available 
 
 ### The latest version available falls inside the floating range specified and the resolved version of the package is older than the latest available
 
-Show another icon for update (e.g. green up arrow) and specify with a tooltip that an update is available by doing a restore, but don't show it NuGet's updates tab.
-
-<img src="https://user-images.githubusercontent.com/2132567/29296155-4de2db0e-810d-11e7-8c70-f46fc0c1341d.png" width="98%">
+Show the update icon and have the blue number over the "Updates" tab. If the user decides to update to the new version the package reference should not be modified because it falls inside of the current range.
 
 ### The latest version available doesn't fall inside the floating range specified but the resolved version of the package is the max of the range specified
 
-Show the update icon and have the blue number over the "Updates" tab. The user can then decide if they want to update to a new version and have NuGet update the package reference to reflect this action.
+Show the update icon and have the blue number over the "Updates" tab. If the user decides to update to the new version the package reference should be modified and the user should be warned.
 
 ### The latest version available doesn't fall inside floating range specified but the resolved version of the package is not the max of range specified
 
-Show only one of the signals of updates mentioned in the above scenarios (either update by restoring or update by UI). **Which one is more important?**
+Show the update icon and have the blue number over the "Updates" tab. Depending on what version the user selects the behavior should follow one of the scenarios above.
 
 ## Open Questions
 - When using floating versions, the restore command should update the package if a new version inside of the proposed range is available. Should the manager UI treat a new version inside the floating range as a regular update?
-- Should we show an update when there is a new version inside the floating range and the user hasn't ran restore?
-- Should we shown an update for a latest version outside of the floating range?
-- Should we a package is using a floating version and also indicate which version the package resolved to?
-- How are we going to manage updates? Right now we run the update and then rewrite the references to show the current installed version, in the case of floating ranges we don't want to overwrite the references because they might fall in that same range.
-- Do we want to have a way to let the user specify an installation with floating version from the UI?
+- Should there be a way to indicate a package is using a floating version and also indicate which version the package resolved to?
+- Does the client UI needs a way to let the user specify an installation with floating version from the UI?
