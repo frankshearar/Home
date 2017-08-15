@@ -75,6 +75,7 @@ Show the update icon and have the blue number over the "Updates" tab. Depending 
 
 ## Open Questions
 - When using floating versions, the restore command should update the package if a new version inside of the proposed range is available. Should the manager UI treat a new version inside the floating range as a regular update?
--- [nkolev92] I do not think that these updates should be treated as regular updates. In my opinion this would be misleading, I think we can have some sort of an indicator that the package is not "up to date" in the installed tab or something, but we should not display them in the Updates tab. In addition we can display a nice "NU warning" that the package they have restore is not up to date, and tell them they should rerun restore to get the latest package.
+**  [nkolev92] I do not think that these updates should be treated as regular updates. In my opinion this would be misleading, I think we can have some sort of an indicator that the package is not "up to date" in the installed tab or something, but we should not display them in the Updates tab. 
+Technically a bit more complex, but we can consider displaying a nice "NU warning" that the package they have restored is not up to date, and tell them they should rerun restore to get the latest package. The tricky part here is figuring out the trigger for that warning, such as opening the UI etc. 
 - Should there be a way to indicate a package is using a floating version and also indicate which version the package resolved to?
 - Does the client UI needs a way to let the user specify an installation with floating version from the UI?
