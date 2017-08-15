@@ -78,10 +78,9 @@ Show the update icon and have the blue number over the "Updates" tab. The user c
 Show only one of the signals of updates mentioned in the above scenarios (either update by restoring or update by UI). **Which one is more important?**
 
 ## Open Questions
+- When using floating versions, the restore command should update the package if a new version inside of the proposed range is available. Should the manager UI treat a new version inside the floating range as a regular update?
 - Should we show an update when there is a new version inside the floating range and the user hasn't ran restore?
 - Should we shown an update for a latest version outside of the floating range?
-- How can we let the user know they're using a floating version but also indicate them which version the package resolved to?
+- Should we a package is using a floating version and also indicate which version the package resolved to?
 - How are we going to manage updates? Right now we run the update and then rewrite the references to show the current installed version, in the case of floating ranges we don't want to overwrite the references because they might fall in that same range.
 - Do we want to have a way to let the user specify an installation with floating version from the UI?
-- When using floating versions, the restore command should update the package if a new version inside of the proposed range is available. Should the manager UI treat a new version inside the floating range as a regular update?
-
