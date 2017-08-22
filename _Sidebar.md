@@ -13,7 +13,6 @@
 
 #### Incubation 
 * [[2 Factor Auth on NuGet.org]]
-* [[Enhanced package upload workflow|Enhanced package upload workflow]]
 * [[Enable repeatable builds for PackageReference based projects]]
 * [[Full Support of LSL|Full-support-of-LSL]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
@@ -30,6 +29,7 @@
 * [[NuGet Upgrader|NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0]]
 * [[Converting Extension SDKs into NuGet Packages|Converting-Extension-SDKs-into-NuGet-Packages]]
 * [[Supporting Package Reference in UWP WPF WinForms and Classic Libraries|Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries]]
+* [[Enhanced package upload workflow|Enhanced package upload workflow]]
 * [[ToolsReference and Multi TFM Support in NuGet UI|ToolsReference-and-Multi-TFM-Support-in-NuGet-UI]]
 * [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 * [[Transitive Warning Properties|[Spec]-Transitive-Warning-Properties]]
