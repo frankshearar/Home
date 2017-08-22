@@ -13,7 +13,7 @@
 
 #### Incubation 
 * [[2 Factor Auth on NuGet.org]]
-* [[Revamped package upload workflow|Revamped package upload workflow]]
+* [[Enhanced package upload workflow|Revamped package upload workflow]]
 * [[Enable repeatable builds for PackageReference based projects]]
 * [[Full Support of LSL|Full-support-of-LSL]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
