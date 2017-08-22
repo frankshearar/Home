@@ -23,9 +23,9 @@ This page will be visible only to the package owner/s.
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageUploadWorkflow/package%20status%20page.PNG)
 
-### Post validation and indexing
-Once the package has been validated and indexed, the status info bar goes away, the package page becomes public, the package is made available for download from the gallery and for consumption through the v2/v3 feeds, and an email notification is sent to the owners informing them that the package has been published.
-
 ### Issues with validation
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageUploadWorkflow/package%20status%20page%20val%20fail.PNG)
+
+### Post validation and indexing
+Once the package has been validated and indexed, the status info bar goes away, the package page becomes public, the package is made available for download from the gallery and for consumption through the v2/v3 feeds, and an email notification is sent to the owners informing them that the package has been published.
