@@ -24,6 +24,7 @@ This page will be visible only to the package owner/s.
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageUploadWorkflow/package%20status%20page.PNG)
 
 ### Issues with validation
+The status updates with the status that package publishing failed. The owners are notified of the same via email, and the NuGet team is alerted as well. 
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageUploadWorkflow/package%20status%20page%20val%20fail.PNG)
 
