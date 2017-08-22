@@ -120,7 +120,7 @@ If developers need to specify multiple versions of the assembly targeting specif
 
 #### Support C++
 
-####Support Edit Copy of Template
+#### Support Edit Copy of Template
 
 
 Note: These features should work in UWP for both project.json and PackageRef
