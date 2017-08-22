@@ -69,7 +69,7 @@ In the case of the manager UI at the solution level, this involves updating the 
 
 This solution also involves that when a package is updated and the package reference specifies a floating version or a range, this reference will only be updated if the new version installed doesn't fall inside of the range previously specified.
 
-Taking this updates in consideration, there are some scenarios that are relevant to mention the desired user experience involved. These scenarios are presented below.
+Taking this updates in consideration, there are some scenarios that are relevant and are presented below.
 
 ### Scenarios
 
@@ -77,11 +77,9 @@ Taking this updates in consideration, there are some scenarios that are relevant
 - The project has multiple target frameworks and more than one of these have the same package with different versions.
 - Updating a reference and running restore when the UI is open (changing resolved version)
 
-Each of this scenarios propose different problems with this solution, the following sections explain them in a more detailed way.
-
 ### No `project.assets.json` file
 
-When a project doesn't have a `project.assets.json` file it means that restore hasn't finished running, therefore the packages haven't been resolved. For this scenario NuGet Client doesn't have enough information to get a resolved version for each package. Therefore the behavior will fall back to calculating the minimum version possible for ranges or floating versions.
+When a project doesn't have a `project.assets.json` file it means that restore hasn't finished running, therefore the packages haven't been resolved. For this scenario NuGet Client doesn't have enough information to get a resolved version for each package. Therefore the behavior will fall back to calculating the minimum version possible for ranges or floating versions. This will still preserve issues when this version doesn't exist or if the range doesn't have a minimum version.
 
 ### Multiple target frameworks with different versions of the same package
 
