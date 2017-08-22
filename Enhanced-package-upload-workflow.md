@@ -1,5 +1,5 @@
 ## Issue
-[Enhanced package upload workflow](https://github.com/NuGet/Home/issues/5662)
+[Enhanced package upload workflow](https://github.com/NuGet/NuGetGallery/issues/4478)
 
 ## Problem
 Going forward, NuGet packages shall undergo validation, in addition to indexing, before they are made available on the gallery and for download from v3/v2 feed. At present, there is no way for the publisher to know if the validation fails, and what to do next.
