@@ -81,9 +81,12 @@ Each of this scenarios propose different problems with this solution, the follow
 
 ### No `project.assets.json` file
 
+When a project doesn't have a `project.assets.json` file it means that restore hasn't finished running, therefore the packages haven't been resolved. For this scenario NuGet Client doesn't have enough information to get a resolved version for each package. Therefore the behavior will fall back to calculating the minimum version possible for ranges or floating versions.
 
 ### Multiple target frameworks with different versions of the same package
 
+This scenario is important because we are updating the version of each package with the actual resolved version. In this case, the package will be resolved to different versions. The propose solution suggests that the minimum of the resolved package versions is taken and shown in the UI. The behavior for updates should not change in this scenario.
 
 ### Changing resolved version of a package while UI open
 
+The UI shouldn't update until the user clicks the refresh button explicitly. Once this button has been clicked, the new `project.assets.json` file should be read and the values for each package version should be updated in the aforementioned places in the detail and list view for the manager UI.
