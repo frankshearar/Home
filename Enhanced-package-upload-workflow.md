@@ -12,11 +12,18 @@ The NuGet team receives tens of requests a week specifically asking for clarific
 
 ## Solution
 
+###Modified workflow
 Here is the workflow when a package is pushed:
+
 (you may have to zoom-in up to 160%)
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageUploadWorkflow/Package%20Upload%20Workflow.png)
 
-The package page showing the status. This page will be visible only to the package owner/s.
+###Package page showing the status
+This page will be visible only to the package owner/s.
+
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageUploadWorkflow/package%20status%20page.PNG)
 
+###Post validation and indexing
 Once the package has been validated and indexed, the status info bar goes away, the package page becomes public, the package is made available for download from the gallery and for consumption through the v2/v3 feeds, and an email notification is sent to the owners informing them that the package has been published.
+
+###Issues with validation
