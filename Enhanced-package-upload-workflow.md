@@ -11,3 +11,11 @@ NuGet package publishers would have an intuitive, self-serve way of knowing the 
 The NuGet team receives tens of requests a week specifically asking for clarification around when a package will be available for consumption while it is being indexed. This problem might get exasperated when we introduce package validation as part of this flow.
 
 ## Solution
+
+Here is the workflow when a package is pushed:
+![](https://github.com/NuGet/Home/blob/dev/resources/PackageUploadWorkflow/Package%20Upload%20Workflow.png)
+
+The package page showing the status. This page will be visible only to the package owner/s.
+
+
+Once the package has been validated and indexed, the status info goes away, the package page becomes public, the package is made available for download from the gallery and for consumption through the v2/v3 feeds, and an email notification is sent to the owners informing them that the package has been published.
