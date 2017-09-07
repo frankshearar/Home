@@ -160,6 +160,34 @@ Packages contain dependency on exact versions of a package instead of open ended
 Unable to satisfy conflicting requests for {id}: {conflict path} Framework: {target graph}
 ```
 
+### NU1107 (Previously NU1607)
+
+#### Issue
+Unable to resolve dependency constraints between packages.
+
+#### Common causes
+Packages with dependency constraints on exact versions do not allow other packages to increase the version if needed.
+
+#### Example
+```
+Version conflict detected for NuGet.Versioning. Reference the package directly from the project to resolve this issue.
+  NuGet.Packaging 3.5.0 -> NuGet.Versioning (= 3.5.0)
+  NuGet.Configuration 4.0.0 -> NuGet.Versioning (= 4.0.0)
+```
+
+### NU1108 (Previously NU1606))
+
+#### Issue
+A circular dependency was detected.
+
+#### Common causes
+A package is authored incorrectly.
+
+#### Example
+```
+Cycle detected: A -> B -> A
+```
+
 ## Compatibility
 
 ### NU1201
@@ -348,32 +376,17 @@ Detected package downgrade: NuGet.Versioning from 4.0.0 to 3.5.0. Reference the 
 
 ## Resolver conflicts
 
-### NU1606
+### NU1608
 
 #### Issue
-A circular dependency was detected.
+A resolve package is higher than a dependency constraint allows. In some cases this is intentional and the warning can be suppressed.
 
 #### Common causes
-A package is authored incorrectly.
+A package referenced directly by a project will override dependency constraints from other packages. 
 
 #### Example
 ```
-Cycle detected: A -> B -> A
-```
-
-### NU1607
-
-#### Issue
-Unable to resolve dependency constaints between packages.
-
-#### Common causes
-Packages with dependency constaints on exact versions do not allow other packages to increase the version if needed.
-
-#### Example
-```
-Version conflict detected for NuGet.Versioning. Reference the package directly from the project to resolve this issue.
-  NuGet.Packaging 3.5.0 -> NuGet.Versioning (= 3.5.0)
-  NuGet.Configuration 4.0.0 -> NuGet.Versioning (= 4.0.0)
+Detected package version outside of dependency constraint: x 1.0.0 requires y (= 1.0.0) but version y 2.0.0 was resolved.
 ```
 
 ## Package fallback
