@@ -175,7 +175,7 @@ Version conflict detected for NuGet.Versioning. Reference the package directly f
   NuGet.Configuration 4.0.0 -> NuGet.Versioning (= 4.0.0)
 ```
 
-### NU1108 (Previously NU1606))
+### NU1108 (Previously NU1606)
 
 #### Issue
 A circular dependency was detected.
