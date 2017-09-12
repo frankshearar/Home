@@ -12,7 +12,6 @@
 ***
 
 #### Incubation 
-* [[2 Factor Auth on NuGet.org]]
 * [[Enable repeatable builds for PackageReference based projects]]
 * [[Full Support of LSL|Full-support-of-LSL]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
@@ -25,6 +24,7 @@
 * [Package README.md support](Package-README.md-support)
 
 #### Reviewing
+* [[2 Factor Auth for NuGet.org sign in]]
 * [[NuGetizer 3000|NuGetizer-3000]]
 * [[NuGet Upgrader|NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0]]
 * [[Converting Extension SDKs into NuGet Packages|Converting-Extension-SDKs-into-NuGet-Packages]]
