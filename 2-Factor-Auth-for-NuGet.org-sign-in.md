@@ -1,7 +1,9 @@
 Status: **Reviewing**
 
 ## Issue
-The work for this feature and the discussion around the spec is tracked here - **2Factor Auth on NuGet Gallery [#3252](https://github.com/NuGet/NuGetGallery/issues/3252)**
+The work for this feature and the discussion around the spec is tracked here:
+
+**2Factor Auth on NuGet Gallery [#3252](https://github.com/NuGet/NuGetGallery/issues/3252)**
 
 ## Problem
 NuGet.org accounts are currently secured by a simple username/password combination or linked to a Microsoft Account that is similarly protected. We want to make it harder to compromise these accounts by two factor authentication.
