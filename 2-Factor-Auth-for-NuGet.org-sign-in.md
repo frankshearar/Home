@@ -24,7 +24,7 @@ We plan to deprecate NuGet.org accounts not linked to Microsoft Accounts and req
 
 ### Organization Accounts
 
-NuGet.org will introduce a light weight "Organization" concept as covered by spec: [Organizations on NuGet.org](TBD)
+NuGet.org will introduce a light weight "Organization" concept as covered by spec: [Organizations on NuGet.org](https://github.com/NuGet/Home/wiki/Organizations-on-NuGet.org)
 
 ## Plan
 
