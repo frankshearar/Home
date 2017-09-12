@@ -24,6 +24,7 @@
 * [Package README.md support](Package-README.md-support)
 
 #### Reviewing
+* [[Organizations on NuGet.org]]
 * [[2 Factor Auth for NuGet.org sign in]]
 * [[NuGetizer 3000|NuGetizer-3000]]
 * [[NuGet Upgrader|NuGet-Upgrader:-Helping-to-move-to-NuGet-3.0]]
