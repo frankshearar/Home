@@ -32,13 +32,13 @@
 * [[Supporting Package Reference in UWP WPF WinForms and Classic Libraries|Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries]]
 * [[Enhanced package upload workflow|Enhanced package upload workflow]]
 * [[ToolsReference and Multi TFM Support in NuGet UI|ToolsReference-and-Multi-TFM-Support-in-NuGet-UI]]
-* [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 * [[Transitive Warning Properties|[Spec]-Transitive-Warning-Properties]]
 
 #### Reviewed
 * [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]]
 * [[SemVer 2.0.0 - server-side|SemVer2-support-for-nuget.org-(server-side)]]
 * [[Replication API|[spec]-NuGet.org-replication-API]]
+* [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 
 #### Implemented
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
