@@ -1,9 +1,9 @@
 Status: **Reviewing**
 
-[Storyboard (internal)](https://microsoft.sharepoint.com/teams/NuGet/Team/Docs/Specs/2FA/NuGet-Organizations.pptx?web=1)
-
 ## Issue
-The work for this feature and the discussion around the spec is tracked here - **Organizations on NuGet.org [#4627](https://github.com/NuGet/NuGetGallery/issues/4627)**
+The work for this feature and the discussion around the spec is tracked here:
+
+**Organizations on NuGet.org [#4627](https://github.com/NuGet/NuGetGallery/issues/4627)**
 
 ## Problem
 NuGet.org today does not support a concept of organizations - teams or group of people owning and managing packages. Users workaround this in one of the following ways:
