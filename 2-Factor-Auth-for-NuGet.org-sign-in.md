@@ -22,7 +22,9 @@ The key scenarios we want to enable are:
 ## Solution
 
 ### Personal NuGet.org accounts
-We plan to deprecate NuGet.org accounts not linked to Microsoft Accounts and require authentication to NuGet.org accounts via Microsoft Accounts that are secured by 2-FA. We will also support AAD logins.
+We plan to deprecate NuGet.org accounts not linked to Microsoft Accounts and require authentication to NuGet.org accounts via Microsoft Accounts that are secured by 2-FA. We will also support AAD logins. 
+
+_For AAD, the experience will be similar to Microsoft Accounts. Clicking on the "Sign in with Microsoft" will lead to a login screen that will redirect to an AAD login if the mail id entered is an AAD account. Nothing else changes._
 
 ### Organization Accounts
 
