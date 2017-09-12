@@ -1,4 +1,4 @@
-Status: **Reviewing**
+Status: **Reviewed**
 
 ## Issue
 The work for this feature and the discussion around the spec is tracked here - **Package ID Prefix Reservation [#5307](https://github.com/NuGet/Home/issues/5307)**
