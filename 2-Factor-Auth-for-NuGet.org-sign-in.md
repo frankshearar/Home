@@ -19,6 +19,8 @@ The key scenarios we want to enable are:
 * **Enable and encourage enhanced security of NuGet.org accounts using 2-FA**. We will not mandate 2-FA usage for all accounts. 
 * **NuGet package authors belonging to Organizations with AAD can authenticate on NuGet.org via their AAD instance**. These AAD instances can have 2-FA enabled on them which NuGet.org will respect. *Eg. MSFT packages require mandatory sign-in through secured @microsoft.com accounts federated through Microsoft Organization on AAD similar to our admin accounts.*
 
+* Gallery instances (other than NuGet.org) should be able to remain with basic auth using username/password sign-ins.
+
 ## Solution
 
 ### Personal NuGet.org accounts
