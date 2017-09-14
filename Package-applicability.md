@@ -27,11 +27,13 @@ An info message would be displayed if a search returns no results since incompat
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0020.png)
 
+### Search results when "Include incompatible" is checked
 When "Include incompatible" is checked, all results are displayed.
 Packages where no version of that package is compatible with the current project, are grayed out. In the example below, all search results returned are incompatible with `ClassLibrary1` which is a .NET Standard 2.0 class library.
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0030.png)
 
+### Safeguarding the user from installing an incompatible package
 An incompatible package is blocked from being installed. The "Learn more" link directs to documentation explaining why the installation is blocked, possible reasons, and what actions can be taken.
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0040.png)
@@ -40,13 +42,16 @@ An incompatible package is blocked from being installed. The "Learn more" link d
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0060.png)
 
-Now consider the same search was performed in context of `App1` which is a UWP project with Target Platform Min version = 10.0.10586. By default, the **latest compatible version** of the package is selected, which in this case is v1.4.1.
+### Latest compatible version selected by default instead of latest available version
+Now consider the same search was performed in context of `App1` which is a UWP project with target platform Min version of Windows 10 November Update (10.0 Build 10586). By default, the **latest compatible version** of the package is selected, which in this case is v1.4.1 because that was the last version of the package where 10.0.10586 was supported.
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0070.png)
 
-The expanding the version combobox reveals all available versions and, at a glance, the user can see which version are supported. Additionally, if the author has released several new versions since the last compatible version, this might motivate the user to move to a newer platform version.
+Expanding the version dropdown reveals all available versions and, at a glance, shows which version are supported.
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0080.png)
+
+
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0090.png)
 
