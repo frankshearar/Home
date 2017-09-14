@@ -1,15 +1,4 @@
-### [[Contribute to NuGet|Contribute-to-NuGet]]
-***
-
-### Product Roadmap
-***
-
-* [[Roadmap|Roadmap]]
-* [How to use ZenHub](https://www.zenhub.io/)
-
-### Specs
-
-***
+### Roadmap
 
 #### Incubation 
 * [[Enable repeatable builds for PackageReference based projects]]
