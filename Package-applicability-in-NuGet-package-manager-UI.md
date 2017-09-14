@@ -1,7 +1,7 @@
 Status: **Incubation**
 
 ## Issue
-The work for this feature and the discussion around the spec is tracked here - **Context aware search and surface project applicability information [#5725](https://github.com/NuGet/Home/issues/5725)**
+The work for this feature and the discussion around the spec is tracked here - **Package applicability in NuGet package manager UI [#5725](https://github.com/NuGet/Home/issues/5725)**
 
 ## Problem
 Package consumers have no way to filter to only those packages that will install to their project. The trial and error method of installing a package to check if it works can be painful. Additionally, when a package fails to install, it is not evident why it failed, without digging through the logs. Having figured out the reason, comes the task of identifying next steps to workaround the issue. This can be very time-consuming in terms of investigating what frameworks and versions the package supports, and what version of the package, if any, is compatible with the user's project framework and version.
