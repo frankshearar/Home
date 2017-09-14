@@ -32,7 +32,7 @@ An info message would be displayed if a search returns no results since incompat
 
 ### Search results with "Include incompatible" checked
 When "Include incompatible" is checked, all results are displayed.
-Packages where no version of that package is compatible with the current project, are grayed out. In the example below, all search results returned are incompatible with `ClassLibrary1` which is a .NET Standard 2.0 class library.
+Packages where no version of that package is compatible with the current project, are grayed out. In the example below, all search results returned are incompatible with `ClassLibrary1` which is a .NET Standard 1.6 class library.
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0030.png)
 
