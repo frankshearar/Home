@@ -13,4 +13,14 @@ As a package consumer:
 All NuGet package consumers that use the NuGet package manager UI to manage NuGet packages
 
 ## Solution
+>Note: The workflow below focuses on the end-user experience and does not go into implementation details. Once, the experience has been finalized, we'll discuss about the implementation.
+
+###Package compatibility
+A package is deemed incompatible if it contains no assets that can be consumed if it were to be installed to the host project.
+
+###Discover "Include incompatible" 
+By default, incompatible packages will be excluded from search results.
+
+
+
 
