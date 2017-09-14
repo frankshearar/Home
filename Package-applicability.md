@@ -21,8 +21,43 @@ A package is deemed incompatible if it contains no assets that can be consumed i
 ### Discover "Include incompatible" filter
 By default, incompatible packages will be excluded from search results. On first search, a message would apprise the user that results are being filtered. The message can be dismissed with the option to never show it again.
 
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0010.png)
+
 An info message would be displayed if a search returns no results since incompatible results have been filtered out.
 
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0020.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0030.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0040.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0050.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0060.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0070.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0080.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0090.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0100.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0110.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0120.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0130.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0140.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0150.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0160.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0170.png
+
+![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0180.png
 
 
 
