@@ -15,11 +15,15 @@ All NuGet package consumers that use the NuGet package manager UI to manage NuGe
 ## Solution
 >Note: The workflow below focuses on the end-user experience and does not go into implementation details. Once, the experience has been finalized, we'll discuss about the implementation.
 
-###Package compatibility
+### Package compatibility
 A package is deemed incompatible if it contains no assets that can be consumed if it were to be installed to the host project.
 
-###Discover "Include incompatible" 
-By default, incompatible packages will be excluded from search results.
+### Discover "Include incompatible" filter
+By default, incompatible packages will be excluded from search results. On first search, a message would apprise the user that results are being filtered. The message can be dismissed with the option to never show it again.
+
+An info message would be displayed if a search returns no results since incompatible results have been filtered out.
+
+
 
 
 
