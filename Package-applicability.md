@@ -7,10 +7,16 @@ The work for this feature and the discussion around the spec is tracked here - *
 As a package consumer:
 * I have no way to filter to only those packages that will work with my project.
 * When a package fails to install, I don't have a straight-forward way to know why it failed.
-* What steps can I take to either install the selected version of a package or find a compatible version of the package.
+* What steps can I take to either install the selected version of a package, or find a compatible version of the package.
 
 ## Who is the customer?
 All NuGet package consumers that use the NuGet package manager UI to manage NuGet packages
+
+## Key scenarios
+* Enable package consumers to identify incompatible packages
+* Lead package consumers down the golden path by selecting the latest compatible version of a package at initial install as well update
+* Safeguard package consumers from installing an incompatible version of a package
+* Provide steps package consumers can take to either install the selected version of a package, or identify and install a compatible version of the package 
 
 ## Solution
 >Note: The workflow below focuses on the end-user experience and does not go into implementation details. Once, the experience has been finalized, we'll discuss about the implementation.
