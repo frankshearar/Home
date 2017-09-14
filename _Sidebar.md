@@ -11,6 +11,8 @@
 * [Package README.md support](Package-README.md-support)
 
 #### Reviewing
+* [[Package signing]]
+* [[Author Package Signing]]
 * [[Organizations on NuGet.org]]
 * [[2 Factor Auth for NuGet.org sign in]]
 * [[NuGetizer 3000|NuGetizer-3000]]
