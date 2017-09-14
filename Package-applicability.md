@@ -19,15 +19,20 @@ All NuGet package consumers that use the NuGet package manager UI to manage NuGe
 A package is deemed incompatible if it contains no assets that can be consumed if it were to be installed to the host project.
 
 ### Discover "Include incompatible" filter
-By default, incompatible packages will be excluded from search results. On first search, a message would apprise the user that results are being filtered. The message can be dismissed with the option to never show it again.
+By default, incompatible packages will be excluded from search results. On search, a message would inform the user that results are being filtered. The message can be dismissed with the option to not show it again.
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0010.png)
 
-An info message would be displayed if a search returns no results since incompatible results have been filtered out.
+An info message would be displayed if a search returns no results since incompatible results have been filtered out. 
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0020.png)
 
+When "Include incompatible" is checked, all results are displayed.
+Packages where no version of that package is compatible with the current project, are grayed out. In the example below, all search results returned are incompatible with `ClassLibrary1` which is a .NET Standard 2.0 class library.
+
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0030.png)
+
+An incompatible package is blocked from being installed. The "Learn more" link directs to documentation explaining why the installation is blocked, possible reasons, and what actions can be taken.
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0040.png)
 
@@ -35,7 +40,11 @@ An info message would be displayed if a search returns no results since incompat
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0060.png)
 
+Now consider the same search was performed in context of `App1` which is a UWP project with Target Platform Min version = 10.0.10586. By default, the **latest compatible version** of the package is selected, which in this case is v1.4.1.
+
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0070.png)
+
+The expanding the version combobox reveals all available versions and, at a glance, the user can see which version are supported. Additionally, if the author has released several new versions since the last compatible version, this might motivate the user to move to a newer platform version.
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0080.png)
 
