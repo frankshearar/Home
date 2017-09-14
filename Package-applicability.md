@@ -96,7 +96,7 @@ As the user selects projects, the selected package version is dynamically update
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0170.png)
 
 ### A more concise package details pane
-The package details section has been divided into multiple collapsible areas - info, options, and Frameworks and dependencies. The Info area has been enhanced to provide additional metadata about the package and version currently selected.
+The package details section has been divided into - info, options, and Frameworks and dependencies. Info and options are collapsed by default. The Info area has been enhanced to provide additional metadata about the package and version currently selected.
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0180.png)
 
