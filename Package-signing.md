@@ -11,7 +11,7 @@ The work for this feature and the discussion around the spec is tracked here: [#
 #### Stage 1. Enable package authors to sign their packages
 - **Author Package Signing**: Describes the user experience for producing and consuming signed packages. 
     - https://github.com/NuGet/Home/wiki/Author-Package-Signing. 
-    - Discuss [#5889](https://github.com/NuGet/Home/issues/5889)**
+    - Discuss [#5889](https://github.com/NuGet/Home/issues/5889)
 
 - **Package Signatures Technical Details**: Contains the signature format technical details 
     - https://github.com/NuGet/Home/wiki/Package-Signatures-Technical-Details
