@@ -41,6 +41,8 @@ An incompatible package is blocked from being installed. The "Learn more" link d
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0040.png)
 
+The same message can be seen on hover.
+
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0050.png)
 
 ![](https://github.com/NuGet/Home/blob/dev/resources/PA/PA_0060.png)
