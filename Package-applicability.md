@@ -4,10 +4,7 @@ Status: **Incubation**
 The work for this feature and the discussion around the spec is tracked here - **Context aware search and surface project applicability information [#5725](https://github.com/NuGet/Home/issues/5725)**
 
 ## Problem
-As a package consumer:
-* I have no way to filter to only those packages that will work with my project.
-* When a package fails to install, I don't have a straight-forward way to know why it failed.
-* What steps can I take to either install the selected version of a package, or find a compatible version of the package.
+Package consumers have no way to filter to only those packages that will install to their project. The trial and error method of installing a package to check if it works can be painful. Additionally, when a package fails to install, it is not evident why it failed, without digging through the logs. Having figured out the reason, comes the task of identifying next steps to workaround the issue. This can be very time-consuming in terms of investigating what frameworks and versions the package supports, and what version of the package, if any, is compatible with the user's project framework and version.
 
 ## Who is the customer?
 All NuGet package consumers that use the NuGet package manager UI to manage NuGet packages
@@ -16,7 +13,7 @@ All NuGet package consumers that use the NuGet package manager UI to manage NuGe
 * Enable package consumers to identify incompatible packages
 * Lead package consumers down the golden path by selecting the latest compatible version of a package at initial install as well update
 * Safeguard package consumers from installing an incompatible version of a package
-* Provide steps package consumers can take to either install the selected version of a package, or identify and install a compatible version of the package 
+* Surface actionable information that enables package consumers to either install the selected version of a package, or identify and install a compatible version of the package 
 
 ## Solution
 >Note: The workflow below focuses on the end-user experience and does not go into implementation details. Once, the experience has been finalized, we'll discuss about the implementation.
