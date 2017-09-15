@@ -56,7 +56,7 @@ With our [goals](#goals-for-package-id-prefix-reservation) in mind, we have deve
 2. Are a significant number of the packages that have already been submitted by the owner under the package ID prefix?
 3. Is the package ID prefix something common that should not belong to any individual owner or organization?
 4. Would *not* reserving the package ID prefix cause ambiguity and confusion for the community? 
-5. Are the identifying properties of the packages that match the package ID prefix clear and consistent (esepcailly the package author)?
+5. Are the identifying properties of the packages that match the package ID prefix clear and consistent (especially the package author)?
 6. [Edit: After additional feedback, we are removing this question from the criteria] ~Does the package owner submit original content under the package ID prefix that provides a tangible benefit to the package consumers?~
 
 ### Application Process for Package ID Prefix Reservation
