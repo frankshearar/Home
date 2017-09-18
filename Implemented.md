@@ -1,12 +1,16 @@
-* [[Supporting Package Reference in UWP WPF WinForms and Classic Libraries|Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries]]
-* [[Converting Extension SDKs into NuGet Packages|Converting-Extension-SDKs-into-NuGet-Packages]]
-* [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]]
+### 2017
+* [[Transitive Warning Properties|[Spec]-Transitive-Warning-Properties]] - v4.4
+* [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]] - v4.3, v3.6.0
 * [[SemVer 2.0.0 - server-side|SemVer2-support-for-nuget.org-(server-side)]]
+* [[Supporting Package Reference in UWP WPF WinForms and Classic Libraries|Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries]] - v4.1
+* [[Converting Extension SDKs into NuGet Packages|Converting-Extension-SDKs-into-NuGet-Packages]] - v4.0
+* [[Multiple API Keys|Multiple-API-Keys]]
+
+### 2016 and older
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [Enable .NET Core 2.0 projects to work with .NET Framework 4.6.1 compatible packages](https://github.com/NuGet/Home/wiki/Enable-.NET-Core-2.0-projects-to-work-with-.NET-Framework-4.6.1-compatible-packages)
 * [Improved NuGet errors warnings](https://github.com/NuGet/Home/wiki/Improved-NuGet-warnings)
 * [[Filter OData query requests|Filter-OData-query-requests]]
-* [[Multiple API Keys|Multiple-API-Keys]]
 * [[Batch Events|Batch-Events]]
 * [[Aggressive No Caching Mode|Aggressive-No-Caching-option-for-nuget.exe]]
 * [Package Type \[Packing\]](https://github.com/NuGet/Home/wiki/Package-Type-%5BPacking%5D)
