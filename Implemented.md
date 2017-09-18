@@ -1,3 +1,5 @@
+* [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]]
+* [[SemVer 2.0.0 - server-side|SemVer2-support-for-nuget.org-(server-side)]]
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [Enable .NET Core 2.0 projects to work with .NET Framework 4.6.1 compatible packages](https://github.com/NuGet/Home/wiki/Enable-.NET-Core-2.0-projects-to-work-with-.NET-Framework-4.6.1-compatible-packages)
 * [Improved NuGet errors warnings](https://github.com/NuGet/Home/wiki/Improved-NuGet-warnings)
