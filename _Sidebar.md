@@ -24,14 +24,10 @@
 * [[Transitive Warning Properties|[Spec]-Transitive-Warning-Properties]]
 
 #### Reviewed
-* [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]]
-* [[SemVer 2.0.0 - server-side|SemVer2-support-for-nuget.org-(server-side)]]
 * [[Replication API|[spec]-NuGet.org-replication-API]]
 * [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 
 #### [[Implemented|Implemented]]
-
-#### [[Design Meeting Notes|design-meeting-notes]]
 
 #### Templates
 * [[Spec Template|Writing-and-reviewing-awesome-specs]]
