@@ -1,9 +1,11 @@
 ### 2017
 * [[Transitive Warning Properties|[Spec]-Transitive-Warning-Properties]] - v4.4
+* [[Full Support of LSL|Full-support-of-LSL]] - v4.4
 * [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]] - v4.3, v3.6.0
 * [[SemVer 2.0.0 - server-side|SemVer2-support-for-nuget.org-(server-side)]]
 * [[Supporting Package Reference in UWP WPF WinForms and Classic Libraries|Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries]] - v4.1
 * [[Converting Extension SDKs into NuGet Packages|Converting-Extension-SDKs-into-NuGet-Packages]] - v4.0
+* [[NuGet Restore Manager|NuGet-Restore-Manager]] - v4.0
 * [[Multiple API Keys|Multiple-API-Keys]]
 
 ### 2016 and older
