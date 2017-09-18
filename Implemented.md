@@ -5,6 +5,7 @@
 * [[SemVer 2.0.0 - server-side|SemVer2-support-for-nuget.org-(server-side)]]
 * [[Supporting Package Reference in UWP WPF WinForms and Classic Libraries|Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries]] - v4.1
 * [[Converting Extension SDKs into NuGet Packages|Converting-Extension-SDKs-into-NuGet-Packages]] - v4.0
+* [[NuGet Restore Manager|NuGet-Restore-Manager]] - v4.0
 * [[Multiple API Keys|Multiple-API-Keys]]
 
 ### 2016 and older
