@@ -1,4 +1,3 @@
-#### Implemented
 * [[NuGet Package Download Plugin|NuGet-Package-Download-Plugin]]
 * [Enable .NET Core 2.0 projects to work with .NET Framework 4.6.1 compatible packages](https://github.com/NuGet/Home/wiki/Enable-.NET-Core-2.0-projects-to-work-with-.NET-Framework-4.6.1-compatible-packages)
 * [Improved NuGet errors warnings](https://github.com/NuGet/Home/wiki/Improved-NuGet-warnings)
