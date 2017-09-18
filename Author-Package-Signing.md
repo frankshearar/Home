@@ -36,9 +36,9 @@ This visual indicator will also be used to show if the Package ID has been verif
 
 |Icon|Description|
 |----|:-----|
-|![Signed Package](Author-Signatures-media/green-shield.png)|This package has been signed by **Author from certificate Subject**. |
-|![Verified Package](Author-Signatures-media/verified.png)|The identity of this package has been verified by NuGet.org. |
-|![Signed and verified](Author-Signatures-media/signed-verified.png)| This package has been signed by **Author from certificate Subject**. The package identity has been verified by NuGet.org.|
+|![Signed Package](Author-Signatures-media/green-shield.png)|This package has been signed by **\[Author from certificate Subject\]**. |
+|![Verified Package](Author-Signatures-media/verified.png)|The identity of this package has been verified by **\[Package Source Name\]**. |
+|![Signed and verified](Author-Signatures-media/signed-verified.png)| This package has been signed by **\[Author from certificate Subject\]**. The package identity has been verified by **\[Package Source Name\]**.|
 
 >Note: Signed packages will not affect the rank algorithm used to sort the search results.
 
