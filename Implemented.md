@@ -1,3 +1,4 @@
+* [[Supporting Package Reference in UWP WPF WinForms and Classic Libraries|Supporting-Package-Reference-in-UWP-WPF-WinForms-and-Classic-Libraries]]
 * [[Converting Extension SDKs into NuGet Packages|Converting-Extension-SDKs-into-NuGet-Packages]]
 * [[SemVer 2.0.0 - client-side|SemVer-2.0.0-support]]
 * [[SemVer 2.0.0 - server-side|SemVer2-support-for-nuget.org-(server-side)]]
