@@ -1,4 +1,5 @@
 #### [[Incubation]] 
+* [[Enable repeatable builds for PackageReference based projects]]
 
 #### Reviewing
 * [[Package signing]]
