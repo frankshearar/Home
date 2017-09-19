@@ -3,6 +3,7 @@
 #### Reviewing
 * [[Package signing]]
 * [[Author Package Signing]]
+* [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
 * [Package README.md support](Package-README.md-support)
 * [[Organizations on NuGet.org]]
 * [[2 Factor Auth for NuGet.org sign in]]
