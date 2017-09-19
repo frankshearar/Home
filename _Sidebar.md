@@ -1,4 +1,5 @@
 #### [[Incubation]] 
+* [Enable repeatable builds via lock file](https://github.com/NuGet/Home/wiki/Enable-repeatable-builds-for-PackageReference-based-projects)
 
 #### Reviewing
 * [[Package signing]]
