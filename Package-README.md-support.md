@@ -19,6 +19,14 @@ The key scenarios we want to enable are:
 ## Solution
 The idea is to support display of a package README.md file. For the initial MVP, the idea is that the README.md can be uploaded by package authors to the NuGet.org site via text, url or file upload.
 
+### Package Display View
+-----
+[[https://github.com/NuGet/Home/blob/dev/resources/ReadMeSupport/Display.PNG|Display README.md]]
+
+### Package Upload / Edit View
+-----
+[[https://github.com/NuGet/Home/blob/dev/resources/ReadMeSupport/Upload.PNG|Upload README.md]]
+
 Initial MVP restrictions include:
 * Experience is limited to the NuGet.org site
 * Upload must be done per package version
