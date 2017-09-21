@@ -6,6 +6,11 @@ The goal of this API is to provider a high level interface (supports cross-platf
 ### Public APIs
 1. It will be a static utility method in project NuGet.Commands
 
+```csharp
+    public static string DownloadPackage(string packageId, string version, string targetFramework, string root, string configFile)
+```
+
+
 #### Parameters
 1. Package Id Type: String
 2. Package version (can be floating version) Type: String
