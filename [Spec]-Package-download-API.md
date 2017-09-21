@@ -28,7 +28,7 @@ Package Path for the package which is passed as parameter
    This API will use NuGet.Config to get Package Source information
 * User pass NuGet.Config file to the API, then it will use this specified NuGet.Config
 * If No NuGet.Config passed and Root path is null or empty, it will load NuGet.Config from Appdata and ProgramData
-* If No NuGet.Config passed and Root path is not null, it will every Nuget.Config from Root Path to Driver root and also load NuGet.Config from Appdata and ProgramData.
+* If No NuGet.Config passed and Root path is not null, it will load every Nuget.Config from Root Path to Driver root and also load NuGet.Config from Appdata and ProgramData.
 
 2. **How to specify where the package is downloaded to?** (**TBD**)
 
