@@ -6,18 +6,40 @@ Msbuild SDK Resolver need an API From NuGet which can download nuget package to 
 The goal of this API is to provider a high level interface (supports cross-platform) to download nuget package directly and return the package path.
 
 ### Public APIs
-1. It will be a static utility method in project NuGet.Commands
+1. It will be some static utility methods in project NuGet.Commands
 
 ```csharp
+    // Download the package 
     public static string DownloadPackage(string packageId, 
-                                         string version, string root, string configFile)
+                                         string versionRange, 
+                                         string root,
+                                         ILogger log)
+    
+    public static string DownloadPackageWithConfig(string packageId,
+                                                   string versionRange,
+                                                   string configFile
+                                                   ILogger log)
+
+    // Download the package and all dependency packages
+    public static string DownloadPackage(string packageId, 
+                                         string versionRange, 
+                                         string root,
+                                         string targetFramework
+                                         ILogger log)
+    
+    public static string DownloadPackageWithConfig(string packageId,
+                                                   string versionRange,
+                                                   string configFile
+                                                   string targetFramework
+                                                   ILogger log)
+
 ```
 
 
 #### Parameters
 1. Package Id Type: String
-2. Package version (can be floating version) Type: String
-3. Target Framework Type: String or NuGetFramework
+2. Package Version Range  Type: String
+3. Target Framework Type: String 
 4. NuGet Setting Root Path Type: String
 5. NuGet Config File Path Type: String
 
@@ -25,6 +47,7 @@ The goal of this API is to provider a high level interface (supports cross-platf
 1. NoCache
 2. Prerelease
 3. DependencyBehavior
+4. packageFolder
 
 
 #### Returns
@@ -40,8 +63,9 @@ Package Path for the package which is passed as parameter
 
 2. **How to specify where the package is downloaded to?** (**TBD**)
 
-* Choice 1: user can specify the globalPackages Folder in NuGet.Config, it user this path as installed Path.
-* Choice 2: user can pass the path to this API.
+* If no packages folder specified, the package is downloaded to .nuget folder
+* If user pass packages folder, the package is downloaded to specified folder
+
 
 3. **How to consume this API?**
 * Reference NuGet.Commands or NuGet.Commands.Xplat package in their project.
