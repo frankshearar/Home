@@ -20,7 +20,7 @@ To adhere to the design principle of package immutability, the the ability to ed
 ### Warning banners on package metadata edit pages
 The users will be able to edit package metadata but will see a banner which calls out our recommendation of not editing a package after it has been authored and point to a _Read More_ link that explains the reasoning for this recommendation.
 
-Note - If you upload a signed package, the package metadata cannot be edited on NuGet.org i.e. all fields will be read-only at the verify package step, and no edit option for published packages. For unsigned packages, users will see the warning banner, but be able to edit the package metadata until package next phase.
+Note - If you upload a signed package, the package metadata cannot be edited on NuGet.org i.e. all fields will be read-only at the verify package step, and no edit option for published packages. For unsigned packages, users will see the warning banner, but be able to edit the package metadata until [next phase](#read-only-verify-package-step-and-no-edit-option-for-published-packages).
 
 #### Verify step during package upload
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageImmutability/01.PNG)
