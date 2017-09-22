@@ -26,3 +26,4 @@ Note - If you upload a signed package today, the package metadata cannot be edit
 * Once the package signing feature goes live, the _Verify_ package step of the package upload workflow on NuGet.org will be made readonly. The page is merely to validate the information is accurate. If not, the user must cancel the upload operation, make the edits in the nuspec, and upload the package created using the updated nuspec.
 * For published packages, the _edit_ button will be removed from the package page on NuGet.org. 
 
+Note - Users will still be able to choose the package visibility option at the verify step of the upload.
