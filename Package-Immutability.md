@@ -20,13 +20,18 @@ To adhere to the design principle of package immutability, the the ability to ed
 ### Warning banners on package metadata edit pages
 The users will be able to edit package metadata but will see a banner which calls out our recommendation of not editing a package after it has been authored and point to a _Read More_ link that explains the reasoning for this recommendation.
 
+Note - If you upload a signed package today, the package metadata cannot be edited on NuGet.org i.e. all fields will be readonly at the verify package step, and no edit option for published packages.
+
 #### Verify step during package upload
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageImmutability/01.PNG)
 
 #### Package edit page for published packages
 ![](https://github.com/NuGet/Home/blob/dev/resources/PackageImmutability/02.PNG)
 
-Note - If you upload a signed package today, the package metadata cannot be edited on NuGet.org i.e. all fields will be readonly at the verify package step, and no edit option for published packages.
+#### Read More Doc
+**Q.** Why do you recommend uploading a new package for making changes to package metadata?
+
+**A.** NuGet will be implementing package signing.  A design principle of package signing is that signed package content must be immutable, which includes the nuspec. Editing the package metadata results in changes to the nuspec, invalidating existing signatures.  We recommend modifying existing workflows to not require editing the package metadata after the package has been created.
 
 ### Readonly verify package page, and no edit option for published packages
 * Once the package signing feature goes live, the _Verify_ package step of the package upload workflow on NuGet.org will be made readonly. The page is merely to validate the information is accurate. If not, the user must cancel the upload operation, make the edits in the nuspec, and upload the package created using the updated nuspec.
