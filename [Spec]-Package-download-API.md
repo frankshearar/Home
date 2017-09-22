@@ -9,7 +9,8 @@ The goal of this API is to provider a high level interface (supports cross-platf
 1. It will be a static utility method in project NuGet.Commands
 
 ```csharp
-    public static string DownloadPackage(string packageId, string version, string targetFramework, string root, string configFile)
+    public static string DownloadPackage(string packageId, 
+                                         string version, string root, string configFile)
 ```
 
 
