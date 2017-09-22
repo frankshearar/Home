@@ -17,8 +17,6 @@ On NuGet.org, there are two ways you can edit the package metadata -
 
 To adhere to the design principle of package immutability, the the ability to edit package metadata will be phased out.
 
-We have a phased approach:
-
 ### Warning banners on package metadata edit pages
 The users will be able to edit package metadata but will see a banner which calls out our recommendation of not editing a package after it has been authored and point to a _Read More_ link that explains the reasoning for this recommendation.
 
