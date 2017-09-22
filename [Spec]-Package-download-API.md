@@ -51,7 +51,7 @@ The goal of this API is to provider a high level interface (supports cross-platf
 
 
 #### Returns
-Package Path for the package which is passed as parameter
+Package path for the package which is passed as parameter
 
 ### Design
 1. **How to discover Package source, Package Credential?**
