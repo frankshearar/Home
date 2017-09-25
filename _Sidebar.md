@@ -4,6 +4,7 @@
 * [[Package signing]]
 * [[Author Package Signing]]
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
+* [NuGet Sign Command](https://github.com/NuGet/Home/wiki/NuGet-Sign-Command)
 * [Package README.md support](Package-README.md-support)
 * [[Organizations on NuGet.org]]
 * [[2 Factor Auth for NuGet.org sign in]]
