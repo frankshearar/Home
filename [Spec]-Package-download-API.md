@@ -50,6 +50,20 @@ The goal of this API is to provider a high level interface (supports cross-platf
 #### Returns
 Package path for the package which is passed as parameter
 
+### Msbuild Task
+
+#### (In) Task Parameters
+1. Package Id
+2. Package version Range
+3. Package folder
+4. NuGet Setting Root
+5. NuGet Config File Path
+6. TargetFramework
+7. Nocahe
+
+#### (out) Msbuild item
+1. Package installed Path for the package which is passed as parameter 
+
 ### Design
 1. **How to discover Package source, Package Credential?**
 
