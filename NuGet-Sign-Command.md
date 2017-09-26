@@ -4,10 +4,10 @@
 [Task for Specing](https://github.com/nuget/home/issues/5907) and [Task for execution](https://github.com/nuget/home/issues/5904)
 
 ## Problem
-Currently there is no way for package authors to sign their packages. Signed packages help with authenticity and integrity of a package when it is being consumed by NuGet users. Further, this command will also facilitate package sources to sign the package to prevent package tampering once it has been published.
+Currently there is no way for package authors to sign their packages. Signed packages help with authenticity and integrity of a package when it is being consumed by NuGet users. Further, in future, this command will also facilitate package sources to sign the package to prevent package tampering once it has been published.
 
 ## Who is the customer?
-All NuGet package authors and package sources.
+All NuGet package authors.
 
 ## Evidence
 Part of the larger [package signing](https://github.com/NuGet/Home/wiki/Author-Package-Signing) effort.
