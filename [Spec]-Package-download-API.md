@@ -10,24 +10,24 @@ The goal of this API is to provider a high level interface (supports cross-platf
 
 ```csharp
     // Download the package 
-    public static string DownloadPackage(string packageId, 
+    public static async Task<string> DownloadPackageAsync(string packageId, 
                                          string versionRange, 
                                          string root,
                                          ILogger log)
     
-    public static string DownloadPackageWithConfig(string packageId,
+    public static async Task<string> DownloadPackageWithConfigAsync(string packageId,
                                                    string versionRange,
                                                    string configFile
                                                    ILogger log)
 
     // Download the package and all dependency packages
-    public static string DownloadPackage(string packageId, 
+    public static async Task<string> DownloadPackageAsync(string packageId, 
                                          string versionRange, 
                                          string root,
                                          string targetFramework
                                          ILogger log)
     
-    public static string DownloadPackageWithConfig(string packageId,
+    public static async Task<string> DownloadPackageWithConfigAsync(string packageId,
                                                    string versionRange,
                                                    string configFile
                                                    string targetFramework
@@ -55,11 +55,10 @@ Package path for the package which is passed as parameter
 #### (In) Task Parameters
 1. Package Id
 2. Package version Range
-3. Package folder
-4. NuGet Setting Root
-5. NuGet Config File Path
-6. TargetFramework
-7. Nocahe
+3. NuGet Setting Root
+4. NuGet Config File Path
+5. TargetFramework
+6. Nocahe
 
 #### (out) Msbuild item
 1. Package installed Path for the package which is passed as parameter 
