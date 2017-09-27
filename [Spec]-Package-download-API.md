@@ -6,32 +6,34 @@ Msbuild SDK Resolver need an API From NuGet which can download nuget package to 
 The goal of this API is to provider a high level interface (supports cross-platform) to download nuget package directly and return the package path.
 
 ### Public APIs
-1. It will be some static utility methods in project NuGet.Commands
+1. It will be some static utility methods in project NuGet.Commands or new Project
 
 ```csharp
     // Download the package 
     public static async Task<string> DownloadPackageAsync(string packageId, 
                                          string versionRange, 
-                                         string root,
-                                         ILogger log)
+                                         string inittialConfigDirectory,
+                                         ILogger log);
     
-    public static async Task<string> DownloadPackageWithConfigAsync(string packageId,
+    public static async Task<string> DownloadPackageAsync(string packageId,
                                                    string versionRange,
                                                    string configFile
-                                                   ILogger log)
+                                                   ILogger log);
 
     // Download the package and all dependency packages
-    public static async Task<string> DownloadPackageAsync(string packageId, 
+    public static async Task<string> DownloadPackageClosureAsync(string packageId, 
                                          string versionRange, 
-                                         string root,
+                                         string inittialConfigDirectory,
                                          string targetFramework
-                                         ILogger log)
+                                         ILogger log);
     
-    public static async Task<string> DownloadPackageWithConfigAsync(string packageId,
+    public static async Task<string> DownloadPackageClosureAsync(string packageId,
                                                    string versionRange,
                                                    string configFile
                                                    string targetFramework
-                                                   ILogger log)
+                                                   ILogger log);
+
+    public static async Task<string> IsPackageInstalled(string packageId, string version);
 
 ```
 
@@ -72,14 +74,21 @@ Package path for the package which is passed as parameter
 * If No NuGet.Config passed and Root path is not null, it will load every Nuget.Config from Root Path to Driver root and also load NuGet.Config from Appdata and ProgramData.
 
 2. **How to consume this API?**
-* Reference NuGet.Commands or NuGet.Commands.Xplat package in their project.
+* Reference NuGet.Commands or a new package which contains this API in their project.
 * NuGet provides a msbuild task to call this API. (need a msbuild task spec for this)
+
+3. **Does this API ignore failed source?**
+
+   Yes, this API ignore failed source by default. we might add parameter to override this behavior in the future.
 
 ### Open Questions:
 
 1. Does NuGet need to support downloading multiple packages in one call?
 2. Does NuGet need to provide a way to find all dependency packages after the top package downloaded?
-
+3. Do we need a new project for this API?
+4. what's the return type (string / Boolean / result type)?
+5. Does this API accept VersionRange Type?
+6. Should we put this API in a new dll?
 
 
 
