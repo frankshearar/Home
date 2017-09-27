@@ -1,8 +1,8 @@
-Status: **Implemented**
+Status: **Implemented** on NuGet.org
 
 ## Issue
 The work for this feature was an **intern project** for summer 2017 and is based on discussions tracked here:
-* **Support formatting in description [#2280](https://github.com/NuGet/NuGetGallery/issues/2280)**
+* **Support formatting in description [#2280](https://github.com/NuGet/NuGetGallery/issues/2280)**. Please use this issue to discuss or provide feedback on the feature.
 * **Display extra information for packages hosted in GitHub [#2925](https://github.com/NuGet/NuGetGallery/issues/2925)**
 
 ## Problem
