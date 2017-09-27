@@ -42,7 +42,7 @@ options:
 
 -HashingAlgorithm - Hashing algorithm to be used. Defaults to SHA512.
 
--Force - Switch to indicate if the current signature should be overwritten. By default the command would fail if the package already has a signature.
+-Force - Switch to indicate if the current signature should be overwritten. By default the command will fail if the package already has a signature.
 
 -OutputDirectory - Directory where the signed package should be saved. By default the original package is overwritten by the signed package.
 ```
