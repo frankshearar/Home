@@ -101,6 +101,8 @@ The SignCommandRunner will do the following -
  **3.** Whats the best way to pass the certificate password to the sign command?  
     Currently the spec only accepts a commandline switch with clear text password. But we can also support having an 
     encrypted password stored in a nuget.config file.
-
+ **4.** What kind of validation will we do before signing?
+    We should spec out all the validations that will be done before signing.
+   
 ## Feedback
 Please use the [tracking issue](https://github.com/NuGet/Home/issues/5907) to provide feedback or any questions that you might have. Thanks!
