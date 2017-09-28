@@ -12,7 +12,7 @@ The goal of this API is to provider a high level interface (supports cross-platf
     // Download the package 
     public static async Task<string> DownloadPackageAsync(string packageId, 
                                          string versionRange, 
-                                         string inittialConfigDirectory,
+                                         string initialConfigDirectory,
                                          ILogger log);
     
     public static async Task<string> DownloadPackageAsync(string packageId,
@@ -23,7 +23,7 @@ The goal of this API is to provider a high level interface (supports cross-platf
     // Download the package and all dependency packages
     public static async Task<string> DownloadPackageClosureAsync(string packageId, 
                                          string versionRange, 
-                                         string inittialConfigDirectory,
+                                         string initialConfigDirectory,
                                          string targetFramework
                                          ILogger log);
     
