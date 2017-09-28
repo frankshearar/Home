@@ -102,8 +102,11 @@ The SignCommandRunner will do the following -
     Currently the spec only accepts a commandline switch with clear text password. But we can also support having an 
     encrypted password stored in a nuget.config file.  
 
- **4.** What kind of validation will we do before signing?
-    We should spec out all the validations that will be done before signing.
-   
+ **4.** What kind of validation will we do before signing?  
+    We should spec out all the validations that will be done before signing.  
+
+ **5.** Do we need to add retry mechanism for the timestamper service?  
+  Number of retries to get a timestamp for the countersignature.  
+  Delay (in seconds) between the retries to get a timestamp for the countersignature.
 ## Feedback
 Please use the [tracking issue](https://github.com/NuGet/Home/issues/5907) to provide feedback or any questions that you might have. Thanks!
