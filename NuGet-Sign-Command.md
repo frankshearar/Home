@@ -95,7 +95,7 @@ The SignCommandRunner will do the following -
     Make smaller calls like - check if package has signature, overwrite signature if needed.
  
  **2.** Should the runner be made into an msbuild task?  
-    If we want to support msbuild /t:sign in the future, it would make sense to add a target + task combination which 
+    If we want to support msbuild /t:nugetsign in the future, it would make sense to add a target + task combination which 
     could be deployed via a package.
 
  **3.** Whats the best way to pass the certificate password to the sign command?  
