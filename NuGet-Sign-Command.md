@@ -66,6 +66,14 @@ The sign command should be atomic in nature i.e. If the command fails then the o
  1. Do not allow in-place signing and mandate the `-OutputDirectory` options. 
  2. Back up the original package and overwrite it back if signing fails midway. This can be costly for large packages.
 
+### Corresponding commands
+
+In future we would like to add support for the following platforms - 
+
+* Dotnet CLI - `dotnet nuget sign <package_path> [Options]`
+
+* MSBuild target - `msbuild /t:nugetsign <package_path> [Options]`
+
 ### Implementation Details
 The sign command will do the following - 
  1. Check if the passed arguments are valid. If not then throw.
