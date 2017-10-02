@@ -1,4 +1,4 @@
-Status: **Incubation**
+Status: **Reviewing**
 
 ## Issue
 The work for this feature and the discussion around the spec is tracked here - **Package applicability in NuGet package manager UI [#5725](https://github.com/NuGet/Home/issues/5725)**

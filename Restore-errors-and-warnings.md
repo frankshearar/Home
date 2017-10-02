@@ -221,7 +221,6 @@ Package System.ComponentModel.EventBasedAsync 4.0.11 is not compatible with nets
   - net45 (.NETFramework,Version=v4.5)
   - netcore50 (.NETCore,Version=v5.0)
   - netstandard1.0 (.NETStandard,Version=v1.0)
-  - netstandard1.3 (.NETStandard,Version=v1.3)
   - portable-net45+win8+wp8+wpa81 (.NETPortable,Version=v0.0,Profile=Profile259)
   - win8 (Windows,Version=v8.0)
   - wp8 (WindowsPhone,Version=v8.0)

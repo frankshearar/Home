@@ -1,8 +1,11 @@
 Status: **Incubation**
 
-## Issue
+# Issue
 The work for this feature and the discussion around the spec is tracked here - **Enable repeatable builds for PackageReference based projects [#5602](https://github.com/NuGet/Home/issues/5602)**
 
+There are a couple of related feature asks that are not part of this feature spec as mentioned below:
+* Ability to lock package dependencies and their versions (version range) at solution/repo/global level
+* Ability to define NuGet dependency version resolution when a version range is specified for direct and transitive dependencies [#5553](https://github.com/NuGet/Home/issues/5553)
 
 # Context
 
@@ -74,10 +77,6 @@ We have had multiple internal partners reaching out to us from VS Team Services,
 * Twitter thread:
   * https://twitter.com/stimms/status/885268856960196612
 
-There are a couple of related feature asks that are not part of this feature spec as mentioned below:
-* Ability to lock package dependencies and their versions (version range) at solution/repo/global level
-* Ability to define NuGet dependency version resolution when a version range is specified for direct and transitive dependencies.
-	
 # Solution
 
 ## High level proposal
