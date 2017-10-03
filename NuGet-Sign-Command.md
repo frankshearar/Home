@@ -36,6 +36,10 @@ options:
 
 -CertificatePassphrase - Password for the certificate, if needed.
 
+-CryptographicServiceProvider - Name of the Cryptographic Service Provider which contains the Private Key Container.
+
+-KeyContainer - Name of the Key Container which has the Private Key.
+
 -Timestamper - URL to an RFC-3161 compliant trusted time-stamping server.
 
 -SigningAlgorithm - Signing algorithm to be used. Allowed values are RSA and ECDSA. Defaults to RSA.
@@ -45,10 +49,6 @@ options:
 -Force - Switch to indicate if the current signature should be overwritten. By default the command will fail if the package already has a signature.
 
 -OutputDirectory - Directory where the signed package should be saved. By default the original package is overwritten by the signed package.
-
--CryptographicServiceProvider - Name of the Cryptographic Service Provider which contains the Private Key Container.
-
--KeyContainer - Name of the Key Container which has the Private Key.
 ```
 
 ### Details about options
@@ -56,6 +56,8 @@ options:
 * The `CertificatePath` option is used to uniquely identify a certificate. The parameter accepts a file path or a certificate path from the local store in the following format - `cert:\certificate_context\certificate_store_name\certificate_thumb_print`.
 * `CertificateSubjectName` and `CertificateFingerprint` options can be used to search the local certificate store. While searching the local store, if more than one matching certificates are found then we should prompt the user with the options and ask them to provide a more specific filter. 
 * In all the cases we should display the certificate being used.  
+* Users will have 2 options for providing the private key to be used to sign the package. Primarily they could provide a certificate which contains a proivate key, in such case we will use that to sign the package. However, if the certificate does not contain a private key then the user can provide the `CryptographicServiceProvider` and `KeyContainer` values to be used to find the private key.  
+* While providing `CryptographicServiceProvider` and `KeyContainer` values, the user must ensure that the resolved private key must match the certificate file passed. Else the sign command will fail.
 * `Force` option can be used to specify if an existing signature should be overwritten. If this switch is not used then we should fail if there is an existing signature.
 
 ### Acceptable Certificate sources
