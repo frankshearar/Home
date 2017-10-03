@@ -76,6 +76,12 @@ The sign command should be atomic in nature i.e. If the command fails then the o
  1. Do not allow in-place signing and mandate the `-OutputDirectory` options. 
  2. Back up the original package and overwrite it back if signing fails midway. This can be costly for large packages.
 
+### Validation on Sign
+The sign command should perform the following validations before attempting to sign the package - 
+ 1. Validate that the package exists on disk and the process has Read/Write access to the package.
+ 2. If -OutputDirectory if passed, validate that the process has write access to the path.
+ 3. 
+
 ### Corresponding commands
 
 In future we would like to add support for the following platforms - 
