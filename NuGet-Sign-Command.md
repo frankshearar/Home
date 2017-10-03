@@ -63,8 +63,7 @@ The command will support for the following certificates sources -
  1. Certificate file - Path to the certificate file on the local file system or a network share.
  2. Certificate store/keychain - A URI to the certificate in the local certificate store or keychain by using a URI format - `cert:\certificate_context\certificate_store_name\certificate_thumb_print`or `cert:\path_to_keychain\certificate_thumb_print`
  3. Hardware Security Module - Under Investigation.
- 4. CNG - Under Investigation. Currently I only see [C++ API](https://msdn.microsoft.com/en-us/library/windows/desktop/aa376210) for this. 
-
+ 4. CNG/CSP - User can provide the Cryptographic Service Provider name and the key container name.
 ### Signing Atomicity
 The sign command should be atomic in nature i.e. If the command fails then the original package should not be modified. Possible options for this - 
  1. Do not allow in-place signing and mandate the `-OutputDirectory` options. 
