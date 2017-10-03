@@ -45,6 +45,10 @@ options:
 -Force - Switch to indicate if the current signature should be overwritten. By default the command will fail if the package already has a signature.
 
 -OutputDirectory - Directory where the signed package should be saved. By default the original package is overwritten by the signed package.
+
+-CryptographicServiceProvider - Name of the Cryptographic Service Provider which contains the Private Key Container.
+
+-KeyContainer - Name of the Key Container which has the Private Key.
 ```
 
 ### Details about options
