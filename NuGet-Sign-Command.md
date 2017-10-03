@@ -79,8 +79,13 @@ The sign command should be atomic in nature i.e. If the command fails then the o
 ### Validation on Sign
 The sign command should perform the following validations before attempting to sign the package - 
  1. Validate that the package exists on disk and the process has Read/Write access to the package.
- 2. If -OutputDirectory if passed, validate that the process has write access to the path.
- 3. 
+ 2. If `-OutputDirectory` if passed, validate that the process has write access to the path.
+ 3. Validate that the user has supplied a valid certificate through all of the options.
+ 4. If the certificate is password protected, validate that the user supplied a password using the `-CertificatePassphrase` option.
+ 5. Validate that the resolved certificate is currently valid.
+ 7. Validate that the certificate contains a private key or the user has provided the `-CryptographicSignatureProvider` and `-KeyContainer` options.
+ 6. Validate that the user has passed a valid timestamper url using the `-Timestamper` option.
+ 8. Logical validation on all the supplied options.
 
 ### Corresponding commands
 
