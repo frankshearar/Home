@@ -34,17 +34,21 @@ options:
 
 -CertificateFingerprint - SHA-1 fingerprint of the certificate used to search the default local certificate store for the certificate.
 
--CertificatePassphrase - Password for the certificate, if needed.
+-CertificatePassphrase - Password for the certificate, if needed. 
+This option can be used to specify the password for the certificate.
 
 -CryptographicServiceProvider - Name of the Cryptographic Service Provider which contains the Private Key Container.
+This option, along with -KeyContainer, can be used to specify the private key if the certificate file does not contain one.
 
 -KeyContainer - Name of the Key Container which has the Private Key.
+This option, along with -CryptographicServiceProvider, can be used to specify the private key if the certificate file does not contain one.
 
 -Timestamper - URL to an RFC-3161 compliant trusted time-stamping server.
 
--SigningAlgorithm - Signing algorithm to be used. Allowed values are RSA and ECDSA. Defaults to RSA.
-
 -HashingAlgorithm - Hashing algorithm to be used. Defaults to SHA512.
+
+-RSASignaturePadding - RSA Padding scheme used to sign the package with an RSA certificate. Supported padding schemes are PKCS1-v1.5 and PSS.
+This option can be used to specify the padding scheme if the certificate is not signed with either of the two supported schemes.
 
 -Force - Switch to indicate if the current signature should be overwritten. By default the command will fail if the package already has a signature.
 
