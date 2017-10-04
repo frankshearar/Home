@@ -28,9 +28,11 @@ package - Path to the package that needs to be signed.
 
 options:
 
--CertificatePath - Path to the certificate to be used while signing the certificate. The path can be a file path or a certificate path from the local store of the format cert:\certificate_context\certificate_store_name\certificate_thumb_print.
+-CertificatePath - Path to the certificate to be used while signing the certificate. 
+The path can be a file path or a certificate path from the local store of the format cert:\certificate_context\certificate_store_name\certificate_thumb_print.
 
--CertificateSubjectName - String representing the subject name of the certificate used to search the default local certificate store for the certificate. The search is a case-insensitive string comparison using the supplied value, which will find all certificates with the subject name containing that string, regardless of other subject values.
+-CertificateSubjectName - String representing the subject name of the certificate used to search the default local certificate store for the certificate. 
+The search is a case-insensitive string comparison using the supplied value, which will find all certificates with the subject name containing that string, regardless of other subject values.
 
 -CertificateFingerprint - SHA-1 fingerprint of the certificate used to search the default local certificate store for the certificate.
 
