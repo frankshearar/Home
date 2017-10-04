@@ -47,7 +47,7 @@ This option, along with -CryptographicServiceProvider, can be used to specify th
 
 -Timestamper - URL to an RFC-3161 compliant trusted time-stamping server.
 
--HashingAlgorithm - Hashing algorithm to be used. Defaults to SHA512.
+-HashingAlgorithm - Hashing algorithm to be used while digesting the package files. Defaults to SHA512.
 
 -RSASignaturePadding - RSA Padding scheme used to sign the package with an RSA certificate. Supported padding schemes are PKCS1-v1.5 and PSS.
 This option can be used to specify the padding scheme if the certificate is not signed with either of the two supported schemes.
