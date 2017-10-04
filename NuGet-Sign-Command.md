@@ -28,6 +28,8 @@ package - Path to the package that needs to be signed.
 
 options:
 
+-OutputDirectory - Directory where the signed package should be saved. By default the original package is overwritten by the signed package.
+
 -CertificatePath - Path to the certificate to be used while signing the certificate. 
 The path can be a file path or a certificate path from the local store of the format cert:\certificate_context\certificate_store_name\certificate_thumb_print.
 
@@ -54,7 +56,6 @@ This option can be used to specify the padding scheme if the certificate is not 
 
 -Force - Switch to indicate if the current signature should be overwritten. By default the command will fail if the package already has a signature.
 
--OutputDirectory - Directory where the signed package should be saved. By default the original package is overwritten by the signed package.
 ```
 
 ### Details about options
