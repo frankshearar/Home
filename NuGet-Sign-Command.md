@@ -17,7 +17,7 @@ We will add a first level command to NuGet.exe which will allow package authors 
 
 ### Command Signature 
 ```
-usage: NuGet sign [package] [options]
+usage: NuGet sign <package_path> [options]
 
 Signs a NuGet package.
 
