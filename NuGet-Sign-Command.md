@@ -47,16 +47,28 @@ This option, along with -KeyContainer, can be used to specify the private key if
 -KeyContainer - Name of the Key Container which has the Private Key.
 This option, along with -CryptographicServiceProvider, can be used to specify the private key if the certificate file does not contain one.
 
--Timestamper - URL to an RFC-3161 compliant trusted time-stamping server.
+-Timestamper - URL to an RFC 3161 time stamp server.
 
--HashingAlgorithm - Hashing algorithm to be used while digesting the package files. Defaults to SHA512.
+-HashAlgorithm - Hash algorithm to be used while digesting the package files. Defaults to SHA512.
 
 -RSASignaturePadding - RSA Padding scheme used to sign the package with an RSA certificate. Supported padding schemes are PKCS1-v1.5 and PSS.
 This option can be used to specify the padding scheme if the certificate is not signed with either of the two supported schemes.
 
+-TimestampHashAlgorithm - Hash algorithm to be used by the RFC 3161 time stamp server. Defaults to SHA256.
+
 -Force - Switch to indicate if the current signature should be overwritten. By default the command will fail if the package already has a signature.
 
 ```
+
+### Return Value
+
+Sign Command returns one of the following exit codes when it terminates.
+
+| Exit code     | Description |
+| ------------- | ------------- |
+| 0  | Execution was successful.|
+| 1  | Execution has failed. |
+| 2  | Execution has completed with warnings. |
 
 ### Details about options
 * The options `CertificatePath`, `CertificateSubjectName` and `CertificateFingerprint` are different options available to the user to specify a certificate.
@@ -124,5 +136,8 @@ The SignCommandRunner will do the following -
   Number of retries to get a timestamp for the countersignature.  
   Delay (in seconds) between the retries to get a timestamp for the countersignature.
 
+ **4.** HashingAlgorithm Default to SHA256?
+
 ## Feedback
 Please use the [tracking issue](https://github.com/NuGet/Home/issues/5907) to provide feedback or any questions that you might have. Thanks!
+***
