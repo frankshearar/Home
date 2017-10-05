@@ -17,7 +17,7 @@ We will add a first level command to NuGet.exe which will allow package authors 
 
 ### Command Signature 
 ```
-usage: NuGet sign <package_path> [options]
+usage: NuGet sign <package_path> -Timestamper <timestamp service url> [-CertificatePath | -CertificateSubjectName | -CertificatePassphrase] [options]
 
 Signs a NuGet package.
 
@@ -41,22 +41,24 @@ The search is a case-insensitive string comparison using the supplied value, whi
 -CertificatePassphrase - Password for the certificate, if needed. 
 This option can be used to specify the password for the certificate.
 
--CryptographicServiceProvider - Name of the Cryptographic Service Provider which contains the Private Key Container.
+-CryptographicServiceProvider - Name of the cryptographic service provider which contains the private key container.
 This option, along with -KeyContainer, can be used to specify the private key if the certificate file does not contain one.
 
--KeyContainer - Name of the Key Container which has the Private Key.
+-KeyContainer - Name of the key container which has the private key.
 This option, along with -CryptographicServiceProvider, can be used to specify the private key if the certificate file does not contain one.
 
 -Timestamper - URL to an RFC 3161 time stamp server.
 
--HashAlgorithm - Hash algorithm to be used while digesting the package files. Defaults to SHA512.
+-HashAlgorithm - Hash algorithm to be used while digesting the package files. Defaults to SHA256.
 
--RSASignaturePadding - RSA Padding scheme used to sign the package with an RSA certificate. Supported padding schemes are PKCS1-v1.5 and PSS.
+-RSASignaturePadding - RSA padding scheme used to sign the package with an RSA certificate. Supported padding schemes are PKCS1-v1.5 and PSS.
 This option can be used to specify the padding scheme if the certificate is not signed with either of the two supported schemes.
 
 -TimestampHashAlgorithm - Hash algorithm to be used by the RFC 3161 time stamp server. Defaults to SHA256.
 
--Force - Switch to indicate if the current signature should be overwritten. By default the command will fail if the package already has a signature.
+-Overwrite - Switch to indicate if the current signature should be overwritten. By default the command will fail if the package already has a signature.
+
+-NonInteractive - Do not prompt for user input or confirmations.
 
 ```
 
@@ -70,6 +72,8 @@ Sign Command returns one of the following exit codes when it terminates.
 | 1  | Execution has failed. |
 | 2  | Execution has completed with warnings. |
 
+The errors and warnings will be displayed on the console.
+
 ### Details about options
 * The options `CertificatePath`, `CertificateSubjectName` and `CertificateFingerprint` are different options available to the user to specify a certificate.
 * The `CertificatePath` option is used to uniquely identify a certificate. The parameter accepts a file path or a certificate path from the local store in the following format - `cert:\certificate_context\certificate_store_name\certificate_thumb_print`.
@@ -77,7 +81,7 @@ Sign Command returns one of the following exit codes when it terminates.
 * In all the cases we should display the certificate being used.  
 * Users will have 2 options for providing the private key to be used to sign the package. Primarily they could provide a certificate which contains a proivate key, in such case we will use that to sign the package. However, if the certificate does not contain a private key then the user can provide the `CryptographicServiceProvider` and `KeyContainer` values to be used to find the private key.  
 * While providing `CryptographicServiceProvider` and `KeyContainer` values, the user must ensure that the resolved private key must match the certificate file passed. Else the sign command will fail.
-* `Force` option can be used to specify if an existing signature should be overwritten. If this switch is not used then we should fail if there is an existing signature.
+* `Overwrite` option can be used to specify if an existing signature should be overwritten. If this switch is not used then we should fail if there is an existing signature.
 
 ### Acceptable Certificate sources
 The command will support for the following certificates sources - 
