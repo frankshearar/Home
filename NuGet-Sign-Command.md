@@ -17,7 +17,7 @@ We will add a first level command to NuGet.exe which will allow package authors 
 
 ### Command Signature 
 ```
-usage: NuGet sign <package_path> -Timestamper <timestamp service url> [-CertificatePath | -CertificateSubjectName | -CertificatePassphrase] [options]
+usage: NuGet sign <package_path> -Timestamper <timestamp server url> [-CertificatePath | -CertificateSubjectName | -CertificatePassphrase] [options]
 
 Signs a NuGet package.
 
