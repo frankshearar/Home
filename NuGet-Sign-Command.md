@@ -70,7 +70,6 @@ Sign Command returns one of the following exit codes when it terminates.
 | ------------- | ------------- |
 | 0  | Execution was successful.|
 | 1  | Execution has failed. |
-| 2  | Execution has completed with warnings. |
 
 The errors and warnings will be displayed on the console.
 
