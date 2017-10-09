@@ -38,7 +38,7 @@ The search is a case-insensitive string comparison using the supplied value, whi
 
 -CertificateFingerprint - SHA-1 fingerprint of the certificate used to search the default local certificate store for the certificate.
 
--CertificatePassphrase - Password for the certificate, if needed. 
+-CertificatePassword - Password for the certificate, if needed. 
 This option can be used to specify the password for the certificate.
 
 -CryptographicServiceProvider - Name of the cryptographic service provider which contains the private key container.
