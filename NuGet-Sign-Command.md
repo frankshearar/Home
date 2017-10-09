@@ -17,7 +17,7 @@ We will add a first level command to NuGet.exe which will allow package authors 
 
 ### Command Signature 
 ```
-usage: NuGet sign <package_path> -Timestamper <timestamp server url> [-CertificatePath | -CertificateSubjectName | -CertificatePassword] [options]
+usage: NuGet sign <package_path> -Timestamper <time stamp server url> [-CertificatePath | -CertificateSubjectName | -CertificatePassword] [options]
 
 Signs a NuGet package.
 
@@ -53,11 +53,8 @@ This option, along with -CryptographicServiceProvider, can be used to specify th
 
 -HashAlgorithm - Hash algorithm to be used while generating the package manifest file. Defaults to SHA256.
 
--RSASignaturePadding - RSA padding scheme used to sign the package with an RSA certificate. Supported padding schemes are PKCS1-v1.5 and PSS.
-This option can be used to specify the padding scheme if the certificate is not signed with either of the two supported schemes.
-
 -Overwrite - Switch to indicate if the current signature should be overwritten. By default the command will fail if the package already has a signature.
-
+ 
 -NonInteractive - Do not prompt for user input or confirmations.
 
 ```
@@ -136,8 +133,8 @@ The SignCommandRunner will do the following -
     We should spec out all the validations that will be done before signing.  
 
  **3.** Do we need to add retry mechanism for the timestamper service?  
-  Number of retries to get a timestamp for the countersignature.  
-  Delay (in seconds) between the retries to get a timestamp for the countersignature.
+  Number of retries to get a time stamp for the signature.  
+  Delay (in seconds) between the retries to get a time stamp for the signature.
 
  **4.** HashingAlgorithm Default to SHA256?
 
