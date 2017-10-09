@@ -17,7 +17,7 @@ We will add a first level command to NuGet.exe which will allow package authors 
 
 ### Command Signature 
 ```
-usage: NuGet sign <package_path> -Timestamper <time stamp server url> [-CertificatePath | -CertificateSubjectName | -CertificatePassword] [options]
+usage: NuGet sign <package_path> -Timestamper <timestamp server url> [-CertificatePath | -CertificateSubjectName | -CertificatePassword] [options]
 
 Signs a NuGet package.
 
@@ -47,9 +47,9 @@ This option, along with -KeyContainer, can be used to specify the private key if
 -KeyContainer - Name of the key container which has the private key.
 This option, along with -CryptographicServiceProvider, can be used to specify the private key if the certificate file does not contain one.
 
--Timestamper - URL to an RFC 3161 time stamp server.
+-Timestamper - URL to an RFC 3161 timestamp server.
 
--TimestampHashAlgorithm - Hash algorithm to be used by the RFC 3161 time stamp server. Defaults to SHA256.
+-TimestampHashAlgorithm - Hash algorithm to be used by the RFC 3161 timestamp server. Defaults to SHA256.
 
 -HashAlgorithm - Hash algorithm to be used while generating the package manifest file. Defaults to SHA256.
 
@@ -133,8 +133,8 @@ The SignCommandRunner will do the following -
     We should spec out all the validations that will be done before signing.  
 
  **3.** Do we need to add retry mechanism for the timestamper service?  
-  Number of retries to get a time stamp for the signature.  
-  Delay (in seconds) between the retries to get a time stamp for the signature.
+  Number of retries to get a timestamp for the signature.  
+  Delay (in seconds) between the retries to get a timestamp for the signature.
 
  **4.** HashingAlgorithm Default to SHA256?
 
