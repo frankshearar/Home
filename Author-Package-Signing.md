@@ -28,39 +28,13 @@ As described in the [blog post](https://blog.nuget.org/20170809/NuGet-Package-Si
 
 NuGet packages can be signed with an embedded  signature based on  X.509 code signing certificates. This signature will provide a mecahnism to validate pacakge integrity (the content has not been modified) and authenticity (the package author has possession of the certificate at the time of signing).
 
-### New icons to identify signed packages
+### No visual indicators
 
-Consumers will be able to install signed and unsigned packages. The only change they will notice is a visual indicator in the search results to show if the package is signed.
+There will be no UI changes to distinguish signed vs. unsigned packages in Stage 1. Once we will get into Stage 3 with package source settings, we will introduce new icons to help identify unsigned packages.
 
-This visual indicator will also be used to show if the Package ID has been verified, as described in the related spec [Package Identity and Verification](https://github.com/NuGet/Home/wiki/NuGet-Package-Identity-Verification)
+The only case where package consumers will see a new UI, will happen if the signature validation fails.
 
-|Icon|Description|
-|----|:-----|
-|![Signed Package](Author-Signatures-media/green-shield.png)|This package has been signed by **\[Author from certificate Subject\]**. |
-|![Verified Package](Author-Signatures-media/verified.png)|The identity of this package has been verified by **\[Package Source Name\]**. |
-|![Signed and verified](Author-Signatures-media/signed-verified.png)| This package has been signed by **\[Author from certificate Subject\]**. The package identity has been verified by **\[Package Source Name\]**.|
-
-#### Search results
-These icons will be shown in the Package Manager Explorer when the user browse or search for packages.
-
-![Package Manager Visual Indicators](Author-Signatures-media/packages-with-visual-indicators.png)
-
-The visual indicators will be shown based on a property included in the search API. Not all package sources will implement this features, and only the sources returning the updated metadata will shown the green shield.
-
-Initially the left pane with the search results, will show the green shields when the package source is selected to NuGet.org only. We will support local feeds and multiple feeds in Stage 2.
-
->Note: Signed packages will not affect the rank algorithm used to sort the search results.
-
-#### Package details
-
-When the user selects a signed package, the details pane will show the signer information from the  the Subject in the certificate. Clicking on the link will open the certificate.
-
-![Package Details](Author-Signatures-media/package-detail-pane.png)
-
-The v3 registration feed will be augmented to include another field (e.g. signaturesUrl) that points to another URL that will return the signature details for that specific pakckage version.
-
-
-#### Signature validation at install time 
+### Signature validation at install time 
 
 NuGet clients like Visual Studio and NuGet.exe will try to validate the signature when available. If the package does not contain a signature it will be installed without any noticeable change from existing workflows.
 
