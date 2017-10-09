@@ -30,9 +30,9 @@ NuGet packages can be signed with an embedded  signature based on  X.509 code si
 
 ### No visual indicators
 
-There will be no UI changes to distinguish signed vs. unsigned packages in Stage 1. Once we will get into Stage 3 with package source settings, we will introduce new icons to help identify unsigned packages.
+> Edit 10/9/2017. After additional feedback, we have decided to do not show any visual indicator for signed packages.
 
-The only case where package consumers will see a new UI, will happen if the signature validation fails.
+In Stage 1 NuGet will not distinguish between signed and unsigned packages; Package Manager UI will remain unchanged. With Stage 3 package source settings, we will introduce new icons to help identify unsigned packages.
 
 ### Signature validation at install time 
 
