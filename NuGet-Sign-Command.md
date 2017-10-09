@@ -49,12 +49,12 @@ This option, along with -CryptographicServiceProvider, can be used to specify th
 
 -Timestamper - URL to an RFC 3161 time stamp server.
 
--HashAlgorithm - Hash algorithm to be used while digesting the package files. Defaults to SHA256.
+-TimestampHashAlgorithm - Hash algorithm to be used by the RFC 3161 time stamp server. Defaults to SHA256.
+
+-HashAlgorithm - Hash algorithm to be used while generating the package manifest file. Defaults to SHA256.
 
 -RSASignaturePadding - RSA padding scheme used to sign the package with an RSA certificate. Supported padding schemes are PKCS1-v1.5 and PSS.
 This option can be used to specify the padding scheme if the certificate is not signed with either of the two supported schemes.
-
--TimestampHashAlgorithm - Hash algorithm to be used by the RFC 3161 time stamp server. Defaults to SHA256.
 
 -Overwrite - Switch to indicate if the current signature should be overwritten. By default the command will fail if the package already has a signature.
 
