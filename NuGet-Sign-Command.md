@@ -25,7 +25,6 @@ argument:
 
 package - Path to the package that needs to be signed.
 
-
 options:
 
 -OutputDirectory - Directory where the signed package should be saved. By default the original package is overwritten by the signed package.
@@ -38,10 +37,12 @@ This option should be used when specifying the certificate via -CertificateSubje
 -CertificateStoreLocation - Name of the X.509 certificate store use to search for the certificate. Defaults to "CurrentUser", the X.509 certificate store used by the current user.
 This option should be used when specifying the certificate via -CertificateSubjectName or -CertificateFingerprint options.
 
--CertificateSubjectName - Subject name of the certificate used to search the default local certificate store for the certificate. 
+-CertificateSubjectName - Subject name of the certificate used to search a local certificate store for the certificate. 
 The search is a case-insensitive string comparison using the supplied value, which will find all certificates with the subject name containing that string, regardless of other subject values.
+The certificate store can be specified by -CertificateStoreName and -CertificateStoreLocation options.
 
--CertificateFingerprint - SHA-1 fingerprint of the certificate used to search the default local certificate store for the certificate.
+-CertificateFingerprint - SHA-1 fingerprint of the certificate used to search a local certificate store for the certificate.
+The certificate store can be specified by -CertificateStoreName and -CertificateStoreLocation options.
 
 -CertificatePassword - Password for the certificate, if needed.
 This option can be used to specify the password for the certificate. If no password is provided, the user may be prompted for a password at run time, unless the -NonInteractive  option is passed.
