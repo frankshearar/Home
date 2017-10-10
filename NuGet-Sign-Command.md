@@ -17,7 +17,7 @@ We will add a first level command to NuGet.exe which will allow package authors 
 
 ### Command Signature 
 ```
-usage: NuGet sign <package_path> -Timestamper <timestamp server url> [-CertificatePath | -CertificateSubjectName | -CertificatePassword] [options]
+usage: NuGet sign <package_path> -Timestamper <timestamp_server_url> [-CertificatePath <certificate_path> | [ -CertificateStoreName <certificate_store_name> -CertificateStoreLocation <certificate_store_location> [-CertificateSubjectName <certificate_subject_name> | -CertificateFingerprint <certificate_fingerprint>]]] [options]
 
 Signs a NuGet package.
 
@@ -30,16 +30,21 @@ options:
 
 -OutputDirectory - Directory where the signed package should be saved. By default the original package is overwritten by the signed package.
 
--CertificatePath - Path to the certificate to be used while signing the certificate. 
-The path can be a file path or a certificate path from the local store of the format cert:\certificate_context\certificate_store_name\certificate_thumb_print.
+-CertificatePath - File path to the certificate to be used while signing the package.
 
--CertificateSubjectName - String representing the subject name of the certificate used to search the default local certificate store for the certificate. 
+-CertificateStoreName - Name of the X.509 certificate store to use to search for the certificate. Defaults to "My", the X.509 certificate store for personal certificates.
+This option should be used when specifying the certificate via -CertificateSubjectName or -CertificateFingerprint options.
+
+-CertificateStoreLocation - Name of the X.509 certificate store use to search for the certificate.. Defaults to "CurrentUser", the X.509 certificate store used by the current user.
+This option should be used when specifying the certificate via -CertificateSubjectName or -CertificateFingerprint options.
+
+-CertificateSubjectName - Subject name of the certificate used to search the default local certificate store for the certificate. 
 The search is a case-insensitive string comparison using the supplied value, which will find all certificates with the subject name containing that string, regardless of other subject values.
 
 -CertificateFingerprint - SHA-1 fingerprint of the certificate used to search the default local certificate store for the certificate.
 
--CertificatePassword - Password for the certificate, if needed. 
-This option can be used to specify the password for the certificate.
+-CertificatePassword - Password for the certificate, if needed.
+This option can be used to specify the password for the certificate. If no password is provided, the user may be prompted for a password at run time, unless the -NonInteractive  option is passed.
 
 -CryptographicServiceProvider - Name of the cryptographic service provider which contains the private key container.
 This option, along with -KeyContainer, can be used to specify the private key if the certificate file does not contain one.
@@ -71,32 +76,36 @@ Sign Command returns one of the following exit codes when it terminates.
 The errors and warnings will be displayed on the console.
 
 ### Details about options
-* The options `CertificatePath`, `CertificateSubjectName` and `CertificateFingerprint` are different options available to the user to specify a certificate.
-* The `CertificatePath` option is used to uniquely identify a certificate. The parameter accepts a file path or a certificate path from the local store in the following format - `cert:\certificate_context\certificate_store_name\certificate_thumb_print`.
-* `CertificateSubjectName` and `CertificateFingerprint` options can be used to search the local certificate store. While searching the local store, if more than one matching certificates are found then we should prompt the user with the options and ask them to provide a more specific filter. 
+* The users should use 1 of the 2 following ways to specify the certificate to be used to sign the package - 
+    1. `-CertificatePath` -  
+The `CertificatePath` option is used to uniquely identify a certificate. The parameter accepts a relative or absolute file path.
+    2. `-CertificateSubjectName | -CertificateFingerprint` -  
+`CertificateSubjectName` and `CertificateFingerprint` options can be used to search the local certificate store. While searching the local store, if more than one matching certificates are found then we should prompt the user with the options and ask them to provide a more specific filter. Users can also use the `-CertificateStoreName` and `-CertificateStoreLocation` options to specify the certificate store name and location to be used to search for the certificate.
 * In all the cases we should display the certificate being used.  
-* Users will have 2 options for providing the private key to be used to sign the package. Primarily they could provide a certificate which contains a proivate key, in such case we will use that to sign the package. However, if the certificate does not contain a private key then the user can provide the `CryptographicServiceProvider` and `KeyContainer` values to be used to find the private key.  
-* While providing `CryptographicServiceProvider` and `KeyContainer` values, the user must ensure that the resolved private key must match the certificate file passed. Else the sign command will fail.
+* The users should use 1 of the 2 following ways to specify the private key to be used to sign the package - 
+    1. Primarily they should provide a certificate which contains a private key, in such a case we will use that to sign the package. 
+    2. However, if the certificate does not contain a private key then the user can provide the `CryptographicServiceProvider` and `KeyContainer` values to be used to find the private key. While providing `CryptographicServiceProvider` and `KeyContainer` values, the user must ensure that the resolved private key must match the certificate file passed. Else the sign command will fail.
 * `Overwrite` option can be used to specify if an existing signature should be overwritten. If this switch is not used then we should fail if there is an existing signature.
 
 ### Acceptable Certificate sources
 The command will support for the following certificates sources - 
  1. Certificate file - Path to the certificate file on the local file system or a network share.
- 2. Certificate store/keychain - A URI to the certificate in the local certificate store or keychain by using a URI format - `cert:\certificate_context\certificate_store_name\certificate_thumb_print`or `cert:\path_to_keychain\certificate_thumb_print`
+ 2. Certificate store- `CertificateSubjectName` and `CertificateFingerprint` options can be used to search the local certificate store. Users can also use the `-CertificateStoreName` and `-CertificateStoreLocation` options to specify the certificate store name and location to be used to search for the certificate.
  3. Hardware Security Module - Under Investigation.
- 4. CNG/CSP - User can provide the Cryptographic Service Provider name and the key container name. [Sample Code](https://msdn.microsoft.com/en-us/library/system.security.cryptography.cspparameters(v=vs.110).aspx)
+ 4. CSP - User can provide the Cryptographic Service Provider name and the key container name. [Sample Code](https://msdn.microsoft.com/en-us/library/system.security.cryptography.cspparameters(v=vs.110).aspx)
 
 ### Signing Atomicity
 The sign command should be atomic in nature i.e. If the command fails then the original package should not be modified. Possible options for this - 
  1. Do not allow in-place signing and mandate the `-OutputDirectory` options. 
  2. Back up the original package and overwrite it back if signing fails midway. This can be costly for large packages.
+ 3. Create the manifest and signature files out of package and write into the package once all the files are ready.
 
 ### Validation on Sign
 The sign command should perform the following validations before attempting to sign the package - 
  1. Validate that the package exists on disk and the process has Read/Write access to the package.
  2. If `-OutputDirectory` if passed, validate that the process has write access to the path.
  3. Validate that the user has supplied a valid certificate through all of the options.
- 4. If the certificate is password protected, validate that the user supplied a password using the `-CertificatePassword` option.
+ 4. If the certificate is password protected, validate that the user supplied a password using the `-CertificatePassword` option. Or prompt the user, when possible.
  5. Validate that the resolved certificate is currently valid.
  7. Validate that the certificate contains a private key or the user has provided the `-CryptographicSignatureProvider` and `-KeyContainer` options.
  6. Validate that the user has passed a valid timestamper url using the `-Timestamper` option.
@@ -128,6 +137,7 @@ The SignCommandRunner will do the following -
  **1.** Whats the best way to pass the certificate password to the sign command?  
     Currently the spec only accepts a commandline switch with clear text password. But we can also support having an 
     encrypted password stored in a nuget.config file.  
+    _We will allow users to pass a clear text via commandline or prompt them to input it in secure string format during runtime._
 
  **2.** What kind of validation will we do before signing?  
     We should spec out all the validations that will be done before signing.  
@@ -135,8 +145,6 @@ The SignCommandRunner will do the following -
  **3.** Do we need to add retry mechanism for the timestamper service?  
   Number of retries to get a timestamp for the signature.  
   Delay (in seconds) between the retries to get a timestamp for the signature.
-
- **4.** HashingAlgorithm Default to SHA256?
 
 ## Feedback
 Please use the [tracking issue](https://github.com/NuGet/Home/issues/5907) to provide feedback or any questions that you might have. Thanks!
