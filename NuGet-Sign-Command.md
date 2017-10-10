@@ -35,7 +35,7 @@ options:
 -CertificateStoreName - Name of the X.509 certificate store to use to search for the certificate. Defaults to "My", the X.509 certificate store for personal certificates.
 This option should be used when specifying the certificate via -CertificateSubjectName or -CertificateFingerprint options.
 
--CertificateStoreLocation - Name of the X.509 certificate store use to search for the certificate.. Defaults to "CurrentUser", the X.509 certificate store used by the current user.
+-CertificateStoreLocation - Name of the X.509 certificate store use to search for the certificate. Defaults to "CurrentUser", the X.509 certificate store used by the current user.
 This option should be used when specifying the certificate via -CertificateSubjectName or -CertificateFingerprint options.
 
 -CertificateSubjectName - Subject name of the certificate used to search the default local certificate store for the certificate. 
