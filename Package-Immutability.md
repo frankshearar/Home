@@ -31,7 +31,7 @@ The users will be able to edit package metadata but will see a banner which call
 
 **A.** NuGet will be implementing package signing.  A design principle of package signing is that signed package content must be immutable, which includes the nuspec. Editing the package metadata results in changes to the nuspec, invalidating existing signatures.  We recommend modifying existing workflows to not require editing the package metadata after the package has been created.
 
-### Read-only verify package step, and no edit option for published packages
+### Read-only verify package step, and documentation only edit option for published packages
 * Once the package signing feature goes live, the _Verify_ package step of the package upload workflow on NuGet.org will be made read-only. The page is merely to validate the information is accurate. If not, the user must cancel the upload operation, make the edits in the nuspec, and upload the package created using the updated nuspec.
 * For published packages, the _edit_ button will only allow editing the Documentation for the package, other fields will be removed and will no longer be available for editing from this page. 
 
