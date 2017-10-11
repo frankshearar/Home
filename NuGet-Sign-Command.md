@@ -17,7 +17,7 @@ We will add a first level command to NuGet.exe which will allow package authors 
 
 ### Command Signature 
 ```
-usage: NuGet sign <package_path> -Timestamper <timestamp_server_url> [-CertificatePath <certificate_path> | [ -CertificateStoreName <certificate_store_name> -CertificateStoreLocation <certificate_store_location> [-CertificateSubjectName <certificate_subject_name> | -CertificateFingerprint <certificate_fingerprint>]]] [options]
+usage: NuGet sign <package_path> -Timestamper <timestamp_server_url> [-CertificateFilePath <certificate_path> | [ -CertificateStoreName <certificate_store_name> -CertificateStoreLocation <certificate_store_location> [-CertificateSubjectName <certificate_subject_name> | -CertificateFingerprint <certificate_fingerprint>]]] [options]
 
 Signs a NuGet package.
 
@@ -29,7 +29,7 @@ options:
 
 -OutputDirectory - Directory where the signed package should be saved. By default the original package is overwritten by the signed package.
 
--CertificatePath - File path to the certificate to be used while signing the package.
+-CertificateFilePath - File path to the certificate to be used while signing the package.
 
 -CertificateStoreName - Name of the X.509 certificate store to use to search for the certificate. Defaults to "My", the X.509 certificate store for personal certificates.
 This option should be used when specifying the certificate via -CertificateSubjectName or -CertificateFingerprint options.
@@ -78,8 +78,8 @@ The errors and warnings will be displayed on the console.
 
 ### Details about options
 * The users should use 1 of the 2 following ways to specify the certificate to be used to sign the package - 
-    1. `-CertificatePath` -  
-The `CertificatePath` option is used to uniquely identify a certificate. The parameter accepts a relative or absolute file path.
+    1. `-CertificateFilePath` -  
+The `CertificateFilePath` option is used to uniquely identify a certificate. The parameter accepts a relative or absolute file path.
     2. `-CertificateSubjectName | -CertificateFingerprint` -  
 `CertificateSubjectName` and `CertificateFingerprint` options can be used to search the local certificate store. While searching the local store, if more than one matching certificates are found then we should fail and ask the user  to provide a more specific filter. Users can also use the `-CertificateStoreName` and `-CertificateStoreLocation` options to specify the certificate store name and location to be used to search for the certificate.
 * In all the cases we should display the certificate being used.  
