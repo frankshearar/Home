@@ -29,7 +29,8 @@ options:
 
     -Verbosity <level> - Specifies the level of detail displayed in the output: normal, quiet, detailed
 
-    -Signer <cert_hash> … - Verify that the signer certificate matches with one of the specified hashes. 
+    -Signer <cert_fingerprint> … - Verify that the signer certificate matches with one of the specified fingerprints.
+                                   A certificate fingerprint is a SHA-1 hash of the certificate used to identify the certificate.
 ```
 
 ### Return Value
