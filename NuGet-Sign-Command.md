@@ -23,7 +23,7 @@ Signs a NuGet package.
 
 argument:
 
-package - Path to the package that needs to be signed.
+package - Path to the package(s) that needs to be signed.
 
 options:
 
@@ -117,7 +117,7 @@ The sign command should perform the following validations before attempting to s
  3. Validate that the user has supplied a single certificate through all of the options.
  4. If the certificate is password protected, validate that the user supplied a password using the `-CertificatePassword` option. Or prompt the user, when possible.
  5. Validate that the resolved certificate is currently valid.
- 7. Validate that the certificate contains a private key or the user has provided the `-CryptographicSignatureProvider` and `-KeyContainer` options.
+ 7. Validate that the certificate contains a private key or the user has provided the `-CryptographicSignatureProvider` and `-KeyContainer` options. Fail if the package contains a private key and the user has provided csp or kc.
  6. Validate that the user has passed a valid timestamper url using the `-Timestamper` option.
  8. Logical validation on all the supplied options.
 
