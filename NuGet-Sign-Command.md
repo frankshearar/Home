@@ -105,10 +105,8 @@ The command will support for the following certificates sources -
  4. CSP - User can provide the Cryptographic Service Provider name and the key container name. [Sample Code](https://msdn.microsoft.com/en-us/library/system.security.cryptography.cspparameters(v=vs.110).aspx)
 
 ### Signing Atomicity
-The sign command should be atomic in nature i.e. If the command fails then the original package should not be modified. Possible options for this - 
- 1. Do not allow in-place signing and mandate the `-OutputDirectory` options. 
- 2. Back up the original package and overwrite it back if signing fails midway. This can be costly for large packages.
- 3. Create the manifest and signature files out of package and write into the package once all the files are ready.
+The sign command should be atomic in nature i.e. If the command fails then the original package should not be modified. Current approach - 
+ Create the manifest and signature files out of package and write into the package once all the files are ready.
 
 ### Validation on Sign
 The sign command should perform the following validations before attempting to sign the package - 
