@@ -1,4 +1,4 @@
-**Status**: Review
+**Status**: In Review
 
 ## Issue
 [Task for Specing](https://github.com/nuget/home/issues/5907) and [Task for execution](https://github.com/nuget/home/issues/5904)
@@ -81,8 +81,17 @@ The errors and warnings will be displayed on the console.
     1. `-CertificatePath` -  
 The `CertificatePath` option is used to uniquely identify a certificate. The parameter accepts a relative or absolute file path.
     2. `-CertificateSubjectName | -CertificateFingerprint` -  
-`CertificateSubjectName` and `CertificateFingerprint` options can be used to search the local certificate store. While searching the local store, if more than one matching certificates are found then we should prompt the user with the options and ask them to provide a more specific filter. Users can also use the `-CertificateStoreName` and `-CertificateStoreLocation` options to specify the certificate store name and location to be used to search for the certificate.
+`CertificateSubjectName` and `CertificateFingerprint` options can be used to search the local certificate store. While searching the local store, if more than one matching certificates are found then we should fail and ask the user  to provide a more specific filter. Users can also use the `-CertificateStoreName` and `-CertificateStoreLocation` options to specify the certificate store name and location to be used to search for the certificate.
 * In all the cases we should display the certificate being used.  
+* Certificates should be displayed in the following format - 
+```
+    Issued to: Ankit Mishra
+    Issued by: Issuing Authority
+    Expires:   Sat Jul 14 14:09:34 2018
+    SHA1 hash: cert hash
+    Enhanced Key Usage: Usage
+```
+
 * The users should use 1 of the 2 following ways to specify the private key to be used to sign the package - 
     1. Primarily they should provide a certificate which contains a private key, in such a case we will use that to sign the package. 
     2. However, if the certificate does not contain a private key then the user can provide the `CryptographicServiceProvider` and `KeyContainer` values to be used to find the private key. While providing `CryptographicServiceProvider` and `KeyContainer` values, the user must ensure that the resolved private key must match the certificate file passed. Else the sign command will fail.
@@ -105,7 +114,7 @@ The sign command should be atomic in nature i.e. If the command fails then the o
 The sign command should perform the following validations before attempting to sign the package - 
  1. Validate that the package exists on disk and the process has Read/Write access to the package.
  2. If `-OutputDirectory` if passed, validate that the process has write access to the path.
- 3. Validate that the user has supplied a valid certificate through all of the options.
+ 3. Validate that the user has supplied a single certificate through all of the options.
  4. If the certificate is password protected, validate that the user supplied a password using the `-CertificatePassword` option. Or prompt the user, when possible.
  5. Validate that the resolved certificate is currently valid.
  7. Validate that the certificate contains a private key or the user has provided the `-CryptographicSignatureProvider` and `-KeyContainer` options.
