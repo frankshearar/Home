@@ -31,7 +31,7 @@ options:
 
     -Signer "<cert_fingerprint>;..." - Verify that the signer certificate matches with one of the specified fingerprints.
                                      A certificate fingerprint is a SHA-1 hash of the certificate used to identify the certificate.
-                                     The list of cert_fingerprints should be an string separated by semicolons.
+                                     If more than one fingerprint is provided it, the input should be a string separating each fingerprint with a semicolon.
 ```
 
 ### Return Value
