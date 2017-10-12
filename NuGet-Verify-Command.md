@@ -56,7 +56,7 @@ The details that should be displayed on each verbosity level are described below
 
 * Path to package being verified
 * For each signature present
-    * Type of signature (_owner_ or _repository_)
+    * Type of signature (_author_ or _repository_)
     * Hash of signature
     * If the signature is valid/trusted.
     * Hashing algorithm used for signature
