@@ -95,6 +95,7 @@ Some errors and warnings that should be displayed are:
 * The hashing algorithm of the signature is not supported
 * Signature file is too big
 * Invalid signature. File might have been tampered.
+* Signer certificate does not match any of the fingerprints provided.
 
 ### Corresponding commands
 
