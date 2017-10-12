@@ -27,7 +27,7 @@ argument:
 
 options:
 
-    -Verbosity <level> - Specifies the level of detail displayed in the output: normal, quiet, detailed
+    -Verbosity <level> - Specifies the level of detail displayed in the output: quiet, normal, detailed
 
     -Signer <cert_fingerprint> … - Verify that the signer certificate matches with one of the specified fingerprints.
                                    A certificate fingerprint is a SHA-1 hash of the certificate used to identify the certificate.
@@ -44,9 +44,57 @@ Verify Command returns one of the following exit codes when it terminates.
 
 The errors and warnings will be displayed on the console.
 
-### Validation on Verify
+### Verbosity details
 
-* If the package passed to the command is unsigned it should fail.
+The details that should be displayed on each verbosity level are described below. Each level should display the same as the level below plus whatever is specified in that level. In that sense, _quiet_ will be give the less amount of information, while _detailed_ the most.
+
+**quiet**
+
+* No output on successful execution and minimal output for failed execution.
+
+**normal**
+
+* Path to package being verified
+* For each signature present
+    * Type of signature (_owner_ or _repository_)
+    * Hash of signature
+    * If the signature is valid/trusted.
+    * Hashing algorithm used for signature
+    * Signature Timestamp
+
+**detailed**
+
+* Information about each signing certificate and chain
+    * Issued to
+    * Issued by
+    * Expires
+    * Fingerprint
+*  Information about each Timestamper certificate and chain
+    * Issued to
+    * Issued by
+    * Expires
+    * Fingerprint
+
+Warnings are errors should be displayed if present no matter the verbosity level chosen.
+
+### Errors and warnings
+
+Some errors and warnings that should be displayed are:
+
+**Warnings**
+
+* A signing certificate doesn't chain up to a trusted root
+* A timestamper certificate doesn't chain up to a trusted root
+
+**Errors**
+
+* Package not found
+* Package is not signed
+* The version of the signature is not supported
+* The version of the manifest is not supported
+* The hashing algorithm of the signature is not supported
+* Signature file is too big
+* Invalid signature. File might have been tampered.
 
 ### Corresponding commands
 
