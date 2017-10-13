@@ -15,9 +15,9 @@
 11. After the request is approved, an email notification is sent to the account owner with this information along with date on which the account deletion will actually happen.
 12. A final email notification is sent after the account has been deleted.
 
-##UI Mocks
+## UI Mocks
 
-###User Facing
+### User Facing
 ![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide2.PNG?raw=true)
 ![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide3.PNG?raw=true)
 ![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide4.PNG?raw=true)
@@ -26,7 +26,7 @@
 ![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide7.PNG?raw=true)
 ![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide8.PNG?raw=true)
 
-###Admin Facing
+### Admin Facing
 ![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide9.1.PNG?raw=true)
 ![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide9.2.PNG?raw=true)
 ![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/Slide11.png?raw=true)
