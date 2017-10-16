@@ -24,6 +24,7 @@ Verifies a NuGet package.
 argument:
 
     -Signatures - Specifies the type of verification to be done. Currently only signatures verification is supported.
+    
     package_path -  Path to the package(s) that needs to be verified.
 
 options:
