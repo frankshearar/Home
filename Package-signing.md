@@ -13,9 +13,13 @@ The work for this feature and the discussion around the spec is tracked here: [#
     - https://github.com/NuGet/Home/wiki/Author-Package-Signing. 
     - Discuss [#5889](https://github.com/NuGet/Home/issues/5889)
 
-- **NuGet.exe Sign Command**: Describes the CLI commands in NuGet.exe to sign packages
+- **NuGet.exe Sign Command**: Describes the CLI sign command in NuGet.exe to sign packages
     - https://github.com/NuGet/Home/wiki/NuGet-Sign-Command
     - Discuss [#5907](https://github.com/nuget/home/issues/5907)
+
+- **NuGet.exe Verify Command**: Describes de CLI verify command in NuGet.exe to verify package signatures
+    - https://github.com/NuGet/Home/wiki/NuGet-Verify-Command
+    - Discuss [#6005](https://github.com/nuget/home/issues/6005)
 
 - **Package Signatures Technical Details**: Contains the signature format technical details 
     - https://github.com/NuGet/Home/wiki/Package-Signatures-Technical-Details
