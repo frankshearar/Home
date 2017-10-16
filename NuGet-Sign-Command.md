@@ -149,10 +149,11 @@ The SignCommandRunner will do the following -
 
  **2.** What kind of validation will we do before signing?  
     We should spec out all the validations that will be done before signing.  
+    _Added to the spec_
 
  **3.** Do we need to add retry mechanism for the timestamper service?  
   Number of retries to get a timestamp for the signature.  
-  Delay (in seconds) between the retries to get a timestamp for the signature
+  Delay (in seconds) between the retries to get a timestamp for the signature  
   _No. Looked closely at singtool and realized that they do not have a mechanism for retry._
 
 ## Feedback
