@@ -153,7 +153,7 @@ The SignCommandRunner will do the following -
  **3.** Do we need to add retry mechanism for the timestamper service?  
   Number of retries to get a timestamp for the signature.  
   Delay (in seconds) between the retries to get a timestamp for the signature
-  _No. Looked cloasely at singtool and realized that they do not have a mechanism for retry._
+  _No. Looked closely at singtool and realized that they do not have a mechanism for retry._
 
 ## Feedback
 Please use the [tracking issue](https://github.com/NuGet/Home/issues/5907) to provide feedback or any questions that you might have. Thanks!
