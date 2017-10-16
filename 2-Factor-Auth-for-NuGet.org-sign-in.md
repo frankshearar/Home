@@ -63,7 +63,7 @@ Deprecate NuGet.org password login with migration path to MSA/AAD:
 ![image](https://user-images.githubusercontent.com/14800916/30301386-505b12da-970f-11e7-812a-32cbdd2685f2.png)
 
 **Phase 3:**
-* Disable NuGet.org password sign-ins. Enforce all accounts to connect with Microsoft accounts or AAD.
+* Disable NuGet.org password sign-ins. Enforce all accounts to connect with Microsoft accounts or AAD with 2FA.
 
 NuGet.org password sign-in is disabled:
 
