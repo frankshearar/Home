@@ -105,4 +105,4 @@ Policies applied to an author will be visible on the account page with the reaso
 There should be a way to transform existing owner accounts to organizations. This would be helpful for existing accounts that are today proxies for an organization, team or a group of people working together.
 
 Possible entrypoint for this option:
-![image](https://user-images.githubusercontent.com/14800916/30302391-82d235b2-9715-11e7-9f5e-af0edf00897c.png)
+![image](https://user-images.githubusercontent.com/14800916/31681107-209f85fc-b32b-11e7-9a49-220944af377a.png)
