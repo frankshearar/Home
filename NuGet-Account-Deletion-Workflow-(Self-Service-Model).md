@@ -1,4 +1,4 @@
-##Customer View
+## Customer View
 Add a "Delete Account" section under  https://www.nuget.org/account that triggers the following workflow:
 
 1. Clicking on more info expands the Delete account section (similar to profile picture, by clicking 'more info')
@@ -25,10 +25,10 @@ If the phrase and password check pass:
 [[Account Deletion Workflow|NuGet-Account-Deletion-Workflow]]
 ***
 
-##Solution - Cadillac version
+## Solution - Cadillac version
 Below is the advanced workflow with the cooling period safeguard that gives the user 'x' number of days to change his/her mind. Based on feedback, we can consider investing in implementing this.
 
-###Delete
+### Delete
 1. When clicked, if the account has associated packages
   * If the account being deleted is the only owner, provide information about adding co-owners. The user can choose to not add a co-owner and we should provide information that in this case, the package will be re-parented under a <deleted account>
   * If the associated package has additional authors, the account being deleted is simply removed from the list of owners for that package. The co-owners get a notification that an account has been marked for deletion.
