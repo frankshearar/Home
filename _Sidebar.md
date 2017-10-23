@@ -1,5 +1,4 @@
 #### [[Incubation]] 
-* [[Package Signatures Technical Details]]
 
 #### Reviewing
 * [[Package signing]]
