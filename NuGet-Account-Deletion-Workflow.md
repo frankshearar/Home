@@ -31,23 +31,23 @@ Any person or entity which has registered and has a NuGet.org account.
 
 5. You receive an email notification stating that we have received a request to delete your account.
 
-6. Account is deleted and the account page leads to a 404.
+6. Account is deleted and the account page leads to a 404. All orphaned packages are unlisted.
 
 * The account can be deleted immediately if no child packages exist, or all child packages have co-owners (packages won't be orphaned when the account is deleted). Else the the support team will reach out to the current owner for a recommendation for an alternate owner. 
 
 ### Packages with no owners
 
+1. The package is unlisted and NuGet.org displays a warning under owners.
 
+![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/v2/Account_delete_05.png)
 
-### Contact Us Page
-We will update the contact us page with details around Deleted user contact. i.e. the NuGet team will only respond to copyright license issues and we do not support individual packages.
+2. Contact Owners Page
+
+![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/v2/Account_delete_06.png)
 
 ### Duplicate account username check
 1. Username of a deleted account will be reserved and new accounts with the same username cannot be created. Attempting to create a new account with the same username will display the same message we show today if there is an existing account with that username.
 2. When a deleted user tries to login will display the same message we show today for incorrect username and/or password.
-
-### SLA
-As a matter of policy, we will commit to a 5 business day time-frame to action the request.
 
 
 
