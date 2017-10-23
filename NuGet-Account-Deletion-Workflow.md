@@ -13,7 +13,7 @@ Any person or entity which has registered and has a NuGet.org account.
 ## Solution
 
 ### User workflow
-1. Go to https://www.nuget.org/account/delete (URL subject to change). You are prompted to login, even if already are.
+1. Go to https://www.nuget.org/account/delete (URL subject to change). You are prompted to login, even if you already are.
 
 2. Form to submit the request
 
