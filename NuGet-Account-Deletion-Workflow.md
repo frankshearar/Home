@@ -12,13 +12,39 @@ Any person or entity which has registered and has a NuGet.org account.
 
 ## Solution
 
+### User workflow
+1. Go to https://www.nuget.org/account/delete (URL subject to change). You are prompted to login, even if already are.
+
+2. Form to submit the request
+
+![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/v2/Account_delete_01.png)
+
+3. Click submit and confirm
+
+![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/v2/Account_delete_02.png)
+
+4. Request submitted
+
+![](https://github.com/NuGet/Home/blob/dev/resources/AccountDeletionWorkflow/v2/Account_delete_03.png)
+
+* This page will be displayed if you go to delete URL after the request has been submitted.
+
+5. You receive an email notification stating that we have received a request to delete your account.
+
+6. Account is deleted and the account page leads to a 404.
+
+* The account can be deleted immediately if no child packages exist, or all child packages have co-owners (packages won't be orphaned when the account is deleted). Else the the support team will reach out to the current owner for a recommendation for an alternate owner. 
+
+### Packages with no owners
+
 
 
 ### Contact Us Page
 We will update the contact us page with details around Deleted user contact. i.e. the NuGet team will only respond to copyright license issues and we do not support individual packages.
 
 ### Duplicate account username check
-Usernames of all deleted account will be reserved and new accounts with the same username cannot be created.
+1. Username of a deleted account will be reserved and new accounts with the same username cannot be created. Attempting to create a new account with the same username will display the same message we show today if there is an existing account with that username.
+2. When a deleted user tries to login will display the same message we show today for incorrect username and/or password.
 
 ### SLA
 As a matter of policy, we will commit to a 5 business day time-frame to action the request.
