@@ -53,6 +53,7 @@ It would take the following properties:
 
 * A member can leave an organization only if there are other members (or Admins) in the organization.
 * A member can delete an organization only if the organization does not own any package(s) and if the member is the only member of the organization. 
+  * The namespace for the deleted organization is released and can be taken up as an account or a new organization for others. 
 
 ### Enable authors to easily manage packages for an organization
 
