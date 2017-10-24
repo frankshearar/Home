@@ -10,7 +10,6 @@
 * [[Organizations on NuGet.org]]
 * [[2 Factor Auth for NuGet.org sign in]]
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
-* [Support dotnet add\update\del packageref](https://github.com/NuGet/Home/wiki/Support-dotnet-add%7Cupdate%7Cremove-pkg)
 
 #### Reviewed
 * [[Replication API|[spec]-NuGet.org-replication-API]]
