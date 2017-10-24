@@ -43,11 +43,13 @@ It would take the following properties:
 
 ### Enable authors to manage organizations and its members
 
-* To start with, all members of an organizations will have admin privileges. This means a member can remove other member(s) of the organization, even the creator of the organization. This is similar to co-ownership of packages today.
-
-* **In Future**, we can have the following roles for members of an organization:
-   * **Admin**: As the name states, this role implies all privileges. An admin can upload, edit, delete or update packages.
-   * **Collaborator**: A collaborator can only update packages but cannot delete (unlist), edit or upload a new package for an organization.
+* Organizations will have two types (roles) of memberships:
+   * **Admin**: As the name states, this role implies all privileges. 
+      * An admin can upload, edit, delete or update packages. 
+      * An Admin can add/remove other members (including other Admin members).
+   * **Collaborator**: A collaborator will have limited permissions:
+      * A collaborator can only update packages but cannot delete (unlist), edit or upload a new package for an organization.
+      * A collaborator cannot add or remove other members from an organization or edit organization properties.
 
 * A member can leave an organization only if there are other members (or Admins) in the organization.
 * A member can delete an organization only if the organization does not own any package(s) and if the member is the only member of the organization. 
@@ -75,6 +77,11 @@ There would be a filter for organizations to be able to filter the packages belo
 **Note**:
 * All API keys are owned by an author. There is no separate API key management for an organization.
 * API keys can be scoped to organizations. At a time, an API key can be meant for either the author's (owner's) packages or **one of the organizations**' packages. i.e. even if the author/owner specifies "*" in the glob pattern, it means "all packages" but scoped to the entity (individual or organization) as specified in the entity drop-down.
+
+#### What happens to author's existing API keys?
+* All the existing API keys are scoped for his/her account packages.
+  * Any new package upload with existing API keys will be uploaded to his own account and not any of the organizations he/she creates
+  * To upload new packages against an organization, the author will have to create new key scoped to an organization.
 
 #### What happens when an author is leaves an organization (on NuGet.org)?
 * All the API keys scoped to the organization will cease to work.
