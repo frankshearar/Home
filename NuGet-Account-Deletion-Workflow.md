@@ -33,7 +33,7 @@ Any person or entity which has registered and has a NuGet.org account.
 
 6. Account is deleted and the account page leads to a 404. All orphaned packages are unlisted.
 
-* The account can be deleted immediately if no child packages exist, or all child packages have co-owners (packages won't be orphaned when the account is deleted). Else the the support team will reach out to the current owner for a recommendation for an alternate owner. 
+* The account can be deleted immediately if no child packages exist, or all child packages have co-owners (packages won't be orphaned when the account is deleted). Else the support team will reach out to the current owner for a recommendation for an alternate owner. 
 
 ### Packages with no owners
 
