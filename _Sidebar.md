@@ -10,6 +10,7 @@
 * [[Organizations on NuGet.org]]
 * [[2 Factor Auth for NuGet.org sign in]]
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
+* [[Account Deletion Workflow|NuGet-Account-Deletion-Workflow]]
 
 #### Reviewed
 * [[Replication API|[spec]-NuGet.org-replication-API]]
