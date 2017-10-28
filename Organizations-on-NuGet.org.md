@@ -34,10 +34,17 @@ A new organization can be created from "Manage Organizations" option:
 ![image](https://user-images.githubusercontent.com/14800916/30187514-cd09f8ca-93de-11e7-88c4-8e3a54630d21.png)
 
 It would take the following properties:
-* **Name**: This is similar to owner usernname and needs to be unique across NuGet.org.
+* **Name**: (Required) This is similar to owner usernname and needs to be unique across NuGet.org.
 *Once an organization is created, the name cannot be changed.*
-* **Email**: Email address used for communication for packages' support - 'Contact owners'. It will also be used for the organization icon/image using gravatar.com.
+* **Email**: (Optional) If email address is provided, 
+  * It is used for communication for packages' support - 'Contact owners'. 
+  * It is used to notify when a package is pushed (updated or new package is uploaded) for the Organization.
+  * It will also be used for the organization icon/image using gravatar.com.
+
+*On the other hand if the email is not provided, there would not be any notification sent for anu of the above. The organization's profile image will default to the default gravatar image (may be we need to use a random gravatar image here).*
+*Notification settings for each member is not part of the MVP and would be added later*
 * **Logo**: Similar to owner profile pic. This will be a gravatar associated with the org email id.
+* **Members**: (Required) Atleast one **Admin** member is required when the organization is created.
 
 ![image](https://user-images.githubusercontent.com/14800916/30303819-1e340d6a-971f-11e7-80bd-8fa7928c10f0.png)
 
