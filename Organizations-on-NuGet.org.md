@@ -1,4 +1,4 @@
-Status: **Reviewing**
+Status: **Reviewed**
 
 ## Issue
 The work for this feature and the discussion around the spec is tracked here:
@@ -44,12 +44,14 @@ It would take the following properties:
 ### Enable authors to manage organizations and its members
 
 * Organizations will have two types (roles) of memberships:
-   * **Admin**: As the name states, this role implies all privileges. 
-      * An admin can upload, edit, delete or update packages. 
-      * An Admin can add/remove other members (including other Admin members).
-   * **Collaborator**: A collaborator will have limited permissions:
-      * A collaborator can only update packages but cannot delete (unlist), edit or upload a new package for an organization.
-      * A collaborator cannot add or remove other members from an organization or edit organization properties.
+   * **Admin**: As the name states, this role implies all privileges. An admin can
+      * Upload new package
+      * Edit, delete or update existing packages. 
+      * Add/remove other members (including other Admin members).
+      * Accept package co-ownership requests 
+   * **Collaborator**: A collaborator will have limited permissions. A collaborator can 
+      * Edit, delete (unlist) or update packages 
+      * **Cannot** perform rest of the operations that Admins can.
 
 * A member can leave an organization only if there are other members (or Admins) in the organization.
 * A member can delete an organization only if the organization does not own any package(s) and if the member is the only member of the organization. 
