@@ -1,4 +1,4 @@
-Status: **Reviewing**
+Status: **Reviewed**
 
 ## Issue
 The work for this feature and the discussion around the spec is tracked here - **Enable NuGet Account Deletion workflow [#3204](https://github.com/NuGet/NuGetGallery/issues/3204)**
