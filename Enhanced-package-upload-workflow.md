@@ -1,3 +1,6 @@
+Status: **Reviewed**
+
+
 ## Issue
 [Enhanced package upload workflow](https://github.com/NuGet/NuGetGallery/issues/4478)
 
