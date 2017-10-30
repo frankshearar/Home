@@ -11,7 +11,6 @@
 * [Package README.md support](Package-README.md-support)
 * [[2 Factor Auth for NuGet.org sign in]]
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
-* [[Account Deletion Workflow|NuGet-Account-Deletion-Workflow]]
 
 #### Reviewed
 * [[Organizations on NuGet.org]]
@@ -19,6 +18,7 @@
 * [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 * [[Enhanced package upload workflow|Enhanced package upload workflow]]
 * [[Package Immutability|Package Immutability]]
+* [[Account Deletion Workflow|NuGet-Account-Deletion-Workflow]]
 
 #### [[Implemented|Implemented]]
 
