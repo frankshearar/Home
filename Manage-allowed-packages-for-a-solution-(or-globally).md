@@ -28,6 +28,6 @@ Following are the requirements:
 1. Users should be able to specify a set of packages that can be used as direct dependency for a project.
 2. Users should be able to specify a set of packages that can be used as a dependency - direct/transitive for a project.
 3. Users should be able to specify a version or version range for packages to be used for projects in a solution/repo.
-4. [**Not-MVP**] Users should be able to specify the package source for each of the packages he lists as allowed packages, as describe above
+4. [**Not-MVP**] Users should be able to specify the package source for each of the packages he/she lists as allowed packages, as describe above
 
 
