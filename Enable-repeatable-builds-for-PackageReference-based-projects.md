@@ -203,11 +203,23 @@ dependencies:
   * This will have performance impact and hence the user should be warned about this using a numbered NuGet warning:
   ```
   NUxxxx: Detected the use of `restore -Force`. This option forces restore graph evaluation on every restore and can cause degraded performance.  
-  * This can be done by setting the following property in the **project file** or in one of the evaluated **NuGet.config** files: 
+  ```
+  * This can be done from command line by
+  ```
+  > nuget.exe restore -Force
+  ```
+  ```
+  > msbuild /t:restore -Force
+  ```
+  ```
+  > dotnet.exe restore --force
+  ```
+  * Alternatively, VS will have an option to force restore on a solution level restore.
+  * [Open] Still debating if we should allow this for each restore by setting the following property in the **project file** or in one of the evaluated **NuGet.config** files: 
 
-   `<ForceRestoreAlways>True</ForceRestoreAlways>`  _**TBD** - exact property name_
+    `<ForceRestoreAlways>True</ForceRestoreAlways>`  _**TBD** - exact property name_
 
-  * This can be also done by setting the ENVIRONMENT variable (All supported platforms - Windows, Mac, Linux) - `NUGET_FORCE_RESTORE_ALWAYS` to **true**
+  * [Open] Still debating if we should allow this by setting the ENVIRONMENT variable (All supported platforms - Windows, Mac, Linux) - `NUGET_FORCE_RESTORE_ALWAYS` to **true**
 
 ## How does it help?
 This ensures that any restore which can be part of different builds across place and time, will end up getting the same package dependencies.
