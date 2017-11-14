@@ -1,4 +1,4 @@
-**Status**: In Review
+**Status: Reviewed** 
 
 ## Issue
 [Task for Specing](https://github.com/nuget/home/issues/5907) and [Task for execution](https://github.com/nuget/home/issues/5904)
