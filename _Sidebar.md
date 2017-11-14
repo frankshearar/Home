@@ -6,10 +6,10 @@
 * [[Package signing]]
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
 * [Package README.md support](Package-README.md-support)
-* [[2 Factor Auth for NuGet.org sign in]]
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
 
 #### Reviewed
+* [[2 Factor Auth for NuGet.org sign in]]
 * [[Author Package Signing]]
 * [NuGet Verify Command](https://github.com/NuGet/Home/wiki/NuGet-Verify-Command)
 * [NuGet Sign Command](https://github.com/NuGet/Home/wiki/NuGet-Sign-Command)
