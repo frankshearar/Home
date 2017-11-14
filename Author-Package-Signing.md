@@ -1,4 +1,4 @@
-Status: **Reviewing**
+Status: **Reviewed**
 
 ## Related Information
 This specification is one part of a new experience for package signing described at a high level in this blog post:  [NuGet Package Signing](https://blog.nuget.org/20170914/NuGet-Package-Signing.html). You can find various related specs on the [package signing wiki](https://github.com/NuGet/Home/wiki/Package-Signing). 
