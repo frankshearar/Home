@@ -40,4 +40,23 @@ While a solution level upgrade experience is desirable, we will start with proje
       * it will report detailed error message on output console
       * backup path location to retrieve previous project file as well as packages.config
       * and a link to simple instructions to go back to the previous state
-* Finally, after completing a successful upgrade, it will show an upgrade report summary.
+* Finally, after completing a successful upgrade, it will show an upgrade report summary, which lists:
+   * packages installed as PackageReference
+   * packages skipped as top level dependencies
+   * issues found with any of these packages while working with PackageReference
+   * path location for backup files
+   * link to instructions to revert these changes
+
+### Mockups
+* Options to trigger this upgrade
+ 1) right click menu option at project
+![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/right%20click%20project%20menu.png)
+
+ 2) NuGet manager UI option at project level
+![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/manager%20UI%20project%20upgrade%20option.png)
+
+* Upgrade preview window
+![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/upgrade%20preview%20window.png)
+
+* Upgrade summary
+![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/upgrade%20summary.png)
