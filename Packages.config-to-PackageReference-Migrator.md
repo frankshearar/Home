@@ -21,7 +21,7 @@ Every Visual Studio customer not using packages.config based projects. We want t
 A lot of customer feedback on packages.config, issues with dependency management, performance issues that can essentially be solved using PackageReference.
 
 ## Solution
-At a uber level, this feature will provide upgrade command to customers inside visual studio to upgrade managing individual project's nuget dependencies from packages.config to PackageReference. 
+At an uber level, this feature will provide upgrade command to customers inside visual studio to upgrade managing individual project's nuget dependencies from packages.config to PackageReference. 
 
 ### Non Goals
 While a solution level upgrade experience is desirable, we will start with project level upgrade first.
@@ -48,15 +48,20 @@ While a solution level upgrade experience is desirable, we will start with proje
    * link to instructions to revert these changes
 
 ### Mockups
+
 * Options to trigger this upgrade
  1) right click menu option at project
+
 ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/right%20click%20project%20menu.png)
 
  2) NuGet manager UI option at project level
+
 ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/manager%20UI%20project%20upgrade%20option.png)
 
 * Upgrade preview window
+
 ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/upgrade%20preview%20window.png)
 
 * Upgrade summary
+
 ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/upgrade%20summary.png)
