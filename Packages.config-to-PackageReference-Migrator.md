@@ -15,12 +15,29 @@ The proposed solution is to provide a Visual Studio command to migrate these pro
 TODO
 
 ## Who is the customer?
-Every Visual Studio customer not using packages.config based projects. 
+Every Visual Studio customer not using packages.config based projects. We want to get users to move away from the dependency management hell some of them are finding themselves in. Future investments will be primarily on top of new standards like PackageReference and we want to bring all our customers in for a ride. Currently, users have to use either read blogs or this [doc] (https://blog.nuget.org/20170316/NuGet-now-fully-integrated-into-MSBuild.html) to do this themselves. Package authors and consumers both will be hugely benefit from this change.
 
 ## Evidence
-A lot of customer feedback on packages.config, issues with dependency management, performance issues that we think moving to PackageReference solves. 
+A lot of customer feedback on packages.config, issues with dependency management, performance issues that can essentially be solved using PackageReference.
 
 ## Solution
+At a uber level, this feature will provide upgrade command to customers inside visual studio to upgrade managing individual project's nuget dependencies from packages.config to PackageReference. 
 
 ### Non Goals
 While a solution level upgrade experience is desirable, we will start with project level upgrade first.
+
+### Upgrade Flow
+* As a first step, this feature will only be available in Visual studio at two surface areas 1) at NuGet manager UI at project level 2) right-click menu option on project. User invoke upgrade by either mean
+   * A dialog comes up explaining to the user the exact changes that will happen to the project. And also gives two options to upgrade:
+      * Collapse dependencies (recommended), this will be default selected until user changes it which will be persisted. This option allows to only install top level packages and exclude their dependencies which will anyway be available as transitive dependencies.
+      * Flatten dependencies, this will also to install all dependencies from packages.config as top level dependencies in PackageReference.
+* Once user clicks OK button, we bring standard VS blocking UI progress bar (like we had in previous solution restore).
+* It will then backup current project file as well as packages.config file to different location so that if anything goes wrong, user can always go back to the previous state.
+* It will then start uninstalling all the packages from packages.config.
+   * If any of the uninstall fails, then it will rollback all the changes, report error on output console with relevant details, and stop upgrade.
+* Then, it will start installing packages as PackageReference. It will also take care of P2P references evaluation to bring transitive dependencies as well as parent projects reevaluation.
+   * If, installation fails, then
+      * it will report detailed error message on output console
+      * backup path location to retrieve previous project file as well as packages.config
+      * and a link to simple instructions to go back to the previous state
+* Finally, after completing a successful upgrade, it will show an upgrade report summary.
