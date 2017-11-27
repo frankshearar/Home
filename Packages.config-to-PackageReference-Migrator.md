@@ -12,7 +12,12 @@ Currently, migrating from packages.config to PackageReference is a hard problem 
 The proposed solution is to provide a Visual Studio command to migrate these projects. 
 
 ## Open Issues
-TODO
+-	Decide strategy for projects which have P2P references which are also packages.config before upgrading those. Should we block such upgrade? Or just warn, etc…
+-	Improve text messages on upgrade summary/ preview windows to reflect correct details about the top-level and transitive dependencies.
+-	Decide how to opt into this feature. Tool->option or nuget.config or environment variable, etc…
+-	Should we also backup packages folder in case installation failed because package wasn’t found on any listed sources?
+-	What’s required for a mvp release? And when should we target?
+
 
 ## Who is the customer?
 Every Visual Studio customer not using packages.config based projects. We want to get users to move away from the dependency management hell some of them are finding themselves in. Future investments will be primarily on top of new standards like PackageReference and we want to bring all our customers in for a ride. Currently, users have to use either read blogs or this [doc] (https://blog.nuget.org/20170316/NuGet-now-fully-integrated-into-MSBuild.html) to do this themselves. Package authors and consumers both will be hugely benefit from this change.
