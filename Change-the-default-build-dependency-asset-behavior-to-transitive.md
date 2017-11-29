@@ -1,4 +1,4 @@
-Status: **Reviewed**
+Status:
 
 ## Issue
 The work for this feature and the discussion around the spec is tracked here:
