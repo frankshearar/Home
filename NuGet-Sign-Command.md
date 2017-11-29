@@ -47,12 +47,6 @@ The certificate store can be specified by -CertificateStoreName and -Certificate
 -CertificatePassword - Password for the certificate, if needed.
 This option can be used to specify the password for the certificate. If no password is provided, the user may be prompted for a password at run time, unless the -NonInteractive  option is passed.
 
--CryptographicServiceProvider - Name of the cryptographic service provider which contains the private key container.
-This option, along with -KeyContainer, can be used to specify the private key if the certificate file does not contain one.
-
--KeyContainer - Name of the key container which has the private key.
-This option, along with -CryptographicServiceProvider, can be used to specify the private key if the certificate file does not contain one.
-
 -Timestamper - URL to an RFC 3161 timestamp server.
 
 -TimestampHashAlgorithm - Hash algorithm to be used by the RFC 3161 timestamp server. Defaults to SHA256.
@@ -92,17 +86,13 @@ The `CertificateFilePath` option is used to uniquely identify a certificate. The
     Enhanced Key Usage: Usage
 ```
 
-* The users should use 1 of the 2 following ways to specify the private key to be used to sign the package - 
-    1. Primarily they should provide a certificate which contains a private key, in such a case we will use that to sign the package. 
-    2. However, if the certificate does not contain a private key then the user can provide the `CryptographicServiceProvider` and `KeyContainer` values to be used to find the private key. While providing `CryptographicServiceProvider` and `KeyContainer` values, the user must ensure that the resolved private key must match the certificate file passed. Else the sign command will fail.
-* `Overwrite` option can be used to specify if an existing signature should be overwritten. If this switch is not used then we should fail if there is an existing signature.
+* The users should use the following way to specify the private key to be used to sign the package - 
+    1. Users should provide a certificate which contains a private key, in such a case we will use that to sign the package.
 
 ### Acceptable Certificate sources
 The command will support for the following certificates sources - 
  1. Certificate file - Path to the certificate file on the local file system or a network share.
  2. Certificate store- `CertificateSubjectName` and `CertificateFingerprint` options can be used to search the local certificate store. Users can also use the `-CertificateStoreName` and `-CertificateStoreLocation` options to specify the certificate store name and location to be used to search for the certificate.
- 3. Hardware Security Module - Under Investigation.
- 4. CSP - User can provide the Cryptographic Service Provider name and the key container name. [Sample Code](https://msdn.microsoft.com/en-us/library/system.security.cryptography.cspparameters(v=vs.110).aspx)
 
 ### Signing Atomicity
 The sign command should be atomic in nature i.e. If the command fails then the original package should not be modified. Current approach - 
@@ -115,7 +105,6 @@ The sign command should perform the following validations before attempting to s
  3. Validate that the user has supplied a single certificate through all of the options.
  4. If the certificate is password protected, validate that the user supplied a password using the `-CertificatePassword` option. Or prompt the user, when possible.
  5. Validate that the resolved certificate is currently valid.
- 7. Validate that the certificate contains a private key or the user has provided the `-CryptographicSignatureProvider` and `-KeyContainer` options. Fail if the package contains a private key and the user has provided csp or kc.
  6. Validate that the user has passed a valid timestamper url using the `-Timestamper` option.
  8. Logical validation on all the supplied options.
 
@@ -127,25 +116,12 @@ In future we would like to add support for the following platforms -
 
 * MSBuild target - `msbuild /t:nugetsign <package_path> [Options]`
 
-### Implementation Details
-The sign command will do the following - 
- 1. Check if the passed arguments are valid. If not then throw.
- 2. Wrap them into a `SignArgs` object.
- 3. Invoke ` var signResult = SignCommandRunner.Execute(SignArgs);`.
- 4. If `signResult.Status == Failure`, then  show an error indicating the failure.
-
-The SignCommandRunner will do the following - 
- 1. Convert the package path into an in memory Package Object/stream.
- 2. Convert the certificate into an in memory Certificate object.
- 3. Pass the SignArgs to NuGet.Sign API.
- 4. return result to the caller.
-
 ## Open Questions 
 
  **1.** Whats the best way to pass the certificate password to the sign command?  
     Currently the spec only accepts a commandline switch with clear text password. But we can also support having an 
     encrypted password stored in a nuget.config file.  
-    _We will allow users to pass a clear text via commandline or prompt them to input it in secure string format during runtime._
+    _We will allow users to pass a clear text via commandline or prompt them (On desktop and while not in NonInteractive mode) to input it in secure string format during runtime._
 
  **2.** What kind of validation will we do before signing?  
     We should spec out all the validations that will be done before signing.  
