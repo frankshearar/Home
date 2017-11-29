@@ -4,91 +4,91 @@ Package signing related errors and warnings should be in the following range -
 
 | Log Message Type | Starting Code | Ending Code |
 |------------------|---------------|-------------|
-| All              | NU3000        | NU3999      |
-| Errors           | NU3000        | NU3499      |
-| Warnings         | NU3500        | NU3999      |
-
-Further, error code ranges are sub divided as follows - 
-
-| Error/Warning range | Sub-Group |
-|---------------------|-----------|
-| 3000/3500           |           |
-| 3100/3600           |           |
-| 3200/3700           |           |
-| 3300/3800           |           |
-| 3400/3900           | Timestamp |
+| Errors           | NU3000        | NU3099      |
+| Warnings         | NU3500        | NU3599      |
 
 # Errors
 
-## Generating author signature
-
-### NUxxxx
+### 3000
 
 #### Issue
-issue explanation goes here
-
-## Generating timestamp
-
-### NU3401
-
-#### Issue
-Author certificate was not valid when it was timestamped by the timestamp authority.
+Default signature issue
 
 
-### NU3402
+### NU3001
 
 #### Issue
-Timestamp authority's certificate does not build to a trusted root authority.
+Package passed to the verify command has either of the two issues -
+1. Package signature is invalid.
+2. Package is not signed.
 
 
-### NU3403
-
-#### Issue
-Timestamp authority's certificate does not have a valid Enhanced Key Usage field.
-
-
-### NU3404
+### NU3002
 
 #### Issue
-Timestamp authority's response does not contain the right author signature value hash.
+Package verification fails due to one of the following - 
+1. Package integrity check failed. The package has been tampered.
+2. Author signature verification failed. <Exception Text>
+3. Signature does not have a certificate.
+4. Certificate does not meet the public key requirements.
+5. Unable to validate signer certificate chain.
 
-### NU3405
-
-#### Issue
-Timestamp authority's response does not contain the right nonce that is used to track the request.
-
-### NU3406
-
-#### Issue
-Timestamp authority's response does not contain the right hash algorithm identifier for the author signature.
-
-## Verifying author signature
-
-### NUxxxx
+### NU3011
 
 #### Issue
-issue explanation goes here
+Certificate chain cannot be built for the following cases - 
+1. The timestamp service's certificate chain could not be built for the following certificate - <Certificate Details>
+
+
+### NU3012
+
+#### Issue
+Certificate not valid in the following cases - 
+1. Author certificate was not valid when it was timestamped.
+
+
+### NU3021
+
+#### Issue
+Timestamp authority response not valid in the following cases - 
+1. Timestamp service's response does not meet the NuGet package signature specification: Timestamp response does not contain a matching response. 
+2. Timestamp service's response does not meet the NuGet package signature specification: Timestamp response does not contain an acceptable hash algorithm.
+3. Timestamp service's response does not meet the NuGet package signature specification: Timestamp signature contains invalid content type.
+4. Timestamp service's response does not meet the NuGet package signature specification: Timestamp response contains invalid signature value hash.
+5. Timestamp service's response does not meet the NuGet package signature specification: Timestamp service's certificate does not contain a valid Enhanced Key Usage for timestamping.
+
+
+### NU3022
+
+#### Issue
+Signed package contains an invalid timestamp - 
+1. The signature contains an invalid timestamp. 
+   Detailed log contains more detailed failure.
 
 <br/>
 # Warnings 
 
-## Generating author signature
-
-### NUxxxx
+### NU3500
 
 #### Issue
-issue explanation goes here
+Default signing warning
 
-## Generating timestamp
 
-### NU3901
-
-#### Issue
-Timestamp authority's response does not contain the right author signature value hash.
-
-## Verifying author signature
-
-### NUxxxx
+### NU3501
 
 #### Issue
-issue explanation goes here
+Certificate does not build to a trusted root - 
+Signing certificate does not chain to a trusted root.
+
+
+### NU3502
+
+#### Issue
+Signature information unavailable. [Currently not thrown]
+
+
+### NU3521
+
+#### Issue
+No `-Timestamper` option was provided the signed package will not be timestamped. To learn more about this option, please visit https://docs.nuget.org/docs/reference/command-line-reference
+
