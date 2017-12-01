@@ -42,7 +42,7 @@ The package signature will be validated before the package gets expanded to the 
 
 This validation will verify the content has not been modified since signing and the certificate chains to a trusted root in the local machine.
 
-This validation will end with three possible results that will be shown in the output (Error List in Visual Studio and Std Error in NuGet.exe). The CLI for .NETCore apps will now validate package signatures till we are done with Stage 3, and hence no errors/warnings will be shown.
+This validation will end with three possible results that will be shown in the output (Error List in Visual Studio and Std Error in NuGet.exe). The CLI for .NETCore apps will not validate package signatures until we are done with Stage 3, and hence no errors/warnings will be shown.
 
 |Status|Message|Description|
 |:-----|:------|:---------|
@@ -77,4 +77,3 @@ When submitting to a NuGet server, the signature will be validated against the s
 
 We will announce when NuGet.org will start validating signatures during the submission process in our [Announcements repo](https://github.com/NuGet/Announcements).
 
->Note: If the submitted package has no signatures, the package will be allowed but it will not get the visual indicator.
