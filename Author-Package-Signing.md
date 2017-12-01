@@ -24,7 +24,7 @@ When the signing certificate does not chain to a trusted root on the local machi
 
 ## Solution 
 
-As described in the [blog post](https://blog.nuget.org/20170809/NuGet-Package-Signing.html), this feature corresponds to the Stage 1 of the overall roadmap for Package Signing. Signed packages will not be strictly required by NuGet.org, Visual Studio or NuGet.exe. Authors and consumers can decide if they want to start using the feature at their own pace. 
+As described in the [blog post](https://blog.nuget.org/20170914/NuGet-Package-Signing.html), this feature corresponds to the Stage 1 of the overall roadmap for Package Signing. Signed packages will not be strictly required by NuGet.org, Visual Studio or NuGet.exe. Authors and consumers can decide if they want to start using the feature at their own pace. 
 
 NuGet packages can be signed with an embedded  signature based on  X.509 code signing certificates. This signature will provide a mecahnism to validate pacakge integrity (the content has not been modified) and authenticity (the package author has possession of the certificate at the time of signing).
 
