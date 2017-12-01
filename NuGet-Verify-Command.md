@@ -86,8 +86,6 @@ Some errors and warnings that should be displayed are:
 
 **Warnings**
 
-* A signing certificate doesn't chain up to a trusted root
-* A timestamper certificate doesn't chain up to a trusted root
 * Unable to retrieve revocation information for signing certificate.
 
 **Errors**
@@ -100,6 +98,8 @@ Some errors and warnings that should be displayed are:
 * Signature file is too big
 * Invalid signature. File might have been tampered.
 * Signer certificate does not match any of the fingerprints provided.
+* A signing certificate doesn't chain up to a trusted root
+* A timestamper certificate doesn't chain up to a trusted root
 
 ### Corresponding commands
 
