@@ -211,7 +211,7 @@ In the case of signed packages downloaded by a plugin, some steps below MAY be d
     1. Verify that the signing certificate is trusted.
     1. Create an additional certificate store consisting of:
         * certificates in the `SignedData.certificates` collection
-        * certificates in the primary signature's `SigningCertificateV2` [[RFC 5035](https://tools.ietf.org/html/rfc5035)] attribute, if present
+        * certificates in the primary signature's `signing-certificate-v2` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attribute, if present
     1. Using the additional certificate store from step 6.6, build a chain for the signing certificate.
 1. If no failures have been encountered, treat the package as a valid signed package.
 
