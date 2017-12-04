@@ -4,6 +4,7 @@
 
 #### Reviewing
 * [[Package signing]]
+* [[Package Signatures Technical Details]]
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
 * [Package README.md support](Package-README.md-support)
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
