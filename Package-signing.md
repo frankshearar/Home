@@ -23,10 +23,10 @@ The work for this feature and the discussion around the spec is tracked here: [#
 
 - **Package Signatures Technical Details**: Contains the signature format technical details 
     - https://github.com/NuGet/Home/wiki/Package-Signatures-Technical-Details
-    - Discuss (TBD)
+    - Discuss [#6250](https://github.com/nuget/home/issues/6250)
 
 #### Stage 2. Tamper proofing entire package dependency graphs 
-- NuGet Server Checksums [TBD]
+- Repository Signatures [TBD]
 
 #### Stage 3. Configurable policies to enable locked down developer environments
 - NuGet client security policy. [TBD]
