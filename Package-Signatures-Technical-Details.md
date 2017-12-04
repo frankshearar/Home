@@ -100,7 +100,7 @@ Author and repository signatures are identified through the `commitment-type-ind
 A signature MUST NOT specify both the author and repository commitment types.  A signature which is neither an author nor repository signature MUST NOT use the aforementioned commitment types.
 
 An author signature MAY satisfy the requirements of any CAdES signature but MUST satisfy CAdES-BES requirements with the following additional requirements:
-* The `SigningCertificateV2` attribute [[RFC 5035](https://tools.ietf.org/html/rfc5035)] MUST be present.
+* The `signing-certificate-v2` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] MUST be present.
 * The `signing-time` attribute [[RFC 5652](https://tools.ietf.org/html/rfc5652#section-11.3)] MUST be present.
 
 An author signature SHOULD extend to CAdES-T by adding the `signature-time-stamp` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-6.1.1)] to provide long-term signature validity even after the signing certificate's validity period has passed.
@@ -198,7 +198,7 @@ In the case of signed packages downloaded by a plugin, some steps below MAY be d
         1. Verify that the timestamp certificate satisifies [minimum requirements](#CertificateMinimumRequirements).
         1. Create an additional certificate store consisting of:
             * certificates in the `SignedData.certificates` collection
-            * certificates in the timestamp signature's `signing-certificate` [[RFC 2634](https://tools.ietf.org/html/rfc2634)] or `SigningCertificateV2` [[RFC 5035](https://tools.ietf.org/html/rfc5035)] attributes, if present
+            * certificates in the timestamp signature's `signing-certificate` [[RFC 2634](https://tools.ietf.org/html/rfc2634)] or `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attributes, if present
         1. Using the additional certificate store from step 5.2.5, build a chain for the timestamp signing certificate with the `id-kp-timeStamping` EKU.  
         1. Retrieve the timestamp's generalized time from `TSTInfo.genTime`.
         1. Retrieve the timestamp's accuracy.  If the accuracy is explicitly specified in `TSTInfo.accuracy`, use that value.  If the accuracy is not explicitly specified and `TSTInfo.policy` is the baseline time-stamp policy [[RFC 3628](https://tools.ietf.org/html/rfc3628#section-5.2)], use an accuracy of 1 second.  Otherwise, use an accuracy of 0. 
