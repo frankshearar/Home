@@ -1,5 +1,11 @@
 Status: **In review**
 
+## Issue
+
+The discussion around this spec is tracked here - **
+Package Signatures Technical Details [#6250](https://github.com/NuGet/Home/issues/6250)** 
+
+
 # NuGet Package Signatures Technical Specification
 
 ## Introduction
