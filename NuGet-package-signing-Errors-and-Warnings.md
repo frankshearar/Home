@@ -18,7 +18,12 @@ Default signature issue
 ### NU3001
 
 #### Issue
-Package passed to the verify command has either of the two issues -
+Input error in sign/verify command -
+In sign command - 
+1. The certificate file is not found.
+2. The certificate file is not a valid pfx file.
+
+In verify command -
 1. Package signature is invalid.
 2. Package is not signed.
 
@@ -33,6 +38,15 @@ Package verification fails due to one of the following -
 4. Certificate does not meet the public key requirements.
 5. Unable to validate signer certificate chain.
 
+### NU3003
+
+#### Issue
+Invalid number of matching certificates in sign command - 
+1. Multiple certificates were found that meet all the given criteria. Use the '-CertificateFingerprint' option with the hash of the desired certificate.
+2. No certificates were found that meet all the given criteria. For a list of accepted ways to provide a certificate, please visit https://docs.nuget.org/docs/reference/command-line-reference
+
+
+
 ### NU3011
 
 #### Issue
@@ -45,6 +59,19 @@ Certificate chain cannot be built for the following cases -
 #### Issue
 Certificate not valid in the following cases - 
 1. Author certificate was not valid when it was timestamped.
+
+
+### NU3013
+
+#### Issue
+The certificate's private key cannot be read -
+The following certificate cannot be used for package signing as the private key provider is unsupported.
+
+
+### NU3014
+
+#### Issue
+Invalid password was provided for the certificate file '<cert_file_path>'. Please provide a valid password using the '-CertificatePassword' option
 
 
 ### NU3021
