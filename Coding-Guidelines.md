@@ -39,7 +39,7 @@ The *structure* of the code that we write and the *tools* that we use to write t
 
 ### Repos
 
-To create a new repo in the https://github.com/nuget/ org, contact @yishaigalatzer.
+To create a new repo in the https://github.com/nuget/ org, contact @rrelyea.
 
 ### Home repo
 
