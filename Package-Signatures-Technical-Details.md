@@ -179,7 +179,7 @@ In the case of signed packages downloaded by a plugin, some steps below MAY be d
     1. Verify that the package signature format version as indicated by the `Version` property value is supported.
 1. Verify package integrity.
     1. Verify that the hash algorithm indicated by the `Hash-Algorithm-Oid-Hash` property is supported.  If it is not supported, stop further validation and treat the package as unsigned.
-    1. Compute a new hash using the same hash algorithm from step 4.1.
+    1. Compute a new hash using the same hash algorithm from step 4.i.
         1. Open a read-only binary stream for the package file.
         1. Compute a hash over the stream while accounting for package changes introduced by adding the package signature file to the package.  For example:
             1. Exclude the package signature file's local file and central directory headers from hashing.
@@ -199,7 +199,7 @@ In the case of signed packages downloaded by a plugin, some steps below MAY be d
         1. Create an additional certificate store consisting of:
             * certificates in the `SignedData.certificates` collection
             * certificates in the timestamp signature's `signing-certificate` [[RFC 2634](https://tools.ietf.org/html/rfc2634)] or `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attributes, if present
-        1. Using the additional certificate store from step 5.2.5, build a chain for the timestamp signing certificate with the `id-kp-timeStamping` EKU.  
+        1. Using the additional certificate store from step 5.ii.e, build a chain for the timestamp signing certificate with the `id-kp-timeStamping` EKU.  
         1. Retrieve the timestamp's generalized time from `TSTInfo.genTime`.
         1. Retrieve the timestamp's accuracy.  If the accuracy is explicitly specified in `TSTInfo.accuracy`, use that value.  If the accuracy is not explicitly specified and `TSTInfo.policy` is the baseline time-stamp policy [[RFC 3628](https://tools.ietf.org/html/rfc3628#section-5.2)], use an accuracy of 1 second.  Otherwise, use an accuracy of 0. 
         1. Calculate the timestamp range using the lower and upper limits per [RFC 3161 section 2.4.2](https://tools.ietf.org/html/rfc3161#section-2.4.2) and store the limits in variables `TimeStampLowerLimit` and `TimeStampUpperLimit`, respectively.
@@ -212,7 +212,7 @@ In the case of signed packages downloaded by a plugin, some steps below MAY be d
     1. Create an additional certificate store consisting of:
         * certificates in the `SignedData.certificates` collection
         * certificates in the primary signature's `signing-certificate-v2` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attribute, if present
-    1. Using the additional certificate store from step 6.6, build a chain for the signing certificate.
+    1. Using the additional certificate store from step 6.vi, build a chain for the signing certificate.
 1. If no failures have been encountered, treat the package as a valid signed package.
 
 ## References
