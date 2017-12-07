@@ -14,7 +14,7 @@ Each of these design spec are still evolving.
 
 ### Motivation 
 NuGet currently helps provide tools per dotnet cli requirements through the [DotnetCLIToolReference](https://github.com/NuGet/Home/wiki/DotnetCliToolReference-restore) feature. 
-As described in the above linked spec, they believe this is not the way to go in future as it binds tools to projects only and goes against the "clean" project principle that drove the creation of the .NET Core SDK. 
+The reasoning for adding a new feature is described in the above linked specs. 
 
 ### Solution
 
