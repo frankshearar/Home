@@ -64,9 +64,12 @@ An example temporary project would be:
 </Project>
 ```
 
+NuGet will also provide a way to walk the settings based on the CLI working directory. 
+Current workaround is RestoreSolutionDirectory. [Task 6199](https://github.com/NuGet/Home/issues/6199)
+
 The install directory will be a V3 style directory, where the project.assets.json file will be in the root of the package folder. 
 
-The assets file will need to be extended to include the tools folder when packages are marked with the **Tools** PackageType.
+The assets file will need to be extended to include the tools folder when packages are marked with the **Tools** PackageType. [Task 6197](https://github.com/NuGet/Home/issues/6197)
 
 CLI will read the assets once restore is done to find the correct tool path. 
 NuGet will add the tools assets to the assets file, and then CLI will use the respective APIs to get that asset path. 
@@ -82,7 +85,7 @@ CLI will control the uninstallation (really deleting the folder), and making sur
 
 
 ##### Error cases
-NuGet restore will not succeed in the following scenarios. 
+NuGet restore will not succeed in the following scenarios. [Task 6198](https://github.com/NuGet/Home/issues/6198)
 
 | Scenario | Status | 
 | ------------- |:-------------:|
@@ -97,7 +100,7 @@ Above mentioned errors will happen for incorrect hybrid projects.
 
 ##### Open Questions
 - NuGet will persist a cache file by default in the same directory as the assets file. Does this cause any problems? Potentially CLI should remove if so. 
-- How is the tools restore directory provided, and what is this default directory? Should CLI be the one that provides the directory? If NuGet provides, is it part of a config, and I think this compromises the long-term maintainability of the tools. 
+- How is the tools restore directory provided, and what is this default directory? Should CLI be the one that provides the directory? If NuGet provides, is it part of a config, and I think this compromises the long-term maintainability of the tools. [Task 6260](https://github.com/NuGet/Home/issues/6260)
 - Discuss the location of the the tools, William is proposing something like ***C:\Users\username\.dotnet\tools\toolName\toolVersion\toolName\toolVersion\***
 - Clarify the experience once implemented, if someone tries to load a proper ToolReference project. 
 
