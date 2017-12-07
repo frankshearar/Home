@@ -33,7 +33,8 @@ From NuGet side, we want authors to mark their packages with a PackageType metad
 **Problem** - What should the package type be?
 **Proposal** - The package type should simply be named **Tool**. Because the concepts of global and locals tools are discussed, I think this name minimizes confusion.
 In addition, packages with this package type, can **only** have 1 package type!
-#####Open Questions
+
+##### Open Questions
 - Double check nuget.org for custom package types named **Tool**
 - Do we want to add extra validation on pack side to warn against creating packages with 2 packages if 1 of those package types is **Tool**
 
@@ -64,18 +65,22 @@ An example temporary project would be:
 The install directory will be a V3 style directory, where the project.assets.json file will be in the root of the package folder. 
 
 The assets file will need to be extended to include the tools folder when packages are marked with the **Tools** PackageType. CLI will read the assets once restore is done to find the correct tool path. 
+NuGet will add the tools assets to the assets file, and then CLI will use the respective APIs to get that asset path. 
 
 Example:
 ```
 C:\Users\username\.dotnet\tools\my.tool\1.2\project.assets.json
 ```
 
-CLI will control 
+
+CLI will control the uninstallation (really deleting the folder), and making sure that there's only a single version of each tool. They can use the [VersionPathResolver](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Packaging/VersionFolderPathResolver.cs) to figure that out. 
+
+
 ##### Open Questions
 - NuGet will persist a cache file by default in the same directory as the assets file. Does this cause any problems? Potentially CLI should remove if so. 
 - How is the tools restore directory provided, and what is this default directory? Should CLI be the one that provides the directory? If NuGet provides, is it part of a config, and I think this compromises the long-term maintainability of the tools. 
+- Discuss the location of the the tools, William is proposing somethging like ***C:\Users\username\.dotnet\tools\toolName\toolVersion\toolName\toolVersion\***
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
-
 
