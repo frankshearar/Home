@@ -50,8 +50,8 @@ An example temporary project would be:
   <PropertyGroup>
     <RestoreProjectStyle>ToolReference</RestoreProjectStyle>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RestorePackagesPath>C:\Users\wul\.dotnet\tools\my.tool\1.2</RestorePackagesPath>
-    <RestoreSolutionDirectory>C:\Users\wul\Downloads\console2</RestoreSolutionDirectory>
+    <RestorePackagesPath>C:\Users\username\.dotnet\tools\my.tool\1.2</RestorePackagesPath>
+    <RestoreSolutionDirectory>C:\Users\username\code\Library</RestoreSolutionDirectory>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
   <ItemGroup>
