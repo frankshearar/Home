@@ -66,20 +66,31 @@ The install directory will be a V3 style directory, where the project.assets.jso
 
 The assets file will need to be extended to include the tools folder when packages are marked with the **Tools** PackageType. CLI will read the assets once restore is done to find the correct tool path. 
 NuGet will add the tools assets to the assets file, and then CLI will use the respective APIs to get that asset path. 
+If restore fails, the CLI will be able to get the restore status from the assets file/restore exit code. 
 
 Example:
 ```
 C:\Users\username\.dotnet\tools\my.tool\1.2\project.assets.json
 ```
 
-
 CLI will control the uninstallation (really deleting the folder), and making sure that there's only a single version of each tool. They can use the [VersionPathResolver](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Packaging/VersionFolderPathResolver.cs) to figure that out. 
 
+
+##### Error cases
+NuGet restore will fail, if any of the following is true.
+| > 1 reference in ToolReference RestoreProjectStyle Project| Restore fails |
+|Tool reference in a non-ToolReference project style| Restore fails with an incompatibility error|
+|Non Tool reference in a ToolReference project style| Restore fails with an incompatibility error|
+
+##### Visual Studio Experience
+Users **must** not author projects like this and load them in VS. 
+Above mentioned errors will happen for incorrect hybrid projects. 
 
 ##### Open Questions
 - NuGet will persist a cache file by default in the same directory as the assets file. Does this cause any problems? Potentially CLI should remove if so. 
 - How is the tools restore directory provided, and what is this default directory? Should CLI be the one that provides the directory? If NuGet provides, is it part of a config, and I think this compromises the long-term maintainability of the tools. 
 - Discuss the location of the the tools, William is proposing somethging like ***C:\Users\username\.dotnet\tools\toolName\toolVersion\toolName\toolVersion\***
+- Clarify the experience once implemented, if someone tries to load a proper ToolReference project. 
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
