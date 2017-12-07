@@ -63,10 +63,16 @@ An example temporary project would be:
 
 The install directory will be a V3 style directory, where the project.assets.json file will be in the root of the package folder. 
 
+The assets file will need to be extended to include the tools folder when packages are marked with the **Tools** PackageType. CLI will read the assets once restore is done to find the correct tool path. 
+
 Example:
 ```
 C:\Users\username\.dotnet\tools\my.tool\1.2\project.assets.json
 ```
+
+#### Open Questions
+- NuGet will persist a cache file by default in the same directory as the assets file. Does this cause any problems? Potentially CLI should remove if so. 
+- How is the tools restore directory provided, and what is this default directory? Should CLI be the one that provides the directory? If NuGet provides, is it part of a config, and I think this compromises the long-term maintainability of the tools. 
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
