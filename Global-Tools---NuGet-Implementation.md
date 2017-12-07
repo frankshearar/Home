@@ -60,6 +60,13 @@ An example temporary project would be:
 </Project>
 ```
 
+The install directory will be a V3 style directory, where the project.assets.json file will be in the root of the package folder. 
+
+Example:
+```
+C:\Users\username\.dotnet\tools\my.tool\1.2\project.assets.json
+```
+
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
 
