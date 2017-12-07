@@ -31,7 +31,9 @@ Since pack is very extensible, the pack experience, is almost completely in the 
 From NuGet side, we want authors to mark their packages with a PackageType metadata, as described in [here](https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets#pack-target). 
 
 **Problem** - What should the package type be?
+
 **Proposal** - The package type should simply be named **Tool**. Because the concepts of global and locals tools are discussed, I think this name minimizes confusion.
+
 In addition, packages with this package type, can **only** have 1 package type!
 
 ##### Open Questions
