@@ -1,0 +1,44 @@
+Status: **Reviewing**
+
+### Issue
+This specification is the NuGet side of a new dotnet cli experience, tentatively called "Global Tools". 
+Related specifications are here:
+- [.NET Core SDK - Global Tools](https://github.com/dotnet/designs-microsoft/blob/a9ef5b3217e776b4155266826a598db682488613/proposals/global-tools.md) 
+
+- [Global tools implementation design](
+https://github.com/dotnet/designs-microsoft/blob/implementation-global-tools/proposals/implementation_global_tools.md)
+
+Each of these design spec are still evolving. 
+
+[NuGet Github Collector issue #6200](https://github.com/NuGet/Home/issues/6200)
+
+### Motivation 
+NuGet currently helps provide tools per dotnet cli requirements through the [DotnetCLIToolReference](https://github.com/NuGet/Home/wiki/DotnetCliToolReference-restore) feature. 
+As described in the above linked spec, they believe this is not the way to go in future as it binds tools to projects only and goes against the "clean" project principle that drove the creation of the .NET Core SDK. 
+
+### Solution
+
+We will introduce a new "PackageType" and a well-defined format how to create such tools. 
+
+NuGet will provide APIs for the CLI to be able to install mentioned global tools to a pre-determined location. 
+To do this, they will create a temporary project that will indicate that it's a global tool restore project, and will contain a global tool reference as a "PackageReference". 
+Then the CLI will call NuGet restore with these parameters, which NuGet needs to respect and interpret correctly. 
+NuGet will block adding tool packages into standard package reference project. 
+Additionally, only 1 global tool package reference per fake project is allowed.
+
+#### Creating a global tool - Pack Experience
+Since pack is very extensible, the pack experience, is almost completely in the hands of the CLI team. 
+
+**Problem** - What should the package type be?
+**Proposal** - The package type should simply be named **Tool**. Because the concepts of global and locals tools are discussed, I think this name minimizes confusion.
+In addition, packages with this package type, can **only** have 1 package type!
+**Open Questions** 
+- Double check nuget.org for custom package types named **Tool**
+- Do we want to add extra validation on pack side to warn against creating packages with 2 packages if 1 of those package types is **Tool**
+
+
+
+#### Non-Goals
+Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
+
+
