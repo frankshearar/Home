@@ -113,12 +113,12 @@ Package signing certificate requirements and minimum requirements for hash and s
 
 ## <a id="CertificateMinimumRequirements"></a> Certificate minimum requirements
 A NuGet package signing certificate MUST meet the following minimum requirements:
-1. The certificate MUST have the `id-kp-codeSigning` EKU per [RFC 5280 section 4.2.1.12](https://tools.ietf.org/html/rfc5280#section-4.2.1.12).
+1. The certificate MUST be valid for the `id-kp-codeSigning` purpose [[RFC 5280 section 4.2.1.12](https://tools.ietf.org/html/rfc5280#section-4.2.1.12)].
 1. The certificate MUST have an RSA public key length of 2048 bits or higher.
 
 A timestamping certificate MUST 
 meet the following minimum requirements:
-1. The certificate MUST have the `id-kp-timeStamping` EKU per [RFC 5280 section 4.2.1.12](https://tools.ietf.org/html/rfc5280#section-4.2.1.12).
+1. The certificate MUST be valid for the `id-kp-timeStamping` purpose [[RFC 5280 section 4.2.1.12](https://tools.ietf.org/html/rfc5280#section-4.2.1.12)].
 1. The certificate MUST have an RSA public key length of 2048 bits or higher.
 
 At signing time, a certificate MUST be within its validity period according to the package writer and MUST NOT be not revoked.  At validation time, the certificate's revocation status SHOULD be rechecked; however, it is reasonable for package readers to fail open if revocation status is unavailable (e.g.:  a CRL is inaccessible).
