@@ -66,8 +66,11 @@ An example temporary project would be:
 
 The install directory will be a V3 style directory, where the project.assets.json file will be in the root of the package folder. 
 
-The assets file will need to be extended to include the tools folder when packages are marked with the **Tools** PackageType. CLI will read the assets once restore is done to find the correct tool path. 
+The assets file will need to be extended to include the tools folder when packages are marked with the **Tools** PackageType.
+
+CLI will read the assets once restore is done to find the correct tool path. 
 NuGet will add the tools assets to the assets file, and then CLI will use the respective APIs to get that asset path. 
+
 If restore fails, the CLI will be able to get the restore status from the assets file/restore exit code. 
 
 Example:
