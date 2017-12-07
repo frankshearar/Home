@@ -33,7 +33,7 @@ From NuGet side, we want authors to mark their packages with a PackageType metad
 **Problem** - What should the package type be?
 **Proposal** - The package type should simply be named **Tool**. Because the concepts of global and locals tools are discussed, I think this name minimizes confusion.
 In addition, packages with this package type, can **only** have 1 package type!
-**Open Questions** 
+#####Open Questions
 - Double check nuget.org for custom package types named **Tool**
 - Do we want to add extra validation on pack side to warn against creating packages with 2 packages if 1 of those package types is **Tool**
 
@@ -51,7 +51,7 @@ An example temporary project would be:
   <PropertyGroup>
     <RestoreProjectStyle>ToolReference</RestoreProjectStyle>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RestorePackagesPath>C:\Users\username\.dotnet\tools\my.tool\1.2</RestorePackagesPath>
+    <RestorePackagesPath>C:\Users\username\.dotnet\tools\/RestorePackagesPath>
     <RestoreSolutionDirectory>C:\Users\username\code\Library</RestoreSolutionDirectory>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
@@ -70,7 +70,8 @@ Example:
 C:\Users\username\.dotnet\tools\my.tool\1.2\project.assets.json
 ```
 
-#### Open Questions
+CLI will control 
+##### Open Questions
 - NuGet will persist a cache file by default in the same directory as the assets file. Does this cause any problems? Potentially CLI should remove if so. 
 - How is the tools restore directory provided, and what is this default directory? Should CLI be the one that provides the directory? If NuGet provides, is it part of a config, and I think this compromises the long-term maintainability of the tools. 
 
