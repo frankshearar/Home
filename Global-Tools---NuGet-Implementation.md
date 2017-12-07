@@ -28,6 +28,7 @@ Additionally, only 1 global tool package reference per fake project is allowed.
 
 #### Creating a global tool - Pack Experience
 Since pack is very extensible, the pack experience, is almost completely in the hands of the CLI team. 
+From NuGet side, we want authors to mark their packages with a PackageType metadata, as described in [here](https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets#pack-target). 
 
 **Problem** - What should the package type be?
 **Proposal** - The package type should simply be named **Tool**. Because the concepts of global and locals tools are discussed, I think this name minimizes confusion.
