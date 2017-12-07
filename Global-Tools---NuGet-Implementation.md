@@ -43,6 +43,22 @@ Dotnet CLI will create a **temporary** project and provide all details regarding
 - Runtime Identifier
 In addition, this project should contain a restore project style property, named **ToolReference**. 
 I am proposing that because we already have a DotnetCLiTool restore style [type](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectStyle.cs#L26). 
+An example temporary project would be:
+
+```
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RestoreProjectStyle>ToolReference</RestoreProjectStyle>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RestorePackagesPath>C:\Users\wul\.dotnet\tools\my.tool\1.2</RestorePackagesPath>
+    <RestoreSolutionDirectory>C:\Users\wul\Downloads\console2</RestoreSolutionDirectory>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="my.tool" Version="1.2" />
+  </ItemGroup>
+</Project>
+```
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
