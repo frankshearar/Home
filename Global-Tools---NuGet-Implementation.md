@@ -36,7 +36,13 @@ In addition, packages with this package type, can **only** have 1 package type!
 - Double check nuget.org for custom package types named **Tool**
 - Do we want to add extra validation on pack side to warn against creating packages with 2 packages if 1 of those package types is **Tool**
 
-
+#### Installing a global tool
+Dotnet CLI will create a **temporary** project and provide all details regarding restore there, including 
+- Install directory
+- Target Framework
+- Runtime Identifier
+In addition, this project should contain a restore project style property, named **ToolReference**. 
+I am proposing that because we already have a DotnetCLiTool restore style [type](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectStyle.cs#L26). 
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
