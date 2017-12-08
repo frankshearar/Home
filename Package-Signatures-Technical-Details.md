@@ -126,7 +126,7 @@ At signing time, a certificate MUST be within its validity period according to t
 Certificates SHOULD NOT have the lifetime signing EKU (1.3.6.1.4.1.311.10.3.13).  Package readers and writers may not check for or enforce the lifetime signing EKU.
 
 ## <a id="SupportedAlgorithms"></a>Supported algorithms
-The following hash and signature algorithms SHOULD be supported:
+The following hash algorithms SHOULD be supported:
 
 | Hash Algorithm  | `Hash-Algorithm-Oid`   |
 | --------------- |------------------------|
@@ -134,9 +134,15 @@ The following hash and signature algorithms SHOULD be supported:
 | SHA-2-384       | 2.16.840.1.101.3.4.2.2 |
 | SHA-2-512       | 2.16.840.1.101.3.4.2.3 |
 
-The RSA public key algorithm SHOULD be supported.
+The following RSA PKCS #1 v1.5 signature algorithms SHOULD be supported:
 
-RSA-based signatures MUST use the `RSASSA-PKCS1-v1_5` padding mode [[RFC 8017](https://tools.ietf.org/html/rfc8017#section-8.2)].  This is to help ensure compatibility across all platforms (https://github.com/dotnet/corefx/blob/master/Documentation/architecture/cross-platform-cryptography.md#rsa).
+| Signature Algorithm      | OID                   |
+| ------------------------ |-----------------------|
+| sha256WithRSAEncryption  | 1.2.840.113549.1.1.11 |
+| sha384WithRSAEncryption  | 1.2.840.113549.1.1.12 |
+| sha512WithRSAEncryption  | 1.2.840.113549.1.1.13 |
+
+The `RSASSA-PKCS1-v1_5` padding mode [[RFC 8017](https://tools.ietf.org/html/rfc8017#section-8.2)] is used to help ensure compatibility across all platforms (https://github.com/dotnet/corefx/blob/master/Documentation/architecture/cross-platform-cryptography.md#rsa).
 
 Over time algorithms may be deprecated and replaced with newer, more secure algorithms.  An example is SHA-1's deprecation in favor of SHA-2.  Package readers and writers that support package signing MAY block acceptance and creation, respectively, of new packages signed with a deprecated algorithm.  Older package readers and writers that support package signing SHOULD treat packages signed with a newer, unsupported algorithm as:
 * unsigned for read operations.  (Do not block installation of such a package, but also do not attempt to validate the signature.)
