@@ -45,6 +45,7 @@ Dotnet CLI will create a **temporary** project and provide all details regarding
 - Install directory
 - Target Framework
 - Runtime Identifier
+- BaseIntermediateOutputPath
 In addition, this project should contain a restore project style property, named **ToolReference**. 
 I am proposing that because we already have a DotnetCLiTool restore style [type](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectStyle.cs#L26). 
 An example temporary project would be:
@@ -67,7 +68,7 @@ An example temporary project would be:
 NuGet will also provide a way to walk the settings based on the CLI working directory. 
 Current workaround is RestoreSolutionDirectory. [Task 6199](https://github.com/NuGet/Home/issues/6199)
 
-The install directory will be a V3 style directory, where the project.assets.json file will be in the root of the package folder. 
+The install directory will be a V3 style directory.
 
 The assets file will need to be extended to include the tools folder when packages are marked with the **Tools** PackageType. [Task 6197](https://github.com/NuGet/Home/issues/6197)
 
@@ -81,7 +82,7 @@ Example:
 C:\Users\username\.dotnet\tools\my.tool\1.2\project.assets.json
 ```
 
-CLI will control the uninstallation (really deleting the folder), and making sure that there's only a single version of each tool. They can use the [VersionPathResolver](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Packaging/VersionFolderPathResolver.cs) to figure that out. 
+CLI will handle the restore failure cases, and partial file left on disk. They can use the [VersionPathResolver](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Packaging/VersionFolderPathResolver.cs) to figure that out. 
 
 
 ##### Error cases
