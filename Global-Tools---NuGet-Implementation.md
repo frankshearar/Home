@@ -8,13 +8,14 @@ Related specifications are here:
 - [Global tools implementation design](
 https://github.com/dotnet/designs-microsoft/blob/implementation-global-tools/proposals/implementation_global_tools.md)
 
-Each of these design spec are still evolving. 
+Each of these design specs are still evolving. 
 
 [NuGet Github Collector issue #6200](https://github.com/NuGet/Home/issues/6200)
 
 ### Motivation 
-NuGet currently helps provide tools per dotnet cli requirements through the [DotnetCLIToolReference](https://github.com/NuGet/Home/wiki/DotnetCliToolReference-restore) feature. 
+NuGet currently helps provide tools per dotnet cli 1.x requirements through the [DotnetCLIToolReference](https://github.com/NuGet/Home/wiki/DotnetCliToolReference-restore) feature. 
 The reasoning for adding a new feature is described in the above linked specs. 
+We believe most tool publishers will move to global tools.
 
 ### Solution
 
@@ -27,35 +28,38 @@ NuGet will block adding tool packages into standard package reference project.
 Additionally, only 1 global tool package reference per fake project is allowed.
 
 #### Creating a global tool - Pack Experience
-Since pack is very extensible, the pack experience, is almost completely in the hands of the CLI team. 
-From NuGet side, we want authors to mark their packages with a PackageType metadata, as described in [here](https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets#pack-target). 
+Since pack is very extensible, the pack experience doesn't need additional work from the NuGet side. 
+From NuGet side, we will require authors to mark their packages with a PackageType metadata, as described in [here](https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets#pack-target). 
 
 **Problem** - What should the package type be?
 
-**Proposal** - The package type should simply be named **Tool**. Because the concepts of global and locals tools are discussed, I think this name minimizes confusion.
+**Proposal** - The package type should simply be named **CommandLineTool**. Because the concepts of global and locals tools are discussed, I think this name minimizes confusion.
 
 In addition, packages with this package type, can **only** have 1 package type!
+Rob - we should enforce this 1 package type today.
 
 ##### Open Questions
-- Double check nuget.org for custom package types named **Tool**
-- Do we want to add extra validation on pack side to warn against creating packages with 2 packages if 1 of those package types is **Tool**
+- Double check nuget.org for custom package types named **CommandLineTool** (Rob - however, we invent them...not third parties...need to discuss policy)
+
+- Do we want to add extra validation on pack side to warn against creating packages with 2 packageypes if 1 of those package types is **Tool** (Rob - yes...even if not a tool)
 
 #### Installing a global tool
 Dotnet CLI will create a **temporary** project and provide all details regarding restore there, including 
-- Install directory
-- Target Framework
-- Runtime Identifier
-- BaseIntermediateOutputPath
-In addition, this project should contain a restore project style property, named **ToolReference**. 
+- Install directory (where to install and extract nupkg and dependencies)
+- Target Framework (used by restore to select assets)
+- Runtime Identifier (used by restore to select assets)
+- BaseIntermediateOutputPath (where assets file goes)
+In addition, this project should contain a restore project style property, named **CommandLineToolReference**. (another option would be to do PR, but then have another property). 
 I am proposing that because we already have a DotnetCLiTool restore style [type](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectStyle.cs#L26). 
 An example temporary project would be:
 
 ```
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <RestoreProjectStyle>ToolReference</RestoreProjectStyle>
+    <RestoreProjectStyle>CommandLineToolReference</RestoreProjectStyle>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RestorePackagesPath>C:\Users\username\.dotnet\tools\/RestorePackagesPath>
+     <!-- c:\users\username\.nuget was returned by an API that they called on us to find machinewide place for tools -->
+    <RestorePackagesPath>C:\Users\username\.nuget\tools\/RestorePackagesPath>
     <RestoreSolutionDirectory>C:\Users\username\code\Library</RestoreSolutionDirectory>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
