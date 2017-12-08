@@ -104,6 +104,13 @@ Above mentioned errors will happen for incorrect hybrid projects.
 - How is the tools restore directory provided, and what is this default directory? Should CLI be the one that provides the directory? If NuGet provides, is it part of a config, and I think this compromises the long-term maintainability of the tools. [Task 6260](https://github.com/NuGet/Home/issues/6260)
 - Discuss the location of the the tools, William is proposing something like ***C:\Users\username\.dotnet\tools\toolName\toolVersion\toolName\toolVersion\***
 - Clarify the experience once implemented, if someone tries to load a proper ToolReference project. 
+- CLI team is recommending the following folder structure for the tools and their dependencies. Do tools have dependencies? 
+```
+.dotnet/.tools/packageid/version/packageid/version/
+                                /dependency1 package id/
+                                /dependency2 package id/
+                                /asset file
+```
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
