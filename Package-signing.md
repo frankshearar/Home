@@ -4,7 +4,7 @@ This specification is one part of a new experience for package signing described
 
 ### Package Signatures Master Spec List
 
-Here you can find a list of the relevant specifications. Some of these require more work and details to be added, that we plan to do shortly – while some are further along. They are grouped by the three stages described in the blog post [NuGet Package Signing](https://blog.nuget.org/20170809/NuGet-Package-Signing.html).
+Here you can find a list of the relevant specifications. Some of these require more work and details to be added, that we plan to do shortly – while some are further along. They are grouped by the three stages described in the blog post [NuGet Package Signing](https://blog.nuget.org/20170914/NuGet-Package-Signing.html).
 
 The work for this feature and the discussion around the spec is tracked here: [#2577 Package Signing](https://github.com/NuGet/Home/issues/2577)
 
