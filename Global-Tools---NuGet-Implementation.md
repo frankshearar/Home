@@ -39,7 +39,7 @@ In addition, packages with this package type, can **only** have 1 package type!
 We need to add validation on pack side that there can be no packages with more than 1 package type that contains the package type **CommandLineTool**.
 
 ##### Open Questions
-- Rob - we should be enforcing this 1 package type today.
+- Rob - we should be enforcing this 1 package type today. Update: We are not. Created [Task 6298](https://github.com/NuGet/Home/issues/6298) as a result. 
 - Double check nuget.org for custom package types named **CommandLineTool** (Rob - however, we invent them...not third parties...need to discuss policy)
 
 #### Installing a global tool
