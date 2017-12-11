@@ -36,12 +36,11 @@ From NuGet side, we will require authors to mark their packages with a PackageTy
 **Proposal** - The package type should simply be named **CommandLineTool**. Because the concepts of global and locals tools are discussed, I think this name minimizes confusion.
 
 In addition, packages with this package type, can **only** have 1 package type!
-Rob - we should enforce this 1 package type today.
+We need to add validation on pack side that there can be no packages with more than 1 package type that contains the package type **CommandLineTool**.
 
 ##### Open Questions
+- Rob - we should be enforcing this 1 package type today.
 - Double check nuget.org for custom package types named **CommandLineTool** (Rob - however, we invent them...not third parties...need to discuss policy)
-
-- Do we want to add extra validation on pack side to warn against creating packages with 2 packageypes if 1 of those package types is **Tool** (Rob - yes...even if not a tool)
 
 #### Installing a global tool
 Dotnet CLI will create a **temporary** project and provide all details regarding restore there, including 
@@ -58,8 +57,11 @@ An example temporary project would be:
   <PropertyGroup>
     <RestoreProjectStyle>CommandLineToolReference</RestoreProjectStyle>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-     <!-- c:\users\username\.nuget was returned by an API that they called on us to find machinewide place for tools -->
-    <RestorePackagesPath>C:\Users\username\.nuget\tools\/RestorePackagesPath>
+     <!-- c:\users\username\.nuget was returned by an API that they called on us to find machinewide place for tools
+     The packageId is provided by the CLI team, and the package version if passed. 
+The CLI will handle cases where the version is not passed by creating a dummy folder name and then renaming the folder when they get the package version from NuGet.
+     -->
+    <RestorePackagesPath>C:\Users\username\.nuget\tools\packageId\packageVersion/RestorePackagesPath>
     <RestoreSolutionDirectory>C:\Users\username\code\Library</RestoreSolutionDirectory>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
@@ -69,12 +71,14 @@ An example temporary project would be:
 </Project>
 ```
 
+[Task 6260](https://github.com/NuGet/Home/issues/6260) to return the machine wide tools folder.
+
 NuGet will also provide a way to walk the settings based on the CLI working directory. 
 Current workaround is RestoreSolutionDirectory. [Task 6199](https://github.com/NuGet/Home/issues/6199)
 
 The install directory will be a V3 style directory.
 
-The assets file will need to be extended to include the tools folder when packages are marked with the **Tools** PackageType. [Task 6197](https://github.com/NuGet/Home/issues/6197)
+The assets file will need to be extended to include the tools folder when packages are marked with the **CommandLineTool** PackageType. [Task 6197](https://github.com/NuGet/Home/issues/6197)
 
 CLI will read the assets once restore is done to find the correct tool path. 
 NuGet will add the tools assets to the assets file, and then CLI will use the respective APIs to get that asset path. 
@@ -104,17 +108,8 @@ Users **must** not author projects like this and load them in VS.
 Above mentioned errors will happen for incorrect hybrid projects. 
 
 ##### Open Questions
-- NuGet will persist a cache file by default in the same directory as the assets file. Does this cause any problems? Potentially CLI should remove if so. 
-- How is the tools restore directory provided, and what is this default directory? Should CLI be the one that provides the directory? If NuGet provides, is it part of a config, and I think this compromises the long-term maintainability of the tools. [Task 6260](https://github.com/NuGet/Home/issues/6260)
-- Discuss the location of the the tools, William is proposing something like ***C:\Users\username\.dotnet\tools\toolName\toolVersion\toolName\toolVersion\***
+- NuGet will persist a cache file by default in the same directory as the assets file. CLI can consider cleaning this up. 
 - Clarify the experience once implemented, if someone tries to load a proper ToolReference project. 
-- CLI team is recommending the following folder structure for the tools and their dependencies. Do tools have dependencies? 
-```
-.dotnet/.tools/packageid/version/packageid/version/
-                                /dependency1 package id/
-                                /dependency2 package id/
-                                /asset file
-```
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
