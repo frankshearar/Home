@@ -110,7 +110,7 @@ Above mentioned errors will happen for incorrect hybrid projects.
 ##### Open Questions
 - NuGet will persist a cache file by default in the same directory as the assets file. CLI can consider cleaning this up. 
 - Clarify the experience once implemented, if someone tries to load a proper ToolReference project. Visual Studio will currently treat it as a package reference project since the restore project style property is not nominated. 
-- My initial idea is for nuget.exe to not "treat" projects like this as restorable. So you will only be able to restore this type of projects through the restore command. 
+- My initial idea is for nuget.exe to not "treat" projects like this as restorable. So you will only be able to restore this type of projects through the restore task. 
 
 
 #### Non-Goals
