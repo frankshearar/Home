@@ -39,8 +39,8 @@ In addition, packages with this package type, can **only** have 1 package type!
 We need to add validation on pack side that there can be no packages with more than 1 package type that contains the package type **CommandLineTool**.
 
 ##### Open Questions
-- Rob - we should be enforcing this 1 package type today. Update: We are not. Created [Task 6298](https://github.com/NuGet/Home/issues/6298) as a result. 
-- Double check nuget.org for custom package types named **CommandLineTool** (Rob - however, we invent them...not third parties...need to discuss policy)
+- Rob - we should be enforcing this 1 package type today. Update: We are not enforcing it on pack. We only do when we explicitly install a package. Created [Task 6298](https://github.com/NuGet/Home/issues/6298) as a result. 
+- Double check nuget.org for custom package types named **CommandLineTool** (Rob - however, we invent them...not third parties...need to discuss policy) Above issue discussion applies to this as well. 
 
 #### Installing a global tool
 Dotnet CLI will create a **temporary** project and provide all details regarding restore there, including 
@@ -109,7 +109,9 @@ Above mentioned errors will happen for incorrect hybrid projects.
 
 ##### Open Questions
 - NuGet will persist a cache file by default in the same directory as the assets file. CLI can consider cleaning this up. 
-- Clarify the experience once implemented, if someone tries to load a proper ToolReference project. 
+- Clarify the experience once implemented, if someone tries to load a proper ToolReference project. Visual Studio will currently treat it as a package reference project since the restore project style property is not nominated. 
+- My initial idea is for nuget.exe to not "treat" projects like this as restorable. So you will only be able to restore this type of projects through the restore command. 
+
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
