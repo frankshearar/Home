@@ -30,6 +30,12 @@ Additionally, only 1 global tool package reference per fake project is allowed.
 #### Creating a global tool - Pack Experience
 Since pack is very extensible, the pack experience doesn't need additional work from the NuGet side. 
 From NuGet side, we will require authors to mark their packages with a PackageType metadata, as described in [here](https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets#pack-target). 
+The will be included in the following path in the nupkg:
+```
+tools\{tfm}\{rid}\*.dll
+```
+* tfm is all accepted frameworks
+* rid can be "Any"
 
 **Problem** - What should the package type be?
 
