@@ -124,6 +124,7 @@ Tracking issues, [Task 4699](https://github.com/nuget/home/issues/4699)  [Task 9
 
 ##### CLI actionables. 
 - Make sure that the project file conforms to the above defined outline. 
+- Help settle on the [package type name](#package-type-name), by considering their branding. 
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
