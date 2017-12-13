@@ -38,14 +38,16 @@ tools\{tfm}\{rid}\*.dll
 * rid can be "Any"
 
 ##### Open Questions
+###### Enforce package types
 - Rob - we should be enforcing this 1 package type today. Update: We are not enforcing it on pack. We only do when we explicitly install a package. Created [Task 6298](https://github.com/NuGet/Home/issues/6298) as a result. 
+###### Package Type Name
 - What should the package type be?
-
 Options: **CommandLineTool**, **GlobalTool**, **Tool**, **DotnetTool**
 Are these packages command line only? They can pull up a UI etc. 
 Is global tools the correct branding considering there are local tools as well.
 Tool is too generic, and per .NET principle, don’t waste a great name. 
 DotnetTool is a misnomer, because it implies dotnet(portable), but eventually the dotnet CLI will/might support .NET full framework. 
+Need to work with the CLI team to understand the branding. 
 
 #### Installing a global tool
 Dotnet CLI will create a **temporary** project and provide all details regarding restore there, including 
@@ -66,7 +68,8 @@ An example temporary project would be:
      The packageId is provided by the CLI team, and the package version if passed. 
 The CLI will handle cases where the version is not passed by creating a dummy folder name and then renaming the folder when they get the package version from NuGet.
      -->
-    <RestorePackagesPath>C:\Users\username\.nuget\tools\packageId\packageVersion/RestorePackagesPath>
+    <RestorePackagesPath>C:\Users\username\.nuget\tools\packageId\packageVersion</RestorePackagesPath>
+    <BaseIntermediateOutputPath>C:\Users\username\.nuget\toools\packageId\versionVersion</BaseIntermediateOutputPath>
     <RestoreSolutionDirectory>C:\Users\username\code\Library</RestoreSolutionDirectory>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
@@ -92,7 +95,7 @@ If restore fails, the CLI will be able to get the restore status from the assets
 
 Example:
 ```
-C:\Users\username\.dotnet\tools\my.tool\1.2\project.assets.json
+C:\Users\username\.nuget\tools\my.tool\1.2\project.assets.json
 ```
 
 CLI will handle the restore failure cases, and partial file left on disk. They can use the [VersionPathResolver](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Packaging/VersionFolderPathResolver.cs) to figure that out. 
@@ -113,10 +116,14 @@ Users **must** not author projects like this and load them in VS.
 Above mentioned errors will happen for incorrect hybrid projects. 
 
 ##### Open Questions
-- NuGet will persist a cache file by default in the same directory as the assets file. CLI can consider cleaning this up. 
+- NuGet will persist a cache file by default in the same directory as the assets file. CLI can consider cleaning this up.
+- NuGet version currently does not support a way to "request" the latest prerelease version.
+Tracking issues, [Task 4699](https://github.com/nuget/home/issues/4699)  [Task 912](https://github.com/nuget/home/issues/912)
 - Clarify the experience once implemented, if someone tries to load a proper ToolReference project. Visual Studio will currently treat it as a package reference project since the restore project style property is not nominated. 
 - My initial idea is for nuget.exe to not "treat" projects like this as restorable. So you will only be able to restore this type of projects through the restore task. 
 
+##### CLI actionables. 
+- Make sure that the project file conforms to the above defined outline. 
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
