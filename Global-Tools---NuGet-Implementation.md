@@ -37,16 +37,15 @@ tools\{tfm}\{rid}\*.dll
 * tfm is all accepted frameworks
 * rid can be "Any"
 
-**Problem** - What should the package type be?
-
-**Proposal** - The package type should simply be named **CommandLineTool**. Because the concepts of global and locals tools are discussed, I think this name minimizes confusion.
-
-In addition, packages with this package type, can **only** have 1 package type!
-We need to add validation on pack side that there can be no packages with more than 1 package type that contains the package type **CommandLineTool**.
-
 ##### Open Questions
 - Rob - we should be enforcing this 1 package type today. Update: We are not enforcing it on pack. We only do when we explicitly install a package. Created [Task 6298](https://github.com/NuGet/Home/issues/6298) as a result. 
-- Double check nuget.org for custom package types named **CommandLineTool** (Rob - however, we invent them...not third parties...need to discuss policy) Above issue discussion applies to this as well. 
+- What should the package type be?
+
+Options: **CommandLineTool**, **GlobalTool**, **Tool**, **DotnetTool**
+Are these packages command line only? They can pull up a UI etc. 
+Is global tools the correct branding considering there are local tools as well.
+Tool is too generic, and per .NET principle, don’t waste a great name. 
+DotnetTool is a misnomer, because it implies dotnet(portable), but eventually the dotnet CLI will/might support .NET full framework. 
 
 #### Installing a global tool
 Dotnet CLI will create a **temporary** project and provide all details regarding restore there, including 
