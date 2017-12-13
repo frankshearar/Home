@@ -35,7 +35,7 @@ The will be included in the following path in the nupkg:
 tools\{tfm}\{rid}\*.dll
 ```
 * tfm is all accepted frameworks
-* rid can be "Any"
+* rid is all known rids + "Any"
 
 ##### Open Questions
 ###### Enforce package types
