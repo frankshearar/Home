@@ -48,13 +48,27 @@ Is global tools the correct branding considering there are local tools as well.
 Tool is too generic, and per .NET principle, don’t waste a great name. 
 DotnetTool is a misnomer, because it implies dotnet(portable), but eventually the dotnet CLI will/might support .NET full framework. 
 Need to work with the CLI team to understand the branding. 
+###### NuGet.org handling of tool packages
+NuGet.org will need to make a few changes based on the new package type.
+- NuGet.org should reject packages that include the global package tool and any other package type [Gallery Task 5182](https://github.com/NuGet/NuGetGallery/issues/5182) 
+- Packages with this package type should display a “dotnet install packageId packageVersion” tab only, rather than the standard tabs. [Gallery Task 5182](https://github.com/NuGet/NuGetGallery/issues/5182) 
+- Search by packageType should be consider in the package applicability search work. [Task 5725](https://github.com/NuGet/Home/issues/5725)
+
 
 #### Installing a global tool
 Dotnet CLI will create a **temporary** project and provide all details regarding restore there, including 
 - Install directory (where to install and extract nupkg and dependencies)
+c:\users\username\.nuget was returned by an API that they called on us to find machinewide place for tools
+     The packageId is provided by the CLI team, and the package version if passed. 
+The CLI will handle cases where the version is not passed by creating a dummy folder name and then renaming the folder when they get the package version from NuGet.
+- BaseIntermediateOutputPath (where assets file goes)
+We need to qualify the [scenario](#local-tool-and-install-location) for local tools
 - Target Framework (used by restore to select assets)
 - Runtime Identifier (used by restore to select assets)
-- BaseIntermediateOutputPath (where assets file goes)
+- RestoreSolutionDirectory (the CLI working directory, from where the nuget.config graph will be walked)
+- RestoreFallbackFolders (for global tools, this needs to be "clear" in order to make the tools self-containing)
+- RestoreAdditionalProjectSources, RestoreAdditionalProjectFallbackFolders, RestoreAdditionalProjectFallbackFoldersExcludes are values brought in through the SDK. Same as above, for global tools this compromises the principle of the tools needing to be self-containing. 
+
 In addition, this project should contain a restore project style property, named **CommandLineToolReference**. (another option would be to do PR, but then have another property). 
 I am proposing that because we already have a DotnetCLiTool restore style [type](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectStyle.cs#L26). 
 An example temporary project would be:
@@ -64,14 +78,14 @@ An example temporary project would be:
   <PropertyGroup>
     <RestoreProjectStyle>CommandLineToolReference</RestoreProjectStyle>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-     <!-- c:\users\username\.nuget was returned by an API that they called on us to find machinewide place for tools
-     The packageId is provided by the CLI team, and the package version if passed. 
-The CLI will handle cases where the version is not passed by creating a dummy folder name and then renaming the folder when they get the package version from NuGet.
-     -->
     <RestorePackagesPath>C:\Users\username\.nuget\tools\packageId\packageVersion</RestorePackagesPath>
     <BaseIntermediateOutputPath>C:\Users\username\.nuget\toools\packageId\versionVersion</BaseIntermediateOutputPath>
     <RestoreSolutionDirectory>C:\Users\username\code\Library</RestoreSolutionDirectory>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <RestoreFallbackFolders>clear</RestoreFallbackFolders>
+    <RestoreAdditionalProjectSources></RestoreAdditionalProjectSources>
+    <RestoreAdditionalProjectFallbackFolders></RestoreAdditionalProjectFallbackFolders>
+    <RestoreAdditionalProjectFallbackFoldersExcludes></RestoreAdditionalProjectFallbackFoldersExcludes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="my.tool" Version="1.2" />
@@ -116,6 +130,9 @@ Users **must** not author projects like this and load them in VS.
 Above mentioned errors will happen for incorrect hybrid projects. 
 
 ##### Open Questions
+- How do we handle the scenario where the global packages folder is at the root of a drive? Example F:\
+The tools folder cannot be at the same level as this. 
+Related task: [Task 6260](https://github.com/NuGet/Home/issues/6260)
 - NuGet will persist a cache file by default in the same directory as the assets file. CLI can consider cleaning this up.
 - NuGet version currently does not support a way to "request" the latest prerelease version.
 Tracking issues, [Task 4699](https://github.com/nuget/home/issues/4699)  [Task 912](https://github.com/nuget/home/issues/912)
@@ -123,8 +140,18 @@ Tracking issues, [Task 4699](https://github.com/nuget/home/issues/4699)  [Task 9
 - My initial idea is for nuget.exe to not "treat" projects like this as restorable. So you will only be able to restore this type of projects through the restore task. 
 
 ##### CLI actionables. 
-- Make sure that the project file conforms to the above defined outline. 
-- Help settle on the [package type name](#package-type-name), by considering their branding. 
+###### Conform the above project outline
+###### Help settle on the [package type name](#package-type-name), by considering their branding. 
+###### Local Tool and install location
+- How does the CLI make a decision about the RestorePackagesPath/baseintermediateOutputPath for local tools?
+###### In the current implementation -g installs a tool user-wide, in npm it's user wide
+- Would this cause a confusion? Is the branding correct? 
+###### How will global tools be cleaned up
+Does the CLI provide a remove command? 
+NuGet does not need to add tools to clean this global tools folder. However, we have had occasional complaints about the size of the .nuget folder. This increases it drastically
+###### Handle partial installs
+CLI needs to make sure they clean when the restore fails for whatever reason. Be it an incompatibility error, or where only 1/2 packages gets installed etc. 
+
 
 #### Non-Goals
 Currently there is no plans to block users from being able to use DotnetCLIToolReference. 
