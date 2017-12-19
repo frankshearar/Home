@@ -69,14 +69,14 @@ We need to qualify the [scenario](#local-tool-and-install-location) for local to
 - RestoreFallbackFolders (for global tools, this needs to be "clear" in order to make the tools self-containing)
 - RestoreAdditionalProjectSources, RestoreAdditionalProjectFallbackFolders, RestoreAdditionalProjectFallbackFoldersExcludes are values brought in through the SDK. Same as above, for global tools this compromises the principle of the tools needing to be self-containing. 
 
-In addition, this project should contain a restore project style property, named **CommandLineToolReference**. (another option would be to do PR, but then have another property). 
+In addition, this project should contain a restore project style property, named **DotnetToolReference**. (another option would be to do PR, but then have another property). 
 I am proposing that because we already have a DotnetCLiTool restore style [type](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectStyle.cs#L26). 
 An example temporary project would be:
 
 ```
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <RestoreProjectStyle>CommandLineToolReference</RestoreProjectStyle>
+    <RestoreProjectStyle>DotnetToolReference</RestoreProjectStyle>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RestorePackagesPath>C:\Users\username\.nuget\tools\packageId\packageVersion</RestorePackagesPath>
     <BaseIntermediateOutputPath>C:\Users\username\.nuget\toools\packageId\versionVersion</BaseIntermediateOutputPath>
@@ -100,7 +100,7 @@ Current workaround is RestoreSolutionDirectory. [Task 6199](https://github.com/N
 
 The install directory will be a V3 style directory.
 
-The assets file will need to be extended to include the tools folder when packages are marked with the **CommandLineTool** PackageType. [Task 6197](https://github.com/NuGet/Home/issues/6197)
+The assets file will need to be extended to include the tools folder when packages are marked with the **DotnetTool** PackageType. [Task 6197](https://github.com/NuGet/Home/issues/6197)
 
 CLI will read the assets once restore is done to find the correct tool path. 
 NuGet will add the tools assets to the assets file, and then CLI will use the respective APIs to get that asset path. 
