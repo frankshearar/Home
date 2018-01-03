@@ -3,8 +3,8 @@
 #### [[Incubation]] 
 
 #### Reviewing
-* [[Repository Signatures]]
 * [[Package signing]]
+* [[Repository Signatures]]
 * [[Package Signatures Technical Details]]
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
 * [Package README.md support](Package-README.md-support)
