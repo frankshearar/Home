@@ -26,7 +26,9 @@ The work for this feature and the discussion around the spec is tracked here: [#
     - Discuss [#6250](https://github.com/nuget/home/issues/6250)
 
 #### Stage 2. Tamper proofing entire package dependency graphs 
-- Repository Signatures [TBD]
+- **Repository Signatures**
+    - https://github.com/NuGet/Home/wiki/Repository-Signatures
+    - Discuss [#6378](https://github.com/NuGet/Home/issues/6378) 
 
 #### Stage 3. Configurable policies to enable locked down developer environments
 - NuGet client security policy. [TBD]
