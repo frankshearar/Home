@@ -1,7 +1,7 @@
 Status: **Reviewing**
 
 ## Issue
-The discussion around this spec is tracked here - Repository package signing issue <<TBD>> 
+The discussion around this spec is tracked here - Repository Signatures issue [#6378](https://github.com/NuGet/Home/issues/6378)
 
 ## Problem
 NuGet packages do not include any mechanism to determine if a given package has been modified from creation to consumption or who is the legitimate author of the package. Content integrity depends on the HTTPS connection used to download the package, but once downloaded it’s not easy to check if the package has been tampered.
