@@ -238,7 +238,7 @@ Author Trust. In secure mode the author will be considered trusted if it chains 
 
 Repository Trust. Repository trust is determined based on the configuration file, if the certificate does not chain to a trusted root then the trust will be considered as “undetermined”.
 
-#### DEV mode Validation Matrix
+#### DEV mode
 
 Stage 1 clients will operate under DEV mode implicitily.
 
@@ -247,7 +247,7 @@ Stage 1 clients will operate under DEV mode implicitily.
 |N/A|N/A|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 
 
-#### Secure mode Validation Matrix
+#### Secure mode
 
 Stage 2 clients will use the Secure mode by default. Users can opt-in the DEV mode to use unsigned packages.
 
@@ -264,7 +264,7 @@ Stage 2 clients will use the Secure mode by default. Users can opt-in the DEV mo
 |Undertermined|Yes|:x:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 
 
-#### Strict mode Validation Matrix
+#### Strict mode
 
 Stage 3 clients will use the Secure mode by default. Users can opt-in the Strict mode to define a locked down environment.
 
