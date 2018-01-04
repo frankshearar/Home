@@ -230,9 +230,9 @@ Repository signatures will be added to packages as part of the server ingestion 
 ### Client Validation Matrix
 Official clients like Visual Studio and Nuget.exe (dotnet.exe will be included later), will be aligned with the 3 stages defined in the original [blog post](https://blog.nuget.org/20170914/NuGet-Package-Signing.html), to summarize:
 
-1.**Stage 1**. Clients will validate author signatures if available, and will ignore repository signatures. The behavior will be the same as the DEV mode.
-2.**Stage 2**. Clients will require signed packages, and will set the secure mode as default.
-3.**Stage 3**. Clients can opt-in in the strict mode, and VS will provide a UI to help defining the trusted authors list.
+1. **Stage 1**. Clients will validate author signatures if available, and will ignore repository signatures. The behavior will be the same as the DEV mode.
+2. **Stage 2**. Clients will require signed packages, and will set the secure mode as default.
+3. **Stage 3**. Clients can opt-in in the strict mode, and VS will provide a UI to help defining the trusted authors list.
 
 Author Trust. In secure mode the author will be considered trusted if it chains to a trusted root in the local machine. In Strict mode it needs to be explicitly trusted in the configuration file. When revocation check cannot be validated, the trust will be considered as “undetermined”.
 
