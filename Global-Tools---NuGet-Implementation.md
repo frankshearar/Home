@@ -65,7 +65,7 @@ The CLI will handle cases where the version is not passed by creating a dummy fo
 We need to qualify the [scenario](#local-tool-and-install-location) for local tools
 - Target Framework (used by restore to select assets)
 - Runtime Identifier (used by restore to select assets)
-- RestoreSolutionDirectory (the CLI working directory, from where the nuget.config graph will be walked)
+- RestoreRootConfigDirectory(the CLI working directory, from where the nuget.config graph will be walked)
 - RestoreFallbackFolders (for global tools, this needs to be "clear" in order to make the tools self-containing)
 - RestoreAdditionalProjectSources, RestoreAdditionalProjectFallbackFolders, RestoreAdditionalProjectFallbackFoldersExcludes are values brought in through the SDK. Same as above, for global tools this compromises the principle of the tools needing to be self-containing. 
 
@@ -80,7 +80,7 @@ An example temporary project would be:
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RestorePackagesPath>C:\Users\username\.nuget\tools\packageId\packageVersion</RestorePackagesPath>
     <BaseIntermediateOutputPath>C:\Users\username\.nuget\toools\packageId\versionVersion</BaseIntermediateOutputPath>
-    <RestoreSolutionDirectory>C:\Users\username\code\Library</RestoreSolutionDirectory>
+    <RestoreRootConfigDirectory>C:\Users\username\code\Library</RestoreRootConfigDirectory>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <RestoreFallbackFolders>clear</RestoreFallbackFolders>
     <RestoreAdditionalProjectSources></RestoreAdditionalProjectSources>
@@ -96,7 +96,7 @@ An example temporary project would be:
 [Task 6260](https://github.com/NuGet/Home/issues/6260) to return the machine wide tools folder.
 
 NuGet will also provide a way to walk the settings based on the CLI working directory. 
-Current workaround is RestoreSolutionDirectory. [Task 6199](https://github.com/NuGet/Home/issues/6199)
+Update: Added RestoreRootConfigDirectory [Task 6199](https://github.com/NuGet/Home/issues/6199)
 
 The install directory will be a V3 style directory.
 
