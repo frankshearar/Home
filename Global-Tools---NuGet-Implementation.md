@@ -1,4 +1,4 @@
-Status: **Reviewing**
+Status: **Implementing**
 
 ### Issue
 This specification is the NuGet side of a new dotnet cli experience, tentatively called "Global Tools". 
