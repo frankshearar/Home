@@ -67,7 +67,7 @@ value               = 1*valuechar
 A properties document MUST be UTF-8 encoded.
 
 ## <a id="PackageSignatureFile"></a> The package signature file
-The package signature file has a package entry with the following full, case-sensitive file name (e.g.:  as returned by the System.IO.Compression.ZipArchiveEntry.FullName property):
+The package signature file has a package entry with the following full, case-sensitive file name (e.g.:  as returned by the [`System.IO.Compression.ZipArchiveEntry.FullName`](https://msdn.microsoft.com/en-us/library/system.io.compression.ziparchiveentry.fullname(v=vs.110).aspx) property):
 ```
 .signature.p7s
 ```
@@ -100,14 +100,14 @@ Author and repository signatures are identified through the `commitment-type-ind
 A signature MUST NOT specify both the author and repository commitment types.  A signature which is neither an author nor repository signature MUST NOT use the aforementioned commitment types.
 
 An author signature MAY satisfy the requirements of any CAdES signature but MUST satisfy CAdES-BES requirements with the following additional requirements:
-* The `signing-certificate-v2` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] MUST be present.
+* The `signing-certificate-v2` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] MUST be present.  The hash algorithm used in this attribute MUST be a [supported hash algorithm](#SupportedAlgorithms).
 * The `signing-time` attribute [[RFC 5652](https://tools.ietf.org/html/rfc5652#section-11.3)] MUST be present.
 
 An author signature SHOULD extend to CAdES-T by adding the `signature-time-stamp` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-6.1.1)] to provide long-term signature validity even after the signing certificate's validity period has passed.
 
-If a signature, primary or not, lacks a timestamp, then that signature SHOULD be considered expired and subsequently ignored if the current time according to the package reader is outside of the signing certificate's validity period.  If specifically the primary signature's signing certificate has expired and the primary signature lacks a timestamp, then a package reader MAY still use information in the signed CMS to verify package integrity but MUST otherwise treat the signature as expired and the package as unsigned.  An exception to signature expiration is that package readers MAY choose to treat timestamps as non-expiring.
+If a signature, primary or not, lacks a timestamp, then that signature SHOULD be considered expired and subsequently ignored if the current time according to the package reader is outside of the signing certificate's validity period.  If specifically the primary signature's signing certificate has expired and the primary signature lacks a timestamp, then a package reader MAY still use information in the signed CMS to verify package integrity but MUST otherwise treat the signature as expired and the package as unsigned.  An exception to signature expiration is that package readers MAY choose to treat timestamp signatures as non-expiring.
 
-The signed CMS certificates collection (`SignedData.certificates`) SHOULD contain all certificates, including the root certificate, necessary to build a single, complete, valid chain for each signature in the signed CMS object.
+A signed CMS certificates collection (`SignedData.certificates`) MUST contain all certificates, including the root certificate, from the complete chain that was successfully built at signing time for a signer's signing certificate.  For timestamp signatures, a timestamp requestor may build the timestamp signing certificate's chain and add the certificates to the timestamp signed CMS before adding the timestamp to the signature being timestamped.
 
 Package signing certificate requirements and minimum requirements for hash and signature algorithms are listed in the following sections.
 
@@ -123,10 +123,10 @@ meet the following minimum requirements:
 
 At signing time, a certificate MUST be within its validity period according to the package writer and MUST NOT be not revoked.  At validation time, the certificate's revocation status SHOULD be rechecked; however, it is reasonable for package readers to fail open if revocation status is unavailable (e.g.:  a CRL is inaccessible).
 
-Certificates SHOULD NOT have the lifetime signing EKU (1.3.6.1.4.1.311.10.3.13).  Package readers and writers may not check for or enforce the lifetime signing EKU.
+Certificates MUST NOT have the lifetime signing EKU (1.3.6.1.4.1.311.10.3.13).
 
 ## <a id="SupportedAlgorithms"></a>Supported algorithms
-The following hash algorithms SHOULD be supported:
+The following hash algorithms MUST be supported:
 
 | Hash Algorithm  | `Hash-Algorithm-Oid`   |
 | --------------- |------------------------|
@@ -134,7 +134,7 @@ The following hash algorithms SHOULD be supported:
 | SHA-2-384       | 2.16.840.1.101.3.4.2.2 |
 | SHA-2-512       | 2.16.840.1.101.3.4.2.3 |
 
-The following RSA PKCS #1 v1.5 signature algorithms SHOULD be supported:
+The following RSA PKCS #1 v1.5 signature algorithms MUST be supported:
 
 | Signature Algorithm      | OID                   |
 | ------------------------ |-----------------------|
@@ -202,10 +202,9 @@ In the case of signed packages downloaded by a plugin, some steps below MAY be d
         1. Verify that the timestamp hash in `TSTInfo.messageImprint` matches the hash of the signature to which the timestamp applies.
         1. Verify that the timestamp hash and signature algorithms are [supported](#SupportedAlgorithms).
         1. Verify that the timestamp certificate satisifies [minimum requirements](#CertificateMinimumRequirements).
-        1. Create an additional certificate store consisting of:
-            * certificates in the `SignedData.certificates` collection
-            * certificates in the timestamp signature's `signing-certificate` [[RFC 2634](https://tools.ietf.org/html/rfc2634)] or `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attributes, if present
-        1. Using the additional certificate store from step 5.ii.e, build a chain for the timestamp signing certificate with the `id-kp-timeStamping` EKU.  
+        1. Create an additional certificate store consisting of certificates in the `SignedData.certificates` collection.
+        1. Using the additional certificate store from the previous step, build a chain for the timestamp signing certificate with the `id-kp-timeStamping` EKU.
+        1. Verify the `signing-certificate` [[RFC 2634](https://tools.ietf.org/html/rfc2634)] or `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attribute.
         1. Retrieve the timestamp's generalized time from `TSTInfo.genTime`.
         1. Retrieve the timestamp's accuracy.  If the accuracy is explicitly specified in `TSTInfo.accuracy`, use that value.  If the accuracy is not explicitly specified and `TSTInfo.policy` is the baseline time-stamp policy [[RFC 3628](https://tools.ietf.org/html/rfc3628#section-5.2)], use an accuracy of 1 second.  Otherwise, use an accuracy of 0. 
         1. Calculate the timestamp range using the lower and upper limits per [RFC 3161 section 2.4.2](https://tools.ietf.org/html/rfc3161#section-2.4.2) and store the limits in variables `TimeStampLowerLimit` and `TimeStampUpperLimit`, respectively.
@@ -214,11 +213,9 @@ In the case of signed packages downloaded by a plugin, some steps below MAY be d
     1. Verify that the signing certificate satisifies [minimum requirements](#CertificateMinimumRequirements).
     1. Verify signature validity (e.g.:  `SignerInfo.CheckSignature(verifySignatureOnly: true)`).
     1. Verify that the time range from `TimeStampLowerLimit` to `TimeStampUpperLimit` timestamp is entirely within the certificate's validity period.  If the time range is entirely within the certificate's validity period, continue to the next step.  Otherwise, the signature is invalid and package readers MUST ignore the signature.  Package readers MAY allow subsequent use of the package as an unsigned package.  For example, if a signed package has only an author signature and this step places the time range after the certificate's validity period, then the author signature validity has expired, and the package may be still be installed but only as though the package had no signature.
-    1. Verify that the signing certificate is trusted.
-    1. Create an additional certificate store consisting of:
-        * certificates in the `SignedData.certificates` collection
-        * certificates in the primary signature's `signing-certificate-v2` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attribute, if present
-    1. Using the additional certificate store from step 6.vi, build a chain for the signing certificate.
+    1. Create an additional certificate store consisting of certificates in the `SignedData.certificates` collection.
+    1. Using the additional certificate store from the previous step, build a chain for the signing certificate with the `id-kp-codeSigning` EKU.
+    1. Verify the `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attribute.
 1. If no failures have been encountered, treat the package as a valid signed package.
 
 ## References
