@@ -215,7 +215,7 @@ In the case of signed packages downloaded by a plugin, some steps below MAY be d
     1. Verify that the time range from `TimeStampLowerLimit` to `TimeStampUpperLimit` timestamp is entirely within the certificate's validity period.  If the time range is entirely within the certificate's validity period, continue to the next step.  Otherwise, the signature is invalid and package readers MUST ignore the signature.  Package readers MAY allow subsequent use of the package as an unsigned package.  For example, if a signed package has only an author signature and this step places the time range after the certificate's validity period, then the author signature validity has expired, and the package may be still be installed but only as though the package had no signature.
     1. Create an additional certificate store consisting of certificates in the `SignedData.certificates` collection.
     1. Using the additional certificate store from the previous step, build a chain for the signing certificate with the `id-kp-codeSigning` EKU.
-    1. Verify the `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attribute.
+    1. Verify the `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attribute, if present.
 1. If no failures have been encountered, treat the package as a valid signed package.
 
 ## References
