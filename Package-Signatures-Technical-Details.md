@@ -71,7 +71,7 @@ The package signature file has a package entry with the following full, case-sen
 ```
 .signature.p7s
 ```
-The entry's file type MUST be a regular file (e.g.:  and not a directory, symbolic link, etc.).  The entry MUST NOT be compressed.
+The entry's file name MUST be encoded with the default ZIP character encoding set IBM code page 437.  The entry's file type MUST be a regular file (e.g.:  and not a directory, symbolic link, etc.).  The entry MUST NOT be compressed.
 
 The entry data MUST be a single CMS `SignedData` as encoded by  [`System.Security.Cryptography.Pkcs.SignedCms.Encode()`](https://msdn.microsoft.com/en-us/library/system.security.cryptography.pkcs.signedcms.encode(v=vs.110).aspx).  The CMS content (`SignedData.encapContentInfo.eContent`) MUST be a properties document.  Property names (`name`) and values (`value`) are case-sensitive.
 
