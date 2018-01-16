@@ -1,0 +1,3 @@
+Today NuGet has multiple CLIs like nuget.exe, dotnet.exe, nuget.exe on Mono with varying set of commands and functionality. This spec is aimed at consolidating the NuGet CLIs towards a set of standard commands and functionality.
+
+More details coming soon...
