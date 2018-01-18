@@ -27,11 +27,11 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 The general requirements are:
 1. A signed package MUST be consumable by package readers and writers that do not support package signing.
 1. A package signature MUST be embedded in a package file.
-1. A signed package MUST have exactly 1 primary signature.  (The root CMS `SignedData` must have exactly 1 `SignerInfo` in its `signerInfos` collection.  Cosigning is not permitted.)
+1. A signed package MUST have exactly 1 primary signature.  (Cosigning is not permitted.)
 1. The primary signature SHOULD be either an author signature or a repository signature.
 1. An author signature MUST be a primary signature.  (To apply an author signature on an already signed package, the existing primary signature must first be removed.)
 
-The package signing feature roadmap consists of multiple rollout stages.  Repository signatures, which are planned after the first rollout stage, will be detailed in a later specification.  They are minimally covered in this specification to make reservations for them.  Package writers SHOULD NOT generate repository signatures until the repository signature specification has been finalized.
+The package signing feature roadmap consists of multiple rollout stages.  Repository signatures and repository countersignatures, which are planned after the first rollout stage, will be detailed in a later specification.  They are minimally covered in this specification to make reservations for them.  Package writers SHOULD NOT generate repository signatures or repository countersignatures until their specification has been finalized.
 
 ## Out of Scope
 NuGet package signing will not support:
@@ -73,7 +73,7 @@ The package signature file has a package entry with the following full, case-sen
 ```
 The entry's file name MUST be encoded with the default ZIP character encoding set IBM code page 437.  The entry's file type MUST be a regular file (e.g.:  and not a directory, symbolic link, etc.).  The entry MUST NOT be compressed.
 
-The entry data MUST be a single CMS `SignedData` as encoded by  [`System.Security.Cryptography.Pkcs.SignedCms.Encode()`](https://msdn.microsoft.com/en-us/library/system.security.cryptography.pkcs.signedcms.encode(v=vs.110).aspx).  The CMS content (`SignedData.encapContentInfo.eContent`) MUST be a properties document.  Property names (`name`) and values (`value`) are case-sensitive.
+The entry data MUST be a single CMS `SignedData` as encoded by  [`System.Security.Cryptography.Pkcs.SignedCms.Encode()`](https://msdn.microsoft.com/en-us/library/system.security.cryptography.pkcs.signedcms.encode(v=vs.110).aspx).  The CMS MUST have exactly 1 `SignerInfo` in its `SignedData.signerInfos` collection.  This `SignerInfo` is termed the _primary signature_ or _primary signer_.  The CMS content (`SignedData.encapContentInfo.eContent`) MUST be a properties document.  Property names (`name`) and values (`value`) MUST be case-sensitive.
 
 The properties document's `header-section` MUST contain the following property:
 * `Version`:  This property defines the package signature format version.  The value MUST be `1`.
@@ -93,19 +93,27 @@ Version:1
 2.16.840.1.101.3.4.2.1-Hash:l76DnQSKN9AKihpevTkEaojKaLaZqmcmj9q76TwdZthfChmtVPLtC5ijl6ydsk1sMBMdF2Lcg8FKj6y1U4VMKg==
 
 ```
-Author and repository signatures are identified through the `commitment-type-indication` attribute [[RFC 5126]( https://tools.ietf.org/html/rfc5126.html#section-5.11.1)].  Author and repository signatures MUST have this attribute as follows:
-* The `id-cti-ets-proofOfOrigin` commitment type is reserved for author signatures.  An author signature MUST use this commitment type.
-* The `id-cti-ets-proofOfReceipt` commitment type is reserved for repository signatures.  A repository signature MUST use this commitment type.
+## <a id="SignaturesAndCountersignatures"></a> Signatures and countersignatures
+Signatures and countersignatures are classified by their _signature type_, which is identified through use of the `commitment-type-indication` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.11.1)].
 
-A signature MUST NOT specify both the author and repository commitment types.  A signature which is neither an author nor repository signature MUST NOT use the aforementioned commitment types.
+* The `id-cti-ets-proofOfOrigin` commitment type is reserved for the author signature type.  An author signature MUST include this commitment type.
+* The `id-cti-ets-proofOfReceipt` commitment type is reserved for the repository signature type.  Repository signatures and repository countersignatures MUST include this commitment type.
 
+A signature or countersignature MUST NOT specify both the author and repository commitment types. A signature or countersignature which is neither author nor repository MUST NOT use the aforementioned commitment types.
+
+### <a id="AuthorSignatures"></a> Author signatures
+If an author signature is present it MUST be the primary signature.  A signature or countersignature in any position other than the primary signature MUST NOT use the author signature type.
 An author signature MAY satisfy the requirements of any CAdES signature but MUST satisfy CAdES-BES requirements with the following additional requirements:
+* The `commitment-type-indication` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.11.1)] MUST be present.  The attribute MUST include the `id-cti-ets-proofOfOrigin` commitment type.
 * The `signing-certificate-v2` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] MUST be present.  The hash algorithm used in this attribute MUST be a [supported hash algorithm](#SupportedAlgorithms).
 * The `signing-time` attribute [[RFC 5652](https://tools.ietf.org/html/rfc5652#section-11.3)] MUST be present.
 
-An author signature SHOULD extend to CAdES-T by adding the `signature-time-stamp` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-6.1.1)] to provide long-term signature validity even after the signing certificate's validity period has passed.
+### <a id="RepositorySignaturesAndCountersignatures"></a> Repository signatures and countersignatures
+The full requirements for repository signatures and countersignatures will be detailed in a separate specification.
 
-If a signature, primary or not, lacks a timestamp, then that signature SHOULD be considered expired and subsequently ignored if the current time according to the package reader is outside of the signing certificate's validity period.  If specifically the primary signature's signing certificate has expired and the primary signature lacks a timestamp, then a package reader MAY still use information in the signed CMS to verify package integrity but MUST otherwise treat the signature as expired and the package as unsigned.  An exception to signature expiration is that package readers MAY choose to treat timestamp signatures as non-expiring.
+### <a id="Timestamps"></a> Timestamps
+Signatures and countersignatures SHOULD include the `signature-time-stamp` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-6.1.1)] to provide long-term validity even after the signing certificate's validity period has expired.
+If a signature or countersignature lacks a timestamp, then that signature or countersignature SHOULD be considered expired and subsequently ignored if the current time according to the package reader is outside of the signing certificate's validity period.  If specifically the primary signature's signing certificate has expired and the primary signature either lacks a timestamp or has a timestamp which fails to satisfy policy requirements (e.g.:  trust) not defined here, then a package reader MAY still use information in the signed CMS to verify package integrity but MUST otherwise treat the signature as expired and the package as unsigned.  An exception to signature expiration is that package readers MAY choose to treat timestamp signatures as non-expiring.
 
 A signed CMS certificates collection (`SignedData.certificates`) MUST contain all certificates, including the root certificate, from the complete chain that was successfully built at signing time for a signer's signing certificate.  For timestamp signatures, a timestamp requestor may build the timestamp signing certificate's chain and add the certificates to the timestamp signed CMS before adding the timestamp to the signature being timestamped.
 
