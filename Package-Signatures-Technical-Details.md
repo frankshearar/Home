@@ -8,7 +8,7 @@ The discussion around this spec is tracked here - **Package Signatures Technical
 # NuGet Package Signatures Technical Specification
 
 ## Introduction
-This specification defines a standard for signing NuGet packages, describes how package signatures are embedded inside the NuGet package to which they apply, and how package signatures are generated and validated. 
+This specification defines a standard for signing NuGet packages, describes how package signatures are embedded inside the NuGet package to which they apply, and recommends outlines for generating and validating package signatures.
 
 ## Conformance Keywords
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119) and [RFC 8174](https://tools.ietf.org/html/rfc8174).
@@ -180,7 +180,7 @@ The following is a recommended outline for author signing a package.  Unless oth
 If the package contains a package signature file, remove it.  The package is no longer signed.
  
 ## Validating a signed package
-The following are sample steps for verifying a signed package.  Unless otherwise indicated, package readers SHOULD err on the side of caution and treat unexpected validation failures as fatal and block restoration of the package as a signed package.  A client policy MAY permit continued restoration of such a package as an unsigned package; however, client policies are outside the scope of this specification.  Examples of such failures include:
+The following is a recommended outline for verifying a signed package.  Unless otherwise indicated, package readers SHOULD err on the side of caution and treat unexpected validation failures as fatal and block restoration of the package as a signed package.  A client policy MAY permit continued restoration of such a package as an unsigned package; however, client policies are outside the scope of this specification.  Examples of such failures include:
 * failure to decode the package signature file contents as a signed CMS fails
 * failure to read expected ZIP structures
 * failure parse a properties document
