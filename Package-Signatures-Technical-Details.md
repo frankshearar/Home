@@ -14,13 +14,13 @@ This specification defines a standard for signing NuGet packages, describes how 
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119) and [RFC 8174](https://tools.ietf.org/html/rfc8174).
 
 ## Definitions
-* Package entry:  a file within a NuGet package without consideration for the file's file type.  A NuGet package is a ZIP file, and a ZIP file may contain a file with a file type that is not a regular file (e.g.:  a directory, symbolic link, etc.).  This specification will use "package entry" (singular) and "package entries" (plural) when necessary to avoid file type confusion when referencing files within a package.
 * Package reader:  anything that attempts to read input as a NuGet package.
 * Package writer:  anything that attempts to create or modify a NuGet package.
 
 ## Abbreviations
+* CAdES:  CMS Advanced Electronic Signatures [[RFC 5126](https://tools.ietf.org/html/rfc5126))
 * CMS:  cryptographic message syntax [[RFC 5652](https://tools.ietf.org/html/rfc5652)]
-* EKU:  extended key usage [[RFC 5280](https://tools.ietf.org/html/rfc5280)]
+* EKU:  extended key usage [[RFC 5280](https://tools.ietf.org/html/rfc5280#section-4.2.1.12)]
 * OID:  object identifier [[X.660](http://www.itu.int/rec/T-REC-X.660-201107-I/en)]
 
 ## Requirements
@@ -29,7 +29,7 @@ The general requirements are:
 1. A package signature MUST be embedded in a package file.
 1. A signed package MUST have exactly 1 primary signature.  (Cosigning is not permitted.)
 1. The primary signature SHOULD be either an author signature or a repository signature.
-1. An author signature MUST be a primary signature.  (To apply an author signature on an already signed package, the existing primary signature must first be removed.)
+1. An author signature MUST be the primary signature.  (To apply an author signature on an already signed package, the existing primary signature must first be removed.)
 
 The package signing feature roadmap consists of multiple rollout stages.  Repository signatures and repository countersignatures, which are planned after the first rollout stage, will be detailed in a later specification.  They are minimally covered in this specification to make reservations for them.  Package writers SHOULD NOT generate repository signatures or repository countersignatures until their specification has been finalized.
 
@@ -43,11 +43,12 @@ A NuGet package is based on the widely used ZIP file format.
 
 A signed NuGet package MUST contain a package signature file, which is described in a [later section](#PackageSignatureFile).
 
-A package reader that does not support package signing SHOULD NOT attach special significance to this file and MAY choose to ignore it.
+A package reader that does not support signed package validation SHOULD NOT attach special significance to this file and MAY choose to ignore it.
 
 ## <a id="DeterminationIfPackageIsSigned"></a> Determination if a package is signed
 An efficient test is required to determine if a package should be validated as a signed package.  The test MUST NOT produce false negatives.  The test MAY produce false positives; however, it is important that the test minimize them.
-A package SHOULD be considered signed if and only if the package has a package signature file.
+
+A package SHOULD be considered signed if and only if the package has a [package signature file](#PackageSignatureFile).
 
 Passing of this test MUST NOT imply package integrity or signature validity.
 
@@ -67,13 +68,14 @@ value               = 1*valuechar
 A properties document MUST be UTF-8 encoded.
 
 ## <a id="PackageSignatureFile"></a> The package signature file
-The package signature file has a package entry with the following full, case-sensitive file name (e.g.:  as returned by the [`System.IO.Compression.ZipArchiveEntry.FullName`](https://msdn.microsoft.com/en-us/library/system.io.compression.ziparchiveentry.fullname(v=vs.110).aspx) property):
+The package signature file is a file in a package with the following full, case-sensitive file name (e.g.:  as returned by the [`System.IO.Compression.ZipArchiveEntry.FullName`](https://msdn.microsoft.com/en-us/library/system.io.compression.ziparchiveentry.fullname(v=vs.110).aspx) property):
 ```
 .signature.p7s
 ```
-The entry's file name MUST be encoded with the default ZIP character encoding set IBM code page 437.  The entry's file type MUST be a regular file (e.g.:  and not a directory, symbolic link, etc.).  The entry MUST NOT be compressed.
+The package signature file name MUST be encoded with the default ZIP character encoding set IBM code page 437.  Within the package ZIP file the package signature file's file type MUST be a regular file and MUST NOT be anything other than a regular file (e.g.:  a directory, symbolic link, etc.).  The package signature file MUST NOT be compressed; it MUST be uncompressed (stored).
 
-The entry data MUST be a single CMS `SignedData` as encoded by  [`System.Security.Cryptography.Pkcs.SignedCms.Encode()`](https://msdn.microsoft.com/en-us/library/system.security.cryptography.pkcs.signedcms.encode(v=vs.110).aspx).  The CMS MUST have exactly 1 `SignerInfo` in its `SignedData.signerInfos` collection.  This `SignerInfo` is termed the _primary signature_ or _primary signer_.  The CMS content (`SignedData.encapContentInfo.eContent`) MUST be a properties document.  Property names (`name`) and values (`value`) MUST be case-sensitive.
+### <a id="PackageSignatureFileContents"></a> Package signature file content
+The package signature file content MUST be a single CMS `SignedData` as encoded by  [`System.Security.Cryptography.Pkcs.SignedCms.Encode()`](https://msdn.microsoft.com/en-us/library/system.security.cryptography.pkcs.signedcms.encode(v=vs.110).aspx).  The CMS MUST have exactly 1 `SignerInfo` in its `SignedData.signerInfos` collection.  This `SignerInfo` is termed the _primary signature_ or _primary signer_.  The CMS content (`SignedData.encapContentInfo.eContent`) MUST be a properties document.  Property names (`name`) and values (`value`) MUST be case-sensitive.
 
 The properties document's `header-section` MUST contain the following property:
 * `Version`:  This property defines the package signature format version.  The value MUST be `1`.
@@ -81,9 +83,9 @@ The properties document's `header-section` MUST contain the following property:
 Package readers and writers compliant with this specification MUST fail a signature verification or signing operation if the version is anything other than this value.
 
 The properties document's first `section` MUST contain the following property:
-* `Hash-Algorithm-Oid-Hash`:
-  * `Hash-Algorithm-Oid` MUST be the OID for a [supported hash algorithm](#SupportedAlgorithms).  The actual property name is based on the hash algorithm's OID (e.g.:  `2.16.840.1.101.3.4.2.1-Hash`, `2.16.840.1.101.3.4.2.2-Hash`, or `2.16.840.1.101.3.4.2.3-Hash`).
-  * The property value MUST be a Base64-encoded hash of the entire sequence of bytes of the unsigned package using the hash algorithm specified by `Hash-Algorithm-Oid`.
+* _Hash-Algorithm-Oid_`-Hash`:
+  * The actual property name is not `Hash-Algorithm-Oid-Hash`.  The actual name substitutes _Hash-Algorithm-Oid_ with the OID of a [supported hash algorithm](#SupportedAlgorithms).  Actual property names include `2.16.840.1.101.3.4.2.1-Hash`, `2.16.840.1.101.3.4.2.2-Hash`, and `2.16.840.1.101.3.4.2.3-Hash`.
+  * The property value MUST be a Base64-encoded hash of the entire sequence of bytes of the unsigned package using the hash algorithm specified by _Hash-Algorithm-Oid_.
 
 An example properties document is:
 
@@ -94,18 +96,18 @@ Version:1
 
 ```
 ## <a id="SignaturesAndCountersignatures"></a> Signatures and countersignatures
-Signatures and countersignatures are classified by their _signature type_, which is identified through use of the `commitment-type-indication` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.11.1)].
+Signatures and countersignatures are classified through use of the `commitment-type-indication` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-5.11.1)].
 
-* The `id-cti-ets-proofOfOrigin` commitment type is reserved for the author signature type.  An author signature MUST include this commitment type.
-* The `id-cti-ets-proofOfReceipt` commitment type is reserved for the repository signature type.  Repository signatures and repository countersignatures MUST include this commitment type.
+* The `id-cti-ets-proofOfOrigin` commitment type is reserved for author signatures.  An author signature MUST include this commitment type.
+* The `id-cti-ets-proofOfReceipt` commitment type is reserved for repository signatures and repository countersignatures.  Repository signatures and repository countersignatures MUST include this commitment type.
 
 A signature or countersignature MUST NOT specify both the author and repository commitment types. A signature or countersignature which is neither author nor repository MUST NOT use the aforementioned commitment types.
 
 ### <a id="AuthorSignatures"></a> Author signatures
-If an author signature is present it MUST be the primary signature.  A signature or countersignature in any position other than the primary signature MUST NOT use the author signature type.
-An author signature MAY satisfy the requirements of any CAdES signature but MUST satisfy CAdES-BES requirements with the following additional requirements:
-* The `commitment-type-indication` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.11.1)] MUST be present.  The attribute MUST include the `id-cti-ets-proofOfOrigin` commitment type.
-* The `signing-certificate-v2` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] MUST be present.  The hash algorithm used in this attribute MUST be a [supported hash algorithm](#SupportedAlgorithms).
+If an author signature is present it MUST be the primary signature.  A signature or countersignature in any position other than the primary signature MUST NOT use the author signature commitment type.
+An author signature MAY satisfy the requirements of any CAdES [[RFC 5126](https://tools.ietf.org/html/rfc5126)] signature but MUST satisfy CAdES-BES [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-4.3.1)] requirements with the following additional requirements:
+* The `commitment-type-indication` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-5.11.1)] MUST be present.  The attribute MUST include the `id-cti-ets-proofOfOrigin` commitment type.
+* The `signing-certificate-v2` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-5.7.3.2)] MUST be present.  The hash algorithm used in this attribute MUST be a [supported hash algorithm](#SupportedAlgorithms).
 * The `signing-time` attribute [[RFC 5652](https://tools.ietf.org/html/rfc5652#section-11.3)] MUST be present.
 
 ### <a id="RepositorySignaturesAndCountersignatures"></a> Repository signatures and countersignatures
@@ -115,9 +117,9 @@ The full requirements for repository signatures and countersignatures will be de
 Signatures and countersignatures SHOULD include the `signature-time-stamp` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-6.1.1)] to provide long-term validity even after the signing certificate's validity period has expired.
 If a signature or countersignature lacks a timestamp, then that signature or countersignature SHOULD be considered expired and subsequently ignored if the current time according to the package reader is outside of the signing certificate's validity period.  If specifically the primary signature's signing certificate has expired and the primary signature either lacks a timestamp or has a timestamp which fails to satisfy policy requirements (e.g.:  trust) not defined here, then a package reader MAY still use information in the signed CMS to verify package integrity but MUST otherwise treat the signature as expired and the package as unsigned.  An exception to signature expiration is that package readers MAY choose to treat timestamp signatures as non-expiring.
 
-A signed CMS certificates collection (`SignedData.certificates`) MUST contain all certificates, including the root certificate, from the complete chain that was successfully built at signing time for a signer's signing certificate.  For timestamp signatures, a timestamp requestor may build the timestamp signing certificate's chain and add the certificates to the timestamp signed CMS before adding the timestamp to the signature being timestamped.
+A signed CMS certificates collection (`SignedData.certificates`) MUST contain all certificates, including the root certificate, from the complete chain that was successfully built at signing time for a signer's signing certificate.  If a timestamp signature does not already satisfy this requirement, the timestamp requestor MUST build the timestamp signing certificate's chain and add the certificates to the timestamp's signed CMS before adding the timestamp to the signature or countersignature being timestamped.
 
-Package signing certificate requirements and minimum requirements for hash and signature algorithms are listed in the following sections.
+A timestamp signing certificate MUST satisfy [minimum requirements](#CertificateMinimumRequirements) and the timestamp MUST use a [supported hash algorithm](#SupportedAlgorithms).
 
 ## <a id="CertificateMinimumRequirements"></a> Certificate minimum requirements
 A NuGet package signing certificate MUST meet the following minimum requirements:
@@ -129,7 +131,7 @@ meet the following minimum requirements:
 1. The certificate MUST be valid for the `id-kp-timeStamping` purpose [[RFC 5280 section 4.2.1.12](https://tools.ietf.org/html/rfc5280#section-4.2.1.12)].
 1. The certificate MUST have an RSA public key length of 2048 bits or higher.
 
-At signing time, a certificate MUST be within its validity period according to the package writer and MUST NOT be not revoked.  At validation time, the certificate's revocation status SHOULD be rechecked; however, it is reasonable for package readers to fail open if revocation status is unavailable (e.g.:  a CRL is inaccessible).
+At signing time, a certificate MUST be within its validity period according to the package writer and MUST NOT be not revoked.  At validation time, the certificate's revocation status SHOULD be rechecked; however, package readers MAY fail open if revocation status is unavailable (e.g.:  a CRL is inaccessible).
 
 Certificates MUST NOT have the lifetime signing EKU (1.3.6.1.4.1.311.10.3.13).
 
@@ -157,27 +159,28 @@ Over time algorithms may be deprecated and replaced with newer, more secure algo
 * signed for write operations.  (An older writer can still remove an existing signature.)
 
 ## Signing a package
-The following are sample steps for author signing a package.  Unless otherwise indicated, package writers SHOULD err on the side of caution and treat unexpected failures as fatal.
+The following is a recommended outline for author signing a package.  Unless otherwise indicated, package writers SHOULD err on the side of caution and treat unexpected failures as fatal.
 1. [Determine if the package is signed](#DeterminationIfPackageIsSigned).
     1. If the package is signed and the sign operation should not overwrite an existing signature, fail the sign operation with a message indicating that the package is already signed.
     1. If the package is signed and the sign operation should overwrite an existing signature, remove the existing signature and continue with step 2.
     1. If the package is not signed, continue with step 2.
-1. Verify that the signing certificate satisifies [minimum requirements](#CertificateMinimumRequirements).
+1. Verify that the signing certificate satisfies [minimum requirements](#CertificateMinimumRequirements).
 1. Verify that the hash, signature, and timestamp hash algorithms are [supported](#SupportedAlgorithms).
 1. Generate a package signature file.
     1. Create an author signature.
     1. Obtain a timestamp for the author signature.
-    1. Verify that the timestamp signature algorithm is [supported](#SupportedAlgorithms).
-    1. Extend the author signature to CAdES-T.
+        1. Verify that the timestamp signing certificate satisfies [minimum requirements](#CertificateMinimumRequirements).
+        1. Verify that the timestamp signature and hash algorithms are [supported](#SupportedAlgorithms).
+    1. Extend the author signature to CAdES-T [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-4.4.1)].
     1. Encode the author signature CMS `SignedData`.
     1. Write the encoded author signature to file.
-1. Add the package signature file as an uncompressed entry to the package to be signed.
+1. Add the package signature file as an uncompressed (stored) file to the package being signed.
 
 ## Unsigning a package
-If the package contains a package signature file entry, remove it.  The package is no longer signed.
+If the package contains a package signature file, remove it.  The package is no longer signed.
  
 ## Validating a signed package
-The following are sample steps for verifying a signed package.  Unless otherwise indicated, package readers SHOULD err on the side of caution and treat unexpected validation failures as fatal and block restoration of the package.  Example failures include:
+The following are sample steps for verifying a signed package.  Unless otherwise indicated, package readers SHOULD err on the side of caution and treat unexpected validation failures as fatal and block restoration of the package as a signed package.  A client policy MAY permit continued restoration of such a package as an unsigned package; however, client policies are outside the scope of this specification.  Examples of such failures include:
 * failure to decode the package signature file contents as a signed CMS fails
 * failure to read expected ZIP structures
 * failure parse a properties document
@@ -186,44 +189,42 @@ The following are sample steps for verifying a signed package.  Unless otherwise
 Package readers MAY impose more stringent requirements during signature validation. 
 In the case of signed packages downloaded by a plugin, some steps below MAY be delegated to the plugin to fully or partially implement.
 1. [Determine if the package is signed](#DeterminationIfPackageIsSigned).  If it is not signed, stop further validation.
-1. Verify that the package signature file entry is not compressed and has a regular file file type.
+1. Verify that the package signature file is uncompressed and a regular file.
 1. Verify that the package signature format is supported.
-    1. Decode the contents of the package signature file entry as a signed CMS.
+    1. Decode the contents of the package signature file as a signed CMS.
     1. Parse the signed CMS content as a properties document.
     1. Verify that the package signature format version as indicated by the `Version` property value is supported.
 1. Verify package integrity.
-    1. Verify that the hash algorithm indicated by the `Hash-Algorithm-Oid-Hash` property is supported.  If it is not supported, stop further validation and treat the package as unsigned.
+    1. Verify that the hash algorithm indicated by the _Hash-Algorithm-Oid_`-Hash` property is supported.  If it is not supported, stop further validation and treat the package as unsigned.
     1. Compute a new hash using the same hash algorithm from step 4.i.
         1. Open a read-only binary stream for the package file.
         1. Compute a hash over the stream while accounting for package changes introduced by adding the package signature file to the package.  For example:
             1. Exclude the package signature file's local file and central directory headers from hashing.
-            1. For each local file header after the package signature file entry's local file header directory header instead of hashing the value of the  central directory header field in the signed package, compute and hash the value for the unsigned package.
+            1. For each local file header after the package signature file's local file header, instead of hashing the value of the central directory header field in the signed package, compute and hash the value for the unsigned package.
                 * relative offset of local header
             1. In the end of central directory record, instead of hashing the values of the following fields in the signed package, compute and hash their values for the unsigned package.
                 * size of the central directory
                 * offset of start of central directory with respect to the starting disk number
     1. Verify that the expected and actual package hashes are identical.
 1. Verify primary signature validity and trust.
-    1. Verify that the signed CMS has one `SignerInfo`.
+    1. Verify that the signed CMS has exactly one `SignerInfo`.
     1. Check a `signature-time-stamp` attribute on the primary signature.
         1. If the timestamp exists, continue with the next step.  Otherwise, store the local machine's current UTC time in variables `TimeStampLowerLimit` and `TimeStampUpperLimit` and continue with step 6.
         1. Verify that the timestamp hash in `TSTInfo.messageImprint` matches the hash of the signature to which the timestamp applies.
         1. Verify that the timestamp hash and signature algorithms are [supported](#SupportedAlgorithms).
-        1. Verify that the timestamp certificate satisifies [minimum requirements](#CertificateMinimumRequirements).
-        1. Create an additional certificate store consisting of certificates in the `SignedData.certificates` collection.
-        1. Using the additional certificate store from the previous step, build a chain for the timestamp signing certificate with the `id-kp-timeStamping` EKU.
-        1. Verify the `signing-certificate` [[RFC 2634](https://tools.ietf.org/html/rfc2634)] or `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attribute.
+        1. Verify that the timestamp certificate satisfies [minimum requirements](#CertificateMinimumRequirements).
+        1. Using certificates in timestamp's `SignedData.certificates` collection, build a chain for the timestamp signing certificate with the `id-kp-timeStamping` EKU.
+        1. Verify the `signing-certificate` [[RFC 2634](https://tools.ietf.org/html/rfc2634)] or `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-5.7.3.2)] attribute.
         1. Retrieve the timestamp's generalized time from `TSTInfo.genTime`.
         1. Retrieve the timestamp's accuracy.  If the accuracy is explicitly specified in `TSTInfo.accuracy`, use that value.  If the accuracy is not explicitly specified and `TSTInfo.policy` is the baseline time-stamp policy [[RFC 3628](https://tools.ietf.org/html/rfc3628#section-5.2)], use an accuracy of 1 second.  Otherwise, use an accuracy of 0. 
         1. Calculate the timestamp range using the lower and upper limits per [RFC 3161 section 2.4.2](https://tools.ietf.org/html/rfc3161#section-2.4.2) and store the limits in variables `TimeStampLowerLimit` and `TimeStampUpperLimit`, respectively.
 1. Verify primary signature validity.
     1. Verify that the signature algorithm is [supported](#SupportedAlgorithms).
-    1. Verify that the signing certificate satisifies [minimum requirements](#CertificateMinimumRequirements).
+    1. Verify that the signing certificate satisfies [minimum requirements](#CertificateMinimumRequirements).
     1. Verify signature validity (e.g.:  `SignerInfo.CheckSignature(verifySignatureOnly: true)`).
     1. Verify that the time range from `TimeStampLowerLimit` to `TimeStampUpperLimit` timestamp is entirely within the certificate's validity period.  If the time range is entirely within the certificate's validity period, continue to the next step.  Otherwise, the signature is invalid and package readers MUST ignore the signature.  Package readers MAY allow subsequent use of the package as an unsigned package.  For example, if a signed package has only an author signature and this step places the time range after the certificate's validity period, then the author signature validity has expired, and the package may be still be installed but only as though the package had no signature.
-    1. Create an additional certificate store consisting of certificates in the `SignedData.certificates` collection.
-    1. Using the additional certificate store from the previous step, build a chain for the signing certificate with the `id-kp-codeSigning` EKU.
-    1. Verify the `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126.html#section-5.7.3.2)] attribute, if present.
+    1. Using certificates in the signer's `SignedData.certificates` collection, build a chain for the signing certificate with the `id-kp-codeSigning` EKU.
+    1. Verify the `signing-certificate-v2` [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-5.7.3.2)] attribute, if present.
 1. If no failures have been encountered, treat the package as a valid signed package.
 
 ## References
