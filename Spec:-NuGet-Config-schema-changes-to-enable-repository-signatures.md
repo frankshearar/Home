@@ -67,6 +67,8 @@ Trust information for a repository should be stored in a similar fashion as [pac
 <br/>
 
 ### Repository Trust Information Gesture
+To enable the following user gestures we need to update the existing [`nuget sources`](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-sources) command and add a `nuget keys` command.
+
 <br/>
 
 #### Add a source as a trusted repository -  
