@@ -240,3 +240,4 @@ In the case of signed packages downloaded by a plugin, some steps below MAY be d
 * [RFC 5652](https://tools.ietf.org/html/rfc5652):  Cryptographic Message Syntax (CMS)
 * [RFC 8174](https://tools.ietf.org/html/rfc8174):  Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words
 * [APPNOTE.TXT](https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT):  ZIP File Format Specification from PKWARE, Inc., version 6.3.4 (2014)
+* [X.660](http://www.itu.int/rec/T-REC-X.660-201107-I/en):  Information technology – Procedures for the operation of object identifier registration authorities: General procedures and top arcs of the international object identifier tree
