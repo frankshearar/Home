@@ -12,12 +12,14 @@ All NuGet package consumers.
 
 ## Scenarios
 * Enable package consumers to store repository trust information
+<br/>
 
 ## Solution
 * Update the schema for nuget.config file to be able to store repository trust information.
 * Define a gesture for users to be able to trust a package repository.
 
 This spec tackles the first half of the solution i.e. update the schema for nuget.config file to be able to store repository trust information.
+<br/>
 
 ### Repository Trust Information
 We should store the following information to enable a trust relationship between a package consumer and a package repository.
@@ -33,9 +35,11 @@ Repository Certificate Fingerprint will allow us to assert that the package was 
 
 * Repository Certificate Fingerprint Algorithm - 
 Repository Certificate Fingerprint Algorithm will allow us to use a known algorithm to calculate the certificate fingerprint. This should be set based on the value advertised by the package repository in it's certificate list. The set of accepted algorithms should contain - `SHA256`, `SHA384` and `SHA512`.
+<br/>
 
 ### Repository Trust Information Location
 Trust information for a repository should be stored along with the source information for package repositories i.e. nuget.config file. Ideally the trusted repository information should be defined in the same file as the corresponding source information is described.
+<br/>
 
 ### Repository Trust Information Schema
 Trust information for a repository should be stored in a similar fashion as [package source credentials](https://docs.microsoft.com/en-us/nuget/schema/nuget-config-file#packagesourcecredentials) - 
@@ -60,8 +64,10 @@ Trust information for a repository should be stored in a similar fashion as [pac
     </NuGet.org>
 </packageSourceTrustInformation>
 ```
+<br/>
 
 ### Repository Trust Information Gesture
+<br/>
 
 #### Add a source as a trusted repository -  
 This scenario should be supported to allow first class experience for package sources that can be added as a trusted repository.
@@ -104,7 +110,8 @@ Further, deleting a package source should also delete the trusted source informa
   <packageSources />
 </configuration>
 ```
-<br/><br/>
+<br/>
+
 #### Make a source a trusted repository - 
 This scenario should be supported to allow users to make a package source as a trusted repository.
 
@@ -136,7 +143,8 @@ After -
     </packageSourceTrustInformation>
 </configuration>
 ```
-<br/><br/>
+<br/>
+
 #### Add a trusted repository - 
 This scenario should be supported to allow users to add a trusted repository which may not be a package source.
 
@@ -157,7 +165,8 @@ This command will add an entry for trusted repository without adding a package s
     </packageSourceTrustInformation>
 </configuration>
 ```
-<br/><br/>
+<br/>
+
 #### Sync keys for a trusted repository - 
 This scenario should be supported to allow users to refresh the keys for a trusted repository which may not be a package source.
 
@@ -177,7 +186,7 @@ This command will update the entry for trusted repository without adding a packa
     </packageSourceTrustInformation>
 </configuration>
 ```
-<br/><br/>
+<br/>
 
 
 
