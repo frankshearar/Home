@@ -208,7 +208,7 @@ Let’s review each of the decisions outlined in this diagram:
 
 When a signed package is found, just before extraction, the package reader must verify the package content integrity. If the computed hash does not match, the package will be considered tampered and the restore operation will fail. The DEV client policy will not set any additional enforcements, and all packages must be installed without any user interruption.
 
-The Secure mode enforces that all packages must be signed with author or repo signatures: Author signatures require the signing certificate is trusted in the local machine, typically by the trusted roots certificates, if does not have an author signature it will check if there is a repository signature and if the repository is already trusted in the configuration. 
+The Secure mode enforces that all packages must be signed with author or repo signatures: Author signatures require the signing certificate is trusted in the local machine, typically by the trusted roots certificates, if a package does not have an author signature it will check if there is a repository signature and if the repository is already trusted in the configuration. 
 
 The Strict mode enforces trust with the author, the format to specify the list of trusted authors will be defined in the Client Policies specification.
 
