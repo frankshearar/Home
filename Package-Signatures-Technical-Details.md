@@ -8,9 +8,9 @@ The discussion around this spec is tracked here - **Package Signatures Technical
 # NuGet Package Signatures Technical Specification
 
 ## Introduction
-This specification defines a standard for signing NuGet packages, describes how package signatures are embedded inside the NuGet package to which they apply, and recommends outlines for generating and validating package signatures.
+This specification defines a standard for signing NuGet packages, describes how package signatures are embedded inside the NuGet package to which they apply, and outlines steps for generating and validating package signatures.
 
-## Conformance Keywords
+## Conformance keywords
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119) and [RFC 8174](https://tools.ietf.org/html/rfc8174).
 
 ## Definitions
@@ -33,7 +33,7 @@ The general requirements are:
 
 The package signing feature roadmap consists of multiple rollout stages.  Repository signatures and repository countersignatures, which are planned after the first rollout stage, will be detailed in a later specification.  They are minimally covered in this specification to make reservations for them.  Package writers SHOULD NOT generate repository signatures or repository countersignatures until their specification has been finalized.
 
-## Out of Scope
+## Out of scope
 NuGet package signing will not support:
 * 64-bit ZIP files
 * ZIP files signed with other techniques
@@ -126,8 +126,7 @@ A NuGet package signing certificate MUST meet the following minimum requirements
 1. The certificate MUST be valid for the `id-kp-codeSigning` purpose [[RFC 5280 section 4.2.1.12](https://tools.ietf.org/html/rfc5280#section-4.2.1.12)].
 1. The certificate MUST have an RSA public key length of 2048 bits or higher.
 
-A timestamping certificate MUST 
-meet the following minimum requirements:
+A timestamping certificate MUST meet the following minimum requirements:
 1. The certificate MUST be valid for the `id-kp-timeStamping` purpose [[RFC 5280 section 4.2.1.12](https://tools.ietf.org/html/rfc5280#section-4.2.1.12)].
 1. The certificate MUST have an RSA public key length of 2048 bits or higher.
 
