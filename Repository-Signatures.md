@@ -57,7 +57,7 @@ The repository signature will include the following metadata:
 
 |Name|Description|Required|
 |----|-----------|--------|
-|V3 Service Index URL|URL to the repository service index. (must be https)|Yes|
+|V3 Service Index URL|Official, unauthenticated HTTPS URL to the repository V3 service index. (must be https)|Yes|
 |Package Owners|Comma separated list of the package owners in that repository at the time of submission.|No|
 
 Repository signatures require a NuGet server with a v3 service endpoint. Repositories based on local or shared folders can host packages signed in a different repository, however to produce their own repository signatures they will need to configure an HTTP server to publish the certificates. 
