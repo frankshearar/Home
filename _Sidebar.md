@@ -10,6 +10,7 @@
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
 * [Package README.md support](Package-README.md-support)
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
+* [Storing trusted repository](https://github.com/NuGet/Home/wiki/Spec:-NuGet-Config-schema-changes-to-enable-repository-signatures)
 
 #### Reviewed
 * [[2 Factor Auth for NuGet.org sign in]]
