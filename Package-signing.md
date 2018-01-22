@@ -28,6 +28,7 @@ The work for this feature and the discussion around the spec is tracked here: [#
 #### Stage 2. Tamper proofing entire package dependency graphs 
 - **Repository Signatures**
     - https://github.com/NuGet/Home/wiki/Repository-Signatures
+    - https://github.com/NuGet/Home/wiki/Repository-Signatures-and-Countersignatures-Technical-Specification
     - Discuss [#6378](https://github.com/NuGet/Home/issues/6378) 
 
 #### Stage 3. Configurable policies to enable locked down developer environments
