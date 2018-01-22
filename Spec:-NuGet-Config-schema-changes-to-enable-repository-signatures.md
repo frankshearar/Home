@@ -5,7 +5,7 @@ Issue for spec - [NuGet/Home#6419](https://github.com/NuGet/Home/issues/6419)
 Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)
 
 ## Problem
-Once we enable package signing, we need to enable consumers to be able to trust a package repository. Further, that trust information needs to be stored into the users machine.
+Once we enable repository package signing, we need to enable consumers to be able to trust a package repository. Further, the trust information needs to be stored into the users machine.
 
 ## Who is the customer?
 All NuGet package consumers.
