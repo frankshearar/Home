@@ -5,6 +5,7 @@
 #### Reviewing
 * [[Package signing]]
 * [[Repository Signatures]]
+* [[Repository Signatures and Countersignatures Technical Specification]]
 * [[Package Signatures Technical Details]]
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
 * [Package README.md support](Package-README.md-support)
