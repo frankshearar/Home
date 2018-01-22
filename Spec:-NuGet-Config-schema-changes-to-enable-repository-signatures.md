@@ -197,6 +197,9 @@ This scenario should be supported to allow users to update a trusted repository 
 
 ## Open Questions
 
+* Should we store the certificate expiry?
+_No, since we do not automatically refresh the keys._
+
 * Should we store the Hash algorithm name or OID?
 
 * Is `nuget keys` confusing with `nuget setApiKey`?
