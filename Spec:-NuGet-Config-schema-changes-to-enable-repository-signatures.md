@@ -12,7 +12,6 @@ All NuGet package consumers.
 
 ## Scenarios
 * Enable package consumers to store repository trust information
-<br/>
 
 ## Solution
 * Update the schema for nuget.config file to be able to store repository trust information.
