@@ -45,7 +45,7 @@ This attribute MUST be a signed attribute; it MUST NOT be an unsigned attribute.
 NuGetV3ServiceIndexUrl ::= IA5String
 ```
 
-The attribute value MUST be the DER-encoded, official, unauthenticated repository V3 service index URL.  The URL MUST be a syntactically valid HTTPS URL per [[RFC 7230](https://tools.ietf.org/html/rfc7230#section-2.7.2)].
+The attribute value MUST be the DER-encoded, official repository V3 service index URL.  The URL MUST be a syntactically valid HTTPS URL per [[RFC 7230](https://tools.ietf.org/html/rfc7230#section-2.7.2)].
 
 ### The `nuget-package-owners` attribute
 The following OID identifies the `nuget-package-owners` attribute:
