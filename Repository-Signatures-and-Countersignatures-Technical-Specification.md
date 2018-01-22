@@ -52,7 +52,7 @@ The following OID identifies the `nuget-package-owners` attribute:
 
     1.3.6.1.4.1.311.84.2.1.1.2
 
-Repository signatures and countersignatures MAY have this attribute but MUST NOT have the attribute if there are no package owners to include.  At least one package owner MUST be included in the attribute value.
+Repository signatures and repository countersignatures MAY have this attribute but MUST NOT have the attribute if there are no package owners to include.  At least one package owner MUST be included in the attribute value.
 
 This attribute MUST be a signed attribute; it MUST NOT be an unsigned attribute.  A CMS `SignerInfo` MUST NOT include multiple instances of this attribute.  This attribute MUST have exactly one attribute value.  The attribute value has the ASN.1 type `NuGetPackageOwners`:
 
