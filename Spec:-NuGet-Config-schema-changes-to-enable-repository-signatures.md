@@ -17,7 +17,7 @@ All NuGet package consumers.
 * Update the schema for nuget.config file to be able to store repository trust information.
 * Define a gesture for users to be able to trust a package repository.
 
-This spec tackles the first half of the solution i.e. update the schema for nuget.config file to be able to store repository trust information.
+This spec tackles the first part of the solution in detail i.e. update the schema for nuget.config file to be able to store repository trust information. This spec also, briefly, defines a solution for the second part of the solution i.e. define a gesture for users to be able to trust a package repository.
 <br/>
 
 ### Repository Trust Information
@@ -34,14 +34,12 @@ Repository Certificate Fingerprint will allow us to assert that the package was 
 
 * Repository Certificate Fingerprint Algorithm - 
 Repository Certificate Fingerprint Algorithm will allow us to use a known algorithm to calculate the certificate fingerprint. This should be set based on the value advertised by the package repository in it's certificate list. The set of accepted algorithms should contain - `SHA256`, `SHA384` and `SHA512`.
-<br/>
 
 ### Repository Trust Information Location
 Trust information for a repository should be stored along with the source information for package repositories i.e. nuget.config file. Ideally the trusted repository information should be defined in the same file as the corresponding source information is described.
-<br/>
 
 ### Repository Trust Information Schema
-Trust information for a repository should be stored in a similar fashion as [package source credentials](https://docs.microsoft.com/en-us/nuget/schema/nuget-config-file#packagesourcecredentials) - 
+Trust information for a repository should be stored in a similar pattern as [package source credentials](https://docs.microsoft.com/en-us/nuget/schema/nuget-config-file#packagesourcecredentials) - 
 
 ```
 <packageSourceCredentials>
@@ -63,7 +61,8 @@ Trust information for a repository should be stored in a similar fashion as [pac
     </NuGet.org>
 </packageSourceTrustInformation>
 ```
-<br/>
+
+> We should also consider writing the OID for the hash algorithm, in the same way as we do while creating a package signature content. Though that makes the file, less human friendly.
 
 ### Repository Trust Information Gesture
 To enable the following user gestures we need to update the existing [`nuget sources`](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-sources) command and add a `nuget keys` command.
@@ -168,10 +167,10 @@ This command will add an entry for trusted repository without adding a package s
 ```
 <br/>
 
-#### Sync keys for a trusted repository - 
+#### Refresh keys for a trusted repository - 
 This scenario should be supported to allow users to refresh the keys for a trusted repository which may not be a package source.
 
-`nuget keys update -Name NuGet.org`
+`nuget keys refresh -Name NuGet.org`
 
 This command will update the entry for trusted repository without adding a package source entry - 
 
@@ -189,5 +188,15 @@ This command will update the entry for trusted repository without adding a packa
 ```
 <br/>
 
+#### Update a trusted repository - 
+This scenario should be supported to allow users to update a trusted repository which may not be a package source.
+
+`nuget keys <remove|list|remove|enable|disable> -Name NuGet.org`
+<br/>
 
 
+## Open Questions
+
+* Should we store the Hash algorithm name or OID?
+
+* Is `nuget keys` confusing with `nuget setApiKey`?
