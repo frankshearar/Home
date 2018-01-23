@@ -67,19 +67,21 @@ The details that should be displayed on each verbosity level are described below
 * For each signature present
     * Type of signature (_author_ or _repository_)
     * Hashing algorithm used for signature
+    * Information about the signing certificate
+    * Information about the timestamper certificate
 
 **detailed**
 
-* Information about each signing certificate and chain
-    * Issued to
-    * Issued by
-    * Expires
-    * Fingerprint
-*  Information about each Timestamper certificate and chain
-    * Issued to
-    * Issued by
-    * Expires
-    * Fingerprint
+* Information about signing certificate's chain
+* Information about Timestamper certificate's chain
+
+
+For each certificate show:
+* Issued to
+* Issued by
+* Expires
+* Sha1 Fingerprint
+* Fingerprint with provided algorithm in -FingerprintAlgorithm option
 
 Warnings are errors should be displayed if present no matter the verbosity level chosen.
 
