@@ -72,7 +72,7 @@ To enable the following user gestures we need to update the existing [`nuget sou
 #### Add a source as a trusted repository -  
 This scenario should be supported to allow first class experience for package sources that can be added as a trusted repository.
 
-`nuget sources add -Name NuGet.Org -Source https://api.nuget.org/v3/index.json --trusted`
+`nuget sources add -Name NuGet.Org -Source https://api.nuget.org/v3/index.json`
 
 The above command will create the following entries - 
 
@@ -197,9 +197,20 @@ This scenario should be supported to allow users to update a trusted repository 
 
 ## Open Questions
 
-* Should we store the certificate expiry?
-_No, since we do not automatically refresh the keys._
+* Should we store the certificate expiry?  
+_No, since we do not automatically refresh the keys._  
 
 * Should we store the Hash algorithm name or OID?
 
 * Is `nuget keys` confusing with `nuget setApiKey`?
+
+* Should the config element be `packageSourceTrustInformation` or `repositoryTrustInformation`?  
+_repository is a new term from nuget.config point of view. Credentials are stored using `packageSourceCredentials`_  
+
+* Should we add a package source as a trusted repository by default?  
+_More user friendly as users don't need to add a `--trusted` switch. But a concern is that we should not add trust without user confirmation/action_
+
+* Should we delete repository trust information on source delete?
+_Yes. Again we should not implicitly add trust without user confirmation/action. Further, we are leaving a footprint. Users can choose to add the trusted repository as a new action._
+
+* Should we add client policies as part of this spec?
