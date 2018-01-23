@@ -194,6 +194,19 @@ This scenario should be supported to allow users to update a trusted repository 
 `nuget keys <remove|list|remove|enable|disable> -Name NuGet.org`
 <br/>
 
+#### Trusted repositories in Visual Studio - 
+We should add support for the following in Visual Studio NuGet options control - 
+
+* Display the config file for a package source.
+
+* Display if a package source is trusted repository e.g. - 
+
+![](https://github.com/NuGet/Home/wiki/Repo-Signature-media/VSConfigUI.png)
+
+* Allow users to make package source into a trusted repository.
+
+* Start displaying a separate section for trusted repositories.
+<br/>
 
 ## Open Questions
 
