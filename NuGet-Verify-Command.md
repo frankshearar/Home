@@ -86,27 +86,6 @@ The details that should be displayed on each verbosity level are described below
 
 Warnings are errors should be displayed if present no matter the verbosity level chosen.
 
-### Errors and warnings
-
-Some errors and warnings that should be displayed are:
-
-**Warnings**
-
-* Unable to retrieve revocation information for signing certificate.
-
-**Errors**
-
-* Package not found
-* Package is not signed
-* The version of the signature is not supported
-* The version of the manifest is not supported
-* The hashing algorithm of the signature is not supported
-* Signature file is too big
-* Invalid signature. File might have been tampered.
-* Signer certificate does not match any of the fingerprints provided.
-* A signing certificate doesn't chain up to a trusted root
-* A timestamper certificate doesn't chain up to a trusted root
-
 ### Corresponding commands
 
 In future we would like to add support for the following platforms - 
