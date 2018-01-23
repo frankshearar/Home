@@ -208,9 +208,9 @@ _No, since we do not automatically refresh the keys._
 _repository is a new term from nuget.config point of view. Credentials are stored using `packageSourceCredentials`_  
 
 * Should we add a package source as a trusted repository by default?  
-_More user friendly as users don't need to add a `--trusted` switch. But a concern is that we should not add trust without user confirmation/action_
+_More user friendly as users don't need to add a `--trusted` switch. But a concern is that we should not add trust without user confirmation/action_  
 
-* Should we delete repository trust information on source delete?
-_Yes. Again we should not implicitly add trust without user confirmation/action. Further, we are leaving a footprint. Users can choose to add the trusted repository as a new action._
+* Should we delete repository trust information on source delete?  
+_Yes. Again we should not implicitly add trust without user confirmation/action. Further, we are leaving a footprint. Users can choose to add the trusted repository as a new action._  
 
-* Should we add client policies as part of this spec?
+* Should we add client policies as part of this spec?  
