@@ -31,8 +31,11 @@ options:
 
     -Verbosity <level> - Specifies the level of detail displayed in the output: quiet, normal, detailed
 
+    -FingerprintAlgorithm - Hash algorithm to be displayed as certificate fingerprint in the certificate information. Defaults to SHA256.
+
     -CertificateFingerprint "<cert_fingerprint>;..." - Verify that the signer certificate matches with one of the specified fingerprints.
-                                     A certificate fingerprint is a SHA-1 hash of the certificate used to identify the certificate.
+                                     The hashing algorithm used to match the certificate is indicated with the FingerprintAlgorithm option.
+                                     A certificate fingerprint is a hash of the certificate used to identify the certificate.
                                      If more than one fingerprint is provided, the input should be a string with each fingerprint separated by a semicolon.
 
 ```
