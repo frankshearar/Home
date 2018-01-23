@@ -76,7 +76,8 @@ The details that should be displayed on each verbosity level are described below
 * Information about Timestamper certificate's chain
 
 
-For each certificate show:
+**For each certificate show:**
+
 * Issued to
 * Issued by
 * Expires
