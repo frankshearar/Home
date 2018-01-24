@@ -28,7 +28,13 @@ Repository key will allow us to correlate a source to a trusted repository and h
 Repository Source Service Index URI will allow us to communicate with the source to refresh certificate list. This is needed when a trusted repository is not a source and we have no other way of finding out the certificate endpoint.
 
 * Repository Certificate Fingerprint -  
-Repository Certificate Fingerprint will allow us to assert that the package was signed with a certificate that the repository is advertising in its certificate list. The fingerprint should be a SHA256 fingerprint.
+Repository Certificate Fingerprint will allow us to assert that the package was signed with a certificate that the repository is advertising in its certificate list. The fingerprint should be a calculated based on the `Repository Certificate Fingerprint Algorithm` described below.
+
+* Repository Certificate Fingerprint Algorithm -  
+Repository Certificate Fingerprint Algorithm will allow us to calculate the hash algorithm used while claculating the certificate fingerprint. The algorithm should be one of the following - 
+  * `SHA256`
+  * `SHA384`
+  * `SHA512`
 
 ### Repository Trust Information Location
 Trust information for a repository should be stored along with the source information for package repositories i.e. nuget.config file.
@@ -37,11 +43,11 @@ Trust information for a repository should be stored along with the source inform
 ```
   <trustedRepositories>
     <repository key="NuGet.org" [serviceIndex="https://api.nuget.org/v3/index.json"]>
-      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
-      <certificate name="CN=NuGet.Org Cert2" fingerprint="vPv9/fx05OEc4atG7ny+5KcgQGNesKaHU1AxvXB6W2d="/>
+      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" fingerprintAlgorithm = "SHA256" />
+      <certificate name="CN=NuGet.Org Cert2" fingerprint="vPv9/fx05OEc4atG7ny+5KcgQGNesKaHU1AxvXB6W2d=" fingerprintAlgorithm = "SHA256" />
     </repository>
     <repository key="VSTS" [serviceIndex="https://vsts.com/feed/index.json"]>
-      <certificate name="CN=VSTS" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
+      <certificate name="CN=VSTS" fingerprint="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" fingerprintAlgorithm = "SHA384" />
     </repository>
   <trustedRepositories>
 ```
@@ -78,7 +84,7 @@ The above command will create the following entries -
   </packageSources>
   <trustedRepositories>
     <repository key="NuGet.org" [serviceIndex="https://api.nuget.org/v3/index.json"]>
-      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
+      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" fingerprintAlgorithm="SHA256" />
     </repository>
   <trustedRepositories>
 </configuration>
@@ -87,9 +93,9 @@ The above command will create the following entries -
 The above command should fail if the repository does not support package signing -
 
 ```
-nuget sources add -Name InSecureSource -Source https://api.insecuresource.org/v3/index.json -trusted
+nuget sources add -Name InSecureSource -Source https://api.insecuresource.org/v3/index.json -WithTrust
 
-Package Source with Name: InSecureSource cannot be added as a trusted repository as it does not support repository signing. Please remove the '-trusted' option.
+Package Source with Name: InSecureSource cannot be added as a trusted repository because it does not support repository signing. Please remove the '-WithTrust' option.
 ```  
 <br/>
 
@@ -105,7 +111,7 @@ Before -
   </packageSources>
   <trustedRepositories>
     <repository key="NuGet.org" [serviceIndex="https://api.nuget.org/v3/index.json"]>
-    <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
+      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" fingerprintAlgorithm="SHA256" />
     </repository>
   <trustedRepositories>
 </configuration>
@@ -118,7 +124,7 @@ After -
   <packageSources />
   <trustedRepositories>
     <repository key="NuGet.org" [serviceIndex="https://api.nuget.org/v3/index.json"]>
-      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
+      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" fingerprintAlgorithm="SHA256" />
     </repository>
   <trustedRepositories>
 </configuration>
@@ -138,7 +144,7 @@ Before -
   </packageSources>
   <trustedRepositories>
     <repository key="NuGet.org" [serviceIndex="https://api.nuget.org/v3/index.json"]>
-      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
+      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" fingerprintAlgorithm="SHA256" />
     </repository>
   <trustedRepositories>
 </configuration>
@@ -176,7 +182,7 @@ After -
   </packageSources>
   <trustedRepositories>
     <repository key="NuGet.org" [serviceIndex="https://api.nuget.org/v3/index.json"]>
-      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
+      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" fingerprintAlgorithm="SHA256" />
     </repository>
   <trustedRepositories>
 </configuration>
@@ -194,7 +200,7 @@ This command will add an entry for trusted repository without adding a package s
   <packageSources />
   <trustedRepositories>
     <repository key="NuGet.org" [serviceIndex="https://api.nuget.org/v3/index.json"]>
-      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
+      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" fingerprintAlgorithm="SHA256" />
     </repository>
   <trustedRepositories>
 </configuration>
@@ -212,7 +218,7 @@ This command will update the entry for trusted repository -
   <packageSources />
   <trustedRepositories>
     <repository key="NuGet.org" [serviceIndex="https://api.nuget.org/v3/index.json"]>
-      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
+      <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" fingerprintAlgorithm="SHA256" />
     </repository>
   <trustedRepositories>
 </configuration>
@@ -222,9 +228,24 @@ This command will update the entry for trusted repository -
 #### Trusted repositories in Visual Studio - 
 We should add support for the following in Visual Studio NuGet options control - 
 
-* Display if a package source is trusted repository.
+* Display the config file(s) for each package source.
+
+* Display if a package source is trusted repository e.g. - 
+
+![](https://github.com/NuGet/Home/wiki/Repo-Signature-media/VSConfigUI.png)
 
 * Allow users to make package source into a trusted repository.
+
+* Start displaying a separate section for trusted repositories.
 <br/>
 
 ## Open Questions
+
+* Should we encourage hand edits for the nuget.config file?  
+_No, we explicitly disourage that in our [docs](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior#changing-config-settings) because starting v3.4.3, malformed config files are silently ignored._
+
+* Should we add a package source as a trusted repository by default?  
+_It is more user friendly as users don't need to add a `-WithTrust` switch. But it is a security concern that we should not add trust without user confirmation/action_  
+
+* Should we delete repository trust information on source delete?  
+_Yes. Again we should not implicitly add trust without user confirmation/action. Further, we are leaving a footprint. Users can choose to add the trusted repository as a new action._  
