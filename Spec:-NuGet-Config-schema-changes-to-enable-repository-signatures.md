@@ -38,7 +38,7 @@ Trust information for a repository should be stored along with the source inform
   <trustedRepositories>
     <repository key="NuGet.org" [serviceIndex="https://api.nuget.org/v3/index.json"]>
       <certificate name="CN=NuGet.Org" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
-      <certificate name="CN=NuGet.Org Other Certificate" fingerprint="vPv9/fx05OEc4atG7ny+5KcgQGNesKaHU1AxvXB6W2d="/>
+      <certificate name="CN=NuGet.Org Cert2" fingerprint="vPv9/fx05OEc4atG7ny+5KcgQGNesKaHU1AxvXB6W2d="/>
     </repository>
     <repository key="VSTS" [serviceIndex="https://vsts.com/feed/index.json"]>
       <certificate name="CN=VSTS" fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w="/>
