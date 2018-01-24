@@ -25,6 +25,11 @@ The work for this feature and the discussion around the spec is tracked here: [#
     - https://github.com/NuGet/Home/wiki/Package-Signatures-Technical-Details
     - Discuss [#6250](https://github.com/nuget/home/issues/6250)
 
+- **Register package signing certificates on NuGet.org**: Contains the certificate registration flow for NuGet.org authors 
+    - https://github.com/NuGet/Home/wiki/Register-package-signing-certificates
+    - Discuss [#5346](https://github.com/nuget/NuGetGallery/issues/5346)
+
+
 #### Stage 2. Tamper proofing entire package dependency graphs 
 - **Repository Signatures**
     - https://github.com/NuGet/Home/wiki/Repository-Signatures
