@@ -52,6 +52,7 @@ One may want to remove an existing registered certificate if he/she gets another
 * A registered certificate can be safely removed by clicking on the delete button if there were no packages uploaded to NuGet.org signed with that certificate. The row for the registered certificate will no longer be shown.
 * If there were one or more packages pushed to NuGet.org, delete action will disable the row that shows the registered certificate but should not remove the row altogether.
 ![image](https://user-images.githubusercontent.com/14800916/35362656-0f7add10-011b-11e8-94cd-6ee0cc6a46d6.png)
+* In both these delete cases, the packages signed with these deleted certificates cannot be published to NuGet.org i.e. the push/upload/update actions will fail.
 
 ## Certificate requirements for packages with more than one owner
 
