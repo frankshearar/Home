@@ -44,7 +44,11 @@ Proposed screenshots (not the final ones):
 
 ![image](https://user-images.githubusercontent.com/14800916/35362394-06b2412e-011a-11e8-80f4-86e0ab5d4a00.png)
 
+### What happens when a certificate expires or is revoked?
+* New packages signed with the expired/revoked certificates will not be published i.e. the push/upload/update actions would fail.
+
 ### Deleting/Removing registered certificates
+One may want to remove an existing registered certificate if he/she gets another certificate that he/she intends to use for package signing. In such a case, the new certificate would need to be registered using the flow discussed above. Additionally the author may want to remove the certificate he/she does not want to use any longer:
 * A registered certificate can be safely removed by clicking on the delete button if there were no packages uploaded to NuGet.org signed with that certificate. The row for the registered certificate will no longer be shown.
 * If there were one or more packages pushed to NuGet.org, delete action will disable the row that shows the registered certificate but should not remove the row altogether.
 ![image](https://user-images.githubusercontent.com/14800916/35362656-0f7add10-011b-11e8-94cd-6ee0cc6a46d6.png)
