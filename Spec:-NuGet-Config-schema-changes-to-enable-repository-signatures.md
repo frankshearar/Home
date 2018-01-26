@@ -177,7 +177,7 @@ After -
     <NuGet.Org>
         <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
              value="CN=NuGet.Org" 
-             fingerprintAlgorithm="SHA256 
+             fingerprintAlgorithm="SHA256"
              serviceIndex="https://api.nuget.org/v3/index.json" />
     </NuGet.Org>
   </trustedSources>
@@ -261,7 +261,7 @@ The above commands will add an entry for trusted repository without adding a pac
     <NuGet.Org>
         <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
              value="CN=NuGet.Org" 
-             fingerprintAlgorithm="SHA256 
+             fingerprintAlgorithm="SHA256"
              serviceIndex="https://api.nuget.org/v3/index.json" />
     </NuGet.Org>
   </trustedSources>
