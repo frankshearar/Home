@@ -132,9 +132,19 @@ The above command will create the following entries -
 The above command should fail if the repository does not support package signing -
 
 ```
-nuget sources add -Name InSecureSource -Source https://api.insecuresource.org/v3/index.json -Trust
+nuget sources add -Name InSecureSource -Source http://insecuresource.org/v3/index.json -Trust
 
-Package Source with Name: InSecureSource cannot be added as a trusted repository because it does not support repository signing. Please remove the '-Trust' option.
+Package Source with Name: InSecureSource cannot be added as a trusted repository.
+InSecureSource does not support repository signing. 
+Please remove the '-Trust' option.
+```  
+
+```
+nuget sources add -Name FileShare -Source \\share -Trust
+
+Package Source with Name: FileShare cannot be added as a trusted repository.
+FileShare does not support repository signing. 
+Please remove the '-Trust' option.
 ```  
 <br/>
 
@@ -177,7 +187,7 @@ After -
 <br/>
 
 #### Removing a package source and trust information- 
-`nuget sources remove -Name NuGet.Org -WithTrust`
+`nuget sources remove -Name NuGet.Org -Trust`
 
 Before -
 ```
@@ -207,7 +217,7 @@ After -
 <br/>
 
 #### Make a source a trusted repository - 
-`nuget sources update -Name NuGet.Org -WithTrust`
+`nuget sources update -Name NuGet.Org -Trust`
 
 Before -
 ```
@@ -237,10 +247,12 @@ After -
 ```
 <br/>
 
-#### Add a trusted repository - 
-`nuget sources add -Name NuGet.org -Source https://api.nuget.org/v3/index.json -OnlyTrust`
+#### Add a source as trusted repository only - 
+`nuget sources add -Name NuGet.org -Source https://api.nuget.org/v3/index.json -Trust`
+`nuget sources remove -Name NuGet.org`
 
-This command will add an entry for trusted repository without adding a package source entry - 
+
+The above commands will add an entry for trusted repository without adding a package source entry - 
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -259,7 +271,7 @@ This command will add an entry for trusted repository without adding a package s
 <br/>
 
 #### Refresh certificates for a trusted repository - 
-`nuget sources update -Name NuGet.Org -WithTrust`
+`nuget sources update -Name NuGet.Org -Trust`
 
 This command will update the entry for trusted repository - 
 
@@ -271,9 +283,9 @@ This command will update the entry for trusted repository -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-             value="CN=NuGet.Org" 
-             fingerprintAlgorithm="SHA256" />
+        <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
+             value="CN=NuGet.Org NewCert" 
+             fingerprintAlgorithm="SHA384" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
