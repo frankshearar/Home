@@ -272,10 +272,10 @@ _Ankit: No, since we are not adding the trust information implicitly, we should 
 | Operation         	| Source Type       	| Option 1                      	| Option 2                        	| Remarks             	|
 |-------------------	|-------------------	|-------------------------------	|---------------------------------	|---------------------	|
 | Add               	| Source            	| nuget sources add             	| nuget sources add               	| Do not add trust    	|
-| Add               	| Source with trust 	| nuget sources addWithTrust    	| nuget sources add -WithTrust    	|                     	|
-| Add               	| Just trust        	| nuget sources addTrust        	| nuget sources add -OnlyTrust    	|                     	|
+| Add               	| Source with trust 	| nuget sources addWithTrust    	| nuget sources add -Trust    	|                     	|
+| Add               	| Just trust        	| nuget sources addTrust        	| nuget sources add -OnlyTrust X   	|                     	|
 | Remove            	| Source            	| nuget sources remove          	| nuget sources remove            	| Do not remove trust 	|
-| Remove            	| Source with trust 	| nuget sources removeWithTrust 	| nuget sources remove -WithTrust 	|                     	|
-| Remove            	| Just trust        	| nuget sources removeOnlyTrust 	| nuget sources remove -OnlyTrust 	|                     	|
-| Update to Trusted 	| Source            	| nuget sources updateWithTrust 	| nuget sources update -WithTrust 	|                     	|
-| Refresh Trust     	| Source            	| nuget sources updateWithTrust 	| nuget sources update -WithTrust 	|                     	|
+| Remove            	| Source with trust 	| nuget sources removeWithTrust 	| nuget sources remove -Trust 	|                     	|
+| Remove            	| Just trust        	| nuget sources removeOnlyTrust 	| nuget sources remove -OnlyTrust X 	|                     	|
+| Update to Trusted 	| Source            	| nuget sources updateWithTrust 	| nuget sources update -Trust 	|                     	|
+| Refresh Trust     	| Source            	| nuget sources updateWithTrust 	| nuget sources update -Trust 	|                     	|
