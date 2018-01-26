@@ -43,7 +43,10 @@ Trust information for a repository should be stored along with the source inform
 ```
   <trustedSources>
     <NuGet.Org>
-        <add key="CERT_HASH" value="SUBJECT_NAME" fingerprintAlgorithm="FINGERPRINT_ALGORITHM" [serviceIndex="Service_Index_URI"]/>
+        <add key="CERT_HASH" 
+             value="SUBJECT_NAME" 
+             fingerprintAlgorithm="FINGERPRINT_ALGORITHM" 
+             [serviceIndex="Service_Index_URI"]/>
     </NuGet.Org>
   </trustedSources>
 ```
@@ -57,11 +60,18 @@ For example -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" value="CN=NuGet.Org" fingerprintAlgorithm="SHA256" />
-        <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" value="CN=NuGet.Org NewCert" fingerprintAlgorithm="SHA384" />
+        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+             value="CN=NuGet.Org" 
+             fingerprintAlgorithm="SHA256" />
+        <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
+             value="CN=NuGet.Org NewCert" 
+             fingerprintAlgorithm="SHA384" />
     </NuGet.Org>
     <vsts>
-        <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q=" value="CN=vsts" fingerprintAlgorithm="SHA256" serviceIndex="https://api.vsts.com/feed/index.json"/>
+        <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q=" 
+             value="CN=vsts" 
+             fingerprintAlgorithm="SHA256" 
+             serviceIndex="https://api.vsts.com/feed/index.json"/>
     </vsts>    
   </trustedSources>
 </configuration>
@@ -69,6 +79,18 @@ For example -
 
 ### Repository Trust Information Gesture
 To enable the following user gestures we need to update the existing [`nuget sources`](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-sources) command. All of the following operations are performed on `%AppData%\NuGet\NuGet.config` by default. Users can control the config file using the `-configFile` parameter.
+<br/>
+
+#### Summary - 
+
+| Operation         | Source Type       | Command                                          | Remarks             |
+|-------------------|-------------------|--------------------------------------------------|---------------------|
+| Add               | Source            | nuget sources add -Name name -Value value        | Do not add trust    |
+| Add               | Source with trust | nuget sources add -Name name -Value value -Trust |                     |
+| Remove            | Source            | nuget sources remove -Name name                  | Do not remove trust |
+| Remove            | Source with trust | nuget sources remove -Name name -Trust           |                     |
+| Update to Trusted | Source            | nuget sources update -Name name -Trust           |                     |
+| Refresh Trust     | Source            | nuget sources update -Name name -Trust           |                     |
 <br/>
 
 #### Add a source [No change in behavior]-  
@@ -87,7 +109,7 @@ The above command will create the following entries -
 <br/>
 
 #### Add a source as a trusted repository -  
-`nuget sources add -Name NuGet.Org -Source https://api.nuget.org/v3/index.json -WithTrust` 
+`nuget sources add -Name NuGet.Org -Source https://api.nuget.org/v3/index.json -Trust` 
 
 The above command will create the following entries - 
 
@@ -99,7 +121,9 @@ The above command will create the following entries -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" value="CN=NuGet.Org" fingerprintAlgorithm="SHA256" />
+        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+             value="CN=NuGet.Org" 
+             fingerprintAlgorithm="SHA256" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -108,13 +132,13 @@ The above command will create the following entries -
 The above command should fail if the repository does not support package signing -
 
 ```
-nuget sources add -Name InSecureSource -Source https://api.insecuresource.org/v3/index.json -WithTrust
+nuget sources add -Name InSecureSource -Source https://api.insecuresource.org/v3/index.json -Trust
 
-Package Source with Name: InSecureSource cannot be added as a trusted repository because it does not support repository signing. Please remove the '-WithTrust' option.
+Package Source with Name: InSecureSource cannot be added as a trusted repository because it does not support repository signing. Please remove the '-Trust' option.
 ```  
 <br/>
 
-#### Removing a package source - 
+#### Removing a package source [No change in behavior] - 
 `nuget sources remove -Name NuGet.Org`
 
 Before -
@@ -126,7 +150,9 @@ Before -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" value="CN=NuGet.Org" fingerprintAlgorithm="SHA256" />
+        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+             value="CN=NuGet.Org" 
+             fingerprintAlgorithm="SHA256" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -139,7 +165,10 @@ After -
   <packageSources />
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" value="CN=NuGet.Org" fingerprintAlgorithm="SHA256" serviceIndex="https://api.nuget.org/v3/index.json" />
+        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+             value="CN=NuGet.Org" 
+             fingerprintAlgorithm="SHA256 
+             serviceIndex="https://api.nuget.org/v3/index.json" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -159,7 +188,9 @@ Before -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" value="CN=NuGet.Org" fingerprintAlgorithm="SHA256" />
+        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+             value="CN=NuGet.Org" 
+             fingerprintAlgorithm="SHA256" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -197,7 +228,9 @@ After -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" value="CN=NuGet.Org" fingerprintAlgorithm="SHA256" />
+        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+             value="CN=NuGet.Org" 
+             fingerprintAlgorithm="SHA256" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -215,7 +248,10 @@ This command will add an entry for trusted repository without adding a package s
   <packageSources />
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" value="CN=NuGet.Org" fingerprintAlgorithm="SHA256" serviceIndex="https://api.nuget.org/v3/index.json" />
+        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+             value="CN=NuGet.Org" 
+             fingerprintAlgorithm="SHA256 
+             serviceIndex="https://api.nuget.org/v3/index.json" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -235,7 +271,9 @@ This command will update the entry for trusted repository -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" value="CN=NuGet.Org" fingerprintAlgorithm="SHA256" />
+        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+             value="CN=NuGet.Org" 
+             fingerprintAlgorithm="SHA256" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -266,14 +304,3 @@ _Ankit: It is more user friendly as users don't need to add a `-WithTrust` switc
 
 * Should we delete repository trust information on source delete?  
 _Ankit: No, since we are not adding the trust information implicitly, we should not delete it implicitly._  
-
-* How should we do trust operations in the sources command - 
-
-| Operation         	| Source Type       	| Option 1                      	| Option 2                        	| Remarks             	|
-|-------------------	|-------------------	|-------------------------------	|---------------------------------	|---------------------	|
-| Add               	| Source            	| nuget sources add             	| nuget sources add               	| Do not add trust    	|
-| Add               	| Source with trust 	| nuget sources addWithTrust    	| nuget sources add -Trust    	|                     	|
-| Remove            	| Source            	| nuget sources remove          	| nuget sources remove            	| Do not remove trust 	|
-| Remove            	| Source with trust 	| nuget sources removeWithTrust 	| nuget sources remove -Trust 	|                     	|
-| Update to Trusted 	| Source            	| nuget sources updateWithTrust 	| nuget sources update -Trust 	|                     	|
-| Refresh Trust     	| Source            	| nuget sources updateWithTrust 	| nuget sources update -Trust 	|                     	|
