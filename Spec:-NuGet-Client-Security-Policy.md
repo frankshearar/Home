@@ -142,7 +142,6 @@ After -
 We should add support for the following in Visual Studio NuGet options control - 
 
 * Add a drop down menu to enable users to choose a security policy -  
-
 <br/>
 
 ## Open Questions
