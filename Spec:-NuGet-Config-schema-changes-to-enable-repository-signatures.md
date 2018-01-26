@@ -248,7 +248,7 @@ After -
 <br/>
 
 #### Add a source as trusted repository only - 
-`nuget sources add -Name NuGet.org -Source https://api.nuget.org/v3/index.json -Trust`
+`nuget sources add -Name NuGet.org -Source https://api.nuget.org/v3/index.json -Trust`  
 `nuget sources remove -Name NuGet.org`
 
 
