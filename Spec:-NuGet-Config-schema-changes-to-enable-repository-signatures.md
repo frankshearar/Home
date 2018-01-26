@@ -40,7 +40,7 @@ Repository Certificate Fingerprint Algorithm will allow us to calculate the hash
 Trust information for a repository should be stored along with the source information for package repositories i.e. nuget.config file.
 
 ### Repository Trust Information Schema
-```
+```xml
   <trustedSources>
     <NuGet.Org>
         <add key="CERT_HASH" 
@@ -52,7 +52,7 @@ Trust information for a repository should be stored along with the source inform
 ```
 
 For example -
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
@@ -98,7 +98,7 @@ To enable the following user gestures we need to update the existing [`nuget sou
 
 The above command will create the following entries - 
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
@@ -113,7 +113,7 @@ The above command will create the following entries -
 
 The above command will create the following entries - 
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
@@ -152,7 +152,7 @@ Please remove the '-Trust' option.
 `nuget sources remove -Name NuGet.Org`
 
 Before -
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
@@ -169,7 +169,7 @@ Before -
 ```
 
 After - 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources />
@@ -190,7 +190,7 @@ After -
 `nuget sources remove -Name NuGet.Org -Trust`
 
 Before -
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
@@ -207,7 +207,7 @@ Before -
 ```
 
 After - 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources />
@@ -220,7 +220,7 @@ After -
 `nuget sources update -Name NuGet.Org -Trust`
 
 Before -
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
@@ -230,7 +230,7 @@ Before -
 ```
 
 After - 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
@@ -253,8 +253,7 @@ After -
 
 
 The above commands will add an entry for trusted repository without adding a package source entry - 
-
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources />
@@ -275,7 +274,7 @@ The above commands will add an entry for trusted repository without adding a pac
 
 This command will update the entry for trusted repository - 
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
