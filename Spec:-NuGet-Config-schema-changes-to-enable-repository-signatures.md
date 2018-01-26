@@ -132,7 +132,7 @@ The above command will create the following entries -
 The above command should fail if the repository does not support package signing -
 
 ```
-nuget sources add -Name InSecureSource -Source http://insecuresource.org/v3/index.json -Trust
+nuget sources add -Name InSecureSource -Source http://source.org/v3/index.json -Trust
 
 Package Source with Name: InSecureSource cannot be added as a trusted repository.
 InSecureSource does not support repository signing. 
