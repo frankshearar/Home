@@ -2,7 +2,8 @@ Status: **Incubation**
 
 ## Issue
 Issue for spec - [NuGet/Home#6419](https://github.com/NuGet/Home/issues/6419)  
-Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)
+Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)  
+Related Spec - [NuGet-Client-Security-Policy](https://github.com/NuGet/Home/wiki/Spec:-NuGet-Client-Security-Policy)
 
 ## Problem
 Once we enable repository package signing, we need to enable consumers to be able to trust a package repository. Further, the trust information needs to be stored into the users machine.
@@ -311,14 +312,6 @@ We should add support for the following in Visual Studio NuGet options control -
 
 * Display Trusted repositories trusted repositories.
 <br/>
-
-### NuGet Client Security Policy Rollout
-Client policies have been outlined in the [Repository-Signatures spec](https://github.com/NuGet/Home/wiki/Repository-Signatures#client-policies). 
-
-1. We should default to Dev mode starting VS 15.7. At this point in time if no client policy is set, we should take that as Dev mode.
-2. We should add an option in our Visual Studio UI to allow changing client policy.
-3. At some point in future, when we are ready to change default to Secure mode, we should start warning users on launching Visual Studio that they are using NuGet in an insecure mode. At the same time any new installations should automatically set client policy to Secure mode.
-4. If a user changes their client policy to Secure mode, we should evaluate all of their sources and warn if any V3 source is not marked as trusted.
 
 ## Open Questions
 
