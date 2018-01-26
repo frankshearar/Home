@@ -27,8 +27,13 @@ Repository key will allow us to correlate a source to a trusted repository and h
 * Repository Source Service Index URI - 
 Repository Source Service Index URI will allow us to communicate with the source to refresh certificate list. This is needed when a trusted repository is not a source and we have no other way of finding out the certificate endpoint.
 
+Further for each certificate used by the repositoy, we should store the folling - 
+
 * Repository Certificate Fingerprint -  
 Repository Certificate Fingerprint will allow us to assert that the package was signed with a certificate that the repository is advertising in its certificate list. The fingerprint should be a calculated based on the `Repository Certificate Fingerprint Algorithm` described below.
+
+* Repository Certificate SubjectName -  
+Repository Certificate SubjectName will allow users to recognize certificates more easily as subject names are human readable.
 
 * Repository Certificate Fingerprint Algorithm -  
 Repository Certificate Fingerprint Algorithm will allow us to calculate the hash algorithm used while claculating the certificate fingerprint. The algorithm should be one of the following - 
@@ -43,10 +48,10 @@ Trust information for a repository should be stored along with the source inform
 ```xml
   <trustedSources>
     <NuGet.Org>
-        <add key="CERT_HASH" 
-             value="SUBJECT_NAME" 
-             fingerprintAlgorithm="FINGERPRINT_ALGORITHM" 
-             [serviceIndex="Service_Index_URI"]/>
+      <add key="serviceIndex" value="SERVICE_INDEX_URI" />
+      <add key="CERT_HASH" 
+           value="SUBJECT_NAME" 
+           fingerprintAlgorithm="FINGERPRINT_ALGORITHM" />
     </NuGet.Org>
   </trustedSources>
 ```
@@ -60,18 +65,19 @@ For example -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-             value="CN=NuGet.Org" 
-             fingerprintAlgorithm="SHA256" />
-        <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
-             value="CN=NuGet.Org NewCert" 
-             fingerprintAlgorithm="SHA384" />
+      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+           value="CN=NuGet.Org" 
+           fingerprintAlgorithm="SHA256" />
+      <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
+           value="CN=NuGet.Org NewCert" 
+           fingerprintAlgorithm="SHA384" />
     </NuGet.Org>
     <vsts>
-        <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q=" 
-             value="CN=vsts" 
-             fingerprintAlgorithm="SHA256" 
-             serviceIndex="https://api.vsts.com/feed/index.json"/>
+      <add key="serviceIndex" 
+           value="https://api.vsts.com/feed/index.json" />
+      <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q=" 
+           value="CN=vsts" 
+           fingerprintAlgorithm="SHA256" />
     </vsts>    
   </trustedSources>
 </configuration>
@@ -175,10 +181,12 @@ After -
   <packageSources />
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-             value="CN=NuGet.Org" 
-             fingerprintAlgorithm="SHA256"
-             serviceIndex="https://api.nuget.org/v3/index.json" />
+      <add key="serviceIndex" 
+           value="https://api.nuget.org/v3/index.json" />    
+      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+           value="CN=NuGet.Org" 
+           fingerprintAlgorithm="SHA256"
+           serviceIndex="https://api.nuget.org/v3/index.json" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -198,9 +206,9 @@ Before -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-             value="CN=NuGet.Org" 
-             fingerprintAlgorithm="SHA256" />
+      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+           value="CN=NuGet.Org" 
+           fingerprintAlgorithm="SHA256" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -238,9 +246,9 @@ After -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-             value="CN=NuGet.Org" 
-             fingerprintAlgorithm="SHA256" />
+      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+           value="CN=NuGet.Org" 
+           fingerprintAlgorithm="SHA256" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -259,10 +267,9 @@ The above commands will add an entry for trusted repository without adding a pac
   <packageSources />
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-             value="CN=NuGet.Org" 
-             fingerprintAlgorithm="SHA256"
-             serviceIndex="https://api.nuget.org/v3/index.json" />
+      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+           value="CN=NuGet.Org" 
+           fingerprintAlgorithm="SHA256" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -282,9 +289,9 @@ This command will update the entry for trusted repository -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
-             value="CN=NuGet.Org NewCert" 
-             fingerprintAlgorithm="SHA384" />
+      <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
+           value="CN=NuGet.Org NewCert" 
+           fingerprintAlgorithm="SHA384" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -304,6 +311,14 @@ We should add support for the following in Visual Studio NuGet options control -
 
 * Display Trusted repositories trusted repositories.
 <br/>
+
+### NuGet Client Security Policy Rollout
+Client policies have been outlined in the [Repository-Signatures spec](https://github.com/NuGet/Home/wiki/Repository-Signatures#client-policies). 
+
+1. We should default to Dev mode starting VS 15.7. At this point in time if no client policy is set, we should take that as Dev mode.
+2. We should add an option in our Visual Studio UI to allow changing client policy.
+3. At some point in future, when we are ready to change default to Secure mode, we should start warning users on launching Visual Studio that they are using NuGet in an insecure mode. At the same time any new installations should automatically set client policy to Secure mode.
+4. If a user changes their client policy to Secure mode, we should evaluate all of their sources and warn if any V3 source is not marked as trusted.
 
 ## Open Questions
 
