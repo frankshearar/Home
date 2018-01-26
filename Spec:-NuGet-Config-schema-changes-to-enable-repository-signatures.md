@@ -85,12 +85,12 @@ To enable the following user gestures we need to update the existing [`nuget sou
 
 | Operation         | Source Type       | Command                                          | Remarks             |
 |-------------------|-------------------|--------------------------------------------------|---------------------|
-| Add               | Source            | nuget sources add -Name name -Value value        | Do not add trust    |
-| Add               | Source with trust | nuget sources add -Name name -Value value -Trust |                     |
-| Remove            | Source            | nuget sources remove -Name name                  | Do not remove trust |
-| Remove            | Source with trust | nuget sources remove -Name name -Trust           |                     |
-| Update to Trusted | Source            | nuget sources update -Name name -Trust           |                     |
-| Refresh Trust     | Source            | nuget sources update -Name name -Trust           |                     |
+| Add               | Source            | `nuget sources add -Name name -Value value`        | Do not add trust    |
+| Add               | Source with trust | `nuget sources add -Name name -Value value -Trust` |                     |
+| Remove            | Source            | `nuget sources remove -Name name`                  | Do not remove trust |
+| Remove            | Source with trust | `nuget sources remove -Name name -Trust`           |                     |
+| Update to Trusted | Source            | `nuget sources update -Name name -Trust`           |                     |
+| Refresh Trust     | Source            | `nuget sources update -Name name -Trust`           |                     |
 <br/>
 
 #### Add a source [No change in behavior]-  
