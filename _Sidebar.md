@@ -11,6 +11,7 @@
 * [Package README.md support](Package-README.md-support)
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
 * [Storing trusted repository](https://github.com/NuGet/Home/wiki/Spec:-NuGet-Config-schema-changes-to-enable-repository-signatures)
+* [NuGet Client Security Policy](https://github.com/NuGet/Home/wiki/Spec:-NuGet-Client-Security-Policy)
 
 #### Reviewed
 * [[2 Factor Auth for NuGet.org sign in]]
