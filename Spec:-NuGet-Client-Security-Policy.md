@@ -142,6 +142,7 @@ After -
 We should add support for the following in Visual Studio NuGet options control - 
 
 * Add a drop down menu to enable users to choose a security policy -  
+![](https://github.com/NuGet/Home/blob/dev/resources/signing/client%20policy%20selection.png)
 <br/>
 
 ## Open Questions
