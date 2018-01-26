@@ -311,7 +311,7 @@ We should add support for the following in Visual Studio NuGet options control -
 _Ankit: No, we explicitly discourage that in our [docs](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior#changing-config-settings) because starting v3.4.3, malformed config files are silently ignored._
 
 * Should we add a package source as a trusted repository by default?  
-_Ankit: It is more user friendly as users don't need to add a `-WithTrust` switch. But it is a security concern that we should not add trust without user confirmation/action_  
+_Ankit: It is user friendly as users don't need to add a `-Trust` switch. But it can be a security concern that we should not add trust without user confirmation/action_  
 
 * Should we delete repository trust information on source delete?  
 _Ankit: No, since we are not adding the trust information implicitly, we should not delete it implicitly._  
