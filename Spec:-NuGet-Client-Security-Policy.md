@@ -150,6 +150,6 @@ We should add support for the following in Visual Studio NuGet options control -
 * Rollout plans - 
 1. We should default to Dev mode starting VS 15.7. At this point in time if no client policy is set, we should take that as Dev mode.
 2. We should add an option in our Visual Studio UI to allow users to change the client policy.
-3. At some point in future, when we are ready to change default to Secure mode, we should start warning users on launching Visual Studio that they are using NuGet in an insecure mode. At the same time any new installations should automatically set client policy to Secure mode. 
+3. At some point in future, when we are ready to change default to Secure mode, we should start warning users on launching Visual Studio that they are using NuGet in an insecure mode. At the same time any new installations should automatically set client policy to Secure mode.
 4. Since this is a breaking change from command line point of view, we should consider changing the default with a major version change.
 4. If a user changes their client policy to Secure mode, we should evaluate all of their sources and warn if any V3 source is not marked as trusted and warn if there is no trusted source available.
