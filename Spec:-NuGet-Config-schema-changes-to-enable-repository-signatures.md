@@ -331,5 +331,5 @@ _Rido: Client should always trust NuGet.org unless the the user explicitly untru
 </untrustedSources>
 ```
 * Do we need the service index in the trusted source?  
-_Ankit: It should be an optional entry to be added only if there is no corresponding source. That will allow us to refresh the certificate list without asking the user for a url._
+_Ankit: It should be an optional entry to be added only if there is no corresponding source. That will allow us to refresh the certificate list without asking the user for a url._  
 _Rido: Not needed. The failed restore will display the URI for which it should be certificates need to be refreshed._
