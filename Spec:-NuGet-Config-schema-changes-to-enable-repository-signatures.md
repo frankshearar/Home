@@ -128,9 +128,9 @@ The above command will create the following entries -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-             value="CN=NuGet.Org" 
-             fingerprintAlgorithm="SHA256" />
+      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+            value="CN=NuGet.Org" 
+            fingerprintAlgorithm="SHA256" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -186,8 +186,7 @@ After -
            value="https://api.nuget.org/v3/index.json" />    
       <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
            value="CN=NuGet.Org" 
-           fingerprintAlgorithm="SHA256"
-           serviceIndex="https://api.nuget.org/v3/index.json" />
+           fingerprintAlgorithm="SHA256" />
     </NuGet.Org>
   </trustedSources>
 </configuration>
@@ -323,3 +322,14 @@ _Ankit: It is user friendly as users don't need to add a `-Trust` switch. But it
 
 * Should we delete repository trust information on source delete?  
 _Ankit: No, since we are not adding the trust information implicitly, we should not delete it implicitly._  
+
+* How should the client trust NuGet.org?  
+_Rido: Client should always trust NuGet.org unless the the user explicitly untrusts it._
+```xml
+<untrustedSources>
+  <add key="NuGet.Org" value="true" />    
+</untrustedSources>
+```
+* Do we need the service index in the trusted source?  
+_Ankit: It should be an optional entry to be added only if there is no corresponding source. That will allow us to refresh the certificate list without asking the user for a url._
+_Rido: Not needed. The failed restore will display the URI for which it should be certificates need to be refreshed._
