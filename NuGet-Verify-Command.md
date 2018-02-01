@@ -51,6 +51,14 @@ Verify Command returns one of the following exit codes when it terminates.
 
 If multiple packages are provided, an error in one package will not be fatal to the verification of the other packages. If multiple errors and warning are present, they will be displayed on the console.
 
+### Config file for repository signature verification
+"NuGet.exe verify -signature" verifies repository signature if the package have repository signature.
+
+NuGet.Config stores trusted repository for repository signature verification.
+
+* If the NuGet.Config is provided by specifying -ConfigFile, verify command uses only the specified config file to do verification.
+* If no specified NuGet.Config file, verify command uses the NuGet.Config chain which includes all NuGet.Config files from working directory to driver root and NuGet.Config in %AppData%\NuGet\NuGet.Config
+
 ### Verbosity details
 
 The details that should be displayed on each verbosity level are described below. Each level should display the same as the level below plus whatever is specified in that level. In that sense, _quiet_ will be give the less amount of information, while _detailed_ the most.
