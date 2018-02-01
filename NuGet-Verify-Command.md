@@ -36,6 +36,8 @@ options:
                                      A certificate fingerprint is a hash of the certificate used to identify the certificate.
                                      If more than one fingerprint is provided, the input should be a string with each fingerprint separated by a semicolon.
 
+    -ConfigFile - Specifies NuGet.Config file for repository signature verification.
+
 ```
 
 ### Return Value
