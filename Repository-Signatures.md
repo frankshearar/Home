@@ -55,7 +55,10 @@ The repository signature will include the following metadata:
 
 Repository signatures require a NuGet server with a v3 service endpoint. Repositories based on local or shared folders can host packages signed in a different repository, however to produce their own repository signatures they will need to configure an HTTP server to publish the certificates.
 
-### NuGet protocol changes to support Repository Signatures
+### Secure Repository
+Repositories who implement the updated service protocol, and sign all their packages with a repository signature will be considered as **Secure Repositories**.
+
+#### NuGet protocol changes to support Repository Signatures
 Repositories will announce the certificates used for repository signing as part of the NuGet protocol v3. 
 
 If a repository announces that all packages are repository signed, then a package reader should verify that a package received from the repository is signed as expected or resolve validation failure by a policy.
@@ -87,7 +90,8 @@ This new resource will include an endpoint to discover the list of certificates.
 |Thumbprint SHA256|Uniquely identify the certificate|
 |Subject Name|Text to display if needed|
 |Issued By|Name of the issuer|
-|Expiration Date|Identify expired certificates|
+|Valid From|Initial date to produce repository signatures|
+|Valid To|Last date producing repository signatures|
 
 
 #### Repository certificate management
@@ -96,21 +100,23 @@ Repository administrators can configure the certificates used for repository sig
 #### Repository certificate revocation
 If the repository private key is compromised the certificate must be revoked and all packages signed after the revocation effective date will become invalid and should be signed again with the new certificate. 
 
-Repositories must remove the revoked certificates from the service URL.
+Repositories should keep the list of certificate used over time, including the validity period for each.
 
 >Note: There are some limitations in non-Windows platforms, where the revocation status does not include the revocation effective date. If the repository certificate is compromised, all packages should be signed again with the updated certificate.
 
 
 ### Client policies
-Client policies allow to customize the security checks in three levels:
+Client policies allow to customize the security checks. These policies are defined in three modes to enable easy configuration:
 
--	Dev. This mode will be the default until all packages in NuGet.org include the repository signature. Clients will verify the signature if it’s available, but also allows unsigned packages. Most trust issues can be reported as warnings or ignored.
--	Secure. All packages must be signed, and trust verification is enforced. This mode  will be the default in future versions once all NuGet.org packages include the repository signature. 
--	Strict. Enables advanced locked-down configuration by requiring to explicitly trust package authors.  
+-	**Dev Mode**. This is the default mode of operation. It will always verify signed packages, but will enforce signed packages only if the package is downloaded from a repository announcing repository signatures. Trust is only enforced for repository signatures.
+ 
+-	**Secure**. All packages must be signed, no matter the source. Trust verification is enforced in all packages. 
+
+-	**Strict**. Enables advanced locked-down configuration by requiring to explicitly trust package authors.  
 
 |DEV|Secure|Strict|
 |---|------|------|
-|Allow unsigned|Require signed (author or repo)|Require signed (author)|
+|Allow unsigned from unsecure repositories|Require signed (author or repo) from all repositories|Require signed (author)|
 |Enforce content integrity (if signed)|Enforce content integrity|Enforce content integrity|
 |Perform revocation checks|Perform revocation checks|Perform revocation checks|
 ||Enforce trusted repositories|Enforce trusted repositories|
@@ -127,7 +133,7 @@ The sample below shows a sample configuration file:
   <packageRestore>
     <add key="enabled" value="true" />
     <add key="automatic" value="true" />
-    <add key="signatureValidationMode" value="Secure" />
+    <add key="signatureValidationMode" value="Secure" /> <!-- Default to DEV-->
   </packageRestore>
   <packageSources>
     <add  key="NuGet.org" 
@@ -148,26 +154,27 @@ Users trust specific repositories (and authors TBD) by listing the certificates 
 ```xml
 <configuration>
   <trustedRepositories>
-    <repository key="NuGet.org" 
-                serviceIndex="https://api.nuget.org/v3/index.json">
+    <repository key="NuGet.org">
       <certificate  subjectName="NuGet.org" 
                     thumbprint="a897009b809809c..." />
       <certificate  subjectName="NuGet.org" 
                     thumbprint="6565a656c65b65d..." />
     </repository>
-    <repository key="ContosoSharedRepo" 
-                serviceIndex="https://api.myget.org/F/ContosoRepository"
-                allowUntrustedRoot="true" >
+    <repository key="ContosoSharedRepo"                 
+                allowSelfSignedCerts="true" >
       <certificate  subjectName="ContosoCert" 
                     thumbprint="98098a0980b980c..." />      
     </repository>
   <trustedRepositories>
   </configuration>
 ```
+>Note: This configuration schema is a high level proposal. The final schema is being definied in a the related [[[Spec] NuGet Config schema changes to enable repository signatures]]
 
-NuGet official clients (VS, NuGet.exe and dotNet.exe) will include the NuGet.org keys by default. Future versions will add new certificates before the previous one gets expired. This means that clients who maintain their versions up to date will have the certificates registered by default. Clients running a specific version forever will need to update the keys manually as with any other repository.
+NuGet official clients (VS, NuGet.exe and dotNet.exe) will include the NuGet.org keys by default. Future versions will add new certificates before the previous one gets expired. This means that clients who maintain their versions up to date will have the certificates registered by default. 
 
-Repositories should use a code signing certificate issued by a CA, with revocation information support. If the certificate is not trusted, or the certificate revocation information is not available, the restore operation will produce a warning unless the `allowUntrustedRoot` option is set.
+Clients running a specific version *forever* will need to update the keys when they expire, or they won't be able to restore packages. To update the keys the can use the CLI or the IDE, or make a manually edit the configuration file.
+
+Repositories should use a code signing certificate issued by a CA, with revocation information support. If the certificate is not trusted, or the certificate revocation information is not available, the restore operation will produce a warning unless the `allowSelfSignedCerts` option is set.
 
 #### Add a new repository
 When adding a new repository, the client will query the service index, if repository signatures are announced the client will try to add the keys to the configuration file. These additions will only work if the certificates chain to a trusted root. When adding a repository with untrusted certificates, the client will produce a warning with instructions on how to update the configuration file:
@@ -178,7 +185,6 @@ nuget source add -Source  https://api.myget.org/F/ContosoRepository
 WARNING: The repository <BaseURL> announces certificates that are not in your trusted list configuration, do you want to add the next public keys to your trusted repositories list?
 For more information visit https://aka.ms/nuget-sync-keys
 ```
-
 
 VS package manager settings will show an icon to distinguish which package sources support repository signatures and will add a new window to see and update the keys.
 
@@ -199,7 +205,9 @@ Let’s review each of the decisions outlined in this diagram:
 -	**Has author and repo signature?** Once the repository certificate has been validated, the client will check to see if there is an author signature. Note that in Secure mode the author trust check is not enforced.
 -	**Is Author Trusted?** The strict mode requires to explicitly trust the package authors. (The full definition of the strict mode will be available later).
 
-When a signed package is found, just before extraction, the package reader must verify the package content integrity. If the computed hash does not match, the package will be considered tampered and the restore operation will fail. The DEV client policy will not set any additional enforcements, and all packages must be installed without any user interruption.
+When a signed package is found, just before extraction, the package reader must verify the package content integrity. If the computed hash does not match, the package will be considered tampered and the restore operation will fail. 
+
+The DEV client policy will require packages to be signed with the repository signature only if when the repository announces the feature. For other repositories there are no additional enforcements, and all packages must be installed without any user interruption.
 
 The Secure mode enforces that all packages must be signed with author or repo signatures: Author signatures require the signing certificate is trusted in the local machine, typically by the trusted roots certificates, if a package does not have an author signature it will check if there is a repository signature and if the repository is already trusted in the configuration. 
 
@@ -208,11 +216,11 @@ The Strict mode enforces trust with the author, the format to specify the list o
 If the repository is not found in the configuration, the package reader will produce a warning with clear instructions to fix the issue, e.g.:
 
 ```
-nuget install PackageFromNewRepository
+nuget install PackageFromNewRepository -source https://newrepository.com/index.json
 
 ERROR: This Package has been signed by a repository that is not trusted. 
 You must update your configuration to include the repository public keys by running: 
-‘nuget sync-keys -source http://newrepository.com/index.json’, or using the IDE.
+‘nuget sync-keys -source https://newrepository.com/index.json’, or using the IDE.
 
 For more information on package signing visit http://aka.ms/nuget-sync-keys 
 ```
@@ -220,12 +228,15 @@ For more information on package signing visit http://aka.ms/nuget-sync-keys
 ### Create a repository signature
 Repository signatures will be added to packages as part of the server ingestion process using the NuGet libraries. NuGet client tools will not expose any CLI command to generate repository signatures but it will support viewing and eventually removing a repository signature from a given package.
 
+>Note: As described in the repository signatures technical specification, only one repository signature is allowed per package. If a repository receives a package with an existing repository signature, the repository should reject or remove the signature to apply their own. **NuGet.org will remove the repository signature of a received packages before adding the NuGet.org repository signature**.
+
 ### Client Validation Matrix
 Official clients like Visual Studio and Nuget.exe (dotnet.exe will be included later), will be aligned with the 3 stages defined in the original [blog post](https://blog.nuget.org/20170914/NuGet-Package-Signing.html), to summarize:
 
-1. **Stage 1**. Clients will validate author signatures if available, and will ignore repository signatures. The behavior will be the same as the DEV mode.
-2. **Stage 2**. Clients will require signed packages, and will set the secure mode as default.
-3. **Stage 3**. Clients can opt-in in the strict mode, and VS will provide a UI to help defining the trusted authors list.
+1. **Stage 1**. Clients will validate author signatures if available, and will ignore repository signatures. 
+2. **Stage 2**. Clients will require signed packages from secure repositories, but will allow the installation of unsigned and/or untrusted packages from other sources.
+3. **Stage 3**. Clients can opt-in in the secure or strict mode. Visual Studio provides a UI to configure the trusted signers.
+
 
 Author Trust. In secure mode the author will be considered trusted if it chains to a trusted root in the local machine. In Strict mode it needs to be explicitly trusted in the configuration file. When revocation check cannot be validated, the trust will be considered as “undetermined”.
 
@@ -233,16 +244,16 @@ Repository Trust. Repository trust is determined based on the configuration file
 
 #### DEV mode
 
-Stage 1 clients will operate under DEV mode implicitily.
+||Author Trusted|Repo Trusted|Unsigned|Author|Repo|AuthorRepo|
+|---|---|---|---|---|---|---|
+|Unsecure Repo|N/A|N/A|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|Secure Repo|N/A|N/A|:x:|:x:|:white_check_mark:|:white_check_mark:|
 
-|Author Trusted|Repo Trusted|Unsigned|Author|Repo|AuthorRepo|
-|---|---|---|---|---|---|
-|N/A|N/A|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 
 
 #### Secure mode
 
-Stage 2 clients will use the Secure mode by default. Users can opt-in the DEV mode to use unsigned packages.
+Stage 2 clients can opt-in the Secure mode. 
 
 |Author Trusted|Repo Trusted|Unsigned|Author|Repo|AuthorRepo|
 |---|---|---|---|---|---|
@@ -259,7 +270,7 @@ Stage 2 clients will use the Secure mode by default. Users can opt-in the DEV mo
 
 #### Strict mode
 
-Stage 3 clients will use the Secure mode by default. Users can opt-in the Strict mode to define a locked down environment.
+Stage 3 clients can opt-in the Strict mode to define a locked down environment.
 
 |Author Trusted|Repo Trusted|Unsigned|Author|Repo|AuthorRepo|
 |---|---|---|---|---|---|
@@ -272,5 +283,3 @@ Stage 3 clients will use the Secure mode by default. Users can opt-in the Strict
 |Undertermined|No|:x:|:x:|:x:|:x:|
 |Undertermined|Undertermined|:x:|:x:|:x:|:x:|
 |Undertermined|Yes|:x:|:x:|:x:|:x:|
-
-
