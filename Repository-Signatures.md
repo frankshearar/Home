@@ -39,7 +39,7 @@ Considering author and repository signatures there are four possible package sig
 >Note: Package repositories can host packages of any of these four types, however once NuGet.org implements repository signatures, all packages in NuGet.org will fall in the last two types.
 
 ### Repository Certificates
-Repository signing certificates will have some requirements which be detailed in the technical specification (TBD).
+Repository signing certificates will have some requirements which be detailed in the technical specification: [[Repository Signatures and Countersignatures Technical Specification]]
 
 Repository certificates should chain to a trusted root on the local machine, in the case where the certificate does not, package readers will produce a warning unless the configuration specifies that untrusted certificates are allowed. 
 
