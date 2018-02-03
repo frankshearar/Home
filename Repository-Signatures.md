@@ -43,7 +43,7 @@ Repository certificates should chain to a trusted root on the local machine, in 
 
 ### Repository signature
 
-The [[NuGet Package Signatures Technical Specification]] defines the requirements for all package signatures. The [[Repository Signatures and Countersignatures Technical Specification]] describes the requirements for repository signatures
+The [[Package Signatures Technical Details]] spec defines the requirements for all package signatures. The [[Repository Signatures and Countersignatures Technical Specification]] describes the requirements for repository signatures
 
 #### Signature Metadata
 The repository signature will include the following metadata:
