@@ -39,18 +39,11 @@ Considering author and repository signatures there are four possible package sig
 >Note: Package repositories can host packages of any of these four types, however once NuGet.org implements repository signatures, all packages in NuGet.org will fall in the last two types.
 
 ### Repository Certificates
-Repository signing certificates will have some requirements which be detailed in the technical specification: [[Repository Signatures and Countersignatures Technical Specification]]
-
 Repository certificates should chain to a trusted root on the local machine, in the case where the certificate does not, package readers will produce a warning unless the configuration specifies that untrusted certificates are allowed. 
 
 ### Repository signature
-The [NuGet Package Signatures Technical Specification](https://github.com/NuGet/Home/wiki/Package-Signatures-Technical-Details) defines how to identify a repository signature. Additional requirements are described in the next section:
 
-#### Requirements
-Repository signatures add the next requirements to package signature definition:
-
-1. A package must have exactly 1 repository signature or exactly 1 repository countersignature on the primary signature, and not both a repository signature and repository countersignature. (To apply a repository signature on a package that already contains a repository signature, the existing signature must be removed). 
-2. If only the repository signature is present it must be the primary signature.
+The [[NuGet Package Signatures Technical Specification]] defines the requirements for all package signatures. The [[Repository Signatures and Countersignatures Technical Specification]] describes the requirements for repository signatures
 
 #### Signature Metadata
 The repository signature will include the following metadata:
