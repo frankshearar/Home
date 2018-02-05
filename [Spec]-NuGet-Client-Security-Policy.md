@@ -1,7 +1,7 @@
-Status: **Incubation**
+Status: **In Progress**
 
 ## Issue
-Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)
+Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)  
 Related Spec - [Trusted Sources](https://github.com/NuGet/Home/wiki/Spec:-NuGet-Config-schema-changes-to-enable-repository-signatures)
 
 ## Problem
