@@ -2,7 +2,7 @@ Status: **In Progress**
 
 ## Issue
 Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)  
-Related Spec - [Trusted Sources](https://github.com/NuGet/Home/wiki/Spec:-NuGet-Config-schema-changes-to-enable-repository-signatures)
+Related Spec - [Trusted Sources](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-repository-signatures)
 
 ## Problem
 Once we enable repository package signing, we need to enable consumers to be able to control the NuGet client security policy. Further, the information needs to be stored into the users machine.
