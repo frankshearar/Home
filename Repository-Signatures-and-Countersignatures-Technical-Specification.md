@@ -31,8 +31,13 @@ The general requirements are:
 ## Repository signatures and countersignatures
 If a repository signature exists, it MUST be the primary signature.
 
-## Repository Metadata
-### The `nuget-v3-service-index-url` attribute
+A repository signature or repository countersignature MAY satisfy the requirements of any CAdES [[RFC 5126](https://tools.ietf.org/html/rfc5126)] signature but MUST satisfy CAdES-BES [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-4.3.1)] requirements with the following additional requirements:
+* The `commitment-type-indication` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-5.11.1)] MUST be present.  The attribute MUST include the `id-cti-ets-proofOfReceipt` commitment type.
+* The `signing-certificate-v2` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-5.7.3.2)] MUST be present.  The hash algorithm used in this attribute MUST be a [supported hash algorithm](https://github.com/NuGet/Home/wiki/Package-Signatures-Technical-Details#supported-algorithms).
+* The `signing-time` attribute [[RFC 5652](https://tools.ietf.org/html/rfc5652#section-11.3)] MUST be present.
+
+### Repository Metadata
+#### The `nuget-v3-service-index-url` attribute
 The following OID identifies the `nuget-v3-service-index-url` attribute:
 
     1.3.6.1.4.1.311.84.2.1.1.1
@@ -47,7 +52,7 @@ NuGetV3ServiceIndexUrl ::= IA5String
 
 The attribute value MUST be the DER-encoded, official repository V3 service index URL.  The URL MUST be a syntactically valid HTTPS URL per [[RFC 7230](https://tools.ietf.org/html/rfc7230#section-2.7.2)].
 
-### The `nuget-package-owners` attribute
+#### The `nuget-package-owners` attribute
 The following OID identifies the `nuget-package-owners` attribute:
 
     1.3.6.1.4.1.311.84.2.1.1.2
