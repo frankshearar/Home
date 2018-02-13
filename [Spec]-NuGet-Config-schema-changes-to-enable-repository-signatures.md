@@ -3,10 +3,10 @@ Status: **Incubation**
 ## Issue
 Issue for spec - [NuGet/Home#6419](https://github.com/NuGet/Home/issues/6419)  
 Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)  
-Related Spec - [NuGet-Client-Security-Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Client-Security-Policy)
+Related spec - [NuGet-Client-Security-Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Client-Security-Policy)
 
 ## Problem
-Once we enable repository package signing, we need to enable consumers to be able to trust a package repository. Further, the trust information needs to be stored into the users machine.
+Once we enable repository package signing, we need to enable consumers to be able to trust a package repository. Further, the trust information needs to be stored into a user's machine.
 
 ## Who is the customer?
 All NuGet package consumers.
@@ -28,7 +28,7 @@ Repository key will allow us to correlate a source to a trusted repository and h
 * Repository Source Service Index URI - 
 Repository Source Service Index URI will allow us to communicate with the source to refresh certificate list. This is needed when a trusted repository is not a source and we have no other way of finding out the certificate endpoint.
 
-Further for each certificate used by the repositoy, we should store the folling - 
+Further for each certificate used by the repository, we should store the following - 
 
 * Repository Certificate Fingerprint -  
 Repository Certificate Fingerprint will allow us to assert that the package was signed with a certificate that the repository is advertising in its certificate list. The fingerprint should be a calculated based on the `Repository Certificate Fingerprint Algorithm` described below.
@@ -37,7 +37,7 @@ Repository Certificate Fingerprint will allow us to assert that the package was 
 Repository Certificate SubjectName will allow users to recognize certificates more easily as subject names are human readable.
 
 * Repository Certificate Fingerprint Algorithm -  
-Repository Certificate Fingerprint Algorithm will allow us to calculate the hash algorithm used while claculating the certificate fingerprint. The algorithm should be one of the following - 
+Repository Certificate Fingerprint Algorithm will allow us to calculate the hash algorithm used while calculating the certificate fingerprint. The algorithm should be one of the following - 
   * `SHA256`
   * `SHA384`
   * `SHA512`
@@ -139,10 +139,10 @@ The above command will create the following entries -
 The above command should fail if the repository does not support package signing -
 
 ```
-nuget sources add -Name InSecureSource -Source http://source.org/v3/index.json -Trust
+nuget sources add -Name InsecureSource -Source http://source.test/v3/index.json -Trust
 
-Package Source with Name: InSecureSource cannot be added as a trusted repository.
-InSecureSource does not support repository signing. 
+Package Source with Name: InsecureSource cannot be added as a trusted repository.
+InsecureSource does not support repository signing. 
 Please remove the '-Trust' option.
 ```  
 
@@ -324,14 +324,14 @@ _Ankit: It is user friendly as users don't need to add a `-Trust` switch. But it
 _Ankit: No, since we are not adding the trust information implicitly, we should not delete it implicitly._  
 
 * How should the client trust NuGet.org?  
-_Rido: Client should always trust NuGet.org unless the the user explicitly untrusts it._
+_Rido: Client should always trust NuGet.org unless the user explicitly untrusts it._
 ```xml
 <untrustedSources>
   <add key="NuGet.Org" value="true" />    
 </untrustedSources>
 ```
-* Once nuet.org starts signig, what does the client do?
-Possibles: Update the config file. Keep the keys in memory. Track untrusted as well.
+* Once nuet.org starts signing, what does the client do?
+Possibilities: Update the config file. Keep the keys in memory. Track untrusted as well.
 * Do we need the service index in the trusted source?  
-_Ankit: It should be an optional entry to be added only if there is no corresponding source. That will allow us to refresh the certificate list without asking the user for a url._  
+_Ankit: It should be an optional entry to be added only if there is no corresponding source. That will allow us to refresh the certificate list without asking the user for a URL._  
 _Rido: Not needed. The failed restore will display the URI for which it should be certificates need to be refreshed._
