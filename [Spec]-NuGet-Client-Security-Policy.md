@@ -145,6 +145,10 @@ We should add support for the following in Visual Studio NuGet options control -
 ![](https://github.com/NuGet/Home/blob/dev/resources/signing/client%20policy%20selection.png)
 <br/>
 
+###  Impact of repository signing to client policies - 
+1. By default NuGet should operate in dev mode where the client will perform signature integrity checks for packages which contain a valid signature. 
+2. 
+
 ## Open Questions
 
 * Rollout plans - 
