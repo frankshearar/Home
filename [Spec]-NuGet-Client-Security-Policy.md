@@ -145,15 +145,37 @@ We should add support for the following in Visual Studio NuGet options control -
 ![](https://github.com/NuGet/Home/blob/dev/resources/signing/client%20policy%20selection.png)
 <br/>
 
+
+### Source validation on mode change - 
+If the user changes their mode to strict/secure then NuGet client should validate all the available sources as following - 
+1. Get all package sources.
+2. Get all trusted sources.
+3. Filter all package sources to ones which support V3.
+4. Check if any of the V3 sources advertise that all of their packages are signed.
+5. If any source which is signing all packages is not a trusted source then warn user to trust the users via one of the following gestures -  
+a. `nuget sources update -Name <source> -Trust`  
+b. Mark source as trusted via Visual Studio UI.
+
+
 ###  Impact of repository signing to client policies - 
-1. By default NuGet should operate in dev mode where the client will perform signature integrity checks for packages which contain a valid signature. 
-2. 
 
-## Open Questions
+#### Dev mode -
+1. By default NuGet client should operate in dev mode where the client will perform author/repository/signedcms signature verification for packages which contain a valid signatures.  
+2. If a user does not have any package sources then NuGet client should write down nuget.org as a package and trusted source and signatureValidationMode as dev into the user nuget.config file.
+3. NuGet client should respect any trusted source in user settings and perform complete repository signature verification for any package from those sources.
 
-* Rollout plans - 
-1. We should default to Dev mode starting VS 15.7. At this point in time if no client policy is set, we should take that as Dev mode.
-2. We should add an option in our Visual Studio UI to allow users to change the client policy.
-3. At some point in future, when we are ready to change default to Secure mode, we should start warning users on launching Visual Studio that they are using NuGet in an insecure mode. At the same time any new installations should automatically set client policy to Secure mode.
-4. Since this is a breaking change from command line point of view, we should consider changing the default with a major version change.
-4. If a user changes their client policy to Secure mode, we should evaluate all of their sources and warn if any V3 source is not marked as trusted and warn if there is no trusted source available.
+#### Secure mode -
+1. In secure mode NuGet client will only allow packages signed by a list of trusted sources or authors along with all the constraints of dev mode.
+2. If a user does not have any package sources then NuGet client should write down nuget.org as a package and trusted source and signatureValidationMode as dev into the user nuget.config file.
+3. If a package is signed by an author or source that is not trusted, then the operation should fail with an error.
+
+#### Changing of modes - 
+1. In 4.7, NuGet will operate in dev mode for all users.
+2. In a following release NuGet client will allow users to change their security policy as proposed in this spec.
+3. If a user changes their mode to secure/strict then we should validate all package sources as described above.
+4. If, at some point in future, the default mode needs to be changed from dev to strict/secure, then it should be done only for new installations and with a new major version release as this will be a breaking change.
+
+### Timeline of NuGet.Org package signing and NuGet client policies- 
+1. In 4.7 release, NuGet client should have support for verifying repository signatures. At this point, NuGet client should perform repository signature verification on a package with valid repository signature.
+2. After 4.7 release, if a source (NuGet.org) starts advertising that all of its packages are signed then NuGet client should assert that any package from that source are signed with a valid repository signature by one of the advertised certificates.
+3. In the next NuGet client release after NuGet.org has finished signing all packages, the client should assert that all packages from NuGet.org are repository signed by one of the advertised certificates. If the client is unable to reach NuGet.org, then it should use offline values of the last known certificates.
