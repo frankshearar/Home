@@ -5,25 +5,26 @@ Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Reposit
 Related Spec - [Trusted Sources](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-repository-signatures)
 
 ## Problem
-Once we enable repository package signing, we need to enable consumers to be able to control the NuGet client security policy. Further, the information needs to be stored into the users machine.
+As we enable author and repository package signing, we need to enable consumers to be able to control the NuGet package signing client policies. Further, the information needs to be stored into the users machine.
 
 ## Who is the customer?
 All NuGet package consumers.
 
 ## Scenarios
-Enable package consumers to store repository NuGet client security policy.
+Enable package consumers to store NuGet package signing client policies.
 
 ## Solution
-* Define NuGet client security policies.
-* Update the schema for nuget.config file to be able to store NuGet client security policy.
-* Define a gesture for users to be able to choose NuGet client security policy.
+* Define NuGet package signing client policies.
+* Update the schema for nuget.config file to be able to store NuGet package signing client policies.
+* Define a gesture for users to be able to choose NuGet package signing client policies.
 
-Client policies have been outlined in the [Repository-Signatures spec](https://github.com/NuGet/Home/wiki/Repository-Signatures#client-policies). This spec proposes schema changes to nuget.config and user gestures. Further, the spec outlines a rollout plan to the default mode for NuGet clients.
+NuGet package signing client policies have been outlined in the [Repository-Signatures spec](https://github.com/NuGet/Home/wiki/Repository-Signatures#client-policies). This spec proposes schema changes to nuget.config and user gestures. Further, the spec outlines a rollout plan for the default mode for NuGet clients.
 
 ### Client Policy Information Location
 We should store the selected client policy for the user in a `nuget.config` file as a configuration.
 
 ### Client Policy Information Schema
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
@@ -32,6 +33,7 @@ We should store the selected client policy for the user in a `nuget.config` file
   </config>
 </configuration>
 ```
+The key and value are case insensitive. 
 
 For example -
 ```xml
@@ -53,14 +55,13 @@ For example -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="secure" />
+    <add key="signatureValidationMode" value="strict" />
   </config>
 </configuration>
 ```
 
 ### Client Policy Information Gesture
-To set the nuget client security policy, users can use the existing [`nuget config`](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-config) command. All of the operations are performed on `%AppData%\NuGet\NuGet.config` by default. Users can control the config file using the `-configFile` parameter.
-<br/>
+To set the NuGet package signing client policy, users can use the existing [`nuget config`](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-config) command.
 <br/>
 
 #### Set 
@@ -79,7 +80,7 @@ To set the nuget client security policy, users can use the existing [`nuget conf
 </configuration>
 ```
 
-`NuGet.exe config -set signatureValidationMode=secure`
+`NuGet.exe config -set signatureValidationMode=strict`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -88,7 +89,7 @@ To set the nuget client security policy, users can use the existing [`nuget conf
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="secure" />
+    <add key="signatureValidationMode" value="strict" />
   </config>
 </configuration>
 ```
@@ -96,7 +97,7 @@ To set the nuget client security policy, users can use the existing [`nuget conf
 
 #### Update 
 
-`NuGet.exe config -set signatureValidationMode=secure`
+`NuGet.exe config -set signatureValidationMode=strict`
 
 Before -
 ```xml
@@ -118,15 +119,15 @@ After -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="secure" />
+    <add key="signatureValidationMode" value="strict" />
   </config>
 </configuration>
 ```
 <br/>
 
-#### Clear 
+#### Remove 
 
-`NuGet.exe config -set signatureValidationMode=""`
+`NuGet.exe config -set signatureValidationMode=`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -141,13 +142,13 @@ After -
 #### Client Policy in Visual Studio -
 We should add support for the following in Visual Studio NuGet options control - 
 
-* Add a drop down menu to enable users to choose a security policy -  
+* Add a drop down menu to enable users to choose a NuGet package signing client policy -  
 ![](https://github.com/NuGet/Home/blob/dev/resources/signing/client%20policy%20selection.png)
 <br/>
 
 
 ### Source validation on mode change - 
-If the user changes their mode to strict/secure then NuGet client should validate all the available sources as following - 
+If the user changes their mode to strict then NuGet client should validate all the available sources as following - 
 1. Get all package sources.
 2. Get all trusted sources.
 3. Filter all package sources to ones which support V3.
@@ -164,16 +165,15 @@ b. Mark source as trusted via Visual Studio UI.
 * If a user does not have any package sources then NuGet client should write down nuget.org as a package and trusted source and signatureValidationMode as dev into the user nuget.config file.
 * NuGet client should respect any trusted source in user settings and perform complete repository signature verification for any package from those sources.
 
-#### Secure mode -
-* In secure mode NuGet client will only allow packages signed by a list of trusted sources or authors along with all the constraints of dev mode.
-* If a user does not have any package sources then NuGet client should write down nuget.org as a package and trusted source and signatureValidationMode as dev into the user nuget.config file.
+#### Strict mode -
+* In strict mode NuGet client will only allow packages signed by a list of trusted sources or authors along with all the constraints of dev mode.
 * If a package is signed by an author or source that is not trusted, then the operation should fail with an error.
 
 #### Changing of modes - 
 1. Starting in 4.7, NuGet will operate in dev mode for all users.
-2. In a following release NuGet client will allow users to change their security policy as proposed in this spec.
-3. If a user changes their mode to secure/strict then we should validate all package sources as described above.
-4. If, at some point in future, the default mode needs to be changed from dev to strict/secure, then it should be done only for new installations and with a new major version release as this will be a breaking change.
+2. In a following release NuGet client will allow users to change their NuGet package signing client policy as proposed in this spec.
+3. If a user changes their mode to strict then we should validate all package sources as described above.
+4. If, at some point in future, the default mode needs to be changed from dev to strict, then it should be done only for new installations and with a new major version release as this will be a breaking change.
 
 ### Timeline of NuGet.Org package signing and NuGet client policies- 
 1. In 4.7 release, NuGet client should have support for verifying repository signatures. At this point, NuGet client should perform repository signature verification on a package with valid repository signature.
