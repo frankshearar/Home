@@ -3,7 +3,7 @@ Status: **Incubation**
 ## Issue
 Issue for spec - [NuGet/Home#6419](https://github.com/NuGet/Home/issues/6419)  
 Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)  
-Related spec - [NuGet-Client-Security-Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Client-Security-Policy)
+Related spec - [NuGet-Package-Signing-Client-Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
 
 ## Problem
 Once we enable repository package signing, we need to enable consumers to be able to trust a package repository. Further, the trust information needs to be stored into a user's machine.
