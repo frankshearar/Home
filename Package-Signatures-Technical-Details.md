@@ -18,7 +18,7 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 * Package writer:  anything that attempts to create or modify a NuGet package.
 
 ## Abbreviations
-* CAdES:  CMS Advanced Electronic Signatures [[RFC 5126](https://tools.ietf.org/html/rfc5126))
+* CAdES:  CMS Advanced Electronic Signatures [[RFC 5126](https://tools.ietf.org/html/rfc5126)]
 * CMS:  cryptographic message syntax [[RFC 5652](https://tools.ietf.org/html/rfc5652)]
 * EKU:  extended key usage [[RFC 5280](https://tools.ietf.org/html/rfc5280#section-4.2.1.12)]
 * OID:  object identifier [[X.660](http://www.itu.int/rec/T-REC-X.660-201107-I/en)]
