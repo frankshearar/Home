@@ -6,7 +6,6 @@
 * [[Package signing]]
 * [[Repository Signatures]]
 * [[Repository Signatures and Countersignatures Technical Specification]]
-* [[Package Signatures Technical Details]]
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
 * [Package README.md support](Package-README.md-support)
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
@@ -25,6 +24,7 @@
 * [[Enhanced package upload workflow|Enhanced package upload workflow]]
 * [[Package Immutability|Package Immutability]]
 * [[Account Deletion Workflow|NuGet-Account-Deletion-Workflow]]
+* [[Package Signatures Technical Details]]
 
 #### [[Implemented|Implemented]]
 
