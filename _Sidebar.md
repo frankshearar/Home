@@ -10,7 +10,7 @@
 * [Package README.md support](Package-README.md-support)
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
 * [Storing trusted repository](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-repository-signatures)
-* [NuGet Client Security Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Client-Security-Policy)
+* [NuGet Client Security Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
 * [NuGet Package Debugging & Symbols Improvements](https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements)
 
 #### Reviewed
