@@ -1,5 +1,3 @@
-# packages.config (PC) to PackageReference (PR) Upgrader
-
 ## Issue
 Link to the GitHub issue that tracks the work and discussion.
 
