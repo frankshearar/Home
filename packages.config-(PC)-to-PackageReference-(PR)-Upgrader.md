@@ -1,7 +1,7 @@
 Status: **Incubation**
 
 ## Issue
-The work for this feature and the discussion around the spec is tracked here - **Enable repeatable builds for PackageReference based projects [#6592](https://github.com/NuGet/Home/issues/6592)**
+The work for this feature and the discussion around the spec is tracked here - **packages.config (PC) to PackageReference (PR) Upgrader [#5877](https://github.com/NuGet/Home/issues/5877)**
 
 ## Problem
 More than 80% projects in Visual Studio use packages.config (PC). The PC format has several drawbacks such as:
