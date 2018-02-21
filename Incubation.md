@@ -1,3 +1,4 @@
+* [[Cross platform authentication support]]
 * [Enable repeatable builds via lock file](https://github.com/NuGet/Home/wiki/Enable-repeatable-builds-for-PackageReference-based-projects)
 * [[ToolsReference and Multi TFM Support in NuGet UI|ToolsReference-and-Multi-TFM-Support-in-NuGet-UI]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
