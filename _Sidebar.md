@@ -23,7 +23,6 @@
 * [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 * [[Enhanced package upload workflow|Enhanced package upload workflow]]
 * [[Package Immutability|Package Immutability]]
-* [[Account Deletion Workflow|NuGet-Account-Deletion-Workflow]]
 * [[Package Signatures Technical Details]]
 
 #### [[Implemented|Implemented]]
