@@ -1,4 +1,4 @@
-Status: **In Progress**
+Status: **In Review**
 
 ## Issue
 Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)  
@@ -147,17 +147,6 @@ We should add support for the following in Visual Studio NuGet options control -
 <br/>
 
 
-### Source validation on mode change - 
-If the user changes their mode to strict then NuGet client should validate all the available sources as following - 
-1. Get all package sources.
-2. Get all trusted sources.
-3. Filter all package sources to ones which support V3.
-4. Check if any of the V3 sources advertise that all of their packages are signed.
-5. If any source which is signing all packages is not a trusted source then warn user to trust the users via one of the following gestures -  
-a. `nuget sources update -Name <source> -Trust`  
-b. Mark source as trusted via Visual Studio UI.
-
-
 ###  Impact of repository signing to client policies - 
 
 #### Dev mode -
@@ -170,12 +159,11 @@ b. Mark source as trusted via Visual Studio UI.
 * If a package is signed by an author or source that is not trusted, then the operation should fail with an error.
 
 #### Changing of modes - 
-1. Starting in 4.7, NuGet will operate in dev mode for all users.
+1. Starting in a future release, NuGet will operate in dev mode for all users.
 2. In a following release NuGet client will allow users to change their NuGet package signing client policy as proposed in this spec.
-3. If a user changes their mode to strict then we should validate all package sources as described above.
-4. If, at some point in future, the default mode needs to be changed from dev to strict, then it should be done only for new installations and with a new major version release as this will be a breaking change.
+3. If, at some point in future, the default mode needs to be changed from dev to strict, then it should be done only for new installations and with a new major version release as this will be a breaking change.
 
 ### Timeline of NuGet.Org package signing and NuGet client policies- 
-1. In 4.7 release, NuGet client should have support for verifying repository signatures. At this point, NuGet client should perform repository signature verification on a package with valid repository signature.
-2. Starting in 4.7 release, if a source (NuGet.org) starts advertising that all of its packages are signed then NuGet client should assert that any package from that source are signed with a valid repository signature by one of the advertised certificates.
+1. In a future release, NuGet client should have support for verifying repository signatures. At this point, NuGet client should perform repository signature verification on a package with valid repository signature.
+2. Starting in that release, if a source (NuGet.org) starts advertising that all of its packages are signed then NuGet client should assert that any package from that source are signed with a valid repository signature by one of the advertised certificates.
 3. In the next NuGet client release after NuGet.org has finished signing all packages, the client should assert that all packages from NuGet.org are repository signed by one of the advertised certificates. If the client is unable to reach NuGet.org, then it should use offline values of the last known certificates.
