@@ -1,4 +1,4 @@
-Status: **In Review**
+Status: **Incubation**
 
 ## Issue
 Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)  
