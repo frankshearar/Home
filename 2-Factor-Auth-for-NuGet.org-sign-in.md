@@ -28,6 +28,9 @@ We plan to deprecate NuGet.org accounts not linked to Microsoft Accounts and req
 
 _For AAD, the experience will be similar to Microsoft Accounts. Clicking on the "Sign in with Microsoft" will lead to a login screen that will redirect to an AAD login if the mail id entered is an AAD account. Nothing else changes._
 
+[Open] Do we allow multiple MSA/AAD accounts linked to a single NuGet.org account?
+[**Resolved**] A single account on NuGet.org can only be associated with a single MSA/AAD accounts. However, there would be an experience to change the linked MSA/AAD. In addition, there would be no impact to existing NuGet.org accounts linked to multiple MSAs until they try to link additional accounts.
+
 ### Organization Accounts
 
 NuGet.org will introduce a light weight "Organization" concept as covered by spec: [Organizations on NuGet.org](https://github.com/NuGet/Home/wiki/Organizations-on-NuGet.org)
