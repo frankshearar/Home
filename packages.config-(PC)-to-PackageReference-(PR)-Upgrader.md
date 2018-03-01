@@ -36,7 +36,7 @@ While a solution level upgrade experience may be desirable, we will start with t
   ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/MainUpgraderUI%20v3.png)
   
 * User reviews the packages that are classified as top-level and transitive, associated warnings, and clicks 'OK' to begin the upgrade. At this stage, the user has the option to force a package classified as transitive, to be treated as a top-level package by checking the top-level check box.
-* The current project file and the packages.config file is backed up to the following path `<SolutionFolder>/Backup/<ProjectName>/`.
+* The current project file and the packages.config file is backed up to the following path `<SolutionFolder>/Backup_{shortGuid}/<ProjectName>/`.
 * The upgrader will then start installing packages identified as a direct dependency as PackageReference. It will also take care of P2P references evaluation to bring transitive dependencies as well as parent projects reevaluation.
    * If, installation fails, then
       * it will report detailed error message on output console
