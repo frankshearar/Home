@@ -29,7 +29,7 @@ While a solution level upgrade experience may be desirable, we will start with t
 ### Upgrade Flow
 * User invokes the migrator from the context menu for References in the solution explorer or the prompt in the NuGet package manager UI.
 
-  ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/PMUI%20with%20gold%20bar.png)
+  ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/PMUI%20with%20gold%20bar.PNG)
 
 * The migrator dialog is displayed.
 
