@@ -21,12 +21,12 @@ Every Visual Studio user that works on a PC based project and such projects acco
 A lot of customer feedback on PC, issues with dependency management, performance issues that can essentially be solved using PackageReference.
 
 ## Solution
-At a high level, this feature will provide gestures within Visual Studio that allow a user to upgrade a packages.config project to PackageReference.
+At a high level, this feature will provide gestures within Visual Studio that allow a user to migrate a packages.config project to PackageReference.
 
 ### Non-Goals
-While a solution level upgrade experience may be desirable, we will start with the project level upgrade experience first.
+While a solution level migration experience may be desirable, we will start with the project level migrate experience first.
 
-### Upgrade Flow
+### Migrate Flow
 * User invokes the migrator from the context menu for References in the solution explorer or the prompt in the NuGet package manager UI.
 
   ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/PMUI%20with%20gold%20bar.PNG)
@@ -35,20 +35,20 @@ While a solution level upgrade experience may be desirable, we will start with t
 
   ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/MainUpgraderUI%20v3.png)
   
-* User reviews the packages that are classified as top-level and transitive, associated warnings, and clicks 'OK' to begin the upgrade. At this stage, the user has the option to force a package classified as transitive, to be treated as a top-level package by checking the top-level check box.
+* User reviews the packages that are classified as top-level and transitive, associated warnings, and clicks 'OK' to begin the migration. At this stage, the user has the option to force a package classified as transitive, to be treated as a top-level package by checking the top-level check box.
 * The current project file and the packages.config file is backed up to the following path `<SolutionFolder>/Backup_{shortGuid}/<ProjectName>/`.
 * The migrator will then start installing packages identified as a direct dependency as PackageReference. It will also take care of P2P references evaluation to bring transitive dependencies as well as parent projects reevaluation.
    * If, the installation fails, then
       * it will report detailed error message on output console
       * backup path location to retrieve previous project file as well as packages.config
       * and a link to instructions to go back to the previous state
-* Finally, after completing a successful upgrade, it will show an upgrade report summary:
+* Finally, after completing a successful migration, it will show a migration report summary:
 
   ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/report.PNG)
  
-### Upgrade report
-An upgrade report is generated and displayed after an upgrade attempt.
-The upgrade is successful if all the top-level packages were successfully installed as PackageReference.
+### Migration report
+A migration report is generated and displayed after a migrate attempt.
+The migration is successful if all the top-level packages were successfully installed as PackageReference.
 
 ### Top-level packages
 A package that meets any of the following conditions will be treated as a top-level package:
