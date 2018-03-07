@@ -1,7 +1,7 @@
 Status: **Incubation**
 
 ## Issue
-The work for this feature and the discussion around the spec is tracked here - **packages.config (PC) to PackageReference (PR) Upgrader [#5877](https://github.com/NuGet/Home/issues/5877)**
+The work for this feature and the discussion around the spec is tracked here - **packages.config (PC) to PackageReference (PR) Migrator [#5877](https://github.com/NuGet/Home/issues/5877)**
 
 ## Problem
 More than 80% projects in Visual Studio use packages.config (PC). The PC format has several drawbacks such as:
@@ -27,18 +27,18 @@ At a high level, this feature will provide gestures within Visual Studio that al
 While a solution level upgrade experience may be desirable, we will start with the project level upgrade experience first.
 
 ### Upgrade Flow
-* User invokes the upgrader from the context menu for References in the solution explorer or the prompt in the NuGet package manager UI.
+* User invokes the migrator from the context menu for References in the solution explorer or the prompt in the NuGet package manager UI.
 
   ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/PMUI%20with%20gold%20bar.png)
 
-* The upgrader dialog is displayed.
+* The migrator dialog is displayed.
 
   ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/MainUpgraderUI%20v3.png)
   
 * User reviews the packages that are classified as top-level and transitive, associated warnings, and clicks 'OK' to begin the upgrade. At this stage, the user has the option to force a package classified as transitive, to be treated as a top-level package by checking the top-level check box.
 * The current project file and the packages.config file is backed up to the following path `<SolutionFolder>/Backup_{shortGuid}/<ProjectName>/`.
-* The upgrader will then start installing packages identified as a direct dependency as PackageReference. It will also take care of P2P references evaluation to bring transitive dependencies as well as parent projects reevaluation.
-   * If, installation fails, then
+* The migrator will then start installing packages identified as a direct dependency as PackageReference. It will also take care of P2P references evaluation to bring transitive dependencies as well as parent projects reevaluation.
+   * If, the installation fails, then
       * it will report detailed error message on output console
       * backup path location to retrieve previous project file as well as packages.config
       * and a link to instructions to go back to the previous state
