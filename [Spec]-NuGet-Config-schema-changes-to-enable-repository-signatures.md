@@ -267,6 +267,8 @@ The above commands will add an entry for trusted repository without adding a pac
   <packageSources />
   <trustedSources>
     <NuGet.Org>
+      <add key="serviceIndex" 
+           value="https://api.nuget.org/v3/index.json" />    
       <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
            value="CN=NuGet.Org" 
            fingerprintAlgorithm="SHA256" />
