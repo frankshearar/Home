@@ -29,8 +29,8 @@ While a solution level migration experience may be desirable, we will start with
 ### Migrate Flow
 * User invokes the migrator from the context menu for References in the solution explorer or the prompt in the NuGet package manager UI.
 
-  ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/PMUI%20with%20gold%20bar.PNG)
-
+  ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/PMUI%20with%20gold%20bar%20migrate.PNG)
+  
 * The migrator dialog is displayed.
 
   ![](https://github.com/NuGet/Home/blob/dev/resources/MigratorToolSupport/MainUpgraderUI%20v3.png)
