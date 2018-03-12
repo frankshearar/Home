@@ -77,6 +77,7 @@ If a package is owned by more than one owners, then the following situations ari
 ## 2-FA requirement for managing certificates
 
 An owner can manage certificates only if he/she has signed in using 2-FA. The below screenshots proposes the experience when an owner, not signed in using 2-FA, tries to register a certificate.
+
 **Note:** 
 1. 2-FA is not required to upload the packages or to do anything on NuGet.org once a certificate is already registered.
 1. 2-FA will be required in co-ownership scenarios, while trying to manage certificate requirements/overrides for individual packages.
