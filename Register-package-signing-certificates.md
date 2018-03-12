@@ -17,6 +17,7 @@ NuGet package authors who would like to sign their packages with a CA signed cer
 The key scenarios we want to enable are:
 * Ability to register one or more certificates.
 * Ability to override the certificates to be used for a package that has more than one owners.
+* **[Added 3/12]** Ability to manage certificates only if the account has 2FA enabled and has used 2FA to sign in.
 
 ### Out of scope
 * Current assumption is that only a CA signed certificate will be allowed to sign a NuGet package. The discussion around whether NuGet.org will allow self signed certificate is **out of scope** for this spec.
@@ -72,3 +73,10 @@ If a package is owned by more than one owners, then the following situations ari
 * **Default:** The package needs to be signed by any one certificate registered by an owner.
 * This can be overridden to require any specific owner's certificate. Submitting an unsigned package will not be possible in this case.
     ![image](https://user-images.githubusercontent.com/14800916/35362998-b8af5072-011c-11e8-8416-47200842b281.png)
+
+## 2-FA requirement for managing certificates
+
+An owner can manage certificates only if he/she has signed in using 2-FA. The below screenshots proposes the experience when an owner, not signed in using 2-FA, tries to register a certificate.
+**Note:** 2-FA is only applicable with MSA logins. For AAD, the requirement is managed by the companies' policies.
+
+TBD.. 
