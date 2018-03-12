@@ -83,7 +83,7 @@ An owner can manage certificates only if he/she has signed in using 2-FA. The be
   * Manage (remove, add) certificates
   * Upload a package
   * Create an API key to push packages
-1. 2-FA will be required in co-ownership scenarios, while trying to manage certificate requirements/overrides for individual packages.
-1. 2-FA is only applicable with MSA logins. For AAD, the requirement is managed by the companies' policies.
+2. 2-FA will be required in co-ownership scenarios, while trying to manage certificate requirements/overrides for individual packages.
+3. 2-FA is only applicable with MSA logins. For AAD, the requirement is managed by the companies' policies.
 
 TBD - screenshots.. 
