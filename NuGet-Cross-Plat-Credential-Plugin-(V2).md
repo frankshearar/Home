@@ -9,7 +9,7 @@
 Currently NuGet has a simple plugin model that's used for authentication against protected feeds. 
 The problem is currently that's only available in VS and NuGet.exe. 
 Consumers need to be able to restore against protected feeds cross-plat in msbuild/dotnet.exe. 
-Additionally we want to establish trust between the process running restore and the credential provider before running it.
+Additionally, we want to establish trust between the process running restore and the credential provider before running it.
 
 ### Who is the customers?
 The customers are all users of protected feeds. That includes the majority of VSTS/MyGet users. 
@@ -21,7 +21,7 @@ The protocol established there is versioned and will be extended to further fit 
 
 The new protocol version for the Plugin will be **2.0.0**. 
 Each of the **new requirements** below are **required only** for version **2.0.0** of plugins. 
-**Every** requirement/behavior specified by the previous spec, still stands for 2.0.0 plugins, unless called out specifically.
+**Every** requirement/behavior specified by the previous spec still stands for 2.0.0 plugins, unless called out specifically.
 
 The high level overview how the plugin integration will work in the authentication case:
 1. NuGet discovers available plugins. [Task](#plugin-discovery-cross-plat-for-credential-providers-baked-into-msbuild)
@@ -98,11 +98,11 @@ The following additional messages are required to support the authentication ope
 
 #### Review current proposal with team
 #### Cross-plat trust verification
-- Currently the verification will happen on full framework and fail on cross-plat. For testing purposes, the bits delivered to VSTS/MSBuild team to test their implementation of the plugin will avoid verifying cross-plat. 
+- Currently, the verification will happen on full framework and fail on cross-plat. For testing purposes, the bits delivered to VSTS/MSBuild team to test their implementation of the plugin will avoid verifying cross-plat. 
 #### Plugin Discovery cross-plat for credential providers baked into MSBuild
 - Currently, the only way to specify plugins is using environment variables. We need to think of a way to load in baked-in credentials provider. The experience should be, user installs latest VS, and authentication **just works**
 We also need to call out the priority order for these plugins. 
 #### Life-cycle management of plugins 
-Currently there's only 1 type of plugin, and it is being disposed on idle by NuGet, or the plugin shuts itself down when it discovers that the NuGet process has exited (communicated during the initial negotiation stage). 
+- Currently, there's only 1 type of plugin, and it is being disposed on idle by NuGet, or the plugin shuts itself down when it discovers that the NuGet process has exited (communicated during the initial negotiation stage). 
 We need to understand how to correctly manage these plugins, and make sure there aren't any dangling processes. 
 The ideal scenario is NuGet shuts down the plugin when it doesn't need it, but that's very difficult to be done as a general thing. Reference counting is an option. The Authentication plugins will only be launched when needed, can also be discarded there. Problem is what happens when a plugin is both. 
