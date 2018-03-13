@@ -54,7 +54,6 @@ Currently NuGet the 2nd iteration of extensibility plugins are discovered via an
 Additionally, we will add support for discovering credential providers brought in by MSBuild itself. [Task](#plugin-discovery-cross-plat-for-credential-providers-baked-into-msbuild)
 
 ### Plugin Interaction. 
-NuGet will launch a plugin with the "-Plugin". 
 Unlike Package Download, Authentication should be a package agnostic operation.
 NuGet Client tools will query for a plugin's supported operations in 2 different ways. 
 First one, is as described by the previous spec. 
