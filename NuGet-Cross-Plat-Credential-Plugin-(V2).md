@@ -108,6 +108,6 @@ We need to understand how to correctly manage these plugins, and make sure there
 The ideal scenario is NuGet shuts down the plugin when it doesn't need it, but that's very difficult to be done as a general thing. Reference counting is an option. The Authentication plugins will only be launched when needed, can also be discarded there. Problem is what happens when a plugin is both. 
 
 #### How does the plugin work in VS
-The old credential provider architecture works differently in VS and commandline. 
+- The old credential provider architecture works differently in VS and commandline. 
 Does that experience change? 
 Will the same plugin be used in VS? 
