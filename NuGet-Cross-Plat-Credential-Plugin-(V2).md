@@ -92,7 +92,7 @@ The following additional messages are required to support the authentication ope
     * Username
     * Password
     * Message
-    * List of Auth Types (TODO NK - currently only basic)
+    * List of Auth Types
 
 ### Open work items
 
