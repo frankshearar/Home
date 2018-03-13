@@ -1,9 +1,9 @@
 ## NuGet Authentication Plugin
 
 ### Issue
-[6642](https://github.com/NuGet/Home/issues/6642)
+[6642](https://github.com/NuGet/Home/issues/6642) - NuGet credential plugin V2
 
-[6410](https://github.com/NuGet/Home/issues/6410)
+[6410](https://github.com/NuGet/Home/issues/6410) - msbuild /restore support for all NuGet use cases
 
 ### Problem
 Currently NuGet has a simple plugin model that's used for authentication against protected feeds. 
