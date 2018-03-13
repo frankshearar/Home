@@ -76,7 +76,7 @@ The version negotiation stays the same as defined in Version 1.0.0.
 The following additional messages are required for version 2.0.0 of the plugin. 
 1. Get Source Agnostic Operations
 * Request direction: NuGet -> plugin
-* The request will be empty
+    * The request will be empty
 * A response will contain
     * List of supported source agnostic operation claims
 
