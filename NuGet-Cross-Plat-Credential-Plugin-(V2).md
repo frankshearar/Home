@@ -21,7 +21,7 @@ The protocol established there is versioned and will be extended to further fit 
 
 The new protocol version for the Plugin will be **2.0.0**. 
 Each of the **new requirements** below are **required only** for version **2.0.0** of plugins. 
-**Every **requirement/behavior specified by the previous spec, still stands for 2.0.0 plugins, unless called out specifically.
+**Every** requirement/behavior specified by the previous spec, still stands for 2.0.0 plugins, unless called out specifically.
 
 The high level overview how the plugin integration will work in the authentication case:
 1. NuGet discovers available plugins. [Task](#plugin-discovery-cross-plat-for-credential-providers-baked-into-msbuild)
