@@ -1,5 +1,6 @@
 Status: **Incubation**
-2FA = two-factor authentication also referred to as two-step verification.
+
+*2FA = two-factor authentication also referred to as two-step verification.*
 
 ## Issue
 The work for this feature and the discussion around the spec is tracked here:
