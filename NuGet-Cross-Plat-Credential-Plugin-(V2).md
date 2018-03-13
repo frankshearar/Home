@@ -94,7 +94,7 @@ The following additional messages are required to support the authentication ope
     * Message
     * List of Auth Types (TODO NK - currently only basic)
 
-### Leftover Work 
+### Open work items
 
 #### Review current proposal with team
 #### Cross-plat trust verification
