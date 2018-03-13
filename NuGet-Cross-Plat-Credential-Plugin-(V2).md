@@ -21,14 +21,14 @@ The protocol established there is versioned and will be extended to further fit 
 
 The new protocol version for the Plugin will be **2.0.0**. 
 Each of the **new requirements** below are **required only** for version **2.0.0** of plugins. 
-**Every** requirement/behavior specified by the previous spec still stands for 2.0.0 plugins, unless called out specifically.
+Every requirement/behavior specified by the previous spec still stands for 2.0.0 plugins, unless called out specifically.
 
 The high level overview how the plugin integration will work in the authentication case:
 1. NuGet discovers available plugins. [Task](#plugin-discovery-cross-plat-for-credential-providers-baked-into-msbuild)
 2. Due to performance considerations, NuGet will only launch a plugin if/when it has to (401 response from the server). 
 3. NuGet will iterate over the plugins in a priority order, and launch each one. 
 4. NuGet will ask the plugin for credentials. The plugin should provide valid credentials ONLY if it can help authenticate the user for the feed. 
-5. NuGet client tools will shutdown plugins when they are no longer needed. [Task](#life-cycle-management-of-plugins)
+5. NuGet client tools will shutdown plugins when they are no longer needed. [Task](#ife-cycle-management-of-plugins)
 
 ### General Plugin Requirements
 Each plugin must meet the requirements previous specified in the NuGet Package Download in addition so some new ones warranted by the current use-case. 
