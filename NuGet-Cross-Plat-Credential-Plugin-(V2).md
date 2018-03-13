@@ -90,7 +90,8 @@ The following additional messages are required to support the authentication ope
 --- Message
 --- List of Auth Types (TODO NK - currently only basic is supported?)
 
-### Work leftover. 
+### Leftover Work 
+
 -- Review current proposal with team
 -- Address the cross-plat trust verification problem. Currently the verification will happen on full framework and fail on cross-plat. For testing purposes, the bits delivered to VSTS/MSBuild team to test their implementation of the plugin will avoid verifying cross-plat. 
 -- 
