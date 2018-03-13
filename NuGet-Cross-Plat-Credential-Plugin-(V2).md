@@ -106,3 +106,8 @@ We also need to call out the priority order for these plugins.
 - Currently, there's only 1 type of plugin, and it is being disposed on idle by NuGet, or the plugin shuts itself down when it discovers that the NuGet process has exited (communicated during the initial negotiation stage). 
 We need to understand how to correctly manage these plugins, and make sure there aren't any dangling processes. 
 The ideal scenario is NuGet shuts down the plugin when it doesn't need it, but that's very difficult to be done as a general thing. Reference counting is an option. The Authentication plugins will only be launched when needed, can also be discarded there. Problem is what happens when a plugin is both. 
+
+#### How does the plugin work in VS
+The old credential provider architecture works differently in VS and commandline. 
+Does that experience change? 
+Will the same plugin be used in VS? 
