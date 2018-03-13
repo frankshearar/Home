@@ -8,7 +8,7 @@
 ### Problem
 Currently NuGet has a simple plugin model that's used for authentication against protected feeds. 
 The problem is currently that's only available in VS and NuGet.exe. 
-Consumers need to be able to restore against protected feeds on cross-plat and in msbuild/dotnet natively. 
+Consumers need to be able to restore against protected feeds cross-plat in msbuild/dotnet.exe. 
 Additionally we want to establish trust between the process running restore and the credential provider before running it.
 
 ### Who is the customers?
@@ -19,18 +19,18 @@ The customers are all users of protected feeds. That includes the majority of VS
 To facilitate the cross-plat authentication NuGet will extend the existing extensbility plugin model as described in the NuGet Package Download Plugin [spec](https://github.com/NuGet/Home/wiki/NuGet-Package-Download-Plugin). 
 The protocol established there is versioned and will be extended to further fit the needs of the authentication plugin. 
 
+The new protocol version for the Plugin will be **2.0.0**. 
+Each of the **new requirements** below are **required only** for version **2.0.0** of plugins. 
+**Every **requirement/behavior specified by the previous spec, still stands for 2.0.0 plugins, unless called out specifically.
+
 The high level overview how the plugin integration will work in the authentication case:
-1. NuGet discovers available plugins. 
-2. Due to perf considerations, NuGet will only launch a plugin when it has to (401 response from the server). 
-3. NuGet will iterate over the plugins in a priority order (to be defined below), and launch each one. 
+1. NuGet discovers available plugins. [Issue](#plugin-discovery-cross-plat-for-credential-providers-baked-into-msbuild)
+2. Due to performance considerations, NuGet will only launch a plugin if/when it has to (401 response from the server). 
+3. NuGet will iterate over the plugins in a priority order, and launch each one. 
 4. NuGet will ask the plugin for credentials. The plugin should provide valid credentials ONLY if it can help authenticate the user for the feed. 
-5. NuGet client tools will shutdown plugins when they are no longer needed.
+5. NuGet client tools will shutdown plugins when they are no longer needed. [Issue](#life-cycle-management-of-plugins)
 
-The new protocol version for the Plugin will be 2.0.0. 
-Each of the requirements below are required only for version 2.0.0 of plugins. 
-Every requirement/behavior specified by the previous spec, still stands for 2.0.0 plugins, unless called out specifically. 
-
-### General Plugin Requirements 
+### General Plugin Requirements **** Continue****
 Each plugin must meet the requirements previous specified in the NuGet Package Download in addition so some new ones warranted by the current use-case. 
 
 For simplicity, the requirements will be duplicated from the other spec and altered as required.
@@ -79,19 +79,26 @@ The following additional messages are required for version 2.0.0 of the plugin.
 The following additional messages are required to support the authentication operation. 
 
 1. Authentication Credentials 
--- Request direction: NuGet -> plugin
--- The request will contain:
---- Uri
---- isRetry
---- NonInteractive (TODO NK - Figure out the interactivity, difference between V1 and V2)
--- A response will contain
---- Username
---- Password
---- Message
---- List of Auth Types (TODO NK - currently only basic is supported?)
+* Request direction: NuGet -> plugin
+* The request will contain:
+    * Uri
+    * isRetry
+    * NonInteractive (TODO NK - Figure out the interactivity, difference between V1 and V2)
+* A response will contain
+    * Username
+    * Password
+    * Message
+    * List of Auth Types (TODO NK - currently only basic is supported?)
 
 ### Leftover Work 
 
--- Review current proposal with team
--- Address the cross-plat trust verification problem. Currently the verification will happen on full framework and fail on cross-plat. For testing purposes, the bits delivered to VSTS/MSBuild team to test their implementation of the plugin will avoid verifying cross-plat. 
--- 
+#### Review current proposal with team
+#### Address the cross-plat trust verification problem. 
+- Currently the verification will happen on full framework and fail on cross-plat. For testing purposes, the bits delivered to VSTS/MSBuild team to test their implementation of the plugin will avoid verifying cross-plat. 
+#### Plugin Discovery cross-plat for credential providers baked into MSBuild
+- Currently, the only way to specify plugins are environment variables. We need to think of a way to load in baked-in credentials provider. The experience should be, user installs latest VS, and authentication **just works**
+We also need to call the priority order for these plugins. 
+#### Life-cycle management of plugins. 
+Currently there's only 1 type of plugin, and it is being disposed on idle by NuGet, or the plugin shuts itself down when it discovers that the NuGet process has exited (communicated during the initial negotiation stage). 
+We need to understand how to correctly manage these plugins, and make sure there aren't any dangling processes. 
+The ideal scenario is NuGet shuts down the plugin when it doesn't need it, but that's very difficult to be done as a general thing. Reference counting is an option. The Authentication plugins will only be launched when needed, can also be discarded there. Problem is what happens when a plugin is both. 
