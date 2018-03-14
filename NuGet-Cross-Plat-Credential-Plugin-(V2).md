@@ -12,7 +12,7 @@ Consumers need to be able to restore against protected feeds cross-plat in msbui
 Additionally, we want to establish trust between the process running restore and the credential provider before running it.
 
 ### Who is the customers?
-The customers are all users of protected feeds. That includes the majority of VSTS/MyGet users. 
+The customers are all users of protected feeds, which includes the majority of VSTS/MyGet users. 
 
 ### Solution
 
