@@ -74,6 +74,11 @@ If a package is owned by more than one owners, then the following situations ari
 * This can be overridden to require any specific owner's certificate. Submitting an unsigned package will not be possible in this case.
     ![image](https://user-images.githubusercontent.com/14800916/35362998-b8af5072-011c-11e8-8416-47200842b281.png)
 
+## Show signed package and certificate information for packages
+Package authors should be able to find out if a particular version of the package was signed or not looking at the package submission history:
+
+
+
 ## 2-FA requirement for managing certificates
 
 An owner can manage certificates only if he/she has signed in using 2-FA. The below screenshots proposes the experience when an owner, not signed in using 2-FA, tries to register a certificate.
