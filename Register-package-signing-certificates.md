@@ -77,6 +77,9 @@ If a package is owned by more than one owners, then the following situations ari
 ## Show signed package and certificate information for packages
 Package authors should be able to find out if a particular version of the package was signed or not looking at the package submission history:
 
+![image](https://user-images.githubusercontent.com/14800916/37484222-2e4c3634-2845-11e8-9499-3b3bb764a4b2.png)
+
+![image](https://user-images.githubusercontent.com/14800916/37484245-3d51ebce-2845-11e8-88b5-9368bd1d836c.png)
 
 
 ## 2-FA requirement for managing certificates
@@ -84,11 +87,14 @@ Package authors should be able to find out if a particular version of the packag
 An owner can manage certificates only if he/she has signed in using 2-FA. The below screenshots proposes the experience when an owner, not signed in using 2-FA, tries to register a certificate.
 
 **Note:** 
-1. 2-FA is not required to for general logins, once a certificate is already registered unless the user wishes to:
-  * Manage (remove, add) certificates
-  * Upload a package
-  * Create an API key to push packages
+1. 2-FA is not required to for general logins, once a certificate is already registered unless the user wishes to Manage (remove, add) certificates.
 2. 2-FA will be required in co-ownership scenarios, while trying to manage certificate requirements/overrides for individual packages.
 3. 2-FA is only applicable with MSA logins. For AAD, the requirement is managed by the companies' policies.
 
-TBD - screenshots.. 
+For individual accounts:
+![image](https://user-images.githubusercontent.com/14800916/37484444-bdd0090c-2845-11e8-8fa4-45a9bb4aa5cf.png)
+
+
+For Organizations:
+![image](https://user-images.githubusercontent.com/14800916/37484460-c7dd9dd8-2845-11e8-8f27-fea7301c11c5.png)
+
