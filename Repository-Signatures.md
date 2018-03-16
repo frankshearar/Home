@@ -227,7 +227,7 @@ One of the key elements of signature validation is how to evaluate trust.
 
 |Author Trusted|Repo Trusted|Unsigned|Author|Repo|AuthorRepo|
 |---|---|---|---|---|---|
-|No|No|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|No|No|:white_check_mark:|:warning:|:warning:|:warning:|
 |No|Undetermined|:white_check_mark:|:warning:|:warning:|:warning:|
 |No|Yes|:white_check_mark:|:warning:|:white_check_mark:|:white_check_mark:|
 |Yes|No|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
@@ -246,9 +246,9 @@ One of the key elements of signature validation is how to evaluate trust.
 |No|No|:x:|:x:|:x:|:x:|
 |No|Undetermined|:x:|:x:|:x:|:x:|
 |No|Yes|:x:|:x:|:white_check_mark:|:white_check_mark:|
-|Yes|No|:x:|:white_check_mark:|:x:|:white_check_mark:|
-|Yes|Undetermined|:x:|:white_check_mark:|:x:|:white_check_mark:|
+|Yes|No|:x:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|Yes|Undetermined|:x:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Yes|Yes|:x:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Undertermined|No|:x:|:x:|:x:|:x:|
 |Undertermined|Undertermined|:x:|:x:|:x:|:x:|
-|Undertermined|Yes|:x:|:x:|:x:|:x:|
+|Undertermined|Yes|:x:|:x:|:white_check_mark:|:white_check_mark:|
