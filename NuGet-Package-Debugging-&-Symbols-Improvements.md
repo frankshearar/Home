@@ -61,6 +61,7 @@ In addition, SymbolSource may be [shutting down](https://twitter.com/TripleEmcod
 With the above experience in mind, the NuGet team plans to invest in improving the following areas to improve the NuGet package debugging experience for the entire .NET community:
 * In collaboration with the .NET team, make it easy for developers to create debuggable NuGet packages and link their source code to their NuGet packages in the package creation process.
   * The default NuGet Client tooling will automatically generate and publish Symbols packages when creating NuGet packages.
+  * Check out the .NET spec for [Publishing and Consuming Symbols and Source for Debugging](https://github.com/dotnet/designs/blob/master/accepted/diagnostics/debugging-with-symbols-and-sources.md) for more information.
 * Optimize the uploading experience of symbols packages so that only one command is necessary for both the NuGet package and the symbols package.
 * Streamline the NuGet package debugging experience in Visual Studio so that the [NuGet.org](https://www.nuget.org/) symbol server source can be added with the click of a button. 
 * Make it more evident that a package on NuGet.org has symbols available on the NuGet symbol server by adding UI on NuGet.org and in the Visual Studio package manager that designates whether or not symbols are available.
