@@ -66,7 +66,9 @@ There are additional mechanisms to resolve conflict in dependency versions and t
 As explained above, input to NuGet is a set of Package References from the project file (Top-level/Direct dependenices) and the output is a full closure/graph of all the package dependencies including transitive dependencies. Ideally, NuGet should always produce the same full closure of package dependencies if the input PackageReferences do not change. NuGet tries to do this but in some cases it is unable to do this:
 
 * A newer version of the package matching PackageReference version requirements is published. E.g. 
+
 Day 1: if you specified `<PackageReference Include="My.Sample.Lib" Version="4.0.0"/>` but this versions available on the NuGet repositories were 4.1.0, 4.2.0 and 4.3.0. In this case, NuGet would have resolved to  4.1.0 (nearest match)
+
 Day 2: Version 4.0.0 was published. NuGet will not find the exact match and start resolving to 4.0.0
 
 * You add a new package ...
