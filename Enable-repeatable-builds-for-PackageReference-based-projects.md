@@ -67,18 +67,47 @@ As explained above, input to NuGet is a set of Package References from the proje
 
 * A newer version of the package matching PackageReference version requirements is published. E.g. 
 
-Day 1: if you specified `<PackageReference Include="My.Sample.Lib" Version="4.0.0"/>` but this versions available on the NuGet repositories were 4.1.0, 4.2.0 and 4.3.0. In this case, NuGet would have resolved to  4.1.0 (nearest match)
+  Day 1: if you specified `<PackageReference Include="My.Sample.Lib" Version="4.0.0"/>` but this versions available on the 
+  NuGet repositories were 4.1.0, 4.2.0 and 4.3.0. In this case, NuGet would have resolved to  4.1.0 (nearest match)
 
-Day 2: Version 4.0.0 was published. NuGet will not find the exact match and start resolving to 4.0.0
+  Day 2: Version 4.0.0 gets published. NuGet will now find the exact match and start resolving to 4.0.0
 
-* You add a new package ...
+* A given package version is removed from the repository. Though nuget.org does not allow package deletions, not all package repositories have this constraints. Private/Internal repositories including folder/share based repositories may allow package deletions as well. This will result in NuGet finding the best match when it cannot resolve to the deleted versions and thereby changing the full closure of dependencies for the project.
 
-Users want their builds to be repeatable if the code doesn't change irrespective of when and where the build happens.
-Refer to the context on NuGet dependency resolution. Because of the various ways by which dependency resolution happen, for a given project, the restore can bring in different versions of the package dependencies when run at different times and different places even when there is no change in package dependencies specified in the project file. This can be due to the following factors:
-1. External: When package publishers change (add/remove) the packages on the feed(s).
-2. Internal: When the nuget.config (if not checked-in) points to different feeds across builds.
+* A repository you installed the package version from is no longer online or is degraded. In case when you have listed multiple repositories as sources in the nuget.config file, NuGet picks the package from the repository that responds fastest. So if other repositories have the same package but different versions of the package, the resolved version may be different.
 
-This feature aspires to solve this issue and enable repeatable builds.
+  The same problem can happen if you have different nuget.config files with different sources (repositories) at different 
+  places. E.g. Dev machines may have an additional local share repository while CI/CD machine may not.
+ 
+* [Future] Users have been asking for an ability to define the resolution strategy of transitive dependencies as it existed with package.config. Once we implement this feature, when a then any update to a transitive package on repository can change the full closure of package dependencies.
+
+  E.g. If Project1 depends on PackageA(v1.0.0) which depends on PackageB(>=2.0.0)
+
+  `Project1--> PackageA(1.0.0) --> PackageB(>=2.0.0)` 
+
+  Today NuGet, by default, pins to the lowest version for any transitive dependency. And hence any update to PackageB does 
+  not have any impact on the resolved packages graph in the above case. But once we enable this feature and let users 
+  decide to float to the latest version, with every update to PackageB on the repository, will have an impact on the 
+  resolved version in your project during restore.
+
+In addition to the all the above mentioned issues regarding repeatable builds/restores, there is another issue with respect to understanding the transitive dependencies changes when you add or remove packages. Consider the following scenario:
+ 
+`Project1--> PackageA(1.0.0) --> PackageB(>=2.0.0)` 
+
+Now lets say you bring in another dependency on PackageX(3.0.0) with some transitive dependencies. And suddenly you build breaks because the PackageX(3.0.0) had the following transitive dependencies:
+
+```
+Project1--> PackageA(1.0.0) --> PackageB(>=2.0.0)
+       |--> PackageX(3.0.0) --> PackageY(3.0.0) --> PackageZ (1.0.0) --> PackageB(4.0.0)
+```
+
+So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that may have breaking changes. Obviously this is due to an intentional package install but the transitive closure happens behind the scenes without letting the users know the changes in transitive dependency versions. Sometimes this is not ideal. Users would like to know the difference in package dependency graphs irrespective of whether the change is related to direct or indirect/transitive dependencies.
+
+This feature aspires to solve all the above mentioned issues. 
+
+| # | Problem Hypothesis |
+|:--- |:---------------|
+| PH1 | |
 
 # Who is the customer?
 
