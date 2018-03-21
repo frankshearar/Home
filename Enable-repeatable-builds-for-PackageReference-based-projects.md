@@ -105,9 +105,10 @@ So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that ma
 
 This feature aspires to solve all the above mentioned issues. 
 
-| # | Problem Hypothesis |
+| # | Problem Hypothesis | 
 |:--- |:---------------|
-| PH1 | |
+| PH1 | Developers would like to have their builds and hence the package restores to be repeatable across time and space | 
+| PH2 | When developers add/remove a package dependency to a project, they would like to be intimated about any unintended changes in the full package dependency closure. |
 
 # Who is the customer?
 
