@@ -211,7 +211,7 @@ One of the key elements of signature validation is how to evaluate trust.
     <author key="Microsoft">
       <certificate  subjectName="Microsoft Corporation" 
                     thumbprint="a897009b809809c..." />
-      <certificate  subjectName="Xamarin Inc," 
+      <certificate  subjectName="Xamarin Inc" 
                     thumbprint="6565a656c65b65d..." />
     </author>
     <auhtor key="Rido"                 
@@ -219,8 +219,11 @@ One of the key elements of signature validation is how to evaluate trust.
       <certificate  subjectName="RidoTestCert" 
                     thumbprint="98098a0980b980c..." />      
     </author>
+    <author key="RidoNuGet">
+      <owners inRepository="NuGet.org" value="rido,ridomin"  >
+    </author>
   <trustedAuthors>
-  </configuration>
+ </configuration>
 ```
 
 #### Accept mode
