@@ -43,7 +43,7 @@ For example -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="dev" />
+    <add key="signatureValidationMode" value="accept" />
   </config>
 </configuration>
 ```
@@ -66,7 +66,7 @@ To set the NuGet package signing client policy, users can use the existing [`nug
 
 #### Set 
 
-`NuGet.exe config -set signatureValidationMode=dev`
+`NuGet.exe config -set signatureValidationMode=accept`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
