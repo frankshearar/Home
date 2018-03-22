@@ -79,6 +79,7 @@ Primarily developers in an **enterprise** using `PackageReference` with **huge c
 ### R1 - Developers would like to have their builds and hence the package restores to be repeatable across time and space 
 
 | PH# | Problem Hypothesis |
+|:--- |:---------------|
 | PH1 | Developers do not have confidence that NuGet will restore to the same full closure of package dependencies when they build it on Dev machine vs. CI/CD machines |
 
 Input to NuGet is a set of Package References from the project file (Top-level/Direct dependenices) and the output is a full closure/graph of all the package dependencies including transitive dependencies. Ideally, NuGet should always produce the same full closure of package dependencies if the input PackageReferences do not change. NuGet tries to do this but in some cases it is unable to do this:
@@ -126,6 +127,7 @@ So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that ma
 ### R3 - Developers would like to define dependency resolution behavior to control what suits their scenarios
 
 | PH# | Problem Hypothesis |
+|:--- |:---------------|
 | PH2 | Developers cannot control the behavior of transitive dependency resolution i.e. if they want to always float to the latest patch version of all the transitive dependencies to help them take the non-breaking updates of such packages |
 | PH3 | Developers cannot control the behavior of transitive dependency resolution for specific top-level packages | 
 | PH4 | Developers cannot float to a pre-release version of a package using floating versions |
@@ -141,6 +143,7 @@ For direct/top level dependencies, with floating versions, today NuGet always re
 ### R4 - Developers would like to specify control the packages and their versions that are allowed to be used in their projects or solutions across the team/product
 
 | PH# | Problem Hypothesis |
+|:--- |:---------------|
 | PH6 | Developers cannot define an allowed list of packages that can be used in an application development across projects/solutions/repos |
 | PH7 | Developers cannot restrict to use the same version of a given package across projects/solutions/repos |
 | PH8 | Developers find it difficult to use a predetermined allowed version range of given package across projects/solutions/repos |
