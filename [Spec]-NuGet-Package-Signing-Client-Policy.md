@@ -55,7 +55,7 @@ For example -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="strict" />
+    <add key="signatureValidationMode" value="require" />
   </config>
 </configuration>
 ```
@@ -75,12 +75,12 @@ To set the NuGet package signing client policy, users can use the existing [`nug
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="dev" />
+    <add key="signatureValidationMode" value="accept" />
   </config>
 </configuration>
 ```
 
-`NuGet.exe config -set signatureValidationMode=strict`
+`NuGet.exe config -set signatureValidationMode=require`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -89,7 +89,7 @@ To set the NuGet package signing client policy, users can use the existing [`nug
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="strict" />
+    <add key="signatureValidationMode" value="require" />
   </config>
 </configuration>
 ```
@@ -97,7 +97,7 @@ To set the NuGet package signing client policy, users can use the existing [`nug
 
 #### Update 
 
-`NuGet.exe config -set signatureValidationMode=strict`
+`NuGet.exe config -set signatureValidationMode=require`
 
 Before -
 ```xml
@@ -107,7 +107,7 @@ Before -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="dev" />
+    <add key="signatureValidationMode" value="accept" />
   </config>
 </configuration>
 ```
@@ -119,7 +119,7 @@ After -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="strict" />
+    <add key="signatureValidationMode" value="require" />
   </config>
 </configuration>
 ```
@@ -149,19 +149,19 @@ We should add support for the following in Visual Studio NuGet options control -
 
 ###  Impact of repository signing to client policies - 
 
-#### Dev mode -
-* By default NuGet client should operate in dev mode where the client will perform author/repository/signedcms signature verification for packages which contain a valid signatures.  
-* If a user does not have any package sources then NuGet client should write down nuget.org as a package and trusted source and signatureValidationMode as dev into the user nuget.config file.
+#### Accept mode -
+* By default NuGet client should operate in accept mode where the client will perform author/repository/signedcms signature verification for packages which contain a valid signatures.  
+* If a user does not have any package sources then NuGet client should write down nuget.org as a package and trusted source and signatureValidationMode as accept into the user nuget.config file.
 * NuGet client should respect any trusted source in user settings and perform complete repository signature verification for any package from those sources.
 
-#### Strict mode -
-* In strict mode NuGet client will only allow packages signed by a list of trusted sources or authors along with all the constraints of dev mode.
+#### Require mode -
+* In require mode NuGet client will only allow packages signed by a list of trusted sources or authors along with all the constraints of accept mode.
 * If a package is signed by an author or source that is not trusted, then the operation should fail with an error.
 
 #### Changing of modes - 
-1. Starting in a future release, NuGet will operate in dev mode for all users.
+1. Starting in a future release, NuGet will operate in accept mode for all users.
 2. In a following release NuGet client will allow users to change their NuGet package signing client policy as proposed in this spec.
-3. If, at some point in future, the default mode needs to be changed from dev to strict, then it should be done only for new installations and with a new major version release as this will be a breaking change.
+3. If, at some point in future, the default mode needs to be changed from accept to require, then it should be done only for new installations and with a new major version release as this will be a breaking change.
 
 ### Timeline of NuGet.Org package signing and NuGet client policies- 
 1. In a future release, NuGet client should have support for verifying repository signatures. At this point, NuGet client should perform repository signature verification on a package with valid repository signature.
