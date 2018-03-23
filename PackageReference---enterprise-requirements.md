@@ -91,8 +91,77 @@ For direct/top level dependencies, with floating versions, today NuGet always re
 | PH7 | Developers cannot restrict to use the same version of a given package across projects/solutions/repos |
 | PH8 | Developers find it difficult to use a predetermined allowed version range of given package across projects/solutions/repos |
 
+With huge code bases, complex project structures with large set of packages to deal with, it becomes really hard for developers to keep consistency on the package and versions used across the projects/solutions. Developers need a way to control the packages they would like to use downstream from a repository level or a solution level. They would like to ensure that only specific versions can be used throughout their code base.
+
 # Solution
 
+With all the requirements
+1. Ability to define packages dependencies and versions at solution level
+1. Ability to define allowed packages dependencies and versions at any level
+1. Ability to define transitive package dependency resolution strategy 
+1. [Visual Studio] Ability to manage package dependencies and version at solution level  
+
+## Ability to define packages dependencies and versions at solution level
+
+Summary:
+As Noel, a developer who uses NuGet to manage package dependencies, 
+
+### I can define a list of **allowed** package dependencies in the nuget.config file at **solution root** folder
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+    <packageSources>
+        <add key="NuGet.org" value="https://api.nuget.org/v3/index.json" />
+        <add key="VSTSFabrikam" value="https://nugetplay.pkgs.visualstudio.com/_packaging/Fabrikam/nuget/v3/index.json" />
+        <add key="MyInternalFeed" value="https://myinternalfeed/feed/index.json" />
+    </packageSources>
+
+    <packageDependencies>
+            <id="Newtonsoft.Json" version="10.0.2" source="NuGet.org"/>
+            <id="My.Sample.Lib" version="[3.4.0, 4.0.0)" source="VSTSFabrikam"/>
+            <id="My.Floating.Lib" version="3.*" source="MyInternalFeed" includePrerelease="rc;beta"/>
+    </packageDependencies>
+
+</configuration>
+  ```
+
+### I can add only those package dependencies to my project that are already listed as the allowed package dependencies in the \<mysolution>\nuget.config file.
+
+```
+> dotnet add package newtonsoft.json -v 11.0.1
+Could not find newtonsoft.json version 11.0.1 in the list of package dependencies defined in nuget.config. 
+Please relax the allowed versions specified in the nuget.config or installed an allowed version: Newtonsoft.Json 10.0.2
+You can also try installing the package without specifying any version.
+
+> dotnet add package newtonsoft.json
+Successfully installed Newtonsoft.Json version 10.0.2
+
+> dotnet add package Package.NotListed 
+Could not find Package.NotListed in the list of package dependencies defined in nuget.config. 
+Please add this package as a allowed package dependency in nuget.config. You may also use the 
+following command to install this package and add it as an allowed package dependency to the 
+nuget.consig file as well:
+    dotnet add package Package.NotListed --add-as-allowed-package-dependency
+```
+
+### Any add/install of a package to a project modifies the nuget.dependencies.lock file
+
+
+
+
+4. When I restore, the exact versions of the packages defined in the project files are disregarded and those used in the nuget.config file takes precedence.
+```
+> dotnet restore
+Using the allowed packages and versions specified in the following nuget.config files. The version information used in the project files will be disregarded.
+.
+.
+```
+4. With  
+
+## Ability to define allowed packages dependencies and versions at any level
+## Ability to define transitive package dependency resolution strategy  
+## [Visual Studio] Ability to manage package dependencies and version at solution level  
 
 # Context and Key Terms
 
