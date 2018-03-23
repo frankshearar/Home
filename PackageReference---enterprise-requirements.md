@@ -1,67 +1,17 @@
 Status: **Incubation**
 
-# Issues
+[Context and Key Terms](#context-and-key-terms)
+
+# Requirements
 
 All related specs/issues at a glance: 
 
-| Title | Issue | Spec |
-|:------------- |:-------------:| -----:|
-| **Enable repeatable builds for PackageReference based projects (via lock file)**  | **[#5602](https://github.com/nuget/home/issues/5602)** | **[Incubation](https://github.com/NuGet/Home/wiki/Enable-repeatable-builds-for-PackageReference-based-projects)** |
-| Manage allowed packages for a solution (or globally)  | TBD |  [Incubation](https://github.com/NuGet/Home/wiki/Manage-allowed-packages-for-a-solution-%28or-globally%29) |
-| Allow users to determine package resolution strategy during package restore - direct or transitive | [#5553](https://github.com/nuget/home/issues/5553) | TBD |
-| Allow developers to float to a pre-release version of a package | [#5553](https://github.com/NuGet/Home/issues/5553) | TBD|
-
-
-# Context
-
-Projects that use PackageReference to manage NuGet dependencies, only provide direct package dependencies. The transitive closure for the dependencies happen at the restore time.  
-Refer to the dependency resolution algorithm for NuGet. Overall here is the summary of dependency resolution:
-
-## Direct dependency resolution:
-
-1. If exact version is specified - NuGet tries to resolve to the exact version. If not, it resolves to next highest version i.e. the lowest version equal to or near to the version specified. 
-E.g. 
-	
-   `<PackageReference Include="My.Sample.Lib" Version="4.5.0" />`
-
-   a. NuGet resolves to version 4.5.0 if present in the feed. 
-
-   b. If Feed has only these versions: 4.0.0, 4.6.0, 5.0.0 then NuGet resolves to 4.6.0 
-
-2. If a range is specified - NuGet resolves to the lowest version specified in that range or that satisfies the floating expression.
-E.g.
-
-   Feed has only these versions for My.Sample.Lib: 4.0.0, 4.6.0, 5.0.0
-
-   a. Range is specified:
-		
-   `<PackageReference Include="My.Sample.Lib" Version="[4.0.0, 5.0.0]"/>`
-		
-      NuGet resolves to the 4.0.0 here. 
-
-   b. Range is specified contd..
-		
-   `<PackageReference Include="My.Sample.Lib" Version="[4.1.0, 5.0.0]"/>`
-		
-      NuGet resolves to the 4.6.0 here.
-	
-3. If a floating version is specified is specified - NuGet resolves to the highest version that satisfies the floating expression.
-E.g.	
-   
-   Floating version is specified:
-
-   (Feed has only these versions for My.Sample.Lib: 4.0.0, 4.6.0, 5.0.0)
-
-   `<PackageReference Include="My.Sample.Lib" Version="4.*"/>`
-		
-    NuGet resolves to 4.6.0 here.
-
-    NuGet resolves to next-highest-version-available* on the feed if there are no versions matching the floating expression. i.e. if 4.0.0 and 4.6.0 were not present on the feed, NuGet would have resolved to 5.0.0 even though the floating expression says 4.*. This, IMO, is a bug: https://github.com/NuGet/Home/issues/5097
-		
-## Transitive dependency resolution
-In case of transitive dependencies, the resolution is always to the lowest version specified in the dependency version or version ranges as specified here.
-
-There are additional mechanisms to resolve conflict in dependency versions and those are resolved through "Nearest wins" and "Cousin dependencies" algorithm as discussed in details in the documentation.
+| # | Requirement | Issue # | 
+|:--- |:-------------|:--------|
+| R1 | Developers would like to have repeatable builds (restores) across time and space | **[#5602](https://github.com/nuget/home/issues/5602)** |
+| R2 | Developers would like to be aware of any unintended changes to their package dependency closure including trasitive ones | **[#5602](https://github.com/nuget/home/issues/5602)** |
+| R3 | Developers would like to control dependency resolution behaviors |  [#5553](https://github.com/nuget/home/issues/5553) [#5553](https://github.com/NuGet/Home/issues/5553) |
+| R4 | Developers would like to control the packages and their versions that are allowed to be used across the team/product | TBD |
 	
 # Who is the customer?
 
@@ -69,14 +19,7 @@ Primarily developers in an **enterprise** using `PackageReference` with **huge c
 	
 # Problem
 
-| # | Requirements | 
-|:--- |:---------------|
-| R1 | Developers would like to have their builds and hence the package restores to be repeatable across time and space | 
-| R2 | When developers add/remove a package dependency to a project, they would like to be told about any unintended changes in the full package dependency closure. |
-| R3 | Developers would like to define transitive dependency resolution behavior to control what suits their scenarios |
-| R4 | Developers would like to specify control the packages and their versions that are allowed to be used in their projects or solutions across the team/product |
-
-### R1 - Developers would like to have their builds and hence the package restores to be repeatable across time and space 
+### R1 - Developers would like to have repeatable builds (restores) across time and space
 
 | PH# | Problem Hypothesis |
 |:--- |:---------------|
@@ -149,3 +92,55 @@ For direct/top level dependencies, with floating versions, today NuGet always re
 | PH8 | Developers find it difficult to use a predetermined allowed version range of given package across projects/solutions/repos |
 
 # Solution
+
+
+# Context and Key Terms
+
+Projects that use PackageReference to manage NuGet dependencies, only provide direct package dependencies. The transitive closure for the dependencies happen at the restore time.  
+Refer to the dependency resolution algorithm for NuGet. Overall here is the summary of dependency resolution:
+
+## Direct dependency resolution:
+
+1. If exact version is specified - NuGet tries to resolve to the exact version. If not, it resolves to next highest version i.e. the lowest version equal to or near to the version specified. 
+E.g. 
+	
+   `<PackageReference Include="My.Sample.Lib" Version="4.5.0" />`
+
+   a. NuGet resolves to version 4.5.0 if present in the feed. 
+
+   b. If Feed has only these versions: 4.0.0, 4.6.0, 5.0.0 then NuGet resolves to 4.6.0 
+
+2. If a range is specified - NuGet resolves to the lowest version specified in that range or that satisfies the floating expression.
+E.g.
+
+   Feed has only these versions for My.Sample.Lib: 4.0.0, 4.6.0, 5.0.0
+
+   a. Range is specified:
+		
+   `<PackageReference Include="My.Sample.Lib" Version="[4.0.0, 5.0.0]"/>`
+		
+      NuGet resolves to the 4.0.0 here. 
+
+   b. Range is specified contd..
+		
+   `<PackageReference Include="My.Sample.Lib" Version="[4.1.0, 5.0.0]"/>`
+		
+      NuGet resolves to the 4.6.0 here.
+	
+3. If a floating version is specified is specified - NuGet resolves to the highest version that satisfies the floating expression.
+E.g.	
+   
+   Floating version is specified:
+
+   (Feed has only these versions for My.Sample.Lib: 4.0.0, 4.6.0, 5.0.0)
+
+   `<PackageReference Include="My.Sample.Lib" Version="4.*"/>`
+		
+    NuGet resolves to 4.6.0 here.
+
+    NuGet resolves to next-highest-version-available* on the feed if there are no versions matching the floating expression. i.e. if 4.0.0 and 4.6.0 were not present on the feed, NuGet would have resolved to 5.0.0 even though the floating expression says 4.*. This, IMO, is a bug: https://github.com/NuGet/Home/issues/5097
+		
+## Transitive dependency resolution
+In case of transitive dependencies, the resolution is always to the lowest version specified in the dependency version or version ranges as specified here.
+
+There are additional mechanisms to resolve conflict in dependency versions and those are resolved through "Nearest wins" and "Cousin dependencies" algorithm as discussed in details in the documentation.
