@@ -95,10 +95,10 @@ With huge code bases, complex project structures with large set of packages to d
 
 # Solution
 
-With all the requirements
+With all the requirements and validated problem hypothesis, following are the features to be implemented (in order):
 1. Ability to define packages dependencies and versions at solution level
-1. Ability to define allowed packages dependencies and versions at any level
 1. Ability to define transitive package dependency resolution strategy 
+1. Ability to define allowed packages dependencies and versions at any level
 1. [Visual Studio] Ability to manage package dependencies and version at solution level  
 
 ## Define packages dependencies+versions at solution level
@@ -195,7 +195,7 @@ This behavior goes against the repeatbale build expectation, though due to a mis
 > dotnet restore --fail-on-lock-file-modify
 ```
 
-The same can be achieved by setting the environment variable **NUGET_RESTORE_FAIL_LOCK_MODIFY" to `true`.
+The same can be achieved by setting the environment variable **NUGET_RESTORE_FAIL_LOCK_MODIFY** to `true`.
 
 ### package.dependenies.lock propoerties
 
