@@ -101,15 +101,24 @@ With all the requirements
 1. Ability to define transitive package dependency resolution strategy 
 1. [Visual Studio] Ability to manage package dependencies and version at solution level  
 
-## Ability to define packages dependencies and versions at solution level
+## Define packages dependencies+versions at solution level
 
 Summary:
-As Noel, a developer who uses NuGet to manage package dependencies, 
 
-### I can define a list of **allowed** package dependencies in the nuget.config file at **solution root** folder
+### Define a list of allowed package dependencies 
+I can define a list of **allowed** package dependencies in the nuget.config file at **solution root** folder by setting the `ManagedPackageDependencies` mode ON.
+* It is recommended to define only the top-level dependencies used in projects. 
+* Transitive dependencies could be listed too. If NuGet finds a package listed here, it will use the version and properties as listed without trying to resolve.
+* In the above case, if the versions required as part of NuGet's transitive dependency resolution does not map to the allowed version listed in nuget.config, NuGet will throw an error. 
+
+Sample nuget.config file:
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
+    
+    <config>
+        <add key="managedPackageDependencies" value="true" />
+    </config>
 
     <packageSources>
         <add key="NuGet.org" value="https://api.nuget.org/v3/index.json" />
@@ -118,15 +127,22 @@ As Noel, a developer who uses NuGet to manage package dependencies,
     </packageSources>
 
     <packageDependencies>
-            <id="Newtonsoft.Json" version="10.0.2" source="NuGet.org"/>
-            <id="My.Sample.Lib" version="[3.4.0, 4.0.0)" source="VSTSFabrikam"/>
-            <id="My.Floating.Lib" version="3.*" source="MyInternalFeed" includePrerelease="rc;beta"/>
+        <id="Newtonsoft.Json" version="10.0.2" source="NuGet.org"/>
+        <id="My.Sample.Lib" version="[3.4.0, 4.0.0)" source="VSTSFabrikam"/>
+        <id="My.Floating.Lib" version="3.*" source="MyInternalFeed" includePrerelease="rc;beta"/>
     </packageDependencies>
 
 </configuration>
-  ```
+```
 
-### I can add only those package dependencies to my project that are already listed as the allowed package dependencies in the \<mysolution>\nuget.config file.
+#### Why nuget.config?
+Defining the allowed package dependencies in the nuget.config has the following benefits:
+* No additional moving part - We do not want to introduce yet another file used only for NuGet. 
+* Define package sources and dependencies together - nuget.config file already defines the package sources. It makes it easier to view and define both the package sources and the dependencies together
+* Hierarchical evaluation - nuget.config settings are evaluated in hierarchical manner that enables one to use the allowed package dependencies with at the user level or solution level or project level.
+
+### Add package dependency to project that's allowed
+I can add only those package dependencies to my project that are already listed as the allowed package dependencies in the \<mysolution>\nuget.config file.
 
 ```
 > dotnet add package newtonsoft.json -v 11.0.1
@@ -135,6 +151,7 @@ Please relax the allowed versions specified in the nuget.config or installed an 
 You can also try installing the package without specifying any version.
 
 > dotnet add package newtonsoft.json
+Using the managed NuGet dependencies mode - resolving dependencies from the nuget.cofig file.
 Successfully installed Newtonsoft.Json version 10.0.2
 
 > dotnet add package Package.NotListed 
@@ -145,18 +162,77 @@ nuget.consig file as well:
     dotnet add package Package.NotListed --add-as-allowed-package-dependency
 ```
 
-### Any add/install of a package to a project modifies the nuget.dependencies.lock file
+### NuGet generated lock file
+When I install/update a package dependency to any of my projects, it modifies the nuget generated lock file - nuget.dependencies.lock file.
 
+#### What is install/update in nuget?
+When you add a dependency in one of the following ways to a project, it's an install:
+* In Visual Studio, you go to PMC/PMUI to find a package and press 'Install'
+* `dotnet add package <Package>`
+* Directly edit the project file to include a `PackageReference` node. E.g. `<PackageReference Include="newtonsoft.json" Version="10.0.2" />`
 
+In all of the above scenarios, with PackageReference, install action just finds out the compat and adds the `PackageReference` node to the project file. To complete the install process i.e. to bring in the actual package on disk, a restore operation is run. 
 
+Here I will be using the term 'install' to mean the user action of installing (including getting the package on disk using nuget restore action).
 
-4. When I restore, the exact versions of the packages defined in the project files are disregarded and those used in the nuget.config file takes precedence.
+### When is the lock file modified?
+* Install - When a package is installed to a project that uses allowed packages/versions (from nuget.config file), a `package.dependencies.lock` file is generated if it does not exist already. If the file exists, its modified. 
+* Update - the lock file will be modified when package dependencies are updated in the nuget.config file.
+
+### When is the lock file NOT modified?
+
+* A normal restore action (not the one accompanied with install/update) will not modify the package.dependencies.lock file. 
+* A restore operation will use the package.dependencies.lock file to get the full package dependencies closure if there were no changes to the package dependencies in nuget.config file or to the individual projects.
+
+Since restore is the common action run when a install/update is done with NuGet, in order to prevent any accidental modification of lock file, there will be an option to fail restore if it requires modification of the package.dependencies.lock file.
+
+**Scenario:** 
+* On DEV machine, a developer adds a new package to a project which causes an update to the lock file. Now while checking in the project, he/she disregards changes to the package.dependencies.lock file.  
+* On CI/CD machine, when restore runs, it finds out the additional PackageReference in the project file and hence updates the package.dependencies.lock file.
+This behavior goes against the repeatbale build expectation, though due to a mistake. To prevent this, on CI/CD machines, once should always call restore with the following option:
+
 ```
-> dotnet restore
-Using the allowed packages and versions specified in the following nuget.config files. The version information used in the project files will be disregarded.
-.
-.
+> dotnet restore --fail-on-lock-file-modify
 ```
+
+The same can be achieved by setting the environment variable **NUGET_RESTORE_FAIL_LOCK_MODIFY" to `true`.
+
+### package.dependenies.lock propoerties
+
+1. Generated at the solution level
+1. Uses the allowed versions to compute the Contains allowed version of the package
+2. Contains resolved version of the package
+3. Contains whether a dependency is a direct of transitive dependency
+4. Contains SHA512 hash of the package resolved
+
+Proposed format:
+``` 
+# THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT THIS FILE DIRECTLY.
+# YOU SHOULD CHECK THIS FILE INTO YOUR SOURCE REPOSITORY.
+# LEARN MORE - https://aka.ms/nuget-lockfile
+
+version: 1.0.0
+dependencies:
+  netcoreapp:
+   packageA-1.0.0:1.0.1#figMxwHAzvZt2VA533zj0a/Et+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+YA3rVKs+QOihummfA=="
+     packageD-4.0.0
+     packageE-5.0.0
+     packageF-6.0.0
+   packageB-2.0.0:2.0.0#xwHAzvZt2VA533zj0wunkbqoIHIvqfigMxwHAzvZt2VA533figMxwHAzvZt2VA533wQ/+YA3rVKs+QOihummfA=="
+     packageE-4.5.0
+     packageF-5.9.1
+     packageG-6.0.0
+   packageC-3.0.0:3.0.0#xwHAzvZt2VA533zj0wunkbqoIHIvqfigMxwHAzvZt2VA533figMxwHAzvZt2VA533wQ/+YA3rVKs+QOihummfA=="
+     packageF-6.0.0
+     packageG-7.0.0
+     packageH-8.0.0
+   packageX-2.0.0:2.0.0#xwHAzvZt2VA533zj0wunkbqoIHIvqfigMxwHAzvZt2VA533figMxwHAzvZt2VA533wQ/+YA3rVKs+QOihummfA=="
+     packageG-7.0.0
+     packageH-11.0.0
+     packageY-7.0.0
+   packageD-:4.0.0#rasMxwHAzvZt2VA533zj0a/Np+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+YA3rVKs+QOihuVKs+Q="
+  ...
+
 4. With  
 
 ## Ability to define allowed packages dependencies and versions at any level
