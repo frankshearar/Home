@@ -139,6 +139,46 @@ After -
 ``` 
 <br/>
 
+#### Default Value - 
+If `signatureValidationMode` is not set then NuGet Client should read that as `accept` mode.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
+  </packageSources>
+</configuration>
+``` 
+
+The above config should be read as having `signatureValidationMode=accept`.
+
+<br/>
+
+#### Invalid Value - 
+If `signatureValidationMode` is set to any value other than the supported modes, then NuGet Client should read that as `accept` mode and warn the user with a message requesting them to fix the mode value.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
+  </packageSources>
+  <config>
+    <add key="signatureValidationMode" value="RANDOM" />
+  </config>
+</configuration>
+``` 
+
+The above config should be read as having `signatureValidationMode=accept` and the following message should be shown to the user - 
+
+```
+NUxxxx: Invalid signatureValidationMode found in config file <path>. Defaulting to accept mode. Please set it to one of the supported modes by running the nuget config command. 
+For more information, visit http://docs.nuget.org/docs/reference/command-line-reference.
+```
+
+<br/>
+
 #### Client Policy in Visual Studio -
 We should add support for the following in Visual Studio NuGet options control - 
 
