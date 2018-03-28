@@ -18,7 +18,7 @@ Enable package consumers to store NuGet package signing client policies.
 * Update the schema for nuget.config file to be able to store NuGet package signing client policies.
 * Define a gesture for users to be able to choose NuGet package signing client policies.
 
-NuGet package signing client policies have been outlined in the [Repository-Signatures spec](https://github.com/NuGet/Home/wiki/Repository-Signatures#client-policies). This spec proposes schema changes to nuget.config and user gestures. Further, the spec outlines a rollout plan for the default mode for NuGet clients.
+NuGet package signing client policies have been outlined in the [Repository-Signatures spec](https://github.com/NuGet/Home/wiki/Repository-Signatures#client-policies). This spec proposes schema changes to nuget.config and user gestures.
 
 ### Client Policy Information Location
 We should store the selected client policy for the user in a `nuget.config` file as a configuration.
