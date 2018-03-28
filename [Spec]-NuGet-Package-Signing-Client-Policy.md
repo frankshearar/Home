@@ -197,7 +197,3 @@ We should add support for the following in Visual Studio NuGet options control -
 #### Require mode -
 * In require mode NuGet client will only allow packages signed by a list of trusted sources or authors along with all the constraints of accept mode.
 * If a package is signed by an author or source that is not trusted, then the operation should fail with an error.
-
-#### Changing of modes - 
-1. Starting in a future release, NuGet will operate in accept mode for all users.
-2. In a following release NuGet client will allow users to change their NuGet package signing client policy as proposed in this spec.
