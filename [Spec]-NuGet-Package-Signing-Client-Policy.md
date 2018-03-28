@@ -201,9 +201,3 @@ We should add support for the following in Visual Studio NuGet options control -
 #### Changing of modes - 
 1. Starting in a future release, NuGet will operate in accept mode for all users.
 2. In a following release NuGet client will allow users to change their NuGet package signing client policy as proposed in this spec.
-3. If, at some point in future, the default mode needs to be changed from accept to require, then it should be done only for new installations and with a new major version release as this will be a breaking change.
-
-### Timeline of NuGet.Org package signing and NuGet client policies- 
-1. In a future release, NuGet client should have support for verifying repository signatures. At this point, NuGet client should perform repository signature verification on a package with valid repository signature.
-2. Starting in that release, if a source (NuGet.org) starts advertising that all of its packages are signed then NuGet client should assert that any package from that source are signed with a valid repository signature by one of the advertised certificates.
-3. In the next NuGet client release after NuGet.org has finished signing all packages, the client should assert that all packages from NuGet.org are repository signed by one of the advertised certificates. If the client is unable to reach NuGet.org, then it should use offline values of the last known certificates. If that is also unavailable then the client should fail in require mode but warn and succeed in accept mode.
