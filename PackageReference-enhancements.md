@@ -8,8 +8,8 @@ All related specs/issues at a glance:
 
 | # | Requirement | Issue # | 
 |:--- |:-------------|:--------|
-| R1 | Developers would like to have repeatable builds (restores) across time and space | **[#5602](https://github.com/nuget/home/issues/5602)** |
-| R2 | Developers would like to control the packages and their versions that are allowed to be used across the team/product | **[6464](https://github.com/NuGet/Home/issues/6764)** |
+| R1 | Developers would like to have repeatable builds (restores) across time and space | [#5602](https://github.com/nuget/home/issues/5602) |
+| R2 | Developers would like to control the packages and their versions that are allowed to be used across the team/product | [6464](https://github.com/NuGet/Home/issues/6764) |
 | R3 | Developers would like to control dependency resolution behaviors |  [#5553](https://github.com/nuget/home/issues/5553) [#912](https://github.com/NuGet/Home/issues/912) |
 	
 # Who is the customer?
