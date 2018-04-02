@@ -103,6 +103,8 @@ Project1--> PackageA(1.0.0) --> PackageB(>=2.0.0)
 
 So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that may have breaking changes. Obviously this is due to an intentional package install but the transitive closure happens behind the scenes without letting the users know the changes in transitive dependency versions. Sometimes this is not ideal. Users would like to know the difference in package dependency graphs irrespective of whether the change is related to direct or indirect/transitive dependencies.
 
+* If you have listed multiple sources with the same package ID+version do not uniquely identify a package. i.e. My.Package v2.0.0 is different across different repositories. Obviously, this is not recommended by us and is a bad practice to have package behaviour not fixed/identifiable by a package's ID+version. 
+
 This feature aspires to solve all the above mentioned issues. 
 
 | # | Problem Hypothesis | 
