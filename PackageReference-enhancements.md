@@ -71,7 +71,7 @@ So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that ma
 
 | # | Problem statement |
 |:--- |:---------------|
-| PRS | Developers cannot control the behavior of transitive dependency resolution i.e. if they want to always float to the latest patch version of all the transitive dependencies to help them take the non-breaking updates of such packages |
+| PRS3 | Developers cannot control the behavior of transitive dependency resolution i.e. if they want to always float to the latest patch version of all the transitive dependencies to help them take the non-breaking updates of such packages |
 | PRS4 | Developers cannot control the behavior of transitive dependency resolution for specific top-level packages | 
 | PRS5 | Developers cannot float to a pre-release version of a package using floating versions |
 | PRS6 | Developers cannot float to specific (rc/beta/alpha) pre-release version of a package using floating versions |
