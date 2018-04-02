@@ -284,3 +284,6 @@ Explicit user actions like update, add package dependency and remove package dep
 
 It will also result in checkout of the locks file when the package dependency graph changes which means that the developer would know that the package dependencies may have changed. If this happens inadvertently, the lock file changes can be discarded and the original one restored to get the same repeatable build as before.
 
+## Limitations and Out of scope
+
+TBD
