@@ -98,7 +98,9 @@ With huge code bases, complex project structures with large set of packages to d
 Projects that use PackageReference to manage NuGet dependencies, only provide direct package dependencies. The transitive closure for the dependencies happen at the restore time.  
 Refer to the dependency resolution algorithm for NuGet. Overall here is the summary of dependency resolution:
 
-## Direct dependency resolution:
+## Dependency resolution
+
+### Direct dependency resolution:
 
 1. If exact version is specified - NuGet tries to resolve to the exact version. If not, it resolves to next highest version i.e. the lowest version equal to or near to the version specified. 
 E.g. 
@@ -139,7 +141,7 @@ E.g.
 
     NuGet resolves to next-highest-version-available* on the feed if there are no versions matching the floating expression. i.e. if 4.0.0 and 4.6.0 were not present on the feed, NuGet would have resolved to 5.0.0 even though the floating expression says 4.*. This, IMO, is a bug: https://github.com/NuGet/Home/issues/5097
 		
-## Transitive dependency resolution
+### Transitive dependency resolution
 In case of transitive dependencies, the resolution is always to the lowest version specified in the dependency version or version ranges as specified here.
 
 There are additional mechanisms to resolve conflict in dependency versions and those are resolved through [Nearest wins](https://docs.microsoft.com/en-us/nuget/consume-packages/dependency-resolution#nearest-wins) and [Cousin dependencies](https://docs.microsoft.com/en-us/nuget/consume-packages/dependency-resolution#cousin-dependencies) algorithm as discussed in details in the documentation.
