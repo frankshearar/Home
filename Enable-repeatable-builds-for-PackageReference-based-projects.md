@@ -1,69 +1,26 @@
 Status: **Incubation**
 
 # Issue
-The work for this feature and the discussion around the spec is tracked here - **Enable repeatable builds for PackageReference based projects [#5602](https://github.com/NuGet/Home/issues/5602)**
+| # | Requirement | Issue # | 
+|:--- |:-----------|:--------|
+| **R1** | **Developers would like to have repeatable builds (restores) across time and space** | **[#5602](https://github.com/nuget/home/issues/5602)** |
 
-All related specs/issues at a glance: 
-
-| Title | Issue | Spec |
-|:------------- |:-------------:| -----:|
-| **Enable repeatable builds for PackageReference based projects (via lock file)**  | **[#5602](https://github.com/nuget/home/issues/5602)** | **[Incubation](https://github.com/NuGet/Home/wiki/Enable-repeatable-builds-for-PackageReference-based-projects)** |
-| Manage allowed packages for a solution (or globally)  | TBD |  [Incubation](https://github.com/NuGet/Home/wiki/Manage-allowed-packages-for-a-solution-%28or-globally%29) |
-| Allow users to determine package resolution strategy during package restore - direct or transitive | [#5553](https://github.com/nuget/home/issues/5553) | TBD |
 
 
 # Context
+* [PackageReference requirements summary](https://github.com/NuGet/Home/wiki/PackageReference-enhancements) | Epic issue [#6763](https://github.com/NuGet/Home/issues/6763)
+* [Package dependency resolution](https://github.com/NuGet/Home/wiki/PackageReference-enhancements#dependency-resolution)
+* [NuGet Actions (current)](https://github.com/NuGet/Home/wiki/PackageReference-enhancements#nuget-actions)
 
-Projects that use PackageReference to manage NuGet dependencies, only provide direct package dependencies. The transitive closure for the dependencies happen at the restore time.  
-Refer to the dependency resolution algorithm for NuGet. Overall here is the summary of dependency resolution:
-
-## Direct dependency resolution:
-1. If exact version is specified - NuGet tries to resolve to the exact version. If not, it resolves to next highest version i.e. the lowest version equal to or near to the version specified. 
-E.g. 
-	
-   `<PackageReference Include="My.Sample.Lib" Version="4.5.0" />`
-
-   a. NuGet resolves to version 4.5.0 if present in the feed. 
-
-   b. If Feed has only these versions: 4.0.0, 4.6.0, 5.0.0 then NuGet resolves to 4.6.0 
-
-2. If a range is specified - NuGet resolves to the lowest version specified in that range or that satisfies the floating expression.
-E.g.
-
-   Feed has only these versions for My.Sample.Lib: 4.0.0, 4.6.0, 5.0.0
-
-   a. Range is specified:
-		
-   `<PackageReference Include="My.Sample.Lib" Version="[4.0.0, 5.0.0]"/>`
-		
-      NuGet resolves to the 4.0.0 here. 
-
-   b. Range is specified contd..
-		
-   `<PackageReference Include="My.Sample.Lib" Version="[4.1.0, 5.0.0]"/>`
-		
-      NuGet resolves to the 4.6.0 here.
-	
-3. If a floating version is specified is specified - NuGet resolves to the highest version that satisfies the floating expression.
-E.g.	
-   
-   Floating version is specified:
-
-   (Feed has only these versions for My.Sample.Lib: 4.0.0, 4.6.0, 5.0.0)
-
-   `<PackageReference Include="My.Sample.Lib" Version="4.*"/>`
-		
-    NuGet resolves to 4.6.0 here.
-
-    NuGet resolves to next-highest-version-available* on the feed if there are no versions matching the floating expression. i.e. if 4.0.0 and 4.6.0 were not present on the feed, NuGet would have resolved to 5.0.0 even though the floating expression says 4.*. This, IMO, is a bug: https://github.com/NuGet/Home/issues/5097
-		
-## Transitive dependency resolution
-In case of transitive dependencies, the resolution is always to the lowest version specified in the dependency version or version ranges as specified here.
-
-There are additional mechanisms to resolve conflict in dependency versions and those are resolved through "Nearest wins" and "Cousin dependencies" algorithm as discussed in details in the documentation.
-		
 # Problem
-As explained above, input to NuGet is a set of Package References from the project file (Top-level/Direct dependenices) and the output is a full closure/graph of all the package dependencies including transitive dependencies. Ideally, NuGet should always produce the same full closure of package dependencies if the input PackageReferences do not change. NuGet tries to do this but in some cases it is unable to do this:
+### R1 - Developers would like to have repeatable builds (restores) across time and space
+
+| # | Problem statement |
+|:--- |:---------------|
+| PRS1 | Developers do not have confidence that NuGet will restore to the same full closure of package dependencies when they build it on Dev machine vs. CI/CD machines |
+| PRS2 |  Developers would like to be aware of any unintended changes to their package dependency closure including trasitive ones |
+
+Input to NuGet is a set of Package References from the project file (Top-level/Direct dependenices) and the output is a full closure/graph of all the package dependencies including transitive dependencies. Ideally, NuGet should always produce the same full closure of package dependencies if the input PackageReferences do not change. NuGet tries to do this but in some cases it is unable to do this:
 
 * A newer version of the package matching PackageReference version requirements is published. E.g. 
 
@@ -79,7 +36,7 @@ As explained above, input to NuGet is a set of Package References from the proje
   The same problem can happen if you have different nuget.config files with different sources (repositories) at different 
   places. E.g. Dev machines may have an additional local share repository while CI/CD machine may not.
  
-* [Future] Users have been asking for an ability to define the resolution strategy of transitive dependencies as it existed with package.config. Once we implement this feature, when a then any update to a transitive package on repository can change the full closure of package dependencies.
+* [Future - R3] Users have been asking for an ability to define the resolution strategy of transitive dependencies as it existed with package.config. Once we implement this feature, when a then any update to a transitive package on repository can change the full closure of package dependencies.
 
   E.g. If Project1 depends on PackageA(v1.0.0) which depends on PackageB(>=2.0.0)
 
@@ -90,9 +47,11 @@ As explained above, input to NuGet is a set of Package References from the proje
   decide to float to the latest version, with every update to PackageB on the repository, will have an impact on the 
   resolved version in your project during restore.
 
-In addition to the all the above mentioned issues regarding repeatable builds/restores, there is another issue with respect to understanding the transitive dependencies changes when you add or remove packages. Consider the following scenario:
+In addition to the above, when developers add/remove a package dependency to a project, they would like to be told about any unintended changes in the full package dependency closure. (PRS2)
+
+Consider the following scenario:
  
-`Project1--> PackageA(1.0.0) --> PackageB(>=2.0.0)` 
+`Project1 --> PackageA(1.0.0) --> PackageB(>=2.0.0)` 
 
 Now lets say you bring in another dependency on PackageX(3.0.0) with some transitive dependencies. And suddenly you build breaks because the PackageX(3.0.0) had the following transitive dependencies:
 
@@ -102,15 +61,6 @@ Project1--> PackageA(1.0.0) --> PackageB(>=2.0.0)
 ```
 
 So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that may have breaking changes. Obviously this is due to an intentional package install but the transitive closure happens behind the scenes without letting the users know the changes in transitive dependency versions. Sometimes this is not ideal. Users would like to know the difference in package dependency graphs irrespective of whether the change is related to direct or indirect/transitive dependencies.
-
-* If you have listed multiple sources with the same package ID+version do not uniquely identify a package. i.e. My.Package v2.0.0 is different across different repositories. Obviously, this is not recommended by us and is a bad practice to have package behaviour not fixed/identifiable by a package's ID+version. 
-
-This feature aspires to solve all the above mentioned issues. 
-
-| # | Problem Hypothesis | 
-|:--- |:---------------|
-| PH1 | Developers would like to have their builds and hence the package restores to be repeatable across time and space | 
-| PH2 | When developers add/remove a package dependency to a project, they would like to be intimated about any unintended changes in the full package dependency closure. |
 
 # Who is the customer?
 
