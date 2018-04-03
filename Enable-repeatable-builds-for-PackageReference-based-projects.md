@@ -122,12 +122,21 @@ Packages (for PackageReference based projects) can be installed through the foll
   
 ### When is lock file created/re-generated?
 
-The following commands can change (create if not present) a lock file:
-* VS PM UI `Install` action
-* VS PMC `Install-Package` command
-* `dotnet add package` command
-* **`dotnet install package`**
-
+| Tool+command/action | Can modify/generate lock file? |
+|:--- |:---|
+| VS PM UI `Install` action | Yes |
+| VS PMC `Install-Package` command | Yes |
+| `dotnet add package` | Yes |
+| **`dotnet install package`** * | Yes |
+| **`dotnet update package`** * | Yes |
+| `dotnet restore` | **No** |
+| `msbuild /t:restore` | **No** |
+| `msbuild /restore` | **No** |
+| `dotnet restore --force` | **Yes** |
+| VS `rebuild` action | **Yes** ? |
+| VS `clean` + `build` action | **No** ? |
+ 
+* New commands
 
 The lock file should be created/regenerated in one of the following cases:
 
