@@ -91,17 +91,6 @@ This will be an intrinsic feature for NuGet and hence the lock file should be ge
 
 If a lock file is present, NuGet will use the lock file for install, update or restore irrespective of whether the property is set or not. 
 
-### What are behaviors for install, update and restore w.r.t. lock file?
-
-#### Package Install
-Packages (for PackageReference based projects) can be installed through the following methods:
-* VS PM UI `Install` action
-* VS PMC `Install-Package` command
-* `dotnet add package` command
-* **`dotnet install package`** *
-
-\* New command
-
 ### What happens to existing projects when the property `UseLockFileForRestore` is set and there is no lock file present?In this case, 
 * Any `install` or `update` command/action will create the lock file. 
 * `restore` command/action will error out as it cannot find a lock file to use to restore. It will also print a message to indicate which command to run to generate the lock file for the first time.
@@ -109,18 +98,10 @@ Packages (for PackageReference based projects) can be installed through the foll
 
 **Note**: Details on the new commands or changes in their behavior are covered later.
 
-## Lock file properties
+### Which commands can modify the lock file? 
 
-* The lock file will be called `nuget.dependencies.lock` 
-* The lock is created in the project **root** directory by default. 
-* We recommend this file should be checked in to the source repository.
-* The file contents should be in order so that the changes to this file can be readable by a user and diff can be easily understood during commits. The lock file should contain all the dependencies in order:
-  * All the direct dependencies in alphabetical order first 
-  * All the transitive dependencices next, in alphabetical order
-  * Each package entry in the lock file should list its direct dependencies.
-* [**Not-MVP**] Users can override the path of the lock file using the following options. Details - TBD.
-  
-### When is lock file created/re-generated?
+Following is a lost of commands/actions with information whether they can modify the lock file or not:
+*If the lock file is not present, any command that can modify the lock file will generate/create it (if `UseLockFileForRestore` is set).*
 
 | Tool+command/action | Can modify/generate lock file? |
 |:--- |:---|
@@ -138,41 +119,22 @@ Packages (for PackageReference based projects) can be installed through the foll
  
 * New commands
 
-The lock file should be created/regenerated in one of the following cases:
+## Lock file properties
 
-* The lock file should be created if it does not exist. 
-* If any of the following changes, lock file is modified:
-  * Project's direct package dependencies change
-  * P2P reference change
-  * Target framework(s) change
-_[**Not-MVP**] The changes made to the lock file are minimal in nature to improve performance. i.e. if a new package is added then only the new package and its dependent info is added to the lock file without affecting rest of the dependencies (if possible)._
-
-From a user's perspective the following will modify/re-generate the lock file:
-* **Update** or **Update All**: An update command should get the latest packages for the project. For floating versions, the update should just update to the latest version as per the floating version constraint without overwriting the floating version specified.
-* **Restore -Force**: re-computes the restore graph without updating the package dependencies' versions unless the dependencies have floating versions. 
-
-**Open**: There is a concept of `restore -Force` today in the context of `restore NoOp` and we should evaluate what `restore -Force` should mean that does not confuse users.
-
-Summary of actions with effect on the lock file: 
-
-| User action        | Lock file update?           | Comments  |
-|:------------------- |:-------------|:-----|
-| Add/Install package   | Yes | Only the new package and dependent tree is updated, if possible. |
-| Remove package      | Yes      |  Only the package being removed and its dependent packages are removed without affecting the rest of the dependency graph, if possible  |
-| Add a package source (feed) to nuget.config | No |  |
-| Add/Remove a project reference | Yes | |
-| Add/Remove/Change target framework | Yes | |
-| First restore | Yes | when lock file is not present |
-| Successive restores | No | |
-| ReBuild | No | |
-| Clean; Build | No |
-| Update one/all dependencies | Yes | |
-| restore --force | Yes | This forces re-evaluation of package dependency tree and hence lock file may be modified |
+* The lock file will be called `nuget.dependencies.lock` 
+* The lock is created in the project **root** directory by default. 
+* We recommend this file should be checked in to the source repository.
+* [**Not-MVP**] Users can override the path of the lock file using the following options. Details - TBD.
 
 ### Lock file format
-The lock file needs to contain all the information needed to make the decision to modify/re-generate the lock file based on the requirements mentioned in the above section.
+* The file contents should be in order so that the changes to this file can be readable by a user and diff can be easily understood during commits. The lock file should contain all the dependencies in order:
+  * All the direct dependencies in alphabetical order first 
+  * All the transitive dependencices next, in alphabetical order
+  * Each package entry in the lock file should list its direct dependencies.
+* The lock file needs to contain all the information needed to make the decision to modify/re-generate the lock file based on the requirements mentioned in the above section.
+* The lock file should contain SHA512 hash for each package dependency. Upon restore, NuGet will scan through the packages and and SHA values in the lock file and error out if they do not match.
 
-Options:
+Options (My recommendation):
 * Simple format (similar to yarn.lock). Eg.
 
 ``` 
@@ -223,45 +185,19 @@ dependencies:
   ...
 ```
 
-* A MSBuild props file - What are the benefits?
+## Restore scenarios
 
-## Restore options
+A normal `restore` action will fail in the following scenarios:
+* Manually Addition of a new PackageReference node
+* Manual update of PackageReference(s) 
+* Addition of a Project reference 
+* Target framework changes
 
-* By default, the package hash (SHA512) should be captured for every resolved dependency in the lock file. While restoring the packages, the hash should be checked for packages restored (in cache or otherwise). 
-  * This behavior can be overridden by setting the following property in the **project file** or in one of the evaluated **NuGet.config** files:
+In all the above cases, user can run one of the following to update the lock file:
 
-   `<DisablePackageHashInLockFile>True</DisablePackageHashInLockFile>`  _**TBD** - exact property name_
-
-* If the user needs to re-evaluate package dependency graph on each restore, he/she should be able to do this.
-  * This is useful when floating versions are used and in Development environment user wants to get to the latest version every time.
-  * This will have performance impact and hence the user should be warned about this using a numbered NuGet warning:
-  ```
-  NUxxxx: Detected the use of `restore -Force`. This option forces restore graph evaluation on every restore and can cause degraded performance.  
-  ```
-  * This can be done from command line by
-  ```
-  > nuget.exe restore -Force
-  ```
-  ```
-  > msbuild /t:restore -Force
-  ```
-  ```
-  > dotnet.exe restore --force
-  ```
-  * Alternatively, VS will have an option to force restore on a solution level restore.
-  * [Open] Still debating if we should allow this for each restore by setting the following property in the **project file** or in one of the evaluated **NuGet.config** files: 
-
-    `<ForceRestoreAlways>True</ForceRestoreAlways>`  _**TBD** - exact property name_
-
-  * [Open] Still debating if we should allow this by setting the ENVIRONMENT variable (All supported platforms - Windows, Mac, Linux) - `NUGET_FORCE_RESTORE_ALWAYS` to **true**
-
-## How does it help?
-This ensures that any restore which can be part of different builds across place and time, will end up getting the same package dependencies.
-
-Explicit user actions like update, add package dependency and remove package dependency will result in regeneration of the locks file. A message would be printed when this happens. 
-
-It will also result in checkout of the locks file when the package dependency graph changes which means that the developer would know that the package dependencies may have changed. If this happens inadvertently, the lock file changes can be discarded and the original one restored to get the same repeatable build as before.
-
-## Limitations and Out of scope
-
-TBD
+| Action/Command | Result |
+|:--- |:---|
+| `dotnet add package <packageID>`  **`dotnet install package <packageID>`** *  | Installs the package. Modifies the lock file. Does not update the floating version (?) |
+| **`dotnet install package`** * without a packageID on the project root folder | Installs any additional package required. Modifies the lock file. Does not update the floating version (?) |
+| **`dotnet update package <packageID>`** * | Updates the package.  Modifies the lock file. Does not update the floating version (?) |
+| `dotnet restore --force`  **`msbuild /t:restore /p:force`**  **`msbuild /restore /p:force`** | Re-computes the package dependency graph. Updates the floating package version in the lock file to the latest available. Modifies the lock file if required. |
