@@ -197,9 +197,9 @@ In all the above cases, user can run one of the following to update the lock fil
 
 | Action/Command | Result |
 |:--- |:---|
-|  VS `install`, `dotnet add package <packageID>`,  **`dotnet install package <packageID>`** *  | Installs the package. Modifies the lock file. Does not update the floating version (?) |
-| **`dotnet install package`** * without a packageID on the project root folder | Installs any additional package required. Modifies the lock file. Does not update the floating version (?) |
-| VS `update`, **`dotnet update package <packageID>`** * | Updates the package.  Modifies the lock file. Does not update the floating version (?) |
+|  VS `install`, `dotnet add package <packageID>`,  **`dotnet install package <packageID>`** *  | Installs the package. Modifies the lock file. Does not update the floating version |
+| **`dotnet install package`** * without a packageID on the project root folder | Installs any additional package required. Modifies the lock file. Does not update the floating version |
+| VS `update`, **`dotnet update package <packageID>`** * | Updates the package.  Modifies the lock file. Does not update the floating version |
 | VS `restore force`, `dotnet restore --force`, **`msbuild /t:restore /p:force`**,  **`msbuild /restore /p:force`** | Re-computes the package dependency graph. Updates the floating package version in the lock file to the latest available. Modifies the lock file if required. |
 
 A normal `restore` action will **not fail** in the following scenarios:
