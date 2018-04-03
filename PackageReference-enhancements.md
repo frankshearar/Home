@@ -146,7 +146,7 @@ In case of transitive dependencies, the resolution is always to the lowest versi
 
 There are additional mechanisms to resolve conflict in dependency versions and those are resolved through [Nearest wins](https://docs.microsoft.com/en-us/nuget/consume-packages/dependency-resolution#nearest-wins) and [Cousin dependencies](https://docs.microsoft.com/en-us/nuget/consume-packages/dependency-resolution#cousin-dependencies) algorithm as discussed in details in the documentation.
 
-## Key terms
+## NuGet Actions
 
 ### Install
 
