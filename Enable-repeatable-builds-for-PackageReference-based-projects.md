@@ -89,7 +89,7 @@ This will be an intrinsic feature for NuGet and hence the lock file should be ge
 
 ### What happens when this property `UseLockFileForRestore` is set to false (not set) but lock file is present in the project's root folder?
 
-If a lock file is present, NuGet will use the lock file for install, update or restore irrespective of whether the property is set or not. 
+If a lock file is present, NuGet will use the lock file for install, update or restore irrespective of whether the property is set or not. Whenever NuGet uses the lock file, it prints an appropriate message.
 
 ### What happens to existing projects when the property `UseLockFileForRestore` is set and there is no lock file present?In this case, 
 * Any `install` or `update` command/action will create the lock file. 
