@@ -2,7 +2,7 @@ Status: **Incubation**
 
 # Issue
 | # | Requirement | Issue # | 
-|:--- |:-----------|:--------|
+|:--- |:--------|:--------|
 | **R1** | **Developers would like to have repeatable builds (restores) across time and space** | **[#5602](https://github.com/nuget/home/issues/5602)** |
 
 
