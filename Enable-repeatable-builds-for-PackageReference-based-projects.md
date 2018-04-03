@@ -205,7 +205,6 @@ In all the above cases, user can run one of the following to update the lock fil
 A normal `restore` action will **not fail** in the following scenarios:
 * Change in sources - unless package not found as mentioned in the lock file.
 
-### VS restore force option:
-![image](https://user-images.githubusercontent.com/14800916/38281419-73c7c9ca-375f-11e8-980e-a936facd881a.png)
-
+### VS restore force option
+![image](https://user-images.githubusercontent.com/14800916/38281497-ad663c16-375f-11e8-8dbb-7ebafbcb20c5.png)
 
