@@ -52,7 +52,7 @@ Input to NuGet is a set of Package References from the project file (Top-level/D
   decide to float to the latest version, with every update to PackageB on the repository, will have an impact on the 
   resolved version in your project during restore.
 
-In addition to the above,when developers add/remove a package dependency to a project, they would like to be told about any unintended changes in the full package dependency closure. (PRS2)
+In addition to the above, when developers add/remove a package dependency to a project, they would like to be told about any unintended changes in the full package dependency closure. (PRS2)
 
 Consider the following scenario:
  
