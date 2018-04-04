@@ -98,7 +98,7 @@ If a lock file is present, NuGet will use the lock file for install, update or r
 
 **Note**: Details on the new commands or changes in their behavior are covered later.
 
-### Which commands can modify the lock file? 
+## Which commands can modify the lock file? 
 
 Following is a lost of commands/actions with information whether they can modify the lock file or not:
 *If the lock file is not present, any command that can modify the lock file will generate/create it (if `UseLockFileForRestore` is set).*
