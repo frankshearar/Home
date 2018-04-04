@@ -10,7 +10,6 @@ Status: **Incubation**
 # Context
 * [PackageReference requirements summary](https://github.com/NuGet/Home/wiki/PackageReference-enhancements) | Epic issue [#6763](https://github.com/NuGet/Home/issues/6763)
 * [Package dependency resolution](https://github.com/NuGet/Home/wiki/PackageReference-enhancements#dependency-resolution)
-* [NuGet Actions (current)](https://github.com/NuGet/Home/wiki/PackageReference-enhancements#nuget-actions)
 
 # Problem
 ### R1 - Developers would like to have repeatable builds (restores) across time and space
