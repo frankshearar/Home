@@ -90,8 +90,10 @@ This will be an intrinsic feature for NuGet and hence the lock file should be ge
 
 ### What happens when this property `UseLockFileForRestore` is not set but lock file is present in the project's root folder?
 
-NuGet will warn
-
+NuGet will warn and continue without using the lock file.
+```
+NUxxxx: The nuget.dependencies.lock file for this project file is being disregarded because UseLockFileForRestore is not set (or set to false). Consider either deleting the nuget.dependencies.lock or setting UseLockFileForRestore to fix this warning.
+```
 ### What happens to existing projects when the property `UseLockFileForRestore` is set and there is no lock file present?In this case, 
 * Any `install` or `update` command/action will create the lock file. 
 * `restore` command/action will error out as it cannot find a lock file to use to restore. It will also print a message to indicate which command to run to generate the lock file for the first time.
