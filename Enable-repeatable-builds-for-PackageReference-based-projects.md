@@ -35,6 +35,8 @@ Input to NuGet is a set of Package References from the project file (Top-level/D
   The same problem can happen if you have different nuget.config files with different sources (repositories) at different 
   places. E.g. Dev machines may have an additional local share repository while CI/CD machine may not.
  
+* If the same package ID+version resolves to different packages across different sources, NuGet cannot ensure the same package(with the same hash) will be resolves every time. It will also not warn/error out in such cases.
+
 * [Future - R3] Users have been asking for an ability to define the resolution strategy of transitive dependencies as it existed with package.config. Once we implement this feature, when a then any update to a transitive package on repository can change the full closure of package dependencies.
 
   E.g. If Project1 depends on PackageA(v1.0.0) which depends on PackageB(>=2.0.0)
