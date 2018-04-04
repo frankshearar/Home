@@ -58,7 +58,7 @@ Now lets say you bring in another dependency on PackageX(3.0.0) with some transi
 
 ```
 Project1--> PackageA(1.0.0) --> PackageB(>=2.0.0)
-       |--> PackageX(3.0.0) --> PackageY(3.0.0) --> PackageZ (1.0.0) --> PackageB(4.0.0)
+       |--> PackageX(3.0.0) --> PackageB(>=4.0.0)
 ```
 
 So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that may have breaking changes. Obviously this is due to an intentional package install but the transitive closure happens behind the scenes without letting the users know the changes in transitive dependency versions. Sometimes this is not ideal. Users would like to know the difference in package dependency graphs irrespective of whether the change is related to direct or indirect/transitive dependencies.
