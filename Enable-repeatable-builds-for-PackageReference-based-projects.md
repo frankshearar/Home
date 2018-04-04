@@ -210,9 +210,12 @@ A normal `restore` action will **not fail** in the following scenarios:
 
 # Out of scope
 
-This spec is only to solve the repeatable build problem through NuGet generated lock file. This does not solve the following requirements from the [[PackageReference enhancements]] document:
+This spec is only to solve the [repeatable build problems](#problem) through NuGet generated lock file. This does not solve the following requirements from the [[PackageReference enhancements]] document:
 
 | # | Requirement | Issue | 
 |:--- |:-----------|:--------|
 | R2 | Developers would like to control the packages and their versions that are allowed to be used across the team/product | [6464](https://github.com/NuGet/Home/issues/6764) |
 | R3 | Developers would like to control dependency resolution behaviors |  [#5553](https://github.com/nuget/home/issues/5553) [#912](https://github.com/NuGet/Home/issues/912) |
+
+The following functionalities/improvements are out of scope too:
+* Locking the dependency graph at a solution or repo level - IMO, this should be solved as part of managing/controling packages at a solution/repo level as called out in the requirement **R2** above. This means that different projects in a solution may end up with different versions of a package depending on the version as mentioned in the `PackageReference` node in the project file. This feature does not intend to solve the consolidation of package versions across projects in a solution or across solutions in a repo.
