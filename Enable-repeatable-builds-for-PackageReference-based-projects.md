@@ -218,5 +218,6 @@ This spec is only to solve the [repeatable build problems](#problem) through NuG
 | R3 | Developers would like to control dependency resolution behaviors |  [#5553](https://github.com/nuget/home/issues/5553) [#912](https://github.com/NuGet/Home/issues/912) |
 
 
+The following are also out-of-scope:
 ### Locking the dependency graph at a solution or repo level
 IMO, this should be solved as part of managing/controling packages at a solution/repo level as called out in the requirement **R2** above. This means that different projects in a solution may end up with different versions of a package depending on the version as mentioned in the `PackageReference` node in the project file. This feature does not intend to solve the consolidation of package versions across projects in a solution or across solutions in a repo.
