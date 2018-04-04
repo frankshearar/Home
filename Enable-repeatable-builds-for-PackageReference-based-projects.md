@@ -211,6 +211,7 @@ A normal `restore` action will **not fail** in the following scenarios:
 ## Out of scope
 
 This spec is only to solve the repeatable build problem through NuGet generated lock file. This does not solve the following requirements from the [[PackageReference enhancements]] document:
+
 | # | Requirement | Issue # | 
 |:--- |:-----------|:--------|
 | R2 | Developers would like to control the packages and their versions that are allowed to be used across the team/product | [6464](https://github.com/NuGet/Home/issues/6764) |
