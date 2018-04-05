@@ -128,7 +128,7 @@ Following is a list of commands/actions with information whether they can modify
 | `msbuild /t:restore` | **No** |
 | `msbuild /restore` | **No** |
 | `dotnet restore --force` | **Yes** |
-| VS `rebuild` action | **Yes** ? |
+| VS `rebuild` action | **No** |
 | VS `clean` + `build` action | **No** ? |
  
 * New commands
