@@ -184,13 +184,15 @@ Alternative JSON format:
 # LEARN MORE - https://aka.ms/nuget-lockfile	
 {	
   "version": 1.0,	
+  "metadata1":"value1",
+  ...other metadata fields...
   "dependencies": {	
     "netcoreapp2.0": {	
       "Contoso.Base": {	
         "type": "direct",	
         "requested": "3.0.0",	
         "resolved": "3.0.0",
-        "sha512":"#fVXsnMP2Wq84VA533zj0a/Et+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+HIvprVKs+QOihnkbqod=="		
+        "integrity":"SHA512-#fVXsnMP2Wq84VA533zj0a/Et+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+HIvprVKs+QOihnkbqod=="		
       }	
   ...	
 ```
