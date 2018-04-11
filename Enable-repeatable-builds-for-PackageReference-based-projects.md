@@ -86,7 +86,7 @@ NuGet.config:
 
 ```
 <config>            
-     <add key="UseLockFileForRestore" value="true">
+     <add key="RestoreWithLockFile" value="true">
 </config>
 ```
  
@@ -95,17 +95,17 @@ Project file:
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <UseLockFileForRestore>true</UseLockFileForRestore>
+    <RestoreWithLockFile>true</RestoreWithLockFile>
   </PropertyGroup>
 ```
 
-### What happens when this property `UseLockFileForRestore` is not set but lock file is present in the project's root folder?
+### What happens when this property `RestoreWithLockFile` is not set but lock file is present in the project's root folder?
 
 NuGet will warn and continue without using the lock file.
 ```
-NUxxxx: The nuget.dependencies.lock file for this project file is being disregarded because UseLockFileForRestore is not set (or set to false). Consider either deleting the nuget.dependencies.lock or setting UseLockFileForRestore to fix this warning.
+NUxxxx: The nuget.dependencies.lock file for this project file is being disregarded because RestoreWithLockFile is not set (or set to false). Consider either deleting the nuget.dependencies.lock or setting RestoreWithLockFile to fix this warning.
 ```
-### What happens to existing projects when the property `UseLockFileForRestore` is set and there is no lock file present?In this case, 
+### What happens to existing projects when the property `RestoreWithLockFile` is set and there is no lock file present? In this case, 
 * Any `install` or `update` command/action will create the lock file. 
 * `restore` command/action will error out as it cannot find a lock file to use to restore. It will also print a message to indicate which command to run to generate the lock file for the first time.
 * `restore --force` command/action will be able to generate the lock file, if not present. 
@@ -115,13 +115,14 @@ NUxxxx: The nuget.dependencies.lock file for this project file is being disregar
 ## Which commands can modify the lock file? 
 
 Following is a list of commands/actions with information whether they can modify the lock file or not:
-*If the lock file is not present, any command that can modify the lock file will generate/create it (if `UseLockFileForRestore` is set).*
+*If the lock file is not present, any command that can modify the lock file will generate/create it (if `RestoreWithLockFile` is set).*
 
 | Tool+command/action | Can modify/generate lock file? |
 |:--- |:---|
 | VS PM UI `Install` action | Yes |
 | VS PMC `Install-Package` command | Yes |
 | `dotnet add package` | Yes |
+| `dotnet add reference` | Yes |
 | **`dotnet install package`** * | Yes |
 | **`dotnet update package`** * | Yes |
 | `dotnet restore` | **No** |
@@ -142,8 +143,8 @@ Following is a list of commands/actions with information whether they can modify
 
 ### Lock file format
 * The file contents should be in order so that the changes to this file can be readable by a user and diff can be easily understood during commits. The lock file should contain all the dependencies in order:
-  * All the direct dependencies in alphabetical order first 
-  * All the transitive dependencices next, in alphabetical order
+  * All the direct dependencies in case insensitive alphabetical order first 
+  * All the transitive dependencices next, in case insensitive alphabetical order
   * Each package entry in the lock file should list its direct dependencies.
 * The lock file needs to contain all the information needed to make the decision to modify/re-generate the lock file based on the requirements mentioned in the above section.
 * The lock file should contain SHA512 hash for each package dependency. Upon restore, NuGet will scan through the packages and and SHA values in the lock file and error out if they do not match.
