@@ -107,7 +107,8 @@ E.g. In the project file:
 
 If this property is set using any of the 3 mechanism specified above, NuGet restore will create the lock file with the following message (in default verbosity):
 ```
-RestoreWithLockFile property is set but no lock file found - generating lock file nuget.packages.lock. Subsequently this lock file will be used to restore packages and restore will not modify the lock file unless asked to do so. Learn more: https://aka.ms/nuget-lock-file
+RestoreWithLockFile property is set but no lock file found - generating lock file nuget.packages.lock. 
+Subsequently this lock file will be used to restore packages and restore will not modify the lock file. Learn more: https://aka.ms/nuget-lock-file
 ```
  
 ### What happens when this property `RestoreWithLockFile` is not set but lock file is present in the project's root folder?
@@ -228,13 +229,10 @@ In all the above cases, user can run one of the following to update the lock fil
 A normal `restore` action will **not fail** in the following scenarios:
 * Change in sources - unless package not found as mentioned in the lock file.
 
-### VS restore force option
-![image](https://user-images.githubusercontent.com/14800916/38281497-ad663c16-375f-11e8-8dbb-7ebafbcb20c5.png)
-
-**[Open]** The exact name for force restore is locked (pun intended) yet. We may have a better name that gels well with user action.
+### VS option `Recompute package dependencies`
+![image](https://user-images.githubusercontent.com/14800916/38649066-6ce2f56c-3da9-11e8-9e62-f669d4ce9dda.png)
 
 # Future backlog
-
 This spec is only to solve the [repeatable build problems](#problem) through NuGet generated lock file. This does not solve the following requirements from the [[PackageReference enhancements]] document. These features will have their own specs published, in near future:
 
 | # | Requirement | Issue | 
