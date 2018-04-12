@@ -176,17 +176,8 @@ dependencies:
      packageE-5.0.0
      packageF-6.0.0
    packageB-2.0.0:2.0.0#xwHAzvZt2VA533zj0wunkbqoIHIvqfigMxwHAzvZt2VA533figMxwHAzvZt2VA533wQ/+YA3rVKs+QOihummfA=="
-     packageE-4.5.0
-     packageF-5.9.1
-     packageG-6.0.0
    packageC-3.0.0:3.0.0#xwHAzvZt2VA533zj0wunkbqoIHIvqfigMxwHAzvZt2VA533figMxwHAzvZt2VA533wQ/+YA3rVKs+QOihummfA=="
-     packageF-6.0.0
-     packageG-7.0.0
-     packageH-8.0.0
    packageX-2.0.0:2.0.0#xwHAzvZt2VA533zj0wunkbqoIHIvqfigMxwHAzvZt2VA533figMxwHAzvZt2VA533wQ/+YA3rVKs+QOihummfA=="
-     packageG-7.0.0
-     packageH-11.0.0
-     packageY-7.0.0
    packageD-:4.0.0#rasMxwHAzvZt2VA533zj0a/Np+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+YA3rVKs+QOihuVKs+Q="
   ...
 ```
@@ -216,22 +207,41 @@ Alternative JSON format:
 A normal `restore` action will fail in the following scenarios:
 * Manually Addition of a new PackageReference node
 * Manual update of PackageReference(s) 
-* Addition of a Project reference 
+* Addition of a Project reference - may fail
 * Target framework changes
 
 In all the above cases, user can run one of the following to update the lock file:
 
 | Action/Command | Result |
 |:--- |:---|
-|  VS `install`, `dotnet add package <packageID>`,  **`dotnet install package <packageID>`** *  | Installs the package. Modifies the lock file. Does not update the floating version |
-| **`dotnet install package`** * without a packageID on the project root folder | Installs any additional package required. Modifies the lock file. Does not update the floating version |
+|  VS `install`, `dotnet add package <packageID>`,  **`dotnet install package <packageID>`** *  | Installs the package. Modifies the lock file.  |
+| **`dotnet install package`** * without a packageID on the project root folder | Installs any additional package required. Modifies the lock file.  |
 | VS `update`, **`dotnet update package <packageID>`** * | Updates the package.  Modifies the lock file. Does not update the floating version |
 | VS `recompute dependencies`, `dotnet restore --recompute-dependencies`, **`msbuild /t:restore /p:recompute-dependencies`**,  **`msbuild /restore /p:recompute-dependencies`** | Re-computes the package dependency graph. Updates the floating package version in the lock file to the latest available. Modifies the lock file if required. |
 
 A normal `restore` action will **not fail** in the following scenarios:
 * Change in sources - unless package not found as mentioned in the lock file.
 
-### VS option `Recompute package dependencies`
+### Restore option: `Recompute package dependencies`
+
+A normal restore will fail or will be ineffective in the following scenarios:
+* User manually adds/modifies a `PackageReference` to the project file
+* User wants to restore to the latest version of a package specified with floating range \*
+* User wants to clean and refresh the lock file for any reason.
+
+For all the above cases, user would need to use an additional parameter with restore:
+
+### CLI
+```
+> dotnet restore -recompute-dependencies
+```
+```
+> nuget restore -recompute-dependencies
+```
+```
+> msbuild /t:restore -recompute-dependencies
+```
+### Visual Studio
 ![image](https://user-images.githubusercontent.com/14800916/38649066-6ce2f56c-3da9-11e8-9e62-f669d4ce9dda.png)
 
 # Future backlog
