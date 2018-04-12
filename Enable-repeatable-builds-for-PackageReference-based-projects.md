@@ -142,9 +142,10 @@ Following is a list of commands/actions with information whether they can modify
 * The lock is created in the project **root** directory by default. 
 * The lock file name/path can be overridden with the following MSBuild property:
   - If you want to name the lock file based on the project name:
-    <NuGetLockFilePath>$(MSBuildProjectName).packages.lock</NuGetLockFilePath>
+    ```<NuGetLockFilePath>$(MSBuildProjectName).packages.lock</NuGetLockFilePath>```
   - If you want to put all the lock files together in some `LockFiles` directory:
-    <NuGetLockFilePath>../LockFiles/$(MSBuildProjectName).packages.lock</NuGetLockFilePath>* We recommend this file should be checked in to the source repository.
+    ```<NuGetLockFilePath>../LockFiles/$(MSBuildProjectName).packages.lock</NuGetLockFilePath>```
+* We recommend this file should be checked in to the source repository.
 
 ### Lock file format
 * The lock file format should be such that it is:
