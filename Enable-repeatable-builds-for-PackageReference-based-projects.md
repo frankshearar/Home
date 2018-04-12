@@ -94,6 +94,7 @@ To bootstrap the creation of lock file, you can do one of the following:
 </config>
 ```
 2. On VS, set the "Restore with lock file" option in nuget settings:
+![image](https://user-images.githubusercontent.com/14800916/38649740-31377778-3dad-11e8-917b-146e7b6f92dc.png)
 
 3. Set the following MSBuild property for the project:
 E.g. In the project file:
