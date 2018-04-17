@@ -21,6 +21,8 @@ Status: **Incubation**
 
 Input to NuGet is a set of Package References from the project file (Top-level/Direct dependenices) and the output is a full closure/graph of all the package dependencies including transitive dependencies. Ideally, NuGet should always produce the same full closure of package dependencies if the input PackageReferences do not change. NuGet tries to do this but in some cases it is unable to do this:
 
+* You use floating versions like `<PackageReference Include="My.Sample.Lib" Version="4.*"/>`. While your intention is to float to the latest version as required but only with an explicit gesture but also want to lock to specific version even with floating version across time/space, unless I ask NuGet to float during the restore.
+
 * A newer version of the package matching PackageReference version requirements is published. E.g. 
 
   Day 1: if you specified `<PackageReference Include="My.Sample.Lib" Version="4.0.0"/>` but the versions available on the 
