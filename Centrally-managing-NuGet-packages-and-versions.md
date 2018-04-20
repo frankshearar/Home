@@ -149,10 +149,10 @@ Repo
 ```
 
 In the above scenario:
-* Project1 will refer to only Repo\Solution1\packages.props
-* Project2 will refer to only Repo\Solution1\Project2\packages.props
-* Project3 will refer to only Repo\foobar.packages.props
-* Project4 will refer to only Repo\packages.props
+* Project1 will refer to only `Repo\Solution1\packages.props`
+* Project2 will refer to only `Repo\Solution1\Project2\packages.props`
+* Project3 will refer to only `Repo\foobar.packages.props`
+* Project4 will refer to only `Repo\packages.props`
 
 
 
