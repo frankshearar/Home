@@ -116,7 +116,10 @@ Use a custom file name for your project that defines package versions.
 ```
 
 ### Making it work for existing projects
-TBD.
+Existing projects will have versions in their project files. There are two approaches for these projects to make use of the `CentralPackagesFile`:
+
+#### NuGet fixes these files 
+
 
 ### VS experience
 TBD.
