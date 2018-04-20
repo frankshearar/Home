@@ -19,6 +19,13 @@ Enterprise customers with huge code-base spanning 100s of projects.
 
 With huge code bases, complex project structures with large set of packages to deal with, it becomes really hard for developers to keep consistency on the package and versions used across the projects/solutions. Developers need a way to control the packages they would like to use downstream from a repository level or a solution level. They would like to ensure that only specific versions can be used throughout their code base.
 
+## Evidence
+* Developers need this and have worked their way around in multiple ways. Some define the package version as a variable and then define all the version variables in a central file to control this behavior. E.g.
+  ```
+  <PackageReference Include="My.Sample.Lib" Version="$(MySampleLibVersion)" />
+  ```
+* MSBuild team has built an SDK project to implement this behavior: [Microsoft.Build.CentralPackageVersions](https://github.com/Microsoft/MSBuildSdks/tree/master/src/CentralPackageVersions#microsoftbuildcentralpackageversions). This spec has taken inspiration from this.
+ 
 ## Solution
 
 ### Centrally Managing Package Versions
