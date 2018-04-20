@@ -59,7 +59,7 @@ In this example, packages like `Newtonsoft.Json` are set to exactly version `10.
 ```
 Each project still has a `PackageReference` but must not specify a version.  This ensures that the correct packages are referenced for each project.
 
-## Global Package References
+### Global Package References
 Some packages should be referenced by all projects in your tree. This includes packages that do versioning, extend your build, or do any other function that is needed repository-wide. 
 
 **Packages.props**
@@ -89,7 +89,7 @@ If a user attempts to add a package that does not specify a version in `Packages
 The package reference 'Newtonsoft.Json' must have a version defined in 'C:\repo\Packages.props'.
 ```
 
-## Extensibility
+### Extensibility
 
 Setting the following properties control how Traversal works.
 
