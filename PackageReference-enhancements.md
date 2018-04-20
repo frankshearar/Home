@@ -83,7 +83,7 @@ This is required many a times as developers would like to always the the patched
 
 For direct/top level dependencies, with floating versions, today NuGet always resolves to the highest **stable** versions. There is no way to allow to float to pre-release versions. 
 
-### R4 - Developers would like to specify control the packages and their versions that are allowed to be used in their projects or solutions across the team/product
+### R3 - Developers would like to specify control the packages and their versions that are allowed to be used in their projects or solutions across the team/product
 
 | PH# | Problem Hypothesis |
 |:--- |:---------------|
