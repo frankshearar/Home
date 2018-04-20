@@ -114,3 +114,42 @@ Use a custom file name for your project that defines package versions.
   </PropertyGroup>
 </Project>
 ```
+
+## FAQs
+
+### How to enable this feature?
+To enable just put a `packages.props` file in the solution root or repo root directory that is evaluated by `msbuild.exe` during build. Additionally you can specify `CentralPackagesFile` property indicating where to look for this file. The same will enable the feature.
+
+### How do I have a given set of package versions for all the projects but a different set for a specific package?
+To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the global/repo-level `packages.props` file.
+
+You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file that gets evaluated for a given project.
+
+### What happens when there are multiple `packages.props` file available in a project's context?
+In order to remove any confusion, the `packages.props` or the `CentralPackagesFile` specification nearest to the project will override all others. At a time only one `packages.props` file is evaluated for a given project.
+
+E.g. in the below scenario
+
+```
+Repo
+ |-- packages.props
+ |-- foobar.packages.props
+ |-- Solution1
+     |-- packages.props
+     |-- Project1
+     |-- Project2
+         |-- packages.props
+     |-- Project3
+         |-- directory.build.props   // specifies CentralPackagesFile = path to foobar.packages.props
+ |-- Solution2
+     |-- Project4
+```
+
+In the above scenario:
+* Project1 will refer to only Repo\Solution1\packages.props
+* Project2 will refer to only Repo\Solution1\Project2\packages.props
+* Project3 will refer to only Repo\foobar.packages.props
+* Project4 will refer to only Repo\packages.props
+
+
+
