@@ -115,6 +115,9 @@ Use a custom file name for your project that defines package versions.
 </Project>
 ```
 
+### Making it work for existing projects
+TBD.
+
 ### VS experience
 TBD.
 
