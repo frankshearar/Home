@@ -34,7 +34,7 @@ To get started, you will need to create an MSBuild props file at the root of the
 
 In this example, packages like `Newtonsoft.Json` are set to exactly version `10.0.1`.  All projects that reference this package will be locked to that version.  If someone attempts to specify a version in a project they will encounter a build error.
 
-**Packages.props**
+*Packages.props*
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -51,7 +51,7 @@ In this example, packages like `Newtonsoft.Json` are set to exactly version `10.
 </Project>
 ```
 
-**SampleProject.csproj**
+*SampleProject.csproj*
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
@@ -69,7 +69,7 @@ Each project still has a `PackageReference` but must not specify a version.  Thi
 ### Global Package References
 Some packages should be referenced by all projects in your tree. This includes packages that do versioning, extend your build, or do any other function that is needed repository-wide. 
 
-**Packages.props**
+*Packages.props*
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -104,7 +104,7 @@ Setting the following properties control how Traversal works.
 |-------------------------------------|-------------|
 | `CentralPackagesFile `  | The full path to the file containing your package versions.  Defaults to `Packages.props` at the root of your repository. |
 
-**Example**
+*Example*
 
 Use a custom file name for your project that defines package versions.
 ```xml
@@ -114,6 +114,9 @@ Use a custom file name for your project that defines package versions.
   </PropertyGroup>
 </Project>
 ```
+
+### VS experience
+TBD.
 
 ## FAQs
 
