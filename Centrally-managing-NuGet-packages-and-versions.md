@@ -122,18 +122,22 @@ Use a custom file name for your project that defines package versions.
 ### Making it work for existing projects
 Existing projects will have versions in their project files. There are two approaches for these projects to make use of the `CentralPackagesFile`:
 
-#### NuGet commands to fix the project files
+#### Enable users to update the `PackageReferences`
+
+TBD.
+
+Additionally generate the `CentralPackagesFile` to get started.
+
+TBD.
+
 
 ```
-> nuget generate-central-packages-file -UpdatePackageReferences
-
-> dotnet nuget generate-central-packages-file --update-package-references
-
+>
 ```
 
 
 #### MSBuild option to ignore the versions mentioned in `PackageReference` nodes 
-
+TBD.
 
 ### VS experience
 TBD.
