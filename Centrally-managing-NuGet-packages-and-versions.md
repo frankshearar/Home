@@ -1,3 +1,7 @@
+| Status | PM |
+|:---|:---|
+| **Incubation** | [anangaur](https://github.com/anangaur) |
+
 ## Issue
 | Requirement | Issue |
 |:---|:---|
@@ -118,7 +122,17 @@ Use a custom file name for your project that defines package versions.
 ### Making it work for existing projects
 Existing projects will have versions in their project files. There are two approaches for these projects to make use of the `CentralPackagesFile`:
 
-#### NuGet fixes these files 
+#### NuGet commands to fix the project files
+
+```
+> nuget generate-central-packages-file -UpdatePackageReferences
+
+> dotnet nuget generate-central-packages-file --update-package-references
+
+```
+
+
+#### MSBuild option to ignore the versions mentioned in `PackageReference` nodes 
 
 
 ### VS experience
