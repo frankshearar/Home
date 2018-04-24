@@ -1,6 +1,6 @@
 | Status | PM |
 |:---|:---|
-| **Incubation** | [anangaur](https://github.com/anangaur) |
+| **Incubation** | [Anand Gaurav](https://github.com/anangaur) |
 
 ## Requirements
 
@@ -39,7 +39,9 @@ Enterprise customers with huge code-base spanning 100s of projects.
 * Package Versions can be centrally managed in `packages.props` file located at the repo root.
 * Package references (`PackageReference`) managed at each project level without any version information.
 * All the referenced packages and their transitive dependencies are locked in a lock file - `packages.lock.json` present at the level (same folder) as the `packages.props` file.
-* NuGet `restore` action by default will always 
+* NuGet `restore` action, by default, will always resolve the dependencies using the lock file.
+  * It will do a check if a referenced package (`PackageReference` in the project file) is already present in the `packages.props` file as well as the `packages.lock,json` file.
+  * 
 ### Centrally Managing Package Versions
 
 To get started, you will need to create an MSBuild props file at the root of the solution/repo named `Packages.props` that declares `Package` items.
