@@ -38,10 +38,15 @@ Enterprise customers with huge code-base spanning 100s of projects.
 ### Summary
 * Package Versions can be centrally managed in `packages.props` file located at the repo root.
 * Package references (`PackageReference`) managed at each project level without any version information.
+* Managing packages:
+  * Adding packages references not listed in `packages.props` will be an error by default. An option to update `packages.props` file as part of adding the package reference will be available.
+  * Updating package reference per project will be an error. An option to update in the `packages.props` file will be available.
+  * Removing/uninstalling package references per project is allowed. There will be an option to do the same in the `packages.props` file.
 * All the referenced packages and their transitive dependencies are locked in a lock file - `packages.lock.json` present at the level (same folder) as the `packages.props` file.
-* NuGet `restore` action, by default, will always resolve the dependencies using the lock file.
-  * It will check if a referenced package (`PackageReference` in the project file) is already present in the `packages.props` file as well as the `packages.lock,json` file. If not, it errors out.
-  * It will check if the version specified in `packages.props` match with `packages.lock.json`. If not, it errors out.
+  * NuGet `restore` action, by default, will always resolve the dependencies using the lock file.
+    * It will check if a referenced package (`PackageReference` in the project file) is already present in the `packages.props` file as well as the `packages.lock,json` file. If not, it errors out.
+    * It will check if the version specified in `packages.props` match with `packages.lock.json`. If not, it errors out.
+  * NuGet `restore -update-lock-file` action will be able to recompute dependencies and overwrite the lock file. A similar experience on VS will be available.
 
 ### Centrally Managing Package Versions
 
