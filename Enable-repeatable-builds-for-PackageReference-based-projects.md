@@ -235,16 +235,26 @@ For all the above cases, user would need to use an additional parameter with res
 
 ### CLI
 ```
-> dotnet restore -recompute-dependencies
+> dotnet restore --recompute
 ```
 ```
-> nuget restore -recompute-dependencies
+> nuget restore -recompute
 ```
 ```
-> msbuild /t:restore -recompute-dependencies
+> msbuild /t:restore --recompute
 ```
 ### Visual Studio
 ![image](https://user-images.githubusercontent.com/14800916/38649066-6ce2f56c-3da9-11e8-9e62-f669d4ce9dda.png)
+
+### [Work in progress] Override restore behavior to not fail on update
+
+By default, restore will **fail** on update of the lock file. This can be overridden by one of the following ways:
+* Specify the MSBuild property `RestoreOnLockFileUpdate` to `Warn` or `None`. By default this is set to `Error`
+* Specify the ENV variable `NUGET_RESTORE_ON_LOCK_FILE_UPDATE` to state `Warn` or `None`.
+* Specify the parameter with restore
+  ```
+  > dotnet restore --ignore-lock-file-update
+  ``` 
 
 # Future backlog
 This spec is only to solve the [repeatable build problems](#problem) through NuGet generated lock file. This does not solve the following requirements from the [[PackageReference enhancements]] document. These features will have their own specs published, in near future:
