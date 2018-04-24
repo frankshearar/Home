@@ -1,0 +1,190 @@
+| Status | PM |
+|:---|:---|
+| **Incubation** | [anangaur](https://github.com/anangaur) |
+
+## Requirements
+
+As Noah, a developer who uses NuGet in an enterprise,
+* I would like to manage all the package versions centrally at a repo level so that they do not go out of sync in the various projects in the repo.
+* I can specify a range or float to latest version of a given package so that all projects in the repo always gets the latest available version when desired.
+* I can lock down the package graph for the repo so that my builds are repeatable
+  * I can lock down direct and transitive dependencies so that the build behavior does not change by resolving to a different version of a package due to the locked version unavailability.
+  * I am able to lock down the integrity of the package so that so that the build behavior does not change by resolving to a different package with same ID+version
+  * I am able to lock the floating versions of packages to their respective resolved versions unless I explicitly ask the package to resolve to latest version. 
+* When I modify a common project that's a dependency of multiple projects in the repo, I should not be required to multiple checkins corresponding to each of the dependent projects.
+  * E.g. Project A->B->C->D->...->X. If I change the `PackageReference` for X, I should be making limited changes related to only Project X and not multiple changes for each of the projects that depend on it. (This would be case with per project lock file).
+
+Extensibility requirements:
+* I am able to define a different set of packages and versions for a specific project in the repo that differs from the centrally managed packages+versions.
+  * Correspondingly, I am able to lock down a different package graph for a specific project.
+* (?) I am able to define package versions based on conditions.
+  * Correspondingly, I am able to lock down different graphs based on these conditions.
+
+# Context
+[PackageReference requirements summary](https://github.com/NuGet/Home/wiki/PackageReference-enhancements) | Epic issue [#6763](https://github.com/NuGet/Home/issues/6763)
+
+## Who is the customer?
+Enterprise customers with huge code-base spanning 100s of projects. 
+
+## Evidence
+* Developers need this and have worked their way around in multiple ways. Some define the package version as a variable and then define all the version variables in a central file to control this behavior. E.g.
+  ```
+  <PackageReference Include="My.Sample.Lib" Version="$(MySampleLibVersion)" />
+  ```
+* MSBuild team has built an SDK project to implement this behavior: [Microsoft.Build.CentralPackageVersions](https://github.com/Microsoft/MSBuildSdks/tree/master/src/CentralPackageVersions#microsoftbuildcentralpackageversions). This spec has taken inspiration from this.
+ 
+## Solution
+
+### Summary
+* Package Versions can be centrally managed in `packages.props` file located at the repo root.
+* Package references (`PackageReference`) managed at each project level without any version information.
+* All the referenced packages and their transitive dependencies are locked in a lock file - `packages.lock.json` present at the level (same folder) as the `packages.props` file.
+* NuGet `restore` action by default will always 
+### Centrally Managing Package Versions
+
+To get started, you will need to create an MSBuild props file at the root of the solution/repo named `Packages.props` that declares `Package` items.
+
+In this example, packages like `Newtonsoft.Json` are set to exactly version `10.0.1`.  All projects that reference this package will be locked to that version.  If someone attempts to specify a version in a project they will encounter a build error.
+
+*Packages.props*
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <!-- Implicit Package References -->
+    <Package Include="Microsoft.NETCore.App"    Version="[2.0.5]" />
+    <Package Include="NETStandard.Library"      Version="[1.6.1]" />
+
+    <Package Include="Microsoft.NET.Test.Sdk"   Version="[15.5.0]" />
+    <Package Include="MSTest.TestAdapter"       Version="[1.1.18]" />
+    <Package Include="MSTest.TestFramework"     Version="[1.1.18]" />
+    <Package Include="Newtonsoft.Json"          Version="[10.0.1]" />
+  </ItemGroup>
+</Project>
+```
+
+*SampleProject.csproj*
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" />
+  </ItemGroup>
+</Project>
+```
+Each project still has a `PackageReference` but must not specify a version.  This ensures that the correct packages are referenced for each project.
+
+### Global Package References
+Some packages should be referenced by all projects in your tree. This includes packages that do versioning, extend your build, or do any other function that is needed repository-wide. 
+
+*Packages.props*
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Package Include="Nerdbank.GitVersioning" Version="[2.1.16]" PrivateAssets="All" />
+
+    <PackageReference Include="Nerdbank.GitVersioning" Condition=" '$(EnableGitVersioning)' != 'false' " />
+  </ItemGroup>
+</Project>
+```
+`Nerdbank.GitVersioning` will be a package reference for all projects.  A property `EnableGitVersioning` has been added for individual projects to disable the reference if necessary.
+
+### Enforcement
+
+If a user attempts to add a version to a project, they will get a build error:
+
+```
+The package reference 'Newtonsoft.Json' should not specify a version.  Please specify the version in 'C:\repo\Packages.props'.
+```
+
+If a user attempts to add a package that does not specify a version in `Packages.props`, they will get a build error:
+
+```
+The package reference 'Newtonsoft.Json' must have a version defined in 'C:\repo\Packages.props'.
+```
+
+### Extensibility
+
+Setting the following properties control how Traversal works.
+
+| Property                            | Description |
+|-------------------------------------|-------------|
+| `CentralPackagesFile `  | The full path to the file containing your package versions.  Defaults to `Packages.props` at the root of your repository. |
+
+*Example*
+
+Use a custom file name for your project that defines package versions.
+```xml
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CentralPackagesFile>$(MSBuildThisFileDirectory)MyPackageVersions.props</CentralPackagesFile>
+  </PropertyGroup>
+</Project>
+```
+
+### Making it work for existing projects
+Existing projects will have versions in their project files. There are two approaches for these projects to make use of the `CentralPackagesFile`:
+
+#### Enable users to update the `PackageReferences`
+
+TBD.
+
+Additionally generate the `CentralPackagesFile` to get started.
+
+TBD.
+
+
+```
+>
+```
+
+
+#### MSBuild option to ignore the versions mentioned in `PackageReference` nodes 
+TBD.
+
+### VS experience
+TBD.
+
+## FAQs
+
+### How to enable this feature?
+To enable just put a `packages.props` file in the solution root or repo root directory that is evaluated by `msbuild.exe` during build. Additionally you can specify `CentralPackagesFile` property indicating where to look for this file. The same will enable the feature.
+
+### How do I have a given set of package versions for all the projects but a different set for a specific package?
+To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the global/repo-level `packages.props` file.
+
+You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file that gets evaluated for a given project.
+
+### What happens when there are multiple `packages.props` file available in a project's context?
+In order to remove any confusion, the `packages.props` or the `CentralPackagesFile` specification nearest to the project will override all others. At a time only one `packages.props` file is evaluated for a given project.
+
+E.g. in the below scenario
+
+```
+Repo
+ |-- packages.props
+ |-- foobar.packages.props
+ |-- Solution1
+     |-- packages.props
+     |-- Project1
+     |-- Project2
+         |-- packages.props
+     |-- Project3
+         |-- directory.build.props   // specifies CentralPackagesFile = path to foobar.packages.props
+ |-- Solution2
+     |-- Project4
+```
+
+In the above scenario:
+* Project1 will refer to only `Repo\Solution1\packages.props`
+* Project2 will refer to only `Repo\Solution1\Project2\packages.props`
+* Project3 will refer to only `Repo\foobar.packages.props`
+* Project4 will refer to only `Repo\packages.props`
+
+
+
