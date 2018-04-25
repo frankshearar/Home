@@ -87,6 +87,8 @@ In this example, packages like `Newtonsoft.Json` are set to exactly version `10.
 ```
 Each project still has a `PackageReference` but must not specify a version.  This ensures that the correct packages are referenced for each project.
 
+Listing **Implicit packages** in the central ... 
+
 *Enforcement*
 
 ```csharp
