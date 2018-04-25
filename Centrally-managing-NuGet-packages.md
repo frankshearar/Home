@@ -1,7 +1,4 @@
-|||
-|:---|:---|
-| Status | Incubation |
-| PM | [Anand Gaurav](https://github.com/anangaur) |
+**Status**: Incubation, **PM**: [Anand Gaurav](https://github.com/anangaur)
 
 ## Requirements
 
