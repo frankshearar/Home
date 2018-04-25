@@ -47,6 +47,7 @@ Enterprise customers with huge code-base spanning 100s of projects.
   * NuGet `restore` action, by default, will always resolve the dependencies using the lock file.
     * It will check if a referenced package (`PackageReference` in the project file) is already present in the `packages.props` file as well as the `packages.lock,json` file. If not, it errors out.
     * It will check if the version specified in `packages.props` match with `packages.lock.json`. If not, it errors out.
+    * The lock file contains the integrity data (SHA) for each of the packages listed in it. Restore does a post step to validate the integrity of the packages. It errors out if the integrity check fails. This option to include integrity will be configurable using a MSBuild property.
   * NuGet `restore -update-lock-file` action will be able to recompute dependencies and overwrite the lock file. A similar experience on VS will be available.
 
 ### Details - Centrally managing package versions
