@@ -151,9 +151,24 @@ Some packages may be referenced by all projects in your tree. This includes pack
   ```
 * Specifying a `<Package>` node in the `packages.props` does not mean the lock file will also contain this package information. The lock file is updated on a package reference addition to a project. 
 
-### Extensibility
+*packages.lock.json*
+```
+{	
+  "version": 1.0,	
+  "metadata1":"value1",
+  ...other metadata fields...
+  "dependencies": {	
+    "netcoreapp2.0": {	
+      "Contoso.Base": {	
+        "type": "direct",	
+        "requested": "3.0.0",	
+        "resolved": "3.0.0",
+        "integrity":"SHA512-#fVXsnMP2Wq84VA533zj0a/Et+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+HIvprVKs+QOihnkbqod=="		
+      }	
+  ...	
+```
 
-Setting the following properties control how Traversal works.
+### Extensibility
 
 | Property                            | Description |
 |-------------------------------------|-------------|
