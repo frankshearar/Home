@@ -142,6 +142,11 @@ Some packages may be referenced by all projects in your tree. This includes pack
 * If there is any of the following discrepancies while resolving package dependencies for a project, `restore` will error out.
   * `PackageReference` in project file does not have a corresponding entry in the `packages.lock.json` and/or `packages.props`
   * Version mismatch between `packages.lock.json` and `packages.props`
+* In order to update the lock file with new restore graph, you can run `restore` with option `update-lock-file`:
+  ```
+  > dotnet restore --update-lock-file
+  ```
+* Specifying a `<Package>` node in the `packages.props` does not mean the lock file will also contain this package information. The lock file is updated on a package reference addition to a project. 
 
 ### Extensibility
 
