@@ -201,35 +201,36 @@ Existing projects will have versions in their project files.
 *Generate a starting `packages.props` file*
 
 Run the following command on the root of the repo that contains all the projects that you want to manage using the central package management file
+
 ```
+// create a central package management file for all projects under the current directory
 > dotnet restore --generate-version-management-file
 <Restore output>
 .
 .
 Created `packages.props` file that you can use to manage the package versions centrally at a repo or solution level. Learn more at https://aka.ms/nuget-centrally-manage-pkg-versions
 
-> dotnet nuget prune --dry-run
+// Check for issues in pruneing PackageReference  to remove the version attributes from projects under the current directory
+> dotnet nuget prune packagereferences --dry-run
 
+// Prune PackageReference  to remove the version attributes from projects under the current directory
+> dotnet nuget prune packagereferences
 ```
 
+#### I consume the same project in different solutions. How do I want to use the central package version management file in one and not the other?
+This will require the `PackageReference` nodes to have the version info but ignore it in the solution where central package version management file is used. This may be achieved by a MSBuild property `RetainPackageReferenceVersions`
 
-
-
-#### MSBuild option to ignore the versions mentioned in `PackageReference` nodes 
-TBD.
+**Not MVP** scenario.
 
 ### VS experience
 TBD.
 
 ## FAQs
 
-### How to enable this feature?
-To enable just put a `packages.props` file in the solution root or repo root directory that is evaluated by `msbuild.exe` during build. Additionally you can specify `CentralPackagesFile` property indicating where to look for this file. The same will enable the feature.
-
 ### How do I have a given set of package versions for all the projects but a different set for a specific package?
-To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the global/repo-level `packages.props` file.
+To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the global/repo-level `packages.props` file. For this case, the lock file `packages.lock.json` will be generated at the project root directory.
 
-You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file that gets evaluated for a given project.
+You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file at the project root directory that gets evaluated for a given project.
 
 ### What happens when there are multiple `packages.props` file available in a project's context?
 In order to remove any confusion, the `packages.props` or the `CentralPackagesFile` specification nearest to the project will override all others. At a time only one `packages.props` file is evaluated for a given project.
