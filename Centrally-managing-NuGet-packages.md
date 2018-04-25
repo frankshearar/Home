@@ -172,35 +172,47 @@ Some packages may be referenced by all projects in your tree. This includes pack
 
 | Property                            | Description |
 |-------------------------------------|-------------|
-| `CentralPackagesFile `  | The full path to the file containing your package versions.  Defaults to `Packages.props` at the root of your repository. |
-| `` | |
+| `CentralPackagesFile `  | The full path to the file containing your package versions.  Defaults to `packages.props` at the root of your repository. |
+| `LockFile` | The full path of the lock file applicable for a project. Defaults to `packages.lock.json` in the same folder as the `packages.prop` |
 
-*Example*
+*Examples*
 
 Use a custom file name for your project that defines package versions.
 ```xml
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <CentralPackagesFile>$(MSBuildThisFileDirectory)MyPackageVersions.props</CentralPackagesFile>
+    <LockFile>$(MSBuildThisFileDirectory)MyPackagesLock.lock.json</CentralPackagesFile>
   </PropertyGroup>
 </Project>
 ```
 
-### Making it work for existing projects
-Existing projects will have versions in their project files. There are two approaches for these projects to make use of the `CentralPackagesFile`:
+### Bootstrapping
 
-#### Enable users to update the `PackageReferences`
+#### How to enable this the central package version management + locking? 
+The functionality will be enabled if
+* There is `packages.props` file present in the recursive path for a project.
+* If the `CentralPackagesFile` MSBuild property exists for a project. 
+* Lock file feature is tied to the presence of a central package version management file. 
 
-TBD.
+#### How do I transform my existing projects to use this functionality?
+Existing projects will have versions in their project files. 
 
-Additionally generate the `CentralPackagesFile` to get started.
+*Generate a starting `packages.props` file*
 
-TBD.
+Run the following command on the root of the repo that contains all the projects that you want to manage using the central package management file
+```
+> dotnet restore --generate-version-management-file
+<Restore output>
+.
+.
+Created `packages.props` file that you can use to manage the package versions centrally at a repo or solution level. Learn more at https://aka.ms/nuget-centrally-manage-pkg-versions
 
+> dotnet nuget prune --dry-run
 
 ```
->
-```
+
+
 
 
 #### MSBuild option to ignore the versions mentioned in `PackageReference` nodes 
