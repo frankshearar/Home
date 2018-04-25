@@ -1,6 +1,7 @@
-| Status | PM |
+|||
 |:---|:---|
-| **Incubation** | [Anand Gaurav](https://github.com/anangaur) |
+| Status | Incubation |
+| PM | [Anand Gaurav](https://github.com/anangaur) |
 
 ## Requirements
 
@@ -8,8 +9,8 @@ As Noah, a developer who uses NuGet in an enterprise,
 * I would like to manage all the package versions centrally at a repo level so that they do not go out of sync in the various projects in the repo.
 * I can specify a range or float to latest version of a given package so that all projects in the repo always gets the latest available version when desired.
 * I can lock down the package graph for the repo so that my builds are repeatable
-  * I can lock down direct and transitive dependencies so that the build behavior does not change by resolving to a different version of a package due to the locked version unavailability.
-  * I am able to lock down the integrity of the package so that so that the build behavior does not change by resolving to a different package with same ID+version
+  * I can lock down direct and transitive dependencies so that the build behavior does not change by resolving to a different version of a package version due to unavailability of previously resolved version.
+  * I am able to lock down the integrity of the package so that so that the build behavior does not change by resolving to a different package with same ID+version. 
   * I am able to lock the floating versions of packages to their respective resolved versions unless I explicitly ask the package to resolve to latest version. 
 * When I modify a common project that's a dependency of multiple projects in the repo, I should not be required to multiple checkins corresponding to each of the dependent projects.
   * E.g. Project A->B->C->D->...->X. If I change the `PackageReference` for X, I should be making limited changes related to only Project X and not multiple changes for each of the projects that depend on it. (This would be case with per project lock file).
@@ -38,7 +39,7 @@ Enterprise customers with huge code-base spanning 100s of projects.
 ### Summary
 * Package Versions can be centrally managed in `packages.props` file located at the repo root.
 * Package references (`PackageReference`) managed at each project level without any version information.
-* Managing packages:
+* Managing packages for the repo/projects:
   * Adding packages references not listed in `packages.props` will be an error by default. An option to update `packages.props` file as part of adding the package reference will be available.
   * Updating package reference per project will be an error. An option to update in the `packages.props` file will be available.
   * Removing/uninstalling package references per project is allowed. There will be an option to do the same in the `packages.props` file.
@@ -48,9 +49,9 @@ Enterprise customers with huge code-base spanning 100s of projects.
     * It will check if the version specified in `packages.props` match with `packages.lock.json`. If not, it errors out.
   * NuGet `restore -update-lock-file` action will be able to recompute dependencies and overwrite the lock file. A similar experience on VS will be available.
 
-### Centrally Managing Package Versions
+### Details - Centrally managing package versions
 
-To get started, you will need to create an MSBuild props file at the root of the solution/repo named `Packages.props` that declares `Package` items.
+To get started, you will need to create an MSBuild props file at the root of the solution/repo named `packages.props` that declares `Package` items.
 
 In this example, packages like `Newtonsoft.Json` are set to exactly version `10.0.1`.  All projects that reference this package will be locked to that version.  If someone attempts to specify a version in a project they will encounter a build error.
 
@@ -86,8 +87,41 @@ In this example, packages like `Newtonsoft.Json` are set to exactly version `10.
 ```
 Each project still has a `PackageReference` but must not specify a version.  This ensures that the correct packages are referenced for each project.
 
-### Global Package References
-Some packages should be referenced by all projects in your tree. This includes packages that do versioning, extend your build, or do any other function that is needed repository-wide. 
+*Enforcement*
+
+```csharp
+// package exists in packages.props
+ProjectA> dotnet add package netwonsoft.json 
+Successfully added package 'Newtonsoft.Json' to ProjectA. 
+
+// package does not exist in packages.props
+ProjectA> dotnet add package netwonsoft.json 
+NU1xxx: Cannot add package 'Newtonsoft.Json' to ProjectA as it is not specified in the central package version management 
+ file '<path>\packages.props'. Use the command 'dotnet add package newtonsoft.json --version <version number> --update-version-management-file' to add the package reference to the project and update the central package version management file '<path>\packages.props', together.
+
+ProjectA> dotnet add package newtonsoft.json --version 10.0.3 --update-version-management-file
+Successfully added package 'Newtonsoft.Json version 10.0.3' '<path>\packages.props'.
+Successfully added package 'Newtonsoft.Json' to ProjectA. 
+
+ProjectA> dotnet add package netwonsoft.json --version 11.0.1
+NU1xxx: You cannot specify the package version while adding a package reference. Package version version information is managed in the central package version management file '<path>\packages.props'. Use the command 'dotnet add package newtonsoft.json --version <version number> --update-version-management-file' to update the package version in the central package version management file '<path>\packages.props'.
+
+//Removing a package reference in a project
+ProjectA> dotnet remove package netwonsoft.json
+Successfully removed package 'Newtonsoft.Json' from ProjectA. 
+
+//Removing a package reference and the version info from packages.props
+ProjectA> dotnet remove package netwonsoft.json --update-version-management-file
+Successfully removed package 'Newtonsoft.Json' from ProjectA. 
+Successfully removed package version information from the central package version management file '<path>\packages.props'.
+
+//Removing a package version info from packages.props when the package reference does not exist
+ProjectA> dotnet remove package netwonsoft.json --update-version-management-file
+Package 'Newtonsoft.Json' is not referenced in ProjectA. 
+Successfully removed package version information from the central package version management file '<path>\packages.props'.
+```
+#### Global Package References
+Some packages may be referenced by all projects in your tree. This includes packages that do versioning, extend your build, or do any other function that is needed repository-wide. 
 
 *Packages.props*
 ```xml
@@ -102,19 +136,12 @@ Some packages should be referenced by all projects in your tree. This includes p
 ```
 `Nerdbank.GitVersioning` will be a package reference for all projects.  A property `EnableGitVersioning` has been added for individual projects to disable the reference if necessary.
 
-### Enforcement
-
-If a user attempts to add a version to a project, they will get a build error:
-
-```
-The package reference 'Newtonsoft.Json' should not specify a version.  Please specify the version in 'C:\repo\Packages.props'.
-```
-
-If a user attempts to add a package that does not specify a version in `Packages.props`, they will get a build error:
-
-```
-The package reference 'Newtonsoft.Json' must have a version defined in 'C:\repo\Packages.props'.
-```
+### Details: Locking package dependencies
+* If a central package version management file (default `packages.props` file is present, NuGet will not just use this file for manage package versions, but it will also create a lock file - `packages.lock.json` in the same folder as the central package version management file. This file will have the full package closure - direct and transitive across the projects in a repo.
+* If you `restore` in a project's context, NuGet will refer the `packages.lock.json` to get the package closure and restore those packages.
+* If there is any of the following discrepancies while resolving package dependencies for a project, `restore` will error out.
+  * `PackageReference` in project file does not have a corresponding entry in the `packages.lock.json` and/or `packages.props`
+  * Version mismatch between `packages.lock.json` and `packages.props`
 
 ### Extensibility
 
@@ -123,6 +150,7 @@ Setting the following properties control how Traversal works.
 | Property                            | Description |
 |-------------------------------------|-------------|
 | `CentralPackagesFile `  | The full path to the file containing your package versions.  Defaults to `Packages.props` at the root of your repository. |
+| `` | |
 
 *Example*
 
