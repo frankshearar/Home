@@ -70,22 +70,6 @@ In this example, packages like `Newtonsoft.Json` are set to exactly version `10.
 ```
 Each project still has a `PackageReference` but must not specify a version.  This ensures that the correct packages are referenced for each project.
 
-### Global Package References
-Some packages should be referenced by all projects in your tree. This includes packages that do versioning, extend your build, or do any other function that is needed repository-wide. 
-
-*Packages.props*
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <Package Include="Nerdbank.GitVersioning" Version="[2.1.16]" PrivateAssets="All" />
-
-    <PackageReference Include="Nerdbank.GitVersioning" Condition=" '$(EnableGitVersioning)' != 'false' " />
-  </ItemGroup>
-</Project>
-```
-`Nerdbank.GitVersioning` will be a package reference for all projects.  A property `EnableGitVersioning` has been added for individual projects to disable the reference if necessary.
-
 ### Enforcement
 
 If a user attempts to add a version to a project, they will get a build error:
