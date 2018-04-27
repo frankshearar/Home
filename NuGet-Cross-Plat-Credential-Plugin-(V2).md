@@ -2,9 +2,7 @@
 
 ## Issue
 
-[6642](https://github.com/NuGet/Home/issues/6642) - NuGet credential plugin V2
-
-[6410](https://github.com/NuGet/Home/issues/6410) - msbuild /restore support for all NuGet use cases
+[6486](https://github.com/NuGet/Home/issues/6486) - NuGet Cross Plat Credential Plugin 
 
 ## Problem
 
