@@ -38,9 +38,9 @@ Each Version **2.0.0** plugin must meet the requirements previous specified in t
 
 For simplicity, the requirements will be duplicated from the other spec and altered as required.
 
-- ~~Have a valid, trusted Authenticode signature.~~  On Windows we require that plugins have a valid Authenticode signature. On non-Windows platforms we will have additional requirements defined at a later point.[Task](#cross-plat-trust-verification)
+- On Windows we require that plugins have a valid Authenticode signature. On non-Windows platforms we will have additional requirements defined at a later point.[Task](#cross-plat-trust-verification)
 - Support stateless launching under the current security context of NuGet client tools. For example, NuGet client tools will not perform elevation or additional initialization outside of the plugin protocol described later.
-- ~~Be noninteractive.~~ Support both interactive and non-interactive scenarios. Some operations are allowed to be interactive, as defined below.
+- Support both interactive and non-interactive scenarios. Some operations are allowed to be interactive, as defined below.
 - Adhere to the negotiated plugin protocol version.
 - Respond to all requests within a reasonable time period.
 - Honor cancellation requests for any in-progress operation.
