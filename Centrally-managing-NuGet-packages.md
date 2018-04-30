@@ -88,7 +88,10 @@ In this example, packages like `Newtonsoft.Json` are set to exactly version `10.
 ```
 Each project still has a `PackageReference` but must not specify a version.  This ensures that the correct packages are referenced for each project.
 
-Listing **Implicit packages** in the central ... 
+
+**Implicit package**: Listing **Implicit packages** in the central packages version management (CPMVF) file is optional. If this is not provided, the corresponding lock files will not list implicit dependencies. If listed in the CPVMF, however, the same gets persisted as a locked dependency. 
+
+**Transitive dependencies**: One should not be listing the transitive dependencies either in the CPVMF or as `PackageReferece` for the projects. If listed in the CPVMF, the same version will be used in full package closure during restore and the same will be locked. If NuGet is unable to restore with the version mentioned in the CPVMF, it will error out.
 
 *Enforcement*
 
@@ -123,22 +126,6 @@ ProjectA> dotnet remove package netwonsoft.json --update-version-management-file
 Package 'Newtonsoft.Json' is not referenced in ProjectA. 
 Successfully removed package version information from the central package version management file '<path>\packages.props'.
 ```
-#### Global Package References
-Some packages may be referenced by all projects in your tree. This includes packages that do versioning, extend your build, or do any other function that is needed repository-wide. 
-
-*Packages.props*
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <Package Include="Nerdbank.GitVersioning" Version="[2.1.16]" PrivateAssets="All" />
-
-    <PackageReference Include="Nerdbank.GitVersioning" Condition=" '$(EnableGitVersioning)' != 'false' " />
-  </ItemGroup>
-</Project>
-```
-`Nerdbank.GitVersioning` will be a package reference for all projects.  A property `EnableGitVersioning` has been added for individual projects to disable the reference if necessary.
-
 ### Details: Locking package dependencies
 * If a central package version management file (default `packages.props` file is present, NuGet will not just use this file for manage package versions, but it will also create a lock file - `packages.lock.json` in the same folder as the central package version management file. This file will have the full package closure - direct and transitive across the projects in a repo.
 * If you `restore` in a project's context, NuGet will refer the `packages.lock.json` to get the package closure and restore those packages.
