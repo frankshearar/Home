@@ -14,6 +14,7 @@
 * [NuGet Package Debugging & Symbols Improvements](https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements)
 
 #### Reviewed
+* [[Register package signing certificates]]
 * [[2 Factor Auth for NuGet.org sign in]]
 * [[Author Package Signing]]
 * [NuGet Verify Command](https://github.com/NuGet/Home/wiki/NuGet-Verify-Command)
