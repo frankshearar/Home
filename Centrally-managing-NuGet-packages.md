@@ -213,6 +213,11 @@ This will require the `PackageReference` nodes to have the version info but igno
 ### VS experience
 TBD.
 
+### Open
+* Package nodes cleanup in the CPVMF. Options:
+  * If a restore is run at the same folder level as the lock file, the clean up also happens. Otherwise edits to lock file are additive unless its update of an existing package version/metadat.
+  * Separate command to do the cleanup? (Do not feel good about this).
+
 ## FAQs
 
 ### How do I have a given set of package versions for all the projects but a different set for a specific package?
