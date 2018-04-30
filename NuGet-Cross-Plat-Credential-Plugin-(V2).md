@@ -1,5 +1,7 @@
 # NuGet Authentication Plugin
 
+### Refer to https://github.com/NuGet/Home/wiki/NuGet-Authentication-Plugin
+
 ## Issue
 
 [6486](https://github.com/NuGet/Home/issues/6486) - NuGet Cross Plat Credential Plugin 
