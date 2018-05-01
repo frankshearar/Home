@@ -1,4 +1,4 @@
-Status: **Incubation**
+Status: **Implemented**
 
 ## Issue
 The work for this feature and the discussion around the spec is tracked here - **packages.config (PC) to PackageReference (PR) Migrator [#5877](https://github.com/NuGet/Home/issues/5877)**
