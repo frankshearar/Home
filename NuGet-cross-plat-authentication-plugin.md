@@ -3,7 +3,7 @@
 
 ## Issue
 
-Restore should natively support a plugin authentication model [#6486](https://github.com/NuGet/Home/issues/6486)
+NuGet cross plat authentication plugin [#6486](https://github.com/NuGet/Home/issues/6486)
 
 ## Problem
 
