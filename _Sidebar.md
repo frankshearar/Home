@@ -7,8 +7,6 @@
 * [[Repository Signatures]]
 * [[Repository Signatures and Countersignatures Technical Specification]]
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
-* [Package README.md support](Package-README.md-support)
-* [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
 * [Storing trusted repository](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-repository-signatures)
 * [NuGet Package Signing Client Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
 * [NuGet Package Debugging & Symbols Improvements](https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements)
@@ -23,7 +21,6 @@
 * [[Replication API|[spec]-NuGet.org-replication-API]]
 * [[NuGet Package Identity Verification|NuGet-Package-Identity-Verification]]
 * [[Enhanced package upload workflow|Enhanced package upload workflow]]
-* [[Package Immutability|Package Immutability]]
 * [[Package Signatures Technical Details]]
 
 #### [[Implemented|Implemented]]
