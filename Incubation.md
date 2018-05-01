@@ -7,4 +7,4 @@
 * [Package Download API](https://github.com/NuGet/Home/wiki/%5BSpec%5D-Package-download-API)
 * [[Package Signatures Technical Details]]
 * [NuGet Package Debugging & Symbols Improvements](https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements)
-* [[packages.config (PC) to PackageReference (PR) Migrator]]
+* [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
