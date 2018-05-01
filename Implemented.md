@@ -1,3 +1,8 @@
+### 2018
+* [[packages.config (PC) to PackageReference (PR) Migrator]]
+* [Package README.md support](Package-README.md-support)
+* [[Package Immutability|Package Immutability]]
+
 ### 2017
 * [[Account Deletion Workflow|NuGet-Account-Deletion-Workflow]]
 * [[Transitive Warning Properties|[Spec]-Transitive-Warning-Properties]] - v4.4
