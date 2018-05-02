@@ -227,7 +227,7 @@ For all the above cases, user would need to use an additional parameter with res
 ![image](https://user-images.githubusercontent.com/14800916/38649066-6ce2f56c-3da9-11e8-9e62-f669d4ce9dda.png)
 
 ### Exception
-TBD.
+The idea of lock file is to enable repeatable build across space and time. 
 
 ### `restore` command options, at a glance
 
@@ -236,6 +236,7 @@ TBD.
 | `--recompute` | Explicit command to overwrite the lock file. Recomputes the package dependency graph. |
 | `--ignore-lock-file` | Restore without the lock file. Lock file is neither considered for restore nor touched. |
 | `--lock-file=<lock file path>` | Uses the lock file provided as part of the command option. Overrides any other setting for lock file |
+| `--strict-lock` | Always fails if the package resolution is different than what is present in the lock file | 
 | `--update-lock-file` | Updates lock file as part of restore if required. This is **not** same as `--recompute` option. `--recompute` always forces re-computation of the package graph. This option, however, does not do so, if not required. But it will also not error out if the lock file is updated. Eg. `restore --update-lock-file` may not fetch the latest version for a floating package (due to NoOp). |
 
 # Future backlog
