@@ -5,8 +5,6 @@ Status: **Incubation**
 |:--- |:---|:---|
 | **R1** | **Developers would like to have repeatable builds (restores) across time and space** | **[#5602](https://github.com/nuget/home/issues/5602)** |
 
-
-
 # Context
 * [PackageReference requirements summary](https://github.com/NuGet/Home/wiki/PackageReference-enhancements) | Epic issue [#6763](https://github.com/NuGet/Home/issues/6763)
 * [Package dependency resolution](https://github.com/NuGet/Home/wiki/PackageReference-enhancements#dependency-resolution)
@@ -118,7 +116,7 @@ Subsequently this lock file will be used to restore packages and restore will no
 
 NuGet will use the lock file if present. The setting `RestoreWithLockFile` is only to bootstrap the creation of this lock file.
 
-## Which commands can modify the lock file? 
+### Which commands can modify the lock file? 
 
 Following is a list of commands/actions with information whether they can modify the lock file or not:
 *If the lock file is not present, any command that can modify the lock file will generate/create it (if `RestoreWithLockFile` is set).*
@@ -138,6 +136,12 @@ Following is a list of commands/actions with information whether they can modify
 | VS `clean` + `build` action | **No** |
  
 * New commands
+
+### How does `restore` use the lock file?
+If a lock file is present, `restore` will do a quick check to understand if lock file has the right closure of packages for the project:
+1. Check if the direct dependencies in the lock file matches with the requested direct dependencies for the project.
+2. Check if all the transitive dependencies required for the full closure is present in the lock file.
+
 
 ## Lock file properties
 
