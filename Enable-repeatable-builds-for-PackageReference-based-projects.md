@@ -232,11 +232,11 @@ TBD.
 ### `restore` command options, at a glance
 
 | Option | Restore behavior |
-|:---|:---|
+|:---- |:--- |
 | `--recompute` | Explicit command to overwrite the lock file. Recomputes the package dependency graph. |
 | `--ignore-lock-file` | Restore without the lock file. Lock file is neither considered for restore nor touched. |
 | `--lock-file=<lock file path>` | Uses the lock file provided as part of the command option. Overrides any other setting for lock file |
-| `--update-lock-file` | Updates lock file as part of restore if required. This is **not** same as `--recompute` option. `--recompute` always forces re-computation of the package graph. This option, however, does not do so, if not required. But it will also not error out if the lock file is updated. Eg. `restore --update-lock-file` may not fetch the latest version for a floating package (due to NoOp). This option can also be enabled for restore by setting the MSBuild property Rest`NuGetRestoreAlwaysUpdateLockFile` to `true` or by setting the ENV variable `NUGET_RESTORE_ALWAYS_UPDATE_LOCK_FILE`.
+| `--update-lock-file` | Updates lock file as part of restore if required. This is **not** same as `--recompute` option. `--recompute` always forces re-computation of the package graph. This option, however, does not do so, if not required. But it will also not error out if the lock file is updated. Eg. `restore --update-lock-file` may not fetch the latest version for a floating package (due to NoOp). |
 
 # Future backlog
 This spec is only to solve the [repeatable build problems](#problem) through NuGet generated lock file. This does not solve the following requirements from the [[PackageReference enhancements]] document. These features will have their own specs published, in near future:
