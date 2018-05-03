@@ -137,12 +137,6 @@ Following is a list of commands/actions with information whether they can modify
  
 * New commands
 
-### How does `restore` use the lock file?
-If a lock file is present, `restore` will do a quick check to understand if lock file has the right closure of packages for the project:
-1. Check if the direct dependencies in the lock file matches with the requested direct dependencies for the project.
-2. Check if all the transitive dependencies required for the full closure is present in the lock file.
-
-
 ## Lock file properties
 
 * The lock file will be called `packages.lock,json` 
