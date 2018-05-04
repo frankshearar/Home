@@ -233,9 +233,14 @@ The idea of lock file is to enable repeatable build across space and time.
 |:---- |:--- |
 | `--recompute` | Explicit command to overwrite the lock file. Recomputes the package dependency graph. |
 | `--ignore-lock-file` | Restore without the lock file. Lock file is neither considered for restore nor touched. |
-| `--lock-file=<lock file path>` | Uses the lock file provided as part of the command option. Overrides any other setting for lock file |
-| `--strict-lock` | Always fails if the package resolution is different than what is present in the lock file | 
-| `--update-lock-file` | Updates lock file as part of restore if required. This is **not** same as `--recompute` option. `--recompute` always forces re-computation of the package graph. This option, however, does not do so, if not required. But it will also not error out if the lock file is updated. Eg. `restore --update-lock-file` may not fetch the latest version for a floating package (due to NoOp). |
+| `--lock-file <lock file path>` | Uses the lock file provided as part of the command option. Overrides any other setting for lock file |
+| `--lock-current-project-dependencies-only` | Locks only the current project's dependencies. It does not lock the dependencies of the referenced projects. While doing the restore, the current project and all the referenced projects' lock files are used to compute the dependencies. [Read more](#lock-current-project-dependencies-only-details)  | 
+| `--update-lock-file` | Updates lock file as part of restore if required. This is **not** same as `--recompute` option. [Read more](#update-lock-file-details) |
+
+#### `--lock-current-project-dependencies-only` details
+
+#### `--update-lock-file` details
+Updates lock file as part of restore if required. This is **not** same as `--recompute` option. `--recompute` always forces re-computation of the package graph. This option, however, does not do so, if not required. But it will also not error out if the lock file is updated. Eg. `restore --update-lock-file` may not fetch the latest version for a floating package (due to NoOp). 
 
 # Future backlog
 This spec is only to solve the [repeatable build problems](#problem) through NuGet generated lock file. This does not solve the following requirements from the [[PackageReference enhancements]] document. These features will have their own specs published, in near future:
