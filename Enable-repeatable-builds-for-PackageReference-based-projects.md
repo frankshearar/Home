@@ -254,17 +254,25 @@ ProjectA
 
     |-- ProjectC
         |--> Pkg-R 4.0.0
+        |--> Pkg-X 4.0.0
 ```
 
 In the above case, lock files for each of the projects will be:
 
 *ProjectA:*
-Pkg-M 1.0.0
-Pkg-N 1.0.0
-Pkg-Q 3.0.0 (because of ProjectB)
-Pkg-R 4.0.0 (because of ProjectC) 
+* Pkg-M 1.0.0
+* Pkg-N 1.0.0
+* Pkg-Q 3.0.0 (because of ProjectB)
+* Pkg-R 4.0.0 (because of ProjectC) 
 
-~~Pkg-P 2.0.0~~ is not locked as it does not exist in the context of ProjectA but only with projectB 
+* ~~Pkg-P 2.0.0~~ is **not locked** as it does not exist in the context of ProjectA but only with projectB 
+* ~~Pkg-X 4.0.0~~ is **not locked** as it does not exist in the context of ProjectA but only with projectC
+
+#### How does the locking of only the current project dependencies help?
+In the above scenario, now lets say, ProjectB updates its dependency from Pkg-Q **3.0.0** to Pkg-Q **4.0.0**, when you build the Projects with regular restore, it will fail for ProjectB. On building ProjectB with `--recompute` option, the lock file of ProjectB will be updated to mention the dependency Pkg-Q 4.0.0.
+
+When you build ProjectA, however, though Pkg-Q 4.0.0 is not there in its lock file, it will bring in Pkg-Q 4.0.0 with the normal restore but by raising a warning. To persist the new version of Pkg-Q in ProjectA's lock file, one has to restore with `--recompute` option.
+
 
 
 
