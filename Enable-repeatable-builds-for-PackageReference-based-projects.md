@@ -256,6 +256,17 @@ ProjectA
         |--> Pkg-R 4.0.0
 ```
 
+In the above case, lock files for each of the projects will be:
+
+*ProjectA:*
+Pkg-M 1.0.0
+Pkg-N 1.0.0
+Pkg-Q 3.0.0 (because of ProjectB)
+Pkg-R 4.0.0 (because of ProjectC) 
+
+~~Pkg-P 2.0.0~~ is not locked as it does not exist in the context of ProjectA but only with projectB 
+
+
 
 This functionality can also be enabled by setting a MSBuild property `NuGetLockCurrentProjectDependeniesOnly` to `true` or by setting the ENV variable `NUGET_LOCK_CURRENT_PROJECT_DEPENDENCIES_ONLY`.
 
