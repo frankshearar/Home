@@ -234,11 +234,13 @@ The idea of lock file is to enable repeatable build across space and time.
 | `--recompute` | Explicit command to overwrite the lock file. Recomputes the package dependency graph. |
 | `--ignore-lock-file` | Restore without the lock file. Lock file is neither considered for restore nor touched. |
 | `--lock-file <lock file path>` | Uses the lock file provided as part of the command option. Overrides any other setting for lock file |
-| `--lock-current-project-dependencies-only` | Locks only the current project's dependencies. It does not lock the dependencies of the referenced projects. While doing the restore, the current project and all the referenced projects' lock files are used to compute the dependencies. [Read more](#--lock-current-project-dependencies-only-details)  | 
+| `--lazy-lock` | A normal `restore` does not strictly lock on the current project's lock file i.e. restore will succeed if a specific transitive version is not present in the current project's lock file but is present in any referenced project's lock file. [Read more](#--lazy-lock-details)  | 
 | `--update-lock-file` | Updates lock file as part of restore if required. This is **not** same as `--recompute` option. [Read more](#--update-lock-file-details) |
 
-#### `--lock-current-project-dependencies-only` details
-Locks only the current project's dependencies. It does not lock the dependencies of the referenced projects. While doing the restore, the current project and all the referenced projects' lock files are used to compute the dependencies. 
+#### `--lazy-lock` details
+This functionality can also be enabled by setting a MSBuild property `NuGetRestoreLazyLock` to `true` or by setting the ENV variable `NUGET_RESTORE_LAZY_LOCK`.
+
+A normal `restore` does not strictly lock on the current project's lock file i.e. restore will succeed if a specific transitive version is not present in the current project's lock file but is present in any referenced project's lock file. 
 
 E.g.
 
@@ -252,31 +254,27 @@ ProjectA
     |--> Pkg-P 2.0.0 
     |--> Pkg-Q 3.0.0
 
-    |-- ProjectC
-        |--> Pkg-R 4.0.0
-        |--> Pkg-X 4.0.0
 ```
 
 In the above case, lock files for each of the projects will be:
 
 *ProjectA:*
-* Pkg-M 1.0.0
-* Pkg-N 1.0.0
-* Pkg-Q 3.0.0 (because of ProjectB)
-* Pkg-R 4.0.0 (because of ProjectC) 
+* `Pkg-M 1.0.0`
+* `Pkg-N 1.0.0`
+* `Pkg-P 2.0.0` (because of ProjectB)
+* `Pkg-Q 3.0.0` (because of ProjectB)
 
-* ~~Pkg-P 2.0.0~~ is **not locked** as it does not exist in the context of ProjectA but only with projectB 
-* ~~Pkg-X 4.0.0~~ is **not locked** as it does not exist in the context of ProjectA but only with projectC
+*ProjectB:*
+* `Pkg-P 2.0.0` 
+* `Pkg-Q 3.0.0` 
 
-#### How does the locking of only the current project dependencies help?
-In the above scenario, now lets say, ProjectB updates its dependency from Pkg-Q **3.0.0** to Pkg-Q **4.0.0**, when you build the Projects with regular restore, it will fail for ProjectB. On building ProjectB with `--recompute` option, the lock file of ProjectB will be updated to mention the dependency Pkg-Q 4.0.0.
+Now lets say, in `ProjectB` you add another package reference to `Pkg-X 4.0.0`. This will add `Pkg-X 4.0.0` in ProjectB's lock file. When you do a normal restore on `ProjectA`, it will fail as the lock file does not have an entry for `Pkg-X`. But with **`--lazy-lock`** option, `restore` will succeed as it will be able to find the `Pkg-X 4.0.0` entry in the referenced ProjectB's lock file. 
 
-When you build ProjectA, however, though Pkg-Q 4.0.0 is not there in its lock file, it will bring in Pkg-Q 4.0.0 with the normal restore but by raising a warning. To persist the new version of Pkg-Q in ProjectA's lock file, one has to restore with `--recompute` option.
+**Note** that the build will be repeatable irrespective of whether the `--lazy-lock` is enabled or not. In both cases, on successful restore, the `Pkg-X 4.0.0` will be restored for `ProjectA`. The only difference is whether normal restore will fail or not. 
 
+The `--lazy-lock` option helps in the scenario where multiple project depends on a common code project and updating dependencies of the common code project would break the builds for all other projects unless the dependency change from the common code project is reflected in their respective lock files. 
 
-
-
-This functionality can also be enabled by setting a MSBuild property `NuGetLockCurrentProjectDependeniesOnly` to `true` or by setting the ENV variable `NUGET_LOCK_CURRENT_PROJECT_DEPENDENCIES_ONLY`.
+**Open**: When a normal `restore` continues to restore a different or a new transitive package than what is present in the currently restore project's lock file using the `--lazy-lock`, should there be a warning?
 
 #### `--update-lock-file` details
 Updates lock file as part of restore if required. This is **not** same as `--recompute` option. `--recompute` always forces re-computation of the package graph. This option, however, does not do so, if not required. But it will also not error out if the lock file is updated. Eg. `restore --update-lock-file` may not fetch the latest version for a floating package (due to NoOp). This functionality can also be enabled by setting a MSBuild property `NuGetUpdateLockFileOnRestore` to `true` or by setting the ENV variable `NUGET_UPDATE_LOCK_FILE_ON_RESTORE`
