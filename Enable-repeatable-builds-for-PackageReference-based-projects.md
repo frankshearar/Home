@@ -234,13 +234,33 @@ The idea of lock file is to enable repeatable build across space and time.
 | `--recompute` | Explicit command to overwrite the lock file. Recomputes the package dependency graph. |
 | `--ignore-lock-file` | Restore without the lock file. Lock file is neither considered for restore nor touched. |
 | `--lock-file <lock file path>` | Uses the lock file provided as part of the command option. Overrides any other setting for lock file |
-| `--lock-current-project-dependencies-only` | Locks only the current project's dependencies. It does not lock the dependencies of the referenced projects. While doing the restore, the current project and all the referenced projects' lock files are used to compute the dependencies. [Read more](#lock-current-project-dependencies-only-details)  | 
-| `--update-lock-file` | Updates lock file as part of restore if required. This is **not** same as `--recompute` option. [Read more](#update-lock-file-details) |
+| `--lock-current-project-dependencies-only` | Locks only the current project's dependencies. It does not lock the dependencies of the referenced projects. While doing the restore, the current project and all the referenced projects' lock files are used to compute the dependencies. [Read more](#--lock-current-project-dependencies-only-details)  | 
+| `--update-lock-file` | Updates lock file as part of restore if required. This is **not** same as `--recompute` option. [Read more](#--update-lock-file-details) |
 
 #### `--lock-current-project-dependencies-only` details
+Locks only the current project's dependencies. It does not lock the dependencies of the referenced projects. While doing the restore, the current project and all the referenced projects' lock files are used to compute the dependencies. 
+
+E.g.
+
+ProjectA depends on ProjectB depends on ProjectC each with the following dependencies:
+```
+ProjectA
+|--> Pkg-M 1.0.0 --> Pkg-Q 2.0.0
+|--> Pkg-N 1.0.0 --> Pkg-R 2.0.0
+
+|-- ProjectB
+    |--> Pkg-P 2.0.0 
+    |--> Pkg-Q 3.0.0
+
+    |-- ProjectC
+        |--> Pkg-R 4.0.0
+```
+
+
+This functionality can also be enabled by setting a MSBuild property `NuGetLockCurrentProjectDependeniesOnly` to `true` or by setting the ENV variable `NUGET_LOCK_CURRENT_PROJECT_DEPENDENCIES_ONLY`.
 
 #### `--update-lock-file` details
-Updates lock file as part of restore if required. This is **not** same as `--recompute` option. `--recompute` always forces re-computation of the package graph. This option, however, does not do so, if not required. But it will also not error out if the lock file is updated. Eg. `restore --update-lock-file` may not fetch the latest version for a floating package (due to NoOp). 
+Updates lock file as part of restore if required. This is **not** same as `--recompute` option. `--recompute` always forces re-computation of the package graph. This option, however, does not do so, if not required. But it will also not error out if the lock file is updated. Eg. `restore --update-lock-file` may not fetch the latest version for a floating package (due to NoOp). This functionality can also be enabled by setting a MSBuild property `NuGetUpdateLockFileOnRestore` to `true` or by setting the ENV variable `NUGET_UPDATE_LOCK_FILE_ON_RESTORE`
 
 # Future backlog
 This spec is only to solve the [repeatable build problems](#problem) through NuGet generated lock file. This does not solve the following requirements from the [[PackageReference enhancements]] document. These features will have their own specs published, in near future:
