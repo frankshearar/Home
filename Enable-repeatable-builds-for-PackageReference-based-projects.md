@@ -284,6 +284,6 @@ This spec is only to solve the [repeatable build problems](#problem) through NuG
 
 | # | Requirement | Issue | 
 |:--- |:-----------|:--------|
-| R2 | Developers would like to control the packages and their versions that are allowed to be used across the team/product | [6464](https://github.com/NuGet/Home/issues/6764) |
+| R2 | Centrally manage NuGet package versions for a solution or a repo | [6464](https://github.com/NuGet/Home/issues/6764) |
 | R3 | Developers would like to control dependency resolution behaviors |  [#5553](https://github.com/nuget/home/issues/5553) [#912](https://github.com/NuGet/Home/issues/912) |
 
