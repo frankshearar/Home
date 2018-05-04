@@ -154,7 +154,7 @@ Run the following command on the root of the repo that contains all the projects
 .
 .
 Created `packages.props` file that you can use to manage the package versions centrally at a repo or solution level. Learn more at https://aka.ms/nuget-centrally-manage-pkg-versions
-
+```
 #### I consume the same project in different solutions. How do I want to use the central package version management file in one and not the other?
 This will require the `PackageReference` nodes to have the version info but ignore it in the solution where central package version management file is used. This may be achieved by a MSBuild property `RetainPackageReferenceVersions`
 
@@ -200,6 +200,7 @@ In the above scenario:
 * Project4 will refer to only `Repo\packages.props`
 
 # Future backlog
+
 | # | Requirement | Issue | 
 |:--- |:-----------|:--------|
 | R3 | Developers would like to control dependency resolution behaviors |  [#5553](https://github.com/nuget/home/issues/5553) [#912](https://github.com/NuGet/Home/issues/912) |
