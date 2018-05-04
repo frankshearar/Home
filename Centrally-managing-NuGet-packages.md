@@ -199,5 +199,10 @@ In the above scenario:
 * Project3 will refer to only `Repo\foobar.packages.props`
 * Project4 will refer to only `Repo\packages.props`
 
+# Future backlog
+| # | Requirement | Issue | 
+|:--- |:-----------|:--------|
+| R3 | Developers would like to control dependency resolution behaviors |  [#5553](https://github.com/nuget/home/issues/5553) [#912](https://github.com/NuGet/Home/issues/912) |
 
-
+Additionally, users may want to lock the package dependencies at a solution or a repo level. 
+Lock file per project is enabled with **[PackageReference] Enable repeatable builds for PackageReference based projects [#5602](https://github.com/nuget/home/issues/5602)**. This is done per project as today NuGet restore and MSBuild works at a project level. In future, we may revisit the NuGet story to move away from per project resolution.
