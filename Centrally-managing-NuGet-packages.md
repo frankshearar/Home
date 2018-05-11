@@ -26,7 +26,7 @@ Content Governance requirements (P2)
 [PackageReference requirements summary](https://github.com/NuGet/Home/wiki/PackageReference-enhancements) | Epic issue [#6763](https://github.com/NuGet/Home/issues/6763)
 
 ## Who is the customer?
-Enterprise customers with huge code-base spanning 100s of projects. 
+Customers with huge code-base spanning 100s of projects. 
 
 ## Evidence
 * Developers need this and have worked their way around in multiple ways. Some define the package version as a variable and then define all the version variables in a central file to control this behavior. E.g.
@@ -38,7 +38,10 @@ Enterprise customers with huge code-base spanning 100s of projects.
 ## Solution
 
 ### Summary
-* Package Versions can be centrally managed in `packages.props` file located at the repo root.
+
+**Note:**  Assumption is that the central packages version management file (CPVMF) is a MSBuild file assuming MSBuild would provide free parsing logic (and other benefits) for the file. If not, it can be any format that NuGet can parse (including nuget.config). The exact format is TBD and is implementation detail. The rest of the doc assumes it to be a MSBuild props file. 
+ 
+* Package Versions can be centrally managed in `packages.props` file located at the solution or repo root.
 * Package references (`PackageReference`) managed at each project level without any version information.
 * Managing packages for the repo/projects:
   * Adding packages references not listed in `packages.props` will be an error by default. An option to update `packages.props` file as part of adding the package reference will be available.
@@ -48,8 +51,9 @@ Enterprise customers with huge code-base spanning 100s of projects.
   * NuGet `restore` action, by default, will always resolve the dependencies using the lock file.
     * It will check if a referenced package (`PackageReference` in the project file) is already present in the `packages.props` file as well as the `packages.lock,json` file. If not, it errors out.
     * It will check if the version specified in `packages.props` match with `packages.lock.json`. If not, it errors out.
-    * The lock file contains the integrity data (SHA) for each of the packages listed in it. Restore does a post step to validate the integrity of the packages. It errors out if the integrity check fails. This option to include integrity will be configurable using a MSBuild property.
+    * The lock file contains the integrity data (SHA) for each of the packages listed in it. Restore does a post step to validate the integrity of the packages. It errors out if the integrity check fails. This option to include integrity will be configurable using a MSBuild/NuGet property.
   * NuGet `restore -update-lock-file` action will be able to recompute dependencies and overwrite the lock file. A similar experience on VS will be available.
+  * NuGet install/update actions will modify the lock file if it modifies `packages.props` file.
 
 ### Details - Centrally managing package versions
 
@@ -62,14 +66,9 @@ In this example, packages like `Newtonsoft.Json` are set to exactly version `10.
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <!-- Implicit Package References -->
-    <Package Include="Microsoft.NETCore.App"    Version="[2.0.5]" />
-    <Package Include="NETStandard.Library"      Version="[1.6.1]" />
-
-    <Package Include="Microsoft.NET.Test.Sdk"   Version="[15.5.0]" />
-    <Package Include="MSTest.TestAdapter"       Version="[1.1.18]" />
-    <Package Include="MSTest.TestFramework"     Version="[1.1.18]" />
-    <Package Include="Newtonsoft.Json"          Version="[10.0.1]" />
+    <Package Include="MSTest.TestAdapter" Version="1.1.0" />
+    <Package Include="MSTest.TestFramework" Version="1.1.18" />
+    <Package Include="Newtonsoft.Json" Version="10.0.1" />
   </ItemGroup>
 </Project>
 ```
@@ -92,7 +91,7 @@ Each project still has a `PackageReference` but must not specify a version.  Thi
 
 **Implicit package**: Listing **Implicit packages** in the central packages version management (CPMVF) file is optional. If this is not provided, the corresponding lock files will not list implicit dependencies. If listed in the CPVMF, however, the same gets persisted as a locked dependency. 
 
-**Transitive dependencies**: One should not be listing the transitive dependencies either in the CPVMF or as `PackageReferece` for the projects. If listed in the CPVMF, the same version will be used in full package closure during restore and the same will be locked. If NuGet is unable to restore with the version mentioned in the CPVMF, it will error out.
+**Transitive dependencies**: One should not be listing the transitive dependencies either in the CPVMF or as `PackageReferece` for the projects. If listed in the CPVMF, the same version will be used in full package closure during restore and the same will be locked. 
 
 *Enforcement*
 
@@ -161,7 +160,7 @@ Successfully removed package version information from the central package versio
 | Property                            | Description |
 |-------------------------------------|-------------|
 | `CentralPackagesFile `  | The full path to the file containing your package versions.  Defaults to `packages.props` at the root of your repository. |
-| `LockFile` | The full path of the lock file applicable for a project. Defaults to `packages.lock.json` in the same folder as the `packages.prop` |
+| `LockFile` | The full path of the lock file applicable for a project. Defaults to `packages.lock.json` in the same folder as the `packages.prop`. If specified as `none`, no lock file will be created |
 
 *Examples*
 
@@ -181,7 +180,7 @@ Use a custom file name for your project that defines package versions.
 The functionality will be enabled if
 * There is `packages.props` file present in the recursive path for a project.
 * If the `CentralPackagesFile` MSBuild property exists for a project. 
-* Lock file feature is tied to the presence of a central package version management file. 
+* Lock file feature is tied to the presence of a central package version management file. It can be disabled using a property as mentioned in the previous section.
 
 #### How do I transform my existing projects to use this functionality?
 Existing projects will have versions in their project files. 
@@ -205,6 +204,9 @@ Created `packages.props` file that you can use to manage the package versions ce
 > dotnet nuget prune packagereferences
 ```
 
+#### How is lock file generated? When?
+Lock file is generated if CPVMF is present (and lock file is not disabled) using any command that modifies the CPVMF eg. install/update of packages or restore with `--update-lock-file` options. Lock file is always generated for the packages mentioned in the CPVMF.
+
 #### I consume the same project in different solutions. How do I want to use the central package version management file in one and not the other?
 This will require the `PackageReference` nodes to have the version info but ignore it in the solution where central package version management file is used. This may be achieved by a MSBuild property `RetainPackageReferenceVersions`
 
@@ -212,11 +214,6 @@ This will require the `PackageReference` nodes to have the version info but igno
 
 ### VS experience
 TBD.
-
-### Open
-* Package nodes cleanup in the CPVMF. Options:
-  * If a restore is run at the same folder level as the lock file, the clean up also happens. Otherwise edits to lock file are additive unless its update of an existing package version/metadat.
-  * Separate command to do the cleanup? (Do not feel good about this).
 
 ## FAQs
 
