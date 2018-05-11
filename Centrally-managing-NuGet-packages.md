@@ -205,7 +205,7 @@ Created `packages.props` file that you can use to manage the package versions ce
 ```
 
 #### How is lock file generated? When?
-Lock file is generated if CPVMF is present (and lock file is not disabled) using any command that modifies the CPVMF eg. install/update of packages or restore with `--update-lock-file` options. Lock file is always generated for the packages mentioned in the CPVMF.
+Lock file is generated if CPVMF is present (and lock file is not disabled) using any command that modifies the CPVMF eg. install/update of packages or restore with `--update-lock-file` option. Lock file is always generated for the packages mentioned in the CPVMF.
 
 #### I consume the same project in different solutions. How do I want to use the central package version management file in one and not the other?
 This will require the `PackageReference` nodes to have the version info but ignore it in the solution where central package version management file is used. This may be achieved by a MSBuild property `RetainPackageReferenceVersions`
