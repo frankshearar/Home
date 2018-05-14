@@ -5,7 +5,6 @@
 #### Reviewing
 * [[Package signing]]
 * [[Repository Signatures]]
-* [[Repository Signatures and Countersignatures Technical Specification]]
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
 * [Storing trusted repository](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-repository-signatures)
 * [NuGet Package Signing Client Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
@@ -15,6 +14,7 @@
 * [[Register package signing certificates]]
 * [[2 Factor Auth for NuGet.org sign in]]
 * [[Author Package Signing]]
+* [[Repository Signatures and Countersignatures Technical Specification]]
 * [NuGet Verify Command](https://github.com/NuGet/Home/wiki/NuGet-Verify-Command)
 * [NuGet Sign Command](https://github.com/NuGet/Home/wiki/NuGet-Sign-Command)
 * [[Organizations on NuGet.org]]
