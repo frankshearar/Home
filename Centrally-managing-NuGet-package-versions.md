@@ -1,4 +1,12 @@
-### Details - Centrally managing package versions
+* Status: Incubation
+* Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
+
+### Requirements
+Refer to the spec:[[Centrally managing NuGet packages]] for the list of requirements and summary of the solution. This spec details out the solution for managing package versions, centrally at a solution (or repo) level.
+
+*For lock file details, refer to the spec: [[Enable repeatable package restore using lock file]]
+
+### Solution Details
 
 To get started, you will need to create an MSBuild props file at the root of the solution/repo named `packages.props` that declares `Package` items.
 
