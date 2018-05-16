@@ -4,7 +4,7 @@
 ### Requirements
 Refer to the spec:[[Centrally managing NuGet packages]] for the list of requirements and summary of the solution. This spec details out the solution for enabling repeatable package restore (build) using a lock file.
 
-*For central management of nuget package versions, refer to the spec: [[Centrally managing NuGet package versions]]
+*For central management of nuget package versions, refer to the spec: [[Centrally managing NuGet package versions]]*
 
 ### Solution Details
 * If a central package version management file (default `packages.props` file is present, NuGet will not just use this file for manage package versions, but it will also create a lock file - `packages.lock.json` in the same folder as the central package version management file. This file will have the full package closure - direct and transitive across the projects in a repo.
