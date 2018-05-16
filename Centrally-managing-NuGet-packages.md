@@ -29,12 +29,21 @@ Content Governance requirements (P2)
 Customers with huge code-base spanning 100s of projects. 
 
 ## Evidence
+
+*Central package version management*
 * Developers need this and have worked their way around in multiple ways. Some define the package version as a variable and then define all the version variables in a central file to control this behavior. E.g.
   ```
   <PackageReference Include="My.Sample.Lib" Version="$(MySampleLibVersion)" />
   ```
 * MSBuild team has built an SDK project to implement this behavior: [Microsoft.Build.CentralPackageVersions](https://github.com/Microsoft/MSBuildSdks/tree/master/src/CentralPackageVersions#microsoftbuildcentralpackageversions). This spec has taken inspiration from this.
  
+*Repeatable builds*
+We have had multiple internal partners reaching out to us from VS Team Services, Bing, Windows, Azure for this feature. Customers and community members have also asked for this feature. Refer to the following GitHub issues and comments on them:
+* Lineups #2572 <https://github.com/NuGet/Home/issues/2572> 
+* Why must resolve to Lowest Version? Allow users to determine package resolution strategy during package restore #5553 <https://github.com/NuGet/Home/issues/5553> 
+* Twitter thread:
+  * https://twitter.com/stimms/status/885268856960196612
+
 ## Solution
 
 ### Summary
