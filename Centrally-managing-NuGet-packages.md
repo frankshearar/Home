@@ -16,8 +16,6 @@ As Noah, a developer who uses NuGet in an enterprise,
 Extensibility requirements:
 * I am able to define a different set of packages and versions for a specific project in the repo that differs from the centrally managed packages+versions.
   * Correspondingly, I am able to lock down a different package graph for a specific project.
-* (?) I am able to define package versions based on conditions.
-  * Correspondingly, I am able to lock down different graphs based on these conditions.
 
 Content Governance requirements (P2)
 * I am able to scan the packages (full closure) used in the repo to flag non-compliance, licensing and vulnerabilities.
@@ -39,8 +37,8 @@ Customers with huge code-base spanning 100s of projects.
  
 *Repeatable builds*
 We have had multiple internal partners reaching out to us from VS Team Services, Bing, Windows, Azure for this feature. Customers and community members have also asked for this feature. Refer to the following GitHub issues and comments on them:
-* Lineups #2572 <https://github.com/NuGet/Home/issues/2572> 
-* Why must resolve to Lowest Version? Allow users to determine package resolution strategy during package restore #5553 <https://github.com/NuGet/Home/issues/5553> 
+* Lineups [#2572](https://github.com/NuGet/Home/issues/2572) 
+* Why must resolve to Lowest Version? Allow users to determine package resolution strategy during package restore [#5553](https://github.com/NuGet/Home/issues/5553) 
 * Twitter thread:
   * https://twitter.com/stimms/status/885268856960196612
 
@@ -53,9 +51,9 @@ We have had multiple internal partners reaching out to us from VS Team Services,
 * Package Versions can be centrally managed in `packages.props` file located at the solution or repo root.
 * Package references (`PackageReference`) managed at each project level without any version information.
 * Managing packages for the repo/projects:
-  * Adding packages references not listed in `packages.props` will be an error by default. An option to update `packages.props` file as part of adding the package reference will be available.
+  * Adding packages references not listed in `packages.props` will add the package as reference in the project. In addition it will add the package details including version info in the CPVMF.
   * Updating package reference per project will be an error. An option to update in the `packages.props` file will be available.
-  * Removing/uninstalling package references per project is allowed. There will be an option to do the same in the `packages.props` file.
+  * Removing/uninstalling package references per project is allowed. 
 * All the referenced packages and their transitive dependencies are locked in a lock file - `packages.lock.json` present at the level (same folder) as the `packages.props` file.
   * NuGet `restore` action, by default, will always resolve the dependencies using the lock file.
     * It will check if a referenced package (`PackageReference` in the project file) is already present in the `packages.props` file as well as the `packages.lock,json` file. If not, it errors out.
