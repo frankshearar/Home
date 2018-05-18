@@ -141,7 +141,7 @@ Once the feature is enabled,
 ### Project vs. Central lock file 
 
 * If the packages are managed centrally at a solution/repo level, then the lock file will be also generated centrally at the same level as the CPVMF - `packages.props` file. 
-* You can also have CPVMF applicable for most projects in a solution/repo but manage versions separately for a few projects (eg. test projects, legacy projects where the versions requirements do not match with the central version required for most of the projects). In such a case the lock file will also be generated per `packages.props` file i.e. a central lock file for the projects that abide by the CPVMF and separate lock files for the rest few projects.
+* You can also have CPVMF applicable for most projects in a solution/repo [but manage versions separately for a few projects](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-package-versions#how-do-i-have-a-given-set-of-package-versions-for-all-the-projects-but-a-different-set-for-a-specific-project) (eg. test projects, legacy projects where the versions requirements do not match with the central version required for most of the projects). In such a case the lock file will also be generated per `packages.props` file i.e. a central lock file for the projects that abide by the CPVMF and separate lock files for the rest few projects.
 
 #### Nuances - per project lock file
 
@@ -152,16 +152,3 @@ Once the feature is enabled,
 
 ### Visual Studio Experience
 
-Details
-* If a central package version management file (default `packages.props` file is present, NuGet will not just use this file for manage package versions, but it will also create a lock file - `packages.lock.json` in the same folder as the central package version management file. This file will have the full package closure - direct and transitive across the projects in a repo.
-* If you `restore` in a project's context, NuGet will refer the `packages.lock.json` to get the package closure and restore those packages.
-* If there is any of the following discrepancies while resolving package dependencies for a project, `restore` will error out.
-  * `PackageReference` in project file does not have a corresponding entry in the `packages.lock.json` and/or `packages.props`
-  * Version mismatch between `packages.lock.json` and `packages.props`
-* In order to update the lock file with new restore graph, you can run `restore` with option `update-lock-file`:
-  ```
-  > dotnet restore --update-lock-file
-  ```
-* Specifying a `<Package>` node in the `packages.props` does not mean the lock file will also contain this package information. The lock file is updated on a package reference addition to a project. 
-
-*packages.lock.json*
