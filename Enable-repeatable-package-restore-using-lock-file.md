@@ -140,6 +140,14 @@ Once the feature is enabled,
 
 ### Project vs. Central lock file 
 
+* If the packages are managed centrally at a solution/repo level, then the lock file will be also generated centrally at the same level as the CPVMF - `packages.props` file. 
+* You can also have CPVMF applicable for most projects in a solution/repo but manage versions separately for a few projects (eg. test projects, legacy projects where the versions requirements do not match with the central version required for most of the projects). In such a case the lock file will also be generated per `packages.props` file i.e. a central lock file for the projects that abide by the CPVMF and separate lock files for the rest few projects.
+
+#### Nuances - per project lock file
+
+#### Nuances - central lock file
+
+
 ### Extensibility (Not MVP)
 
 ### Visual Studio Experience
