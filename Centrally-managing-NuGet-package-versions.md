@@ -160,12 +160,7 @@ When this property is set,
 * `restore` will just **ignore** the version info in the `PackageReference` nodes in the project files. [Open] Should it warn?
 * The `dotnet nuget consolidate` command will put the same version info in the `PackageReference` nodes in all the project files in addition to putting the version info in the CPVMF.
 
-### VS experience
-TBD.
-
-## FAQs
-
-### How do I have a given set of package versions for all the projects but a different set for a specific package?
+### How do I have a given set of package versions for all the projects but a different set for a specific project?
 To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the global/repo-level `packages.props` file. *For this case, the lock file `packages.lock.json` will be generated at the project root directory.*
 
 **[Not MVP]** You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file at the project root directory that gets evaluated for a given project.
@@ -196,5 +191,9 @@ In the above scenario:
 * Project3 will refer to only `Repo\foobar.packages.props`
 * Project4 will refer to only `Repo\packages.props`
 
-## Can I specify NuGet sources in the packages.props file?
+### Can I specify NuGet sources in the packages.props file?
 This is not part of the spec/feature but specifying sources in the packages.props file seems like a good idea.
+
+
+## VS experience
+TBD.
