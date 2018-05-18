@@ -4,7 +4,7 @@
 ### Requirements
 Refer to the spec:[[Centrally managing NuGet packages]] for the list of requirements and summary of the solution. This spec details out the solution for managing package versions, centrally at a solution (or repo) level.
 
-*For lock file details, refer to the spec: [[Enable repeatable package restore using lock file]]*
+*For lock file details, refer to the spec: [[Enable repeatable package restore using lock file]]. This spec does not discuss anything about the lock file*
 
 ### Solution Details
 
@@ -138,18 +138,22 @@ To create the consolidated package version management file packages.props at <pa
 ```
 
 #### How does `restore` work?
-* Project restore - 
+* Project restore - When a project is restored, it restores as it does today. It looks at the CPVMF to get the package versions. If a package is not listed in the CPVMF but is referenced in the project, it errors out.
+* Solution restore - Same as today, except when it finds a more packages in CPVMF than in the project, it prunes/consolidates CPVMF i.e. removes the extra packages stated in CPVMF but not referenced in any of the projects.
 
 #### Where are `PrivateAssets`/`ExcludeAssets`/`IncludeAssets` defined?
 These are per project properties and should be defined in the `PackageReference` nodes in the project file.
 
 #### How does restore NoOp work i.e. when does NuGet try to actually restore or choose not to restore?
-The current logic is used except that the package versions are referenced from the CPVMF. In future, we can look to optimize the NoOp restore but is `Out of Scope` for this spec.
+The current logic is used except that the package versions are referenced from the CPVMF. In future, we can look to optimize the NoOp restore with lock file but is `Out of Scope` for this spec.
 
-#### I consume the same project in different solutions. How do I want to use the central package version management file in one and not the other?
-This will require the `PackageReference` nodes to have the version info but ignore it in the solution where central package version management file is used. This may be achieved by a MSBuild property `RetainPackageReferenceVersions`
+#### **[Not MVP]** I consume the same project in different solutions. How do I want to use the central package version management file in one and not the other?
+This will require the `PackageReference` nodes to have the version info but ignore it in the solution where central package version management file is used. This may be achieved by a MSBuild property `RetainPackageReferenceVersions`. 
 
-**Not MVP** scenario.
+When this property is set,
+* `dotnet add package` will add the package version info both in the CPVMF as well as in the project files
+* `restore` will just **ignore** the version info in the `PackageReference` nodes in the project files. [Open] Should it warn?
+* The `dotnet nuget consolidate` command will put the same version info in the `PackageReference` nodes in all the project files in addition to putting the version info in the CPVMF.
 
 ### VS experience
 TBD.
@@ -157,9 +161,9 @@ TBD.
 ## FAQs
 
 ### How do I have a given set of package versions for all the projects but a different set for a specific package?
-To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the global/repo-level `packages.props` file. For this case, the lock file `packages.lock.json` will be generated at the project root directory.
+To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the global/repo-level `packages.props` file. *For this case, the lock file `packages.lock.json` will be generated at the project root directory.*
 
-You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file at the project root directory that gets evaluated for a given project.
+**[Not MVP]** You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file at the project root directory that gets evaluated for a given project.
 
 ### What happens when there are multiple `packages.props` file available in a project's context?
 In order to remove any confusion, the `packages.props` or the `CentralPackagesFile` specification nearest to the project will override all others. At a time only one `packages.props` file is evaluated for a given project.
@@ -186,3 +190,6 @@ In the above scenario:
 * Project2 will refer to only `Repo\Solution1\Project2\packages.props`
 * Project3 will refer to only `Repo\foobar.packages.props`
 * Project4 will refer to only `Repo\packages.props`
+
+## Can I specify NuGet sources in the packages.props file?
+This is not part of the spec/feature but specifying sources in the packages.props file seems like a good idea.
