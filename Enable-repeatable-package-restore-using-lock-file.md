@@ -121,8 +121,16 @@ We need to make sure of the following properties for a lock file:
 ### Lock file working 
 
 Once the feature is enabled,
-* `Install `- action will update the lock file, if required.
-* `Uninstall `- action will update the lock file, if required.
+* `Install `- action will update the lock file, if required. Eg. the following command will not just add `PackageReference` node in the project file (and CPVMF, if versions are managed centrally) but also update the lock file:
+```
+> dotnet add package My.Sample.Lib
+```
+
+* `Uninstall `- action will update the lock file, if required. Eg. the following command will not just remove `PackageReference` node in the project file (and CPVMF, if versions are managed centrally) but also update the lock file:
+```
+> dotnet remove package My.Sample.Lib
+```
+
 * `Restore `- action will use the lock file to get and restore the full closure of the packages if the lock file is **not out of sync**. 
   * If the lock file is out of sync, restore command will update the lock file with the latest resolved closure of packages. It will do so with a warning: 
   ```
