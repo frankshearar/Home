@@ -62,9 +62,14 @@ ProjectA> dotnet add package newtonsoft.json --version 11.0.1 --update-version-m
 Successfully update package 'Newtonsoft.Json' version from 10.0.2 to 11.0.1' in '<path>\packages.props'.
 Successfully added package 'Newtonsoft.Json' to ProjectA. 
 
-//Removing a package reference in a project
+//Removing a package reference in a project - Does not remove from CPVMF
 ProjectA> dotnet remove package netwonsoft.json
 Successfully removed package 'Newtonsoft.Json' from ProjectA. 
+
+//Removing a package from the solution/Repo - removes from CPVMF as well as from all the projects
+SolutionDir> dotnet remove package netwonsoft.json
+Successfully removed package 'Newtonsoft.Json' from 'packages.props'. 
+Successfully removed package 'Newtonsoft.Json' from ProjectA, ProjectB and ProjectD.
 
 // Consolidate packages in the CPVMF - removing packages that are not referenced in the projects
 ProjectA> dotnet nuget consolidate [path to CPVMF or a solution]
