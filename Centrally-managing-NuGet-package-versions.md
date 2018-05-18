@@ -118,6 +118,7 @@ The functionality will be enabled if
 #### How do I transform my existing projects to use this functionality?
 Existing projects will have versions in their project files. You can run the consolidate command to create the CPVMF and remove the version information from the project files.
 
+```
 // Consolidate existing PackageReference with versions in Project files into a `packages.props` file
 SolutionDir> dotnet nuget consolidate --dry-run 
 No 'packages.props' file found. Running consolidate in dry run mode...
@@ -134,7 +135,6 @@ My.Utilities.Package [2.0, 4.1.0]
 .
 .
 To create the consolidated package version management file packages.props at <path> and to remove the version information from the project files, run 'dotnet nuget consolidate [path to packages.props]'
-
 ```
 
 #### How does `restore` work?
