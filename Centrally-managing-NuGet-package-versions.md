@@ -10,7 +10,7 @@ Refer to the spec:[[Centrally managing NuGet packages]] for the list of requirem
 
 To get started, you will need to create an MSBuild props file at the root of the solution/repo named `packages.props` that declares `Package` items.
 
-In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  All projects that reference this package will be locked to that version. The `PackageReference` in the projects would not specify the version information.
+In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  The `PackageReference` in the projects would not specify the version information. All projects that reference this package will refer to version `10.0.1` for `Newtonsoft.json`.
 
 *Packages.props*
 ```xml
@@ -37,53 +37,65 @@ In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  A
   </ItemGroup>
 </Project>
 ```
-Each project still has a `PackageReference` but must not specify a version.  This ensures that the correct packages are referenced for each project.
 
-
-**Implicit package**: Listing **Implicit packages** in the central packages version management (CPMVF) file is optional. If this is not provided, the corresponding lock files will not list implicit dependencies. If listed in the CPVMF, however, the same gets persisted as a locked dependency. 
+**Implicit package**: **Implicit packages** are not listed in the central packages version management (CPMVF) file.
 
 **Transitive dependencies**: One should not be listing the transitive dependencies either in the CPVMF or as `PackageReferece` for the projects. If listed in the CPVMF, the same version will be used in full package closure during restore and the same will be locked. 
 
-*Enforcement*
+*Commands*
 
-```csharp
+```bash
 // package exists in packages.props
 ProjectA> dotnet add package netwonsoft.json 
 Successfully added package 'Newtonsoft.Json' to ProjectA. 
 
 // package does not exist in packages.props
 ProjectA> dotnet add package netwonsoft.json 
-NU1xxx: Cannot add package 'Newtonsoft.Json' to ProjectA as it is not specified in the central package version management 
- file '<path>\packages.props'. Use the command 'dotnet add package newtonsoft.json --version <version number> --update-version-management-file' to add the package reference to the project and update the central package version management file '<path>\packages.props', together.
-
-ProjectA> dotnet add package newtonsoft.json --version 10.0.3 --update-version-management-file
-Successfully added package 'Newtonsoft.Json version 10.0.3' '<path>\packages.props'.
+Successfully added package 'Newtonsoft.Json 11.0.1' in '<path>\packages.props'.
 Successfully added package 'Newtonsoft.Json' to ProjectA. 
 
+// package exists in packages.props. Trying to update to a new version
 ProjectA> dotnet add package netwonsoft.json --version 11.0.1
 NU1xxx: You cannot specify the package version while adding a package reference. Package version version information is managed in the central package version management file '<path>\packages.props'. Use the command 'dotnet add package newtonsoft.json --version <version number> --update-version-management-file' to update the package version in the central package version management file '<path>\packages.props'.
+
+ProjectA> dotnet add package newtonsoft.json --version 11.0.1 --update-version-management-file
+Successfully update package 'Newtonsoft.Json' version from 10.0.2 to 11.0.1' in '<path>\packages.props'.
+Successfully added package 'Newtonsoft.Json' to ProjectA. 
 
 //Removing a package reference in a project
 ProjectA> dotnet remove package netwonsoft.json
 Successfully removed package 'Newtonsoft.Json' from ProjectA. 
 
-//Removing a package reference and the version info from packages.props
-ProjectA> dotnet remove package netwonsoft.json --update-version-management-file
-Successfully removed package 'Newtonsoft.Json' from ProjectA. 
-Successfully removed package version information from the central package version management file '<path>\packages.props'.
+// Consolidate packages in the CPVMF - removing packages that are not referenced in the projects
+ProjectA> dotnet nuget consolidate [path to CPVMF or a solution]
+Consolidating packages in '<path>\packages.props'...
+Added 0 packages
+Removed 3 packages that were not referenced in any of the projects.
 
-//Removing a package version info from packages.props when the package reference does not exist
-ProjectA> dotnet remove package netwonsoft.json --update-version-management-file
-Package 'Newtonsoft.Json' is not referenced in ProjectA. 
-Successfully removed package version information from the central package version management file '<path>\packages.props'.
+// Consolidate existing PackageReference with versions in Project files into a `packages.props` file
+SolutionDir> dotnet nuget consolidate --dry-run 
+No 'packages.props' file found. Running consolidate in dry run mode...
+Packages referenced in the projects:
+NewtonSoft.Json 11.0.3
+   ProjectA references 10.0.2
+   ProjectB references 11.0.3
+My.Sample.Lib 2.1.0
+   ProjectA references 2.1.0
+   ProjectC references 1.*
+My.Utilities.Package [2.0, 4.1.0]
+   ProjectB references [2.0, 3.1.0]
+   ProjectD references 4.1.0
+.
+.
+To create the consolidated package version management file packages.props at <path> and to remove the version information from the project files, run 'dotnet nuget consolidate [path to packages.props]'
+
 ```
 
-### Extensibility
+### **[Not MVP]** Extensibility 
 
 | Property                            | Description |
 |-------------------------------------|-------------|
 | `CentralPackagesFile `  | The full path to the file containing your package versions.  Defaults to `packages.props` at the root of your repository. |
-| `LockFile` | The full path of the lock file applicable for a project. Defaults to `packages.lock.json` in the same folder as the `packages.prop`. If specified as `none`, no lock file will be created |
 
 *Examples*
 
@@ -92,7 +104,6 @@ Use a custom file name for your project that defines package versions.
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <CentralPackagesFile>$(MSBuildThisFileDirectory)MyPackageVersions.props</CentralPackagesFile>
-    <LockFile>$(MSBuildThisFileDirectory)MyPackagesLock.lock.json</CentralPackagesFile>
   </PropertyGroup>
 </Project>
 ```
@@ -103,38 +114,34 @@ Use a custom file name for your project that defines package versions.
 The functionality will be enabled if
 * There is `packages.props` file present in the recursive path for a project.
 * If the `CentralPackagesFile` MSBuild property exists for a project. 
-* Lock file feature is tied to the presence of a central package version management file. It can be disabled using a property as mentioned in the previous section.
 
 #### How do I transform my existing projects to use this functionality?
-Existing projects will have versions in their project files. 
+Existing projects will have versions in their project files. You can run the consolidate command to create the CPVMF and remove the version information from the project files.
 
-*Generate a starting `packages.props` file*
-
-Run the following command on the root of the repo that contains all the projects that you want to manage using the central package management file
-
-```
-// create a central package management file for all projects under the current directory
-> dotnet restore --generate-version-management-file
-<Restore output>
+// Consolidate existing PackageReference with versions in Project files into a `packages.props` file
+SolutionDir> dotnet nuget consolidate --dry-run 
+No 'packages.props' file found. Running consolidate in dry run mode...
+Packages referenced in the projects:
+NewtonSoft.Json 11.0.3
+   ProjectA references 10.0.2
+   ProjectB references 11.0.3
+My.Sample.Lib 2.1.0
+   ProjectA references 2.1.0
+   ProjectC references 1.*
+My.Utilities.Package [2.0, 4.1.0]
+   ProjectB references [2.0, 3.1.0]
+   ProjectD references 4.1.0
 .
 .
-Created `packages.props` file that you can use to manage the package versions centrally at a repo or solution level. Learn more at https://aka.ms/nuget-centrally-manage-pkg-versions
+To create the consolidated package version management file packages.props at <path> and to remove the version information from the project files, run 'dotnet nuget consolidate [path to packages.props]'
 
-// Check for issues in pruneing PackageReference  to remove the version attributes from projects under the current directory
-> dotnet nuget prune packagereferences --dry-run
-
-// Prune PackageReference  to remove the version attributes from projects under the current directory
-> dotnet nuget prune packagereferences
 ```
-
-#### How is lock file generated? When?
-Lock file is generated if CPVMF is present (and lock file is not disabled) using any command that modifies the CPVMF eg. install/update of packages or restore with `--update-lock-file` option. Lock file is always generated for the packages mentioned in the CPVMF.
 
 #### How does `restore` work?
-A normal restore on a project just looks at the lock file for the full closure and generates the assets file (`obj/project.assets.json`) for the project based on the `PackageReference`s in the project. It does not recompute the dependencies or tries to get get the full closure every time. For a project with other project references, it gets all the `PackageReference`s across the full project reference closure and generates the assets file based on the closure in the lock file.
+* Project restore - 
 
 #### Where are `PrivateAssets`/`ExcludeAssets`/`IncludeAssets` defined?
-These can be defined in the CPVMF but overridden in the project file. 
+These are per project properties and should be defined in the `PackageReference` nodes in the project file.
 
 #### How does restore NoOp work i.e. when does NuGet try to actually restore or choose not to restore?
 The current logic is used except that the package versions are referenced from the CPVMF. In future, we can look to optimize the NoOp restore but is `Out of Scope` for this spec.
