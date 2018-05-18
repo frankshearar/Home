@@ -63,6 +63,7 @@ So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that ma
 
 ## Solution - Summary
 * A lock file has the package dependency graph for the project/solution/repo that includes both the direct as well as transitive dependencies.
+* The lock file should be checked into the source repository.
 * Lock files will used when the property `RestoreWithLockFile` is set in the context of the project.
 * Lock file will be updated when a package is added or updated.
 * NuGet will use a lock file to `restore` packages. 
@@ -77,9 +78,57 @@ So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that ma
 
 ### Bootstrapping/Enabling the lock file
 
+To make use of the lock file to lock all the package dependencies for a project, the following MSBuild property needs to be set:
+
+`RestorePackagesWithLockFile` to `true`
+
+If this property is not set - irrespective of whether lock file is present or not, lock file will not be used for `restore`. A warning will be raised by NuGet for this scenario:
+```
+NU1xxx: <TBD text>
+```
+
+The default name of the lock file will be `packages.lock.json`
+
 ### Lock file format and details captured in it
 
+We need to make sure of the following properties for a lock file:
+* The lock file format should be such that it is:
+  * Concise
+  * Human readable
+  * Easy to diff
+  * Performant - parsing and processing
+* Perception - The lock file should not be mistaken for a MSBuild props file that users can modify and check in.
+* The integrity of the package SHA512 or equivalent should be also persisted along with the lock file. 
+  * (Not MVP) There should be an option to opt out of this. *Why will this be required?*
+
+*Sample lock file - `packages.lock.json`*
+```
+{	
+  "version": 1.0,	
+  "metadata1":"value1",
+  ...other metadata fields...
+  "dependencies": {	
+    "netcoreapp2.0": {	
+      "Contoso.Base": {	
+        "type": "direct",	
+        "requested": "3.0.0",	
+        "resolved": "3.0.0",
+        "integrity":"SHA512-#fVXsnMP2Wq84VA533zj0a/Et+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+HIvprVKs+QOihnkbqod=="		
+      }	
+  ...	
+```
+
 ### Lock file working 
+
+Once the feature is enabled,
+* `Install `- action will update the lock file, if required.
+* `Uninstall `- action will update the lock file, if required.
+* `Restore `- action will use the lock file to get and restore the full closure of the packages if the lock file is **not out of sync**. 
+  * If the lock file is out of sync, restore command will update the lock file with the latest resolved closure of packages. It will do so with a warning: 
+  ```
+  NU1xxx: <TBD text>
+  ```
+  * There would be an option to control the above restore behavior. Refer to the [Extensibility](#extensibility-not-mvp) section for details.
 
 ### Project vs. Central lock file 
 
@@ -100,18 +149,3 @@ Details
 * Specifying a `<Package>` node in the `packages.props` does not mean the lock file will also contain this package information. The lock file is updated on a package reference addition to a project. 
 
 *packages.lock.json*
-```
-{	
-  "version": 1.0,	
-  "metadata1":"value1",
-  ...other metadata fields...
-  "dependencies": {	
-    "netcoreapp2.0": {	
-      "Contoso.Base": {	
-        "type": "direct",	
-        "requested": "3.0.0",	
-        "resolved": "3.0.0",
-        "integrity":"SHA512-#fVXsnMP2Wq84VA533zj0a/Et+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+HIvprVKs+QOihnkbqod=="		
-      }	
-  ...	
-```
