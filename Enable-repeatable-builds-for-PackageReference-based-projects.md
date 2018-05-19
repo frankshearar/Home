@@ -1,4 +1,12 @@
-Status: **Incubation**
+Status: 
+# Obsolete
+
+## Latest version: [[Enable repeatable package restore using lock file]]
+
+
+
+------
+
 
 # Issue
 | # | Requirement | Issue | 
