@@ -175,8 +175,7 @@ Once the feature is enabled,
 | `UpdateLockFileOnRestore` | **`warn`** | Default option - `restore` will update but warn if lock file is out of sync. |
 || `allow`| `restore` will update the lock file if it is out of sync but will not warn. |
 || `deny` | `restore` will fail if the lock file is out of sync. Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
-| `NuGetLockFilePath` **(Not MVP req.)**| Path to lock file | Path to lock file if you want to rename or change the location of the lock file. |
-
+| `NuGetLockFilePath` | `<PathToLockFile>` | ***[Not MVP]*** Path to lock file if you want to rename or change the location of the lock file. |
 
 ### Visual Studio Experience
 
