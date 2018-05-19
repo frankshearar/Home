@@ -122,14 +122,14 @@ We need to make sure of the following properties for a lock file:
 
 Once the feature is enabled,
 * `Install `- action will update the lock file, if required. Eg. the following command will not just add `PackageReference` node in the project file (and CPVMF, if versions are managed centrally) but also update the lock file:
-```
-> dotnet add package My.Sample.Lib
-```
+  ```
+  > dotnet add package My.Sample.Lib
+  ```
 
 * `Uninstall `- action will update the lock file, if required. Eg. the following command will not just remove `PackageReference` node in the project file (and CPVMF, if versions are managed centrally) but also update the lock file:
-```
-> dotnet remove package My.Sample.Lib
-```
+  ```
+  > dotnet remove package My.Sample.Lib
+  ```
 
 * `Restore `- action will use the lock file to get and restore the full closure of the packages if the lock file is **not out of sync**. 
   * If the lock file is out of sync, restore command will update the lock file with the latest resolved closure of packages. It will do so with a warning: 
@@ -147,18 +147,25 @@ Once the feature is enabled,
 #### Nuances - per project lock file
 * Per project lock file can have lot of duplicate entries if you are consuming the same packages from other projects in your solution/repo.
 * There could be different versions of the same package listed in different projects even if a project depends on another project. Eg. ProjectA references Project B with following package dependencies:
-```
-ProjectA
-|-- Pkg-Q 2.0.0
-|-- ProjectB
-    |-- Pkg-Q 3.0.0
-```
+  ```
+  ProjectA
+  |-- Pkg-Q 2.0.0
+  |-- ProjectB
+      |-- Pkg-Q 3.0.0
+  ```
 
-The lock file for `ProjectA` will list `Pkg-Q 2.0.0` while lock file for `ProjectB` will list `Pkg-Q 3.0.0`
+  The lock file for `ProjectA` will list `Pkg-Q 2.0.0` while lock file for `ProjectB` will list `Pkg-Q 3.0.0`
  
+* When you have a common project that's a dependency of multiple projects in the repo, you will be required to checkin/commit multiple lock files corresponding to each of the projects that dependent project in addition to the lock file of the common project.
+
+  E.g. In Project `A->B->C->D->...->X` dependency tree, if you change the `PackageReference` for project `X`, the lock file of not just project `X` changes but when you build the solution, lock files of all the projects right from `A` to `X` will change requiring you to checkin/commit multiple files some of which you never worked on. For these scenarios managing dependencies and lock file at central solution/repo level helps as you have to deal with just one lock file change (+ CPVMF `packages.props` file change). 
 
 #### Nuances - central lock file
+* Whenever you manage package versions centrally at a solution/repo level, you get a central lock file for all your projects.
+* The lock file lists all the packages mentioned in the CPVMF and not the packages referenced in each of your projects. If you run `restore` centrally i.e. at a solution or a repo folder that has the CPVMF, then the unused packages (packages not referenced by any projects) are garbage collected and removed from the CPVMF and hence the lock file. However there are chances of CPVMF listing more packages than referenced in all the projects under the solution/repo.
+* The lock file for the whole solution and not for individual projects. So when you add/remove packages from individual projects that does not impact CPVMF, then this change is not reflected in the lock file. 
 
+**Note**: Package restores would be repeatable irrespective of whether you use per project lock file or a central solution/repo level lock file.
 
 ### Extensibility (Not MVP)
 
