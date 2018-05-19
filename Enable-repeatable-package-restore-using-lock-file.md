@@ -167,9 +167,17 @@ Once the feature is enabled,
 
 **Note**: Package restores would be repeatable irrespective of whether you use per project lock file or a central solution/repo level lock file.
 
-### Extensibility
+### Extensibility MSBuild options
 
+| Option | Values | Description |
+|:--- |:--- |:--- |
+| `RestorePackagesWithLockFile` | `true`\| **`false`** | Enables lock file - `packages.lock.json` usage with restore. Default is `false` |
+| `UpdateLockFileOnRestore` | **`warn`** | Default option - `restore` will update but warn if lock file is out of sync. |
+|| `allow`| `restore` will update the lock file if it is out of sync but will not warn. |
+|| `deny` | `restore` will fail if the lock file is out of sync. Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
+| `NuGetLockFilePath` **(Not MVP req.)**| Path to lock file | Path to lock file if you want to rename or change the location of the lock file. |
 
 
 ### Visual Studio Experience
+
 
