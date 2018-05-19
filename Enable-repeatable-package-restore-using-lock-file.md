@@ -167,7 +167,9 @@ Once the feature is enabled,
 
 **Note**: Package restores would be repeatable irrespective of whether you use per project lock file or a central solution/repo level lock file.
 
-### Extensibility (Not MVP)
+### Extensibility
+
+
 
 ### Visual Studio Experience
 
