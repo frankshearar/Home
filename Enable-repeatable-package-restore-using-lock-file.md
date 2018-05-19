@@ -145,6 +145,17 @@ Once the feature is enabled,
   * In this case the lock file will also be generated per `packages.props` file i.e. a central lock file for the projects that abide by the CPVMF and separate lock files for the rest few projects.
 
 #### Nuances - per project lock file
+* Per project lock file can have lot of duplicate entries if you are consuming the same packages from other projects in your solution/repo.
+* There could be different versions of the same package listed in different projects even if a project depends on another project. Eg. ProjectA references Project B with following package dependencies:
+```
+ProjectA
+|-- Pkg-Q 2.0.0
+|-- ProjectB
+    |-- Pkg-Q 3.0.0
+```
+
+The lock file for `ProjectA` will list `Pkg-Q 2.0.0` while lock file for `ProjectB` will list `Pkg-Q 3.0.0`
+ 
 
 #### Nuances - central lock file
 
