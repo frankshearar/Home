@@ -156,7 +156,7 @@ Once the feature is enabled,
 
   The lock file for `ProjectA` will list `Pkg-Q 2.0.0` while lock file for `ProjectB` will list `Pkg-Q 3.0.0`
  
-* When you have a common project that's a dependency of multiple projects in the repo, you will be required to checkin/commit multiple lock files corresponding to each of the projects that dependent project in addition to the lock file of the common project.
+* When you have a common project that's a dependency of multiple projects in the repo, you will be required to checkin/commit multiple lock files corresponding to each of the dependent projects in addition to the lock file of the common project.
 
   E.g. In Project `A->B->C->D->...->X` dependency tree, if you change the `PackageReference` for project `X`, the lock file of not just project `X` changes but when you build the solution, lock files of all the projects right from `A` to `X` will change requiring you to checkin/commit multiple files some of which you never worked on. For these scenarios managing dependencies and lock file at central solution/repo level helps as you have to deal with just one lock file change (+ CPVMF `packages.props` file change). 
 
