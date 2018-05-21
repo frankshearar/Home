@@ -95,24 +95,6 @@ My.Utilities.Package [2.0, 4.1.0]
 To create the consolidated package version management file packages.props at <path> and to remove the version information from the project files, run 'dotnet nuget consolidate [path to packages.props]'
 
 ```
-
-### **[Not MVP]** Extensibility 
-
-| Property                            | Description |
-|-------------------------------------|-------------|
-| `CentralPackagesFile `  | The full path to the file containing your package versions.  Defaults to `packages.props` at the root of your repository. |
-
-*Examples*
-
-Use a custom file name for your project that defines package versions.
-```xml
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <CentralPackagesFile>$(MSBuildThisFileDirectory)MyPackageVersions.props</CentralPackagesFile>
-  </PropertyGroup>
-</Project>
-```
-
 ### Bootstrapping
 
 #### How to enable this the central package version management + locking? 
@@ -194,6 +176,24 @@ In the above scenario:
 #### Can I specify NuGet sources in the packages.props file?
 This is not part of the spec/feature but specifying sources in the packages.props file seems like a good idea.
 
+
+### **[Not MVP]** Extensibility 
+
+| Property                            | Description |
+|-------------------------------------|-------------|
+| `CentralPackagesFile`  | The full path to the file containing your package versions.  Defaults to `packages.props` at the root of your repository. |
+| `ConsolidatePackagesOnRestore` | Defaults to **`true`**. If set to false, `restore will not consolidate (mostly remove) packages on restore from the CPVMF |
+
+*`CentralPackagesFile` Example*
+
+Use a custom file name for your project that defines package versions.
+```xml
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CentralPackagesFile>$(MSBuildThisFileDirectory)MyPackageVersions.props</CentralPackagesFile>
+  </PropertyGroup>
+</Project>
+```
 
 ### VS experience
 TBD.
