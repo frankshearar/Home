@@ -20,8 +20,8 @@ Extensibility requirements:
 Content Governance requirements (P2)
 * I am able to scan the packages (full closure) used in the repo to flag non-compliance, licensing and vulnerabilities.
 
-# Context
-[PackageReference requirements summary](https://github.com/NuGet/Home/wiki/PackageReference-enhancements) | Epic issue [#6763](https://github.com/NuGet/Home/issues/6763)
+# Issue 
+[#6763](https://github.com/NuGet/Home/issues/6763)
 
 ## Who is the customer?
 Customers with huge code-base spanning 100s of projects. 
