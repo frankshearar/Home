@@ -127,7 +127,7 @@ To create the consolidated package version management file packages.props at <pa
 #### How does `restore` work?
 * Project restore - When a project is restored, it restores as it does today. It looks at the CPVMF to get the package versions. If a package is not listed in the CPVMF but is referenced in the project, it errors out.
 * Solution restore - Same as today, except when it finds a more packages in CPVMF than in the project, it prunes/consolidates CPVMF i.e. removes the extra packages stated in CPVMF but not referenced in any of the projects.
-This can be controlled using the `ConsolidatePackagesOnRestore` property. See Extensibility, for details.
+This can be controlled using the `ConsolidatePackagesOnRestore` property. See [Extensibility section](#extensibility), for details.
 
 #### Where are `PrivateAssets`/`ExcludeAssets`/`IncludeAssets` defined?
 These are per project properties and should be defined in the `PackageReference` nodes in the project file.
@@ -146,7 +146,7 @@ When this property is set,
 #### How do I have a given set of package versions for all the projects but a different set for a specific project?
 To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the global/repo-level `packages.props` file. *For this case, the lock file `packages.lock.json` will be generated at the project root directory.*
 
-**[Not MVP]** You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file at the project root directory that gets evaluated for a given project.
+**[Not MVP]** You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file at the project root directory that gets evaluated for a given project. See [Extensibility section](#extensibility), for details.
 
 #### What happens when there are multiple `packages.props` file available in a project's context?
 In order to remove any confusion, the `packages.props` or the `CentralPackagesFile` specification nearest to the project will override all others. At a time only one `packages.props` file is evaluated for a given project.
