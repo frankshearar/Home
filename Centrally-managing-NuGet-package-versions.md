@@ -127,6 +127,7 @@ To create the consolidated package version management file packages.props at <pa
 #### How does `restore` work?
 * Project restore - When a project is restored, it restores as it does today. It looks at the CPVMF to get the package versions. If a package is not listed in the CPVMF but is referenced in the project, it errors out.
 * Solution restore - Same as today, except when it finds a more packages in CPVMF than in the project, it prunes/consolidates CPVMF i.e. removes the extra packages stated in CPVMF but not referenced in any of the projects.
+This can be controlled using the `ConsolidatePackagesOnRestore` property. See Extensibility, for details.
 
 #### Where are `PrivateAssets`/`ExcludeAssets`/`IncludeAssets` defined?
 These are per project properties and should be defined in the `PackageReference` nodes in the project file.
