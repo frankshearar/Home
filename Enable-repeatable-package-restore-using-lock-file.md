@@ -107,7 +107,7 @@ We need to make sure of the following properties for a lock file:
   "metadata1":"value1",
   ...other metadata fields...
   "dependencies": {	
-    "netcoreapp2.0": {	
+    "netcore2.0": {	
       "Contoso.Base": {	
         "type": "direct",	
         "requested": "3.0.0",	
