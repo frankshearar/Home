@@ -126,8 +126,8 @@ To create the consolidated package version management file packages.props at <pa
 
 #### How does `restore` work?
 * Project restore - When a project is restored, it restores as it does today. It looks at the CPVMF to get the package versions. If a package is not listed in the CPVMF but is referenced in the project, it errors out.
-* Solution restore - Same as today, except when it finds a more packages in CPVMF than in the project, it prunes/consolidates CPVMF i.e. removes the extra packages stated in CPVMF but not referenced in any of the projects.
-This can be controlled using the `ConsolidatePackagesOnRestore` property. See [Extensibility section](#extensibility), for details.
+* Solution restore - Same as today, except when it finds a more packages in CPVMF than in the project, it prints out an info message to run `consolidate` command. The reason for restore not doing auto consolidate is to support scenarios where users would like to restore a different version of a transitive dependency package. This is a corner case scenario but a helpful one where today users have no way to control the transitive dependency versions. This should be used with caution however. Ideally CPVMF should only list the direct dependencies and that too the ones that are referenced in the projects. Otherwise the CPVMF can easily become unmanageable. **Note:** Any extra package nodes in the CPVMF will also affect the central lock file (See [[Enable repeatable package restore using lock file]] spec for details). ~it prunes/consolidates CPVMF i.e. removes the extra packages stated in CPVMF but not referenced in any of the projects.
+This can be controlled using the `ConsolidatePackagesOnRestore` property. See [Extensibility section](#extensibility), for details.~
 
 #### Where are `PrivateAssets`/`ExcludeAssets`/`IncludeAssets` defined?
 These are per project properties and should be defined in the `PackageReference` nodes in the project file.
@@ -178,12 +178,12 @@ In the above scenario:
 This is not part of the spec/feature but specifying sources in the packages.props file seems like a good idea.
 
 
-### **[Not MVP]** Extensibility 
+### Extensibility 
 
 | Property                            | Description |
 |-------------------------------------|-------------|
-| `CentralPackagesFile`  | The full path to the file containing your package versions.  Defaults to `packages.props` at the root of your repository. |
-| `ConsolidatePackagesOnRestore` | Defaults to **`true`**. If set to false, `restore will not consolidate (mostly remove) packages on restore from the CPVMF |
+| `CentralPackagesFile`  | ***[Not MVP]*** The full path to the file containing your package versions.  Defaults to `packages.props` at the root of your repository. |
+| ~`ConsolidatePackagesOnRestore`~ | ~Defaults to **`true`**. If set to false, `restore will not consolidate (mostly remove) packages on restore from the CPVMF~ |
 
 *`CentralPackagesFile` Example*
 
