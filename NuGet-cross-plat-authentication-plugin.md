@@ -77,6 +77,7 @@ The plugins will be discovered as follows:
     Each plugin will be installed in it's own folder.
 
     The plugin entry point will be the name of the installed folder, with the .dll extensions for .NET Core, and .exe extension for .NET Framework.
+    To make it more performant, NuGet will assume that the folder name and assembly name always have the same casing, regardless of the operating systems' case sensitivity. 
 
     Example:
 
