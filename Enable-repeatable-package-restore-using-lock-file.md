@@ -135,7 +135,7 @@ Once the feature is enabled,
   ```
   NU1xxx: <TBD text>
   ```
-  * There would be an option to control the above restore behavior. Refer to the [Extensibility](#extensibility-not-mvp) section for details.
+  * There would be an option to control the above restore behavior. Refer to the [Extensibility](#extensibility) section for details.
 
 ### Project vs. Central lock file 
 
@@ -166,7 +166,7 @@ Once the feature is enabled,
 
 **Note**: Package restores would be repeatable irrespective of whether you use per project lock file or a central solution/repo level lock file.
 
-### Extensibility MSBuild options
+### Extensibility
 
 | Option | Values | Description |
 |:--- |:--- |:--- |
