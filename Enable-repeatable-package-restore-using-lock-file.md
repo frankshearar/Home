@@ -82,7 +82,7 @@ To make use of the lock file to lock all the package dependencies for a project,
 
 `RestorePackagesWithLockFile` to `true`
 
-If this property is not set - irrespective of whether lock file is present or not, lock file will not be used for `restore`. A warning will be raised by NuGet for this scenario:
+If this property is not set - irrespective of whether lock file is present or not, lock file will not be used for `restore`. A warning will be raised by NuGet for this scenario if a **lock file is present** but the property `RestorePackagesWithLockFile` is **not set**:
 ```
 NU1xxx: <TBD text>
 ```
