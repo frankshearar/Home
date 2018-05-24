@@ -169,6 +169,13 @@ The following message will be amended for version 2.0.0 of the plugin.
     * List of Auth Types
     * MessageResponseCode
 
+## Proxy support for the plugins
+
+The NuGet client has basic proxy support. [More info](https://docs.microsoft.com/en-us/nuget/reference/nuget-config-file)
+The first credential plugin iteration implementation did not communicate any proxy information.
+In the new implementation, the client will make sure that the proxy information is passed to the by sending a "SetCredentials" message. 
+[More info](https://github.com/NuGet/Home/wiki/NuGet-Package-Download-Plugin#application-messages) about the signature of said message. 
+
 ## How does Visual Studio work with the plugin
 
 In the previous credential plugin implementation, the experience in Visual Studio and NuGet.exe was different.
