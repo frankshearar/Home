@@ -69,7 +69,7 @@ So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that ma
 * NuGet will use a lock file to `restore` packages. 
   * If a lock file is present and is **not** out of sync (with user changes), `restore` will use the lock file to fetch all the packages. 
   * If a lock file is not present or **out of sync**, `restore` will create/update the lock file with the latest changes.
-  * There will be modes (using MSBuild property and *(Not MVP)* command line options) to control the behavior of `restore` with lock files i.e. whether NuGet can update lock file with `restore` action.
+  * There will be modes (using MSBuild property and command line options) to control the behavior of `restore` with lock files i.e. whether NuGet can update lock file with `restore` action.
 * There will be 2 scopes for the creation/working of the lock file:
   * At project level - In this case the lock file is created per project.
   * At a central level when the [packages are managed at a solution or a repo level](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-packages) - In this case the lock file is also created centrally in the same folder as the `packages.props` file.
