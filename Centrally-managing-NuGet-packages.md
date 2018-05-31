@@ -4,21 +4,21 @@
 ## Requirements
 
 As Noah, a developer who uses NuGet in an enterprise,
-* I would like to manage all the package versions centrally at a repo level so that they do not go out of sync in the various projects in the repo.
-* I can specify a range or float to latest version of a given package so that all projects in the repo always gets the latest available version when desired.
-* I can lock down the package graph for the repo so that my builds are repeatable
+* I would like to manage all the package versions centrally at a solution/folder/repo (henceforth referred as solution) level so that they do not go out of sync in the various projects in the solution.
+* I can specify a range or float to latest version of a given package so that all projects in the solution always gets the latest available version when desired.
+* I can lock down the package graph for the solution so that my builds are repeatable
   * I can lock down direct and transitive dependencies so that the build behavior does not change by resolving to a different version of a package version due to unavailability of previously resolved version.
   * I am able to lock down the integrity of the package so that so that the build behavior does not change by resolving to a different package with same ID+version. 
   * I am able to lock the floating versions of packages to their respective resolved versions unless I explicitly ask the package to resolve to latest version. 
-* When I modify a common project that's a dependency of multiple projects in the repo, I should not be required to multiple checkins corresponding to each of the dependent projects.
+* When I modify a common project that's a dependency of multiple projects in the solution, I should not be required to multiple checkins corresponding to each of the dependent projects.
   * E.g. Project A->B->C->D->...->X. If I change the `PackageReference` for X, I should be making limited changes related to only Project X and not multiple changes for each of the projects that depend on it. (This would be case with per project lock file).
 
 Extensibility requirements:
-* I am able to define a different set of packages and versions for a specific project in the repo that differs from the centrally managed packages+versions.
+* I am able to define a different set of packages and versions for a specific project in the solution that differs from the centrally managed packages+versions.
   * Correspondingly, I am able to lock down a different package graph for a specific project.
 
 Content Governance requirements (P2)
-* I am able to scan the packages (full closure) used in the repo to flag non-compliance, licensing and vulnerabilities.
+* I am able to scan the packages (full closure) used in the solution to flag non-compliance, licensing and vulnerabilities.
 
 # Issue 
 [#6763](https://github.com/NuGet/Home/issues/6763)
@@ -48,9 +48,9 @@ We have had multiple internal partners reaching out to us from VS Team Services,
 
 **Note:**  Assumption is that the central packages version management file (CPVMF) is a MSBuild file assuming MSBuild would provide free parsing logic (and other benefits) for the file. If not, it can be any format that NuGet can parse (including nuget.config). The exact format is TBD and is implementation detail. The rest of the doc assumes it to be a MSBuild props file. 
  
-* Package Versions can be centrally managed in `packages.props` file located at the solution or repo root.
+* Package Versions can be centrally managed in `packages.props` file located at the solution root folder.
 * Package references (`PackageReference`) managed at each project level without any version information.
-* Managing packages for the repo/projects:
+* Managing packages for the solution/projects:
   * Adding packages references not listed in `packages.props` will add the package as reference in the project. In addition it will add the package details including version info in the CPVMF.
   * Updating package reference per project will be an error. An option to update in the `packages.props` file will be available.
   * Removing/uninstalling package references per project is allowed. 
