@@ -2,13 +2,13 @@
 * Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
 
 ### Requirements
-Refer to the spec:[[Centrally managing NuGet packages]] for the list of requirements and summary of the solution. This spec details out the solution for managing package versions, centrally at a solution (or repo) level.
+Refer to the spec:[[Centrally managing NuGet packages]] for the list of requirements and summary of the solution. This spec details out the solution for managing package versions, centrally at a solution (or repo, folder) level.
 
 *For lock file details, refer to the spec: [[Enable repeatable package restore using lock file]]. This spec does not discuss anything about the lock file*
 
 ### Solution Details
 
-To get started, you will need to create an MSBuild props file at the root of the solution/repo named `packages.props` that declares `Package` items.
+To get started, you will need to create an MSBuild props file at the root of the solution named `packages.props` that declares `Package` items.
 
 In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  The `PackageReference` in the projects would not specify the version information. All projects that reference this package will refer to version `10.0.1` for `Newtonsoft.json`.
 
@@ -66,7 +66,7 @@ Successfully added package 'Newtonsoft.Json' to ProjectA.
 ProjectA> dotnet remove package netwonsoft.json
 Successfully removed package 'Newtonsoft.Json' from ProjectA. 
 
-//Removing a package from the solution/Repo - removes from CPVMF as well as from all the projects
+//Removing a package from the solution - removes from CPVMF as well as from all the projects
 SolutionDir> dotnet remove package netwonsoft.json
 Successfully removed package 'Newtonsoft.Json' from 'packages.props'. 
 Successfully removed package 'Newtonsoft.Json' from ProjectA, ProjectB and ProjectD.
@@ -144,7 +144,7 @@ When this property is set,
 * The `dotnet nuget consolidate` command will put the same version info in the `PackageReference` nodes in all the project files in addition to putting the version info in the CPVMF.
 
 #### How do I have a given set of package versions for all the projects but a different set for a specific project?
-To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the global/repo-level `packages.props` file. *For this case, the lock file `packages.lock.json` will be generated at the project root directory.*
+To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the solution `packages.props` file. *For this case, the lock file `packages.lock.json` will be generated at the project root directory.*
 
 **[Not MVP]** You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file at the project root directory that gets evaluated for a given project. See [Extensibility section](#extensibility), for details.
 
