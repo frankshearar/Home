@@ -177,6 +177,8 @@ In the above scenario:
 #### Can I specify NuGet sources in the packages.props file?
 This is not part of the spec/feature but specifying sources in the packages.props file seems like a good idea.
 
+### Locking packages closure 
+If this feature of centrally managing packages is enabled, the lock file will always be enabled. The details of the lock file is covered here: [[Enable repeatable package restore using lock file]]
 
 ### Extensibility 
 
