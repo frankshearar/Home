@@ -21,7 +21,7 @@ Content Governance requirements (P2)
 * I am able to scan the packages (full closure) used in the solution to flag non-compliance, licensing and vulnerabilities.
 
 # Issue 
-[#6763](https://github.com/NuGet/Home/issues/6763)
+[PackageReference] Centrally manage NuGet package versions for a solution or a repo [#6764](https://github.com/NuGet/Home/issues/6764)
 
 ## Who is the customer?
 Customers with huge code-base spanning 100s of projects. 
