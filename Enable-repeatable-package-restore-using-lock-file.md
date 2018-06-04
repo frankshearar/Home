@@ -64,7 +64,10 @@ So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that ma
 ## Solution - Summary
 * A lock file has the package dependency graph for the project/solution/repo that includes both the direct as well as transitive dependencies.
 * The lock file should be checked into the source repository.
-* Lock files will used when the property `RestoreWithLockFile` is set in the context of the project.
+* Lock file will be used if any of the following is true:
+  * A lock file is present in the context of the project (either at project level or [centrally](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-packages)).
+  * If [packages are managed centrally](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-packages), a central lock file is always used. 
+  * If the property `RestoreWithLockFile` is set in the context of the project.
 * Lock file will be updated when a package is added or updated.
 * NuGet will use a lock file to `restore` packages. 
   * If a lock file is present and is **not** out of sync (with user changes), `restore` will use the lock file to fetch all the packages. 
@@ -77,12 +80,14 @@ So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that ma
 ## Solution - Details 
 
 ### Bootstrapping/Enabling the lock file
+Lock file will be used if any of the following is true:
+  * A lock file is present in the context of the project (either at project level or [centrally](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-packages)).
+  * If [packages are managed centrally](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-packages), a central lock file is always used. 
+  * If the property `RestoreWithLockFile` is set in the context of the project.
 
-To make use of the lock file to lock all the package dependencies for a project, the following MSBuild property needs to be set:
+By setting `RestoreWithLockFile` to `false`, you can skip using lock file even if the lock file is present in the context of the project. 
 
-`RestorePackagesWithLockFile` to `true`
-
-If this property is not set - irrespective of whether lock file is present or not, lock file will not be used for `restore`. A warning will be raised by NuGet for this scenario if a **lock file is present** but the property `RestorePackagesWithLockFile` is **not set**:
+A warning will be raised by NuGet for this scenario if a **lock file is present** but the property `RestorePackagesWithLockFile` is set to **false**:
 ```
 NU1xxx: <TBD text>
 ```
