@@ -57,7 +57,7 @@ My.Sample.Pkg          2.1.3 (D)   4.1.0       4.1.0
 (D): Deprecated package(s). Use '--deprecated' option for more info.
 ```
 
-_Show deprecated packages in the project_
+_Show [deprecated packages](https://github.com/NuGet/Home/issues/2867) in the project_
 ```
 > dotnet nuget outdated --deprecated
 
