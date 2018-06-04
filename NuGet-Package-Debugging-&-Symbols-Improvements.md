@@ -121,6 +121,10 @@ To ensure that the uploaded symbols exactly match the uploaded .dlls, we are wor
 
 ### Symbols Tools Requirements
 In addition to the above upload requirements, you will need a tool capable of reading the portable .pdb format to consume the symbols on NuGet.org. This includes Visual Studio 2015 Update 2 and later (including Visual Studio 2017). We are working on bringing portable .pdb support to additional tooling, including Visual Studio Code on all platforms and WinDBG.
+#### Requesting Symbols from NuGet symbol server
+1. Tools that know how to consume the new portable pdb format will need to pass the header **SymbolChecksumValidationSupported=1** with the requests made to the NuGet Symbols server. Any request without the mentioned header will result in a 403 reponse code.
+2. The endpoints for symbol download is in the format of: https://nugetsymbols.org/download/symbols/<query_path>
+ 
 
 ## Roadmap
 This spec consists of several key components called out at the beginning of the [Solution](#Solution) section. These are listed in order of implementation, and repeated below.
