@@ -5,13 +5,15 @@
 NuGet outdated, check or equivalent functionality [#5762](https://github.com/nuget/home/5762)
 
 ## Problem
-* Currently the VS PM UI shows the packages for which updates are available, a similar functionality with the CLI is much needed. This should work with all package format types inclusing PackageReference (v4), project.json(v2) and packages.config (v1).
+* Currently the VS PM UI shows the packages for which updates are available, a similar functionality with the CLI is much needed. This **should work with all package format types** including PackageReference (v4), project.json(v2) and packages.config (v1).
 * Unlisted/Vulnerable/Obsolete packages should be flagged both in the PM UI and using CLI commands. See issue: Deprecate obsolete, vulnerable or legacy packages [#2867](https://github.com/NuGet/Home/issues/2867)
+
 
 ## Solution
 
 ### CLI
-We should have an `outdated` command that can tell users the outdated packages. 
+
+We should have an `outdated` command that can tell users the outdated packages.
 
 _Running in the project folder - Shows only packages that need updates, by default_
 ```
