@@ -70,8 +70,8 @@ So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that ma
   * If the property `RestoreWithLockFile` is set in the context of the project.
 * Lock file will be updated when a package is added or updated.
 * NuGet will use a lock file to `restore` packages. 
-  * If a lock file is present and is **not** out of sync (with user changes), `restore` will use the lock file to fetch all the packages. 
-  * If a lock file is not present or **out of sync**, `restore` will create/update the lock file with the latest changes.
+  * If a lock file is present and is **not** [out of sync](#out-of-sync) (with user changes), `restore` will use the lock file to fetch all the packages. 
+  * If a lock file is not present or **[out of sync](#out-of-sync)**, `restore` will create/update the lock file with the latest changes.
   * There will be modes (using MSBuild property and command line options) to control the behavior of `restore` with lock files i.e. whether NuGet can update lock file with `restore` action.
 * There will be 2 scopes for the creation/working of the lock file:
   * At project level - In this case the lock file is created per project.
@@ -135,8 +135,8 @@ Once the feature is enabled,
   > dotnet remove package My.Sample.Lib
   ```
 
-* `Restore `- action will use the lock file to get and restore the full closure of the packages if the lock file is **not out of sync**. 
-  * If the lock file is out of sync, restore command will update the lock file with the latest resolved closure of packages. It will do so with a warning: 
+* `Restore `- action will use the lock file to get and restore the full closure of the packages if the lock file is **not [out of sync](#out-of-sync)**. 
+  * If the lock file is [out of sync](#out-of-sync), restore command will update the lock file with the latest resolved closure of packages. It will do so with a warning: 
   ```
   NU1xxx: <TBD text>
   ```
@@ -177,8 +177,8 @@ Once the feature is enabled,
 |:--- |:--- |:--- |
 | `RestorePackagesWithLockFile` | `true`\| **`false`** | Enables lock file - `packages.lock.json` usage with restore. Default is `false` |
 | `UpdateLockFileOnRestore` | **`warn`** | Default option - `restore` will update but warn if lock file is [out of sync](#out-of-sync). |
-|| `allow`| `restore` will update the lock file if it is out of sync but will not warn. |
-|| `deny` | `restore` will fail if the lock file is out of sync. Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
+|| `allow`| `restore` will update the lock file if it is [out of sync](#out-of-sync) but will not warn. |
+|| `deny` | `restore` will fail if the lock file is [out of sync](#out-of-sync). Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
 | `NuGetLockFilePath` | `<PathToLockFile>` | ***[Not MVP]*** Path to lock file if you want to rename or change the location of the lock file. The name should always be *lock.json. |
 
 ### Visual Studio Experience
