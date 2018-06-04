@@ -176,7 +176,7 @@ Once the feature is enabled,
 | Option | Values | Description |
 |:--- |:--- |:--- |
 | `RestorePackagesWithLockFile` | `true`\| **`false`** | Enables lock file - `packages.lock.json` usage with restore. Default is `false` |
-| `UpdateLockFileOnRestore` | **`warn`** | Default option - `restore` will update but warn if lock file is out of sync. |
+| `UpdateLockFileOnRestore` | **`warn`** | Default option - `restore` will update but warn if lock file is [out of sync](#out-of-sync). |
 || `allow`| `restore` will update the lock file if it is out of sync but will not warn. |
 || `deny` | `restore` will fail if the lock file is out of sync. Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
 | `NuGetLockFilePath` | `<PathToLockFile>` | ***[Not MVP]*** Path to lock file if you want to rename or change the location of the lock file. The name should always be *lock.json. |
@@ -184,3 +184,11 @@ Once the feature is enabled,
 ### Visual Studio Experience
 For MVP, there is no VS experience needed. Except for the error/warning messages that will be visible in VS.
 
+### Key terms
+#### Out of sync
+The lock file is said to be _out of sync_ with the project when
+* A project has different set of dependencies than listed in the lock file.
+* A project adds reference to another project that changes the full packages closure.
+
+For projects that have centrally managed packages, the lock file will be _out of sync_ with the `packages.props` when:
+* The `packages.props` has different set of dependencies than listed in the lock file.
