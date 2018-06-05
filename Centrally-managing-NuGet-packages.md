@@ -46,8 +46,6 @@ We have had multiple internal partners reaching out to us from VS Team Services,
 
 ### Summary
 
-**Note:**  Assumption is that the central packages version management file (CPVMF) is a MSBuild file assuming MSBuild would provide free parsing logic (and other benefits) for the file. If not, it can be any format that NuGet can parse (including nuget.config). The exact format is TBD and is implementation detail. The rest of the doc assumes it to be a MSBuild props file. 
- 
 * Package Versions can be centrally managed in `packages.props` file located at the solution root folder.
 * Package references (`PackageReference`) managed at each project level without any version information.
 * Managing packages for the solution/projects:
