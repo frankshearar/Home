@@ -117,8 +117,21 @@ We need to make sure of the following properties for a lock file:
         "type": "direct",	
         "requested": "3.0.0",	
         "resolved": "3.0.0",
-        "integrity":"SHA512-#fVXsnMP2Wq84VA533zj0a/Et+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+HIvprVKs+QOihnkbqod=="		
+        "integrity":"SHA512-#fVXsnMP2Wq84VA533zj0a/Et+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+HIvprVKs+QOihnkbqod=="
+        "dependencies": {
+             "Contoso.Core": "1.2.3",
+             "Fabrikam.Utilities": "[3.1.0]"
+         }		
       }	
+      "Contoso.Core": {
+        "type": "transitive",	
+        "requested": "1.2.3",	
+        "resolved": "1.2.3",
+        "integrity":"SHA512-#xScnMP2Wq84VA533zj0a/Et+QoLoeNpVXsnMP2Wq84l+hsUxfwunkbqoIHIvpOqwQ/+HIvprVKs+QOihnkbmoq=="
+        "dependencies": {
+           ...
+           ...
+         }
   ...	
 ```
 
