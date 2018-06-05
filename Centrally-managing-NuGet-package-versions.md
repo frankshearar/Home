@@ -200,6 +200,11 @@ Use a custom file name for your project that defines package versions.
 
 ### VS experience
 MVP requirement:
-![image](https://user-images.githubusercontent.com/14800916/40948898-fff8e7f8-681f-11e8-9fab-f97dc0862804.png)
+
+_Installing a package in the project, with a specific version already used in the solution:_
+![image](https://user-images.githubusercontent.com/14800916/41008210-9350d9de-68de-11e8-99d4-4bdadf7ca4fa.png)
+
+_Confirmation dialog while updating a package version:_
+![image](https://user-images.githubusercontent.com/14800916/41008158-5d4bd230-68de-11e8-8110-84400a86aa2b.png)
 
 We need a better consolidate and central management experience that should be clubbed with the Enhanced Package Manager UI effort.
