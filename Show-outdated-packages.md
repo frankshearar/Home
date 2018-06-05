@@ -56,12 +56,12 @@ EntityFramework        6.1.2       6.1.2       7.0.0-beta4
 NUnit                  2.4.0       2.6.4       3.8.1  
 My.Sample.Pkg          2.1.3 (D)   4.1.0       4.1.0
 
-(D): Deprecated package(s). Use '--deprecated' option for more info.
+(D): Deprecated package(s). Use '--show-deprecated' option for more info.
 ```
 
 _Show [deprecated packages](https://github.com/NuGet/Home/issues/2867) in the project_
 ```
-> dotnet nuget outdated --deprecated
+> dotnet nuget outdated --show-deprecated
 
 Found 3 deprecated packages.
 
@@ -84,7 +84,7 @@ _Show outdated packages in the solution_
 <Project name>
 <List of outdated packages>
 
-(D): Deprecated package(s). Use '--deprecated' option for more info.
+(D): Deprecated package(s). Use '--show-deprecated' option for more info.
 Total 54 outdated need your attention - 47 outdated, 7 deprecated. 
 ```
 
