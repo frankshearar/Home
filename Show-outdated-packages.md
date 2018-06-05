@@ -2,7 +2,7 @@
 * Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
 
 ## Issue
-NuGet outdated, check or equivalent functionality [#5762](https://github.com/nuget/home/5762)
+NuGet outdated, check or equivalent functionality [#5762](https://github.com/nuget/home/issues/5762)
 
 ## Problem
 * Currently the VS PM UI shows the packages for which updates are available, a similar functionality with the CLI is much needed. This **should work with all package format types** including PackageReference (v4), project.json(v2) and packages.config (v1).
