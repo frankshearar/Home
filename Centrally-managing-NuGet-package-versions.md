@@ -199,4 +199,7 @@ Use a custom file name for your project that defines package versions.
 ```
 
 ### VS experience
-TBD.
+MVP requirement:
+![image](https://user-images.githubusercontent.com/14800916/40948898-fff8e7f8-681f-11e8-9fab-f97dc0862804.png)
+
+We need a better consolidate and central management experience that should be clubbed with the Enhanced Package Manager UI effort.
