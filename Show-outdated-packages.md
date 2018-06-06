@@ -30,6 +30,7 @@ My.Sample.Pkg          2.1.3 (D)   4.1.0       4.1.0
 ```
 
 The `outdated` command should have multiple options built into it as summarized in the table below:
+
 | `outdated` command option | Behavior |
 |:---- |:----|
 | `--include-prerelease` | Includes prerelelease versions in the results |
