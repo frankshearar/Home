@@ -29,6 +29,17 @@ My.Sample.Pkg          2.1.3 (D)   4.1.0       4.1.0
 (D): Deprecated package(s). Use '--show-deprecated' option for more info.
 ```
 
+The `outdated` command should have multiple options built into it as summarized in the table below:
+| `outdated` command option | Behavior |
+|:---- |:----|
+| `--include-prerelease` | Includes prerelelease versions in the results |
+| `--show-deprecated` | Shows deprecated packages details |
+| `--show-latest-patch` | Shows updates available up to latest patch versions|
+| `--all` | Shows all packages irrespective of whether updates are available or not |
+| `--include-transitive` | Includes transitive packages too in the result |
+
+Examples:
+
 _Show pre-release package updates_
 ```
 > dotnet nuget outdated --include-prerelease
@@ -101,6 +112,8 @@ _Show outdated packages in the solution_
 (D): Deprecated package(s). Use '--show-deprecated' option for more info.
 Total 54 outdated need your attention - 47 outdated, 7 deprecated. 
 ```
+
+
 
 ### VS UI
 TBD
