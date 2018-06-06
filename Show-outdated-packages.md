@@ -59,9 +59,9 @@ My.Sample.Pkg          2.1.3 (D)   4.1.0       2.1.6
 
 _Show all packages in the project_
 ```
-> dotnet nuget outdated --include-prerelease
+> dotnet nuget outdated --all
 
-Total 5 packages. 
+Total 4 packages. 
 3 packages need your attention - 2 outdated, 1 deprecated.
 
 Package                Current     Wanted      Latest   
