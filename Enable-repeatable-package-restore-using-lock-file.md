@@ -205,3 +205,14 @@ The lock file is said to be _out of sync_ with the project when
 
 For projects that have centrally managed packages, the lock file will be _out of sync_ with the `packages.props` when:
 * The `packages.props` has different set of dependencies than listed in the lock file.
+
+Summary table:
+| Type of change | Modifies lock file? |
+|:---- |:--- |
+| Add/Remove/Change package reference | Yes |
+| Change PrivateAssets/ExcludeAssets/IncludeAssets | Yes |
+| Change Target Framework | Yes |
+| Change runtime identifier | Yes |
+| Add/Remove sources | No | 
+| Add/Remove fallback folder | No |
+| Change project name | No |
