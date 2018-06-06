@@ -19,7 +19,7 @@ _Running in the project folder - Shows only packages that need updates, by defau
 ```
 > dotnet nuget outdated <optional project name or project file>
 
-4 packages need your attention - 3 outdated, 1 deprecated.
+3 packages need your attention - 2 outdated, 1 deprecated.
 
 Package                Current     Wanted      Latest   
 EntityFramework        6.1.2       6.1.2       6.2.0   
@@ -33,7 +33,7 @@ _Show pre-release package updates_
 ```
 > dotnet nuget outdated --include-prerelease
 
-4 packages need your attention - 3 outdated, 1 deprecated.
+3 packages need your attention - 2 outdated, 1 deprecated.
 
 Package                Current     Wanted      Latest   
 EntityFramework        6.1.2       6.1.2       7.0.0-beta4   
@@ -43,12 +43,26 @@ My.Sample.Pkg          2.1.3 (D)   4.1.0       4.1.0
 (D): Deprecated package(s). Use '--show-deprecated' option for more info.
 ```
 
+_Show package updates up to latest patch versions_
+```
+> dotnet nuget outdated --show-latest-patch
+
+3 packages need your attention - 2 outdated, 1 deprecated.
+
+Package                Current     Wanted      Latest Patch   
+EntityFramework        6.1.2       6.1.2       6.1.8   
+NUnit                  2.4.0       2.6.4       2.4.1  
+My.Sample.Pkg          2.1.3 (D)   4.1.0       2.1.6
+
+(D): Deprecated package(s). Use '--show-deprecated' option for more info.
+```
+
 _Show all packages in the project_
 ```
 > dotnet nuget outdated --include-prerelease
 
 Total 5 packages. 
-4 packages need your attention - 3 outdated, 1 deprecated.
+3 packages need your attention - 2 outdated, 1 deprecated.
 
 Package                Current     Wanted      Latest   
 Newtonsoft.Json        11.0.2      11.0.2      11.0.2
