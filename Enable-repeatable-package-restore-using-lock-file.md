@@ -85,12 +85,6 @@ Lock file will be used if any of the following is true:
   * If [packages are managed centrally](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-packages), a central lock file is always used. 
   * If the property `RestoreWithLockFile` is set in the context of the project.
 
-By setting `RestoreWithLockFile` to `false`, you can skip using lock file even if the lock file is present in the context of the project. 
-
-A warning will be raised by NuGet for this scenario if a **lock file is present** but the property `RestorePackagesWithLockFile` is set to **false**:
-```
-NU1xxx: <TBD text>
-```
 The default name of the lock file will be `packages.lock.json`.
 
 ### Lock file format and details captured in it
@@ -192,7 +186,7 @@ Once the feature is enabled,
 | `UpdateLockFileOnRestore` | **`warn`** | Default option - `restore` will update but warn if lock file is [out of sync](#out-of-sync). |
 || `allow`| `restore` will update the lock file if it is [out of sync](#out-of-sync) but will not warn. |
 || `deny` | `restore` will fail if the lock file is [out of sync](#out-of-sync). Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
-| `NuGetLockFilePath` | `<PathToLockFile>` | ***[Not MVP]*** Path to lock file if you want to rename or change the location of the lock file. The name should always be *lock.json. |
+| `NuGetLockFilePath` | `<PathToLockFile>` | Path to lock file if you want to rename or change the location of the lock file. The name should always be *lock.json. |
 
 ### Visual Studio Experience
 For MVP, there is no VS experience needed. Except for the error/warning messages that will be visible in VS.
@@ -217,3 +211,7 @@ Summary table:
 | Add/Remove sources | No | 
 | Add/Remove fallback folder | No |
 | Change project name | No |
+
+### Open items
+
+#### Restore option to re-evaluate *
