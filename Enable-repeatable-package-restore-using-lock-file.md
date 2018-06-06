@@ -207,6 +207,7 @@ For projects that have centrally managed packages, the lock file will be _out of
 * The `packages.props` has different set of dependencies than listed in the lock file.
 
 Summary table:
+
 | Type of change | Modifies lock file? |
 |:---- |:--- |
 | Add/Remove/Change package reference | Yes |
