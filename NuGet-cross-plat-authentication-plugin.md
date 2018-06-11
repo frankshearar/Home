@@ -1,9 +1,11 @@
+# NuGet Authentication Plugin
+
 * Status: **Reviewing**
 * Author(s): [Nikolche Kolev](https://github.com/nkolev92), [Alex Mullans](https://github.com/alexmullans)
 
 ## Issue
 
-NuGet cross plat authentication plugin [#6486](https://github.com/NuGet/Home/issues/6486)
+[6486](https://github.com/NuGet/Home/issues/6486) - NuGet Cross Plat Credential Plugin
 
 ## Problem
 
@@ -38,9 +40,9 @@ Each Version **2.0.0** plugin must meet the requirements previous specified in t
 
 For simplicity, the requirements will be duplicated from the other spec and altered as required.
 
-- On Windows we require that plugins have a valid Authenticode signature. On non-Windows platforms we will have additional requirements defined at a later point.[Task](#cross-plat-trust-verification)
+- ~~Have a valid, trusted Authenticode signature.~~  On Windows we require that plugins have a valid Authenticode signature. On non-Windows platforms we will have additional requirements defined at a later point.[Task](#cross-plat-trust-verification)
 - Support stateless launching under the current security context of NuGet client tools. For example, NuGet client tools will not perform elevation or additional initialization outside of the plugin protocol described later.
-- Support both interactive and non-interactive scenarios. Some operations are allowed to be interactive, as defined below.
+- ~~Be noninteractive.~~ Support both interactive and non-interactive scenarios. Some operations are allowed to be interactive, as defined below.
 - Adhere to the negotiated plugin protocol version.
 - Respond to all requests within a reasonable time period.
 - Honor cancellation requests for any in-progress operation.
@@ -77,7 +79,6 @@ The plugins will be discovered as follows:
     Each plugin will be installed in it's own folder.
 
     The plugin entry point will be the name of the installed folder, with the .dll extensions for .NET Core, and .exe extension for .NET Framework.
-    To make it more performant, NuGet will assume that the folder name and assembly name always have the same casing, regardless of the operating systems' case sensitivity. 
 
     Example:
 
@@ -96,9 +97,15 @@ The plugins will be discovered as follows:
 
     There's a [gap](issues-with-the-discovery-of-the-user-location-plugins) in this approach.
 
-3. Predetermined location in Visual Studio and dotnet (relative to MsBuild.exe)
+3. Predetermined location in Visual Studio and dotnet
 
-    The fixed location would be a folder such as, nugetplugins and will follow the same directory rules as listed under 2.
+    In Visual Studio the fixed location is a folder relative to the NuGet assemblies.
+    NuGet itself is installed in `Common7\IDE\CommonExtensions\Microsoft\NuGet`
+    The plugins folder location will be `Common7\IDE\CommonExtensions\Microsoft\NuGet\NuGetPlugins`.
+
+    In the SDK, the fixed location is a folder relative to the NuGet assemblies.
+    NuGet itself is currently installed in `dotnet\SDK\version\`
+    The plugins folder location will be `dotnet\SDK\version\NuGetPlugins`
 
 All plugins should be self-contained, and install all their dependencies in their respective folders.
 
@@ -169,13 +176,6 @@ The following message will be amended for version 2.0.0 of the plugin.
     * List of Auth Types
     * MessageResponseCode
 
-## Proxy support for the plugins
-
-The NuGet client has basic proxy support. [More info](https://docs.microsoft.com/en-us/nuget/reference/nuget-config-file)
-The first credential plugin iteration implementation did not communicate any proxy information.
-In the new implementation, the client will make sure that the proxy information is passed to the by sending a "SetCredentials" message. 
-[More info](https://github.com/NuGet/Home/wiki/NuGet-Package-Download-Plugin#application-messages) about the signature of said message. 
-
 ## How does Visual Studio work with the plugin
 
 In the previous credential plugin implementation, the experience in Visual Studio and NuGet.exe was different.
@@ -195,6 +195,7 @@ That means, that the version of MsBuild that NuGet.exe uses (latest by default u
 MSBuild.exe and dotnet.exe do not prompt by default like Visual Studio and NuGet.exe do.
 Because of that, the authentication strategy for dotnet.exe and MsBuild.exe will be device flow.
 The default behavior is that no authentication will happen in the plugin unless an interactivity flag is being passed to the plugin.
+
 Whenever NuGet cannot authenticate, a clear error message suggesting that they might need to pass an extra flag will be displayed.
 When the flag is passed, the build/restore will block and the user will be provided with instructions on how to complete the authentication.
 Once that's completed, the action will resume.
@@ -206,10 +207,6 @@ We additionally want to avoid starting a new process too often, so because of th
 In practice, idleness is only relevant in Visual Studio. In the command-line scenarios, the plugin will die when the NuGet process ends.
 
 ## Open work items
-
-### Installation directory for the built in plugin
-
-Ideally, a similar pattern will be followed in dotnet and Visual Studio. Only requirement on NuGet side is that it's a static location relative to MsBuild. 
 
 ### Cross-plat trust verification
 
