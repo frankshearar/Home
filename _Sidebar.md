@@ -1,7 +1,7 @@
 #### [[Home]]
 
 #### [[Incubation]] 
-* [[Symbols Package Upload Workflow]](https://github.com/NuGet/Home/wiki/Symbols-Package-Upload-Workflow)
+* [Symbols Package Upload Workflow](https://github.com/NuGet/Home/wiki/Symbols-Package-Upload-Workflow)
 
 #### Reviewing
 * [[Package signing]]
