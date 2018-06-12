@@ -1,5 +1,6 @@
 Status: **Incubation**
 # Symbols Package Upload Workflow
+## Summary
 This spec defines the user experience for uploading NuGet Symbols packages, or .snupkgs, to NuGet.org. This spec only considers the experience for direct upload to NuGet.org through the gallery UI. You will also be able to upload .snupks through the push CLI actions. The spec tracking CLI changes is coming soon.
 
 ## GitHub Issue
@@ -10,8 +11,6 @@ Let us know what feedback you have at the GitHub [issue](https://github.com/NuGe
 This spec is a part of the overall symbols package workflow. The high level scenario spec is available (here)[https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements].
 
 The symbols package creation spec is coming soon.
-
-## Summary
 
 ## User Workflow
 To upload a .snupkg, package authors will take the following steps on NuGet.org after signing into their account.
