@@ -1,4 +1,4 @@
-Status: **Reviewing**
+Status: **Reviewed**
 # NuGet Package Debugging & Symbols Improvements
 This spec defines our plans for improving the NuGet package debugging and symbols management experience. 
 ## GitHub Issue
