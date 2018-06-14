@@ -8,7 +8,7 @@ Let us know what feedback you have at the GitHub [issue](https://github.com/NuGe
  - **Improve NuGet package debugging and symbols experience [#6104](https://github.com/NuGet/Home/issues/6104)**
 
 ## Related Specs
-This spec is a part of the overall symbols package workflow. The high level scenario spec is available (here)[https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements].
+This spec is a part of the overall symbols package workflow. The high level scenario spec is available [here](https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements).
 
 The symbols package creation spec is coming soon.
 
