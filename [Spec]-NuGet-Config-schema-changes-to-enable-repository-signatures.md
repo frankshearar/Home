@@ -17,39 +17,45 @@ All NuGet package consumers.
 ## Solution
 * Update the schema for nuget.config file to be able to store repository trust information.
 * Define a gesture for users to be able to trust a package repository.
-<br/>
 
-### Repository Trust Information
+### Repository trust information
 We should store the following information to enable a trust relationship between a package consumer and a package repository.
 
 * Repository key -  
-Repository key will allow us to correlate a source to a trusted repository and help in cleanup in case for a source delete.
+Allows correlation from a source to a trusted repository.
 
-* Repository Source Service Index URI - 
-Repository Source Service Index URI will allow us to communicate with the source to refresh certificate list. This is needed when a trusted repository is not a source and we have no other way of finding out the certificate endpoint.
+* Repository source service index URI -  
+Allows communication with the source to refresh certificate list. This is needed when a trusted repository is not a source and there is no other way of finding out the certificate endpoint.
+
+* Require trusted root -  
+Indicates if a source should require to have its signing certificate to chain to a trusted root. Defaults to true.
 
 Further for each certificate used by the repository, we should store the following - 
 
-* Repository Certificate Fingerprint -  
-Repository Certificate Fingerprint will allow us to assert that the package was signed with a certificate that the repository is advertising in its certificate list. The fingerprint should be a calculated based on the `Repository Certificate Fingerprint Algorithm` described below.
+* Repository certificate fingerprint -  
+Allows to assert that the package the user trusts as being from that repository. The fingerprint should be a calculated based on the `Repository Certificate Fingerprint Algorithm` described below.
 
-* Repository Certificate SubjectName -  
-Repository Certificate SubjectName will allow users to recognize certificates more easily as subject names are human readable.
+* Repository certificate SubjectName -  
+Allows users to recognize certificates more easily as subject names are human readable.
 
-* Repository Certificate Fingerprint Algorithm -  
-Repository Certificate Fingerprint Algorithm will allow us to calculate the hash algorithm used while calculating the certificate fingerprint. The algorithm should be one of the following - 
+* Repository certificate fingerprint algorithm -  
+Allows for crypto agility while calculating the certificate fingerprint. The algorithm currently supported are - 
   * `SHA256`
   * `SHA384`
   * `SHA512`
 
-### Repository Trust Information Location
-Trust information for a repository should be stored along with the source information for package repositories i.e. nuget.config file.
+If the user wants to only trust specific package owners for a repository, they should be able to specify a list of trusted owners that will be checked against the `Package Owners` field in the repository signature metadata.
 
-### Repository Trust Information Schema
+### Repository trust information location
+Trust information for a repository should be stored along with the source information for package repositories    i.e. nuget.config file.
+
+### Repository trust information schema
 ```xml
   <trustedSources>
     <NuGet.Org>
       <add key="serviceIndex" value="SERVICE_INDEX_URI" />
+      <add key="requireTrustedRoot" value="REQUIRE_TRUST_BOOL" />
+      <add key="owners" value="LIST_OF_TRUSTED_OWNERS" />
       <add key="CERT_HASH" 
            value="SUBJECT_NAME" 
            fingerprintAlgorithm="FINGERPRINT_ALGORITHM" />
@@ -74,6 +80,8 @@ For example -
            fingerprintAlgorithm="SHA384" />
     </NuGet.Org>
     <vsts>
+      <add key="requireTrustedRoot"
+           value="false" />
       <add key="serviceIndex" 
            value="https://api.vsts.com/feed/index.json" />
       <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q=" 
@@ -84,13 +92,13 @@ For example -
 </configuration>
 ```
 
-### Repository Trust Information Gesture
+### Repository trust information gesture
 To enable the following user gestures we need to update the existing [`nuget sources`](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-sources) command.
 <br/>
 
 #### Summary - 
 
-| Operation         	| Source Type       	| Command                                               | Remarks             	|
+| Operation         	| Source type       	| Command                                               | Remarks             	|
 |-------------------	|-------------------	|-------------------------------------------------------|---------------------	|
 | Add               	| Source            	| `nuget sources add -Name <n> -Value <v>`        	    | Do not add trust    	|
 | Add               	| Source with trust 	| `nuget sources add -Name <n> -Value <v> -Trust` 	    |                     	|
