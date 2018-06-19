@@ -6,7 +6,7 @@ Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Reposit
 Related spec - [NuGet-Package-Signing-Client-Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
 
 ## Problem
-Once we enable repository package signing, we need to enable consumers to be able to trust a package repository. Further, the trust information needs to be stored into a user's machine.
+As the next wave of package signing, consumers need to be able to trust specific package signers. Further, the trust information needs to be stored into the user's machine.
 
 ## Who is the customer?
 All NuGet package consumers.
@@ -16,7 +16,7 @@ All NuGet package consumers.
 
 ## Solution
 * Update the schema for nuget.config file to be able to store repository trust information.
-* Define a gesture for users to be able to trust a package repository.
+* Define a gesture for users to be able to trust .
 
 ### Repository trust information
 We should store the following information to enable a trust relationship between a package consumer and a package repository.
