@@ -12,55 +12,65 @@ As the next wave of package signing, consumers need to be able to trust specific
 All NuGet package consumers.
 
 ## Scenarios
-* Enable package consumers to store repository trust information
+* Enable package consumers to store repository and author trust information.
 
 ## Solution
-* Update the schema for nuget.config file to be able to store repository trust information.
-* Define a gesture for users to be able to trust .
+* Update the schema for the nuget.config file to be able to store repository and author trust information.
+* Define a gesture for users to be able to trust.
 
-### Repository trust information
-We should store the following information to enable a trust relationship between a package consumer and a package repository.
+### Author and repository trust information
 
-* Repository key -  
-Allows correlation from a source to a trusted repository.
-
-* Repository source service index URI -  
-Allows communication with the source to refresh certificate list. This is needed when a trusted repository is not a source and there is no other way of finding out the certificate endpoint.
+* Trusted signer key -  
+Allows a user add a friendly name to identify the signer's trust information. If a trusted repository uses the same name as a source, it allows for correlation from a source to a trusted repository.
 
 * Require trusted root -  
 Indicates if a source should require to have its signing certificate to chain to a trusted root. Defaults to true.
 
 Further for each certificate used by the repository, we should store the following - 
 
-* Repository certificate fingerprint -  
-Allows to assert that the package the user trusts as being from that repository. The fingerprint should be a calculated based on the `Repository Certificate Fingerprint Algorithm` described below.
+* Certificate fingerprint -  
+Used to assert the package being verified has been signed by the trusted repository. The fingerprint should be a calculated based on the `Repository Certificate Fingerprint Algorithm` described below.
 
-* Repository certificate SubjectName -  
+* Certificate SubjectName -  
 Allows users to recognize certificates more easily as subject names are human readable.
 
-* Repository certificate fingerprint algorithm -  
-Allows for crypto agility while calculating the certificate fingerprint. The algorithm currently supported are - 
+* Certificate fingerprint algorithm -  
+Allows for crypto-agility while calculating the certificate fingerprint. The algorithm currently supported are - 
   * `SHA256`
   * `SHA384`
   * `SHA512`
 
-If the user wants to only trust specific package owners for a repository, they should be able to specify a list of trusted owners that will be checked against the `Package Owners` field in the repository signature metadata.
+### Repository specific trust information
+We should store the following information to enable a trust relationship between a package consumer and a package repository.
 
-### Repository trust information location
-Trust information for a repository should be stored along with the source information for package repositories    i.e. nuget.config file.
+* Repository source service index URI -  
+Allows communication with the source to refresh certificate list and to match with the `V3ServiceIndex` attribute in a repository signature. This is needed when a trusted repository is not a source so there is no other way of finding out the certificate endpoint.
+
+If the user wants to only trust specific package owners for a repository, they should be able to specify a list of trusted owners that will be compared against the `Package Owners` field in the repository signature metadata.
+
+### Trust information location
+Trust information should be stored in the nuget.config file.
 
 ### Repository trust information schema
 ```xml
-  <trustedSources>
-    <NuGet.Org>
-      <add key="serviceIndex" value="SERVICE_INDEX_URI" />
-      <add key="requireTrustedRoot" value="REQUIRE_TRUST_BOOL" />
-      <add key="owners" value="LIST_OF_TRUSTED_OWNERS" />
-      <add key="CERT_HASH" 
-           value="SUBJECT_NAME" 
-           fingerprintAlgorithm="FINGERPRINT_ALGORITHM" />
-    </NuGet.Org>
-  </trustedSources>
+<trustedSources>
+  <SOURCE_NAME>
+    <add key="requireTrustedRoot" value="REQUIRE_TRUST_BOOL" />
+    <add key="serviceIndex" value="SERVICE_INDEX_URI" />
+    <add key="owners" value="LIST_OF_TRUSTED_OWNERS" />
+    <add key="CERT_HASH" 
+         value="SUBJECT_NAME" 
+         fingerprintAlgorithm="FINGERPRINT_ALGORITHM" />
+  </SOURCE_NAME>
+</trustedSources>
+<trustedAuthors>
+  <AUTHOR_NAME>
+    <add key="requireTrustedRoot" value="REQUIRE_TRUST_BOOL" />
+    <add key="CERT_HASH"
+         value="SUBJECT_NAME"
+         fingerprintAlgorithm="FINGERPRINT_ALGORITHM" />
+  </AUTHOR_NAME>
+</trustedAuthors>
 ```
 
 For example -
@@ -72,27 +82,42 @@ For example -
   </packageSources>
   <trustedSources>
     <NuGet.Org>
+      <add key="owners" value="aspnet;microsoft" />
       <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
            value="CN=NuGet.Org" 
            fingerprintAlgorithm="SHA256" />
       <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
-           value="CN=NuGet.Org NewCert" 
+           value="CN=NuGet.Org NewCert"
            fingerprintAlgorithm="SHA384" />
     </NuGet.Org>
     <vsts>
       <add key="requireTrustedRoot"
            value="false" />
-      <add key="serviceIndex" 
+      <add key="serviceIndex"
            value="https://api.vsts.com/feed/index.json" />
-      <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q=" 
-           value="CN=vsts" 
+      <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q="
+           value="CN=vsts"
            fingerprintAlgorithm="SHA256" />
     </vsts>    
   </trustedSources>
+  <trustedAuthors>
+    <Microsoft>
+      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+           value="CN=Microsoft" 
+           fingerprintAlgorithm="SHA256" />
+    </Microsoft>
+    <PatoBeltran>
+      <add key="requireTrustedRoot"
+           value="false" />
+      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+           value="CN=Pato's self-signed cert" 
+           fingerprintAlgorithm="SHA256" />
+    </PatoBeltran>
+  </trustedAuthors>
 </configuration>
 ```
 
-### Repository trust information gesture
+### Trust information gesture
 To enable the following user gestures we need to update the existing [`nuget sources`](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-sources) command.
 <br/>
 
@@ -328,7 +353,7 @@ We should add support for the following in Visual Studio NuGet options control -
 _Ankit: No, we explicitly discourage that in our [docs](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior#changing-config-settings) because starting v3.4.3, malformed config files are silently ignored._
 
 * Should we add a package source as a trusted repository by default?  
-_Ankit: It is user friendly as users don't need to add a `-Trust` switch. But it can be a security concern that we should not add trust without user confirmation/action_  
+_Ankit: It is user-friendly as users don't need to add a `-Trust` switch. But it can be a security concern that we should not add trust without user confirmation/action_  
 
 * Should we delete repository trust information on source delete?  
 _Ankit: No, since we are not adding the trust information implicitly, we should not delete it implicitly._  
