@@ -118,8 +118,12 @@ For example -
 ```
 
 ### Trust information gesture
-To enable the following user gestures we need to update the existing [`nuget sources`](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-sources) command.
+To enable the following user gestures we need to create a new `nuget trust` command.
 <br/>
+
+
+----
+WIP
 
 #### Summary - 
 
