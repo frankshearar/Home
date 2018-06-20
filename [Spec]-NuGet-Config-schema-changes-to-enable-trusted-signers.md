@@ -1,7 +1,7 @@
 Status: **Incubation**
 
 ## Issue
-Issue for spec - [NuGet/Home#6419](https://github.com/NuGet/Home/issues/6419)  
+Issue for spec - [NuGet/Home#6524](https://github.com/NuGet/Home/issues/6524)  
 Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Repository-Signatures)  
 Related spec - [NuGet-Package-Signing-Client-Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
 
