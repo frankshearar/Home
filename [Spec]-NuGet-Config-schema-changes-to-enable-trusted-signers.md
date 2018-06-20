@@ -23,8 +23,8 @@ All NuGet package consumers.
 * Trusted signer key -  
 Allows a user add a friendly name to identify the signer's trust information. If a trusted repository uses the same name as a source, it allows for correlation from a source to a trusted repository.
 
-* Require trusted root -  
-Indicates if a source should require to have its signing certificate to chain to a trusted root. Defaults to true.
+* Allow untrusted root -  
+Indicates if it is allowed that a source's signing certificate chains to an untrusted root. Defaults to false.
 
 Further for each certificate used by the repository, we should store the following - 
 
@@ -122,21 +122,26 @@ To enable the following user gestures we need to create a new `nuget trust` comm
 <br/>
 
 
-----
-WIP
-
 #### Summary - 
 
-| Operation         	| Source type       	| Command                                               | Remarks             	|
-|-------------------	|-------------------	|-------------------------------------------------------|---------------------	|
-| Add               	| Source            	| `nuget sources add -Name <n> -Value <v>`        	    | Do not add trust    	|
-| Add               	| Source with trust 	| `nuget sources add -Name <n> -Value <v> -Trust` 	    |                     	|
-| Remove            	| Source            	| `nuget sources remove -Name <n>`                    	| Do not remove trust 	|
-| Remove            	| Source with trust 	| `nuget sources remove -Name <n> -Trust`             	|                     	|
-| Update to Trusted 	| Source            	| `nuget sources update -Name <n> -Trust`             	|                     	|
-| Refresh Trust     	| Source            	| `nuget sources update -Name <n> -Trust`             	|                     	|
+| Operation         	| Signer Type       | Command                                               | Remarks
+|-------------------	| --------------    |------------------------------------------------------ | ---------------
+| Add               	| Repository        | `nuget trust add -Repository -Name <n> [-Owners <o>] [-AllowUntrustedRoot <u>]` | Only works if there exists a source with the same name
+| Add               	| Repository        | `nuget trust add -Repository -Name <n> -ServiceIndex <s> [-Owners <o>] [-AllowUntrustedRoot <u>]`
+| Add               	| Repository        | `nuget trust add -Repository -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a> -CertificateSubjectName <sn> [-ServiceIndex <s>] [-Owners <o>] [-AllowUntrustedRoot <u>]`
+| Add                   | Repository        | `nuget trust add -Repository -Name <n> <Package_path> [-Owners <o>] [-AllowUntrustedRoot <u>]`   | Only works if package is repository signed or repository countersigned
+| Add                   | Author            | `nuget trust add -Author -Name <n> <Package_path> [-AllowUntrustedRoot <u>]` | Only works if package is author signed
+| Add                   | Author            | `nuget trust add -Author -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a> -CertificateSubjectName <sn> [-AllowUntrustedRoot <u>]` |
+| Remove            	| Any               | `nuget trust remove -Name <n>` |  The entry has to exist
+| Remove            	| Any               | `nuget trust remove -Name <n> -CertificateFingerprint <f>` | Removes a specific certificate entry from an existing trusted signer entry
+| Update trust entry               	| Any        | `nuget trust update -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a> -CertificateSubjectName <sn>` | Adds a certificate entry to an existing trusted signer         	             	
+| Update trust entry    | Repository        | `nuget trust update -Name <n>`             	         | Refreshes certificates entries with the ones announced by the repository. The entry has to exist and be a trusted repository with a service index or a corresponding package source.
+| Update trust entry    | Repository        | `nuget trust update -Name <n> -ServiceIndex <s> [-Owners <o>] [-AllowUntrustedRoot <u>]` | The entry has to exist and be a trusted repository
+| Update trust entry    | Any        | `nuget trust update -Name <n> -AllowUntrustedRoot <u>` | The entry has to exist
 <br/>
 
+----
+WIP
 
 #### Trusted repositories in Visual Studio - 
 We should add support for the following in Visual Studio NuGet options control - 
