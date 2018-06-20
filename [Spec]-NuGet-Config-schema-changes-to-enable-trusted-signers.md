@@ -54,7 +54,7 @@ Trust information should be stored in the nuget.config file.
 <trustedSigners>
   <NAME>
     <add key="type" value="TRUSTED_SIGNER_TYPE" /> <!-- Defaults to Author -->
-    <add key="untrustedRoot" value="UNTRUSTED_ROOT" />
+    <add key="untrustedRoot" value="UNTRUSTED_ROOT" /> <!-- Defaults to disallow -->
     <add key="serviceIndex" value="SERVICE_INDEX_URI" /> <!-- If present then type is Repository -->
     <add key="owners" value="LIST_OF_TRUSTED_OWNERS" /> <!-- Can only be present if type is Repository -->
     <add key="CERT_HASH" 
