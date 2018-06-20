@@ -23,8 +23,8 @@ All NuGet package consumers.
 * Trusted signer key -  
 Allows a user add a friendly name to identify the signer's trust information. If a trusted repository uses the same name as a source, it allows for correlation from a source to a trusted repository.
 
-* Allow untrusted root -  
-Indicates if it is allowed that a source's signing certificate chains to an untrusted root. Defaults to false.
+* Untrusted root -  
+Indicates if it is allowed that a source's signing certificate chains to an untrusted root. Defaults to disallow.
 
 Further for each certificate used by the repository, we should store the following - 
 
@@ -55,7 +55,7 @@ Trust information should be stored in the nuget.config file.
 ```xml
 <trustedSources>
   <SOURCE_NAME>
-    <add key="requireTrustedRoot" value="REQUIRE_TRUST_BOOL" />
+    <add key="allowUntrustedRoot" value="ALLOW_UNTRUSTED_ROOT" />
     <add key="serviceIndex" value="SERVICE_INDEX_URI" />
     <add key="owners" value="LIST_OF_TRUSTED_OWNERS" />
     <add key="CERT_HASH" 
@@ -91,8 +91,8 @@ For example -
            fingerprintAlgorithm="SHA384" />
     </NuGet.Org>
     <vsts>
-      <add key="requireTrustedRoot"
-           value="false" />
+      <add key="untrustedRoot"
+           value="allow" />
       <add key="serviceIndex"
            value="https://api.vsts.com/feed/index.json" />
       <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q="
@@ -107,7 +107,7 @@ For example -
            fingerprintAlgorithm="SHA256" />
     </Microsoft>
     <PatoBeltran>
-      <add key="requireTrustedRoot"
+      <add key="allowUntrustedRoot"
            value="false" />
       <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
            value="CN=Pato's self-signed cert" 
@@ -124,8 +124,8 @@ To enable the following user gestures we need to create a new `nuget trust` comm
 
 #### Summary - 
 
-| Operation         	| Signer Type       | Command                                               | Remarks
-|-------------------	| --------------    |------------------------------------------------------ | ---------------
+| Operation         	| Signer Type       | Command                                                            | Remarks
+|-------------------	| --------------    |---------------------------------------------------------------------------- | -------
 | Add               	| Repository        | `nuget trust add -Repository -Name <n> [-Owners <o>] [-AllowUntrustedRoot <u>]` | Only works if there exists a source with the same name
 | Add               	| Repository        | `nuget trust add -Repository -Name <n> -ServiceIndex <s> [-Owners <o>] [-AllowUntrustedRoot <u>]`
 | Add               	| Repository        | `nuget trust add -Repository -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a> -CertificateSubjectName <sn> [-ServiceIndex <s>] [-Owners <o>] [-AllowUntrustedRoot <u>]`
