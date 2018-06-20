@@ -137,20 +137,41 @@ WIP
 | Refresh Trust     	| Source            	| `nuget sources update -Name <n> -Trust`             	|                     	|
 <br/>
 
-#### Add a source [No change in behavior]-  
-`nuget sources add -Name NuGet.Org -Source https://api.nuget.org/v3/index.json` 
 
-The above command will create the following entries - 
+#### Trusted repositories in Visual Studio - 
+We should add support for the following in Visual Studio NuGet options control - 
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
-  </packageSources>
-</configuration>
-```
+* Display the config file(s) for each package source.
+
+* Display if a package source is trusted repository e.g. - 
+
+![](https://github.com/NuGet/Home/wiki/Repo-Signature-media/VSConfigUI.png)
+
+* Allow users to make package source into a trusted repository.
+
+* Display Trusted repositories trusted repositories.
 <br/>
+
+## Open Questions
+
+* Should we add a package source as a trusted repository by default?  
+_Ankit: It is user-friendly as users don't need to add a `-Trust` switch. But it can be a security concern that we should not add trust without user confirmation/action_  
+
+* How should the client trust NuGet.org?  
+_Rido: Client should always trust NuGet.org unless the user explicitly untrusts it._
+```xml
+<untrustedSources>
+  <add key="NuGet.Org" value="true" />    
+</untrustedSources>
+```
+* Once nuet.org starts signing, what does the client do?
+Possibilities: Update the config file. Keep the keys in memory. Track untrusted as well.
+
+* Do we need the service index in the trusted source?  
+_Ankit: It should be an optional entry to be added only if there is no corresponding source. That will allow us to refresh the certificate list without asking the user for a URL._  
+_Rido: Not needed. The failed restore will display the URI for which it should be certificates need to be refreshed._
+
+* Should the user be able to add and remove trusted repositories from the sources command at the same time they add or remove a source?
 
 #### Add a source as a trusted repository -  
 `nuget sources add -Name NuGet.Org -Source https://api.nuget.org/v3/index.json -Trust` 
@@ -192,45 +213,6 @@ Please remove the '-Trust' option.
 ```  
 <br/>
 
-#### Removing a package source [No change in behavior] - 
-`nuget sources remove -Name NuGet.Org`
-
-Before -
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
-  </packageSources>
-  <trustedSources>
-    <NuGet.Org>
-        <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-             value="CN=NuGet.Org" 
-             fingerprintAlgorithm="SHA256" />
-    </NuGet.Org>
-  </trustedSources>
-</configuration>
-```
-
-After - 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources />
-  <trustedSources>
-    <NuGet.Org>
-      <add key="serviceIndex" 
-           value="https://api.nuget.org/v3/index.json" />    
-      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-           value="CN=NuGet.Org" 
-           fingerprintAlgorithm="SHA256" />
-    </NuGet.Org>
-  </trustedSources>
-</configuration>
-```
-
-<br/>
-
 #### Removing a package source and trust information- 
 `nuget sources remove -Name NuGet.Org -Trust`
 
@@ -260,117 +242,3 @@ After -
 ```
 
 <br/>
-
-#### Make a source a trusted repository - 
-`nuget sources update -Name NuGet.Org -Trust`
-
-Before -
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
-  </packageSources>
-</configuration>
-```
-
-After - 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
-  </packageSources>
-  <trustedSources>
-    <NuGet.Org>
-      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-           value="CN=NuGet.Org" 
-           fingerprintAlgorithm="SHA256" />
-    </NuGet.Org>
-  </trustedSources>
-</configuration>
-```
-<br/>
-
-#### Add a source as trusted repository only - 
-`nuget sources add -Name NuGet.org -Source https://api.nuget.org/v3/index.json -Trust`  
-`nuget sources remove -Name NuGet.org`
-
-
-The above commands will add an entry for trusted repository without adding a package source entry - 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources />
-  <trustedSources>
-    <NuGet.Org>
-      <add key="serviceIndex" 
-           value="https://api.nuget.org/v3/index.json" />    
-      <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-           value="CN=NuGet.Org" 
-           fingerprintAlgorithm="SHA256" />
-    </NuGet.Org>
-  </trustedSources>
-</configuration>
-```
-<br/>
-
-#### Refresh certificates for a trusted repository - 
-`nuget sources update -Name NuGet.Org -Trust`
-
-This command will update the entry for trusted repository - 
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
-  </packageSources>
-  <trustedSources>
-    <NuGet.Org>
-      <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
-           value="CN=NuGet.Org NewCert" 
-           fingerprintAlgorithm="SHA384" />
-    </NuGet.Org>
-  </trustedSources>
-</configuration>
-```
-<br/>
-
-#### Trusted repositories in Visual Studio - 
-We should add support for the following in Visual Studio NuGet options control - 
-
-* Display the config file(s) for each package source.
-
-* Display if a package source is trusted repository e.g. - 
-
-![](https://github.com/NuGet/Home/wiki/Repo-Signature-media/VSConfigUI.png)
-
-* Allow users to make package source into a trusted repository.
-
-* Display Trusted repositories trusted repositories.
-<br/>
-
-## Open Questions
-
-* Should we encourage hand edits for the nuget.config file?  
-_Ankit: No, we explicitly discourage that in our [docs](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior#changing-config-settings) because starting v3.4.3, malformed config files are silently ignored._
-
-* Should we add a package source as a trusted repository by default?  
-_Ankit: It is user-friendly as users don't need to add a `-Trust` switch. But it can be a security concern that we should not add trust without user confirmation/action_  
-
-* Should we delete repository trust information on source delete?  
-_Ankit: No, since we are not adding the trust information implicitly, we should not delete it implicitly._  
-
-* How should the client trust NuGet.org?  
-_Rido: Client should always trust NuGet.org unless the user explicitly untrusts it._
-```xml
-<untrustedSources>
-  <add key="NuGet.Org" value="true" />    
-</untrustedSources>
-```
-* Once nuet.org starts signing, what does the client do?
-Possibilities: Update the config file. Keep the keys in memory. Track untrusted as well.
-* Do we need the service index in the trusted source?  
-_Ankit: It should be an optional entry to be added only if there is no corresponding source. That will allow us to refresh the certificate list without asking the user for a URL._  
-_Rido: Not needed. The failed restore will display the URI for which it should be certificates need to be refreshed._
