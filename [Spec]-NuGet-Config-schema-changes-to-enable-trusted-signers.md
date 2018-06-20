@@ -1,4 +1,4 @@
-Status: **Incubation**
+Status: **Reviewing**
 
 ## Issue
 Issue for spec - [NuGet/Home#6524](https://github.com/NuGet/Home/issues/6524)  
