@@ -111,7 +111,7 @@ To enable the following user gestures we need to create a new `nuget trusted-sig
 
 | Operation | Signer Type | Command | Remarks |
 | --- | --- | --- | --- |
-| Add | Repository | `nuget trusted-signers Add -Name <n> [-Owners <o>] [-AllowUntrustedRoot <u>]` | Only works if there exists a source with the same name |
+| Add | Repository | `nuget trusted-signers Add -Name <n> [-Owners <o>] [-UntrustedRoot <u>]` | Only works if there exists a source with the same name |
 | Add | Repository | `nuget trusted-signers Add -Name <n> -ServiceIndex <s> [-Owners <o>] [-UntrustedRoot <u>]` |
 | Add | Author | `nuget trusted-signers Add -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a> [-UntrustedRoot <u>]` |
 | Add | Repository | `nuget trusted-signers Add <package_path> -Repository -Name <n> [-Owners <o>] [-UntrustedRoot <u>]` | Only works if package is repository signed or repository countersigned |
