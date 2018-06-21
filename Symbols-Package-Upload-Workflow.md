@@ -45,7 +45,8 @@ This is to support a scenario where you have a .nupkg with foo.dll and bar.dll, 
 ## Removing Symbols from the NuGet.org Symbol Server
 If you want to remove Symbols from the NuGet.org symbol server, you have two options:
 * You can delete the .snupkgs you have previously uploaded to NuGet.org
-* You can email support@nuget.org and make a support request
+* For extremely urgent requests, you can email support@nuget.org and make a support request
+
 When you delete .snupkgs, there will be an additional service that will clean up the NuGet.org symbol server and will ultimately remove the .pdbs from the NuGet.org symbol server. 
 
 
