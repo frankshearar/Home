@@ -30,4 +30,14 @@ To check the status of the symbols being indexed on the NuGet.org symbol server,
 Any errors that occur in either validation or indexing will be visible to the package author on the package details page. 
 
 ## Validations and Failures
-[TODO]
+When a .snupkg is uploaded to NuGet.org, we will validate the package to ensure the following:
+* The .snupkg package ID and package version already has a .nupkg uploaded, and the owner of the .nupkg is the same as the owner that is trying to upload the .snupkg
+* The symbols in the .snupkg match the .dlls in the matching .nupkg
+* The .snupkg only contains symbol files, and those symbol files are only portable PDBs (for V1 - Windows PDB support will be later)
+
+When one of these validations fails, the package owner will be notified on their package details page. 
+
+
+
+
+
