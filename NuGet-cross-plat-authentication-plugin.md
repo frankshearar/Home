@@ -1,6 +1,6 @@
 # NuGet Authentication Plugin
 
-* Status: **Reviewing**
+* Status: **Implementating**
 * Author(s): [Nikolche Kolev](https://github.com/nkolev92), [Alex Mullans](https://github.com/alexmullans)
 
 ## Issue
@@ -9,8 +9,9 @@
 
 ## Problem
 
-Currently NuGet has a simple plugin model that's used for authentication against protected feeds. However, it's only available in VS and NuGet.exe. 
-* Consumers need to be able to restore against protected feeds cross-plat in msbuild/dotnet.exe. 
+Currently NuGet has a simple plugin model that's used for authentication against protected feeds. However, it's only available in VS and NuGet.exe.
+
+* Consumers need to be able to restore against protected feeds cross-plat in msbuild/dotnet.
 * Additionally, we want to establish trust between the process running restore and the credential provider before running it.
 
 ## Who are the customers?
@@ -200,24 +201,20 @@ Whenever NuGet cannot authenticate, a clear error message suggesting that they m
 When the flag is passed, the build/restore will block and the user will be provided with instructions on how to complete the authentication.
 Once that's completed, the action will resume.
 
+### Avoid instantiating the plugins frequently
+
+Currently there are 2 supported plugin operations. To avoid the cost of launching a plugin, NuGet will cache known operation claims.
+For example, plugin CredentialProvider handles authentication, but does not support PackageDownload for feed1 or feed2.
+The cache is located in $LocalAppData$/NuGet/plugins-cache and $XDG_DATA_HOME$/NuGet/plugins-cache on Windows and Nix platforms respectively.
+The cache location can be overriden with NUGET_PLUGINS_CACHE_PATH.
+
 ### Life-cycle management of plugins
 
 The plugins currently control different operations in NuGet. Because all of these are independent of each other, it is very hard to understand whether a plugin is still needed.
 We additionally want to avoid starting a new process too often, so because of that, NuGet will manage the plugin lifetime with idleness.
 In practice, idleness is only relevant in Visual Studio. In the command-line scenarios, the plugin will die when the NuGet process ends.
 
-## Open work items
-
 ### Cross-plat trust verification
 
-Currently, the verification will happen on Windows and fail on cross-plat.
-We need to come up with a verification mechanism cross-plat.
-
-### Avoid instantiating the plugins frequently
-
-Currently, the approach with the plugin discovery is to load each plugin when there’s an operation that needs delegated (PackageDownload).
-This is acceptable in the current implementation as there are not a lot of plugins.
-In the next implementation, there will be a baked in plugin that will always be discovered.
-Even in the case when there’s no need for a credential plugin, whenever a package download occurs, we’d start the baked in credential plugin to query for operations.
-This adds a lot of overhead.
-The approach here is to use a caching strategy similar to the http cache.
+Currently the plugins need to be authenticode on signed on Windows and Mono platforms.
+There is no such requirement for Linux/Mac systems yet. Follow up [issue](https://github.com/NuGet/Home/issues/6702).
