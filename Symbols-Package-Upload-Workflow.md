@@ -1,4 +1,4 @@
-Status: **Incubation**
+Status: **Reviewing**
 # Symbols Package Upload Workflow
 ## Summary
 This spec defines the user experience for uploading NuGet Symbols packages, or .snupkgs, to NuGet.org. This spec only considers the experience for direct upload to NuGet.org through the gallery UI. You will also be able to upload .snupks through the push CLI actions. The spec tracking CLI changes is coming soon.
@@ -21,7 +21,7 @@ To upload a .snupkg, package authors will take the following steps on NuGet.org 
 ![Symbols Package Upload Workflow 1](Symbols-Package-Upload-Workflow-Media/snupkgPublish1.png)
 4. If the .nupkg had previously been published (i.e. you only need to upload the .snupkg), you will simply upload the .snupkg on the upload page
 ![Symbols Package Upload Workflow 2](Symbols-Package-Upload-Workflow-Media/snupkgPublish2.png)
-5. NuGet.org will check to ensure the matching .nupkg is preent and owned by the owner trying to publish the .snupkg, as well as perform basic package validations. 
+5. NuGet.org will check to ensure the matching .nupkg is present and owned by the owner trying to publish the .snupkg, as well as perform basic package validations. 
 
 ## Checking Publish Progess
 To check the status of the symbols being indexed on the NuGet.org symbol server, package authors can visit the package details page for the .nupkg that matches the .snupkg. While validations are being performed, and the symbols are being indexed, package owners will see a notice on the package details page (similar to what is visible when a .nupkg is uploaded, valided, and indexed). The message will say:
