@@ -37,6 +37,16 @@ When a .snupkg is uploaded to NuGet.org, we will validate the package to ensure 
 
 When one of these validations fails, the package owner will be notified on their package details page. 
 
+## Updating .snupkgs
+If an owner wants to update a .snupkg, they can choose to upload the same .snupkg (same ID and version) to NuGet.org multiple times. Each time the .snupkg is uploaded, any new symbols that are included in the .snupkg will be indexed to the NuGet.org Symbol Server.
+
+This is to support a scenario where you have a .nupkg with foo.dll and bar.dll, and the first .snupkg you upload only contains foo.pdb. If you later decide you want to support symbols for bar.dll (e.g. bar.pdb), you can upload a new .snupkg that has the same ID and version of the previously uploaded .snupkg that contains bar.pdb.
+
+## Removing Symbols from the NuGet.org Symbol Server
+If you want to remove Symbols from the NuGet.org symbol server, you have two options:
+* You can delete the .snupkgs you have previously uploaded to NuGet.org
+* You can email support@nuget.org and make a support request
+When you delete .snupkgs, there will be an additional service that will clean up the NuGet.org symbol server and will ultimately remove the .pdbs from the NuGet.org symbol server. 
 
 
 
