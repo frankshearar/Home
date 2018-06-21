@@ -1,6 +1,6 @@
 # NuGet Authentication Plugin
 
-* Status: **Implementating**
+* Status: **Reviewed**
 * Author(s): [Nikolche Kolev](https://github.com/nkolev92), [Alex Mullans](https://github.com/alexmullans)
 
 ## Issue
