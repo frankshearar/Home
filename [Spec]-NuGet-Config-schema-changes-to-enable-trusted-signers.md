@@ -54,11 +54,11 @@ Trust information should be stored in the nuget.config file.
 <trustedSigners>
   <NAME>
     <add key="type" value="TRUSTED_SIGNER_TYPE" />
-    <add key="untrustedRoot" value="UNTRUSTED_ROOT" /> <!-- Defaults to disallow -->
     <add key="serviceIndex" value="SERVICE_INDEX_URI" /> <!-- If present then type should be Repository -->
-    <add key="owners" value="LIST_OF_TRUSTED_OWNERS" /> <!-- Can only be present if type is Repository -->
     <add key="CERT_HASH" 
          value="FINGERPRINT_ALGORITHM" />
+    <add key="untrustedRoot" value="UNTRUSTED_ROOT" /> <!-- Defaults to disallow -->
+    <add key="owners" value="LIST_OF_TRUSTED_OWNERS" /> <!-- Can only be present if type is Repository -->
   </NAME>
 </trustedSigners >
 ```
@@ -74,19 +74,19 @@ For example -
   <trustedSigners>
     <NuGet.Org>
       <add key="type" value="repository" />
-      <add key="owners" value="aspnet;microsoft" />
       <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
            value="SHA256" />
       <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
            value="SHA384" />
+      <add key="owners" value="aspnet;microsoft" />
     </NuGet.Org>
     <vsts>
       <add key="type" value="repository" />
       <add key="serviceIndex"
            value="https://api.vsts.com/feed/index.json" />
-      <add key="untrustedRoot" value="allow" />
       <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q="
            value="SHA256" />
+      <add key="untrustedRoot" value="allow" />
     </vsts>
     <Microsoft>
       <add key="type" value="author" />
@@ -95,9 +95,9 @@ For example -
     </Microsoft>
     <PatoBeltran>
       <add key="type" value="author" />
-      <add key="untrustedRoot" value="allow" />
       <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
            value="SHA256" />
+      <add key="untrustedRoot" value="allow" />
     </PatoBeltran>
   </trustedSigners>
 </configuration>
