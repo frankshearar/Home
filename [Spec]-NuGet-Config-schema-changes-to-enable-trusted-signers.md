@@ -114,7 +114,6 @@ For example -
 To enable the following user gestures we need to create a new `nuget trusted-signers` command.
 <br/>
 
-
 #### Summary - 
 
 | Operation | Signer Type | Command | Remarks |
@@ -129,15 +128,14 @@ To enable the following user gestures we need to create a new `nuget trusted-sig
 | Sync | Repository | `nuget trusted-signers Sync -Name <n>` | Refreshes certificates entries with the ones announced by the repository.<br />The entry has to exist and be a trusted repository with a service index or a corresponding package source. |
 
 
-This gesture will be translated to dotnet CLI by modifying the nuget add, nuget  `nuget trusted-signers` command.
+This gesture will be translated to dotnet CLI by updating the `dotnet nuget add`, `dotnet nuget remove` commands and add a `dotnet nuget sync` and a `dotnet nuget list` commands.
 <br/>
-
 
 #### Summary - 
 
 | Operation | Signer Type | Command | Remarks |
 | --- | --- | --- | --- |
-| List | All | `nuget trusted-signers` |
+| List | All | `dotnet nuget list trusted-signers` |
 | Add | Repository | `dotnet nuget add trusted-signers -Name <n> [-Owners <o>]` | Only works if there exists a source with the same name |
 | Add | Repository | `dotnet nuget add trusted-signers -Name <n> -ServiceIndex <s> [-Owners <o>]` |
 | Add | Author | `dotnet nuget add trusted-signers -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a> [-UntrustedRoot <u>]` |
