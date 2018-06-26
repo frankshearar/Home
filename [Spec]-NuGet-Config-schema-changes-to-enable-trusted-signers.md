@@ -112,14 +112,13 @@ To enable the following user gestures we need to create a new `nuget trusted-sig
 
 | Operation | Signer Type | Command | Remarks |
 | --- | --- | --- | --- |
-| Add | Repository | `nuget trusted-signers Add -Name <n> [-Owners <o>] [-UntrustedRoot <u>]` | Only works if there exists a source with the same name |
-| Add | Repository | `nuget trusted-signers Add -Name <n> -ServiceIndex <s> [-Owners <o>] [-UntrustedRoot <u>]` |
+| List | All | `nuget trusted-signers` |
+| Add | Repository | `nuget trusted-signers Add -Name <n> [-Owners <o>]` | Only works if there exists a source with the same name |
+| Add | Repository | `nuget trusted-signers Add -Name <n> -ServiceIndex <s> [-Owners <o>]` |
 | Add | Author | `nuget trusted-signers Add -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a> [-UntrustedRoot <u>]` |
 | Add | Repository | `nuget trusted-signers Add <package_path> -Repository -Name <n> [-Owners <o>] [-UntrustedRoot <u>]` | Only works if package is repository signed or repository countersigned |
 | Add | Author | `nuget trusted-signers Add <package_path> -Author -Name <n> [-UntrustedRoot <u>]` | Only works if package is author signed |
 | Remove | Any | `nuget trusted-signers Remove -Name <n>` |
-| Update | Author | `nuget trusted-signers Remove-Certificate -Name <n> -CertificateFingerprint <f>` | Removes a specific certificate entry from an existing trusted signer entry |
-| Update | Author | `nuget trusted-signers Add-Certificate -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a>`| Adds a certificate entry to an existing trusted signer |
 | Sync | Repository | `nuget trusted-signers Sync -Name <n>` | Refreshes certificates entries with the ones announced by the repository.<br />The entry has to exist and be a trusted repository with a service index or a corresponding package source. |
 
 
@@ -132,15 +131,13 @@ This gesture will be translated to dotnet CLI by modifying the nuget add, nuget 
 | Operation | Signer Type | Command | Remarks |
 | --- | --- | --- | --- |
 | List | All | `nuget trusted-signers` |
-| Add | Repository | `nuget trusted-signers Add -Name <n> [-Owners <o>]` | Only works if there exists a source with the same name |
-| Add | Repository | `nuget trusted-signers Add -Name <n> -ServiceIndex <s> [-Owners <o>] [-UntrustedRoot <u>]` |
-| Add | Author | `nuget trusted-signers Add -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a> [-UntrustedRoot <u>]` |
-| Add | Repository | `nuget trusted-signers Add <package_path> -Repository -Name <n> [-Owners <o>] [-UntrustedRoot <u>]` | Only works if package is repository signed or repository countersigned |
-| Add | Author | `nuget trusted-signers Add <package_path> -Author -Name <n> [-UntrustedRoot <u>]` | Only works if package is author signed |
-| Remove | Any | `nuget trusted-signers Remove -Name <n>` |
-| Update | Author | `nuget trusted-signers Remove-Certificate -Name <n> -CertificateFingerprint <f>` | Removes a specific certificate entry from an existing trusted signer entry |
-| Update | Author | `nuget trusted-signers Add-Certificate -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a>`| Adds a certificate entry to an existing trusted signer |
-| Sync | Repository | `nuget trusted-signers Sync -Name <n>` | Refreshes certificates entries with the ones announced by the repository.<br />The entry has to exist and be a trusted repository with a service index or a corresponding package source. |
+| Add | Repository | `dotnet nuget add trusted-signers -Name <n> [-Owners <o>]` | Only works if there exists a source with the same name |
+| Add | Repository | `dotnet nuget add trusted-signers -Name <n> -ServiceIndex <s> [-Owners <o>]` |
+| Add | Author | `dotnet nuget add trusted-signers -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a> [-UntrustedRoot <u>]` |
+| Add | Repository | `dotnet nuget add trusted-signers <package_path> -Repository -Name <n> [-Owners <o>] [-UntrustedRoot <u>]` | Only works if package is repository signed or repository countersigned |
+| Add | Author | `dotnet nuget add trusted-signers <package_path> -Author -Name <n> [-UntrustedRoot <u>]` | Only works if package is author signed |
+| Remove | Any | `dotnet nuget remove trusted-signers -Name <n>` |
+| Sync | Repository | `dotnet nuget sync trusted-signers -Name <n>` | Refreshes certificates entries with the ones announced by the repository.<br />The entry has to exist and be a trusted repository with a service index or a corresponding package source. |
 
 ### `sync` action
 
@@ -152,6 +149,6 @@ This gesture will be translated to dotnet CLI by modifying the nuget add, nuget 
 - What happens when there exist multiple entries with the same `serviceIndex`, different name value, but with conflicting certificate elements? (e.g. same `certificateFingerprint` but different `untrustedRoot` value)
 - Is the schema proposed the most readable/user friendly? Is there a way to make it less verbose and still have a deterministic experience for the user.
 - If the sync action automatically refreshes the certificates list in a trusted repository entry with the ones announced by the server, should there be a gesture to let the update the `untrustedRoot` setting on each certificate given by the server?
-- Should `serviceIndex` be an additional property of the type element?
+- Given that `type` value is based on the presence of `serviceIndex`, should `serviceIndex` be an additional property of the type element?
 - If user has a different config on two folders inside a solution, given that we don’t have granularity of which package asked for a specific package to be downloaded, what trusted signers will be used when verifying each of the packages downloaded?
 
