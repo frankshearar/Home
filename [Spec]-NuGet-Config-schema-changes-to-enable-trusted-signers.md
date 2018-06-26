@@ -148,9 +148,10 @@ This gesture will be translated to dotnet CLI by modifying the nuget add, nuget 
 
 ### Open questions
 
-- What happens with inheritance clashes
-- what happens when multiple entries have the same stuff but different names
-- How can we be sure to have the schema be the most readable/is it necesary to have it be super verbose?
-- If the sync action automatically refreshes the trusted certificates with the server, should there be a gesture to let the user allow each certificate given by the server to chain to an untrusted root?
-- Should `serviceIndex` be an additional property of the `type` entry?
+- Given the current inheritance model of the nuget.config, what happens when two configs at different levels have a `trustedSigner` element with the same name?
+- What happens when there exist multiple entries with the same `serviceIndex`, different name value, but with conflicting certificate elements? (e.g. same `certificateFingerprint` but different `untrustedRoot` value)
+- Is the schema proposed the most readable/user friendly? Is there a way to make it less verbose and still have a deterministic experience for the user.
+- If the sync action automatically refreshes the certificates list in a trusted repository entry with the ones announced by the server, should there be a gesture to let the update the `untrustedRoot` setting on each certificate given by the server?
+- Should `serviceIndex` be an additional property of the type element?
+- If user has a different config on two folders inside a solution, given that we don’t have granularity of which package asked for a specific package to be downloaded, what trusted signers will be used when verifying each of the packages downloaded?
 
