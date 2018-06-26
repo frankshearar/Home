@@ -55,8 +55,9 @@ Trust information should be stored in the nuget.config file.
 ```xml
 <trustedSigners>
   <NAME>
-    <add key="type" value="TRUSTED_SIGNER_TYPE" />
-    <add key="serviceIndex" value="SERVICE_INDEX_URI" /> <!-- If present then type should be Repository -->
+    <add key="type" 
+         value="TRUSTED_SIGNER_TYPE"
+         serviceIndex="SERVICE_INDEX_URI" /> <!-- If present then value should be Repository -->
     <add key="CERT_HASH" 
          value="FINGERPRINT_ALGORITHM"
          untrustedRoot="UNTRUSTED_ROOT" />
@@ -75,9 +76,9 @@ For example -
   </packageSources>
   <trustedSigners>
     <NuGet.Org>
-      <add key="type" value="repository" />
-      <add key="serviceIndex"
-           value="https://api.nuget.org/v3/index.json" />
+      <add key="type" 
+           value="repository"
+           serviceIndex="https://api.nuget.org/v3/index.json" />
       <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
            value="SHA256"
            untrustedRoot="disallow" />
@@ -87,9 +88,9 @@ For example -
       <add key="owners" value="aspnet;microsoft" />
     </NuGet.Org>
     <vsts>
-      <add key="type" value="repository" />
-      <add key="serviceIndex"
-           value="https://api.vsts.com/feed/index.json" />
+      <add key="type"
+           value="repository"
+           serviceIndex="https://api.vsts.com/feed/index.json" />
       <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q="
            value="SHA256"
            untrustedRoot="allow" />
@@ -152,9 +153,11 @@ Over the course of time, a repository could deprecate or add certificates to the
 
 - Given the current inheritance model of the nuget.config, what happens when two configs at different levels have a `trustedSigner` element with the same name?
 - What happens when there exist multiple entries with the same `serviceIndex`, different name value, but with conflicting certificate elements? (e.g. same `certificateFingerprint` but different `untrustedRoot` value)
+- Given that `type` value is based on the presence of `serviceIndex`, should `serviceIndex` be an additional property of the type element?
+**PB:** The `type` element will always be author unless there exists a `serviceIndex`, therefore I think it would be a good idea to have them both in the same element, this way we eliminate the possibility of `serviceIndex` being in a different config than `type.
+
 - Is the schema proposed the most readable/ user-friendly? Is there a way to make it less verbose and still have a deterministic experience for the user.
 - If the sync action automatically refreshes the certificates list in a trusted repository entry with the ones announced by the server, should there be a gesture to let the update the `untrustedRoot` setting on each certificate given by the server?
-- Given that `type` value is based on the presence of `serviceIndex`, should `serviceIndex` be an additional property of the type element?
 - If a user has a different config on two folders inside a solution, given that we don’t have the granularity of which package asked for a specific package to be downloaded, what trusted signers will be used when verifying each of the packages downloaded?
 - The current design only lets the user to add a trusted author with a single certificate and hand edit if more than one certificate should be trusted. Is there a way to create a "batch add" to let the user add a trusted author with multiple certificates?
 - Owners in a repository signature are not limited to a set of characters, therefore it is possible that a package owner has a character such as commas (`,`). With the current design we are adding the comma (`,`) delimiter to the owners list, should we update the schema to give a single entry to each trusted owner?
