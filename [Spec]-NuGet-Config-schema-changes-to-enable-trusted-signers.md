@@ -23,20 +23,22 @@ All NuGet package consumers.
 * Trusted signer key -  
 Allows a user add a friendly name to identify the signer's trust information. If a trusted repository uses the same name as a source, it allows for correlation from a source to a trusted repository.
 
-* Untrusted root -  
-Indicates if it is allowed that a source's signing certificate chains to an untrusted root. Defaults to disallow.
+* Trusted signer type - 
+Identifies the trusted signer with a type. The only permitted values are `author` and `repository`. If the value is `repository` a `serviceIndex` element should exist.
 
 Further for each certificate used by the repository, we should store the following - 
 
 * Certificate fingerprint -  
 Used to assert the package being verified has been signed by the trusted repository. The fingerprint should be a calculated based on the `Repository Certificate Fingerprint Algorithm` described below.
 
-
 * Certificate fingerprint algorithm -  
 Allows for crypto-agility while calculating the certificate fingerprint. The algorithm currently supported are - 
   * `SHA256`
   * `SHA384`
   * `SHA512`
+
+* Untrusted root -  
+Indicates if it is allowed that this certificate chains to an untrusted root.
 
 ### Repository specific trust information
 We should store the following information to enable a trust relationship between a package consumer and a package repository.
@@ -74,10 +76,14 @@ For example -
   <trustedSigners>
     <NuGet.Org>
       <add key="type" value="repository" />
+      <add key="serviceIndex"
+           value="https://api.nuget.org/v3/index.json" />
       <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-           value="SHA256" />
+           value="SHA256"
+           untrustedRoot="disallow" />
       <add key="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
-           value="SHA384" />
+           value="SHA384"
+           untrustedRoot="disallow" />
       <add key="owners" value="aspnet;microsoft" />
     </NuGet.Org>
     <vsts>
@@ -85,19 +91,20 @@ For example -
       <add key="serviceIndex"
            value="https://api.vsts.com/feed/index.json" />
       <add key="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q="
-           value="SHA256" />
-      <add key="untrustedRoot" value="allow" />
+           value="SHA256"
+           untrustedRoot="allow" />
     </vsts>
     <Microsoft>
       <add key="type" value="author" />
       <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-           value="SHA256" />
+           value="SHA256"
+           untrustedRoot="disallow" />
     </Microsoft>
     <PatoBeltran>
       <add key="type" value="author" />
       <add key="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
-           value="SHA256" />
-      <add key="untrustedRoot" value="allow" />
+           value="SHA256"
+           untrustedRoot="allow" />
     </PatoBeltran>
   </trustedSigners>
 </configuration>
