@@ -154,7 +154,7 @@ Over the course of time, a repository could deprecate or add certificates to the
 - Given the current inheritance model of the nuget.config, what happens when two configs at different levels have a `trustedSigner` element with the same name?
 - What happens when there exist multiple entries with the same `serviceIndex`, different name value, but with conflicting certificate elements? (e.g. same `certificateFingerprint` but different `untrustedRoot` value)
 - Given that `type` value is based on the presence of `serviceIndex`, should `serviceIndex` be an additional property of the type element?
-**PB:** The `type` element will always be author unless there exists a `serviceIndex`, therefore I think it would be a good idea to have them both in the same element, this way we eliminate the possibility of `serviceIndex` being in a different config than `type.
+<br />**PB:** The `type` element will always be author unless there exists a `serviceIndex`, therefore I think it would be a good idea to have them both in the same element, this way we eliminate the possibility of `serviceIndex` being in a different config than `type.
 
 - Is the schema proposed the most readable/ user-friendly? Is there a way to make it less verbose and still have a deterministic experience for the user.
 - If the sync action automatically refreshes the certificates list in a trusted repository entry with the ones announced by the server, should there be a gesture to let the update the `untrustedRoot` setting on each certificate given by the server?
