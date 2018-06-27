@@ -229,11 +229,14 @@ Over the course of time, a repository could deprecate or add certificates to the
 
 - Given that `type` value is based on the presence of `serviceIndex`, should `serviceIndex` be an additional property of the type element?
 <br />**PB:** The `type` element will always be author unless there exists a `serviceIndex`, therefore I think it would be a good idea to have them both in the same element, this way we eliminate the possibility of `serviceIndex` being in a different config than `type`.
+In the second approach, the `serviceIndex` is mandatory for the repository tag, but is not present for the author tag, this schema eliminates the problem of using `serviceIndex` as an element.
 
-- Is the schema proposed the most readable/ user-friendly? Is there a way to make it less verbose and still have a deterministic experience for the user.
+- Is the schema proposed the most readable/ user-friendly?
+<br />**PB:** In my opinion, the second approach is the most user-friendly.
+
 - If the sync action automatically refreshes the certificates list in a trusted repository entry with the ones announced by the server, should there be a gesture to let the update the `untrustedRoot` setting on each certificate given by the server?
 - If a user has a different config on two folders inside a solution, given that we don’t have the granularity of which package asked for a specific package to be downloaded, what trusted signers will be used when verifying each of the packages downloaded?
-- The current design only lets the user to add a trusted author with a single certificate and hand edit if more than one certificate should be trusted. Is there a way to create a "batch add" to let the user add a trusted author with multiple certificates?
+- The current design only lets the user add a trusted author with a single certificate and hand edit if more than one certificate should be trusted. Is there a way to create a "batch add" to let the user add a trusted author with multiple certificates?
 <br />**PB:** If a user does a `nuget trusted-signer add` with a certificate information an a name of an existing entry, it should append that certificate to the existing entry.
 
 - Owners in a repository signature are not limited to a set of characters, therefore it is possible that a package owner in a signature has the character we chose as a delimiter (i.e. semicolon - `;`). Should we make the schema take a single line for each owner?
