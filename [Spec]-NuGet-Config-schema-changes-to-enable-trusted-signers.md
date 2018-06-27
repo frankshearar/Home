@@ -152,7 +152,11 @@ Over the course of time, a repository could deprecate or add certificates to the
 ### Open questions
 
 - Given the current inheritance model of the nuget.config, what happens when two configs at different levels have a `trustedSigner` element with the same name?
+<br />**PB:** Each `trustedSigner` element should be atomic, therefore if an entry that has the same name is found in the hierarchy it should override the previous one found.
+
 - What happens when there exist multiple entries with the same `serviceIndex`, different name value, but with conflicting certificate elements? (e.g. same `certificateFingerprint` but different `untrustedRoot` value)
+<br />**PB:** We should consider `serviceIndex` to be the unique key for a repository trusted signer entry, therefore it should only exist one entry per `serviceIndex`. However, if two certificates are found with conflicting `untrustedRoot` we should warn and take the most restrictive one.
+
 - Given that `type` value is based on the presence of `serviceIndex`, should `serviceIndex` be an additional property of the type element?
 <br />**PB:** The `type` element will always be author unless there exists a `serviceIndex`, therefore I think it would be a good idea to have them both in the same element, this way we eliminate the possibility of `serviceIndex` being in a different config than `type`.
 
@@ -160,4 +164,7 @@ Over the course of time, a repository could deprecate or add certificates to the
 - If the sync action automatically refreshes the certificates list in a trusted repository entry with the ones announced by the server, should there be a gesture to let the update the `untrustedRoot` setting on each certificate given by the server?
 - If a user has a different config on two folders inside a solution, given that we don’t have the granularity of which package asked for a specific package to be downloaded, what trusted signers will be used when verifying each of the packages downloaded?
 - The current design only lets the user to add a trusted author with a single certificate and hand edit if more than one certificate should be trusted. Is there a way to create a "batch add" to let the user add a trusted author with multiple certificates?
-- Owners in a repository signature are not limited to a set of characters, therefore it is possible that a package owner has a character such as commas (`,`). With the current design we are adding the comma (`,`) delimiter to the owners list, should we update the schema to give a single entry to each trusted owner?
+<br />**PB: **If a user does a `nuget trusted-signer add` with a certificate information an a name of an existing entry, it should append that certificate to the existing entry.
+
+- Owners in a repository signature are not limited to a set of characters, therefore it is possible that a package owner in a signature has the character we chose as a delimiter (i.e. semicolon - `;`). Should we make the schema take a single line for each owner?
+<br />**PB: **Based on the assumption that owners will usually be repository usernames, they will be constrained by the repository to a certain set of characters, therefore choosing a semicolon to delimit this list should be safe.
