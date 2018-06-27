@@ -164,7 +164,7 @@ Over the course of time, a repository could deprecate or add certificates to the
 - If the sync action automatically refreshes the certificates list in a trusted repository entry with the ones announced by the server, should there be a gesture to let the update the `untrustedRoot` setting on each certificate given by the server?
 - If a user has a different config on two folders inside a solution, given that we don’t have the granularity of which package asked for a specific package to be downloaded, what trusted signers will be used when verifying each of the packages downloaded?
 - The current design only lets the user to add a trusted author with a single certificate and hand edit if more than one certificate should be trusted. Is there a way to create a "batch add" to let the user add a trusted author with multiple certificates?
-<br />**PB: **If a user does a `nuget trusted-signer add` with a certificate information an a name of an existing entry, it should append that certificate to the existing entry.
+<br />**PB:** If a user does a `nuget trusted-signer add` with a certificate information an a name of an existing entry, it should append that certificate to the existing entry.
 
 - Owners in a repository signature are not limited to a set of characters, therefore it is possible that a package owner in a signature has the character we chose as a delimiter (i.e. semicolon - `;`). Should we make the schema take a single line for each owner?
-<br />**PB: **Based on the assumption that owners will usually be repository usernames, they will be constrained by the repository to a certain set of characters, therefore choosing a semicolon to delimit this list should be safe.
+<br />**PB:** Based on the assumption that owners will usually be repository usernames, they will be constrained by the repository to a certain set of characters, therefore choosing a semicolon to delimit this list should be safe.
