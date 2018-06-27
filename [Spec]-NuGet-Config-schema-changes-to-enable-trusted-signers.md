@@ -141,7 +141,7 @@ This approach would require to refactor the current implementation of nuget.conf
 - `clear` should not work inside a trusted signer entry.
 - `repository` entries should be unique based on the `serviceIndex`.
 - `author` entries should be unique based on the `name`.
-- If two trusted signer entries are found to have the same unique key on different levels of the hierarchy, the furthest from the user should be overridden.
+- If two trusted signer entries are found to have the same unique key on different levels of the hierarchy, the closest to the current working directory should be used.
 - If there are multiple certificates with the same fingerprint (e.g. multiple different trusted signer entries can share the same certificate) and conflicting `allowUntrustedRoot` values, a warning should be generated and the most restrictive setting should be used.
 
 For example -
