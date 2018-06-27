@@ -1,4 +1,4 @@
-* Status: Review
+* Status: Reviewing
 * Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
 
 ## Issue
@@ -114,7 +114,3 @@ _Show outdated packages in the solution_
 Total 54 outdated need your attention - 47 outdated, 7 deprecated. 
 ```
 
-
-
-### VS UI
-TBD
