@@ -137,8 +137,7 @@ This approach would require to refactor the current implementation of nuget.conf
 ```
 
 **Notes on schema:**
-- `trustedSigners` section should have the ability to be cleared.
-- `clear` should not work inside a trusted signer entry.
+- A `clear` element may be present as an immediate child of a `trustedSigners` node.  A `clear` element must not be an indirect descendant of a `trustedSigners` node.
 - `repository` entries should be unique based on the `serviceIndex`.
 - `author` entries should be unique based on the `name`.
 - If two trusted signer entries are found to have the same unique key on different levels of the hierarchy, the closest to the current working directory should be used.
