@@ -118,7 +118,7 @@ For example -
 
 2. Refactoring nuget.config
 
-This approach would require to refactor the current implementation of nuget.config to have more freedom around the schema inside the config file. The advantage of this approach includes better readability, deterministic clear behavior in each section and more freedom on which attribute to use as the key. Also, by using this approach we enable nuget.config to be updated in the future to follow a better and more powerfull schema.
+This approach would require to refactor the current implementation of nuget.config to have more freedom around the schema inside the config file. The advantage of this approach includes better readability, deterministic clear behavior in each section and more freedom on which attribute to use as the key. Also, by using this approach we enable nuget.config to be updated in the future with a better and more powerfull schema.
 
 ```xml
 <trustedSigners>
