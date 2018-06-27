@@ -20,7 +20,7 @@ All NuGet package consumers.
 
 ### Signers trust information
 
-* Trusted signer key -  
+* Trusted signer name -  
 Allows a user add a friendly name to identify the signer's trust information.
 
 * Trusted signer type - 
@@ -53,9 +53,9 @@ Trust information should be stored in the nuget.config file.
 
 ### Trust information schema
 
-The current design and implementation of the nuget.config has some limitations, there a two approaches that can be followed in the implementation of the trust information schema:
+The current design and implementation of the nuget.config have some limitations, there are two approaches that can be followed in the implementation of the trust information schema:
 
-1. Following the current implementation
+**1. Following the current implementation**
 
 ```xml
 <trustedSigners>
@@ -116,9 +116,9 @@ For example -
 </configuration>
 ```
 
-2. Refactoring nuget.config
+**2. Refactoring nuget.config codebase**
 
-This approach would require to refactor the current implementation of nuget.config to have more freedom around the schema inside the config file. The advantage of this approach includes better readability, deterministic clear behavior in each section and more freedom on which attribute to use as the key. Also, by using this approach we enable nuget.config to be updated in the future with a better and more powerfull schema.
+This approach would require to refactor the current implementation of nuget.config to have more freedom around the schema inside the config file. The advantage of this approach includes better readability, deterministic clear behavior in each section and more freedom on which attribute to use as the key. Also, by using this approach we enable nuget.config to be updated in the future with a better and more powerful schema.
 
 ```xml
 <trustedSigners>
