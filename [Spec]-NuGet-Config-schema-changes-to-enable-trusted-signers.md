@@ -52,6 +52,11 @@ If the user wants to only trust specific package owners for a repository, they s
 Trust information should be stored in the nuget.config file.
 
 ### Trust information schema
+
+The current design and implementation of the nuget.config has some limitations, there a two approaches that can be followed in the implementation of the trust information schema:
+
+1. Following the current implementation
+
 ```xml
 <trustedSigners>
   <NAME>
@@ -107,6 +112,71 @@ For example -
            value="SHA256"
            untrustedRoot="allow" />
     </PatoBeltran>
+  </trustedSigners>
+</configuration>
+```
+
+2. Refactoring nuget.config
+
+This approach would require to refactor the current implementation of nuget.config to have more freedom around the schema inside the config file. The advantage of this approach includes better readability, deterministic clear behavior in each section and more freedom on which attribute to use as the key. Also, by using this approach we enable nuget.config to be updated in the future to follow a better and more powerfull schema.
+
+```xml
+<trustedSigners>
+  <repository name="NAME" serviceIndex="SERVICE_INDEX_URI">
+    <certificate fingerprint="CERT_HASH" 
+                 hashAlgorithm="FINGERPRINT_ALGORITHM"
+                 allowUntrustedRoot="UNTRUSTED_ROOT_BOOL" /><!-- defaults to false -->
+    <owners>OWNER_1;OWNER_2;...;OWNER_N</owners>
+  </repository>
+  <author name="NAME">
+    <certificate fingerprint="CERT_HASH" 
+                 hashAlgorithm="FINGERPRINT_ALGORITHM"
+                 allowUntrustedRoot="UNTRUSTED_ROOT_BOOL" /><!-- defaults to false -->
+  </author>
+</trustedSigners>
+```
+
+**Notes on schema:**
+- `trustedSigners` section should have the ability to be cleared.
+- `clear` should not work inside a trusted signer entry.
+- `repository` entries should be unique based on the `serviceIndex`.
+- `author` entries should be unique based on the `name`.
+- If two trusted signer entries are found to have the same unique key on different levels of the hierarchy, the furthest from the user should be overridden.
+- If there are multiple certificates with the same fingerprint (e.g. multiple different trusted signer entries can share the same certificate) and conflicting `allowUntrustedRoot` values, a warning should be generated and the most restrictive setting should be used.
+
+For example -
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
+  </packageSources>
+  <trustedSigners>
+    <repository name="NuGet.Org" serviceIndex="https://api.nuget.org/v3/index.json">
+      <certificate fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+                   hashAlgorithm="SHA256"
+                   allowUntrustedRoot="false" />
+      <certificate fingerprint ="vPv9/fx05OEc4atG7ny+5KXeLbV8xuZhp8ct1fgIhpfdP97ZQ2B801YBaBP61zd=" 
+                   hashAlgorithm="SHA384"
+                   allowUntrustedRoot="false" />
+      <owners>aspnet;microsoft</owners>
+    </repository>
+    <repository name="vsts" serviceIndex="https://api.vsts.com/feed/index.json">
+      <certificate fingerprint="OdiswAGAy7da6Gs6sghKmg9e9r90wM385jRXZsf9Y5q="
+                   hashAlgorithm="SHA256"
+                   allowUntrustedRoot="true" />
+    </repository>
+    <author name="Microsoft">
+      <certificate fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+                   hashAlgorithm="SHA256"
+                   allowUntrustedRoot="false" />
+    </author>
+    <author name="PatoBeltran">
+      <certificate fingerprint="jQCosvMgBxcgQGNesKaHU1Axvgly73B6jkRXZsf9Y8w=" 
+                   hashAlgorithm="SHA256"
+                   allowUntrustedRoot="true" />
+    </author >
   </trustedSigners>
 </configuration>
 ```
