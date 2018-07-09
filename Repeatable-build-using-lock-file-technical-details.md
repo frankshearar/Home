@@ -45,3 +45,13 @@ This is where all the technical details lies for how are we going to consume/ au
 * Finally once the restore is completed, check if user has opt into this feature, then
   * if nothing changed in the existing file, then don't over-write it.
   * else, write the project lock file.
+
+## Validating the lock file
+
+* Check all the `direct` NuGet dependencies and their requested versions still match with the user's input.
+* Check all the `project` dependencies from lock file still match with project's P2P references and all their direct dependencies are still the same.
+
+## Open Items
+
+* lock file name `packages.lock.json` or `nuget.lock.json` or <something-else>.
+* Finalize UI option to run restore with reevaluate restore graph even with a lock file.
