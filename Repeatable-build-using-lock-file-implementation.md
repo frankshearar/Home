@@ -43,13 +43,19 @@ This is where all the technical details lies for how are we going to consume/ au
   * If still valid, then pass this lock file data to further down the stream to be used as part of generating restore graph and making sure that all packages are resolved to the versions define in lock file.
   * If not valid, then discard this lock file and continue with regular restore.
 * Finally once the restore is completed, check if user has opt into this feature, then
-  * if nothing changed in the existing file, then don't over-write it.
-  * else, write the project lock file.
+  * if nothing changed in the existing lock file, then don't over-write it.
+  * if no existing lock file, then write it out.
+  * else, check if user has allowed to overwrite the existing lock file, then update it.
 
 ## Validating the lock file
 
 * Check all the `direct` NuGet dependencies and their requested versions still match with the user's input.
 * Check all the `project` dependencies from lock file still match with project's P2P references and all their direct dependencies are still the same.
+
+## When to update the existing lock file
+
+* Install/ Update/ Uninstall - These actions will update the lock file, if required.
+* Restore - By default, if the lock file is out of sync, restore command will update the lock file with the latest resolved closure of packages. It will do so with a warning. But there is an explicit MSBuild property [`UpdateLockFileOnRestore`](https://github.com/NuGet/Home/wiki/Enable-repeatable-package-restore-using-lock-file#extensibility) to control this behavior.
 
 ## Lock File format
 
