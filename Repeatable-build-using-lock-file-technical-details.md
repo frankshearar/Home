@@ -60,7 +60,7 @@ Based on these prototypes, we should go ahead with `Json` format to maintain thi
 * Json file looks more human readable and easy to understand
 * Already have well known parser so no new dependency or writing your own parser which will also take several iterations to get that right
 * Performance of `JSON` vs `YAML` isn't too bad specially while reading the file which will happen too often compare to write.
-  * Writing a sample `nuget.lock.json` file takes ~35ms compare to writing the content as `nuget.lock.yaml` takes ~8ms
+  * Writing a sample [`nuget.lock.json` file](https://github.com/NuGet/Home/blob/dev/resources/RepeatableBuildLockFile/project.lock.json) takes ~35ms compare to writing the content as [`nuget.lock.yaml`](https://github.com/NuGet/Home/blob/dev/resources/RepeatableBuildLockFile/project.lock.yaml) takes ~8ms
   * Reading a sample `nuget.lock.json` file takes ~2.09ms compare to reading the content as `nuget.lock.yaml` takes ~1.35ms
 * Easy to identify what changed and easy mergable
 * Consistent with existing NuGet artifacts
