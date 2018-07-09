@@ -51,6 +51,20 @@ This is where all the technical details lies for how are we going to consume/ au
 * Check all the `direct` NuGet dependencies and their requested versions still match with the user's input.
 * Check all the `project` dependencies from lock file still match with project's P2P references and all their direct dependencies are still the same.
 
+## Lock File format
+
+We discussed multiple options such as `Yaml`, `Json` or `Xml` as format to generate this lock file and laid down some basic principles to choose one. Based on those principles, we prototyped `Yaml` and `Json` formats to compare the different properties for both formats and select the most appropriate one.
+
+Based on these prototypes, we should go ahead with `Json` format to maintain this lock file. Below are the reasoning based on the principles we set to select the file format:
+
+* Json file looks more human readable and easy to understand
+* Already have well known parser so no new dependency or writing your own parser which will also take several iterations to get that right
+* Performance of `JSON` vs `YAML` isn't too bad specially while reading the file which will happen too often compare to write.
+  * Writing a sample `nuget.lock.json` file takes ~35ms compare to writing the content as `nuget.lock.yaml` takes ~8ms
+  * Reading a sample `nuget.lock.json` file takes ~2.09ms compare to reading the content as `nuget.lock.yaml` takes ~1.35ms
+* Easy to identify what changed and easy mergable
+* Consistent with existing NuGet artifacts
+
 ## Open Items
 
 * lock file name `packages.lock.json` or `nuget.lock.json` or `<something-else>`.
