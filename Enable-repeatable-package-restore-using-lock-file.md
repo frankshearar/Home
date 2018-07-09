@@ -2,9 +2,15 @@
 * Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
 
 ## Context
+This feature will enable repeatable package restores (thereby aiding repeatable builds) for your projects, solutions (or repos) irrespective of when and where you invoke the restore command. If the package graph changes, NuGet will let you know about it so that you take corrective steps.
 
+Today, NuGet operates on per project level i.e. you can add/remove/update/restore packages for a project. However, there has been a requirement to enable package management at a solution (or a repo) level. The following specs cover more details on the proposal (State: Incubation):
 * Spec: [[Centrally managing NuGet packages]] - summarizes the requirements around managing packages at a solution or repo level
 * Spec: [[Centrally managing NuGet package versions]] - detailed specification for managing packages at a solution or a repo level.
+
+In the context of enabling repeatable package restores using a lock file, the proposal is to generate lock files at different levels depending on the way packages as managed:
+* If the packages are managed at a project level (current situation), then the lock files will be generated at per project level.
+* If the packages are managed at a solution/repo level (future - proposal: [[Centrally managing NuGet packages]]), then the lock file will be managed at the same level at which the packages are managed.
 
 ## Requirements
 Developers would like to have repeatable builds (restores) across time and space
@@ -34,7 +40,7 @@ Input to NuGet is a set of Package References from the project file (Top-level/D
  
 * If the same package ID+version resolves to different packages across different sources, NuGet cannot ensure the same package(with the same hash) will be resolves every time. It will also not warn/error out in such cases.
 
-* [Future - R3] Users have been asking for an ability to define the resolution strategy of transitive dependencies as it existed with package.config. Once we implement this feature, when a then any update to a transitive package on repository can change the full closure of package dependencies.
+* [Future] Users have been asking for an ability to define the resolution strategy of transitive dependencies as it existed with package.config. Once we implement this feature, when a then any update to a transitive package on repository can change the full closure of package dependencies.
 
   E.g. If Project1 depends on PackageA(v1.0.0) which depends on PackageB(>=2.0.0)
 
@@ -59,6 +65,8 @@ Project1--> PackageA(1.0.0) --> PackageB(>=2.0.0)
 ```
 
 So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that may have breaking changes. Obviously this is due to an intentional package install but the transitive closure happens behind the scenes without letting the users know the changes in transitive dependency versions. Sometimes this is not ideal. Users would like to know the difference in package dependency graphs irrespective of whether the change is related to direct or indirect/transitive dependencies.
+
+## Evidence
 
 
 ## Solution - Summary
