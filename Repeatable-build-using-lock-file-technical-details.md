@@ -53,5 +53,5 @@ This is where all the technical details lies for how are we going to consume/ au
 
 ## Open Items
 
-* lock file name `packages.lock.json` or `nuget.lock.json` or <something-else>.
+* lock file name `packages.lock.json` or `nuget.lock.json` or `<something-else>`.
 * Finalize UI option to run restore with reevaluate restore graph even with a lock file.
