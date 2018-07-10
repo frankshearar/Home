@@ -10,6 +10,7 @@
 * [NuGet Package Signing Client Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
 * [Symbols Package Upload Workflow](https://github.com/NuGet/Home/wiki/Symbols-Package-Upload-Workflow)
 * [[Show outdated packages]]
+* [[Enable repeatable package restore using lock file]]
 
 #### Reviewed
 * [[Register package signing certificates]]
