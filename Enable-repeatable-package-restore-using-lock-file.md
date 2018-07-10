@@ -1,5 +1,7 @@
 * Status: Incubation
 * Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
+## Issue(s)
+Enable repeatable package restores for PackageReference based projects [#5602](https://github.com/NuGet/Home/issues/5602)
 
 ## Context
 This feature will enable repeatable package restores (thereby aiding repeatable builds) for your projects, solutions (or repos) irrespective of when and where you invoke the restore command. If the package graph changes, NuGet will let you know about it so that you take corrective steps.
