@@ -69,7 +69,7 @@ So now instead of PackageB(2.0.0), NuGet resolves to PackageB(**4.0.0**) that ma
 ## Evidence
 `packages.config` used to list out all the package dependencies as a flat list for a project. Instead of some of the issues this mechanism had, it helped in restoring the exact packages every time packages were restored. As developers have started to use `PackageReference` with .NET Core and other types of project (more and more project systems are starting to support it), they want to have the same repeatability of package restores with `PackageReference` as they had with `packages.config`.
 
-We also looked at many package managers like yarn, npm, paket, cargo, etc. and all seem to have a similar mechanism of a lock file to implement repeatable restores (builds). 
+Many existing package managers like yarn, npm, paket, cargo, etc. use lock file to implement repeatable restores (builds). 
 
 ## Solution - Summary
 * A lock file has the package dependency graph for the project/solution/repo that includes both the direct as well as transitive dependencies.
