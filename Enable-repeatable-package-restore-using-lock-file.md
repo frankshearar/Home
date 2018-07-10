@@ -198,6 +198,13 @@ Once the feature is enabled,
 || `deny` | `restore` will fail if the lock file is [out of sync](#out-of-sync). Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
 | `NuGetLockFilePath` | `<PathToLockFile>` | Path to lock file if you want to rename or change the location of the lock file. The name should always be *lock.json. |
 
+Restore command line options:
+| Option | Description |
+|:---  |:--- |
+| `--ignore-lock-file` | Ignores the lock file - `packages.lock.json` usage with restore. |
+| `--update-lock-file` | `restore` will update without any warning if lock file is not present or [out of sync](#out-of-sync). |
+| `--lock-file <path>` | **(not MVP)** Path to lock file to use for a given restore. The name should always be *lock.json. |
+
 ### Visual Studio Experience
 For MVP, there is no VS experience needed. Except for the error/warning messages that will be visible in VS.
 
