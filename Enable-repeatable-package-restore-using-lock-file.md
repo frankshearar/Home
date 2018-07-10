@@ -236,7 +236,3 @@ Summary table:
 | Add/Remove sources | No | 
 | Add/Remove fallback folder | No |
 | Change project name | No |
-
-### Open items
-
-#### Restore option to re-evaluate *
