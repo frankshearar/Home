@@ -181,6 +181,8 @@ Once the feature is enabled,
 
   E.g. In Project `A->B->C->D->...->X` dependency tree, if you change the `PackageReference` for project `X`, the lock file of not just project `X` changes but when you build the solution, lock files of all the projects right from `A` to `X` will change requiring you to checkin/commit multiple files some of which you never worked on. For these scenarios managing dependencies and lock file at central solution/repo level helps as you have to deal with just one lock file change (+ CPVMF `packages.props` file change). 
 
+* We **recommend** that you should not enable lock file for common-code (or library) projects as finally the package graph is locked down at the project that depends on the common-code (library) project.
+
 #### Nuances - central lock file
 * Whenever you manage package versions centrally at a solution/repo level, you get a central lock file for all your projects.
 * The lock file lists all the packages mentioned in the CPVMF and not the packages referenced in each of your projects. If you run `restore` centrally i.e. at a solution or a repo folder that has the CPVMF, then the unused packages (packages not referenced by any projects) are garbage collected and removed from the CPVMF and hence the lock file. However there are chances of CPVMF listing more packages than referenced in all the projects under the solution/repo.
