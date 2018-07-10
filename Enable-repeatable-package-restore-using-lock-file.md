@@ -207,7 +207,12 @@ Restore command line options:
 | `--lock-file <path>` | **(not MVP)** Path to lock file to use for a given restore. The name should always be *lock.json. |
 
 ### Visual Studio Experience
-For MVP, there is no VS experience needed. Except for the error/warning messages that will be visible in VS.
+We need an option to update the lock file explicitly. This will also help in updating the package references using ` * `.
+![image](https://user-images.githubusercontent.com/14800916/42529989-ce952bd2-8434-11e8-851e-ac9513dac615.png)
+
+Additionally we should have the following options on each NuGet reference in the UI (**not MVP**):
+* update
+* add as direct reference (for transitive package references)
 
 ### Key terms
 #### Out of sync
