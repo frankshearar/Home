@@ -1,4 +1,4 @@
-* Status: Incubation
+* Status: **Reviewing**
 * Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
 ## Issue(s)
 Enable repeatable package restores for PackageReference based projects [#5602](https://github.com/NuGet/Home/issues/5602)
