@@ -203,7 +203,7 @@ Restore command line options:
 | Option | Description |
 |:---  |:--- |
 | `--ignore-lock-file` | Ignores the lock file - `packages.lock.json` usage with restore. |
-| `--update-lock-file` | `restore` will update without any warning if lock file is not present or [out of sync](#out-of-sync). |
+| `--update-lock-file` | `restore` will recompute the dependencies and update the lock file without any warning. |
 | `--lock-file <path>` | **(not MVP)** Path to lock file to use for a given restore. The name should always be *lock.json. |
 
 ### Visual Studio Experience
