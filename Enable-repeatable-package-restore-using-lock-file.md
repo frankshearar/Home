@@ -199,6 +199,7 @@ Once the feature is enabled,
 | `NuGetLockFilePath` | `<PathToLockFile>` | Path to lock file if you want to rename or change the location of the lock file. The name should always be *lock.json. |
 
 Restore command line options:
+
 | Option | Description |
 |:---  |:--- |
 | `--ignore-lock-file` | Ignores the lock file - `packages.lock.json` usage with restore. |
