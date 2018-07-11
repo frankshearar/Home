@@ -201,18 +201,22 @@ Once the feature is enabled,
 || `allow`| `restore` will update the lock file if it is [out of sync](#out-of-sync) but will not warn. |
 || `deny` | `restore` will fail if the lock file is [out of sync](#out-of-sync). Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
 | `NuGetLockFilePath` | `<PathToLockFile>` | Path to lock file if you want to rename or change the location of the lock file. The name should always be *lock.json. |
+| `IgnoreLockFileForRestore` | true | **false** | **Not MVP** Ignores the lock file during restore. |
+
+The corresponding command line msbuild options should work too.
 
 Restore command line options:
 
 | Option | Description |
 |:---  |:--- |
 | `--ignore-lock-file` | Ignores the lock file - `packages.lock.json` usage with restore. |
-| `--update-lock-file` | `restore` will recompute the dependencies and update the lock file without any warning. |
+| `--reevaluate` | Force `restore` to recompute the dependencies and update the lock file without any warning. |
 | `--lock-file <path>` | **(not MVP)** Path to lock file to use for a given restore. The name should always be *lock.json. |
 
 ### Visual Studio Experience
-We need an option to update the lock file explicitly. This will also help in updating the package references using ` * `.
-![image](https://user-images.githubusercontent.com/14800916/42529989-ce952bd2-8434-11e8-851e-ac9513dac615.png)
+We need an option to force recompute of package dependencies and update the lock file explicitly. This will also help in updating the package references using ` * `.
+![image](https://user-images.githubusercontent.com/14800916/42593045-3566dd58-8500-11e8-9b10-7a17acfa4ed5.png)
+
 
 Additionally we should have the following options on each NuGet reference in the UI (**not MVP**):
 * update
