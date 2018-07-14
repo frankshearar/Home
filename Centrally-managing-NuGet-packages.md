@@ -1,6 +1,9 @@
 * Status: Incubation
 * Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
 
+# Issue 
+Centrally manage NuGet package versions for a solution or a repo [#6764](https://github.com/NuGet/Home/issues/6764)
+
 ## Requirements
 
 As Noah, a developer who uses NuGet in an enterprise,
@@ -19,10 +22,6 @@ Extensibility requirements:
 
 Content Governance requirements (P2)
 * I am able to scan the packages (full closure) used in the solution to flag non-compliance, licensing and vulnerabilities.
-
-# Issue 
-[PackageReference] Centrally manage NuGet package versions for a solution or a repo [#6764](https://github.com/NuGet/Home/issues/6764)
-
 ## Who is the customer?
 Customers with huge code-base spanning 100s of projects. 
 
