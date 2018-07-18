@@ -37,5 +37,5 @@ The work for this feature and the discussion around the spec is tracked here: [#
     - Discuss [#6378](https://github.com/NuGet/Home/issues/6378) 
 
 #### Stage 3. Configurable policies to enable locked down developer environments
-- NuGet client security policy. [TBD]
-- NuGet server security policy. [TBD]
+- [[[Spec] NuGet Package Signing Client Policy]]
+- [[[Spec] NuGet Config schema changes to enable trusted signers]]
