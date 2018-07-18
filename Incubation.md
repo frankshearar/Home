@@ -9,4 +9,4 @@
 * [NuGet Package Debugging & Symbols Improvements](https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements)
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
 
-* [Config Max http request in NuGet](https://github.com/NuGet/Home/wiki/Config-Max-http-request-in-NuGet)
+* [Config Max Http Request In NuGet](https://github.com/NuGet/Home/wiki/Config-Max-Http-Request-In-NuGet)
