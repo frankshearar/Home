@@ -25,6 +25,9 @@ The work for this feature and the discussion around the spec is tracked here: [#
     - https://github.com/NuGet/Home/wiki/Package-Signatures-Technical-Details
     - Discuss [#6250](https://github.com/nuget/home/issues/6250)
 
+- **Package Signing errors and warnings**
+    - https://github.com/NuGet/Home/wiki/NuGet-package-signing-Errors-and-Warnings
+
 - **Register package signing certificates on NuGet.org**: Contains the certificate registration flow for NuGet.org authors 
     - https://github.com/NuGet/Home/wiki/Register-package-signing-certificates
     - Discuss [#5346](https://github.com/nuget/NuGetGallery/issues/5346)
@@ -37,7 +40,7 @@ The work for this feature and the discussion around the spec is tracked here: [#
     - Discuss [#6378](https://github.com/NuGet/Home/issues/6378) 
 
 #### Stage 3. Configurable policies to enable locked down developer environments
-- [[Spec] NuGet Package Signing Client Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
-- [[Spec] NuGet Config schema changes to enable trusted signers](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-trusted-signers)
-
-- Discuss [#6524](https://github.com/NuGet/Home/issues/6524)
+- **Client Policies**
+    - [[Spec] NuGet Package Signing Client Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
+    - [[Spec] NuGet Config schema changes to enable trusted signers](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-trusted-signers)
+    - Discuss [#6524](https://github.com/NuGet/Home/issues/6524)
