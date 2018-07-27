@@ -1,5 +1,5 @@
 ## Issue
-Link to the GitHub issue that tracks the work and discussion.
+Users should be able to see package repository metadata [#4941](https://github.com/NuGet/NuGetGallery/issues/4941)
 
 ## Problem
 Look at the issue description for the background and the problem details. In short, since mid 2016, the NuGet package manifest (.nuspec) has supported the <repository> XML element. Earlier this year - 2018, we documented the `repository` property. But there is no clarity on the purpose of this repository, how this should be lit up on the NuGet Gallery, VS client or the format in which this should specified in the nuspec.
@@ -17,6 +17,12 @@ Look at the **Usage on nuget.org** section of the [linked issue](https://github.
 ## Solution
 
 ### Authoring 
+The repository information needs to be present in nuspec file. E.g:
+```
+<repository type="git" url="https://github.com/NuGet/NuGet.Client" />
+```
+* `type`: Specific the type of repository like `git`, `svn`, etc
+* `url`: 
 
 ### Display on nuget.org (short-term)
 
