@@ -170,6 +170,7 @@ The following message will be amended for version 2.0.0 of the plugin.
     * Uri
     * isRetry
     * NonInteractive
+    * CanShowDialog
 * A response will contain
     * Username
     * Password
