@@ -178,6 +178,18 @@ The following message will be amended for version 2.0.0 of the plugin.
     * List of Auth Types
     * MessageResponseCode
 
+When the client calls the plugin with a Get Authentication Credentials, the plugins need to conform to the interactivity switch and respect the dialog switch. 
+
+The following table summarizes how the plugin should behave for all combinations.
+
+| IsNonInteractive | CanShowDialog | Plugin behavior |
+| ---------------- | ------------- | --------------- |
+| true | true | The IsNonInteractive switch takes precedence over the dialog switch. The plugin is not allowed to pop a dialog. This combination is only valid for .NET Framework plugins |
+| true | false | The IsNonInteractive switch takes precedence over the dialog switch. The plugin is not allowed to block. This combination is only valid for .NET Core plugins |
+| false | true | The plugin should show a dialog. This combination is only valid for .NET Framework plugins |
+| false | false | The plugin should/can not a dialog. The plugin should use device flow to authenticate by logging an instruction message via the logger. This combination is only valid for .NET Core plugins |
+
+
 ## How does Visual Studio work with the plugin
 
 In the previous credential plugin implementation, the experience in Visual Studio and NuGet.exe was different.
