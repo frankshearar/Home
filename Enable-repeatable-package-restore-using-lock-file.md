@@ -207,16 +207,18 @@ Once the feature is enabled,
 
 The corresponding command line msbuild options should work too.
 
-Restore command line options:
+### `restore` command line options:
 
-| Option | MSBuild equivalent option | Description |
-|:---  |:--- |:--|
-| `--use-lock-file` | `RestorePackagesWithLockFile` | |
-| `--update-lock-file` | `UpdateLockFileOnRestore` | Options: *`warn`* \| `always` \| `never` |
-| `--lock-file-path` | NuGetLockFilePath | **(not MVP)** |
-| `--ignore-lock-file` | `IgnoreLockFileForRestore` | **(not MVP)** |
-| `--reevaluate` | *None* |Force `restore` to recompute the dependencies and update the lock file without any warning. |
+| Option | MSBuild equivalent option | 
+|:---  |:--- |
+| `--use-lock-file` | `RestorePackagesWithLockFile` | 
+| `--update-lock-file` **`warn`** \| `always` \| `never`| `UpdateLockFileOnRestore` |  
+| `--lock-file-path` **(not MVP)** | `NuGetLockFilePath` |
+| `--ignore-lock-file` **(not MVP)** | `IgnoreLockFileForRestore` |  
+| `--reevaluate`* | *None* | 
 
+\* *Force `restore` to recompute the dependencies and update the lock file without any warning.*
+ 
 ### Visual Studio Experience
 We need an option to force recompute of package dependencies and update the lock file explicitly. This will also help in updating the package references using ` * `.
 ![image](https://user-images.githubusercontent.com/14800916/42593045-3566dd58-8500-11e8-9b10-7a17acfa4ed5.png)
