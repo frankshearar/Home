@@ -203,7 +203,7 @@ Once the feature is enabled,
 || `always`| `restore` will update the lock file if it is [out of sync](#out-of-sync) but will not warn. |
 || `never` | `restore` will fail if the lock file is [out of sync](#out-of-sync). Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
 | `NuGetLockFilePath` | `<PathToLockFile>` | Path to lock file if you want to rename or change the location of the lock file. The name should always be *lock.json. |
-| `IgnoreLockFileForRestore` | true | **false** | **Not MVP** Ignores the lock file during restore. |
+| `IgnoreLockFileForRestore` | true \| **false** | **Not MVP** Ignores the lock file during restore. |
 
 The corresponding command line msbuild options should work too.
 
