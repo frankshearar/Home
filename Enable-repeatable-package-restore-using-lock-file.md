@@ -194,12 +194,14 @@ Once the feature is enabled,
 
 ### Extensibility
 
+#### MSBuild options
+
 | Option | Values | Description |
 |:--- |:--- |:--- |
 | `RestorePackagesWithLockFile` | `true`\| **`false`** | Enables lock file - `packages.lock.json` usage with restore. Default is `false` |
 | `UpdateLockFileOnRestore` | **`warn`** | Default option - `restore` will update but warn if lock file is [out of sync](#out-of-sync). |
-|| `allow`| `restore` will update the lock file if it is [out of sync](#out-of-sync) but will not warn. |
-|| `deny` | `restore` will fail if the lock file is [out of sync](#out-of-sync). Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
+|| `always`| `restore` will update the lock file if it is [out of sync](#out-of-sync) but will not warn. |
+|| `never` | `restore` will fail if the lock file is [out of sync](#out-of-sync). Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
 | `NuGetLockFilePath` | `<PathToLockFile>` | Path to lock file if you want to rename or change the location of the lock file. The name should always be *lock.json. |
 | `IgnoreLockFileForRestore` | true | **false** | **Not MVP** Ignores the lock file during restore. |
 
@@ -207,11 +209,13 @@ The corresponding command line msbuild options should work too.
 
 Restore command line options:
 
-| Option | Description |
-|:---  |:--- |
-| `--ignore-lock-file` | Ignores the lock file - `packages.lock.json` usage with restore. |
-| `--reevaluate` | Force `restore` to recompute the dependencies and update the lock file without any warning. |
-| `--lock-file <path>` | **(not MVP)** Path to lock file to use for a given restore. The name should always be *lock.json. |
+| Option | MSBuild equivalent option | Description |
+|:---  |:--- |:--|
+| `--use-lock-file` | `RestorePackagesWithLockFile` | |
+| `--update-lock-file` | `UpdateLockFileOnRestore` | Options: *`warn`* \| `always` \| `never` |
+| `--lock-file-path` | NuGetLockFilePath | **(not MVP)** |
+| `--ignore-lock-file` | `IgnoreLockFileForRestore` | **(not MVP)** |
+| `--reevaluate` | *None* |Force `restore` to recompute the dependencies and update the lock file without any warning. |
 
 ### Visual Studio Experience
 We need an option to force recompute of package dependencies and update the lock file explicitly. This will also help in updating the package references using ` * `.
