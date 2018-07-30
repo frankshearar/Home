@@ -26,7 +26,9 @@ The repository information needs to be present in nuspec file. E.g:
 * `branch`: *(optional)* additional metadata meant for `git` repositories
 * `commit`: *(optional)* additional metadata meant for `git` repositories
 
-
 ### Display on nuget.org (short-term)
+Since this metadata is already being used in many packages, we would like to go one step at a time and start showing this information on nuget.org: 
+
+
 
 ### Long term ideas on the display and usage 
