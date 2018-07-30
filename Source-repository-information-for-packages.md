@@ -22,7 +22,10 @@ The repository information needs to be present in nuspec file. E.g:
 <repository type="git" url="https://github.com/NuGet/NuGet.Client" />
 ```
 * `type`: Specific the type of repository like `git`, `svn`, etc
-* `url`: 
+* `url`: This should be a publicly available url that can be invoked directly by a version control software. It should not be an html page. This is meant for the machine. For linking to project page, use the `projectUrl` field.
+* `branch`: *(optional)* additional metadata meant for `git` repositories
+* `commit`: *(optional)* additional metadata meant for `git` repositories
+
 
 ### Display on nuget.org (short-term)
 
