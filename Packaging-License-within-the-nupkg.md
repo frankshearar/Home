@@ -1,4 +1,5 @@
-Status: **Incubation**
+* Status: **Reviewing**
+* Author(s): [Karan Nandwani](https://github.com/karann-msft) ([@karann9](https://twitter.com/karann9))
 
 ### Issue
 The work for this feature and the discussion around the License specific spec is tracked by **Package trust - Licenses [#4628](https://github.com/NuGet/Home/issues/4628)**
