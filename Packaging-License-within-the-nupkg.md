@@ -7,8 +7,9 @@ The work for this feature and the discussion around the License specific spec is
 
 * New nuspec property `<license type="MIT" />`
   * Is an [SPDX license identifier](https://spdx.org/licenses/) or expression. E.g. `<license type="LGPL-2.1 OR MIT" />`
-  * Or is a path to a license file. E.g. `<license src="license.txt" />`
+  * Or is a path to a license file. E.g. `<license src="license.txt" target=""/>`
   * Supported formats - md, txt
+  * On pack, strip source value, append the target value with the source file name - `<license target="license.txt"/>`. (this is to help the gallery and the client know the path to the license file in the package and the file name.extension.)
   * nuget spec will add license instead of licentUrl 
     > `<!-- e.g. <license type="MIT"/> or <license src="license.txt"/>. Note - you cannot specify both type and source. Learn more at https://aka.ms/nugetPackageLicense-->` <br>
     > `<license type=""/>`
