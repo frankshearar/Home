@@ -1,5 +1,5 @@
 * Status: **Reviewing**
-* Author(s): [Karan Nandwani](https://github.com/karann-msft) ([@karann9](https://twitter.com/karann9)
+* Author(s): [Karan Nandwani](https://github.com/karann-msft) ([@karann9](https://twitter.com/karann9))
 
 ### Issue
 The work for this feature and the discussion around the Icon specific spec is tracked by **Package Icon should be able to come from inside the package [#352](https://github.com/NuGet/Home/issues/352)**
