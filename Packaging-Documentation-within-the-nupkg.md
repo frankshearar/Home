@@ -19,7 +19,7 @@ The work for this feature and the discussion around the Documentation specific s
   * The documentation url would be served by the gallery. For nuget.org this will link to the package details page that contains documentation (and that section will be expanded).
 * Installed packages/folder based feeds/fallback folder
   * Client will provide a link to open the documentation file from the nupkg/global packages folder/extracted location
-  * Clicking on the link will open the file in VS similar to license (if we hear feedback that this should not open in VS, we will pop a message the first time this happens, allowing the user to choose to open it with the default application associated with that extension, with the option to not show that message again)
+  * Clicking on the link will open the file in the default application associated with that extension
   * Client will do the same validations and security checks as nuget.org before displaying md files.
 
 #### Other considerations
