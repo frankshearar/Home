@@ -24,8 +24,6 @@ The work for this feature and the discussion around the Documentation specific s
 
 #### Other considerations
 * Size and other limitations for the md file that exists on NuGet.org still apply.
-* Opening md file in VS today shows it in plain text and does not render the md. Stretch goal - render the md with formatting :)
-
 
 #### Validations
 > + pack means `nuget pack`
