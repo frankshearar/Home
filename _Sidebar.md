@@ -11,6 +11,7 @@
 * [Symbols Package Upload Workflow](https://github.com/NuGet/Home/wiki/Symbols-Package-Upload-Workflow)
 * [[Show outdated packages]]
 * [[Enable repeatable package restore using lock file]]
+* [[Packaging Icon, License and Documentation within the nupkg]]
 
 #### Reviewed
 * [[Register package signing certificates]]
