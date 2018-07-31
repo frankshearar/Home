@@ -36,7 +36,7 @@ The repository information needs to be present in nuspec file. E.g:
 * `commit`: *(optional)* additional metadata meant for `git` repositories
 
 ### Validations
-There should be validations at the time of `pack`, `push`|`update` and the error/warning should be shown to the user with the link to use the field appropriately. The validations should check for the following:
+There should be validations at the time of `pack`, `push`|`upload` and the error/warning should be shown to the user with the link to use the field appropriately. The validations should check for the following:
 1. If the URL specified is not public URL.
   * `pack`: No check.
   * `push`|`upload`: Warning (nuget.org)
