@@ -1,3 +1,5 @@
+Status: **Incubation**
+
 ### Issue
 The work for this feature and the discussion around the Icon specific spec is tracked by **Package Icon should be able to come from inside the package [#352](https://github.com/NuGet/Home/issues/352)**
 
