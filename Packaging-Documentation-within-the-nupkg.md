@@ -1,3 +1,6 @@
+### Issue
+The work for this feature and the discussion around the Documentation specific spec is tracked by **Nuspec - documentation / readme url [#6873](https://github.com/NuGet/Home/issues/6873)**
+
 ### Documentation
 
 * New nuspec property `<documentation src="documentation.md" />`
@@ -32,8 +35,8 @@
 
 
 ***
-[Back to parent spec]()
+[Back to parent spec](https://github.com/NuGet/Home/wiki/Packaging-Icon,-License-and-Documentation-within-the-nupkg)
 
-[Packaging Icon within the nupkg]()
+[Packaging Icon within the nupkg](https://github.com/NuGet/Home/wiki/Packaging-Icon-within-the-nupkg)
 
-[Packaging License within the nupkg]()
+[Packaging License within the nupkg](https://github.com/NuGet/Home/wiki/Packaging-License-within-the-nupkg)
