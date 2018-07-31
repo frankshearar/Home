@@ -33,7 +33,10 @@ There should be validations at the time of `pack`, `push`|`update` and the error
   * `push`|`update`: Error (nuget.org)
 2. If the URL is not in the right format. (We should start with `git` URLs and add validations for other types later) 
   * `pack`: Error
-  * `push`|`update`: Error
+  * `push`|`update`: Error (nuget.org)
+3. If the URL points to an inappropriate or malicious site
+  * Validation (1) should be to mitigate to quite an extent. 
+  * In future, we should plan to do content verification scan not just for the nuspec but for all the contents of the package.
 
 ### Display on nuget.org (short-term)
 Since this metadata is already being used in many packages, we would like to go one step at a time and start showing this information on nuget.org: 
