@@ -38,12 +38,15 @@ The repository information needs to be present in nuspec file. E.g:
 ### Validations
 There should be validations at the time of `pack`, `push`|`update` and the error/warning should be shown to the user with the link to use the field appropriately. The validations should check for the following:
 1. If the URL specified is not public URL.
-  * `pack`: Warning
-  * `push`|`update`: Error (nuget.org)
+  * `pack`: No check.
+  * `push`|`upload`: Warning (nuget.org)
 2. If the URL is not in the right format. (We should start with `git` URLs and add validations for other types later) 
-  * `pack`: Error
-  * `push`|`update`: Error (nuget.org)
-3. If the URL points to an inappropriate or malicious site
+  * `pack`: Warning
+  * `push`|`upload`: Warning (nuget.org)
+3. If the URL is not https
+  * `pack`: No check.
+  * `push`|`upload`: Warning (nuget.org) 
+4. If the URL points to an inappropriate or malicious site
   * Validation (1) should be to mitigate to quite an extent. 
   * In future, we should plan to do content verification scan not just for the nuspec but for all the contents of the package.
 
