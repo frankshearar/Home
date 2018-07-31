@@ -10,7 +10,6 @@ The work for this feature and the discussion around the License specific spec is
   * Is an [SPDX license identifier](https://spdx.org/licenses/) or expression. E.g. `<license type="LGPL-2.1 OR MIT" />`
   * Or is a path to a license file. E.g. `<license src="license.txt" target=""/>`
   * Supported formats - md, txt
-  * On pack, strip source value, append the target value with the source file name - `<license target="license.txt"/>`. (this is to help the gallery and the client know the path to the license file in the package and the file name.extension.)
   * nuget spec will add license instead of licentUrl 
     > `<!-- e.g. <license type="MIT"/> or <license src="license.txt"/>. Note - you cannot specify both type and source. Learn more at https://aka.ms/nugetPackageLicense-->` <br>
     > `<license type=""/>`
@@ -29,7 +28,7 @@ The work for this feature and the discussion around the License specific spec is
     * For existing packages, fall back to displaying license URL the way we do today
   * VS 2015 and older
     * At pack time, we will insert a license URL in the nuspec which will point to https://aka.ms/deprecateLicenseUrl (validations in place to ensure no other url can be used). Pack will provide an info message that this is being done to maintain compat. The docs will explain to the user why they ended up on that page and what can they do figure out the package license which is essentially navigating to the nuget.org package details page.
-    * Stretch goal - the client knows how to generate a URL that NuGet.org serves for the browse scenario and populate PackageLicenseUrl with that url. 
+    * Stretch goal (out of scope for v1) - the client knows how to generate a URL that NuGet.org serves for the browse scenario and populate PackageLicenseUrl with that url. 
     * For existing package, no change in behavior
 
 #### License file inside the pacakge
@@ -37,12 +36,11 @@ The work for this feature and the discussion around the License specific spec is
 * Browse from NuGet.org
   * During the package ingestion, nuget.org will extract the license and host it on nuget.org. For search, registration metadata, and v2 API (basically any service that customers hit where we expose the license URL), the license URL would be replaced with URL to the gallery hosted license.
   * Clicking on the license link on the package details page navigates to the nuget.org hosted license page for that package version https://www.nuget.org/packages/Newtonsoft.Json/11.0.2/license
-  * Stretch goal - Attempt to parse the license file to determine license type and expose that information on nuget.org and in the API. If the file contains a license that can be replaced with an SPDX identifier, surface that information to the author.
+  * Stretch goal (out of scope for v1) - Attempt to parse the license file to determine license type and expose that information on nuget.org and in the API. If the file contains a license that can be replaced with an SPDX identifier, surface that information to the author.
 * Installed packages/folder based feeds/fallback folder
   * VS 2017 and above
     * Client will provide a link to open the license file from the nupkg/global packages folder/extracted location
-    * Clicking on the link will open the file in VS (if we hear feedback that this should not open in VS, we will pop a message the first time this happens, allowing the user to choose to open it with the default application associated with that extension, with the option to not show that message again)
-    * Client will do the same security checks as nuget.org before displaying txt/md files.
+    * Clicking on the link will open the file in the default application associated with that extension
     * For existing packages, fall back to displaying license URL the way we do today
   * VS 2015 and older - same as what we do in case of SPDX identifier or expression
 * On pack, strip source value, append the target value with the source file name - `<license target="license.txt"/>`. (this is to help the gallery and the client know the path to the license file in the package and the file name.extension.)
