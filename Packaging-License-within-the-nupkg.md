@@ -1,3 +1,6 @@
+### Issue
+The work for this feature and the discussion around the License specific spec is tracked by **Package trust - Licenses [#4628](https://github.com/NuGet/Home/issues/4628)**
+
 ### License
 
 * New nuspec property `<license type="MIT" />`
@@ -47,7 +50,6 @@
 * On pack, strip source value, append the target value with the source file name. The license file will be placed at the package root and the nuspec property `license` will be set to `<license target="file name from the license file prop"/>` indicating that the icon license at the package root.
 * PackageLicenseUrl - same as what we do for licenseUrl above
 
-
 #### Validations
 > + pack means `nuget pack`
 > + push means `nuget push`
@@ -57,29 +59,6 @@
 * licenseUrl is present and licenseUrl <> https://aka.ms/deprecateLicenseUrl (or client generated url to nuget.org as part of the stretch goal) -> error on pack, push, upload.
 * Copyright field is null and license uses an SPDX identifier -> warn on pack, push, upload.
 * when licenseUrl is added for the user -> info on pack
-
-#### Client Impact matrix
-The matrix below talks about scenarios where the license will be visible for a given scenario and client.<br>
-Partial - aka.ms/deprecateLicenseUrl will be displayed for new packages. Existing packages won't be affected.<br>
-Y - the intended license will be displayed for existing and new packages.
-
-| Scenario | VS2015 | VS2017 | VS2019 |
-| ------------- | ------------- | ------------- | ------------- |
-| Browse packages from NuGet.org  | Y  | Y | Y |
-| Browse packages from a folder based feed  | Partial (for new packages)  | Y  | Y  |
-| Installed packages  | Partial (for new packages)  | Y  | Y  |
-
-
-#### Roll-out plan
-* `licenseurl` in the nuspec will be deprecated
-  * Day 0 - Announce `licenseurl` is being deprecated (blog, tweet, etc.)
-  * Day 0 - NuGet.org starts accepting packages with the `license` property
-  * Day 0 - NuGet.exe ships that recognizes the `license` property
-  * Day 0 - Start warning authors that `licenseurl` is being deprecated (licenseUrl is present and licenseUrl <> https://aka.ms/deprecateLicenseUrl -> warn on pack, push, upload.)
-  * Day 20 - Announce `licenseurl` will not be accepted starting Day 30 deprecated
-  * Day 30 - NuGet.org stops accepting packages with `licenseurl` (except if licenseurl = https://aka.ms/deprecateLicenseUrl)
-  * Day 30 - NuGet.exe ships which errors on pack and push if licenseUrl is present and licenseUrl <> https://aka.ms/deprecateLicenseUrl
-  * Day 30 - VS ships with the new NuGet client that is capable of surfacing the new license info.
 
 #### SPDX Expressions
   * Disjunctive OR Operator
@@ -112,8 +91,8 @@ Y - the intended license will be displayed for existing and new packages.
 
 ***
 
-[Back to parent spec](https://github.com/NuGet/Engineering/wiki/Packaging-Icon,-License-and-Documentation-within-the-nupkg)
+[Back to parent spec](https://github.com/NuGet/Home/wiki/Packaging-Icon,-License-and-Documentation-within-the-nupkg)
 
-[Packaging Icon within the nupkg](https://github.com/NuGet/Engineering/wiki/Packaging-Icon-within-the-nupkg)
+[Packaging Icon within the nupkg](https://github.com/NuGet/Home/wiki/Packaging-Icon-within-the-nupkg)
 
-[Packaging Documentation within the nupkg](https://github.com/NuGet/Engineering/wiki/Packaging-Documentation-within-the-nupkg)
+[Packaging Documentation within the nupkg](https://github.com/NuGet/Home/wiki/Packaging-Documentation-within-the-nupkg)
