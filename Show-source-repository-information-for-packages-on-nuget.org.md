@@ -15,6 +15,15 @@ Look at the issue description for the background and the problem details. In sho
 Look at the **Usage on nuget.org** section of the [linked issue](https://github.com/NuGet/NuGetGallery/issues/4941) for more details.
 
 ## Solution
+### Purpose
+
+Package publishers are often confused on the purpose of `projectUrl` vs. `repositoryUrl`. The purpose of `projectUrl` is to state the product/offering site. On the other hand the purpose of `repositoryUrl` is to state a machine readable Url to the repository. Note that while the `projectUrl` is a web Url, `repositoryUrl` is not.
+
+E.g. for NuGet package `NuGet.Client` , `projectUrl` is https://nuget.org and `repositoryUrl` is https://github.com/NuGet/NuGet.Client.git
+
+For many packages, both the `projectUrl` and `repositoryUrl` may point to the same repository (eg. on GitHub). However, one should note the Url format for these metadata properties (web vs. not).
+
+Repository information is very useful to the package consumers as they tend to look for repository Url to understand if the project is open source and active to understand if their issues (future) are likely to be serviced or if they can contribute towards fixing some of them. Similary looking at the count of open issues and the velocity of fixes gives them important information to determine whether they should take a dependency on a given package or not. nuget.org plans to expose these information based on repository information to help consumers make this decision faster but is out of scope for this spec document.
 
 ### Authoring 
 The repository information needs to be present in nuspec file. E.g:
