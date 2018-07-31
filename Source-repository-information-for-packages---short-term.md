@@ -26,9 +26,25 @@ The repository information needs to be present in nuspec file. E.g:
 * `branch`: *(optional)* additional metadata meant for `git` repositories
 * `commit`: *(optional)* additional metadata meant for `git` repositories
 
+### Validations
+There should be validations at the time of `pack`, `push`|`update` and the error/warning should be shown to the user with the link to use the field appropriately. The validations should check for the following:
+1. If the URL specified is not public URL.
+  * `pack`: Warning
+  * `push`|`update`: Error (nuget.org)
+2. If the URL is not in the right format. (We should start with `git` URLs and add validations for other types later) 
+  * `pack`: Error
+  * `push`|`update`: Error
+
 ### Display on nuget.org (short-term)
 Since this metadata is already being used in many packages, we would like to go one step at a time and start showing this information on nuget.org: 
 
+![](https://user-images.githubusercontent.com/2696087/42461816-4f1b81dc-8356-11e8-8556-b68b4c70eeca.png)
 
+* We should show the provider icon (wherever possible e.g. GitHub) when the provider is known from the url
+* We should show the repository type icon, if we cannot derive the provider but the repository type is a known one (e.g. git).
 
 ### Long term ideas on the display and usage 
+Out-of-scope for this spec. However, some of the ideas include:
+* Show repository info as a separate section with links to file issues, show number of active issues and last activity - all of these are vital information that consumers would like to see for a given package they want to consume.
+* Compute the quality metirc based on issues fixed vs. open issues on the repository
+* Use this to switch from PackageReference to ProjectReference by automatically cloning the repo as a project.
