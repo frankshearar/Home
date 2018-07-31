@@ -1,3 +1,5 @@
+Status: **Incubation**
+
 ### Issue
 The work for this feature and the discussion around the License specific spec is tracked by **Package trust - Licenses [#4628](https://github.com/NuGet/Home/issues/4628)**
 
@@ -84,9 +86,6 @@ The work for this feature and the discussion around the License specific spec is
     | nuspec  | VS / nuget.org |
     | ------------- | ------------- |
     | `<license type="LGPL-2.1-only OR (GPL-2.0+ WITH Bison-exception-2.2 AND MIT" />` | [LGPL-2.1-only](https://spdx.org/licenses/LGPL-2.1-only.htm) or ([GPL-2.0+ w/ Bison-exception-2.2](https://spdx.org/licenses/GPL-2.0-with-bison-exception.html) and [MIT](https://spdx.org/licenses/MIT.html)) | 
-
-#### Other considerations
-* Document how to get license info from NuGet.org feed
 
 
 ***
