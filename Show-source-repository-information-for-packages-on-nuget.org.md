@@ -19,7 +19,7 @@ Look at the **Usage on nuget.org** section of the [linked issue](https://github.
 ### Authoring 
 The repository information needs to be present in nuspec file. E.g:
 ```
-<repository type="git" url="https://github.com/NuGet/NuGet.Client" />
+<repository type="git" url="https://github.com/NuGet/NuGet.Client.git" />
 ```
 * `type`: Specific the type of repository like `git`, `svn`, etc
 * `url`: This should be a publicly available url that can be invoked directly by a version control software. It should not be an html page. This is meant for the machine. For linking to project page, use the `projectUrl` field.
@@ -45,6 +45,7 @@ Since this metadata is already being used in many packages, we would like to go 
 
 * We should show the provider icon (wherever possible e.g. GitHub) when the provider is known from the url
 * We should show the repository type icon, if we cannot derive the provider but the repository type is a known one (e.g. git).
+* For existing repository Urls that are not in the right format i.e. they point to the http/https (web) urls instead of the repository URL (eg. https://github.com/NuGet/NuGet.Client.git), we should still point to the web/http(s) urls.
 
 ### Long term ideas on the display and usage 
 Out-of-scope for this spec. However, some of the ideas include:
