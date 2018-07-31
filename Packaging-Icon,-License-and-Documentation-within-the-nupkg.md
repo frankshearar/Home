@@ -1,5 +1,5 @@
 * Status: **Reviewing**
-* Author(s): [Karan Nandwani](https://github.com/karann-msft) ([@karann9](https://twitter.com/karann9)
+* Author(s): [Karan Nandwani](https://github.com/karann-msft) ([@karann9](https://twitter.com/karann9))
 
 ## Issue
 The work for this feature and the discussion around the spec is tracked by 3 issues
