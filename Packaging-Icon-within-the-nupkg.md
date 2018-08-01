@@ -23,7 +23,7 @@ The work for this feature and the discussion around the Icon specific spec is tr
 * Browse from the fallback folder - the packages would be pre-extracted. Read the icon from the extracted location.
 * Project properties
   * Replace `Icon URL` with `Icon`, keeping it a free text field (for the MVP) that takes the path to the image on disk relative to the project file. (In Dev16, we'll consider adding a file picker.)
-  * In project file `<PacakgeIcon source="icon.png", target=""/>
+  * In project file `<PackageIcon source="icon.png", target=""/> `
   * Set the PackageIcon property in the project file to icon file name
   * On pack, strip source value, append the target value with the source file name. The icon will be placed at the package root and the nuspec property `icon` will be set to `<icon target="icon.png"/>` indicating that the icon file is named icon.png and is as the package root.
 
