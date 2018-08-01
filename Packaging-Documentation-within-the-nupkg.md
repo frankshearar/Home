@@ -9,7 +9,7 @@ The work for this feature and the discussion around the Documentation specific s
 * New nuspec property `<documentation src="documentation.md" />`
   * target defaults to package root
   * Supported formats - md
-  * On pack, strip source value, append the target value with the source file name - `<documentation target="documentation.md"/>`. (this is to help the gallery and the client know the path to the icon file in the package and the file name.extension. Allows for extension validation, etc.)
+  * On pack, strip source value, append the target value with the source file name - `<documentation target="documentation.md"/>`. (this is to help the gallery and the client know the path to the documentation file in the package and the file name.extension. Allows for extension validation, etc.)
   * nuget spec will add 
     > `<!-- e.g. <documentation src="documentation.md"/>. Learn more at https://aka.ms/nugetPackageDocumentation-->` <br>
     > `<documentation src=""/>`
