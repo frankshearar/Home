@@ -1,3 +1,5 @@
+* Status: **Reviewing**
+* Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
 ## Issue
 Users should be able to see package repository metadata [#4941](https://github.com/NuGet/NuGetGallery/issues/4941)
 
