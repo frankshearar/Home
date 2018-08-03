@@ -39,16 +39,19 @@ Package publishers should be able to mark a given package (and version) as **dep
 4. Reason = **Vulnerable** 
   ![image](https://user-images.githubusercontent.com/14800916/43665044-c4c2d968-9723-11e8-9b4a-8aed0fc8c82d.png)
 
-5. Provides the **option details**:
+5. Provides the **optional details**:
   ![image](https://user-images.githubusercontent.com/14800916/43665101-e7c90b58-9723-11e8-8da8-8fe9a9feafed.png)
 
 6. Reason = **Legacy**
-  ![image](https://user-images.githubusercontent.com/14800916/43665123-fd930876-9723-11e8-8e2c-8ec521926617.png)
+  ![image](https://user-images.githubusercontent.com/14800916/43665620-a90e4a02-9725-11e8-8e1f-08b756ec400c.png)
 
 7. Reason = **Deprecated** (for any other reason):
-  ![image](https://user-images.githubusercontent.com/14800916/43665144-14d220bc-9724-11e8-956a-b67c87923980.png)
+  ![image](https://user-images.githubusercontent.com/14800916/43665123-fd930876-9723-11e8-8e2c-8ec521926617.png)
 
 8. Upon save, the setting reflects the **unlisted status**:
-![image](https://user-images.githubusercontent.com/14800916/43665175-2bbaef02-9724-11e8-886a-00cd638b5a06.png)
+  ![image](https://user-images.githubusercontent.com/14800916/43665144-14d220bc-9724-11e8-956a-b67c87923980.png)
+
+#### CLI command experience:
+  ![image](https://user-images.githubusercontent.com/14800916/43665175-2bbaef02-9724-11e8-886a-00cd638b5a06.png)
  
 ### Flagging vulnerable packages used in a project (Client)
