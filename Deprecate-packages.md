@@ -33,17 +33,16 @@ Detailed publisher experience storyboard can be found [here](#publisher-experien
 ### Flagging vulnerable packages used in a project (Client)
 Once a package has been deprecated, they are hidden in search results. If any deprecated package is already being used in a project, it should be:
 1. Flagged during `restore`:
-```
-<<TBD>>
-```
+
+  ![image](https://user-images.githubusercontent.com/14800916/43668607-b1f305ec-9732-11e8-839e-596ab2d44890.png)
+
 2. With `list --deprecated`:
 ```
 <<TBD>>
 ```
-3. On Visual Studio, this should be flagged on the Updates tab of the Package Manager UI:
-```
-<<TBD storyboard>>
-```
+3. On Visual Studio Updates tab of the Package Manager UI:
+  ![image](https://user-images.githubusercontent.com/14800916/43668712-2b436aae-9733-11e8-9381-d4036d209cce.png)
+
 
 ## Publisher experience
 ### nuget.org
