@@ -21,4 +21,34 @@ Being able to flag the security vulnerabilities in the packages is the primary r
 
 ## Solution
 ### Marking a package as vulnerable (Server)
+Package publishers should be able to mark a given package (and version) as **deprecated** with one of the 3 reasons:
+* Vulnerable
+* Legacy
+* Deprecated
+
+#### nuget.org experience:
+1. Package authors goes to the **Edit package** page:
+  ![image](https://user-images.githubusercontent.com/14800916/43664918-6e9dac48-9723-11e8-853e-e537b815c7f5.png)
+
+2. Checks **Unlist package**:
+  ![image](https://user-images.githubusercontent.com/14800916/43665006-a0ea6330-9723-11e8-9c1c-fba03181e50f.png)
+
+3. Is prompted to **select a reason**:
+  ![image](https://user-images.githubusercontent.com/14800916/43665021-b46b4d98-9723-11e8-9e29-033acd2a4f51.png)
+
+4. Reason = **Vulnerable** 
+  ![image](https://user-images.githubusercontent.com/14800916/43665044-c4c2d968-9723-11e8-9b4a-8aed0fc8c82d.png)
+
+5. Provides the **option details**:
+  ![image](https://user-images.githubusercontent.com/14800916/43665101-e7c90b58-9723-11e8-8da8-8fe9a9feafed.png)
+
+6. Reason = **Legacy**
+  ![image](https://user-images.githubusercontent.com/14800916/43665123-fd930876-9723-11e8-8e2c-8ec521926617.png)
+
+7. Reason = **Deprecated** (for any other reason):
+  ![image](https://user-images.githubusercontent.com/14800916/43665144-14d220bc-9724-11e8-956a-b67c87923980.png)
+
+8. Upon save, the setting reflects the **unlisted status**:
+![image](https://user-images.githubusercontent.com/14800916/43665175-2bbaef02-9724-11e8-886a-00cd638b5a06.png)
+ 
 ### Flagging vulnerable packages used in a project (Client)
