@@ -41,8 +41,9 @@ Once a package has been deprecated, they are hidden in search results. If any de
 <<TBD>>
 ```
 3. On Visual Studio, this should be flagged on the Updates tab of the Package Manager UI:
-
+```
 <<TBD storyboard>>
+```
 
 ## Publisher experience
 ### nuget.org
