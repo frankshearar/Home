@@ -9,7 +9,7 @@ Deprecate obsolete, vulnerable or legacy packages [#2867](https://github.com/NuG
  * `Vulnerable`: When the package version contains a security vulnerability and the author recommends not using the package and instead a newer patched version is recommended.
     * Authors should optionally be able to provide a CVE number
  * `Legacy`: When the package is no longer maintained by the author and author may have published another package (ID) instead.  
- * `Deprecated`: (catch misc reasons like performance, critical bugs, etc.)When a version of the package is deprecated by 
+ * `Deprecated`: (other reasons like performance, critical bugs, etc.)When a version of the package is deprecated by 
 the author and the author recommends either not using the package+version or using a newer non-deprecated version.
 
   Today, this is partially possible by un-listing the package but there is no explicit feedback to the package consumers that a certain package version should no longer be used once its already in the project's list of packages (direct of full closure including transitive packages). 
@@ -31,8 +31,18 @@ and optionally provide additional information like CVE#(vulnerable packages), re
 Detailed publisher experience storyboard can be found [here](#publisher-experience). The same experience should be possible for a nuget.org admin.
 
 ### Flagging vulnerable packages used in a project (Client)
+Once a package has been deprecated, they are hidden in search results. If any deprecated package is already being used in a project, it should be:
+1. Flagged during `restore`:
+```
+<<TBD>>
+```
+2. With `list --deprecated`:
+```
+<<TBD>>
+```
+3. On Visual Studio, this should be flagged on the Updates tab of the Package Manager UI:
 
-
+<<TBD storyboard>>
 
 ## Publisher experience
 ### nuget.org
