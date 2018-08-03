@@ -26,7 +26,16 @@ Package publishers should be able to mark a given package (and version) as **dep
 * Legacy
 * Deprecated
 
-#### nuget.org experience:
+and optionally provide additional information like CVE#(vulnerable packages), recommended package and version.
+
+Detailed publisher experience storyboard can be found [here](#publisher-experience). The same experience should be possible for a nuget.org admin.
+
+### Flagging vulnerable packages used in a project (Client)
+
+
+
+## Publisher experience
+### nuget.org
 1. Package authors goes to the **Edit package** page:
   ![image](https://user-images.githubusercontent.com/14800916/43664918-6e9dac48-9723-11e8-853e-e537b815c7f5.png)
 
@@ -51,7 +60,5 @@ Package publishers should be able to mark a given package (and version) as **dep
 8. Upon save, the setting reflects the **unlisted status**:
   ![image](https://user-images.githubusercontent.com/14800916/43665144-14d220bc-9724-11e8-956a-b67c87923980.png)
 
-#### CLI command experience:
+### CLI command experience:
   ![image](https://user-images.githubusercontent.com/14800916/43665175-2bbaef02-9724-11e8-886a-00cd638b5a06.png)
- 
-### Flagging vulnerable packages used in a project (Client)
