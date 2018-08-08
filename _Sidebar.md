@@ -12,6 +12,7 @@
 * [[Show outdated packages]]
 * [[Enable repeatable package restore using lock file]]
 * [[Packaging Icon, License and Documentation within the nupkg]]
+* [[Dotnet list package]]
 
 #### Reviewed
 * [[Register package signing certificates]]
