@@ -12,7 +12,6 @@
 * [[Show outdated packages]]
 * [[Enable repeatable package restore using lock file]]
 * [[Packaging Icon, License and Documentation within the nupkg]]
-* [[Dotnet list package]]
 
 #### Reviewed
 * [[Register package signing certificates]]
@@ -27,6 +26,7 @@
 * [[Enhanced package upload workflow|Enhanced package upload workflow]]
 * [[Package Signatures Technical Details]]
 * [NuGet Package Debugging & Symbols Improvements](https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements)
+* [[Dotnet list package]]
 
 #### [[Implemented|Implemented]]
 
