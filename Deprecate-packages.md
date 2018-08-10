@@ -7,7 +7,7 @@ Deprecate obsolete, vulnerable or legacy packages [#2867](https://github.com/NuG
 ## Problem
 1. There are certain cases when a package author or NuGet repository Admin (nuget.org admin) should be able to let the package consumers know that a certain package (version) should no longer be used i.e. **deprecated**. As summarized in one of the comments on the issue, following are the most important cases for package deprecation:
  * `Vulnerable`: When the package version contains a security vulnerability and the author recommends not using the package and instead a newer patched version is recommended.
-    * Authors should optionally be able to provide a CVE number
+    * Authors should optionally be able to provide CVE number(s) of the vulnerabilities. 
  * `Legacy`: When the package is no longer maintained by the author and author may have published another package (ID) instead.  
  * `Deprecated`: (other reasons like performance, critical bugs, etc.)When a version of the package is deprecated by 
 the author and the author recommends either not using the package+version or using a newer non-deprecated version.
