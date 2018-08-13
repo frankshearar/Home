@@ -20,9 +20,9 @@ As stated in the problem.
 
 ### Warning Properties
 NuGet supports 3 warning properties in PackageReference based projects at project wide level - 
-* `TreatWarningsAsErrors` - Treat all NuGet warnings as errors - `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>`
-* `WarningsAsErrors` - Treat specific warnings as errors - `<WarningsAsErrors>NU1605</WarningsAsErrors>`
-* `NoWarn` - Hide Specific warnings - `<NoWarn>NU1701</NoWarn>`
+* `TreatWarningsAsErrors` - Treat all NuGet warnings as errors  `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>`
+* `WarningsAsErrors` - Treat specific warnings as errors  `<WarningsAsErrors>NU1605</WarningsAsErrors>`
+* `NoWarn` - Hide Specific warnings  `<NoWarn>NU1701</NoWarn>`
 
 NuGet also supports 1 warning property at package reference level - 
 * `NoWarn` - Hide Specific warnings - `<PackageReference Include="NuGet.Versioning" Version=4.6.9 NoWarn="NU1603">`
