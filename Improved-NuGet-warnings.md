@@ -72,8 +72,24 @@ All developers who use NuGet using PackageReference. .NET Core, .NET Standard an
 As stated in the problem.
 
 ## Solution
-* All the NuGet warnings will be numbered. List of all the numbered warnings can be found here - [Restore errors and warnings](https://github.com/NuGet/Home/wiki/Restore-errors-and-warnings)
+* All the NuGet warnings will be coded. List of all the numbered warnings can be found here - [Restore errors and warnings](https://github.com/NuGet/Home/wiki/Restore-errors-and-warnings)
 * These errors and warnings will be written into the assets file so that msbuild can output these errors appropriately.
+
+### Warning Properties
+NuGet supports 3 warning properties in PackageReference based projects at project wide level - 
+* `TreatWarningsAsErrors` - Treat all NuGet warnings as errors - `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>`
+* `WarningsAsErrors` - Treat specific warnings as errors - `<WarningsAsErrors>NU1605</WarningsAsErrors>`
+* `NoWarn` - Hide Specific warnings - `<NoWarn>NU1701</NoWarn>`
+
+NuGet also supports 1 warning property at package reference level - 
+* `NoWarn` - Hide Specific warnings - `<PackageReference Include="NuGet.Versioning" Version=4.6.9 NoWarn="NU1603">`
+
+The Warning properties are represented in memory using the [WarningProperties](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/WarningProperties.cs). `ProjectRestoreMetadata` contains an instance of warning properties for the project [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectRestoreMetadata.cs#L112). The package specific `NoWarn` properties are represented using [PackageSpecificWarningProperties](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/PackageSpecificWarningProperties.cs).
+
+The cumulative warning properties are stored in [WarningPropertiesCollection](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/WarningPropertiesCollection.cs). During restore the warning properties collection is instantiated in `RestoreCollectorLogger` [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/RestoreCollectorLogger.cs#L65).
+
+### Restore Collector Logger
+`RestoreCol`
 
 ## Appendix
 ## NET Core 2.0 scenarios
