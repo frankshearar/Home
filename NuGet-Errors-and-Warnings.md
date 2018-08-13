@@ -27,14 +27,24 @@ NuGet supports 3 warning properties in PackageReference based projects at projec
 NuGet also supports 1 warning property at package reference level - 
 * `NoWarn` - Hide Specific warnings - `<PackageReference Include="NuGet.Versioning" Version=4.6.9 NoWarn="NU1603">`
 
+Lastly, NuGet also supports [Transitive NoWarn](https://github.com/NuGet/Home/wiki/%5BSpec%5D-Transitive-Warning-Properties).
+
 The Warning properties are represented in memory using the [WarningProperties](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/WarningProperties.cs). `ProjectRestoreMetadata` contains an instance of warning properties for the project [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectRestoreMetadata.cs#L112). The package specific `NoWarn` properties are represented using [PackageSpecificWarningProperties](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/PackageSpecificWarningProperties.cs).
 
 The cumulative warning properties are stored in [WarningPropertiesCollection](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/WarningPropertiesCollection.cs). During restore the warning properties collection is instantiated in `RestoreCollectorLogger` [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/RestoreCollectorLogger.cs#L65).
 
 ### Restore Collector Logger
-`RestoreCollector`
+`RestoreCollectorLogger` was created to allow consumption of warning properties. It is instantiated by `RestoreCommand` [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/RestoreCommand.cs#L76).
+`RestoreCollectorLogger` is responsible for enforcing the warning properties to any restore log message.  
+When an `ILogMessage` is passed to `RestoreCollectorLogger` it first [checks](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/RestoreCollectorLogger.cs#L157) if it is warning and it needs to be suppressed. If the message is not yet suppressed then it [checks](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/RestoreCollectorLogger.cs#L160) of the message is a warning and it needs to be upgraded to an error. Hence it implies and order of preference such that `NoWarn` is preferred over the other 2 properties.
 
-## Appendix
+### Transitive Warning Properties
+
+NuGet also supports `NoWarn` property through P2P references such that is a lower level project has NoWarn'ed a code, then no higher level project will see that warning in its closure during restore. The detailed spec for the feature is [here](https://github.com/NuGet/Home/wiki/%5BSpec%5D-Transitive-Warning-Properties).
+
+The implementation is in [TransitiveNoWarnUtils](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/TransitiveNoWarnUtils.cs). The method `CreateTransitiveWarningPropertiesCollection` is called by `RestoreCollectorLogger` to collect the `NoWarn` properties from all the preferenced projects in the closure. This is then used to suppressed warnings [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/RestoreCollectorLogger.cs#L227).
+
+## Appendix 
 ### User Scenarios
 
 **Scenario-1:** A NuGet warning can be overridden as errors, by the developer from Project properties and/or csproj file
