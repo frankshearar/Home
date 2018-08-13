@@ -8,6 +8,35 @@ The following user scenarios are driving this feature:
 3. Per Package NuGet warning can be suppressed by the developer from Project properties and/or csproj file.
 4. NuGet warnings should follow warning-levels defined in Project just like any other warnings in the project.
 
+## Who is the customer?
+All developers who use NuGet using PackageReference. .NET Core, .NET Standard and other projects (opted-in to use PackageReference).
+
+## Evidence
+As stated in the problem.
+
+## Solution
+* All the NuGet warnings will be coded. List of all the numbered warnings can be found here - [Restore errors and warnings](https://github.com/NuGet/Home/wiki/Restore-errors-and-warnings)
+* These errors and warnings will be written into the assets file so that msbuild can output these errors appropriately.
+
+### Warning Properties
+NuGet supports 3 warning properties in PackageReference based projects at project wide level - 
+* `TreatWarningsAsErrors` - Treat all NuGet warnings as errors - `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>`
+* `WarningsAsErrors` - Treat specific warnings as errors - `<WarningsAsErrors>NU1605</WarningsAsErrors>`
+* `NoWarn` - Hide Specific warnings - `<NoWarn>NU1701</NoWarn>`
+
+NuGet also supports 1 warning property at package reference level - 
+* `NoWarn` - Hide Specific warnings - `<PackageReference Include="NuGet.Versioning" Version=4.6.9 NoWarn="NU1603">`
+
+The Warning properties are represented in memory using the [WarningProperties](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/WarningProperties.cs). `ProjectRestoreMetadata` contains an instance of warning properties for the project [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectRestoreMetadata.cs#L112). The package specific `NoWarn` properties are represented using [PackageSpecificWarningProperties](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/PackageSpecificWarningProperties.cs).
+
+The cumulative warning properties are stored in [WarningPropertiesCollection](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/WarningPropertiesCollection.cs). During restore the warning properties collection is instantiated in `RestoreCollectorLogger` [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/RestoreCollectorLogger.cs#L65).
+
+### Restore Collector Logger
+`RestoreCollector`
+
+## Appendix
+### User Scenarios
+
 **Scenario-1:** A NuGet warning can be overridden as errors, by the developer from Project properties and/or csproj file
 1. User creates a new project that references `NuGet.Packaging 3.5.0` that references `NuGet.Versioning 3.5.0`
 2. User now another package dependency `NuGet.Commands 4.0.0` that has dependency to `NuGet.Versioning 4.0.0` as shown in the dependency tree:
@@ -65,34 +94,7 @@ Detected package downgrade: NuGet.Versioning from 4.0.0 to 3.5.0
 4. User now only sees severe warnings and not the other warnings.
 **TBD** Classification of warnings into levels 1 through 4.
 
-## Who is the customer?
-All developers who use NuGet using PackageReference. .NET Core, .NET Standard and other projects (opted-in to use PackageReference).
-
-## Evidence
-As stated in the problem.
-
-## Solution
-* All the NuGet warnings will be coded. List of all the numbered warnings can be found here - [Restore errors and warnings](https://github.com/NuGet/Home/wiki/Restore-errors-and-warnings)
-* These errors and warnings will be written into the assets file so that msbuild can output these errors appropriately.
-
-### Warning Properties
-NuGet supports 3 warning properties in PackageReference based projects at project wide level - 
-* `TreatWarningsAsErrors` - Treat all NuGet warnings as errors - `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>`
-* `WarningsAsErrors` - Treat specific warnings as errors - `<WarningsAsErrors>NU1605</WarningsAsErrors>`
-* `NoWarn` - Hide Specific warnings - `<NoWarn>NU1701</NoWarn>`
-
-NuGet also supports 1 warning property at package reference level - 
-* `NoWarn` - Hide Specific warnings - `<PackageReference Include="NuGet.Versioning" Version=4.6.9 NoWarn="NU1603">`
-
-The Warning properties are represented in memory using the [WarningProperties](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/WarningProperties.cs). `ProjectRestoreMetadata` contains an instance of warning properties for the project [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectRestoreMetadata.cs#L112). The package specific `NoWarn` properties are represented using [PackageSpecificWarningProperties](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/PackageSpecificWarningProperties.cs).
-
-The cumulative warning properties are stored in [WarningPropertiesCollection](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/WarningPropertiesCollection.cs). During restore the warning properties collection is instantiated in `RestoreCollectorLogger` [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/RestoreCollectorLogger.cs#L65).
-
-### Restore Collector Logger
-`RestoreCol`
-
-## Appendix
-## NET Core 2.0 scenarios
+### NET Core 2.0 scenarios
 1. Package downgrades should be errors for .Net Core 2.0 projects. (As per requirements by the team) 
 2. PackageTargetFallback warnings should be ignored for **certain** package dependencies if developer knows that a package is being brought into the project due to PackageTargetFallback and does not want be reminded again and again for each restore.
 
