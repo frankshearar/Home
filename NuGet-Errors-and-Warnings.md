@@ -37,12 +37,19 @@ The cumulative warning properties are stored in [WarningPropertiesCollection](ht
 `RestoreCollectorLogger` was created to allow consumption of warning properties. It is instantiated by `RestoreCommand` [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/RestoreCommand.cs#L76).
 `RestoreCollectorLogger` is responsible for enforcing the warning properties to any restore log message.  
 When an `ILogMessage` is passed to `RestoreCollectorLogger` it first [checks](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/RestoreCollectorLogger.cs#L157) if it is warning and it needs to be suppressed. If the message is not yet suppressed then it [checks](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/RestoreCollectorLogger.cs#L160) of the message is a warning and it needs to be upgraded to an error. Hence it implies and order of preference such that `NoWarn` is preferred over the other 2 properties.
+For all Package reference based projects, the `RestoreCollectorLogger` writes all the errors and un-suppressed warnings into the assets file as `IAssetsLogMessage`.
 
 ### Transitive Warning Properties
 
 NuGet also supports `NoWarn` property through P2P references such that is a lower level project has NoWarn'ed a code, then no higher level project will see that warning in its closure during restore. The detailed spec for the feature is [here](https://github.com/NuGet/Home/wiki/%5BSpec%5D-Transitive-Warning-Properties).
 
 The implementation is in [TransitiveNoWarnUtils](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/TransitiveNoWarnUtils.cs). The method `CreateTransitiveWarningPropertiesCollection` is called by `RestoreCollectorLogger` to collect the `NoWarn` properties from all the preferenced projects in the closure. This is then used to suppressed warnings [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/Logging/RestoreCollectorLogger.cs#L227).
+
+### Displaying Errors and Warnings
+NuGet is logging is split between the three project types - 
+* .NET SDK based projects - For these projects NuGet does not log errors and warnings in Visual Studio. We write them into the assets file and the .NET sdk then displays them in Visual Studio. You can see the sdk code [here](https://github.com/dotnet/sdk/blob/a8cf9e78eeb14852a7bf97b344731d9734b5d877/src/Tasks/Microsoft.NET.Build.Tasks/ReportAssetsLogMessages.cs#L16). To prevent logging of error and warnings, we use [ProjectRestoreSettings.HideWarningsAndErrors](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.ProjectModel/ProjectRestoreSettings.cs#L20). This property is set to `true` only for sdk based projects [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Clients/NuGet.SolutionRestoreManager/VsSolutionRestoreService.cs#L292) and used [here](https://github.com/NuGet/NuGet.Client/blob/dev/src/NuGet.Core/NuGet.Commands/RestoreCommand/RestoreCommand.cs#L73).
+* Legacy csproj based projects - For these projects, NuGet is responsible for logging all the errors and warnings in Visual Studio.
+* Packages.Config based projects - For these projects, NuGet is responsible for logging all the errors and warnings in Visual Studio. However, there is no support for warning properties in packages.config based projects.
 
 ## Appendix 
 ### User Scenarios
