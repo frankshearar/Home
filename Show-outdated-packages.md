@@ -1,5 +1,7 @@
-* Status: Reviewing
+* Status: Reviewed
 * Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
+
+> Some functionalities of `dotnet outdated` have been incorporated into `dotnet list`. Spec: https://github.com/NuGet/Home/wiki/dotnet-list-package 
 
 ## Issue
 NuGet outdated, check or equivalent functionality [#5762](https://github.com/nuget/home/issues/5762)
