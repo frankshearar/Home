@@ -199,7 +199,7 @@ Once the feature is enabled,
 | Option | Values | Description |
 |:--- |:--- |:--- |
 | `RestorePackagesWithLockFile` | `true`\| **`false`** | Enables lock file - `packages.lock.json` usage with restore. Default is `false` |
-| `UpdateLockFileOnRestore` | **`warn`** | Default option - `restore` will update but warn if lock file is [out of sync](#out-of-sync). |
+| `RestoreLockedMode` | **`false`**\| `true`  | Default option - `restore` will update but warn if lock file is [out of sync](#out-of-sync). |
 || `always`| `restore` will update the lock file if it is [out of sync](#out-of-sync) but will not warn. |
 || `never` | `restore` will fail if the lock file is [out of sync](#out-of-sync). Useful for CI builds when you do not want the build to continue if the package closure has changed than what is present in the lock file. | 
 | `NuGetLockFilePath` | `<PathToLockFile>` | Path to lock file if you want to rename or change the location of the lock file. The name should always be *lock.json. |
@@ -212,7 +212,7 @@ The corresponding command line msbuild options should work too.
 | Option | MSBuild equivalent option | 
 |:---  |:--- |
 | `--use-lock-file` | `RestorePackagesWithLockFile` | 
-| `--update-lock-file` **`warn`** \| `always` \| `never`| `UpdateLockFileOnRestore` |  
+| `--locked-mode` **`false`** \| `true`| `RestoreLockedMode` |  
 | `--lock-file-path` **(not MVP)** | `NuGetLockFilePath` |
 | `--ignore-lock-file` **(not MVP)** | `IgnoreLockFileForRestore` |  
 | `--reevaluate`* | *None* | 
