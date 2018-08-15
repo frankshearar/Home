@@ -11,6 +11,7 @@ The work for this feature and the discussion around the Icon specific spec is tr
   * target defaults to package root
   * Supported formats - jpg, png
   * On pack, strip source value, append the target value with the source file name - `<icon target="icon.png"/>`. (this is to help the gallery and the client know the path to the icon file in the package and the file name.extension.)
+  * Stretch goal - if `icon.png` or `icon.jpg` is present at the folder/project root, and icon property is not present in the nuspec/project file, nuget pack should pack that file as the package icon.
 * Browse from NuGet.org
   * During package ingestion, nuget.org will extract and store the icon.
   * For existing packages, the gallery would read the iconurl from the nuspec, fetch the image and store it.
@@ -39,6 +40,8 @@ The work for this feature and the discussion around the Icon specific spec is tr
 * If `iconurl` is present
   * Error `nuget pack` and `nuget push` 
   * Fail package validation on NuGet.org (synchronous validation)
+
+#### Stretch goal
 
 [Back to parent spec](https://github.com/NuGet/Home/wiki/Packaging-Icon,-License-and-Documentation-within-the-nupkg)
 
