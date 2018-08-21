@@ -20,17 +20,16 @@ Enable package consumers to store NuGet package signature revocation check mode.
 
 NuGet package signing client policies have been outlined in the [Repository-Signatures spec](https://github.com/NuGet/Home/wiki/Repository-Signatures#client-policies). This spec proposes schema changes to nuget.config and user gestures.
 
-### revocation check mode Location
+### revocation check location
 We should store the selected revocation check mode for the user in a `nuget.config` file as a configuration.
 
-### revocation check mode information Schema
+### Revocation check information Schema
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <config>
-    <add key="signatureValidationMode" value="MODE" revocationCheck="MODE"/>
-    <add key="<signatureRevocationCheck" value="MODE"/>
+    <add key="signatureRevocationCheck" value="MODE"/>
   </config>
 </configuration>
 ```
