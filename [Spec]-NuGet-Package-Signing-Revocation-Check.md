@@ -180,7 +180,7 @@ For more information, visit http://docs.nuget.org/docs/reference/command-line-re
 <br/>
 
 #### Revocation check mode in Visual Studio -
-Since this scenario seems to primarily affect CI/CD scenarios, having a way to controls this setting through the VS PM UI will be deferred to v2.
+The perf impact of revocation check seems to primarily affect CI/CD scenarios. Hence, having a way to controls this setting through the VS PM UI will be deferred to v2.
 <br/>
 
 
