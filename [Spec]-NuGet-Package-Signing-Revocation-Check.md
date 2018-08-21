@@ -24,11 +24,11 @@ Enable package consumers to store NuGet package certificate revocation check mod
 |--------------------------------------------|--------------|---------------------------|------|
 |    CERT_TRUST_IS_OFFLINE_REVOCATION (X509ChainStatusFlags.OfflineRevocation)        |    Warn    | online                    |   WARNING: NU3028: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation because the revocation server could not be reached. For more information, visit https://aka.ms/certificateRevocationMode   |
 |    CERT_TRUST_REVOCATION_STATUS_UNKNOWN (X509ChainStatusFlags.RevocationStatusUnknown)    |    Warn    | online                    |   WARNING: NU3028: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation for the certificate.   |
-|    CERT_TRUST_IS_OFFLINE_REVOCATION (X509ChainStatusFlags.OfflineRevocation)        |    Info    | offline                   |  INFO: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation because the certificate is not available in the cached certificate revocation list and signatureRevocationCheck has been set to offline mode. For more information, visit https://aka.ms/certificateRevocationMode.    |
+|    CERT_TRUST_IS_OFFLINE_REVOCATION (X509ChainStatusFlags.OfflineRevocation)        |    Info    | offline                   |  INFO: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation because the certificate is not available in the cached certificate revocation list and certificateRevocationMode has been set to offline. For more information, visit https://aka.ms/certificateRevocationMode.    |
 |    CERT_TRUST_REVOCATION_STATUS_UNKNOWN (X509ChainStatusFlags.RevocationStatusUnknown)    |    Info    | offline                   |   INFO: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation for the certificate.   |
 
 ### Revocation check location
-We should store the selected revocation check mode for the user in a `nuget.config` file as a configuration.
+We should store the selected revocation check mode for the user in the `nuget.config` file as a configuration.
 
 ### Revocation check information Schema
 
