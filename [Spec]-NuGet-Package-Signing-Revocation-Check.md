@@ -20,7 +20,16 @@ Enable package consumers to store NuGet package signature revocation check mode.
 
 NuGet package signing client policies have been outlined in the [Repository-Signatures spec](https://github.com/NuGet/Home/wiki/Repository-Signatures#client-policies). This spec proposes schema changes to nuget.config and user gestures.
 
-### revocation check location
+### Info, warning, errors
+* We were unable to check revocation because the revocation server was not reachable due to network issues and signatureRevocationCheck = online
+
+`WARNING: NU3028: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation because the revocation server could not be reached. You can switch to offline revocation check. For more information, visit https://aka.ms/offlinePackageRevocationCheck.`
+
+* We were unable to check revocation because the revocation server was not reachable because signatureRevocationCheck = offline
+
+`WARNING: NU3028: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation because the certificate is not available in the cached certificate revocation list and signatureRevocationCheck has been set to offline mode. For more information, visit https://aka.ms/onlinePackageRevocationCheck.`
+
+### Revocation check location
 We should store the selected revocation check mode for the user in a `nuget.config` file as a configuration.
 
 ### Revocation check information Schema
