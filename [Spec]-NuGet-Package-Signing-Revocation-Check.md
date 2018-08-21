@@ -5,7 +5,7 @@ Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Reposit
 Related Spec - [Trusted Sources](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-repository-signatures)
 
 ## Problem
-As we enable author and repository package signing, we need to enable consumers to be able to control how NuGet package signature revocation check is performed. Further, the information needs to be stored into the users machine.
+As we enable author and repository package signing, we need to enable consumers to be able to control how NuGet package signature revocation check is performed. Further, the information needs to be stored into the user's machine.
 
 ## Who is the customer?
 All NuGet package consumers.
@@ -15,21 +15,22 @@ Enable package consumers to store NuGet package signature revocation check mode.
 
 ## Solution
 * Define NuGet package signature revocation check mode.
-* Update the schema for nuget.config file to be able to store NuGet package signing client policies.
-* Define a gesture for users to be able to choose NuGet package signing client policies.
+* Update the schema for the nuget.config file to be able to store NuGet package revocation check mode.
+* Define a gesture for users to be able to choose NuGet package revocation check mode.
 
 NuGet package signing client policies have been outlined in the [Repository-Signatures spec](https://github.com/NuGet/Home/wiki/Repository-Signatures#client-policies). This spec proposes schema changes to nuget.config and user gestures.
 
-### Client Policy Information Location
-We should store the selected client policy for the user in a `nuget.config` file as a configuration.
+### revocation check mode Location
+We should store the selected revocation check mode for the user in a `nuget.config` file as a configuration.
 
-### Client Policy Information Schema
+### revocation check mode information Schema
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <config>
-    <add key="signatureValidationMode" value="MODE" />
+    <add key="signatureValidationMode" value="MODE" revocationCheck="MODE"/>
+    <add key="<signatureRevocationCheck" value="MODE"/>
   </config>
 </configuration>
 ```
@@ -43,7 +44,7 @@ For example -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="accept" />
+    <add key="signatureRevocationCheck" value="online" />
   </config>
 </configuration>
 ```
@@ -55,18 +56,18 @@ For example -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="require" />
+    <add key="signatureRevocationCheck" value="offline" />
   </config>
 </configuration>
 ```
 
-### Client Policy Information Gesture
-To set the NuGet package signing client policy, users can use the existing [`nuget config`](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-config) command.
+### Revocation check mode gesture
+To set the NuGet package revocation check mode, users can use the existing [`nuget config`](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-config) command.
 <br/>
 
 #### Set 
 
-`NuGet.exe config -set signatureValidationMode=accept`
+`NuGet.exe config -set signatureRevocationCheck=online`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -75,12 +76,12 @@ To set the NuGet package signing client policy, users can use the existing [`nug
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="accept" />
+    <add key="signatureRevocationCheck" value="online" />
   </config>
 </configuration>
 ```
 
-`NuGet.exe config -set signatureValidationMode=require`
+`NuGet.exe config -set signatureRevocationCheck=offline`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -89,7 +90,7 @@ To set the NuGet package signing client policy, users can use the existing [`nug
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="require" />
+    <add key="signatureRevocationCheck" value="offline" />
   </config>
 </configuration>
 ```
@@ -97,7 +98,7 @@ To set the NuGet package signing client policy, users can use the existing [`nug
 
 #### Update 
 
-`NuGet.exe config -set signatureValidationMode=require`
+`NuGet.exe config -set signatureRevocationCheck=offline`
 
 Before -
 ```xml
@@ -107,7 +108,7 @@ Before -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="accept" />
+    <add key="signatureRevocationCheck" value="online" />
   </config>
 </configuration>
 ```
@@ -119,7 +120,7 @@ After -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="require" />
+    <add key="signatureRevocationCheck" value="offline" />
   </config>
 </configuration>
 ```
@@ -140,7 +141,7 @@ After -
 <br/>
 
 #### Default Value - 
-If `signatureValidationMode` is not set then NuGet Client should read that as `accept` mode.
+If `signatureRevocationCheck` is not set then NuGet Client should read that as `online` mode.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -151,12 +152,12 @@ If `signatureValidationMode` is not set then NuGet Client should read that as `a
 </configuration>
 ``` 
 
-The above config should be read as having `signatureValidationMode=accept`.
+The above config should be read as having `signatureRevocationCheck=online`.
 
 <br/>
 
 #### Invalid Value - 
-If `signatureValidationMode` is set to any value other than the supported modes, then NuGet Client should read that as `accept` mode and warn the user with a message requesting them to fix the mode value.
+If `signatureRevocationCheck` is set to any value other than the supported modes, then NuGet Client should read that as `online` mode and warn the user with a message requesting them to fix the mode value.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -165,35 +166,27 @@ If `signatureValidationMode` is set to any value other than the supported modes,
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureValidationMode" value="RANDOM" />
+    <add key="signatureRevocationCheck" value="RANDOM" />
   </config>
 </configuration>
 ``` 
 
-The above config should be read as having `signatureValidationMode=accept` and the following message should be shown to the user - 
+The above config should be read as having `signatureRevocationCheck=online` and the following message should be shown to the user - 
 
 ```
-NUxxxx: Invalid signatureValidationMode found in config file <path>. Defaulting to accept mode. Please set it to one of the supported modes by running the nuget config command. 
+NUxxxx: Invalid signatureRevocationCheck mode found in config file <path>. Defaulting to online mode. Please set it to one of the supported modes by running the nuget config command. 
 For more information, visit http://docs.nuget.org/docs/reference/command-line-reference.
 ```
 
 <br/>
 
-#### Client Policy in Visual Studio -
-We should add support for the following in Visual Studio NuGet options control - 
-
-* Add a drop down menu to enable users to choose a NuGet package signing client policy -  
-![](https://github.com/NuGet/Home/blob/dev/resources/signing/client%20policy%20selection.png)
+#### Revocation check mode in Visual Studio -
+Since this scenario seems to primarily affect CI/CD scenarios, having a way to controls this setting through the VS PM UI will be deferred to v2.
 <br/>
 
 
 ###  Impact of repository signing to client policies - 
 
-#### Accept mode -
-* By default NuGet client should operate in accept mode where the client will perform author/repository/signedcms signature verification for packages which contain a valid signatures.  
-* If a user does not have any package sources then NuGet client should write down nuget.org as a package and trusted source and signatureValidationMode as accept into the user nuget.config file.
+* By default NuGet client should operate in online mode (irrespective of the value of signatureValidationMode) where the client will perform author/repository/signedcms signature verification for packages which contain valid signatures.  
+* If a user does not have any package sources then NuGet client should write down nuget.org as a package and trusted source and signatureRevocationCheck mode as online into the user nuget.config file.
 * NuGet client should respect any trusted source in user settings and perform complete repository signature verification for any package from those sources.
-
-#### Require mode -
-* In require mode NuGet client will only allow packages signed by a list of trusted sources or authors along with all the constraints of accept mode.
-* If a package is signed by an author or source that is not trusted, then the operation should fail with an error.
