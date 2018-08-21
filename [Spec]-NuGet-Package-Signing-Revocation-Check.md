@@ -5,29 +5,27 @@ Parent spec - [Repository-Signatures](https://github.com/NuGet/Home/wiki/Reposit
 Related Spec - [Trusted Sources](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-repository-signatures)
 
 ## Problem
-As we enable author and repository package signing, we need to enable consumers to be able to control how NuGet package signature revocation check is performed. Further, the information needs to be stored into the user's machine.
+As we enable author and repository package signing, we need to enable consumers to be able to control how NuGet package certificate revocation check is performed. Further, the information needs to be stored into the user's machine.
 
 ## Who is the customer?
 All NuGet package consumers.
 
 ## Scenarios
-Enable package consumers to store NuGet package signature revocation check mode.
+Enable package consumers to store NuGet package certificate revocation check mode.
 
 ## Solution
-* Define NuGet package signature revocation check mode.
-* Update the schema for the nuget.config file to be able to store NuGet package revocation check mode.
-* Define a gesture for users to be able to choose NuGet package revocation check mode.
-
-NuGet package signing client policies have been outlined in the [Repository-Signatures spec](https://github.com/NuGet/Home/wiki/Repository-Signatures#client-policies). This spec proposes schema changes to nuget.config and user gestures.
+* Define NuGet package certificate revocation check mode.
+* Update the schema for the nuget.config file to be able to store certificate revocation check mode.
+* Define a gesture for users to be able to choose certificate revocation check mode.
 
 ### Info, warning, errors
-* We were unable to check revocation because the revocation server was not reachable due to network issues and signatureRevocationCheck = online
 
-`WARNING: NU3028: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation because the revocation server could not be reached. You can switch to offline revocation check. For more information, visit https://aka.ms/offlinePackageRevocationCheck.`
-
-* We were unable to check revocation because the revocation server was not reachable because signatureRevocationCheck = offline
-
-`WARNING: NU3028: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation because the certificate is not available in the cached certificate revocation list and signatureRevocationCheck has been set to offline mode. For more information, visit https://aka.ms/onlinePackageRevocationCheck.`
+|    Windows (.NET)                                 |    Warn/Info     | certificateRevocationMode | Text |
+|--------------------------------------------|--------------|---------------------------|------|
+|    CERT_TRUST_IS_OFFLINE_REVOCATION (X509ChainStatusFlags.OfflineRevocation)        |    Warn    | online                    |   WARNING: NU3028: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation because the revocation server could not be reached. For more information, visit https://aka.ms/certificateRevocationMode   |
+|    CERT_TRUST_REVOCATION_STATUS_UNKNOWN (X509ChainStatusFlags.RevocationStatusUnknown)    |    Warn    | online                    |   WARNING: NU3028: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation for the certificate.   |
+|    CERT_TRUST_IS_OFFLINE_REVOCATION (X509ChainStatusFlags.OfflineRevocation)        |    Info    | offline                   |  INFO: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation because the certificate is not available in the cached certificate revocation list and signatureRevocationCheck has been set to offline mode. For more information, visit https://aka.ms/certificateRevocationMode.    |
+|    CERT_TRUST_REVOCATION_STATUS_UNKNOWN (X509ChainStatusFlags.RevocationStatusUnknown)    |    Info    | offline                   |   INFO: The author primary signature's timestamp found a chain building issue: The revocation function was unable to check revocation for the certificate.   |
 
 ### Revocation check location
 We should store the selected revocation check mode for the user in a `nuget.config` file as a configuration.
@@ -38,7 +36,7 @@ We should store the selected revocation check mode for the user in a `nuget.conf
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <config>
-    <add key="signatureRevocationCheck" value="MODE"/>
+    <add key="certificateRevocationMode" value="MODE"/>
   </config>
 </configuration>
 ```
@@ -52,7 +50,7 @@ For example -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureRevocationCheck" value="online" />
+    <add key="certificateRevocationMode" value="online" />
   </config>
 </configuration>
 ```
@@ -64,7 +62,7 @@ For example -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureRevocationCheck" value="offline" />
+    <add key="certificateRevocationMode" value="offline" />
   </config>
 </configuration>
 ```
@@ -75,7 +73,7 @@ To set the NuGet package revocation check mode, users can use the existing [`nug
 
 #### Set 
 
-`NuGet.exe config -set signatureRevocationCheck=online`
+`NuGet.exe config -set certificateRevocationMode=online`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -84,12 +82,12 @@ To set the NuGet package revocation check mode, users can use the existing [`nug
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureRevocationCheck" value="online" />
+    <add key="certificateRevocationMode" value="online" />
   </config>
 </configuration>
 ```
 
-`NuGet.exe config -set signatureRevocationCheck=offline`
+`NuGet.exe config -set certificateRevocationMode=offline`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -98,7 +96,7 @@ To set the NuGet package revocation check mode, users can use the existing [`nug
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureRevocationCheck" value="offline" />
+    <add key="certificateRevocationMode" value="offline" />
   </config>
 </configuration>
 ```
@@ -106,7 +104,7 @@ To set the NuGet package revocation check mode, users can use the existing [`nug
 
 #### Update 
 
-`NuGet.exe config -set signatureRevocationCheck=offline`
+`NuGet.exe config -set certificateRevocationMode=offline`
 
 Before -
 ```xml
@@ -116,7 +114,7 @@ Before -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureRevocationCheck" value="online" />
+    <add key="certificateRevocationMode" value="online" />
   </config>
 </configuration>
 ```
@@ -128,7 +126,7 @@ After -
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureRevocationCheck" value="offline" />
+    <add key="certificateRevocationMode" value="offline" />
   </config>
 </configuration>
 ```
@@ -136,7 +134,7 @@ After -
 
 #### Remove 
 
-`NuGet.exe config -set signatureValidationMode=`
+`NuGet.exe config -set certificateRevocationMode=`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -149,7 +147,7 @@ After -
 <br/>
 
 #### Default Value - 
-If `signatureRevocationCheck` is not set then NuGet Client should read that as `online` mode.
+If `certificateRevocationMode` is not set then NuGet Client should read that as `online` mode.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -160,12 +158,12 @@ If `signatureRevocationCheck` is not set then NuGet Client should read that as `
 </configuration>
 ``` 
 
-The above config should be read as having `signatureRevocationCheck=online`.
+The above config should be read as having `certificateRevocationMode=online`.
 
 <br/>
 
 #### Invalid Value - 
-If `signatureRevocationCheck` is set to any value other than the supported modes, then NuGet Client should read that as `online` mode and warn the user with a message requesting them to fix the mode value.
+If `certificateRevocationMode` is set to any value other than the supported modes, then NuGet Client should read that as `online` mode and warn the user with a message requesting them to fix the mode value.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -174,15 +172,15 @@ If `signatureRevocationCheck` is set to any value other than the supported modes
     <add key="NuGet.Org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
   <config>
-    <add key="signatureRevocationCheck" value="RANDOM" />
+    <add key="certificateRevocationMode" value="RANDOM" />
   </config>
 </configuration>
 ``` 
 
-The above config should be read as having `signatureRevocationCheck=online` and the following message should be shown to the user - 
+The above config should be read as having `certificateRevocationMode=online` and the following message should be shown to the user - 
 
 ```
-NUxxxx: Invalid signatureRevocationCheck mode found in config file <path>. Defaulting to online mode. Please set it to one of the supported modes by running the nuget config command. 
+NUxxxx: Invalid certificateRevocationMode found in config file <path>. Defaulting to online mode. Please set it to one of the supported modes by running the nuget config command. 
 For more information, visit http://docs.nuget.org/docs/reference/command-line-reference.
 ```
 
