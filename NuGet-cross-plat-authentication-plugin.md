@@ -102,11 +102,11 @@ The plugins will be discovered as follows:
 
     In Visual Studio the fixed location is a folder relative to the NuGet assemblies.
     NuGet itself is installed in `Common7\IDE\CommonExtensions\Microsoft\NuGet`
-    The plugins folder location will be `Common7\IDE\CommonExtensions\Microsoft\NuGet\NuGetPlugins`.
+    The plugins folder location will be `Common7\IDE\CommonExtensions\Microsoft\NuGet\Plugins`.
 
     In the SDK, the fixed location is a folder relative to the NuGet assemblies.
     NuGet itself is currently installed in `dotnet\SDK\version\`
-    The plugins folder location will be `dotnet\SDK\version\NuGetPlugins`
+    The plugins folder location will be `dotnet\SDK\version\Plugins`
 
 All plugins should be self-contained, and install all their dependencies in their respective folders.
 
