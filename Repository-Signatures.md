@@ -166,7 +166,7 @@ Users trust specific authors and repositories by listing the certificates in the
   <trustedRepositories>
   </configuration>
 ```
->Note: This configuration schema is a high level proposal. The final schema is being definied in a the related [[[Spec] NuGet Config schema changes to enable repository signatures]]
+>Note: This configuration schema is a high level proposal. The final schema is being definied in a the related [Spec NuGet Config schema changes to enable repository signatures](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-trusted-signers)
 
 NuGet official clients (VS, NuGet.exe and dotNet.exe) will include the NuGet.org keys by default. Future versions will add new certificates before the previous one gets expired. This means that clients who maintain their versions up to date will have the certificates registered by default. 
 
@@ -174,9 +174,7 @@ Clients running a specific version *forever* will need to update the keys when t
 
 Signers should use a code signing certificate issued by a CA, with revocation information support. If the certificate is not trusted, or the certificate revocation information is not available, the restore operation will produce a warning unless the `allowSelfSignedCerts` option is set.
 
-How to mantain the configuration file is defined in the [[[Spec] NuGet Config schema changes to enable repository signatures]]
-
-
+How to mantain the configuration file is defined in the [Spec NuGet Config schema changes to enable repository signatures](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-trusted-signers)
 
 ### Create a repository signature
 Repository signatures will be added to packages as part of the server ingestion process using the NuGet libraries. NuGet client tools will not expose any CLI command to generate repository signatures but it will support viewing and eventually removing a repository signature from a given package.
