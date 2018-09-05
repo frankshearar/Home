@@ -29,6 +29,6 @@
 * [[Dotnet list package]]
 
 #### [[Implemented|Implemented]]
-
+* [NuGet Client Package Debugging](https://github.com/NuGet/Home/wiki/NuGet-Client-Package-Debugging)
 #### Templates
 * [[Spec Template|Writing-and-reviewing-awesome-specs]]
