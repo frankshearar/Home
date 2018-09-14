@@ -3,17 +3,18 @@
 #### [[Incubation]] 
 
 #### Reviewing
+* [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
+
+
+#### Reviewed
 * [[Package signing]]
 * [[Repository Signatures]]
-* [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
 * [Storing trusted repository](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-repository-signatures)
 * [NuGet Package Signing Client Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
 * [Symbols Package Upload Workflow](https://github.com/NuGet/Home/wiki/Symbols-Package-Upload-Workflow)
 * [[Show outdated packages]]
 * [[Enable repeatable package restore using lock file]]
 * [[Packaging Icon, License and Documentation within the nupkg]]
-
-#### Reviewed
 * [[Register package signing certificates]]
 * [[2 Factor Auth for NuGet.org sign in]]
 * [[Author Package Signing]]
