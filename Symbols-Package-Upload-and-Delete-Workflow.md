@@ -47,8 +47,12 @@ If you want to remove Symbols from the NuGet.org symbol server, you have two opt
 * You can delete the .snupkgs you have previously uploaded to NuGet.org
 * For extremely urgent requests, you can email support@nuget.org and make a support request
 
-When you delete .snupkgs, there will be an additional service that will clean up the NuGet.org symbol server and will ultimately remove the .pdbs from the NuGet.org symbol server. 
+When you delete .snupkgs from NuGet.org, there will be an additional service that will clean up the NuGet.org symbol server and will ultimately remove the .pdbs from the NuGet.org symbol server. 
 
+The process of deleting a Symbols Package from NuGet.org will be similar to the process of unlisting (or deleting, if able) NuGet package. You will navigate to the package details page for the package ID that contains the .snupkg you want to delete. If you are signed in as a package owner of the package, you will see an option to 'Delete Symbols'. Selecting this option will take you into the Delete workflow with the following UI:
+
+
+There will be no Package Version Listing field like you would see for the .nupkg workflow as it is not applicable for just deleting Symbols. Other than that, the UI is nearly identical to the .nupkg delete workflow.
 
 
 
