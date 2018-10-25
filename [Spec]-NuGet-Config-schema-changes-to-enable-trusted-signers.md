@@ -124,7 +124,7 @@ To enable the following user gestures we need to create a new `nuget trusted-sig
 | List | All | `nuget trusted-signers` |
 | Add | Repository | `nuget trusted-signers Add -Name <n> [-Owners <o>]` | Only works if there exists a source with the same name |
 | Add | Repository | `nuget trusted-signers Add -Name <n> -ServiceIndex <s> [-Owners <o>]` |
-| Add | Author | `nuget trusted-signers Add -Name <n> -CertificateFingerprint <f> -FingerprintAlgorithm <a> [-UntrustedRoot <u>]` | If entry with the same name exists, append the new certificate element.</br > `untrustedRoot` defaults to `disallow`
+| Add | Author | `nuget trusted-signers Add -Name <n> -CertificateFingerprint <f> [-FingerprintAlgorithm <a>] [-UntrustedRoot <u>]` | If entry with the same name exists, append the new certificate element.</br > `untrustedRoot` defaults to `disallow` </br> `fingerprintAlgorithm` defaults to `SHA256`.
 | Add | Repository | `nuget trusted-signers Add <package_path> -Repository -Name <n> [-Owners <o>] [-UntrustedRoot <u>]` | Only works if package is repository signed or repository countersigned.<br /> `untrustedRoot` defaults to `disallow` |
 | Add | Author | `nuget trusted-signers Add <package_path> -Author -Name <n> [-UntrustedRoot <u>]` | Only works if package is author signed.<br /> `untrustedRoot` defaults to `disallow` |
 | Remove | Any | `nuget trusted-signers Remove -Name <n>` |
