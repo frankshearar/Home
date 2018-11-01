@@ -97,6 +97,7 @@ The work for this feature and the discussion around the License specific spec is
 
 
 ***
+[Technical spec](https://github.com/NuGet/Home/wiki/Packaging-License-within-the-nupkg-(Technical-Spec))
 
 [Back to parent spec](https://github.com/NuGet/Home/wiki/Packaging-Icon,-License-and-Documentation-within-the-nupkg)
 
