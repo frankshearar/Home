@@ -17,7 +17,8 @@ Originally in version 1.0 of the SPDX specification, you could specify licenses 
 * **License identifier**
 
 The SPDX license identifier is defined [here](https://spdx.org/spdx-specification-21-web-version#h.4f1mdlm)
-The license identifier syntax `1*(ALPHA / DIGIT / "-" / ".")`. This full [list](https://spdx.org/licenses/) of valid license identifiers.
+The license identifier syntax `1*(ALPHA / DIGIT / "-" / ".")`. 
+The full [list](https://spdx.org/licenses/) of valid license identifiers.
 
 * **[DocumentRef](https://spdx.org/spdx-specification-21-web-version#h.h430e9ypa0j9)**
 
@@ -112,7 +113,7 @@ license-expression =  1*1(simple-expression / compound-expression / UNLICENSED)
 Notable thing here, all of the syntax is **case-sensitive**. This is defined by SPDX.
 Namely `MIT or Apache-2.0` is not a valid expression.
 
-Basically LicenseRef and DocumentRef will not be implemented in this iteration.
+LicenseRef and DocumentRef will not be implemented in this iteration.
 Custom licenses in combination with a standard licenses, are treated as custom licenses and as such they will need to be embedded in the package. 
 
 #### Approach for in-house packages - UNLICENSED
@@ -135,8 +136,7 @@ The implementation will also have an embedded list of valid license identifiers 
 ### Nuspec schema changes
 
 There are various options that were discussed regarding the nuspec schema and the pack scenarios.
-Few ground rules: 
-
+A couple of ground rules:
 The license file and license expression are exclusive.
 Furthermore we define an optional version field which define the license expression grammar version. 
 This will only be relevant if in the future we have an update to the license expression grammar.
