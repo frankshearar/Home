@@ -6,7 +6,7 @@ The work for this feature and the discussion around the License specific spec is
 
 ### License
 
-* New nuspec property `<license type="MIT" />`
+* New nuspec property `<license type="expression | file" />`
   * Is an [SPDX license identifier](https://spdx.org/licenses/) or expression. E.g. `<license type="expression">Apache-2.0</license>`
   * Or is a path to a license file. E.g. `<license type="file">LICENSE.txt</license>`
   * Supported formats - md, txt
@@ -75,25 +75,25 @@ The work for this feature and the discussion around the License specific spec is
 
     | nuspec  | VS / nuget.org |
     | ------------- | ------------- |
-    | `<license type="LGPL-2.1 OR MIT" />`  | [LGPL-2.1-only](https://spdx.org/licenses/LGPL-2.1-only.htm) or [MIT](https://spdx.org/licenses/MIT.html) |
+    | `<license type="expression">LGPL-2.1 OR MIT</license>`  | [LGPL-2.1-only](https://spdx.org/licenses/LGPL-2.1-only.htm) or [MIT](https://spdx.org/licenses/MIT.html) |
 
   * Conjunctive AND Operator
 
     | nuspec  | VS / nuget.org |
     | ------------- | ------------- |
-    | `<license type="LGPL-2.1 AND MIT" />` | [LGPL-2.1-only](https://spdx.org/licenses/LGPL-2.1-only.htm) and [MIT](https://spdx.org/licenses/MIT.html) |
+    | `<license type="expression">LGPL-2.1 AND MIT</license>` | [LGPL-2.1-only](https://spdx.org/licenses/LGPL-2.1-only.htm) and [MIT](https://spdx.org/licenses/MIT.html) |
 
   * Exception WITH Operator
 
     | nuspec  | VS / nuget.org |
     | ------------- | ------------- |
-    | `<license type="GPL-2.0+ WITH Bison-exception-2.2" />`  | [GPL-2.0+ w/ Bison-exception-2.2](https://spdx.org/licenses/GPL-2.0-with-bison-exception.html)  |
+    | `<license type="expression">GPL-2.0+ WITH Bison-exception-2.2</license>`  | [GPL-2.0+ w/ Bison-exception-2.2](https://spdx.org/licenses/GPL-2.0-with-bison-exception.html)  |
 
   * Combining multiple operators with parenthesis
 
     | nuspec  | VS / nuget.org |
     | ------------- | ------------- |
-    | `<license type="LGPL-2.1-only OR (GPL-2.0+ WITH Bison-exception-2.2 AND MIT" />` | [LGPL-2.1-only](https://spdx.org/licenses/LGPL-2.1-only.htm) or ([GPL-2.0+ w/ Bison-exception-2.2](https://spdx.org/licenses/GPL-2.0-with-bison-exception.html) and [MIT](https://spdx.org/licenses/MIT.html)) | 
+    | `<license type="expression">LGPL-2.1-only OR (GPL-2.0+ WITH Bison-exception-2.2 AND MIT</license>` | [LGPL-2.1-only](https://spdx.org/licenses/LGPL-2.1-only.htm) or ([GPL-2.0+ w/ Bison-exception-2.2](https://spdx.org/licenses/GPL-2.0-with-bison-exception.html) and [MIT](https://spdx.org/licenses/MIT.html)) | 
 
 
 ***
