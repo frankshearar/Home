@@ -7,9 +7,10 @@ The work for this feature and the discussion around the License specific spec is
 ### License
 
 * New nuspec property `<license type="MIT" />`
-  * Is an [SPDX license identifier](https://spdx.org/licenses/) or expression. E.g. `<license type="LGPL-2.1 OR MIT" />`
-  * Or is a path to a license file. E.g. `<license src="license.txt" target=""/>`
+  * Is an [SPDX license identifier](https://spdx.org/licenses/) or expression. E.g. `<license type="expression">Apache-2.0</license>`
+  * Or is a path to a license file. E.g. `<license type="file">LICENSE.txt</license>`
   * Supported formats - md, txt
+  * the user will need to ensure the license file is packed by adding a files elemenet. E.g. `<file src="licenses\LICENSE.txt" target="" />`
   * nuget spec will add license instead of licentUrl 
     > `<!-- e.g. <license type="MIT"/> or <license src="license.txt"/>. Note - you cannot specify both type and source. Learn more at https://aka.ms/nugetPackageLicense-->` <br>
     > `<license type=""/>`
@@ -43,14 +44,21 @@ The work for this feature and the discussion around the License specific spec is
     * Clicking on the link will open the file in the default application associated with that extension
     * For existing packages, fall back to displaying license URL the way we do today
   * VS 2015 and older - same as what we do in case of SPDX identifier or expression
-* On pack, strip source value, append the target value with the source file name - `<license target="license.txt"/>`. (this is to help the gallery and the client know the path to the license file in the package and the file name.extension.)
 
 #### Project properties
 * `License URL` will be removed from project properties and `PackageLicenseUrl` will be removed from the project file.
 * Project properties will have `License type` (free text field that can take an SPDX expression)  and `License file` (free text field that can take a path to the license file on disk relative to the project file)
-* `<PackageLicense type="comes from the License type property", src="comes from the License file property", target="defaults to package root" />`
-* On pack, strip source value, append the target value with the source file name. The license file will be placed at the package root and the nuspec property `license` will be set to `<license target="file name from the license file prop"/>` indicating that the icon license at the package root.
-* PackageLicenseUrl - same as what we do for licenseUrl above
+* `<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>`
+* License file
+```
+    <PropertyGroup>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="licenses\LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+    </ItemGroup>
+```
 
 #### Validations
 > + pack means `nuget pack`
