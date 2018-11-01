@@ -7,6 +7,7 @@
 * [Symbols Package Upload and Delete Workflow](https://github.com/NuGet/Home/wiki/Symbols-Package-Upload-and-Delete-Workflow)
 
 #### Reviewed
+* [[Packaging Icon, License and Documentation within the nupkg]]
 * [[Package signing]]
 * [[Repository Signatures]]
 * [Storing trusted repository](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-repository-signatures)
