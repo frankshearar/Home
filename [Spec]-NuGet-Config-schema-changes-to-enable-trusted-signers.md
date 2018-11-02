@@ -75,6 +75,7 @@ Trust information should be stored in the nuget.config file.
 - `author` entries should be unique based on the `name`.
 - If two trusted signer entries are found to have the same unique key on different levels of the hierarchy, the closest to the current working directory should be used.
 - If there are multiple certificates with the same fingerprint (e.g. multiple different trusted signer entries can share the same certificate) and conflicting `allowUntrustedRoot` values, a warning should be generated and the most restrictive setting should be used.
+- If no `owners` item is present, all owners will be trusted.
 
 For example -
 
