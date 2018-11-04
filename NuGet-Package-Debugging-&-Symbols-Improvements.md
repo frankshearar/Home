@@ -7,7 +7,7 @@ Let us know what feedback you have at the GitHub [issue](https://github.com/NuGe
 
 ## Summary
 There are several issues with the NuGet package debugging and symbols experience today, including:
-* Discoverability issues in the tooling
+* Discoverability issues in the tooling 
 * Symbol service performance and maintenance issues, including the upcoming deprecation of the service
 * Lack of support for portable PDBs
 * Various ways to include source information with no prescribed methodology built into the tooling
