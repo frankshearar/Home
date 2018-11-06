@@ -7,11 +7,11 @@ The work for this feature and the discussion around the Icon specific spec is tr
 ### Icon
 
 * The icon image will be a part of the nupkg
-* New nuspec property `<icon src="icon.png" target=""/>`
-  * target defaults to package root
+* New nuspec property `<icon>icon.png</icon>`
+  * is a path to an image file inside the package
   * Supported formats - jpg, png
-  * On pack, strip source value, append the target value with the source file name - `<icon target="icon.png"/>`. (this is to help the gallery and the client know the path to the icon file in the package and the file name.extension.)
-  * Stretch goal - if `icon.png` or `icon.jpg` is present at the folder/project root, and icon property is not present in the nuspec/project file, nuget pack should pack that file as the package icon.
+  * the user will need to ensure the image file is packed by adding a files element. E.g. `<file src="image\icon.png" target="" />`
+* If `icon.png` or `icon.jpg` is present at the folder/project root, and icon property is not present in the nuspec/project file, nuget pack should pack that file as the package icon.
 * Browse from NuGet.org
   * During package ingestion, nuget.org will extract and store the icon.
   * For existing packages, the gallery would read the iconurl from the nuspec, fetch the image and store it.
@@ -24,9 +24,8 @@ The work for this feature and the discussion around the Icon specific spec is tr
 * Browse from the fallback folder - the packages would be pre-extracted. Read the icon from the extracted location.
 * Project properties
   * Replace `Icon URL` with `Icon`, keeping it a free text field (for the MVP) that takes the path to the image on disk relative to the project file. (In Dev16, we'll consider adding a file picker.)
-  * In project file `<PackageIcon source="icon.png", target=""/> `
+  * In project file `<PackageIcon>icon.png</PackageIcon> `
   * Set the PackageIcon property in the project file to icon file name
-  * On pack, strip source value, append the target value with the source file name. The icon will be placed at the package root and the nuspec property `icon` will be set to `<icon target="icon.png"/>` indicating that the icon file is named icon.png and is as the package root.
 
 #### Other considerations
 * NuGet.org admin view to remove the package icon and block it from being displayed on NuGet.org or in VS during browse
