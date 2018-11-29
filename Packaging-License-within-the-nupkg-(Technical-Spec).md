@@ -1,6 +1,6 @@
 # NuGet License expressions & embedded licenses technical design
 
-* Status: **Reviewing**
+* Status: **Implemented**
 * Author(s): [Nikolche Kolev](https://github.com/nkolev92)
 * Parent Spec: [Packaging License within the nupkg](https://github.com/NuGet/Home/wiki/Packaging-License-within-the-nupkg)
 
