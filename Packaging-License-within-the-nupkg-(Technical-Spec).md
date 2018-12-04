@@ -138,9 +138,12 @@ The implementation will also have an embedded list of valid license identifiers 
 There are various options that were discussed regarding the nuspec schema and the pack scenarios.
 A couple of ground rules:
 The license file and license expression are exclusive.
-Furthermore we define an optional version field which define the license expression grammar version. 
+We define a new element called `license`.
+- Required type attribute, that has to be "type" or "expression" in this implementation. 
+- Optional version attribute. This attribute defines the license expression grammar version. 
 This will only be relevant if in the future we have an update to the license expression grammar.
-
+- The value of the element is considered the license value. 
+ 
 ```
 <xs:element name="license" maxOccurs="1" minOccurs="0">
     <xs:complexType>
@@ -186,7 +189,7 @@ A sample nuspec would be the following:
 </package>
 ```
 
-If you want to add a license expression with a version, we follow a similar approach as the PackageType.
+If you want to add a license expression with a different license expression grammar version, use the PackageLicenseExpressionVersion. This corresponds to the optional version attribute of the license element.
 We strongly encourage that you don't define the license expression version.
 
 ```
