@@ -7,9 +7,9 @@ Deprecate obsolete, vulnerable or legacy packages [#2867](https://github.com/NuG
 ## Problem
 1. There are certain cases when a package author or NuGet repository Admin (nuget.org admin) should be able to let the package consumers know that a certain package (version) should no longer be used i.e. **deprecated**. As summarized in one of the comments on the issue, following are the most important cases for package deprecation:
  * `Vulnerable`: When the package version contains a security vulnerability and the author recommends not using the package and instead a newer patched version is recommended.
-    * Authors should optionally be able to provide CVE number(s) of the vulnerabilities. 
+    * Authors should optionally be able to provide CVE number(s) and other vulnerability metrics. 
  * `Legacy`: When the package is no longer maintained by the author and author may have published another package (ID) instead.  
- * `Deprecated`: (other reasons like performance, critical bugs, etc.)When a version of the package is deprecated by 
+ * `Misc.`: (other reasons like performance, critical bugs, etc.) When a version of the package is deprecated by 
 the author and the author recommends either not using the package+version or using a newer non-deprecated version.
 
   Today, this is partially possible by un-listing the package but there is no explicit feedback to the package consumers that a certain package version should no longer be used once its already in the project's list of packages (direct of full closure including transitive packages). 
@@ -30,44 +30,97 @@ and optionally provide additional information like CVE#(vulnerable packages), re
 
 Detailed publisher experience storyboard can be found [here](#publisher-experience). The same experience should be possible for a nuget.org admin.
 
-### Flagging vulnerable packages used in a project (Client)
-Once a package has been deprecated, they are hidden in search results. If any deprecated package is already being used in a project, it should be:
-1. Flagged during `restore`:
-  ![image](https://user-images.githubusercontent.com/14800916/43668607-b1f305ec-9732-11e8-839e-596ab2d44890.png)
-
-2. With `list --deprecated`:
-```
-<<TBD>>
-```
-3. On Visual Studio Updates tab of the Package Manager UI:
-  ![image](https://user-images.githubusercontent.com/14800916/43731829-9d50e15c-9964-11e8-9558-8203e423a249.png)
-
-
 ## Publisher experience
-### nuget.org
-1. Package authors goes to the **Edit package** page:
-  ![image](https://user-images.githubusercontent.com/14800916/43664918-6e9dac48-9723-11e8-853e-e537b815c7f5.png)
+### NuGet.org
+1. Package authors goes to the **Manage package** page and expands the **Deprecate Package** section. 
 
-2. Checks **Unlist package**:
-  ![image](https://user-images.githubusercontent.com/14800916/43665006-a0ea6330-9723-11e8-9c1c-fba03181e50f.png)
+   > Note that all the package related management is on one page now.
 
-3. Is prompted to **select a reason**:
-  ![image](https://user-images.githubusercontent.com/14800916/43665021-b46b4d98-9723-11e8-9e29-033acd2a4f51.png)
+   ![image](https://user-images.githubusercontent.com/14800916/49535977-532da900-f87a-11e8-9468-bb774439630b.png)
 
-4. Reason = **Vulnerable** 
-  ![image](https://user-images.githubusercontent.com/14800916/43665044-c4c2d968-9723-11e8-9b4a-8aed0fc8c82d.png)
+1. Is prompted to **select a reason**:
+   
+   > By default, **hide package** checkbox is checked i.e. upon `Save`, the package will be deprecated as well as hidden.
 
-5. Provides the **optional details**:
-  ![image](https://user-images.githubusercontent.com/14800916/43665101-e7c90b58-9723-11e8-8da8-8fe9a9feafed.png)
+   ![image](https://user-images.githubusercontent.com/14800916/49536154-b586a980-f87a-11e8-9b2c-c853c38be51a.png)
 
-6. Reason = **Legacy**
-  ![image](https://user-images.githubusercontent.com/14800916/43665620-a90e4a02-9725-11e8-8e1f-08b756ec400c.png)
+1. Reason = **Vulnerable**. Select versions (multi-select)
+   
+   ![image](https://user-images.githubusercontent.com/14800916/49536256-ed8dec80-f87a-11e8-8efe-1bb790def53d.png)
 
-7. Reason = **Deprecated** (for any other reason):
-  ![image](https://user-images.githubusercontent.com/14800916/43665123-fd930876-9723-11e8-8e2c-8ec521926617.png)
+   Provides the **optional details** like [CVE#](https://cve.mitre.org/), [CWE text](https://cwe.mitre.org/) and [CVSS score](https://www.first.org/cvss/specification-document#5-Qualitative-Severity-Rating-Scale)
+   
+   ![image](https://user-images.githubusercontent.com/14800916/49536486-7dcc3180-f87b-11e8-9844-b218978e469f.png)
 
-8. Upon save, the setting reflects the **unlisted status**:
-  ![image](https://user-images.githubusercontent.com/14800916/43665144-14d220bc-9724-11e8-956a-b67c87923980.png)
+1. Reason = **Legacy**. Applies to **all versions** of the package. Selects alternate package ID (optional) already available on nuget.org
+
+   > There would be auto-complete and verification built-in for existing packages. If a non-existent package ID is entered, the save button will be disabled and error message printed.
+
+   ![image](https://user-images.githubusercontent.com/14800916/49536760-2084b000-f87c-11e8-8b76-e6788c5b9005.png)
+
+1. Reason = **Misc./other**: When package has some issues where a newer package version must be used. 
+  
+   ![image](https://user-images.githubusercontent.com/14800916/49536816-4b6f0400-f87c-11e8-89b3-ed7fae6478cb.png)
+
+For now, providing a reason text from author is not enabled for any deprecation. We may choose to enable it in future. 
 
 ### CLI command experience:
-  ![image](https://user-images.githubusercontent.com/14800916/43665175-2bbaef02-9724-11e8-886a-00cd638b5a06.png)
+```
+// The package version should be deprecated because it has security vulnerabilities. By default hides too.
+> dotnet nuget deprecate My.Demo.package * --vulnerable --cve CVE-2018-xxxx,CVE-2018-yyyy --cvss 2.3 --cwe xxx-vulnerability 
+
+// The package version should be deprecated because it is legacy and no longer maintained
+> dotnet nuget deprecate My.Demo.package --legacy --alternate My.Demo.Maintained.Package
+
+// The package version should be deprecated because it has some issues that are fixed in later versions
+> dotnet nuget deprecate My.Demo.package [2.0.0, 3.0.0)  
+
+// Deprecate but do not hide
+> dotnet nuget deprecate My.Demo.package 1.0.0,1.1.0 --vulnerable --cve CVE-2018-xxxx –no-hide
+
+// remove deprecation
+> dotnet nuget deprecate --undo My.Demo.package 1.0.0,1.1.0
+
+// re-listing a hidden package
+> dotnet nuget delete –-undo My.Demo.package 1.1.0
+
+// push packages as un-listed
+> dotnet nuget push My.Demo.package -k 4003d786-cc37-4004-bfdf-c4f3e8ef9b3a] --hide
+```
+
+The same command with all the above options should be present in nuget.exe as well.
+
+## Consumer experience
+### NuGet.org
+
+> The package author message may not be available immediately. We may enable it in future.
+
+1. Deprecated due to security vulnerability
+
+   ![image](https://user-images.githubusercontent.com/14800916/49538131-91799700-f87f-11e8-83e6-4b31a10788e8.png)
+
+   Package author should be able to navigate to deprecate settings by clicking on the **deprecated** link.
+   
+   ![image](https://user-images.githubusercontent.com/14800916/49538227-c980da00-f87f-11e8-8950-081b3db38e8f.png)
+
+1. Deprecated due to legacy
+
+   ![image](https://user-images.githubusercontent.com/14800916/49537883-000a2500-f87f-11e8-906e-bdfec3ef3d77.png)
+
+1. Deprecated due to misc./other reasons
+
+   ![image](https://user-images.githubusercontent.com/14800916/49538276-ea492f80-f87f-11e8-83ad-a60ce1e77122.png)
+
+### Visual Studio
+
+1. Flagged on the package listing
+
+   ![image](https://user-images.githubusercontent.com/14800916/49548933-212d3e80-f89c-11e8-8b16-fbfb0fd2fa60.png)
+
+1. Flagged during/after `restore`:
+
+   ![image](https://user-images.githubusercontent.com/14800916/49548956-36a26880-f89c-11e8-9bc2-33a25bddf4e8.png)
+
+
+
+
