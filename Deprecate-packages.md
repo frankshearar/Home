@@ -43,15 +43,15 @@ Detailed publisher experience storyboard can be found [here](#publisher-experien
    
    > By default, **hide package** checkbox is checked i.e. upon `Save`, the package will be deprecated as well as hidden.
 
-   ![image](https://user-images.githubusercontent.com/14800916/49536154-b586a980-f87a-11e8-9b2c-c853c38be51a.png)
+   ![image](https://user-images.githubusercontent.com/14800916/49609896-c524f180-f951-11e8-908b-417bf9710645.png)
 
 1. Reason = **Vulnerable**. Select versions (multi-select)
    
-   ![image](https://user-images.githubusercontent.com/14800916/49536256-ed8dec80-f87a-11e8-8efe-1bb790def53d.png)
+   ![image](https://user-images.githubusercontent.com/14800916/49609848-973fad00-f951-11e8-95cd-dfad91558ac5.png)
 
    Provides the **optional details** like [CVE#](https://cve.mitre.org/), [CWE text](https://cwe.mitre.org/) and [CVSS score](https://www.first.org/cvss/specification-document#5-Qualitative-Severity-Rating-Scale)
    
-   ![image](https://user-images.githubusercontent.com/14800916/49536486-7dcc3180-f87b-11e8-9844-b218978e469f.png)
+   ![image](https://user-images.githubusercontent.com/14800916/49609959-f3a2cc80-f951-11e8-92ee-5b21c2a5b5a8.png)
 
 1. Reason = **Legacy**. Applies to **all versions** of the package. Selects alternate package ID (optional) already available on nuget.org
 
