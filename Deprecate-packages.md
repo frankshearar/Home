@@ -64,7 +64,9 @@ Detailed publisher experience storyboard can be found [here](#publisher-experien
 
 For now, providing a reason text from author is not enabled for any deprecation. We may choose to enable it in future. 
 
-### CLI command experience:
+### CLI command experience
+
+There is no client command required for the MVP. If we do it later, it should be a separate deprecate command as proposed below:
 ```
 // The package version should be deprecated because it has security vulnerabilities. By default hides too.
 > dotnet nuget deprecate My.Demo.package * --vulnerable --cve CVE-2018-xxxx,CVE-2018-yyyy --cvss 2.3 --cwe xxx-vulnerability 
@@ -80,15 +82,8 @@ For now, providing a reason text from author is not enabled for any deprecation.
 
 // remove deprecation
 > dotnet nuget deprecate --undo My.Demo.package 1.0.0,1.1.0
-
-// re-listing a hidden package
-> dotnet nuget delete –-undo My.Demo.package 1.1.0
-
-// push packages as un-listed
-> dotnet nuget push My.Demo.package -k 4003d786-cc37-4004-bfdf-c4f3e8ef9b3a] --hide
 ```
 
-The same command with all the above options should be present in nuget.exe as well.
 
 ## Consumer experience
 ### NuGet.org
@@ -121,6 +116,9 @@ The same command with all the above options should be present in nuget.exe as we
 
    ![image](https://user-images.githubusercontent.com/14800916/49548956-36a26880-f89c-11e8-9bc2-33a25bddf4e8.png)
 
-
+## Out of scope
+* Ability to show consumers all vulnerable packages by scanning all CVEs - This will be a useful feature. However, out of scope for this feature.
+* Ability to let package authors know if the package might be vulnerable - While we are exploring this option, but is out of scope for this feature.
+* A command to audit all packages in a project/solution and produce vulnerability report - This is in line with `npm audit` and will be useful but out of scope for this feature.
 
 
