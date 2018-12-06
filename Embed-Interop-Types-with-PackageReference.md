@@ -1,5 +1,3 @@
-# Embed Interop Types with PackageReference
-
 * Status: **Reviewed**
 * Author(s): [Ashish Jain](https://github.com/jainaashish)
 
