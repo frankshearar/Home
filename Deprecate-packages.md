@@ -32,15 +32,12 @@ Detailed publisher experience storyboard can be found [here](#publisher-experien
 
 ## Publisher experience
 
-**Correction**: 
-* The title for deprecating packages will be "**Deprecate package**" and not "Deprecate Package(s)" as shown in all of the screenshots below
-
 ## NuGet.org
-1. Package authors goes to the **Manage package** page and expands the **Deprecate Package** section. 
+1. Package authors goes to the **Manage package** page and expands the **Deprecation** section. 
 
    > Note that all the package related management is on one page now.
 
-   ![image](https://user-images.githubusercontent.com/14800916/49535977-532da900-f87a-11e8-9468-bb774439630b.png)
+   ![image](https://user-images.githubusercontent.com/14800916/49603057-05c73f80-f93f-11e8-9ef9-3f29a8862b0a.png)
 
 1. Is prompted to **select a reason**:
    
