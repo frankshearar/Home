@@ -31,7 +31,11 @@ and optionally provide additional information like CVE#(vulnerable packages), re
 Detailed publisher experience storyboard can be found [here](#publisher-experience). The same experience should be possible for a nuget.org admin.
 
 ## Publisher experience
-### NuGet.org
+
+**Correction**: 
+* The title for deprecating packages will be "**Deprecate package**" and not "Deprecate Package(s)" as shown in all of the screenshots below
+
+## NuGet.org
 1. Package authors goes to the **Manage package** page and expands the **Deprecate Package** section. 
 
    > Note that all the package related management is on one page now.
