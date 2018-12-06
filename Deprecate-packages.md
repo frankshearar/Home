@@ -120,6 +120,27 @@ There is no client command required for the MVP. If we do it later, it should be
 
    ![image](https://user-images.githubusercontent.com/14800916/49548956-36a26880-f89c-11e8-9bc2-33a25bddf4e8.png)
 
+### CLI
+
+The list command should be able to output deprecated packages with `--deprecated` option
+
+```
+// dotnet list command should output the deprecated packages with --deprecated option
+> dotnet list package --deprecated
+Run ‘dotnet audit’ 
+The following sources were used:
+   nuget.org - https://api.nuget.org/v3/index.json
+   Local - C:\Play\NuGet\NuGetLocal
+
+Project `ProjectB` uses the following deprecated packages
+   [netcoreapp2.0]:
+   Top-level Package      Resolved	Reason		Recommendation		
+   > My.Demo.Package         2.0.0 	vulnerable (High Risk)	Use version 3.2.0 (potential breaking changes)
+   > My.Legacy.Package	1.1.0	legacy 		Use My.Awesome.Package 3.0.0 (latest version
+```
+
+> To see all packages including transitive package, additional option `--include-transitive` can be used. 
+
 ## Out of scope
 * Ability to show consumers all vulnerable packages by scanning all CVEs - This will be a useful feature. However, out of scope for this feature.
 * Ability to let package authors know if the package might be vulnerable - While we are exploring this option, but is out of scope for this feature.
