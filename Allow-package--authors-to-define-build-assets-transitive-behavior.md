@@ -21,54 +21,50 @@ All NuGet users who uses PackageReference to manage their NuGet dependencies and
 
 There will be two parts of the solution. 1) This will focus on allowing package authors to say whether their package's build assets should flow transitively or not. 2) This will allow package consumers to override package authors behavior for build assets without making it a direct reference which will resolve this issue for existing packages as well. This Spec will focus on the first part which is more critical going forward and then there will be a separate Spec for part 2.
 
-For part 1, NuGet will introduce a new metadata in nuspec file called `AllowBuildAssetsTrabsitive` which when set to `true` will allow flowing build assets from that package transitively to any consuming project. 
+For part 1, NuGet will introduce a new folder structure called `/buildTransitive` similar to existing `/build` folder except by default this new folder will be transitive in nature. So any build assets inside this folder will transitively flow to any consuming project. There will also be a new [IncludeType](https://docs.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files) flag called `buildTransitive` which will control the flow of this new assets group just like existing `build` flag does for existing `build` assets group. So if any package author wants to restrict `/buildTransitive` assets from it's dependencies then he can exclude `buildTransitive` from that PackageReference. `buildTransitive` flag will internally also exclude `build` flag to maintain the consistency across both folders.
 
-For PackageReference transitive dependencies, this will be achieved by changing the default value of `Exclude` metadata from `build,analyzers` to `analyzers` on `Dependency` element in nuspec file.
-
-For ProjectReference transitive dependencies, this will be achieved by changing the default value of `PrivateAssets` from `contentfiles;analyzers;build` to `contentFiles;analyzers` on PackageReference element in project file.
-
-This is about changing the default experience of these `Exclude` or `PrivateAssets` when corresponding package has set `AllowBuildAssetsTransitive` but nothing will change if this property is not set.
+To construct a package which allows build assets to flow transitively, package author will need to put all these build assets in `/buildTransitive` as well as `/build` folder to make the package compatible with `packages.config`. 
 
 ### Scenarios to be considered
 
 #### 1. PackageReference with transitive dependencies to allow flowing build assets
 
-Project A has a PackageReference to Package B </br>
-Package B has a dependency on Package C </br>
-Package C has a build assets (`C.targets`) and Set `AllowBuildAssetsTransitive` to `true` </br>
+Project A has a PackageReference to Package B  
+Package B has a dependency on Package C  
+Package C has a build assets (`C.targets`) which is added under `/build` as well as `/buildTransitive` folders  
 
-Project A should be able to consume C.targets from Package C
+Project A should be able to consume C.targets from Package C  
 
 #### 2. PackageReference with transitive dependencies to deny flowing build assets
 
-Project A has a PackageReference to Package B </br>
-Package B has a dependency on Package C with `PrivateAssets=build` </br>
-Package C has a build assets (`C.targets`) and Set `AllowBuildAssetsTransitive` to `true` </br>
+Project A has a PackageReference to Package B  
+Package B has a dependency on Package C with `PrivateAssets=buildTransitive`  
+Package C has a build assets (`C.targets`) which is added under `/build` as well as `/buildTransitive` folders  
 
-Project A should not be able to consume C.targets from Package C
+Project A should not be able to consume C.targets from Package C  
 
 #### 3. ProjectReference with transitive dependencies to allow flowing build assets
 
-Project A has a ProjectReference to Project B </br>
-Proejct B has a dependency on Package C </br>
-Package C has a build assets (`C.targets`) and Set `AllowBuildAssetsTransitive` to `true` </br>
+Project A has a ProjectReference to Project B  
+Proejct B has a dependency on Package C  
+Package C has a build assets (`C.targets`) which is added under `/build` as well as `/buildTransitive` folders  
 
-Project A should be able to consume C.targets from Package C
+Project A should be able to consume C.targets from Package C  
 
 #### 4. ProjectReference with transitive dependencies to deny flowing build assets
 
-Project A has a ProjectReference to Project B </br>
-Proejct B has a dependency on Package C with `PrivateAssets=build` </br>
-Package C has a build assets (`C.targets`) and Set `AllowBuildAssetsTransitive` to `true` </br>
+Project A has a ProjectReference to Project B  
+Proejct B has a dependency on Package C with `PrivateAssets=buildTransitive`  
+Package C has a build assets (`C.targets`) which is added under `/build` as well as `/buildTransitive` folders  
 
-Project A should not be able to consume C.targets from Package C
+Project A should not be able to consume C.targets from Package C  
 
 #### 5. Multiple PackageReference with different transitive behavior
 
-Package A has a build assets (`A.targets`) and Set `AllowBuildAssetsTransitive` to `true` </br>
-Package B has a build assets (`B.targets`) </br>
-Package C has a dependency on Package A as well as Package B </br>
-Package D has a dependency on Package C </br>
-Project E has a PackageReference to Package D </br>
+Package A has a build assets (`A.targets`) which is added under `/build` as well as `/buildTransitive` folders  
+Package B has a build assets (`B.targets`) which is only added under `/build` folder  
+Package C has a dependency on Package A as well as Package B  
+Package D has a dependency on Package C  
+Project E has a PackageReference to Package D  
 
 Project E should be able to consume A.targets but not B.targets
