@@ -33,7 +33,7 @@ Detailed publisher experience storyboard can be found [here](#publisher-experien
 ## Out of scope
 * Ability to show consumers all vulnerable packages by scanning all CVEs - This will be a useful feature. However, out of scope for this feature.
 * Ability to let package authors know if the package might be vulnerable - While we are exploring this option, but is out of scope for this feature.
-* A command to audit all packages in a project/solution and produce vulnerability report - This is in line with `npm audit` and will be useful but out of scope for this feature.
+* A command to audit all packages in a project/solution and produce vulnerability report - out of scope for this feature.
 
 ## Publisher experience
 ### NuGet.org
