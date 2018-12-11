@@ -30,9 +30,13 @@ and optionally provide additional information like CVE#(vulnerable packages), re
 
 Detailed publisher experience storyboard can be found [here](#publisher-experience). The same experience should be possible for a nuget.org admin.
 
-## Publisher experience
+## Out of scope
+* Ability to show consumers all vulnerable packages by scanning all CVEs - This will be a useful feature. However, out of scope for this feature.
+* Ability to let package authors know if the package might be vulnerable - While we are exploring this option, but is out of scope for this feature.
+* A command to audit all packages in a project/solution and produce vulnerability report - This is in line with `npm audit` and will be useful but out of scope for this feature.
 
-## NuGet.org
+## Publisher experience
+### NuGet.org
 1. Package authors goes to the **Manage package** page and expands the **Deprecation** section. 
 
    > Note that all the package related management is on one page now.
@@ -119,6 +123,7 @@ There is no client command required for the MVP. If we do it later, it should be
 
 ### CLI
 
+1. Flagged on the package listing
 The list command should be able to output deprecated packages with `--deprecated` option
 
 ```
@@ -134,13 +139,38 @@ Project `ProjectB` uses the following deprecated packages
    Top-level Package      Resolved	Reason		Recommendation		
    > My.Demo.Package         2.0.0 	vulnerable (High Risk)	Use version 3.2.0 (potential breaking changes)
    > My.Legacy.Package	1.1.0	legacy 		Use My.Awesome.Package 3.0.0 (latest version
-```
 
+```
 > To see all packages including transitive package, additional option `--include-transitive` can be used. 
 
-## Out of scope
-* Ability to show consumers all vulnerable packages by scanning all CVEs - This will be a useful feature. However, out of scope for this feature.
-* Ability to let package authors know if the package might be vulnerable - While we are exploring this option, but is out of scope for this feature.
-* A command to audit all packages in a project/solution and produce vulnerability report - This is in line with `npm audit` and will be useful but out of scope for this feature.
+1. Flagged during/after `restore`: 
+During restore, NuGet should warn with the same text as shown in the VS UI.
 
-
+### Warnings
+* By default, all the warnings should have a warning ID (NUxxxx) and the text. And these warnings can either be suppressed or elevated as an error like other NuGet warnings.
+* Each of the following need to have separate warning IDs and text
+  * Warning when deprecated due to **vulnerability**
+    * Low Risk
+      ```
+      NUxxxx: <text TBD>
+      ```
+    * Moderate Risk
+      ```
+      NUxxxx: <text TBD>
+      ```
+    * High Risk
+      ```
+      NUxxxx: <text TBD>
+      ```
+    * Critical Risk
+      ```
+      NUxxxx: <text TBD>
+      ```
+  * Warning when deprecated due to **legacy**
+    ```
+    NUxxxx: <text TBD>
+    ```
+  * Warning when deprecated due to **misc./legacy**
+    ```
+    NUxxxx: <text TBD>
+    ```
