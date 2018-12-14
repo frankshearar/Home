@@ -41,46 +41,56 @@ and optionally provide additional information like CVE#(vulnerable packages), re
 
    ![image](https://user-images.githubusercontent.com/14800916/49603057-05c73f80-f93f-11e8-9ef9-3f29a8862b0a.png)
 
-1. Is prompted to **select reason(s)**:
+1. Is prompted to **select version(s)**:
+
+   > By default, the version from the package version page which led to this page, is selected. Authors can choose one or many versions.
+
+   ![image](https://user-images.githubusercontent.com/14800916/50028628-2d548280-ffa5-11e8-8a18-b5eb8d5de7ef.png)
+
+1. **Select reason(s)**:
    
    > By default, **hide package** checkbox is checked i.e. upon `Save`, the package will be deprecated as well as hidden.
 
-   ![image](https://user-images.githubusercontent.com/14800916/49976030-3d148e00-fef5-11e8-8601-d70e7487d4f9.png)
+   ![image](https://user-images.githubusercontent.com/14800916/50028711-6e4c9700-ffa5-11e8-81f3-ad6c62ae8996.png)
 
-1. Reason = **Vulnerable**. Select versions (multi-select)
+1. Reason = **Vulnerable**. Provides the **optional details** like [CVE#](https://cve.mitre.org/), [CWE text](https://cwe.mitre.org/), [CVSS score](https://www.first.org/cvss/specification-document#5-Qualitative-Severity-Rating-Scale) and any custom message for consumers.
    
-   ![image](https://user-images.githubusercontent.com/14800916/49976063-5ddce380-fef5-11e8-8be2-a47be2979159.png)
+   ![image](https://user-images.githubusercontent.com/14800916/50028785-a48a1680-ffa5-11e8-9c86-79cfb2079e8b.png)
 
-   Provides the **optional details** like [CVE#](https://cve.mitre.org/), [CWE text](https://cwe.mitre.org/), [CVSS score](https://www.first.org/cvss/specification-document#5-Qualitative-Severity-Rating-Scale) and any custom message for consumers.
+1. Reason = **Legacy**. 
+    
+   > Warning if `All current versions` not selected. Authors can choose to ignore this warning and continue with a subset of available versions.
    
-   ![image](https://user-images.githubusercontent.com/14800916/49976110-7d740c00-fef5-11e8-9426-eb50bb9d2624.png)
-
-1. Reason = **Legacy**. Applies to **all versions** of the package. Selects alternate package ID (optional) already available on nuget.org
+   ![image](https://user-images.githubusercontent.com/14800916/50028862-ddc28680-ffa5-11e8-92e3-bfe1636a30a6.png)
 
    > While selecting alternate recommended package, there would be auto-complete and verification built-in for existing packages. If a non-existent package ID is entered, the save button will be disabled and error message printed.
 
-   > `All current versions` will be automatically selected. This can be overridden though.
-
-   ![image](https://user-images.githubusercontent.com/14800916/49976179-c0ce7a80-fef5-11e8-9211-d647deaaeb25.png)
+   ![image](https://user-images.githubusercontent.com/14800916/50028899-00549f80-ffa6-11e8-9c7e-c501b244a45a.png)
  
 1. Reason = **Misc./other**: When package has some issues where a newer package version must be used. 
   
-   ![image](https://user-images.githubusercontent.com/14800916/49976248-fe330800-fef5-11e8-8fd7-5d1d7cd6a0a3.png)
+   ![image](https://user-images.githubusercontent.com/14800916/50028923-12ced900-ffa6-11e8-90f7-b62e78a1efd8.png)
 
 #### Additional scenarios
 
 * Selecting multiple reasons
    * If package author chooses both `legacy` and `vulnerable` reasons for the package versions to be deprecated, then both the `security details` and `alternate package` options open up for the author to provide.
 
-* Selecting multiple versions with different deprecation states
-  * If you select multiple versions and some of them were either already deprecated, then the following should happen:
-     * The already deprecated versions should be shown in red with deprecation and reason texts appended to them:
-       ![image](https://user-images.githubusercontent.com/14800916/49976830-7e5a6d00-fef8-11e8-8199-48b66b72fa39.png)
-     * If multiple versions with different deprecation states are selected (either some are deprecated and others are not OR all are deprecated with different reasons), an error is shown and `Save` is blocked:
-       ![image](https://user-images.githubusercontent.com/14800916/49976917-e90ba880-fef8-11e8-9473-469aa0de8009.png)
-     * If the selected versions are in already deprecated with a single reason (same deprecated state), and another reason is being applied to it, this is just additive. The information is shown as a warning as follows:       
-       ![image](https://user-images.githubusercontent.com/14800916/49977080-b57d4e00-fef9-11e8-8d87-141965e95152.png)
+* Selecting multiple versions with different deprecation states - i.e. wither some of the selected versions were already deprecated or all the versions were deprecated but due to different reasons.
+  * The version list should show the deprecation and listing status in the drop-down:
+
+    ![image](https://user-images.githubusercontent.com/14800916/50029106-abfdef80-ffa6-11e8-8320-2092bdba8c48.png)
+
+  * If multiple versions with different deprecation states are selected (either some are deprecated and others are not OR all are deprecated with different reasons), an error is shown and `Save` is blocked:
      
+    ![image](https://user-images.githubusercontent.com/14800916/50029206-f5e6d580-ffa6-11e8-8ad6-92b4e50a2d68.png)
+
+  * If versions in the same deprecation state are selected, the deprecation reason is populated. The additional details like Security details or alternate package details are shown if they happen to be exactly same across selected versions, else the following info message is shown:
+     
+    `The selected versions have been deprecated with different details and hence cannot be shown here. If you want to modify additional details, please select the versions one by one.`
+
+   * Authors can now either clear existing reasons or add more reasons to the already deprecated packages.  
+   
 ### CLI command experience
 
 There is no client command required for the MVP. 
