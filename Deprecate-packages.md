@@ -151,7 +151,7 @@ Project `ProjectB` uses the following deprecated packages
 1. Flagged during/after `restore`: 
 During restore, NuGet should warn with the same text as shown in the VS UI.
 
-### Warnings
+### Restore warnings
 * By default, all the warnings should have a warning ID (NUxxxx) and the text. And these warnings can either be suppressed or elevated as an error like other NuGet warnings.
 * Each of the following need to have separate warning IDs and text
   * Warning when deprecated due to **vulnerability**
@@ -179,3 +179,7 @@ During restore, NuGet should warn with the same text as shown in the VS UI.
     ```
     NUxxxx: <text TBD>
     ```
+* Restore warnings should show upon every **full restore** run, except when it NoOps i.e. when all packages were already restored and no further action was needed. This implies that even when the packages were already in Global packages folder, the deprecation warning should be shown.
+* **Out of scope**, for now:
+  * Showing deprecation warning if the package is served from a repository that does not support deprecation.
+  * Ability to show deprecation warnings for packages served from file/UNC based repositories.
