@@ -214,7 +214,7 @@ An example with an SDK based project is as below:
 </PropertyGroup>
 
 <ItemGroup>
-    <None Include="licenses\LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+    <None Include="licenses\LICENSE.txt" Pack="true" PackagePath=""/>
 </ItemGroup>
 ```
 
