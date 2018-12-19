@@ -179,6 +179,8 @@ During restore, NuGet should warn with the same text as shown in the VS UI.
     NUxxxx: <text TBD>
     ```
 * Restore warnings should show upon every **full restore** run, except when it NoOps i.e. when all packages were already restored and no further action was needed. This implies that even when the packages were already in Global packages folder, the deprecation warning should be shown.
-* **Out of scope**, for now:
+* **Out of scope**:
   * Showing deprecation warning if the package is served from a repository that does not support deprecation.
   * Ability to show deprecation warnings for packages served from file/UNC based repositories.
+  * NuGet `restore` showing warning consistently when the same package is hosted on more than 1 repository where one repository has deprecated the package but others have not. This is because `restore` picks up the package from the source that responds the fastest. **Note**: This information should be shown on package listing (VS package manager or CLI) i.e. even if one of the sources has the deprecation information. 
+  * Showing deprecation warning if package is sourced from a repository that does not have deprecation information even if it hosts packages from another repository, supporting deprecation functionality, as upstream or offline copy.
