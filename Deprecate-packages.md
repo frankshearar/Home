@@ -97,8 +97,7 @@ There is no client command required for the MVP.
 
 ## Consumer experience
 ### NuGet.org
-
-> The package author message may not be available immediately. We may enable it in future.
+> This experience is being iterated upon actively and hence may change a lot over coming days. 
 
 1. Deprecated due to security vulnerability
 
