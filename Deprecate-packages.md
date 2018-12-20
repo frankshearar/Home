@@ -125,6 +125,10 @@ There is no client command required for the MVP.
 
    ![image](https://user-images.githubusercontent.com/14800916/49548956-36a26880-f89c-11e8-9bc2-33a25bddf4e8.png)
 
+1. Flagged during browse if the latest package is deprecated but not unlisted. Or if the deprecated package is selected in the drop-down before installing
+   
+   ![image](https://user-images.githubusercontent.com/14800916/50255818-55c6ed00-03a8-11e9-935f-2db8e1c3b354.png)
+
 ### CLI
 
 1. Flagged on the package listing
@@ -179,6 +183,7 @@ During restore, NuGet should warn with the same text as shown in the VS UI.
     NUxxxx: <text TBD>
     ```
 * Restore warnings should show upon every **full restore** run, except when it NoOps i.e. when all packages were already restored and no further action was needed. This implies that even when the packages were already in Global packages folder, the deprecation warning should be shown.
+* Search/Browse and List experiences should be able to always show the deprecation information from multiple sources if multiple repositories referenced have same/different deprecation states. **TBD**: the storyboard/screen.
 * **Out of scope**:
   * Showing deprecation warning if the package is served from a repository that does not support deprecation.
   * Ability to show deprecation warnings for packages served from file/UNC based repositories.
