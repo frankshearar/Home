@@ -137,7 +137,6 @@ The list command should be able to output deprecated packages with `--deprecated
 ```
 // dotnet list command should output the deprecated packages with --deprecated option
 > dotnet list package --deprecated
-Run ‘dotnet audit’ 
 The following sources were used:
    nuget.org - https://api.nuget.org/v3/index.json
    Local - C:\Play\NuGet\NuGetLocal
