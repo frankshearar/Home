@@ -115,6 +115,12 @@ There is no client command required for the MVP.
 
    ![image](https://user-images.githubusercontent.com/14800916/49538276-ea492f80-f87f-11e8-83ad-a60ce1e77122.png)
 
+1. Version history on the package details page
+  
+  * **Not signed in**: The deprecated packages should be shown in red if not hidden
+  * **Signed in**: The deprecated packages should state so as part of their version info:
+    ![image](https://user-images.githubusercontent.com/14800916/50667194-f6063f80-0f6c-11e9-82ac-2bf7a8ff0f9d.png)
+
 ### Visual Studio
 
 1. Flagged on the package listing
