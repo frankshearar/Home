@@ -1,6 +1,6 @@
 # Restore fails in Visual Studio when dependent project not part of current solution
 
-* Status: **Reviewing**
+* Status: **Implemented**
 * Author(s): [Ashish Jain](https://github.com/jainaashish)
 
 ## Issue
