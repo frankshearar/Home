@@ -6,10 +6,12 @@ The work for this feature and the discussion around the Documentation specific s
 
 ### Documentation
 
-* New nuspec property `<documentation src="documentation.md" />`
-  * target defaults to package root
+* The documentation file will be a part of the nupkg
+* New nuspec property `<documentation>documentation.md</documentation>`
+  * Is a path to a documentation file. E.g. `<documentation>docs.md</documentation>`
   * Supported formats - md
-  * On pack, strip source value, append the target value with the source file name - `<documentation target="documentation.md"/>`. (this is to help the gallery and the client know the path to the documentation file in the package and the file name.extension. Allows for extension validation, etc.)
+  * the user will need to ensure the documentation file is packed by adding a files elemenet. E.g. <file src="myAwesomeRepo\readme.md" target="readme.md" />
+* If `documentation.md` is present at the folder/project root, and documentation property is not present in the nuspec/project file, nuget pack should pack that file as the package documentation.
   * nuget spec will add 
     > `<!-- e.g. <documentation src="documentation.md"/>. Learn more at https://aka.ms/nugetPackageDocumentation-->` <br>
     > `<documentation src=""/>`
