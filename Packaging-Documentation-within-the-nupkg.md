@@ -20,6 +20,8 @@ The work for this feature and the discussion around the Documentation specific s
   * Clicking on the link will open the file in the default application associated with `.md`extension
   * Client will do the same validations and security checks as nuget.org before displaying md files.
 
+![image](https://user-images.githubusercontent.com/16904420/52244182-3f5ded80-2891-11e9-875c-beddcaf49e2b.png)
+
 #### Other considerations
 * Size and other limitations for the md file that exists on NuGet.org still apply.
 
