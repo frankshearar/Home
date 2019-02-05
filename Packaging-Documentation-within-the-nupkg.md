@@ -23,7 +23,7 @@ The work for this feature and the discussion around the Documentation specific s
   ![image](https://user-images.githubusercontent.com/16904420/52244182-3f5ded80-2891-11e9-875c-beddcaf49e2b.png)
 
 * Upload from NuGet.org package preview - documentation preview is rendered inline, similar to license file. (all the extra whitespace in the mock below is unintentional)
-  ![image](https://user-images.githubusercontent.com/16904420/52303533-1ac34d80-2945-11e9-9bdd-ceebdd1f5490.png)
+  ![image](https://user-images.githubusercontent.com/16904420/52312144-57e80980-295e-11e9-95cf-cc33ac1261b3.png)
 
 * NuGet.org package edit page will no longer allow you to edit the documentation. Documentation will be immutable and the user must push a new version if they want to make changes to the documentation.
 
