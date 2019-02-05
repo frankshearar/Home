@@ -14,7 +14,8 @@ The work for this feature and the discussion around the Documentation specific s
 * If `documentation.md` is present at the folder/project root, and documentation property is not present in the nuspec/project file, nuget pack should pack that file as the package documentation.
 * Browse from NuGet.org
   * During package ingestion, nuget.org will extract and validate the md, and update the package details page with the content.
-  * The documentation url would be served by the gallery. For nuget.org this will link to the package details page that contains documentation (and that section will be expanded).
+  * Client will surface the documentation url served by the gallery
+  * Clicking on the link will open the default browser and go to the package details page that contains documentation (and that section will be expanded).
 * Installed packages/folder based feeds/fallback folder
   * Client will provide a link to open the documentation file from the nupkg/global packages folder/extracted location
   * Clicking on the link will open the file in the default application associated with `.md`extension
@@ -23,6 +24,7 @@ The work for this feature and the discussion around the Documentation specific s
 ![image](https://user-images.githubusercontent.com/16904420/52244182-3f5ded80-2891-11e9-875c-beddcaf49e2b.png)
 
 #### Other considerations
+* Similar to icon, NuGet.org admin view to remove the package documentation and block it from being displayed on NuGet.org or in VS during browse from NuGet.org.
 * Size and other limitations for the md file that exists on NuGet.org still apply.
 
 #### Validations
