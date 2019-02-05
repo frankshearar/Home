@@ -29,6 +29,8 @@ The work for this feature and the discussion around the Documentation specific s
 
 #### Other considerations
 * Similar to icon, NuGet.org admin view to remove the package documentation and block it from being displayed on NuGet.org or in VS during browse from NuGet.org.
+![image](https://user-images.githubusercontent.com/16904420/52311447-d0010000-295b-11e9-89cc-b5142caaf672.png)
+
 * Size and other limitations for the md file that exists on NuGet.org still apply.
 
 #### Validations
