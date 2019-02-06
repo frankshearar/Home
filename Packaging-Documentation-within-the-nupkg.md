@@ -27,6 +27,22 @@ The work for this feature and the discussion around the Documentation specific s
 
 * NuGet.org package edit page will no longer allow you to edit the documentation. Documentation will be immutable and the user must push a new version if they want to make changes to the documentation.
 
+#### Project properties
+
+![image](https://user-images.githubusercontent.com/16904420/52376505-254e1780-2a17-11e9-9bc8-a85258490c59.png)
+
+
+```
+    <PropertyGroup>
+        <PackageDocumentationFile>documentation.md</PackageDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="assets\documentation.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+```
+
+
 #### Other considerations
 * Similar to icon, NuGet.org admin view to remove the package documentation and block it from being displayed on NuGet.org or in VS during browse from NuGet.org.
 ![image](https://user-images.githubusercontent.com/16904420/52311447-d0010000-295b-11e9-89cc-b5142caaf672.png)
