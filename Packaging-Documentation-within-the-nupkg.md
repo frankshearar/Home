@@ -42,20 +42,20 @@ The work for this feature and the discussion around the Documentation specific s
     </ItemGroup>
 ```
 
-
-#### Other considerations
+#### Admin Flow
 * Similar to icon, NuGet.org admin view to remove the package documentation and block it from being displayed on NuGet.org or in VS during browse from NuGet.org.
 ![image](https://user-images.githubusercontent.com/16904420/52311447-d0010000-295b-11e9-89cc-b5142caaf672.png)
 
-* Size and other limitations for the md file that exists on NuGet.org still apply.
+#### NuGet.org
 
 #### Validations
 > + pack means `nuget pack`
 > + push means `nuget push`
 > + upload means https://www.nuget.org/packages/manage/upload 
 
-* md file violates nuget.org size limits -> error on push, upload.
-* md contains unsupported syntax (Only core CommonMark features supported (no tables), and no inline HTML, injects “no follow” on all links) -> warn on pack, push, upload (security reasons)
+* Size and other limitations for the md file that exists on NuGet.org still apply.
+  * md file violates nuget.org size limits -> error on push, upload.
+  * md contains unsupported syntax (Only core CommonMark features supported (no tables), and no inline HTML, injects “no follow” on all links) -> warn on pack, push, upload (security reasons)
 * documentation is null -> warn on pack, push, upload. (users should remove that tag or add a meaningful doc.md file)
 
 
