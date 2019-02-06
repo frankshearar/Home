@@ -2,7 +2,7 @@
 * Author(s): [Karan Nandwani](https://github.com/karann-msft) ([@karann9](https://twitter.com/karann9))
 
 ### Issue
-The work for this feature and the discussion around the Documentation specific spec is tracked by **Nuspec - documentation / readme url [#6873](https://github.com/NuGet/Home/issues/6873)**
+The work for this feature and the discussion around the Documentation specific spec is tracked by **Nuspec - documentation/readme url [#6873](https://github.com/NuGet/Home/issues/6873)**
 
 ### Documentation
 
@@ -22,7 +22,7 @@ The work for this feature and the discussion around the Documentation specific s
   * Client will do the same validations and security checks as nuget.org before displaying md files.
   ![image](https://user-images.githubusercontent.com/16904420/52244182-3f5ded80-2891-11e9-875c-beddcaf49e2b.png)
 
-* Upload from NuGet.org package preview - documentation preview is rendered inline, similar to license file. (all the extra whitespace in the mock below is unintentional)
+* Upload from NuGet.org package preview - documentation preview is rendered inline, similar to the license file. (all the extra whitespace in the mock below is unintentional)
   ![image](https://user-images.githubusercontent.com/16904420/52312144-57e80980-295e-11e9-95cf-cc33ac1261b3.png)
 
 * NuGet.org package edit page will no longer allow you to edit the documentation. Documentation will be immutable and the user must push a new version if they want to make changes to the documentation.
@@ -47,9 +47,9 @@ The work for this feature and the discussion around the Documentation specific s
 ![image](https://user-images.githubusercontent.com/16904420/52311447-d0010000-295b-11e9-89cc-b5142caaf672.png)
 
 #### NuGet.org
-Saying "Documentation" feels redundant. Also, documentation itelsef tends to have headers. These heaaders should start from h2 instead of showing the word "Documentation" at h2.
-It should be possible to have a URL to an on-page anchor to the documentation section.
-Documentation should be visible upto a certain amount, and the user can click on "show more".
+* Saying "Documentation" feels redundant. Also, documentation itself tends to have headers. These headers should start from h2 instead of showing the word "Documentation" at h2.
+* It should be possible to have a URL to an on-page anchor to the documentation section.
+*  The first n lines of the documentation should be visible by default. The documentation lenght is > n, display "show more". Clicking on "show more" should have the same behavior as today.
 
 ![image](https://user-images.githubusercontent.com/16904420/52377004-7b6f8a80-2a18-11e9-897a-6d6b99bd6b90.png)
 
