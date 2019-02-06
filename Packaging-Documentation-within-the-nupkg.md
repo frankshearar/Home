@@ -47,6 +47,11 @@ The work for this feature and the discussion around the Documentation specific s
 ![image](https://user-images.githubusercontent.com/16904420/52311447-d0010000-295b-11e9-89cc-b5142caaf672.png)
 
 #### NuGet.org
+Saying "Documentation" feels redundant. Also, documentation itelsef tends to have headers. These heaaders should start from h2 instead of showing the word "Documentation" at h2.
+It should be possible to have a URL to an on-page anchor to the documentation section.
+Documentation should be visible upto a certain amount, and the user can click on "show more".
+
+![image](https://user-images.githubusercontent.com/16904420/52377004-7b6f8a80-2a18-11e9-897a-6d6b99bd6b90.png)
 
 #### Validations
 > + pack means `nuget pack`
