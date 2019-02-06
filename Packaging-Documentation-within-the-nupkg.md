@@ -10,11 +10,11 @@ The work for this feature and the discussion around the Documentation specific s
 * New nuspec property `<documentation>documentation.md</documentation>`
   * Is a path relative to the package root to a documentation file inside the package`
   * Supported formats - md
-  * the user will need to ensure the documentation file is packed by adding a files element. E.g. `<file src="myAwesomeRepo\readme.md" target="readme.md" />`
+  * the user will need to ensure the documentation file is packed by adding a files element. E.g. `<file src="..\assets\documentation.md" target="documentation.md" />`
 * If `documentation.md` is present at the folder/project root, and documentation property is not present in the nuspec/project file, nuget pack should pack that file as the package documentation.
 * Browse from NuGet.org
   * During package ingestion, nuget.org will extract and validate the md, and update the package details page with the content.
-  * Client will surface the documentation url served by the gallery
+  * Client will surface the documentation URL served by the gallery
   * Clicking on the link will open the default browser and go to the package details page that contains documentation (and that section will be expanded).
 * Installed packages/folder based feeds/fallback folder
   * Client will provide a link to open the documentation file from the nupkg/global packages folder/extracted location
@@ -38,7 +38,7 @@ The work for this feature and the discussion around the Documentation specific s
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="assets\documentation.md" Pack="true" PackagePath=""/>
+        <None Include="..\assets\documentation.md" Pack="true" PackagePath=""/>
     </ItemGroup>
 ```
 
