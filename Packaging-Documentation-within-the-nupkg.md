@@ -16,7 +16,7 @@ The work for this feature and the discussion around the Documentation specific s
   * During package ingestion, nuget.org will extract and validate the md, and update the package details page with the content.
   * Client will surface the documentation URL served by the gallery
   * Clicking on the link will open the default browser and go to the package details page that contains documentation (and that section will be expanded).
-* Installed packages/folder based feeds/fallback folder
+* Stretch goal - Installed packages/folder based feeds/fallback folder
   * Client will provide a link to open the documentation file from the nupkg/global packages folder/extracted location
   * Clicking on the link will open the file in the default application associated with `.md`extension
   * Client will do the same validations and security checks as nuget.org before displaying md files.
@@ -57,8 +57,8 @@ The work for this feature and the discussion around the Documentation specific s
 
 * Size and other limitations for the md file that exists on NuGet.org still apply.
   * md file violates nuget.org size limits -> error on push, upload.
-  * md contains unsupported syntax (Only core CommonMark features supported (no tables), and no inline HTML, injects “no follow” on all links) -> warn on pack, push, upload (security reasons)
-* documentation is null -> warn on pack, push, upload. (users should remove that tag or add a meaningful doc.md file)
+  * md contains unsupported syntax (Only core CommonMark features supported (no tables), and no inline HTML, injects “no follow” on all links) -> warn on pack. error on push, upload.
+* documentation is null -> warn on pack, push, upload. (users should remove that tag or add a meaningful readme.md file)
 
 
 ***
