@@ -161,6 +161,7 @@ During restore, NuGet should warn with the same text as shown in the VS UI.
 
 ### Restore warnings
 * By default, all the warnings should have a warning ID (NUxxxx) and the text. And these warnings can either be suppressed or elevated as an error like other NuGet warnings.
+* **[TBD]** These warnings should be configurable i.e. there should be a a way to switch off some/all deprecation warnings (not suppress). Follow C# warning levels?
 * Each of the following need to have separate warning IDs and text
   * Warning when deprecated due to **vulnerability**
     * Low Risk
