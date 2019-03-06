@@ -129,6 +129,28 @@ There is no client command required for the MVP.
 
 1. Flagged during/after `restore`:
 
+**Proposal (not committed yet) ---**
+
+If a project contains a deprecated package, `restore` would show a warning if the following property is set in the context of a project:
+
+* MSBuild property:
+  ```
+  <RestoreWarnIfPackageDeprecatedAs>Value</RestoreWarnIfPackageDeprecatedAs>
+  ```
+  where value could be one of the following:
+  * Vulnerable (default)
+  * Legacy
+  * Other
+  * Any
+
+  Except `Any`, other reasons could be clubbed with ` ; ` separator.
+
+  This setting can also be done in `nuget.config`. MSBuild property always overrides `nuget.config` property.
+
+  **TBD**: VS NuGet PM UI settings to enable this.
+
+**--- Proposal ends**
+
    ![image](https://user-images.githubusercontent.com/14800916/49548956-36a26880-f89c-11e8-9bc2-33a25bddf4e8.png)
 
 1. Flagged during browse if the latest package is deprecated but not unlisted. Or if the deprecated package is selected in the drop-down before installing
