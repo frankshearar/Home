@@ -8,10 +8,6 @@
 
 #### Reviewed
 * [[Packaging Icon, License and Documentation within the nupkg]]
-* [[Package signing]]
-* [[Repository Signatures]]
-* [Storing trusted repository](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-trusted-signers)
-* [NuGet Package Signing Client Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
 * [[Show outdated packages]]
 * [[Enable repeatable package restore using lock file]]
 * [[Packaging Icon, License and Documentation within the nupkg]]
@@ -32,5 +28,9 @@
 #### [[Implemented|Implemented]]
 * [NuGet Client Package Debugging](https://github.com/NuGet/Home/wiki/NuGet-Client-Package-Debugging)
 * [Symbols Package Upload and Delete Workflow](https://github.com/NuGet/Home/wiki/Symbols-Package-Upload-and-Delete-Workflow)
+* [[Package signing]]
+* [[Repository Signatures]]
+* [Storing trusted repository](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-trusted-signers)
+* [NuGet Package Signing Client Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
 #### Templates
 * [[Spec Template|Writing-and-reviewing-awesome-specs]]
