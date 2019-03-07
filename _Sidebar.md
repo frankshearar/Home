@@ -4,7 +4,7 @@
 
 #### Reviewing
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
-* [Symbols Package Upload and Delete Workflow](https://github.com/NuGet/Home/wiki/Symbols-Package-Upload-and-Delete-Workflow)
+
 
 #### Reviewed
 * [[Packaging Icon, License and Documentation within the nupkg]]
@@ -31,5 +31,6 @@
 
 #### [[Implemented|Implemented]]
 * [NuGet Client Package Debugging](https://github.com/NuGet/Home/wiki/NuGet-Client-Package-Debugging)
+* [Symbols Package Upload and Delete Workflow](https://github.com/NuGet/Home/wiki/Symbols-Package-Upload-and-Delete-Workflow)
 #### Templates
 * [[Spec Template|Writing-and-reviewing-awesome-specs]]
