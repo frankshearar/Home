@@ -24,6 +24,7 @@
 * [[Package Signatures Technical Details]]
 * [NuGet Package Debugging & Symbols Improvements](https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements)
 * [[Dotnet list package]]
+* [[Packages.config SHA Validation]]
 
 #### [[Implemented|Implemented]]
 * [NuGet Client Package Debugging](https://github.com/NuGet/Home/wiki/NuGet-Client-Package-Debugging)
