@@ -56,7 +56,7 @@ The work for this feature and the discussion around the License specific spec is
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="licenses\LICENSE.txt" Pack="true" PackagePath=""/>
+        <None Include="licenses\LICENSE.txt" Pack="true" PackagePath="LICENSE.txt"/>
     </ItemGroup>
 ```
 
