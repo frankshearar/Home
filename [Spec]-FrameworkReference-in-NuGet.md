@@ -134,9 +134,10 @@ The package spec in the json will be updated as follows.
     },
     "frameworks": {
       "netcoreapp3.0": {
-          "frameworkReferences": [
-            "Microsoft.WindowsDesktop.App|WPF"
-          ] 
+          "frameworkReferences": {
+            "Microsoft.WindowsDesktop.App|WPF" : {
+              "privateAssets" : "none"
+          }
       }
     }
   }
@@ -192,6 +193,17 @@ The `LockFileTargetLibrary` model will be extended with a list of framework refe
         public IList<string> FrameworkReferences { get; }
 ```
 
+### Controling the transitivity flow in project-to-project FrameworkReferences
+
+The `FrameworkReference` item supports the `PrivateAssets` attribute.
+In contrast to `PackageReference`, the only applicable values for `PrivateAssets` here are `all` or `none`. 
+
+```xml
+<FrameworkReference Include="Microsoft.NetCore.App" PrivateAssets="all"/>
+```
+
+When all is specified, the FrameworkReference does not flow transitively or get packed. 
+
 ### Nomination Updates
 
 Since the project-system is how NuGet gets all of it's information about projects in VS, the API will be updated to support FrameworkReference. As they'll be released together, the same API that adds support for `PackageDownload` will add support for FrameworkReference.
@@ -219,13 +231,13 @@ Since the project-system is how NuGet gets all of it's information about project
 
 The NuGet.Build.Tasks.Pack will consider the FrameworkReference item and pack accordingly.
 The csproj will usually not contain the FrameworkReference item declarations explicitly as they'll be wired in by the SDK as detailed in their [design](https://github.com/dotnet/designs/pull/50).
-The packing of a specific FrameworkReference can also be disabled by specifying `Pack="false"`.
+The packing of a specific FrameworkReference can also be disabled by specifying `PrivateAssets="all"`.
 
 ```xml
-<FrameworkReference Include="Microsoft.NetCore.App" Pack="false"/>
+<FrameworkReference Include="Microsoft.NetCore.App" PrivateAssets="all"/>
 ```
 
-The `Microsoft.NetCore.App` is not an optional framework reference so it's likely that the SDK will always specify with `Pack="false"`. NuGet will not account for that. It's merely *cleaner* to not have the base FrameworkReference in the nuspec. 
+The `Microsoft.NetCore.App` is not an optional framework reference so the SDK will always specify with `PrivateAssets="all"`. NuGet will not account for that.
 
 The nuspec pack will work similarly, validating the standard target framework validation.
 
