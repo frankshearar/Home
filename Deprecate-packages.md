@@ -83,7 +83,7 @@ Minimized:
 ![image](https://user-images.githubusercontent.com/14800916/57113048-9855ea00-6cf7-11e9-8324-b17d64bff8b0.png)
 
 Expanded:
-![image](https://user-images.githubusercontent.com/14800916/57116982-79fae900-6d0d-11e9-97ce-ab914178dbb5.png)
+![image](https://user-images.githubusercontent.com/14800916/57117455-035fea80-6d11-11e9-9ea6-870d5edb0a12.png)
 
 2. PMUI Updates tab
 Not required for MVP. The details page will show the deprecated information as shown for the `Installed` section.
