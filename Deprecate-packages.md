@@ -15,7 +15,7 @@ Deprecate obsolete, vulnerable or legacy packages [#2867](https://github.com/NuG
 2. In addition to the above, there is no mechanism for the package authors to suggest a new package or a new version to the package consumers where the issue (due to which the package was deprecated) has been fixed.
 
 ## Out of scope
-* Deprecating packages because it contains a vulnerability. This is a separate feature and is maintained here: [TBD](tbd)
+* Deprecating packages because it contains a vulnerability. This is a separate feature and is maintained here: [\[Security\] Flag vulnerable packages #8087](https://github.com/NuGet/Home/issues/8087)
 
 ## Solution
 ### Marking a package as vulnerable (Server)
