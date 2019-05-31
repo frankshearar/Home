@@ -27,7 +27,7 @@ We've implemented most of the back-end and have package indexing to Azure Search
 
 # Try it now!
 
-You can try the new search service out in Visual Studio by using a preview service index that is exactly like the main package source URL but swaps out the search implementations. This means you can install and restore packages as usual but search queries (like in the Browse tab in Visual Studio NuGet Package Manager) will go the new search implementation.
+You can try the new search service out in Visual Studio by using a preview service index that is exactly like the main package source URL but swaps out the search implementations. This means you can install and restore packages as usual but search queries (like in the Browse tab in Visual Studio NuGet Package Manager) will go to the new search implementation.
 
 Use the following V3 package source URL instead of the default one to try it out:
 
