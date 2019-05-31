@@ -43,7 +43,7 @@ To do this in Visual Studio:
 1. Set **Source:** to `https://apidev.nugettest.org/v3-index/azsprod-index.json`.
 1. Disable the existing nuget.org source. This is not strictly necessary but will reduce wasted HTTP calls during restore.
 
-![image](https://user-images.githubusercontent.com/94054/58720374-d5f57380-8386-11e9-8ae3-98bdcab0cca1.png)
+![image](https://user-images.githubusercontent.com/94054/58720564-587e3300-8387-11e9-9dad-34812a951701.png)
 
 # Feedback
 
