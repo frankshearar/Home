@@ -13,7 +13,7 @@ If you find specific search queries that don't work well today, please chime in 
 
 # Status
 
-We've implemented most of the back-end and have package indexing to Azure Search running in parallel with the legacy search system. The nuget.org service index (https://api.nuget.org/v3/index.json) still points to the legacy system while we're working out the kinks.
+We've implemented most of the back-end and have package indexing to Azure Search running in parallel with the legacy search system. The nuget.org service index (`https://api.nuget.org/v3/index.json`) still points to the legacy system while we're working out the kinks.
 
 We plan on introducing the new implementation to users along with a preview survey, A/B testing, and phased rollout to our various search integration points. This is the rough order of things we're planning:
 
