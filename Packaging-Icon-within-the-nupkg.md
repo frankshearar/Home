@@ -9,7 +9,7 @@ The work for this feature and the discussion around the Icon specific spec is tr
 * The icon image will be a part of the nupkg
 * New nuspec property `<icon>icon.png</icon>`
   * is a path to an image file inside the package
-  * Supported formats - jpg, png
+  * Supported formats - jpg, jpeg, png
   * the user will need to ensure the image file is packed by adding a files element. E.g. `<file src="image\icon.png" target="" />`
 * If `icon.png` or `icon.jpg` is present at the folder/project root, and icon property is not present in the nuspec/project file, nuget pack should pack that file as the package icon.
 * Browse from NuGet.org
@@ -23,8 +23,23 @@ The work for this feature and the discussion around the Icon specific spec is tr
 * Browse from folder based feed (including VS Offline Packages source) - read the icon from the nupkg. (similar to how we read the nuspec for such packages today)
 * Browse from the fallback folder - the packages would be pre-extracted. Read the icon from the extracted location.
 * Project properties
-  * Replace `Icon URL` with `Icon`, keeping it a free text field (for the MVP) that takes the path to the image on disk relative to the project file. (In Dev16, we'll consider adding a file picker.)
-  * In project file `<PackageIcon>icon.png</PackageIcon> `
+  * Replace `Icon URL` with `Icon` with a file picker.
+  * On selecting a file on disc, the value updates with the relative path to the file.
+  * In the project file `<PackageIcon>icon.png</PackageIcon> ` as well as
+    ```
+    <PropertyGroup>
+      ...
+      <PackageIcon>icon.png</PackageIcon>
+      ...
+    </PropertyGroup>
+    <ItemGroup>
+      <None Include="..\icon.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+    </ItemGroup>
+    ```
+
   * Set the PackageIcon property in the project file to icon file name
 
 #### Other considerations
