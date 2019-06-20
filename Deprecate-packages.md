@@ -2,7 +2,7 @@
 * Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
 
 ## Issue
-Deprecate obsolete, vulnerable or legacy packages [#2867](https://github.com/NuGet/Home/issues/2867)
+Deprecate obsolete, legacy packages [#2867](https://github.com/NuGet/Home/issues/2867)
 
 ## Problem
 1. There are certain cases when a package author should be able to let the package consumers know that a certain package (version) should no longer be used i.e. **deprecated**. As summarized in one of the comments on the issue, following are the most important cases for package deprecation:
