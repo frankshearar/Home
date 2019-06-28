@@ -16,7 +16,7 @@ If you find specific search queries that don't work well today on the existing, 
 We've implemented most of the back-end and have package indexing to Azure Search running in parallel with the legacy search system. However, the nuget.org service index (`https://api.nuget.org/v3/index.json`) still points to the legacy system while we're working out the kinks. We plan on introducing the new implementation to users along with a preview survey, A/B testing, and phased rollout to our various search integration points. This is the rough order of things we're planning:
 
 1. [x] Implement the back-end and run the new stuff in parallel.
-1. [ ] Play with the new search relevancy internally using a side-by-side comparison page.
+1. [x] Play with the new search relevancy internally using a side-by-side comparison page.
 1. [ ] Show the comparison page to a small set of external partners and gather feedback.
 1. [ ] Tweet/announce the comparison page to the community and gather feedback.
 1. [ ] Integrate nuget.org search with Azure Search using an A/B testing approach.
