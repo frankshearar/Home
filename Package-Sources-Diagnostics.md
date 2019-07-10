@@ -3,7 +3,7 @@
 Status: **Incubating**
 
 ## Issue
-The work for this feature and the discussion around the spec is tracked here - Add ability to ignore failed sources in VS #5643
+The work for this feature and the discussion around the spec is tracked here - Add ability to ignore failed sources in VS [#5643](https://github.com/NuGet/Home/issues/5643)
 
 ## Problem
 Customers often complain of performance issues with retrieving packages in search, installing and updating packages. Often when we analyze these individual issues, we find that in a large percentage of cases the issues users are seeing are due to the following. Package Sources here refer to:- File shares, NuGet.Server's, 3rd party repositories and NuGet.org.
