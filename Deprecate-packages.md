@@ -1,5 +1,5 @@
 * Status: **Reviewing**
-* Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
+* Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv)), [Xavier Decoster](https://github.com/xavierdecoster) ([@xavierdecoster](https://twitter.com/xavierdecoster))
 
 ## Issue
 Deprecate obsolete, legacy packages [#2867](https://github.com/NuGet/Home/issues/2867)
@@ -18,31 +18,34 @@ Deprecate obsolete, legacy packages [#2867](https://github.com/NuGet/Home/issues
 * Deprecating packages because it contains a vulnerability. This is a separate feature and is maintained here: [\[Security\] Flag vulnerable packages #8087](https://github.com/NuGet/Home/issues/8087)
 
 ## Solution
-### Marking a package as vulnerable (Server)
+### Marking a package as deprecated (Server)
 Package publishers should be able to mark package (and version(s)) as **deprecated** with one of the reasons as mentioned above.
 
 ### Publisher experience (on NuGet.org)
-1. Package authors goes to the `Packages`\\`<PackageID>`\\**`Manage`** page and expands the **`Deprecate package(s)`** section.
+1. Package author goes to the `Packages`\\`<PackageID>`\\**`Manage`** page and expands the **`Deprecate package(s)`** section.
 
-2. Is prompted to **select version(s)**: By default, the version from the package version page which led to this page, is selected. Authors can choose one or many versions.
+2. Is required to **select version(s)**: By default, the version from the package version page which led to this page, is selected. Authors can choose one or many versions.
 
 3. **Select reason(s)**: One or many of the following reasons can be selected
   
-  * This package is legacy and no longer maintained
-  * The package has bugs/issues that makes it unusable
-  * Other: (other custom reasons like performance, privacy, private package, etc.).
+  * This package is **legacy** and no longer maintained
+  * The package has **critical bugs** that make it unusable
+  * **Other**: (other custom reasons like performance, privacy, private package, etc.).
 
 4. **Provide alternate package** (optional)
-  
-  * The package needs to be an existing package on NuGet.org.  
+
+  * The package needs to be an existing package on NuGet.org.
   * Once a valid package is selected, the version dropdown is populated with available versions. By default it is set to `Latest stable`. (If all versions are pre-release, it states `Latest`).
   * While selecting alternate recommended package, there would be auto-complete and verification built-in for existing packages. If a non-existent package ID is entered, the save button will be disabled and error message printed.
+  * The alternate package cannot be an unlisted package at the time of deprecation.
+  * The alternate package can be the same package ID as the one being deprecated, but the alternate package version may not be (one of) the version(s) being deprecated.
 
 5. **Provide custom message** (optional)
 
   * This is mandatory if the reason `Other` is selected.
   * This is free text field that authors can fill in with any valid reason.
-  * [**Open**] Supports English only or UTF-8 characters. 
+  * [**Open**] Supports English only or UTF-8 characters.
+  * This message will currently not be exposed in NuGet clients.
 
 ![image](https://user-images.githubusercontent.com/14800916/56618151-9349ba00-65d6-11e9-9ab3-372bc47f0c96.png)
 
@@ -104,31 +107,65 @@ The details page will show the deprecated information as shown for the `Installe
 
 ### CLI
 
-1. Flagged on the package listing
-The list command should be able to output deprecated packages with `--deprecated` option
+#### Definitions
+
+* An **outdated** package has a newer version available in one of the package sources.
+* A **deprecated** package is marked as deprecated in one of the package sources.
+* A **deprecated** package is not necessarily **outdated**, but an outdated package may be deprecated.
+
+#### Scope
+
+* Add marker `(D)` next to deprecated package versions in output of `dotnet list package --outdated`
+* Support new `dotnet list package --deprecated` command
+* Prefer optimal output formatting to facilitate parsing deprecation information
+
+#### Out-of-scope:
+
+* Detecting deprecated packages currently does not result in error codes to support breaking builds on CI systems
+* Parseable output format using `--output json` is useful, but demands a spec of its own for this command, and is not restricted to deprecation info. This is tracked by issue [NuGet/Home#7752](https://github.com/NuGet/Home/issues/7752).
+* Additional verbosity levels are a potential future expansion, but out of scope for the MVP of this feature.
+* We won't show `author message` as part of deprecation info at this point.
+* We won't be flagging deprecated packages yet during or after `restore`.
+
+#### Help
+
+The `--help` output must be updated to include the new `--deprecated` option. Other existing options should refer to the `--deprecated` option as needed.
 
 ```
-// dotnet list command should output the deprecated packages with --deprecated option
-> dotnet list package --deprecated
-The following sources were used:
-   nuget.org - https://api.nuget.org/v3/index.json
-   Local - C:\Play\NuGet\NuGetLocal
+Usage: dotnet list <PROJECT | SOLUTION> package [options]
 
-Project `ProjectB` uses the following deprecated packages
-   [netcoreapp2.0]:
-   Top-level Package          Resolved	Comments		
-   > My.Legacy.Package        2.0.0 	  The package is legacy. Recommended package is My.Awesome.Package (latest version 3.0.0).
-   > My.Buggy.Package	        1.1.0    The package has critical bugs that makes it unusable. Recommended package is My.NotBuggy.Package (version 2.0.0 or above).
-   > My.Deprecated.Package    3.2.1    The package has been deprecated with author message: "This package's performance is super bad. Dont use it". Recommended package is My.NotBuggy.Package (version 2.0.0 or above).
+Arguments:
+  <PROJECT | SOLUTION>   The project or solution file to operate on. If a file is not specified, the command will search the current directory for one.
 
-> To see all packages including transitive package, additional option `--include-transitive` can be used. 
+Options:
+  -h, --help                                Show command line help.
+  --outdated                                Lists packages that have newer versions.
+  --deprecated                              Lists packages that have been deprecated.
+  --framework <FRAMEWORK | FRAMEWORK\RID>   Chooses a framework to show its packages. Use the option multiple times for multiple frameworks.
+  --include-transitive                      Lists transitive and top-level packages.
+  --include-prerelease                      Consider packages with prerelease versions when searching for newer packages. Requires the '--outdated' or '--deprecated' option.
+  --highest-patch                           Consider only the packages with a matching major and minor version numbers when searching for newer packages. Requires the '--outdated' option.
+  --highest-minor                           Consider only the packages with a matching major version number when searching for newer packages. Requires the '--outdated' option.
+  --config <CONFIG_FILE>                    The path to the NuGet config file to use. Requires the '--outdated' or '--deprecated' option.
+  --source <SOURCE>                         The NuGet sources to use when searching for newer packages. Requires the '--outdated' or '--deprecated' option.
 ```
 
-> The list command should be able to show deprecation message even if a package is deprecated on one of the many repositories/feeds.
+#### dotnet list package --outdated
 
-2. Flagged while listing outdated packages
+Lists which installed packages have newer versions available.
+
+If any of the *outdated* packages is deprecated, a `(D)` marker is printed next to the version indicating the package is deprecated. 
+
+**Important! Installed packages that are deprecated but not outdated will not be part of the output.**
+
+A description is printed to the console explaining what the `(D)` marker means.
+
 ```
 > dotnet list package --outdated
+
+The following sources were used:
+   nuget.org - https://api.nuget.org/v3/index.json
+   Local - C:\NuGet\NuGetLocal
 
 3 packages need your attention - 2 outdated, 1 deprecated.
 
@@ -137,10 +174,47 @@ EntityFramework        6.1.2       6.1.2       6.2.0
 NUnit                  2.4.0       2.6.4       3.8.1  
 My.Sample.Pkg          2.1.3 (D)   4.1.0       4.1.0
 
-(D): Deprecated package(s). Use '--show-deprecated' option for more info.
+(D): Deprecated package(s). Use 'dotnet list package --deprecated' for more info.
 ```
 
-3. Flagged during/after `restore`: 
+#### dotnet list package --deprecated
+
+Lists which installed packages have been deprecated.
+
+```
+> dotnet list package --deprecated
+
+The following sources were used:
+   nuget.org - https://api.nuget.org/v3/index.json
+   Local - C:\NuGet\NuGetLocal
+
+Project `ClassLibrary1` uses the following deprecated packages
+   [netcoreapp2.0]:
+   Top-level Package              Resolved     Reason                 Alternative
+   > My.Legacy.Package            2.0.0        Legacy                 My.Awesome.Package >= 3.0.0
+   > My.Buggy.Package	          1.1.0        Critical Bugs          My.NotBuggy.Package >= 2.0.0
+   > My.Deprecated.Package        3.2.1        Other                  My.NotBuggy.Package >= 2.0.0
+   > My.CompletelyBroken.Package  0.9.0        Legacy, Critical Bugs  My.Awesome.Package >= 1.0.0
+
+> To see all packages including transitive packages, additional option `--include-transitive` can be used. 
+```
+
+#### dotnet list package --outdated --deprecated
+
+This is a weird scenario:
+* Either the output is filtered to search for newer packages;
+* or the output is filtered to search for deprecated packages (which are not necessarily outdated)
+
+Combining `--outdated` and `--deprecated` options will not be supported.
+
+Proposed error message:
+
+```
+Invalid command. Combining '--outdated' and '--deprecated' options is not supported.
+```
+
+#### Flagged during/after `restore`
+
 During restore, NuGet should inform with the same text as shown in the VS UI.
 
 * **Out of scope**:
