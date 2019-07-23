@@ -191,10 +191,10 @@ The following sources were used:
 Project `ClassLibrary1` uses the following deprecated packages
    [netcoreapp2.0]:
    Top-level Package              Resolved     Reason                 Alternative
-   > My.Legacy.Package            2.0.0        Legacy                 My.Awesome.Package (>= 3.0.0)
-   > My.Buggy.Package	          1.1.0        Critical Bugs          My.NotBuggy.Package (>= 2.0.0)
-   > My.Deprecated.Package        3.2.1        Other                  My.NotBuggy.Package (>= 2.0.0)
-   > My.CompletelyBroken.Package  0.9.0        Legacy, Critical Bugs  My.Awesome.Package (>= 1.0.0)
+   > My.Legacy.Package            2.0.0        Legacy                 My.Awesome.Package >= 3.0.0
+   > My.Buggy.Package	          1.1.0        Critical Bugs          My.NotBuggy.Package >= 2.0.0
+   > My.Deprecated.Package        3.2.1        Other                  My.NotBuggy.Package >= 2.0.0
+   > My.CompletelyBroken.Package  0.9.0        Legacy, Critical Bugs  My.Awesome.Package >= 1.0.0
 
 > To see all packages including transitive packages, additional option `--include-transitive` can be used. 
 ```
