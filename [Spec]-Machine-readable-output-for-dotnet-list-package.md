@@ -13,18 +13,20 @@ Having a machine-readable output for `dotnet list package` would be very conveni
 
 This spec is based on today's (and planned) console output for the `dotnet list package` command. During review, I'd love to capture feedback/input and make sure we understand what data and format would be desired for this machine-readable output.
 
-## Scope
+## Who is the customer?
 
-* All scenarios of `dotnet list package` should support a new option that ensures the output is in a machine-readable format.
-* The machine-readable format will be JSON.
-* The machine-readable output will be streamed to the `stdout` stream of the console. No other data will be output to the console before or after the JSON data.
+Everyone who uses `dotnet.exe list package` command to query for installed, outdated or deprecated package information.
+
+## Key Scenarios
+
+* Ability to use new `--json` option for all `dotnet list package` commands to ensure JSON-formatted output is emitted to the console.
 
 ## Out-of-scope
 
 * To avoid disk I/O, we won't support saving the machine-readable output to disk as part of this spec. The work-around is for the consumer to read from the console's `stdout` stream.
 * At this point, no other CLI commands will be within scope for this feature.
 
-## Implementation
+## Solution
 
 A new `--json` command option will be added to the `dotnet list package` command. This command option needs to be forwarded from dotnet CLI to NuGet XPlat.
 
