@@ -1,5 +1,4 @@
-* [[Cross platform authentication support]]
-* [Enable repeatable builds via lock file](https://github.com/NuGet/Home/wiki/Enable-repeatable-builds-for-PackageReference-based-projects)
+* [[Flag vulnerable packages]]
 * [[ToolsReference and Multi TFM Support in NuGet UI|ToolsReference-and-Multi-TFM-Support-in-NuGet-UI]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
 * [[Search by Package Type and Query Language Surfacing|Search-by-Package-Type-and-Query-Language-Surfacing]]
@@ -8,5 +7,4 @@
 * [[Package Signatures Technical Details]]
 * [NuGet Package Debugging & Symbols Improvements](https://github.com/NuGet/Home/wiki/NuGet-Package-Debugging-&-Symbols-Improvements)
 * [[NuGet Upgrader|NuGet-Upgrader.-Helping-to-move-to-NuGet-3.0]]
-
 * [Config Max Http Request In NuGet](https://github.com/NuGet/Home/wiki/Config-Max-Http-Request-In-NuGet)
