@@ -1,4 +1,4 @@
-* Status: **Reviewing**
+* Status: **Reviewed**
 * Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv)), [Xavier Decoster](https://github.com/xavierdecoster) ([@xavierdecoster](https://twitter.com/xavierdecoster))
 
 ## Issue
