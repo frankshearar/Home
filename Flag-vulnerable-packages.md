@@ -11,20 +11,22 @@ Today developers take dependency on a bunch of packages directly or indirectly (
 
 
 ## Solution
-1. Show vulnerability info for packages with vulnerability:
-  * NuGet.org package details page
-    - Show detailed info for packages with vulnerabilities
-    - Mention if one of the dependencies have vulnerability
-  * Visual Studio package details for Browse | Installed | Updates tabs
-2. Show vulnerable packages for
-  * An `audit` or `list --vulnerable`
-  * Visual Studio UI Installed tab 
-    - Top-level dependencies
-    - Transitive dependencies
-  * `restore` - show minimal info/warning with a message to run another command for detailed output.
-    - ⚠️`Warn` for `critical` vulnerabilities
-    - ℹ️ `Info` for other levels
-    - An option to opt-out of vulnerability check
-  * Install
-    - CLI can rely upon the subsequent `restore` operation for messaging
-    - [Not MVP] Visual Studio upon Install
+The vulnerability info needs to be shown for the following:
+* `audit` or `list --vulnerable` command
+* On Visual Studio NuGet Package Manager `Installed` tab 
+  - Top-level dependencies
+  - Transitive dependencies
+* Upon `restore` - show minimal info/warning with a message to run another command for detailed output.
+  - ⚠️`Warn` for `critical` vulnerabilities
+  - ℹ️ `Info` for other levels
+  - An option to opt-out of vulnerability check
+* Upon `Install`
+  - CLI can rely upon the subsequent `restore` operation for messaging
+  - Visual Studio upon Install
+* On Visual Studio NuGet Package Manager's package details for Browse | Installed | Updates tabs
+* On NuGet.org 
+  - On search list if the latest version of the package contains a vulnerability
+  - On search list if the latest version of the package depends upon a vulnerable package (transitive - any level)
+  - On package details page
+In addition, the following commands should be enabled for end to end customer scenario:
+* `why` command to understand why a package is shown as a dependency for my project. This is useful when I see a vulnerability in my package graph but I am not sure why and how this package (transitive) is showing up in the graph.
