@@ -30,5 +30,9 @@ The vulnerability info needs to be shown for the following:
   - On search list if the latest version of the package depends upon a vulnerable package (transitive - any level)
   - On package details page
 
-In addition, the following commands should be enabled for end to end customer scenario:
-* `why` command to understand why a package is shown as a dependency for my project. This is useful when I see a vulnerability in my package graph but I am not sure why and how this package (transitive) is showing up in the graph.
+In addition, we need the following:
+* **[P1]** `why` command to understand why a package is shown as a dependency for my project. This is useful when I see a vulnerability in my package graph but I am not sure why and how this package (transitive) is showing up in the graph.
+* **[P1]** An API that lists all vulnerable NuGet.org packages with the vulnerability information.
+* **[Future]** A way to specify another source for vulnerability information
+
+
