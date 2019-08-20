@@ -8,7 +8,8 @@ Flag vulnerable packages [#8087](https://github.com/NuGet/Home/issues/8087)
 Today developers take dependency on a bunch of packages directly or indirectly (through transitive dependencies) and they have no way to understand if any of their dependencies bring in any known vulnerabilities. 
 
 ## Out of scope
-
+The following are out of scope for this feature:
+* Ability to report a vulnerability on nuget.org - This is a follow-up feature
 
 ## Solution
 The vulnerability info needs to be shown for the following:
@@ -28,5 +29,6 @@ The vulnerability info needs to be shown for the following:
   - On search list if the latest version of the package contains a vulnerability
   - On search list if the latest version of the package depends upon a vulnerable package (transitive - any level)
   - On package details page
+
 In addition, the following commands should be enabled for end to end customer scenario:
 * `why` command to understand why a package is shown as a dependency for my project. This is useful when I see a vulnerability in my package graph but I am not sure why and how this package (transitive) is showing up in the graph.
