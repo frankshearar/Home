@@ -34,10 +34,21 @@ Discuss: Feature that needs further discussion
 | A way to specify another source for vulnerability information | Backlog |
 | `why` command to understand why a package is shown as a dependency for my project | Backlog |
 | Ability to report a vulnerability on nuget.org | Discuss |
-| An API that lists all vulnerable NuGet.org packages with the vulnerability information | Discuss |
+| An API that lists all vulnerable nuget.org packages with the vulnerability information | Discuss |
 | Show vulnerability information as part of search results | Discuss |
 | Show vulnerability information publicly for each package like deprecation info on the package details | Discuss |
 
 ## Solution
+Vulnerability information can be shown in multiple scenarios:
+### Using a CLI command 
+
+### Upon `Install`
+
+### On Visual Studio PM UI 
+
+### Upon `restore`
+
+### On nuget.org, for package publishers
+
 
 
