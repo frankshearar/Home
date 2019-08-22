@@ -26,8 +26,9 @@ There are multiple scenarios for flagging and reporting vulnerabilities. This fe
 * For `restore`, should it be opt-in or opt-out (preferred for security features)?
  
 #### ❌ Out of scope
-Backlog: Follow-up feature to be implemented after the current one is implemented
-Discuss: Feature that needs further discussion
+*Backlog: Follow-up feature to be implemented after the current one is implemented*
+
+*Discuss: Feature that needs further discussion*
 
 | Feature | State |
 |:--- |:--- |
