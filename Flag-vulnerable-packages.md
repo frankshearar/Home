@@ -20,6 +20,7 @@ There are multiple scenarios for flagging and reporting vulnerabilities. This fe
   - Info (ℹ️) for lower impact vulnerabilities (minimal info + command/way to uncover detailed information)
   - Option to enable/disable warnings for the various impact levels of the vulnerabilities
 * Show vulnerability information in packages to their publishers on nuget.org
+  - Show the vulnerability info on the package page and version history
   - Notify package publishers for any new vulnerability detected in one-more of their packages
 
 #### ❓ Open questions
