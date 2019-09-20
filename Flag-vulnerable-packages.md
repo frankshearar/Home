@@ -48,6 +48,16 @@ Vulnerability information can be shown in multiple scenarios:
 
 ### On Visual Studio PM UI 
 
+* `Installed` tab shows a warning icon that leads to vulnerable package, when the package has **High** or **Critical** vulnerabilities
+* `Installed` tab also shows transitive packages as an accordion - collapsed, by default. It has a warning icon too, is any of the transitive packages have vulnerabilities (**High** or **Critical**)
+
+   ![image](https://user-images.githubusercontent.com/14800916/65348883-057af680-db97-11e9-8a2a-b02be76c9668.png)
+
+   Showing vulnerability in transitive package:
+   ![image](https://user-images.githubusercontent.com/14800916/65349163-9f42a380-db97-11e9-8de5-c81613e47d5d.png)
+
+> **Note**: Irrespective of the criticality of the vulnerability, the details pane will always show the vulnerability information - with warning icon for Critical/High vulnerabilities and info for others. Just that Installed tab won't warn in those cases.
+
 ### Upon `restore`
 
 ### On nuget.org, for package publishers
