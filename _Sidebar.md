@@ -9,6 +9,7 @@
 #### Reviewed
 * [Backporting PC to msbuild restore](https://github.com/NuGet/Home/wiki/Backporting-PC-to-msbuild--restore)
 * [[Packaging Icon, License and Documentation within the nupkg]]
+* [Deprecate packages](https://github.com/NuGet/Home/wiki/Deprecate-packages)
 * [[Show outdated packages]]
 * [[Enable repeatable package restore using lock file]]
 * [[Packaging Icon, License and Documentation within the nupkg]]
