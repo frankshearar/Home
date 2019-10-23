@@ -1,25 +1,21 @@
-* Status: Incubation
-* Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv))
+Status: Incubation
+* Author(s): [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv)), [Cristina Manu](https://github.com/cristinamanum)
 
-### Requirements
-Refer to the spec:[[Centrally managing NuGet packages]] for the list of requirements and summary of the solution. This spec details out the solution for managing package versions, centrally at a solution (or repo, folder) level.
-
-*For lock file details, refer to the spec: [[Enable repeatable package restore using lock file]]. This spec does not discuss anything about the lock file*
 
 ### Solution Details
 
-To get started, you will need to create an MSBuild props file at the root of the solution named `packages.props` that declares `Package` items.
+To get started, you will need to create an MSBuild props file at the root of the solution named `packages.props` that declares the centrally defined packages' versions.
 
 In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  The `PackageReference` in the projects would not specify the version information. All projects that reference this package will refer to version `10.0.1` for `Newtonsoft.json`.
 
-*Packages.props*
+*packages.props*
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Package Include="MSTest.TestAdapter" Version="1.1.0" />
     <Package Include="MSTest.TestFramework" Version="1.1.18" />
-    <Package Include="Newtonsoft.Json" Version="10.0.1" />
+    <Package Include="Newtonsoft.Json" Version="10.0.1" Pin="true"/>
   </ItemGroup>
 </Project>
 ```
@@ -38,117 +34,437 @@ In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  T
 </Project>
 ```
 
-**Implicit package**: **Implicit packages** are not listed in the central packages version management (CPMVF) file.
+#### Opt-in **Central Package Version Management**
 
-**Transitive dependencies**: One should not be listing the transitive dependencies either in the CPVMF or as `PackageReferece` for the projects. If listed in the CPVMF, the same version will be used in full package closure during restore and the same will be locked. 
+In addtion to the packages.props file, to enable central package version management for your projects, you need to set EnableCentralPackageVersions MsBuild property as below. If the EnableCentralPackageVersions is set and a packages.props is not found the restore will error out.
 
-*Commands*
+```xml
+<EnableCentralPackageVersions>true</EnableCentralPackageVersions>
+```
+
+In addtion only specific types of projects will be supported for **Central Package Version Management**. Refer to [this](#what-is-not-supported-in-central-package-version-management) to see the exclusions.
+
+
+**Transitive dependencies**: One should not be listing the transitive dependencies either in the packages.props or as `PackageReferece` for the projects. However the central package versions will win in the transitive dependency resolution.
+
+### DotNet CLI Experience
+
+The dotnet commands `dotnet add` and `dotnet remove` will work without any changes if the project is opt-out **Central Package Version Management**. For the cases when a project is opt-in **Central Package Version Management** the following rules apply.
+
+#### dotnet add
+**`> dotnet add [PROJECT] package [PACKAGE_NAME] [-h|--help] [-f|--framework] [--interactive] [-n|--no-restore] [--package-directory] [-s|--source] [-v|--version] [-fv|--force-version-update]`**
+
+##### Description
+
+It will add a package reference to the project. The Package version will be added only to the packages.props file. To update the version in the packages.props file use the *--force-version-update* option.
+
+##### Arguments
+
+```
+PROJECT
+```
+
+Specifies the project file. If not specified, the command searches the current directory for one.
+
+```
+PACKAGE_NAME
+```
+
+The package reference to add.
+
+##### Options
+
+``` 
+-f|--framework
+```
+
+Adds a package reference only when targeting a specific framework. The framework information will be added to the packages.props file.
+
+``` xml
+<ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <Package Include="MyPackage" Version="11.0.1" />
+</ItemGroup>
+```
+
+The command will fail if the framework is not compatible with the project's frameworks.
+
+``` 
+-v|--version
+```
+
+Adds the specific version of the package to the packages.props file.
+The command will fail if there is a conflict between this version and a version of the same package specified in the packages.props file.
+
+``` 
+-fv|--force-version-update
+```
+
+Adds the specific version of the package to the packages.props file. The command will override any existent package version in the packages.props file. The project file will be updated to:
+
+``` xml
+  <ItemGroup>
+    <PackageReference Include="MyPackage" />
+  </ItemGroup>
+```
+
+##### Examples
+
+###### `dotnet add` when the PackageReference for `Newtonsoft.Json` exists in the packages.props file
 
 ```bash
-// package exists in packages.props
-ProjectA> dotnet add package netwonsoft.json 
-Successfully added package 'Newtonsoft.Json' to ProjectA. 
+ProjectA> dotnet add package netwonsoft.json
+Successfully added package 'Newtonsoft.Json' to ProjectA. The centrally package version is '12.0.1'.
+```
 
-// package does not exist in packages.props
-ProjectA> dotnet add package netwonsoft.json 
-Successfully added package 'Newtonsoft.Json 11.0.1' in '<path>\packages.props'.
-Successfully added package 'Newtonsoft.Json' to ProjectA. 
+A new PackageReference will be added to the ProjectA.csproj. The new PackageReference will not have a Version attribute.
 
-// package exists in packages.props. Trying to update to a new version
+###### `dotnet add` when PackageReference for `Newtonsoft.Json` does not exist in the packages.props file
+
+```bash
+ProjectA> dotnet add package netwonsoft.json 
+Successfully added package 'Newtonsoft.Json' to ProjectA. Successfully added version 12.0.2 for package Newtonsoft.Json in '<path>\packages.props'.  
+```
+
+A new PackageReference will be added to the packages.props file. The entry will contain the '12.0.1' version.  
+A new PackageReference will be added to the ProjectA.csproj. The new PackageReference will not have a Version attribute.
+
+
+###### `dotnet add --version` when the PackageReference for `Newtonsoft.Json` exists in the packages.props file.
+
+```bash
+//  Fails on version conflict
 ProjectA> dotnet add package netwonsoft.json --version 11.0.1
-NU1xxx: You cannot specify the package version while adding a package reference. Package version version information is managed in the central package version management file '<path>\packages.props'. Use the command 'dotnet add package newtonsoft.json --version <version number> --update-version-management-file' to update the package version in the central package version management file '<path>\packages.props'.
+error: '<path>\packages.props' already contains a reference to `Newtonsoft.Json` version 12.0.2. To force the version update use 'dotnet add package netwonsoft.json --version 11.0.1 --force-version-update'. To add a reference to the existent `Newtonsoft.Json` version 11.0.1 use 'dotnet add package netwonsoft.json '
+```
 
-ProjectA> dotnet add package newtonsoft.json --version 11.0.1 --update-version-management-file
-Successfully update package 'Newtonsoft.Json' version from 10.0.2 to 11.0.1' in '<path>\packages.props'.
-Successfully added package 'Newtonsoft.Json' to ProjectA. 
+```bash
+//  Success on --force-version-update
+ProjectA> dotnet add package netwonsoft.json --version 11.0.1 --force-version-update
+Successfully added package 'Newtonsoft.Json' to ProjectA. Successfully updated package 'Newtonsoft.Json' version from 12.0.2 to 11.0.1.
+```
 
-//Removing a package reference in a project - Does not remove from CPVMF
-ProjectA> dotnet remove package netwonsoft.json
-Successfully removed package 'Newtonsoft.Json' from ProjectA. 
+###### `dotnet add package --version --framework` when the framework is not compatible with ProjectA's frameworks
 
-//Removing a package from the solution - removes from CPVMF as well as from all the projects
-SolutionDir> dotnet remove package netwonsoft.json
-Successfully removed package 'Newtonsoft.Json' from 'packages.props'. 
-Successfully removed package 'Newtonsoft.Json' from ProjectA, ProjectB and ProjectD.
+```bash
+ProjectA> dotnet add package netwonsoft.json --version 11.0.1 --framework net45
+error: Package 'Newtonsoft.Json' is incompatible with 'user specified' frameworks in project 'ProjectA.csproj'.
+```
 
-// Consolidate packages in the CPVMF - removing packages that are not referenced in the projects
-ProjectA> dotnet nuget consolidate [path to CPVMF or a solution]
-Consolidating packages in '<path>\packages.props'...
-Added 0 packages
-Removed 3 packages that were not referenced in any of the projects.
+There will be no updates added to any of the files packages.props or ProjectA.csproj
 
-// Consolidate existing PackageReference with versions in Project files into a `packages.props` file
-SolutionDir> dotnet nuget consolidate --dry-run 
-No 'packages.props' file found. Running consolidate in dry run mode...
-Packages referenced in the projects:
-NewtonSoft.Json 11.0.3
-   ProjectA references 10.0.2
-   ProjectB references 11.0.3
-My.Sample.Lib 2.1.0
-   ProjectA references 2.1.0
-   ProjectC references 1.*
-My.Utilities.Package [2.0, 4.1.0]
-   ProjectB references [2.0, 3.1.0]
-   ProjectD references 4.1.0
-.
-.
-To create the consolidated package version management file packages.props at <path> and to remove the version information from the project files, run 'dotnet nuget consolidate [path to packages.props]'
+###### `dotnet add package --version --framework` when the framework is compatible with the ProjectA's frameworks
+
+```bash
+ProjectA> dotnet add package netwonsoft.json --version 11.0.1 --framework net46
+Successfully added package 'Newtonsoft.Json' to ProjectA. Successfully added package 'Newtonsoft.Json' version 11.0.1 for TFM net46 in '<path>\packages.props'.
+```
+
+
+``` xml
+<ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <Package Include="Newtonsoft.Json" Version="11.0.1" />
+</ItemGroup>
+```
+
+ProjectA.csproj will be updated to include a reference to `Newtonsoft.Json`.
+
+
+#### dotnet remove 
+**`> dotnet remove [PROJECT] package [PACKAGE_NAME] [-h|--help]`**
+
+##### Description 
+
+Removes a package reference from a project. It does not remove the package reference from the Packges.props.
+
+##### Arguments
 
 ```
-### Bootstrapping
+PROJECT
+```
 
-#### How to enable this the central package version management + locking? 
-The functionality will be enabled if
-* There is `packages.props` file present in the recursive path for a project.
-* If the `CentralPackagesFile` MSBuild property exists for a project. 
+Specifies the project file. If not specified, the command searches the current directory for one.
+```
+PACKAGE_NAME
+```
+
+##### Examples 
+
+``` bash
+ProjectA> dotnet remove package netwonsoft.json
+Successfully removed package 'Newtonsoft.Json' from ProjectA. The packages.props was not changed. To clean not used package references from the packages.props use 'dotnet nuget versions --gc' command.  
+```
+
+The ProjectA.csproj will have the package reference for `Newtonsoft.Json` removed.
+No change will be applied to packages.props file.  
+
+#### dotnet nuget versions 
+**`> dotnet nuget versions [SOLUTION_PROJECT] [-h|--help] [--gc] [--dry-run]`**
+
+##### Description 
+
+It evaluates the packages used be the projects specified by [SOLUTION_PROJECT] and removes any not used package references from packages.props file.
+
+##### Arguments
+
+
+```
+SOLUTION_PROJECT
+```
+
+A solution or a project file. If not specified, the command searches the current directory for a solution or a project file. If multiple are found the command will error.
+
+##### Options
+
+``` 
+--gc
+```
+
+The package references not referenced in any of the projects will be deleted from the packages.props. If the Package references are pinned in the central file the elements are not removed.
+
+``` xml
+<Package Include="Newtonsoft.Json" Version="10.0.1" Pin="true"/>
+``` 
+
+``` 
+--dry-run
+```
+
+It will print the items that will be removed from the packages.props file. 
+
+
+##### Examples 
+
+``` bash
+ProjectA> dotnet nuget versions MySolution1.sln --dry-run
+4 not used packages will be removed from [path]\packages.props.
+PackageId : 'Newtonsoft.Json' Version:"12.0.0"  
+PackageId : 'XUnit' Version: "2.4.0"  
+PackageId : 'NUnit' Version: "3.9.0"  
+PackageId : 'EnityFramework' Version: "6.2.0"  
+
+3 packages were pinned and they will not be removed.
+PackageId : 'NuGet.Packaging' Version:"5.3.0". The Package is not a direct or a transitive dependency.
+PackageId : 'NuGet.Common' Version:"5.2.0". The Package is a direct dependency for projects: ProjectA.
+PackageId : 'System.Threading' Version:"4.0.11". The Package is a transitive dependency for projects: ProjectB, ProjectC.
+```
+
+``` bash
+ProjectA> dotnet nuget versions MySolution1.sln --gc
+4 not used packages were removed from [path]\packages.props.
+PackageId : 'Newtonsoft.Json' Version:"12.0.0"  
+PackageId : 'XUnit' Version: "2.4.0"  
+PackageId : 'NUnit' Version: "3.9.0"  
+PackageId : 'EnityFramework' Version: "6.2.0"  
+```
+
+
+### Visual Studio Experience
+
+> Only for SDK Style projects install/unistall/update package references will be supported in Visual Studio. For the Package Reference legacy style projects the updates need to be manually performed.
+
+> For a project that is opt-out from **Central Package Version Management** the install/unistall/update of package versions will work as currently. 
+
+#### The packages.props file exists at the solution level and projects are not opt-out from **Central Package Version Management**.
+
+##### Project PMUI Experience
+
+###### Install a package in the project, with a specific version already used in the solution
+
+The UI will present the version installed in the packages.props file.
+The other versions wil be available as currently.
+![image](https://user-images.githubusercontent.com/16580006/65453347-dfa05c80-ddf7-11e9-8669-3c7a17a6c113.png)
+
+a. User chooses the Recommended version and install.  
+Result: A new entry ```<PackageReference Include="EntityFramework" />``` is added to the project's file.
+
+b. The user does not select the recommended version but a different version.
+
+Result:
+The user will be presented with the confirmation window.
+_Confirmation dialog while updating a package version:_
+![image](https://user-images.githubusercontent.com/14800916/41008158-5d4bd230-68de-11e8-8110-84400a86aa2b.png)
+
+After the confirmation:
+
+* A new entry ```<PackageReference Include="EntityFramework" />``` is added to the project's file
+* The version in the packages.props is updated.
+
+###### Install a package in the project that was not installed in the packages.props
+
+The UI will be as currently. User can select the version desired and chose to install.
+Result:
+
+* A new entry ```<PackageReference Include="EntityFramework" />``` is added to the project's file
+* A new entry ```<Package Include="EntityFramework" Version="6.0.2"/>``` is added to packages.props file.
+
+###### Update a package version
+
+On version update:
+
+* If the project had a PackageReference element with a version, the Version metadata will be removed.
+* The reference in the packages.props is updated to the new version.
+
+
+###### UnInstall a package
+
+On uninstall
+
+* The entry ```<PackageReference Include="EntityFramework" />``` is removed from the project's file
+* No change is applied to the packages.props  file.
+
+###### Install/Update/Uninstall for legacy PackageReference projects opted-in **Central Package Version Management**
+
+The user will be presented with an info dialog when trying to access "Manage NuGet packages" and the update is not possible.
+
+###### Install/Update/Uninstall for projects opted-out **Central Package Version Management**
+
+The experience is unchanged. The 'Version' value of the PackageReference element at the project level will be updated/added/removed.
+
+
+##### Solution PMUI Experience
+
+###### Install a package in the project, with a specific version already used in the solution
+
+The UI will be similar with the current UI but the  Centrally Managed package versions are marked.
+![image](https://user-images.githubusercontent.com/16580006/65454795-c056fe80-ddfa-11e9-80aa-6a9eeec4c124.png)
+
+a. User chooses the Centrally managed pacakge version to be installed.
+
+Result: A new entry ```<PackageReference Include="EntityFramework" />``` is added to the project's file.
+
+b. The user does not select the recommended version but a different version.
+
+Result:
+The user will be presented with a confirmation window that will inform that the version will be changed for the set of projects.
+_Confirmation dialog while updating a package version:_
+![image](https://user-images.githubusercontent.com/14800916/41008158-5d4bd230-68de-11e8-8110-84400a86aa2b.png)
+
+After the confirmation:
+
+* A new entry ```<PackageReference Include="EntityFramework" />``` is added to the project's file.
+* The version in the packages.props is updated.
+
+###### Install a package in the project that was not installed in the packages.props
+
+The UI will be as currently. User can select the version desired and chose to install.
+Result:
+
+* A new entry ```<PackageReference Include="EntityFramework" />``` is added to the project's file.
+* A new entry ```<Package Include="EntityFramework" Version="6.0.2"/>``` is added to packages.props file.
+
+###### UnInstall a package
+
+On uninstall
+
+* The entry ```<PackageReference Include="EntityFramework" />``` is removed from the projects' file.
+* There is not any modification applied to the packages.props file. 
+
+
+###### Install/Update/Uninstall for legacy PackageReference projects opted-in **Central Package Version Management**
+
+The Solution PMUI will grey out the boxes for the Legacy Projects opted-in **Central Package Version Management**
+
+###### Install/Update/Uninstall for projects opted-out **Central Package Version Management**
+
+The experience is unchanged. The 'Version' value of the PackageReference element at the project level will be updated/added/removed. 
+
+### What is currenlty not supported in Central Package Managed Version
+
+#### Project types not supported
+
+Central Package Managed Version is supported only for "Package Reference" projects types. The bewlo projects types are not supported. 
+
+1. Package.config projects
+1. Visual C++ projects
+1. Cloud Service projects
+1. NuGet Build projects
+
+#### Dual feature opt-in and opt-out
+
+A project opted-in **Central Package Version Management** cannot be used in a Visual Studio solution that is not opted-in **Central Package Version Management**.
+
+#### Tooling
+
+* `Visual Studio` and `DotNet CLI` support only SDK style projects. For Legacy ProjectReference style projects all the updates need to be manually applied.
+
+* The initial packages.props will be created only through dotnet.exe not Visual Studio.
+
+
+### FAQ
+
+#### How to enable the **Central Package Version Management**?
+
+See [Opt-in Central Package Version Management](#opt-in-central-package-version-management).
+
+#### How a project can opt-out from **Central Package Version Management**?
+
+Individual projects can opt-out of **Central Package Version Management** by using the EnableCentralPackageVersions MsBuild property as below.
+```xml
+<EnableCentralPackageVersions>false</EnableCentralPackageVersions> 
+```
+By default projects are opted-out from **Central Package Version Management**.
+
 
 #### How do I transform my existing projects to use this functionality?
-Existing projects will have versions in their project files. You can run the consolidate command to create the CPVMF and remove the version information from the project files.
 
-```
-// Consolidate existing PackageReference with versions in Project files into a `packages.props` file
-SolutionDir> dotnet nuget consolidate --dry-run 
-No 'packages.props' file found. Running consolidate in dry run mode...
-Packages referenced in the projects:
-NewtonSoft.Json 11.0.3
-   ProjectA references 10.0.2
-   ProjectB references 11.0.3
-My.Sample.Lib 2.1.0
-   ProjectA references 2.1.0
-   ProjectC references 1.*
-My.Utilities.Package [2.0, 4.1.0]
-   ProjectB references [2.0, 3.1.0]
-   ProjectD references 4.1.0
-.
-.
-To create the consolidated package version management file packages.props at <path> and to remove the version information from the project files, run 'dotnet nuget consolidate [path to packages.props]'
+Manually create the packages.props and remove the version information from the project files.
+
+
+#### Will a central defined Package version influence transitive dependecies resolution ?
+
+Yes. If a package version is mentioned in the packages.props any transitive dependency will be resolved to the central defined version. 
+
+For example in the scenario below PackageB depends on PackageC version 2.0.0. PackageC version 3.0.0 is added to the packages.props file. The PackageC reference resolution for SampleProject will be 3.0.0.
+
+*packages.props*
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Package Include="PackageA" Version="1.0.0" />
+    <Package Include="PackageB" Version="1.0.0" />
+    <Package Include="PackageC" Version="3.0.0" />
+  </ItemGroup>
+</Project>
 ```
 
-#### How does `restore` work?
-* Project restore - When a project is restored, it restores as it does today. It looks at the CPVMF to get the package versions. If a package is not listed in the CPVMF but is referenced in the project, it errors out.
-* Solution restore - Same as today, except when it finds a more packages in CPVMF than in the project, it prints out an info message to run `consolidate` command. The reason for restore not doing auto consolidate is to support scenarios where users would like to restore a different version of a transitive dependency package. This is a corner case scenario but a helpful one where today users have no way to control the transitive dependency versions. This should be used with caution however. Ideally CPVMF should only list the direct dependencies and that too the ones that are referenced in the projects. Otherwise the CPVMF can easily become unmanageable. **Note:** Any extra package nodes in the CPVMF will also affect the central lock file (See [[Enable repeatable package restore using lock file]] spec for details). ~it prunes/consolidates CPVMF i.e. removes the extra packages stated in CPVMF but not referenced in any of the projects.
-This can be controlled using the `ConsolidatePackagesOnRestore` property. See [Extensibility section](#extensibility), for details.~
+*SampleProject.csproj*
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PackageB" />
+  </ItemGroup>
+</Project>
+```
 
 #### Where are `PrivateAssets`/`ExcludeAssets`/`IncludeAssets` defined?
-These are per project properties and should be defined in the `PackageReference` nodes in the project file.
+
+These are per project properties and should be defined in the PackageReference nodes in the project file.
 
 #### How does restore NoOp work i.e. when does NuGet try to actually restore or choose not to restore?
-The current logic is used except that the package versions are referenced from the CPVMF. In future, we can look to optimize the NoOp restore with lock file but is `Out of Scope` for this spec.
 
-#### **[Not MVP]** I consume the same project in different solutions. How do I want to use the central package version management file in one and not the other?
-This will require the `PackageReference` nodes to have the version info but ignore it in the solution where central package version management file is used. This may be achieved by a MSBuild property `RetainPackageReferenceVersions`. 
+The current logic is used except that the package versions are referenced from the packages.props file.
 
-When this property is set,
-* `dotnet add package` will add the package version info both in the CPVMF as well as in the project files
-* `restore` will just **ignore** the version info in the `PackageReference` nodes in the project files. [Open] Should it warn?
-* The `dotnet nuget consolidate` command will put the same version info in the `PackageReference` nodes in all the project files in addition to putting the version info in the CPVMF.
+#### Can I use my custom version of packages.props?
 
-#### How do I have a given set of package versions for all the projects but a different set for a specific project?
-To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the solution `packages.props` file. *For this case, the lock file `packages.lock.json` will be generated at the project root directory.*
+This will not be supported in the first feature version. 
 
-**[Not MVP]** You can also specify `CentralPackagesFile` property indicating where to look for this file for a given project in the project file or in the `directory.build.props` file at the project root directory that gets evaluated for a given project. See [Extensibility section](#extensibility), for details.
+#### Can I use the **Central Package Version Management** and still preserve the Version metadata?
+
+No, an error will be generated if the Version attribute is present at the project PackageReference elements.
+
+#### Can I have a given set of package versions for all the projects but a different set for a specific project?
+
+To override the global packages' version constraints for a specific project, you can define `packages.props` file in the project root directory. This will override the global settings from the solution `packages.props` file.
+
 
 #### What happens when there are multiple `packages.props` file available in a project's context?
+
 In order to remove any confusion, the `packages.props` or the `CentralPackagesFile` specification nearest to the project will override all others. At a time only one `packages.props` file is evaluated for a given project.
 
 E.g. in the below scenario
@@ -169,42 +485,29 @@ Repo
 ```
 
 In the above scenario:
+
 * Project1 will refer to only `Repo\Solution1\packages.props`
 * Project2 will refer to only `Repo\Solution1\Project2\packages.props`
 * Project3 will refer to only `Repo\foobar.packages.props`
 * Project4 will refer to only `Repo\packages.props`
 
 #### Can I specify NuGet sources in the packages.props file?
+
 This is not part of the spec/feature but specifying sources in the packages.props file seems like a good idea.
 
-### Locking packages closure 
-If this feature of centrally managing packages is enabled, the lock file will always be enabled. The details of the lock file is covered here: [[Enable repeatable package restore using lock file]]
+#### Can I change my repo to use the **Central Package Version Management** and use old tools later?
 
-### Extensibility 
+No. Because the Version will be removed from the projects' level you cannot use old tools to build the repo.
 
-| Property                            | Description |
-|-------------------------------------|-------------|
-| `CentralPackagesFile`  | ***[Not MVP]*** The full path to the file containing your package versions.  Defaults to `packages.props` at the root of your repository. |
-| ~`ConsolidatePackagesOnRestore`~ | ~Defaults to **`true`**. If set to false, `restore will not consolidate (mostly remove) packages on restore from the CPVMF~ |
+### Next Steps (post MVP)
 
-*`CentralPackagesFile` Example*
+1. **`> dotnet nuget versions [SOLUTION_PROJECT] [-h|--help] [--consolidate/centralize] [--dry-run]`** New command to support migration scenarios. It will create the packages.props file. 
 
-Use a custom file name for your project that defines package versions.
-```xml
+2. Allow custom file for the central packages file.
+``` xml
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <CentralPackagesFile>$(MSBuildThisFileDirectory)MyPackageVersions.props</CentralPackagesFile>
   </PropertyGroup>
 </Project>
 ```
-
-### VS experience
-MVP requirement:
-
-_Installing a package in the project, with a specific version already used in the solution:_
-![image](https://user-images.githubusercontent.com/14800916/41008210-9350d9de-68de-11e8-99d4-4bdadf7ca4fa.png)
-
-_Confirmation dialog while updating a package version:_
-![image](https://user-images.githubusercontent.com/14800916/41008158-5d4bd230-68de-11e8-8110-84400a86aa2b.png)
-
-We need a better consolidate and central management experience that should be clubbed with the Enhanced Package Manager UI effort.
