@@ -1,3 +1,1 @@
-More details coming soon...
-
-Spec moved [here](https://github.com/NuGet/Home/wiki/NuGet-cross-plat-authentication-plugin)
+Implemented => Spec moved [here](https://github.com/NuGet/Home/wiki/NuGet-cross-plat-authentication-plugin)
