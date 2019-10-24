@@ -3,6 +3,7 @@
 #### [[Incubation]] 
 
 #### Reviewing
+* [[Package Vulnerability|Flag-vulnerable-packages]]
 * [[Package Applicability|Package-applicability-in-NuGet-package-manager-UI]]
 * [Machine-readable output for dotnet list package](https://github.com/NuGet/Home/wiki/%5BSpec%5D-Machine-readable-output-for-dotnet-list-package)
 
