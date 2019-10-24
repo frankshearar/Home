@@ -1,4 +1,3 @@
-* [[Flag vulnerable packages]]
 * [[ToolsReference and Multi TFM Support in NuGet UI|ToolsReference-and-Multi-TFM-Support-in-NuGet-UI]]
 * [[Package Sources Analyzer|Package-Sources-Diagnostics]]
 * [[Search by Package Type and Query Language Surfacing|Search-by-Package-Type-and-Query-Language-Surfacing]]
