@@ -111,7 +111,7 @@ Vulnerability information can be shown in multiple scenarios:
 
 ### List Vulnerabilities using a CLI command
 
-See client spec for `dotnet list package --vulnerable`.
+[See client spec for `dotnet list package --vulnerable`.](https://github.com/NuGet/Home/wiki/dotnet-list-package---vulnerable)
 
 ### Display Vulnerabilities in Visual Studio PMUI
 
