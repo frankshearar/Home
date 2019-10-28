@@ -5,11 +5,11 @@
 
 ### Solution Details
 
-To get started, you will need to create an MSBuild props file at the root of the solution named `packages.props` that declares the centrally defined packages' versions.
+To get started, you will need to create an MSBuild props file at the root of the solution named `packages.props`[(*)](#naming) that declares the centrally defined packages' versions.
 
 In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  The `PackageReference` in the projects would not specify the version information. All projects that reference this package will refer to version `10.0.1` for `Newtonsoft.json`.
 
-*packages.props*
+*packages.props* [(*)](#naming)
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -43,7 +43,7 @@ In addtion to the packages.props file, to enable central package version managem
 <EnableCentralPackageVersions>true</EnableCentralPackageVersions>
 ```
 
-In addtion only specific types of projects will be supported for **Central Package Version Management**. Refer to [this](#what-is-not-supported-in-central-package-version-management) to see the exclusions.
+In addition only specific types of projects will be supported for **Central Package Version Management**. Refer to [this](#what-is-not-supported-in-central-package-version-management) to see the exclusions.
 
 
 **Transitive dependencies**: One should not be listing the transitive dependencies either in the packages.props or as `PackageReferece` for the projects. However the central package versions will win in the transitive dependency resolution.
@@ -53,11 +53,11 @@ In addtion only specific types of projects will be supported for **Central Packa
 The dotnet commands `dotnet add` and `dotnet remove` will work without any changes if the project is opt-out **Central Package Version Management**. For the cases when a project is opt-in **Central Package Version Management** the following rules apply.
 
 #### dotnet add
-**`> dotnet add [PROJECT] package [PACKAGE_NAME] [-h|--help] [-f|--framework] [--interactive] [-n|--no-restore] [--package-directory] [-s|--source] [-v|--version] [-fv|--force-version-update]`**
+**`> dotnet add [PROJECT] package [PACKAGE_NAME] [-h|--help] [-f|--framework] [--interactive] [-n|--no-restore] [--package-directory] [-s|--source] [-v|--version] [--force-version-update]`[(*)](#naming)**
 
 ##### Description
 
-It will add a package reference to the project. The Package version will be added only to the packages.props file. To update the version in the packages.props file use the *--force-version-update* option.
+It will add a package reference to the project. The Package version will be added only to the packages.props file. To update the version in the packages.props file use the *--force-version-update*[(*)](#naming) option.
 
 ##### Arguments
 
@@ -97,7 +97,7 @@ Adds the specific version of the package to the packages.props file.
 The command will fail if there is a conflict between this version and a version of the same package specified in the packages.props file.
 
 ``` 
--fv|--force-version-update
+--force-version-update
 ```
 
 Adds the specific version of the package to the packages.props file. The command will override any existent package version in the packages.props file. The project file will be updated to:
@@ -199,7 +199,7 @@ The ProjectA.csproj will have the package reference for `Newtonsoft.Json` remove
 No change will be applied to packages.props file.  
 
 #### dotnet nuget versions 
-**`> dotnet nuget versions [SOLUTION_PROJECT] [-h|--help] [--gc] [--dry-run]`**
+**`> dotnet nuget versions [SOLUTION_PROJECT] [-h|--help] [--gc][(*)](#naming) [--dry-run]`**
 
 ##### Description 
 
@@ -512,3 +512,7 @@ No. Because the Version will be removed from the projects' level you cannot use 
   </PropertyGroup>
 </Project>
 ```
+
+
+### Naming
+The name is not definitive and we are looking for better name pattern.
