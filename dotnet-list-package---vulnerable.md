@@ -76,7 +76,7 @@ Options:
   --framework <FRAMEWORK | FRAMEWORK\RID>   Chooses a framework to show its packages. Use the option multiple times for multiple frameworks.
   --include-transitive                      Lists transitive and top-level packages.
   --include-prerelease                      Consider packages with prerelease versions when searching for newer packages. Requires the '--outdated', '--deprecated', or `--vulnerable` option.
-  --highest-patch                           Consider only the packages with a matching major and minor version numbers when searching for newer packages. Requires the '--outdated' or '--deprecated' option.
+  --highest-patch                           Consider only the packages with a matching major and minor version numbers when searching for newer packages. Requires the '--outdated', '--deprecated', or `--vulnerable` option.
   --highest-minor                           Consider only the packages with a matching major version number when searching for newer packages. Requires the '--outdated', '--deprecated', or `--vulnerable` option.
   --config <CONFIG_FILE>                    The path to the NuGet config file to use. Requires the '--outdated', '--deprecated', or `--vulnerable` option.
   --source <SOURCE>                         The NuGet sources to use when searching for newer packages. Requires the '--outdated', '--deprecated', or `--vulnerable` option.
