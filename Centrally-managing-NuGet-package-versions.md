@@ -199,7 +199,7 @@ The ProjectA.csproj will have the package reference for `Newtonsoft.Json` remove
 No change will be applied to packages.props file.  
 
 #### dotnet nuget versions 
-**`> dotnet nuget versions [SOLUTION_PROJECT] [-h|--help] [--gc][(*)](#naming) [--dry-run]`**
+**`> dotnet nuget versions [SOLUTION_PROJECT] [-h|--help] [--gc] [--dry-run]`**
 
 ##### Description 
 
