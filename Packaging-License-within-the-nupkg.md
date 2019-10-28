@@ -1,5 +1,9 @@
-* Status: **Reviewed**
+* Status: **Implemeneted**
 * Author(s): [Karan Nandwani](https://github.com/karann-msft) ([@karann9](https://twitter.com/karann9))
+
+### Docs
+
+This page is the technical specification for the feature. Documentation on using the feature is on [docs.microsoft.com/nuget](https://docs.microsoft.com/nuget). We recommend packing using our [MSBuild pack target](https://docs.microsoft.com/nuget/reference/msbuild-targets#packing-a-license-expression-or-a-license-file) (`dotnet pack` or `msbuild -t:pack`). The [`nuspec` reference has documentation on the licence element](https://docs.microsoft.com/nuget/reference/nuspec#license), for customers still using a `nuspec` file.
 
 ### Issue
 The work for this feature and the discussion around the License specific spec is tracked by **Package trust - Licenses [#4628](https://github.com/NuGet/Home/issues/4628)**
