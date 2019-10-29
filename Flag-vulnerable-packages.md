@@ -124,11 +124,3 @@ Vulnerability information can be shown in multiple scenarios:
    ![image](https://user-images.githubusercontent.com/14800916/65349163-9f42a380-db97-11e9-8de5-c81613e47d5d.png)
 
 > **Note**: Irrespective of the criticality of the vulnerability, the details pane will always show the vulnerability information - with warning icon for Critical/High vulnerabilities and info for others. Just that Installed tab won't warn in those cases.
-
-## Solution (Stage 2)
-
-### Display Vulnerabilities in Visual Studio upon `restore`
-
-### Display Vulnerabilities in Visual Studio PMUI (transitive packages)
-
-### Display Vulnerabilities on nuget.org (for package publishers)
