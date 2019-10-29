@@ -29,7 +29,7 @@ There are multiple scenarios for flagging and reporting vulnerabilities. This fe
 
 ### Stage 1 - MVP
 
-For the MVP of this feature, we'll focus on:
+For the [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) of this feature, we'll focus on:
 
 * Enabling ***consumers** to be informed about known vulnerabilities before installation* of a package.
 * Enabling ***authors** to be informed about known vulnerabilities in their packages*.
