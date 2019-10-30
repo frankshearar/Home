@@ -88,7 +88,7 @@ Stage 2 of this feature will focus on *highlighting known vulnerabilities when t
 
 * For `restore`, should it be opt-in or opt-out (preferred for security features)?
 * For `dotnet add package`, define behavior (info, warn, error?) when encountering packages known to be vulnerable.
-* Need for another command (e.g. `dotnet nuget audit`) to create an audit report for deprecated, vulnerable and may be outdated packages
+* Need for another command (e.g. `dotnet nuget audit`) to create an audit report for deprecated, vulnerable and may be outdated packages. And a way to fix the vulnerabilities with a single command/click.
 * Disclosure policies if and when we start consuming non-disclosed vulnerability data? (e.g. under review by package author) - GH API currently doesn't surface these
 
 | Feature | State |
