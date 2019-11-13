@@ -3,6 +3,8 @@
 
 ## Issue
 
+Part of Feature Spec: [Flag vulnerable packages](https://github.com/NuGet/Home/wiki/Flag-vulnerable-packages)
+
 [8716](https://github.com/nuget/home/issues/8716) - Support Package Vulnerability feature in clients (phase 1)
 
 ## Problem Background
