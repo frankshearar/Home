@@ -1,5 +1,5 @@
 ## Issue
-[https://github.com/NuGet/NuGetGallery/issues/7594](#7594)- Surface PackageType query parameter in the NuGet.org search API
+[#7594](https://github.com/NuGet/NuGetGallery/issues/7594) - Surface PackageType query parameter in the NuGet.org search API
 
 ## Problem
 When searching for packages, it is not possible to limit results to a specific PackageType.
