@@ -5,15 +5,15 @@
 When searching for packages, it is not possible to limit results to a specific PackageType.
 
 ## Who is the customer?
-dotnet CLI - ability to search for dotnet CLI tool only packages on NuGet.org
+dotnet.exe - the ability to search for dotnet CLI tool only packages on NuGet.org
 
 ## Evidence
 Today, the state-of-the-are is this manually maintained list - https://github.com/natemcmaster/dotnet-tools
 
 ## Solution
-Addendum to NuGetSearch Protocol - PackageType
-This is an extension to the protocol defined at https://docs.microsoft.com/en-us/nuget/api/search-query-service-resource
-	Current usage of package types:
+* Addendum to NuGetSearch Protocol - PackageType
+* This is an extension to the protocol defined at https://docs.microsoft.com/en-us/nuget/api/search-query-service-resource
+* Current usage of package types:
 		PackageTypeName	Count
 		(empty)	1855381
 		DotnetTool,	6590
