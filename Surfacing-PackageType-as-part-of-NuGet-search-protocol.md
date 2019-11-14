@@ -14,6 +14,7 @@ Today, the state-of-the-are is this manually maintained list - https://github.co
 * Addendum to NuGetSearch Protocol - PackageType
 * This is an extension to the protocol defined at https://docs.microsoft.com/en-us/nuget/api/search-query-service-resource
 * Current usage of package types:
+
 | PackageTypeName               | Count   |
 |-------------------------------|---------|
 | (empty)                       | 1855381 |
@@ -44,19 +45,18 @@ Today, the state-of-the-are is this manually maintained list - https://github.co
 * PackageType will not be forwarded to the registration. There are currently no scenarios that require this.
 
 1. Request Protocol Updates:
-	GET {@id}?q={QUERY}&skip={SKIP}&take={TAKE}&prerelease={PRERELEASE}&semVerLevel={SEMVERLEVEL}&packageType={PACKAGETYPE}
 
-	"packagetype" field MAY be provided to further filter results.
+	`GET {@id}?q={QUERY}&skip={SKIP}&take={TAKE}&prerelease={PRERELEASE}&semVerLevel={SEMVERLEVEL}&packageType={PACKAGETYPE}`
 
-	If "packagetype" is provided, {PACKAGETYPE} MAY BE provided and SHOULD BE any string.
-		If {PACKAGETYPE} is not a valid package type as per https://github.com/NuGet/Home/wiki/Package-Type-%5BPacking%5D, an emtpy result SHOULD BE returned.
-		If {PACKAGETYPE} is empty, no filter will be applied.
-			Passing no value to the packageType parameter will behave as if the parameter was not passed.
-	
-	Response will contain packages for which the LATEST VERSION has at least one packageType that matches {PACKAGETYPE}.
-		LATEST VERSION is the latest version as defined by the criteria given in the query. Dependent on values of:
-			prerelease={PRERELEASE}
-			semVerLevel={SEMVERLEVEL}
+  * "packagetype" field MAY be provided to further filter results.
+  * If "packagetype" is provided, {PACKAGETYPE} MAY BE provided and SHOULD BE any string.
+  * If {PACKAGETYPE} is not a valid package type as per https://github.com/NuGet/Home/wiki/Package-Type-%5BPacking%5D, an emtpy result SHOULD BE returned.
+  * If {PACKAGETYPE} is empty, no filter will be applied.
+  * Passing no value to the packageType parameter will behave as if the parameter was not passed.
+  * Response will contain packages for which the LATEST VERSION has at least one packageType that matches {PACKAGETYPE}.
+  * LATEST VERSION is the latest version as defined by the criteria given in the query. Dependent on values of:
+	* prerelease={PRERELEASE}
+	* semVerLevel={SEMVERLEVEL}
 
 2. Search Response Updates
 	2.1 Response Shape update:
