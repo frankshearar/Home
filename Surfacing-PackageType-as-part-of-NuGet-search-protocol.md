@@ -38,11 +38,9 @@ Today, the state-of-the-are is this manually maintained list - https://github.co
 		Data,	1
 		
 
-Non-goal:
-	We will NOT support queries by packageTypeVersion.
-		This includes returning it in the search response as of now.
-	PackageType will not be forwarded to registration
-		There are currently no scenarios that require this.
+## Non-goal:
+* We will NOT support queries by packageTypeVersion. This includes returning it in the search response as of now.
+* PackageType will not be forwarded to the registration. There are currently no scenarios that require this.
 
 1. Request Protocol Updates:
 	GET {@id}?q={QUERY}&skip={SKIP}&take={TAKE}&prerelease={PRERELEASE}&semVerLevel={SEMVERLEVEL}&packageType={PACKAGETYPE}
