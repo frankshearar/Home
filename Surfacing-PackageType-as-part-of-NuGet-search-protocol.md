@@ -8,7 +8,7 @@ When searching for packages, it is not possible to limit results to a specific P
 dotnet.exe - the ability to search for dotnet CLI tool only packages on NuGet.org
 
 ## Evidence
-Today, the state-of-the-are is this manually maintained list - https://github.com/natemcmaster/dotnet-tools
+Today, the state-of-the-art is this manually maintained list - https://github.com/natemcmaster/dotnet-tools
 
 ## Solution
 * Addendum to NuGetSearch Protocol - PackageType
