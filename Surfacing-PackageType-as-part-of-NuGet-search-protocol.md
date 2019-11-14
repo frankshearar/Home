@@ -14,28 +14,29 @@ Today, the state-of-the-are is this manually maintained list - https://github.co
 * Addendum to NuGetSearch Protocol - PackageType
 * This is an extension to the protocol defined at https://docs.microsoft.com/en-us/nuget/api/search-query-service-resource
 * Current usage of package types:
-		PackageTypeName	Count
-		(empty)	1855381
-		DotnetTool,	6590
-		Template,	4046
-		DotnetCliTool,	1209
-		MSBuildSdk,	758
-		Dependency,	526
-		AzureSiteExtension,	463
-		DotnetPlatform,	213
-		bugshooting.plugin.v3.output,	23
-		TestPackageType,	7
-		Passby.Microservice.Template,	6
-		MicroServiceTemplate,	6
-		WindowsAdminCenterExtension,	3
-		aspnetcoreapi,	2
-		Template,Template,	2
-		Hello,Hello2,Hello3,	1
-		BoostedLib,	1
-		Native,	1
-		CodingTool,	1
-		DotnetCliTool,Dependency,	1
-		Data,	1
+| PackageTypeName               | Count   |
+|-------------------------------|---------|
+| (empty)                       | 1855381 |
+| DotnetTool,                   | 6590    |
+| Template,                     | 4046    |
+| DotnetCliTool,                | 1209    |
+| MSBuildSdk,                   | 758     |
+| Dependency,                   | 526     |
+| AzureSiteExtension,           | 463     |
+| DotnetPlatform,               | 213     |
+| bugshooting.plugin.v3.output, | 23      |
+| TestPackageType,              | 7       |
+| Passby.Microservice.Template, | 6       |
+| MicroServiceTemplate,         | 6       |
+| WindowsAdminCenterExtension,  | 3       |
+| aspnetcoreapi,                | 2       |
+| Template,Template,            | 2       |
+| Hello,Hello2,Hello3,          | 1       |
+| BoostedLib,                   | 1       |
+| Native,                       | 1       |
+| CodingTool,                   | 1       |
+| DotnetCliTool,Dependency,     | 1       |
+| Data,                         | 1       |
 		
 
 ## Non-goal:
