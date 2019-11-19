@@ -57,6 +57,10 @@ The default behavior for `dotnet list package` will be to add a marker next to t
 
 To continue supporting the old behavior, a new `--offline` command option will be introduced.
 
+### Protocol
+
+To consume package vulnerability information, we'll consume package registration JSON blobs (as we do today). This approach is the same as for package deprecation information. The protocol changes are described in the [parent spec](https://github.com/NuGet/Home/wiki/Flag-vulnerable-packages#protocol).
+
 ### DotNet CLI
 
 The `dotnet` CLI repository must be updated to:
