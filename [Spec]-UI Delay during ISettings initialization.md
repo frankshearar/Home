@@ -25,5 +25,5 @@ All VS IDE customers
 
 ### Long-Term solution
 * 
-
+![Current references](https://user-images.githubusercontent.com/52756182/69196015-205bdf80-0ae2-11ea-9556-32376ccd151e.png)
 ## Implementation
