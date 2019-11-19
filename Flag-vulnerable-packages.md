@@ -107,7 +107,21 @@ Legend:
 
 ## Solution (Stage 1)
 
-Vulnerability information can be shown in multiple scenarios:
+### Protocol
+
+To be able to show vulnerability information for phase 1 in PMUI and CLI clients, we need to update the protocol.
+
+To this end, the following changes will happen to the package registration JSON blobs (to each *version-specific* blob, not the *index.json*):
+
+| Name | Type | Required | Description |
+|---|---|---|---|
+| vulnerabilities | Array of Objects | No | Describes the vulnerabilities information associated with a package |
+| vulnerabilities[x].severity | String | Yes | "Low", "Moderate", "High", or "Critical" |
+| vulnerabilities[x].referenceUrl | String | Yes | URL to discover additional information about the vulnerability |
+
+#### Forward Compatibility
+
+Clients should just not display the severity if they don't understand the value that is returned. The `severity` element values can be treated *case-insensitive*.
 
 ### List Vulnerabilities using a CLI command
 
