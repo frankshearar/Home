@@ -1,4 +1,4 @@
-| Status | In Review |
+| Status | Reviewing |
 |:-- |:--
 | Author(s) | [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv)), [Cristina Manu](https://github.com/cristinamanum)|
 
