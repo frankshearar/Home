@@ -14,9 +14,9 @@ In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  T
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <PackgeVersion  Include="MSTest.TestAdapter" Version="1.1.0" />
-    <PackgeVersion  Include="MSTest.TestFramework" Version="1.1.18" />
-    <PackgeVersion  Include="Newtonsoft.Json" Version="10.0.1" Pin="true"/>
+    <PackageVersion Include="MSTest.TestAdapter" Version="1.1.0" />
+    <PackageVersion Include="MSTest.TestFramework" Version="1.1.18" />
+    <PackageVersion Include="Newtonsoft.Json" Version="10.0.1" Pin="true" />
   </ItemGroup>
 </Project>
 ```
@@ -43,7 +43,7 @@ If the file `Directory.Packages.props` exists on the project path the project is
 <EnableCentralPackageVersions>false</EnableCentralPackageVersions>
 ```
 
-In addition only specific types of projects will be supported for **Central Package Version Management**. Refer to [this](#what-is-not-supported-in-central-package-version-management) to see the exclusions.
+In addition only specific types of projects will be supported for **Central Package Version Management**. Refer to [this](#what-is-currently-not-supported-in-central-package-version-management) to see the exclusions.
 
 
 **Transitive dependencies**: One should not be listing the transitive dependencies either in the Directory.Packages.props or as `PackageReference` for the projects. However the central package versions will win in the transitive dependency resolution.
@@ -369,7 +369,7 @@ The Solution PMUI will grey out the boxes for the Legacy Projects opted-in **Cen
 
 The experience is unchanged. The 'Version' value of the PackageReference element at the project level will be updated/added/removed. 
 
-### What is currently not supported in Central Package Managed Version
+### What is currently not supported in Central Package Version Management
 
 #### Project types not supported
 
