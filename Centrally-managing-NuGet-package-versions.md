@@ -113,7 +113,7 @@ Adds the specific version of the package to the Directory.Packages.props file. T
 ###### `dotnet add` when the PackageReference for `Newtonsoft.Json` exists in the Directory.Packages.props file
 
 ```bash
-ProjectA> dotnet add package netwonsoft.json
+ProjectA> dotnet add package newtonsoft.json
 Successfully added package 'Newtonsoft.Json' to ProjectA. The centrally package version is '12.0.1'.
 ```
 
@@ -122,7 +122,7 @@ A new PackageReference will be added to the ProjectA.csproj. The new PackageRefe
 ###### `dotnet add` when PackageReference for `Newtonsoft.Json` does not exist in the Directory.Packages.props file
 
 ```bash
-ProjectA> dotnet add package netwonsoft.json 
+ProjectA> dotnet add package newtonsoft.json 
 Successfully added package 'Newtonsoft.Json' to ProjectA. Successfully added version 12.0.2 for package Newtonsoft.Json in '<path>\Directory.Packages.props'.  
 ```
 
@@ -134,20 +134,20 @@ A new PackageReference will be added to the ProjectA.csproj. The new PackageRefe
 
 ```bash
 //  Fails on version conflict
-ProjectA> dotnet add package netwonsoft.json --version 11.0.1
-error: '<path>\Directory.Packages.props' already contains a reference to `Newtonsoft.Json` version 12.0.2. To force the version update use 'dotnet add package netwonsoft.json --version 11.0.1 --force-version-update'. To add a reference to the existent `Newtonsoft.Json` version 11.0.1 use 'dotnet add package netwonsoft.json '
+ProjectA> dotnet add package newtonsoft.json --version 11.0.1
+error: '<path>\Directory.Packages.props' already contains a reference to `Newtonsoft.Json` version 12.0.2. To force the version update use 'dotnet add package newtonsoft.json --version 11.0.1 --force-version-update'. To add a reference to the existent `Newtonsoft.Json` version 11.0.1 use 'dotnet add package newtonsoft.json '
 ```
 
 ```bash
 //  Success on --force-version-update
-ProjectA> dotnet add package netwonsoft.json --version 11.0.1 --force-version-update
+ProjectA> dotnet add package newtonsoft.json --version 11.0.1 --force-version-update
 Successfully added package 'Newtonsoft.Json' to ProjectA. Successfully updated package 'Newtonsoft.Json' version from 12.0.2 to 11.0.1.
 ```
 
 ###### `dotnet add package --version --framework` when the framework is not compatible with ProjectA's frameworks
 
 ```bash
-ProjectA> dotnet add package netwonsoft.json --version 11.0.1 --framework net45
+ProjectA> dotnet add package newtonsoft.json --version 11.0.1 --framework net45
 error: Package 'Newtonsoft.Json' is incompatible with 'user specified' frameworks in project 'ProjectA.csproj'.
 ```
 
@@ -156,7 +156,7 @@ There will be no updates added to any of the files Directory.Packages.props or P
 ###### `dotnet add package --version --framework` when the framework is compatible with the ProjectA's frameworks
 
 ```bash
-ProjectA> dotnet add package netwonsoft.json --version 11.0.1 --framework net46
+ProjectA> dotnet add package newtonsoft.json --version 11.0.1 --framework net46
 Successfully added package 'Newtonsoft.Json' to ProjectA. Successfully added package 'Newtonsoft.Json' version 11.0.1 for TFM net46 in '<path>\Directory.Packages.props'.
 ```
 
@@ -191,7 +191,7 @@ PACKAGE_NAME
 ##### Examples 
 
 ``` bash
-ProjectA> dotnet remove package netwonsoft.json
+ProjectA> dotnet remove package newtonsoft.json
 Successfully removed package 'Newtonsoft.Json' from ProjectA. The Directory.Packages.props was not changed. To clean not used package references from the Directory.Packages.props use 'dotnet nuget versions --gc' command.  
 ```
 
