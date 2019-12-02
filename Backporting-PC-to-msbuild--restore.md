@@ -18,8 +18,11 @@ While we would prefer these project types add support for PR, it's mostly out of
 * Continue to only support .NET Framework and not .NET Core
 * Only work by default for whatever VS supports
 * Make the feature opt-in.
+* Allow PackageSaveMode from config, not from command line flag
+* Don't port DirectDownload over
 
 ### Later
+
 * Warn as follows:
   * when not opted-in
     * if has PC files that are upgradable
@@ -35,8 +38,6 @@ While we would prefer these project types add support for PR, it's mostly out of
   * Make warnings disableable through `nowarn` and possibly a flag
   * (even later) Make dotnet and dotnet msbuild warn for all types, if there's a P.C. proj
   * (even later) With 17.0/6.0, start warning in nuget.exe and VS as well
-* Allow PackageSaveMode from config, not from command line flag
-* Don't port DirectDownload over
 
 ## See Also
 
