@@ -9,23 +9,32 @@ While we would prefer these project types add support for PR, it's mostly out of
 ## Goals
 
 * Provide enough feature parity that .sfproj and .vcxproj tools can be restored using msbuild, until such a time when they can actually migrate to PR.
-* Respect PC's deprecated status and limit our changes to as small a surface as we can reasonably manage. That is, avoid backporting PC support for scenarios where customers should be able to migrate instead.
 * Communicate PC's status and our intentions with users when things that seem like they should work don't, or if certain features of PC restores happen to be missing.
 
-Proposal
+## Proposal
 
 * Take over @jeffkl's PR and take it over the finish line ourselves, modulo maybe some customer testing help
 * Add end-to-end test coverage
 * Continue to only support .NET Framework and not .NET Core
-* Refactor as much as possible such that nuget.exe and msbuild.exe share their build code, instead of copy-pasting.
-    * Move things to NuGet.PackageManagement the way @jeffkl was doing.
 * Only work by default for whatever VS supports
-* Add warnings when user attempts to /restore with msbuild for deprecated scenarios
-  * Warn only for things that can be migrated (no warning for sfproj or vcxproj)
+* Make the feature opt-in.
+
+### Later
+* Warn as follows:
+  * when not opted-in
+    * if has PC files that are upgradable
+      * tell them, we didn't restore it and to consider moving to PR (aka.ms/pleaseUpgradePeople)
+    * if has PC files that are not upgradable
+      * tell them, we have a feature they can opt into (aka.ms/howToRestorePCFiles)
+
+  * when opted-in
+    * if has PC files that are upgradable
+      * tell them to consider moving to PR (aka.ms/pleaseUpgradePeople)
+    * if has PC files that are not upgradable
+      * tell them we restored it (via normal restore output)
   * Make warnings disableable through `nowarn` and possibly a flag
-  * (later) Make dotnet and dotnet msbuild warn for all types, if there's a P.C. proj
-    * (note: nikolche mentioned something about this, but deal with this later)
-  * (later) With 17.0/6.0, start warning in nuget.exe and VS as well
+  * (even later) Make dotnet and dotnet msbuild warn for all types, if there's a P.C. proj
+  * (even later) With 17.0/6.0, start warning in nuget.exe and VS as well
 * Allow PackageSaveMode from config, not from command line flag
 * Don't port DirectDownload over
 
