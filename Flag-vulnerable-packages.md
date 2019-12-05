@@ -117,7 +117,7 @@ To this end, the following changes will happen to the package registration JSON 
 |---|---|---|---|
 | vulnerabilities | Array of Objects | No | Describes the vulnerabilities information associated with a package |
 | vulnerabilities[x].severity | String | Yes | "Low", "Moderate", "High", or "Critical" |
-| vulnerabilities[x].referenceUrl | String | Yes | URL to discover additional information about the vulnerability |
+| vulnerabilities[x].advisoryUrl | String | Yes | URL to discover additional information about the security advisory for this vulnerability |
 
 #### Forward Compatibility
 
