@@ -11,8 +11,7 @@ In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  T
 
 *Directory.Packages.props*
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <ItemGroup>
     <PackageVersion Include="MSTest.TestAdapter" Version="1.1.0" />
     <PackageVersion Include="MSTest.TestFramework" Version="1.1.18" />
@@ -37,16 +36,16 @@ In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  T
 
 #### Opt-in **Central Package Version Management**
 
-If the file `Directory.Packages.props` exists on the project path the project is automatically opt-in. If individual projects need to opt-out they can set EnableCentralPackageVersions MsBuild property to false as below. 
+If a Directory.Packages.props file exists, all projects in that directory tree are automatically opted in to central package version management.  To opt-out a specific project, set the following property in that project file: 
 
 ```xml
-<EnableCentralPackageVersions>false</EnableCentralPackageVersions>
+<DisableCentralPackageVersions>true</DisableCentralPackageVersions>
 ```
 
 In addition only specific types of projects will be supported for **Central Package Version Management**. Refer to [this](#what-is-currently-not-supported-in-central-package-version-management) to see the exclusions.
 
 
-**Transitive dependencies**: One should not be listing the transitive dependencies either in the Directory.Packages.props or as `PackageReference` for the projects. However the central package versions will win in the transitive dependency resolution.
+**Transitive dependencies**: The versions for the packages defined in the Directory.Packages.props will win for direct and transitive dependency resolution.
 
 ### DotNet CLI Experience
 
@@ -79,15 +78,21 @@ The package reference to add.
 -f|--framework
 ```
 
-Adds a package reference only when targeting a specific framework. The framework information will be added to the Directory.Packages.props file.
+The framework information will be ignored when projects' versions are centrally managed. The following information will be added to the Directory.Packages.props file.
 
 ``` xml
-<ItemGroup Condition="'$(TargetFramework)' == 'net46'">
-    <Package Include="MyPackage" Version="11.0.1" />
+<ItemGroup>
+    <PackageVersion Include="MyPackage" Version="11.0.1" />
 </ItemGroup>
 ```
 
-The command will fail if the framework is not compatible with the project's frameworks.
+The project file will be updated as well.
+
+``` xml
+  <ItemGroup>
+    <PackageReference Include="MyPackage" />
+  </ItemGroup>
+```
 
 ``` 
 -v|--version
@@ -100,13 +105,8 @@ The command will fail if there is a conflict between this version and a version 
 --force-version-update
 ```
 
-Adds the specific version of the package to the Directory.Packages.props file. The command will override any existent package version in the Directory.Packages.props file. The project file will be updated to:
+Adds the specific version of the package to the Directory.Packages.props file. The command will override any existent package version in the Directory.Packages.props file. 
 
-``` xml
-  <ItemGroup>
-    <PackageReference Include="MyPackage" />
-  </ItemGroup>
-```
 
 ##### Examples
 
@@ -114,7 +114,7 @@ Adds the specific version of the package to the Directory.Packages.props file. T
 
 ```bash
 ProjectA> dotnet add package newtonsoft.json
-Successfully added package 'Newtonsoft.Json' to ProjectA. The centrally package version is '12.0.1'.
+Successfully added package 'Newtonsoft.Json' to ProjectA. The central package version is '12.0.1'.
 ```
 
 A new PackageReference will be added to the ProjectA.csproj. The new PackageReference will not have a Version attribute.
@@ -135,7 +135,7 @@ A new PackageReference will be added to the ProjectA.csproj. The new PackageRefe
 ```bash
 //  Fails on version conflict
 ProjectA> dotnet add package newtonsoft.json --version 11.0.1
-error: '<path>\Directory.Packages.props' already contains a reference to `Newtonsoft.Json` version 12.0.2. To force the version update use 'dotnet add package newtonsoft.json --version 11.0.1 --force-version-update'. To add a reference to the existent `Newtonsoft.Json` version 11.0.1 use 'dotnet add package newtonsoft.json '
+error: '<path>\Directory.Packages.props' already contains a reference to `Newtonsoft.Json` version 12.0.2. To force the version update use 'dotnet add package newtonsoft.json --version 11.0.1 --force-version-update'. To add a reference to the existent `Newtonsoft.Json` version 12.0.2 use 'dotnet add package newtonsoft.json '
 ```
 
 ```bash
@@ -144,38 +144,13 @@ ProjectA> dotnet add package newtonsoft.json --version 11.0.1 --force-version-up
 Successfully added package 'Newtonsoft.Json' to ProjectA. Successfully updated package 'Newtonsoft.Json' version from 12.0.2 to 11.0.1.
 ```
 
-###### `dotnet add package --version --framework` when the framework is not compatible with ProjectA's frameworks
-
-```bash
-ProjectA> dotnet add package newtonsoft.json --version 11.0.1 --framework net45
-error: Package 'Newtonsoft.Json' is incompatible with 'user specified' frameworks in project 'ProjectA.csproj'.
-```
-
-There will be no updates added to any of the files Directory.Packages.props or ProjectA.csproj
-
-###### `dotnet add package --version --framework` when the framework is compatible with the ProjectA's frameworks
-
-```bash
-ProjectA> dotnet add package newtonsoft.json --version 11.0.1 --framework net46
-Successfully added package 'Newtonsoft.Json' to ProjectA. Successfully added package 'Newtonsoft.Json' version 11.0.1 for TFM net46 in '<path>\Directory.Packages.props'.
-```
-
-
-``` xml
-<ItemGroup Condition="'$(TargetFramework)' == 'net46'">
-    <Package Include="Newtonsoft.Json" Version="11.0.1" />
-</ItemGroup>
-```
-
-ProjectA.csproj will be updated to include a reference to `Newtonsoft.Json`.
-
 
 #### dotnet remove 
 **`> dotnet remove [PROJECT] package [PACKAGE_NAME] [-h|--help]`**
 
 ##### Description 
 
-Removes a package reference from a project. It does not remove the package reference from the Packges.props.
+Removes a package reference from a project. It does not remove the package reference from the Directory.Packages.props.
 
 ##### Arguments
 
@@ -192,18 +167,32 @@ PACKAGE_NAME
 
 ``` bash
 ProjectA> dotnet remove package newtonsoft.json
-Successfully removed package 'Newtonsoft.Json' from ProjectA. The Directory.Packages.props was not changed. To clean not used package references from the Directory.Packages.props use 'dotnet nuget versions --gc' command.  
+Successfully removed package 'Newtonsoft.Json' from ProjectA. The Directory.Packages.props was not changed. To clean not used package references from the Directory.Packages.props use 'dotnet nuget prune' command.  
 ```
 
 The ProjectA.csproj will have the package reference for `Newtonsoft.Json` removed.
 No change will be applied to Directory.Packages.props file.  
 
-#### dotnet nuget versions 
+#### dotnet nuget prune 
+
+**`> dotnet nuget prune [SOLUTION_PROJECT] [-h|--help] [--dry-run]`**
+
+[Note] Other suggestions for the command
+
 **`> dotnet nuget versions [SOLUTION_PROJECT] [-h|--help] [--gc] [--dry-run]`**
+
+**`> dotnet nuget clean [SOLUTION_PROJECT] [-h|--help] [--dry-run]`**
+
+**`> dotnet nuget versions clean [SOLUTION_PROJECT] [-h|--help] [--dry-run]`**
 
 ##### Description 
 
-It evaluates the packages used be the projects specified by [SOLUTION_PROJECT] and removes any not used package references from Directory.Packages.props file.
+It evaluates the packages used by the projects specified in [SOLUTION_PROJECT] and removes any not used PackageVersion elements from Directory.Packages.props file. If the PackageVersion elements are pinned in the central file the elements are not removed.
+
+``` xml
+<PackageVersion Include="Newtonsoft.Json" Version="10.0.1" Pin="true"/>
+``` 
+
 
 ##### Arguments
 
@@ -217,16 +206,6 @@ A solution or a project file. If not specified, the command searches the current
 ##### Options
 
 ``` 
---gc
-```
-
-The package references not referenced in any of the projects will be deleted from the Directory.Packages.props. If the Package references are pinned in the central file the elements are not removed.
-
-``` xml
-<Package Include="Newtonsoft.Json" Version="10.0.1" Pin="true"/>
-``` 
-
-``` 
 --dry-run
 ```
 
@@ -236,7 +215,7 @@ It will print the items that will be removed from the Directory.Packages.props f
 ##### Examples 
 
 ``` bash
-ProjectA> dotnet nuget versions MySolution1.sln --dry-run
+ProjectA> dotnet nuget prune MySolution1.sln --dry-run
 4 not used packages will be removed from [path]\Directory.Packages.props.
 PackageId : 'Newtonsoft.Json' Version:"12.0.0"  
 PackageId : 'XUnit' Version: "2.4.0"  
@@ -250,14 +229,13 @@ PackageId : 'System.Threading' Version:"4.0.11". The Package is a transitive dep
 ```
 
 ``` bash
-ProjectA> dotnet nuget versions MySolution1.sln --gc
+ProjectA> dotnet nuget prune MySolution1.sln 
 4 not used packages were removed from [path]\Directory.Packages.props.
 PackageId : 'Newtonsoft.Json' Version:"12.0.0"  
 PackageId : 'XUnit' Version: "2.4.0"  
 PackageId : 'NUnit' Version: "3.9.0"  
 PackageId : 'EnityFramework' Version: "6.2.0"  
 ```
-
 
 ### Visual Studio Experience
 
@@ -296,7 +274,7 @@ The UI will be as currently. User can select the version desired and chose to in
 Result:
 
 * A new entry ```<PackageReference Include="EntityFramework" />``` is added to the project's file
-* A new entry ```<Package Include="EntityFramework" Version="6.0.2"/>``` is added to Directory.Packages.props file.
+* A new entry ```<PackageVersion Include="EntityFramework" Version="6.0.2"/>``` is added to Directory.Packages.props file.
 
 ###### Update a package version
 
@@ -351,7 +329,7 @@ The UI will be as currently. User can select the version desired and chose to in
 Result:
 
 * A new entry ```<PackageReference Include="EntityFramework" />``` is added to the project's file.
-* A new entry ```<Package Include="EntityFramework" Version="6.0.2"/>``` is added to Directory.Packages.props file.
+* A new entry ```<PackageVersion Include="EntityFramework" Version="6.0.2"/>``` is added to Directory.Packages.props file.
 
 ###### UnInstall a package
 
@@ -388,16 +366,14 @@ A project opted-in **Central Package Version Management** cannot be used in a Vi
 
 ### FAQ
 
-#### How to enable the **Central Package Version Management**?
-
-See [Opt-in Central Package Version Management](#opt-in-central-package-version-management).
-
 #### How a project can opt-out from **Central Package Version Management**?
 
-Individual projects can opt-out of **Central Package Version Management** by using the EnableCentralPackageVersions MsBuild property as below.
+Individual projects can opt-out of **Central Package Version Management** by using the DisableCentralPackageVersions MsBuild property as below.
+
 ```xml
-<EnableCentralPackageVersions>false</EnableCentralPackageVersions> 
+<DisableCentralPackageVersions>true</DisableCentralPackageVersions> 
 ```
+
 By default projects are opted-out from **Central Package Version Management**.
 
 
@@ -406,7 +382,7 @@ By default projects are opted-out from **Central Package Version Management**.
 Manually create the Directory.Packages.props and remove the version information from the project files.
 
 
-#### Will a central defined Package version influence transitive dependency resolution ?
+#### Will a central defined Package version influence transitive dependency resolution?
 
 Yes. If a package version is mentioned in the Directory.Packages.props any transitive dependency will be resolved to the central defined version. 
 
@@ -414,8 +390,7 @@ For example in the scenario below PackageB depends on PackageC version 2.0.0. Pa
 
 *Directory.Packages.props*
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <ItemGroup>
     <PackageVersion Include="PackageA" Version="1.0.0" />
     <PackageVersion Include="PackageB" Version="1.0.0" />
@@ -439,7 +414,7 @@ For example in the scenario below PackageB depends on PackageC version 2.0.0. Pa
 ```
 
 #### Will be changes in the `pack` command ?
-If a project had a transitive dependency enforced through central definition the dependency is added to the list of packet direct dependencies.
+If a project had a transitive dependency enforced through central definition the dependency it is added to the list of package direct dependencies.
 
 #### Where are `PrivateAssets`/`ExcludeAssets`/`IncludeAssets` defined?
 
@@ -489,11 +464,14 @@ This is not part of the spec/feature but specifying sources in the Directory.Pac
 
 #### Can I change my repo to use the **Central Package Version Management** and use old tools later?
 
-No. Because the Version will be removed from the projects' level you cannot use old tools to build the repo.
+No. Because the Version will be removed from the projects' level the old tools cannot be used to build the repo.
 
 ### Next Steps (post MVP)
 
-1. **`> dotnet nuget versions [SOLUTION_PROJECT] [-h|--help] [--consolidate/centralize] [--dry-run]`** New command to support migration scenarios. It will create the Directory.Packages.props file. 
+1. New command to support migration scenarios. It will create the Directory.Packages.props file.
+Few options for the new command:
+**`> dotnet nuget versions [SOLUTION_PROJECT] [-h|--help] [--consolidate/centralize] [--dry-run]`**
+**`> dotnet nuget consolidate/centralize [SOLUTION_PROJECT] [-h|--help] [--dry-run]`**
 
 2. Allow custom file for the central packages file.
 ``` xml
@@ -504,6 +482,6 @@ No. Because the Version will be removed from the projects' level you cannot use 
 </Project>
 ```
 
-
 ### Naming
+
 The name is not definitive and we are looking for better name pattern.
