@@ -3,8 +3,8 @@
 | Author(s) | [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv)), [Cristina Manu](https://github.com/cristinamanum)|
 
 ### Issue
+ [#6764](https://github.com/NuGet/Home/issues/6764)
 
- [6764](www.github.com/nuget/home/issues/6764)
 ### Solution Details
 
 To get started, you will need to create an MSBuild props file at the root of the solution named `Directory.Packages.props` that declares the centrally defined packages' versions.
