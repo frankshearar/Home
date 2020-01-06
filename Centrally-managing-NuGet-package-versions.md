@@ -1,4 +1,6 @@
-| Status | Reviewing |
+![image](https://user-images.githubusercontent.com/14800916/71850448-29e8d900-3089-11ea-95d3-3c275711e933.png)
+
+| | |
 |:-- |:--
 | Author(s) | [Anand Gaurav](https://github.com/anangaur) ([@adgrv](https://twitter.com/adgrv)), [Cristina Manu](https://github.com/cristinamanum)|
 
