@@ -24,3 +24,5 @@ The key scenarios we want to enable include:
 ### Out of scope
 
 ## Solution
+
+## FAQs
