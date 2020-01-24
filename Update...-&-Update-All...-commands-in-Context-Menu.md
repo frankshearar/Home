@@ -19,10 +19,19 @@ From Developer community suggestion: https://developercommunity.visualstudio.com
 The key scenarios we want to enable include:
 * Show "Update..." option in context menu for individual packages. This will open up the package manager UI to the update tab with the chosen package selected.
 * Show "Update..." option in context menu when multiple packages are selected. This will open up the package manager UI to the update tab with all chosen packages selected.
-* Show "Update All..." option in context menu for packages folder
+* Show "Update All..." option in context menu for packages folder. 
 
 ### Out of scope
+
+* Indicator for number of updates available in solution explorer; number displayed next to the top level packages folder
+* Indicator that individual packages are eligible for updates located next to the respective package
+* Drop-down menu for Updates allowing "Update to latest version," "Update to latest minor version," "Update..."
+* Change "Remove" option to "Uninstall"
+* Remove "
 
 ## Solution
 
 ## FAQs
+
+* What is shown when update(s) aren't available for the selection?
+* What happens when a user selects an update for pre-release packages, but pre-release packages are being filtered out?
