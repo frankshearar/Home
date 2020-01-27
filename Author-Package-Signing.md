@@ -1,7 +1,7 @@
 Status: **Reviewed**
 
 ## Related Information
-This specification is one part of a new experience for package signing described at a high level in this blog post:  [NuGet Package Signing](https://blog.nuget.org/20170914/NuGet-Package-Signing.html). You can find various related specs on the [package signing wiki](https://github.com/NuGet/Home/wiki/Package-Signing). 
+This specification is one part of a new experience for package signing described at a high level in this blog post:  [NuGet Package Signing](https://devblogs.microsoft.com/nuget/package-signing-2/). You can find various related specs on the [package signing wiki](https://github.com/NuGet/Home/wiki/Package-Signing). 
 
 ## Issue
 The discussion around this spec is tracked here - **Author Package Signing [#5889](https://github.com/NuGet/Home/issues/5889)** 
