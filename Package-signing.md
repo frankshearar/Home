@@ -1,6 +1,6 @@
 Status: **Reviewed**
 
-This specification is one part of a new experience for package signing described in  the blog post:  [NuGet Package Signing](https://blog.nuget.org/20170914/NuGet-Package-Signing.html).
+This specification is one part of a new experience for package signing described in  the blog post:  [NuGet Package Signing](https://devblogs.microsoft.com/nuget/package-signing-2/).
 
 ### Package Signatures Master Spec List
 
