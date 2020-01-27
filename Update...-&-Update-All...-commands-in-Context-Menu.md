@@ -23,15 +23,21 @@ The key scenarios we want to enable include:
 
 ### Out of scope
 
-* Indicator for number of updates available in solution explorer; number displayed next to the top level packages folder
-* Indicator that individual packages are eligible for updates located next to the respective package
+* Indicator for number of updates available in solution explorer; number displayed next to the top level packages folder.
+* Indicator that individual packages are eligible for updates located next to the respective package.
 * Drop-down menu for Updates allowing "Update to latest version," "Update to latest minor version," "Update..."
-* Change "Remove" option to "Uninstall"
-* Remove "
+* Change "Remove" option to "Uninstall."
 
 ## Solution
+
+* Add "Update All..." to "Packages" node context menu.
+* Add "Update..." to package context menus when a single or multiple packages are selected.
 
 ## FAQs
 
 * What is shown when update(s) aren't available for the selection?
+Update option is grayed out.
 * What happens when a user selects an update for pre-release packages, but pre-release packages are being filtered out?
+Set filter so that package is visible in update tab.
+* How will a user know if an update is available?
+
