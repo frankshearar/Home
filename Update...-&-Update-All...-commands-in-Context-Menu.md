@@ -69,9 +69,10 @@ A: Set filter so that package is visible in update tab. (In Review)
 * Indicator for number of updates available in solution explorer; number displayed next to the top level packages folder.
 * Indicator that individual packages are eligible for updates located next to the respective package.
 * Remove "Update..." option if the selected subset of packages have no updates available
-* Drop-down menu for Updates allowing "Update to latest version," "Update to latest minor version," "Update..."
-* Change "Remove" option to "Uninstall." (in review)
-* Remove "..." from "Manage NuGet Packages..." (in review)
+* Drop-down menu for Updates allowing "Update to latest version," "Update to latest minor version," "Update..." (tentative)
+* Change "Remove" option to "Uninstall." (tentative)
+* Remove "..." from "Manage NuGet Packages..." (tentative)
+* "Add Package" option in context menu (tentative)
 
 #### North Star
 This is roughly the ideal we are striving for upon completion of the steps outlined in this spec as well as the changes listed in the "Out of scope" section that will be executed in future iterations.
