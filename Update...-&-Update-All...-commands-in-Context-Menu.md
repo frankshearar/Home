@@ -8,7 +8,7 @@ Update... & Update All... commands in Context Menu [#8956](https://github.com/Nu
 Installed packages are viewable in the solution explorer, but the context menu associated with right-clicking the packages and packages folder is very limited. There should be an option to update a package and update all packages through the context menu.
 
 ## Who is the customer?
-NuGet package users.
+Visual Studio NuGet package consumers.
 
 ## Evidence
 From Developer community suggestion: https://developercommunity.visualstudio.com/content/idea/622379/add-manage-nuget-packages-to-context-menu.html
@@ -17,25 +17,42 @@ From Developer community suggestion: https://developercommunity.visualstudio.com
 
 ## Key Scenarios
 The key scenarios we want to enable include:
-* **Single Package Update:** Show "Update..." option in context menu for individual packages. This will open up the package manager UI to the update tab with the chosen package selected.
-![image](https://user-images.githubusercontent.com/15097183/73973235-0ce93500-48d7-11ea-9ce9-cc662f532dcc.png)
-* **Multi-Package Update:** Show "Update..." option in context menu when multiple packages are selected. This will open up the package manager UI to the update tab with all chosen packages selected.
-![image](https://user-images.githubusercontent.com/15097183/73979134-791d6600-48e2-11ea-87c3-2ba093d0e3b4.png)
-* **Update All Packages:** Show "Update..." option in context menu for top level packages folder. This will open up the package manager UI to the update tab with all packages selected.
-![image](https://user-images.githubusercontent.com/15097183/73978401-1bd4e500-48e1-11ea-8ace-7dedc5edd71b.png)
 
-## Design Details
+**Single Package Update:** Show "Update..." option in context menu for individual packages. This will open up the package manager UI to the update tab with the chosen package selected.
+![image](https://user-images.githubusercontent.com/15097183/73993637-a29cb880-4907-11ea-9314-dfe0f9a55343.png)
+* Red box indicates where screen-reader will default to for accessibility.
 
-### Finalized
-Q: What is shown when update(s) aren't available for the selection?
+**Multi-Package Update:** Show "Update..." option in context menu when multiple packages are selected. This will open up the package manager UI to the update tab with all chosen packages selected.
+![image](https://user-images.githubusercontent.com/15097183/73994132-58b4d200-4909-11ea-9c37-c0eafb3396e9.png)
+* Red box indicates where screen-reader will default to for accessibility.
+* Not all selected packages appear in "Updates" tab because Moq did not have an available update.
+
+**Update All Packages:** Show "Update..." option in context menu for top level packages folder. This will open up the package manager UI to the update tab with all packages selected.
+![image](https://user-images.githubusercontent.com/15097183/73994028-f1971d80-4908-11ea-9442-43665c8c7352.png)
+* Red box indicates where screen-reader will default to for accessibility.
+* Not all packages appear in "Updates" tab because not all packages have available updates.
+
+## Design Details FAQ
+
+**Q: What is shown in the context menu when update(s) aren't available for the selection?**
+
 A: The "Update..." item will still be available. Click on it will navigate to the "Updates" tab in the package manager UI but will have no packages selected since the selected package(s) won't exist on that page.
 
-Q: How will a user know if an update is available?
-A: In this iteration, there will not be an indicator of an update being available
+**Q: How will a user know if an update is available?**
 
-### In Review
-Q: What happens when a user selects an update for a pre-release package, but pre-release packages are being filtered out?
-A: Set filter so that package is visible in update tab.
+A: In this iteration, there will not be an indicator of an update being available in the solution explorer.
+
+**Q: What happens when a user selects "Update..." for a package, multiple packages, or all packages when no updates are available for the selection?**
+
+A: The "Update" tab in the package manager UI will still be brought up, but no packages will be pre-selected/checked.
+
+**Q: What happens when not all the packages in the selected subset of packages have an available update?**
+
+A: Only the packages with existing updates will be pre-selected/checked in the "Update" tab.
+
+**Q: What happens when a user selects an update for a pre-release package, but pre-release packages are being filtered out?**
+
+A: Set filter so that package is visible in update tab. (In Review)
 
 ## Out of scope
 
@@ -47,7 +64,7 @@ A: Set filter so that package is visible in update tab.
 * Remove "..." from "Manage NuGet Packages..." (in review)
 
 #### North Star
-This example is what the UI on VS for Mac currently looks like in the solution explorer for the "Packages" folder. It includes the majority of planned UI changes that are out of scope for the first iteration of changes outlined in this spec.
+This is roughly the ideal we are striving for upon completion of the steps outlined in this spec as well as the changes listed in the "Out of scope" section that will be executed in future iterations.
 
 <img width="529" alt="Screen Shot 2020-01-02 at 11 49 31 AM" src="https://user-images.githubusercontent.com/2878341/71843808-8cd27400-3079-11ea-93cd-9e065a18ee86.png">
 
