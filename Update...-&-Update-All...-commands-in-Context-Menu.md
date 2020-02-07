@@ -15,21 +15,31 @@ From Developer community suggestion: https://developercommunity.visualstudio.com
 
 **Add Manage NuGet packages to context menu for NuGet node [5049](https://github.com/NuGet/Home/issues/5049)**
 
+## Scope
+
+**Supported Project Systems:** SDK-Style Package References
+
+**Supported Nodes:** "Packages" top level folder and all child package elements
+
+![image](https://user-images.githubusercontent.com/15097183/74058955-f6f17800-499b-11ea-9056-7712620a5b3f.png)
+
+**Behavior Change:** Changes constrained to update ability in context menus for "Packages" folder and child elements
+
 ## Key Scenarios
 The key scenarios we want to enable include:
 
 **Single Package Update:** Show "Update..." option in context menu for individual packages. This will open up the package manager UI to the update tab with the chosen package selected.
 ![image](https://user-images.githubusercontent.com/15097183/73993637-a29cb880-4907-11ea-9314-dfe0f9a55343.png)
-* Red box indicates where screen-reader will default to for accessibility.
+* Red box indicates where the focus will default to for accessibility.
 
 **Multi-Package Update:** Show "Update..." option in context menu when multiple packages are selected. This will open up the package manager UI to the update tab with all chosen packages selected.
 ![image](https://user-images.githubusercontent.com/15097183/73994132-58b4d200-4909-11ea-9c37-c0eafb3396e9.png)
-* Red box indicates where screen-reader will default to for accessibility.
+* Red box indicates where the focus will default to for accessibility.
 * Not all selected packages appear in "Updates" tab because Moq did not have an available update.
 
 **Update All Packages:** Show "Update..." option in context menu for top level packages folder. This will open up the package manager UI to the update tab with all packages selected.
 ![image](https://user-images.githubusercontent.com/15097183/73994028-f1971d80-4908-11ea-9442-43665c8c7352.png)
-* Red box indicates where screen-reader will default to for accessibility.
+* Red box indicates where the focus will default to for accessibility.
 * Not all packages appear in "Updates" tab because not all packages have available updates.
 
 ## Design Details FAQ
