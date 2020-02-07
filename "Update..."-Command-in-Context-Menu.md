@@ -5,7 +5,7 @@ The work for this feature and the discussion around the spec is tracked here:
 Update... & Update All... commands in Context Menu [#8956](https://github.com/NuGet/Home/issues/8956)
 
 ## Problem
-Installed packages are viewable in the solution explorer, but the context menu associated with right-clicking the packages and packages folder is very limited. There should be an option to update a package and update all packages through the context menu.
+Installed packages are viewable in the solution explorer, but the context menu associated with right-clicking the packages and packages folder is very limited. There should be an option to update packages through the context menu.
 
 ## Who is the customer?
 Visual Studio NuGet package consumers.
