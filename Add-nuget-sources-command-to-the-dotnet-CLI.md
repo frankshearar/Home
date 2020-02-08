@@ -1,4 +1,4 @@
-* Status: **Reviewing**
+* Status: **Reviewed**
 * Author(s): [Rob Relyea](https://github.com/rrelyea)
 
 ## Issue
