@@ -21,58 +21,6 @@ Package Authors & Package Consumers who are using .NET core. Many of these devs 
 
 ## DotNet CLI command strategy
 
-How do NuGet Commands fit into Dotnet.exe?
-
-1. Make part of dotnet verb-noun pattern: `dotnet nuget <add|remove|enable|disable|update|list> source`
-repository|feed|source
-
-1. Port directly, but under "nuget" keyword: `dotnet nuget sources <add|remove|enable|disable|update|list>`
-
-We are choosing the first. (verb-noun, rather than noun-verb)
-
-```
-dotnet project commands
-	add       (add package)
-	build
-	clean
-	help
-	list      (list package)
-	msbuild
-	new       (new nugetconfig)
-	pack      (nuget!)
-	publish
-	remove    (remove package)
-	restore   (nuget!)
-	run
-
-dotnet nuget commands
-  config
-    dotnet new nugetconfig
-    add - named source
-    remove - named source
-    update - named source
-    disable - named source
-    enable - named source
-    list - named sources
-  push/delete
-    push - ok, but review
-    delete - ok, but review
-  locals - CONSIDER eventual redesign.
-
-dotnet tool
-  install
-  uninstall
-  update
-  list
-  run
-  restore
-
-dotnet sln
-dotnet build-server
-dotnet vstest
-dotnet store
-```
-
 ### Usage: dotnet nuget list source [options]
 
 Options:
