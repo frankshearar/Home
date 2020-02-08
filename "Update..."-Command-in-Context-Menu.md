@@ -17,7 +17,7 @@ From Developer community suggestion: https://developercommunity.visualstudio.com
 
 ## Scope
 
-**Supported Project Systems:** SDK-Style Package References
+**Supported Project Systems:** SDK-Style Package References, Legacy Package References (TBD)
 
 **Supported Nodes:** "Packages" top level folder and all child package elements
 
@@ -62,7 +62,7 @@ A: Only the packages with existing updates will be pre-selected/checked in the "
 
 **Q: What happens when a user selects an update for a pre-release package, but pre-release packages are being filtered out?**
 
-A: Set filter so that package is visible in update tab. (In Review)
+A: Respect the user's existing "include prerelease" setting. If they want to see the prerelease update, they will enable "include prerelease" manually.
 
 ## Out of scope
 
