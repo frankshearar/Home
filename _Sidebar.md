@@ -10,6 +10,7 @@
 * [Machine-readable output for dotnet list package](https://github.com/NuGet/Home/wiki/%5BSpec%5D-Machine-readable-output-for-dotnet-list-package)
 
 #### Reviewed
+* [[Add nuget sources command to the dotnet CLI]]
 * [Backporting PC to msbuild restore](https://github.com/NuGet/Home/wiki/Backporting-PC-to-msbuild--restore)
 * [[Packaging Icon, License and Documentation within the nupkg]]
 * [Deprecate packages](https://github.com/NuGet/Home/wiki/Deprecate-packages)
