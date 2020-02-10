@@ -33,10 +33,9 @@ The work for this feature and the discussion around the Icon specific spec is tr
       ...
     </PropertyGroup>
     <ItemGroup>
-      <None Include="..\icon.png">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-      </None>
+      ...
+      <None Include="images\icon.png" Pack="true" PackagePath=""/>
+      ...
     </ItemGroup>
     ```
 
