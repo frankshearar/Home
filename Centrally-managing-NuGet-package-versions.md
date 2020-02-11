@@ -436,6 +436,10 @@ This will not be supported in the first feature version.
 
 No, an error will be generated if the Version attribute is present at the project PackageReference elements.
 
+#### Can I add .NET SDK implicitly defined packages the **Central Package Version Management** file?
+
+No, an error will be generated if an implicitly defined package is added to the **Central Package Version Management** file.
+
 #### Can I have a given set of package versions for all the projects but a different set for a specific project?
 
 To override the global packages' version constraints for a specific project, you can define `Directory.Packages.props` file in the project root directory. This will override the global settings from the solution `Directory.Packages.props` file.
