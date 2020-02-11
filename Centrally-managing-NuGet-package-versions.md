@@ -436,7 +436,7 @@ This will not be supported in the first feature version.
 
 No, an error will be generated if the Version attribute is present at the project PackageReference elements.
 
-#### Can I add .NET SDK implicitly defined packages the **Central Package Version Management** file?
+#### Can I add .NET SDK implicitly defined packages to the **Central Package Version Management** file?
 
 No, an error will be generated if an implicitly defined package is added to the **Central Package Version Management** file.
 
