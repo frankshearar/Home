@@ -17,7 +17,7 @@ From Developer community suggestion: https://developercommunity.visualstudio.com
 
 ## Scope
 
-**Supported Project Systems:** SDK-Style Package References, Legacy Package References (TBD)
+**Supported Project Systems:** SDK-Style Package References
 
 **Supported Nodes:** "Packages" top level folder and all child package elements
 
