@@ -5,7 +5,6 @@
 * Author(s): [Nikolche Kolev](https://github.com/nkolev92)
 * Issue: [912](https://github.com/NuGet/Home/issues/912) Support pre-release packages with floating versions
 * Type: Feature
-* Design in [NuGet/Home](https://github.com/NuGet/Home/blob/dev/designs/FloatingStableAndPrerelease.md)
 
 ## Problem Background
 
