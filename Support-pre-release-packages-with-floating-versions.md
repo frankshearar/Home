@@ -57,7 +57,7 @@ For example:
 
 | Floating Version | Available Versions | Best Version |
 | -----------------|--------------------|-----------------------|
-| 5.*-rc.* | 4.9.0 <br> 5.1.0 <br> 5.2.0-beta.1 <br> 5.2.0-rc.3 <br> 6.0.0-rc.1 | [5.2.0-rc.3](https://nugettoolsdev.azurewebsites.net/5.5.0-floating.7611/find-best-version-match?versionRange=5.*-rc.*&versions=4.9.0%0D%0A5.1.0%0D%0A5.2.0-beta.1%0D%0A5.2.0-rc.3%0D%0A6.0.0-rc.1) |
+| `5.*-rc.*` | 4.9.0 <br> 5.1.0 <br> 5.2.0-beta.1 <br> 5.2.0-rc.3 <br> 6.0.0-rc.1 | [5.2.0-rc.3](https://nugettoolsdev.azurewebsites.net/5.5.0-floating.7611/find-best-version-match?versionRange=5.*-rc.*&versions=4.9.0%0D%0A5.1.0%0D%0A5.2.0-beta.1%0D%0A5.2.0-rc.3%0D%0A6.0.0-rc.1) |
 
 ### How do floating versions work
 
