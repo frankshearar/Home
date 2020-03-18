@@ -4,6 +4,8 @@
 
 # Topics
 1. Search deep-dive (Released)
+    * Search source code: [`NuGet.Services.SearchService`](https://github.com/NuGet/NuGet.Services.Metadata/tree/master/src/NuGet.Services.SearchService)
+    * NDCG tool: [`SearchScorer`](https://github.com/NuGet/Entropy/tree/master/SearchScorer)
 1. .NET tool search (In Progress)
 1. [REDACTED]
 1. Package vulnerability auditing (Planned)
