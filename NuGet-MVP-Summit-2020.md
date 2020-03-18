@@ -12,14 +12,14 @@
 1. Package vulnerability auditing (Planned)
 1. Package deprecation (Released)
 1. Authoring "NuGets" of Wisdom (Released)
-    1. Embedded icon
-    1. Embedded license
+    1. Embedded icon ([spec](https://github.com/NuGet/Home/wiki/Packaging-Icon%2C-License-and-Documentation-within-the-nupkg))
+    1. Embedded license ([spec](https://github.com/NuGet/Home/wiki/Packaging-Icon%2C-License-and-Documentation-within-the-nupkg))
     1. Source Link
 1. Embedded Readme (Planned)
 1. Pre-Release Package Floating Versions (In Progress)
 1. No-Op Restore Performance Boost (Released – Preview)
 1. Central Package Version Management (In Progress)
-    * [Specification](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-package-versions)
+    * [Spec](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-package-versions)
 
 
 
