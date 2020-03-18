@@ -1,6 +1,6 @@
 # Speakers
-* Chris Gill
-* Loic Sharma
+* Chris Gill ([@chrisraygill](https://twitter.com/chrisraygill))
+* Loic Sharma ([@sharmaloic](https://twitter.com/sharmaloic))
 
 # Topics
 1. Search deep-dive (Released)
