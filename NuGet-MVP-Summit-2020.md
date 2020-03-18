@@ -15,7 +15,7 @@
     1. [Embedded icon](https://github.com/NuGet/Home/wiki/Packaging-Icon-within-the-nupkg)
     1. [Embedded license](https://github.com/NuGet/Home/wiki/Packaging-License-within-the-nupkg)
     1. [Source Link](https://github.com/dotnet/sourcelink)
-1. [Embedded Readme](https://github.com/NuGet/Home/wiki/Packaging-Documentation-within-the-nupkg) (Planned, tracked by [])
+1. [Embedded Readme](https://github.com/NuGet/Home/wiki/Packaging-Documentation-within-the-nupkg) (Planned)
 1. [Pre-Release Package Floating Versions](https://github.com/NuGet/Home/wiki/Support-pre-release-packages-with-floating-versions) (In Progress)
     * Expected release: .NET Core 3.1.300, nuget.exe v5.6
 1. [No-Op Restore Performance Boost](https://github.com/NuGet/Home/issues/8791) (Released – Preview)
