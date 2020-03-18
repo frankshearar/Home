@@ -19,6 +19,7 @@
 1. Pre-Release Package Floating Versions (In Progress)
 1. No-Op Restore Performance Boost (Released – Preview)
 1. Central Package Version Management (In Progress)
+    * [Specification](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-package-versions)
 
 
 
