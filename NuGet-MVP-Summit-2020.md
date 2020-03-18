@@ -1,3 +1,7 @@
+# Speakers
+Chris Gill
+Loic Sharma
+
 1. Search deep-dive (Released)
 1. .NET tool search (In Progress)
 1. [REDACTED]
