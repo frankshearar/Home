@@ -7,9 +7,9 @@
     * Search source code: [`NuGet.Services.SearchService`](https://github.com/NuGet/NuGet.Services.Metadata/tree/master/src/NuGet.Services.SearchService)
     * NDCG tool source code: [`SearchScorer`](https://github.com/NuGet/Entropy/tree/master/SearchScorer)
 1. [.NET tool search](https://github.com/dotnet/sdk/issues/3808) (In Progress)
-1. [REDACTED]
+1. [REDACTED] 👻
 1. [Package vulnerability auditing](https://github.com/NuGet/Home/wiki/Flag-vulnerable-packages) (Planned)
-1. Package deprecation (Released)
+1. [Package deprecation](https://github.com/NuGet/Home/wiki/Deprecate-packages) (Released)
 1. Authoring "NuGets" of Wisdom (Released)
     1. [Embedded icon](https://github.com/NuGet/Home/wiki/Packaging-Icon-within-the-nupkg)
     1. [Embedded license](https://github.com/NuGet/Home/wiki/Packaging-License-within-the-nupkg)
