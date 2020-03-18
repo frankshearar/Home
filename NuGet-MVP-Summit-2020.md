@@ -10,6 +10,7 @@
     * Tracked by [dotnet/sdk#3808](https://github.com/dotnet/sdk/issues/3808)
 1. [REDACTED]
 1. Package vulnerability auditing (Planned)
+    * [Spec](https://github.com/NuGet/Home/wiki/Flag-vulnerable-packages)
 1. Package deprecation (Released)
 1. Authoring "NuGets" of Wisdom (Released)
     1. Embedded icon ([spec](https://github.com/NuGet/Home/wiki/Packaging-Icon%2C-License-and-Documentation-within-the-nupkg))
