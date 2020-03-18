@@ -1,6 +1,6 @@
 1. Search deep-dive (Released)
 1. .NET tool search (In Progress)
-1. [REDACTED]
+1. [TOP SECRET -- REDACTED]
 1. Package vulnerability auditing (Planned)
 1. Package deprecation (Released)
 1. Authoring "NuGets" of Wisdom (Released)
