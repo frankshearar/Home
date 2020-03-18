@@ -13,14 +13,13 @@
     * [Spec](https://github.com/NuGet/Home/wiki/Flag-vulnerable-packages)
 1. Package deprecation (Released)
 1. Authoring "NuGets" of Wisdom (Released)
-    1. Embedded icon ([spec](https://github.com/NuGet/Home/wiki/Packaging-Icon%2C-License-and-Documentation-within-the-nupkg))
-    1. Embedded license ([spec](https://github.com/NuGet/Home/wiki/Packaging-Icon%2C-License-and-Documentation-within-the-nupkg))
+    1. [Embedded icon](https://github.com/NuGet/Home/wiki/Packaging-Icon-within-the-nupkg)
+    1. [Embedded license](https://github.com/NuGet/Home/wiki/Packaging-License-within-the-nupkg)
     1. [Source Link](https://github.com/dotnet/sourcelink)
-1. Embedded Readme (Planned)
+1. [Embedded Readme](https://github.com/NuGet/Home/wiki/Packaging-Documentation-within-the-nupkg) (Planned)
 1. Pre-Release Package Floating Versions (In Progress)
 1. No-Op Restore Performance Boost (Released – Preview)
-1. Central Package Version Management (In Progress)
-    * [Spec](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-package-versions)
+1. [Central Package Version Management](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-package-versions) (In Progress)
 
 
 
