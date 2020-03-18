@@ -15,7 +15,7 @@
 1. Authoring "NuGets" of Wisdom (Released)
     1. Embedded icon ([spec](https://github.com/NuGet/Home/wiki/Packaging-Icon%2C-License-and-Documentation-within-the-nupkg))
     1. Embedded license ([spec](https://github.com/NuGet/Home/wiki/Packaging-Icon%2C-License-and-Documentation-within-the-nupkg))
-    1. Source Link
+    1. [Source Link](https://github.com/dotnet/sourcelink)
 1. Embedded Readme (Planned)
 1. Pre-Release Package Floating Versions (In Progress)
 1. No-Op Restore Performance Boost (Released – Preview)
