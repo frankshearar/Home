@@ -17,7 +17,7 @@
     1. [Source Link](https://github.com/dotnet/sourcelink)
 1. [Embedded Readme](https://github.com/NuGet/Home/wiki/Packaging-Documentation-within-the-nupkg) (Planned, tracked by [])
 1. [Pre-Release Package Floating Versions](https://github.com/NuGet/Home/wiki/Support-pre-release-packages-with-floating-versions) (In Progress)
-    * Expected release: .NET Core 3.1.300
+    * Expected release: .NET Core 3.1.300, nuget.exe v5.6
 1. [No-Op Restore Performance Boost](https://github.com/NuGet/Home/issues/8791) (Released – Preview)
 1. [Central Package Version Management](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-package-versions) (In Progress, tracked by [NuGet/Home#9015](https://github.com/NuGet/Home/issues/9015))
 
