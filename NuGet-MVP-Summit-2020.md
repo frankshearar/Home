@@ -16,7 +16,7 @@
     1. [Source Link](https://github.com/dotnet/sourcelink)
 1. [Embedded Readme](https://github.com/NuGet/Home/wiki/Packaging-Documentation-within-the-nupkg) (Planned)
 1. [Pre-Release Package Floating Versions](https://github.com/NuGet/Home/wiki/Support-pre-release-packages-with-floating-versions) (In Progress)
-1. No-Op Restore Performance Boost (Released – Preview)
+1. [No-Op Restore Performance Boost](https://github.com/NuGet/Home/issues/8791) (Released – Preview)
 1. [Central Package Version Management](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-package-versions) (In Progress)
 
 
