@@ -1,7 +1,7 @@
 
 # Support pre-release packages with floating versions
 
-* Status: **Reviewed**
+* Status: **Implemented** Available in 5.6
 * Author(s): [Nikolche Kolev](https://github.com/nkolev92)
 * Issue: [912](https://github.com/NuGet/Home/issues/912) Support pre-release packages with floating versions
 * Type: Feature
