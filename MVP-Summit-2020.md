@@ -18,6 +18,7 @@
 1. [Embedded Readme](https://github.com/NuGet/Home/wiki/Packaging-Documentation-within-the-nupkg) (Planned)
 1. [Pre-Release Package Floating Versions](https://github.com/NuGet/Home/wiki/Support-pre-release-packages-with-floating-versions) (In Progress)
     * Expected release: .NET Core 3.1.300, nuget.exe v5.6
+    * [Find best version match playground](https://nugettoolsdev.azurewebsites.net/5.5.0-floating.7611/find-best-version-match?versionRange=1.*-*&versions=1.0.0%0D%0A2.0.0-test%0D%0A%0D%0A) that was demoed
 1. [No-Op Restore Performance Boost](https://github.com/NuGet/Home/issues/8791) (Released – Preview)
 1. [Central Package Version Management](https://github.com/NuGet/Home/wiki/Centrally-managing-NuGet-package-versions) (In Progress)
     * Tracked by [NuGet/Home#9015](https://github.com/NuGet/Home/issues/9015)
