@@ -11,6 +11,7 @@
 1. [REDACTED] 👻
 1. [Package vulnerability auditing](https://github.com/NuGet/Home/wiki/Flag-vulnerable-packages) (Planned)
 1. [Package deprecation](https://github.com/NuGet/Home/wiki/Deprecate-packages) (Released)
+    1. [Deprecation docs](https://docs.microsoft.com/en-us/nuget/nuget-org/deprecate-packages)
 1. Authoring "NuGets" of Wisdom (Released)
     1. [Embedded icon](https://github.com/NuGet/Home/wiki/Packaging-Icon-within-the-nupkg)
     1. [Embedded license](https://github.com/NuGet/Home/wiki/Packaging-License-within-the-nupkg)
