@@ -43,7 +43,7 @@ In this example, packages like `Newtonsoft.Json` are set to version `10.0.1`.  T
 If a Directory.Packages.props file exists, all projects in that directory tree are automatically opted in to central package version management.  To opt-out a specific project, set the following property in that project file: 
 
 ```xml
-<EnableCentralPackageVersions>false</EnableCentralPackageVersions>
+<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
 ```
 
 In addition only specific types of projects will be supported for **Central Package Version Management**. Refer to [this](#what-is-currently-not-supported-in-central-package-version-management) to see the exclusions.
@@ -372,10 +372,10 @@ A project opted-in **Central Package Version Management** cannot be used in a Vi
 
 #### How a project can opt-out from **Central Package Version Management**?
 
-Individual projects can opt-out of **Central Package Version Management** by using the EnableCentralPackageVersions MsBuild property as below.
+Individual projects can opt-out of **Central Package Version Management** by using the ManagePackageVersionsCentrally MsBuild property as below.
 
 ```xml
-<EnableCentralPackageVersions>false</EnableCentralPackageVersions> 
+<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally> 
 ```
 
 By default projects are opted-out from **Central Package Version Management**.
