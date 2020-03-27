@@ -40,4 +40,4 @@
 * [Storing trusted repository](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Config-schema-changes-to-enable-trusted-signers)
 * [NuGet Package Signing Client Policy](https://github.com/NuGet/Home/wiki/%5BSpec%5D-NuGet-Package-Signing-Client-Policy)
 #### Templates
-* [[Spec Template|Writing-and-reviewing-awesome-specs]]
+* [Spec Template](https://github.com/NuGet/Home/blob/dev/designs/SPEC_TEMPLATE.md)
