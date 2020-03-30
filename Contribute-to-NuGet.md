@@ -1,7 +1,7 @@
 ## Contributing to NuGet Client
 
 The NuGet.Client repository includes all the official NuGet client tooling. 
-[Contributing](https://github.com/NuGet/NuGet.Client/blob/dev/CONTRIBUTING.md)
+See the [Contributing guide](https://github.com/NuGet/NuGet.Client/blob/dev/CONTRIBUTING.md) for details.
 
 ## Contributing to NuGet Gallery
 
