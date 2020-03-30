@@ -20,9 +20,3 @@ If you wish to contribute code to the gallery, please read the relevant test pla
 If you wish to contribute code to the NuGet documentation or spotted an error, please read the following guidance.
 
 [Contributing documentation](https://github.com/NuGet/docs.microsoft.com-nuget)
-
-## Other
-
-The following additional resources describe different aspects of the NuGet project itself.
-
-[NuGet's Ecosystem]()  |  [Governance Model for NuGet]()
