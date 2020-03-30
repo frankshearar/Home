@@ -1,1 +1,0 @@
-Moved to https://github.com/NuGet/NuGet.Client/blob/dev/CONTRIBUTING.md
