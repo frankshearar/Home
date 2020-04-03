@@ -27,6 +27,7 @@ NuGet package consumers (trust indicator) and package authors (metric) on both N
 ## Requirements
 
 **MVP:**
+
 NuGet.org:
 * Information available on package details page
 * Total number of dependent packages.
@@ -34,9 +35,11 @@ NuGet.org:
 * Dependents ordered by number of downloads.
 
 **Next Steps:** (In Progress)
+
 Visual Studio:
 * Display top 10 most popular dependents in package details section.
 * Order dependents by popularity.
+
 NuGet.org
 * Link to see all dependent packages sorted by popularity
 * Package descriptions with package IDs
@@ -44,6 +47,7 @@ NuGet.org
 * Package owners?
 * Filter package dependents by version being viewed?
 * Filter search with `dependents:`
+
 Other
 * Public API to query for dependents of a package
 
@@ -95,14 +99,16 @@ We are framing the appearance of a dependent package as an "endorsement" from th
 Visual Studio:
 * Display top 10 most popular dependents in package details section.
 * Order dependents by popularity.
-NuGet.org
+
+NuGet.org:
 * Link to see all dependent packages sorted by popularity
 * Package descriptions with package IDs
 * Package verified check mark?
 * Package owners?
 * Filter package dependents by version being viewed?
 * Filter search with `dependents:`
-Other
+
+Other:
 * Public API to query for dependents of a package
 
 ### Future Mock Ups
