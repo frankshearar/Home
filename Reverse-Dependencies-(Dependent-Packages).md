@@ -1,5 +1,3 @@
-# Reverse Dependencies (Dependent Packages)
-
 * Status: In Progress
 * Author(s): Chris Gill (chgill), Joel Verhagen (jver)
 * Issue: [Show dependent packages for a given package on the details page #4718](https://github.com/NuGet/NuGetGallery/issues/4718)
