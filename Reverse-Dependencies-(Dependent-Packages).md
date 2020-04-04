@@ -18,7 +18,7 @@ _NuGet already shows GitHub Usage, what does showing dependent packages add?_
 
 Not all NuGet package consumers use GitHub or are interested in GitHub usages. Those individuals are also less likely to be familiar with what repo stars mean, or if they do, they may have little reference for what constitutes a high or low number of stars. This lack of context significantly reduces the impact of GitHub usage as a trust indicator.
 
-In contrast, popular packages may be more likely to be recognized by NuGet users since they may have seen them before in search results and total number of downloads is likely more straightforward to understand than GitHub stars. A user who is unsure how to interpret 15 stars on a repo is still likely to understand that 5 million downloads is a lot.
+In contrast, popular packages may be more likely to be recognized by NuGet users since they may have seen them before in search results and total number of downloads is likely more straightforward to understand than GitHub stars. A user who is unsure how to interpret 15 stars on a repo is still likely to understand that 5 million downloads is a lot. Additionally, GitHub Usage can include repos that only transitively depend on the focus package, which can be somewhat misleading or unintuitive. 
 
 ## Who are the customers
 
@@ -78,21 +78,18 @@ We are framing the appearance of a dependent package as an "endorsement" from th
 
 #### NuGet.org details page default/initial view
 
-![image](https://user-images.githubusercontent.com/15097183/78312126-a44dbb80-7507-11ea-8304-4be8c5c4aad7.png)
+![image](https://user-images.githubusercontent.com/15097183/78413368-e9d3bc80-75cb-11ea-8dc4-1cbfe9bd101a.png)
 
-* The "Package Usage" tab will contain the dependent packages information. "Package Usage" was chosen over "Dependents" or "Dependent Packages" to echo "GitHub Usage" since many package consumers will already be familiar with what that entails. Some preliminary feedback was also received that "Dependents" could be confused with the existing "Dependencies" tab.
-* "Package Usage" will be a tab separate from "GitHub Usage" for a few key reasons:
-    1. Combining the info under one tab might make the expansion annoyingly long.
-    2. Combining the info under one tab would reduce the relative important of each one. It's not clear yet which 
-       customers prefer to use.
-    3. Total number of dependent packages can be displayed prominently as a trust indicator without even having to open 
-       it.
+* "Dependents" was chosen as the name of the dropdown because it's a well known term in package management. However, there is some concern that it may be easily confused with "Dependencies" or unclear to beginners.
+* GitHub Usage and dependent packages are combined into a single dropdown because they have extremely similar purposes. Having separate dropdowns will also unnecessarily increase the space on the package details page taken up by various dependents of the focus package.
 
-#### Package Usage expanded
+#### Dependents expanded
 
-![image](https://user-images.githubusercontent.com/15097183/78312497-db709c80-7508-11ea-9ccb-c63263798de0.png)
+![image](https://user-images.githubusercontent.com/15097183/78414866-26ef7d00-75d3-11ea-9ff2-a4edc829c4f4.png)
 
-* Similar UI to GitHub Usage display since it's a very similar feature. This table format also makes the top 10 dependents and their respective download counts very clear and prominent.
+* The tabbed structure prevents the content of the dropdown from getting very long and forcing the user to scroll to see everything. 
+* Dependent packages are displayed by default because its more aligned with the NuGet platform and is likely a better/more intuitive trust indicator than GitHub Usage for the reasons stated in the problem background.
+* Owners and verified check marks are left off to be able to release this more quickly (MVP).
 
 ## Future Work (TBD)
 
@@ -115,7 +112,7 @@ Other:
 
 #### Package Usage expanded (w/ description, owners, verified check, and link to full list)
 
-![image](https://user-images.githubusercontent.com/15097183/78312868-f1cb2800-7509-11ea-9dd0-99182c6c8b6c.png)
+![image](https://user-images.githubusercontent.com/15097183/78413414-29020d80-75cc-11ea-8b7d-f02d73bb3ea0.png)
 
 #### Full list of dependent packages
 
@@ -125,7 +122,7 @@ Other:
 
 #### Visual Studio display
 
-**TBD**
+![image](https://user-images.githubusercontent.com/15097183/78415294-ac742c80-75d5-11ea-832a-9ed462f0059a.png)
 
 ## Open Questions
 
@@ -139,4 +136,4 @@ Other:
 
 ## References
 
-*TBD&
+*TBD*
