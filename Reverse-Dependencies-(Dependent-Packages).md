@@ -83,13 +83,19 @@ We are framing the appearance of a dependent package as an "endorsement" from th
 * "Dependents" was chosen as the name of the dropdown because it's a well known term in package management. However, there is some concern that it may be easily confused with "Dependencies" or unclear to beginners.
 * GitHub Usage and dependent packages are combined into a single dropdown because they have extremely similar purposes. Having separate dropdowns will also unnecessarily increase the space on the package details page taken up by various dependents of the focus package.
 
-#### Dependents expanded
+#### Dependents expanded (package dependents tab)
 
-![image](https://user-images.githubusercontent.com/15097183/78414866-26ef7d00-75d3-11ea-9ff2-a4edc829c4f4.png)
+![image](https://user-images.githubusercontent.com/15097183/78589856-baa09380-77f5-11ea-8dfc-204e72029439.png)
 
 * The tabbed structure prevents the content of the dropdown from getting very long and forcing the user to scroll to see everything. 
 * Dependent packages are displayed by default because its more aligned with the NuGet platform and is likely a better/more intuitive trust indicator than GitHub Usage for the reasons stated in the problem background.
 * Owners and verified check marks are left off to be able to release this more quickly (MVP).
+
+#### Dependents expanded (GitHub dependents tab)
+
+![image](https://user-images.githubusercontent.com/15097183/78589982-f20f4000-77f5-11ea-8ffe-56b9f921a345.png)
+
+* No information has been changed in the GitHub dependents display. The only difference is that is will now be in a tabbed box.
 
 ## Future Work (TBD)
 
