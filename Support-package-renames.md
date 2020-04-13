@@ -1,6 +1,6 @@
 * Status: **Reviewing**
 * Author(s): [Loïc Sharma](https://github.com/loic-sharma)
-* Issue: Support package renames ([NuGetGallery#7896](https://github.com/NuGet/NuGetGallery/issues/7896))
+* Issue: NuGetGallery#7896](https://github.com/NuGet/NuGetGallery/issues/7896)
 * Type: Feature
 
 ## Problem Background
