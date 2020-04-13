@@ -34,13 +34,13 @@ We will add a new section to the "Manage Package" page that lets the package's o
 
 ![image](https://user-images.githubusercontent.com/737941/77343450-ea787300-6cee-11ea-95f1-935ffc452fd1.png)
 
-Clicking on the "Learn more" link will lead the customer to a documentation page detailing explaining how to "rename" a package. The documentation will also explain the transfer popularity feature.
+Clicking on the `Learn more` link will lead the customer to a documentation page detailing explaining how to "rename" a package. The documentation will also explain the transfer popularity feature.
 
-You can select any package as the "New package" that is different from the current package as long as it has at least one listed and non-deleted version. Furthermore, the "New package" may be a package owned by a different account.
+You can select any package as the `New package` that is different from the current package as long as it has at least one listed and non-deleted version. Furthermore, the `New package` may be a package owned by a different account.
 
-The "custom message" field is a free-form field to give consumers more context on the package rename. This field is not required.
+The `Provide custom message` field is a free-form field to give consumers more context on the package rename. This field is not required.
 
-Selecting "Transfer popularity" will split the popularity of the current package and transfer it equally to the new packages (more on that in the next section). As a result, the new packages will now be favored in search rankings over the replaced package. Given transferring the popularity "hurts" the current package's search rankings, a warning message is displayed if a "Transfer popularity" checkbox is selected.
+Selecting `Transfer popularity` will split the popularity of the current package and transfer it equally to the new packages (more on that in the next section). As a result, the new packages will now be favored in search rankings over the replaced package. Given transferring the popularity "hurts" the current package's search rankings, a warning message is displayed if a `Transfer popularity` checkbox is selected.
 
 We will only allow up to 5 new packages. Once you reach the limit, the "+ Add more" link will disappear:
 
