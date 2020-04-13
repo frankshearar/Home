@@ -42,7 +42,7 @@ The `Provide custom message` field is a free-form field to give consumers more c
 
 Selecting `Transfer popularity` will split the popularity of the current package and transfer it equally to the new packages (more on that in the next section). As a result, the new packages will now be favored in search rankings over the replaced package. Given transferring the popularity "hurts" the current package's search rankings, a warning message is displayed if a `Transfer popularity` checkbox is selected.
 
-We will only allow up to 5 new packages. Once you reach the limit, the "+ Add more" link will disappear:
+We will only allow up to 5 new packages. Once you reach the limit, the `+ Add more` link will disappear:
 
 ![image](https://user-images.githubusercontent.com/737941/79151860-146a0600-7d80-11ea-9449-bae28e6f527e.png)
 
@@ -60,15 +60,15 @@ Once you've marked your package as renamed, the "Display Package" page will noti
 
 ![image](https://user-images.githubusercontent.com/737941/79152134-83dff580-7d80-11ea-9948-8b94802fe84f.png)
 
-If you chose a single "New package", the message on the "Display Package" page will read:
+If you chose a single `New package`, the message on the "Display Package" page will read:
 
 	This package has been renamed
 
-If you choose multiple "New package"s, the message on the "Display Package" page will read:
+If you choose multiple `New package`s, the message on the "Display Package" page will read:
 
 	This package has been renamed or split into new packages
 
-Note that this message only appears on the renamed package. The new packages' "Display Package" page won’t say anything!
+Note that this message only appears on the renamed package. The new packages' "Display Package" page won't say anything!
 
 ### Popularity Transfer
 Today, packages receive a popularity score based off their total downloads:
