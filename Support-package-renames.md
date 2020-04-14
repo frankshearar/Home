@@ -71,33 +71,6 @@ If you choose multiple `New package`s, the message on the "Display Package" page
 Note that this message only appears on the renamed package. The new packages' "Display Package" page won't say anything!
 
 ### Popularity Transfer
-Today, packages receive a popularity score based off their total downloads:
-
-![image](https://user-images.githubusercontent.com/737941/79152203-a40fb480-7d80-11ea-9b33-221cda34fd23.png)
-
-The proposal is that renamed packages will transfer X% of their downloads equally between their replacements. This transfer only affects popularity scoring, NuGet.org and Visual Studio will display packages' original downloads.
-
-If a package has outgoing transfers:
-
-![image](https://user-images.githubusercontent.com/737941/79152226-ac67ef80-7d80-11ea-8518-a3ed4d24ce07.png)
-
-If a package has incoming transfers and no outgoing transfers:
-
-![image](https://user-images.githubusercontent.com/737941/79152279-c30e4680-7d80-11ea-90a4-d27ceac34957.png)
+Today, packages receive a popularity score based off their total downloads. Renamed packages will transfer a percentage of their downloads equally between the replacements that have `Transfer Popularity` checked. This transfer only affects popularity scoring, NuGet.org and Visual Studio will display packages' original downloads.
 
 > **NOTE**: A package with both outgoing and incoming transfers will "ignore" the incoming downloads. The transferred incoming downloads are effectively lost.
-
-If a package has no incoming nor outgoing transfers:
-
-![image](https://user-images.githubusercontent.com/737941/79152203-a40fb480-7d80-11ea-9b33-221cda34fd23.png)
-
-
-For example, say we transfer 99% of downloads from package "Old" to packages "NewA" and "NewB":
-
-Package ID | Downloads | Original popularity score | Effective downloads | Final popularity score for popularity scoring
--- | -- | -- | -- | --
-Old | 1,000,000 | 4.55 | 10,000 | 0.46
-NewA | 0 | 0 | 495,000 | 3.20
-NewB | 200,000 | 2.03 | 695,000 | 3.79
-
-The best "transfer percentage" has not been determined yet. We will use a value of 99% during the MVP, but will refine the value later.
