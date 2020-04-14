@@ -18,7 +18,7 @@ Package | Replacements
 [EntityFramework.Extended](https://www.nuget.org/packages/EntityFramework.Extended/) |[ Z.EntityFramework.Plus.EFCore](https://www.nuget.org/packages/Z.EntityFramework.Plus.EFCore/), [Z.EntityFramework.Plus.EF6](https://www.nuget.org/packages/Z.EntityFramework.Plus.EF6/)
 [ManagedEsent](https://www.nuget.org/packages/ManagedEsent/) | [Microsoft.Database.ManagedEsent](https://www.nuget.org/packages/Microsoft.Database.ManagedEsent/)
 
-## Who are the customers
+## Target audience
 
 Package authors that would like to rename their popular packages.
 
