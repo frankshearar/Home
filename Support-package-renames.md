@@ -5,7 +5,9 @@
 
 ## Problem Background
 
-NuGet.org's search rankings is heavily influenced by packages' popularity. This leads to poor search quality when a popular package is renamed. Several popular packages have been renamed:
+NuGet.org's search rankings is heavily influenced by packages' popularity. This leads to poor search quality when a popular package is renamed.
+
+For example, here are popular packages that have been renamed:
 
 Package | Replacements
 -- | --
