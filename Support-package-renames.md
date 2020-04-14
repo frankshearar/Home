@@ -71,6 +71,8 @@ If you choose multiple `New package`s, the message on the "Display Package" page
 Note that this message only appears on the renamed package. The new packages' "Display Package" page won't say anything!
 
 ### Popularity Transfer
-Today, packages receive a popularity score based off their total downloads. Renamed packages will transfer a percentage of their downloads equally between the replacements that have `Transfer Popularity` checked. This transfer only affects popularity scoring, NuGet.org and Visual Studio will display packages' original downloads.
+Today, packages receive a popularity score based off their total downloads. These popularity scores influence search rankings: a package with a higher popularity score is more likely to be a top result.
+
+Renamed packages will transfer a percentage of their downloads equally between the replacements that have `Transfer Popularity` checked. In other words, the replacement packages will have increased popularity scores. On the other hand, the renamed package will have a decreased popularity score. This transfer only affects popularity scoring, NuGet.org and Visual Studio will display packages' original downloads.
 
 > **NOTE**: A package with both outgoing and incoming transfers will "ignore" the incoming downloads. The transferred incoming downloads are effectively lost.
