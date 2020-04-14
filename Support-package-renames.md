@@ -81,11 +81,13 @@ If a package has outgoing transfers:
 
 ![image](https://user-images.githubusercontent.com/737941/79152226-ac67ef80-7d80-11ea-8518-a3ed4d24ce07.png)
 
-Otherwise, if a package has incoming transfers:
+If a package has incoming transfers and no outgoing transfers:
 
 ![image](https://user-images.githubusercontent.com/737941/79152279-c30e4680-7d80-11ea-90a4-d27ceac34957.png)
 
-Otherwise:
+> **NOTE**: A package with both outgoing and incoming transfers will "ignore" the incoming downloads. The transferred incoming downloads are effectively lost.
+
+If a package has no incoming nor outgoing transfers:
 
 ![image](https://user-images.githubusercontent.com/737941/79152203-a40fb480-7d80-11ea-9b33-221cda34fd23.png)
 
