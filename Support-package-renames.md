@@ -9,12 +9,12 @@ Several popular packages have been renamed:
 
 Package | Replacements
 -- | --
-FAKE | fake-cli
-iTextSharp | itext7
-Microsoft.Tpl.Dataflow | System.Threading.Tasks.Dataflow
-Microsoft.SourceLink.Vsts.Git | Microsoft.SourceLink.AzureRepos.Git
-EntityFramework.Extended | Z.EntityFramework.Plus.EFCore, Z.EntityFramework.Plus.EF6, Z.EntityFramework.Plus.EF5
-ManagedEsent | Microsoft.Database.ManagedEsent
+[FAKE](https://www.nuget.org/packages/FAKE/) | [fake-cli](https://www.nuget.org/packages/fake-cli/)
+[iTextSharp](https://www.nuget.org/packages/iTextSharp/) | [itext7](https://www.nuget.org/packages/itext7/)
+[Microsoft.Tpl.Dataflow](https://www.nuget.org/packages/Microsoft.Tpl.Dataflow/) | [System.Threading.Tasks.Dataflow](https://www.nuget.org/packages/System.Threading.Tasks.Dataflow/)
+[Microsoft.SourceLink.Vsts.Git](https://www.nuget.org/packages/Microsoft.SourceLink.Vsts.Git) | [Microsoft.SourceLink.AzureRepos.Git](https://www.nuget.org/packages/Microsoft.SourceLink.AzureRepos.Git/)
+[EntityFramework.Extended](https://www.nuget.org/packages/EntityFramework.Extended/) |[ Z.EntityFramework.Plus.EFCore](https://www.nuget.org/packages/Z.EntityFramework.Plus.EFCore/), [Z.EntityFramework.Plus.EF6](https://www.nuget.org/packages/Z.EntityFramework.Plus.EF6/)
+[ManagedEsent](https://www.nuget.org/packages/ManagedEsent/) | [Microsoft.Database.ManagedEsent](https://www.nuget.org/packages/Microsoft.Database.ManagedEsent/)
 
 NuGet.org's search rankings is heavily influenced by packages' popularity. This leads to poor search quality when a popular package is renamed.
 
