@@ -22,10 +22,6 @@ NuGet.org's search rankings is heavily influenced by packages' popularity. This 
 
 Package authors that would like to rename their popular packages.
 
-## Non-Goals
-
-Package renames information will not appear in Visual studio. This will be added in the future.
-
 ## Solution
 
 ### Add a "Rename" section to the "Manage Package" page
@@ -76,3 +72,7 @@ Today, packages receive a popularity score based off their total downloads. Thes
 Renamed packages will transfer a percentage of their downloads equally between the replacements that have `Transfer Popularity` checked. In other words, the replacement packages will have increased popularity scores. On the other hand, the renamed package will have a decreased popularity score. This transfer only affects popularity scoring, NuGet.org and Visual Studio will display packages' original downloads.
 
 > **NOTE**: A package with both outgoing and incoming transfers will "ignore" the incoming downloads. The transferred incoming downloads are effectively lost.
+
+### Visual Studio
+
+Visual Studio's search rankings will reflect popularity transfers due to package renames. However, package renames information will NOT appear in Visual studio. This will be added in the future.
