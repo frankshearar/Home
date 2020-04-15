@@ -76,3 +76,9 @@ Renamed packages will transfer a percentage of their downloads equally between t
 ### Visual Studio
 
 Visual Studio's search rankings will reflect popularity transfers due to package renames. However, package renames information will NOT appear in Visual studio. This will be added in the future.
+
+# Feedback
+If you have feedback, feel free to reach out in the following ways:
+
+* GitHub on [NuGetGallery#7896](https://github.com/NuGet/NuGetGallery/issues/7896)
+* Twitter at @sharmaloic
