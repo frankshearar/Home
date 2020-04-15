@@ -7,7 +7,7 @@ The work for this feature and the discussion for this spec are tracked here - [N
 
 ## Problem Background
 
-NuGet.org's search rankings is heavily influenced by packages' popularity. This leads to poor search quality when a popular package is renamed.
+Package popularity strongly influences search rankings on NuGet.org. When you want to change the name of your package, you need to create a new package. This new package starts with no popularity and has to compete and likely underperforms against the older package. This leads to poor search quality for the new package.
 
 For example, the following popular packages have been renamed:
 
