@@ -14,12 +14,15 @@ For example, the following popular packages have been renamed:
 Package | Replacements
 -- | --
 [FAKE](https://www.nuget.org/packages/FAKE/) | [fake-cli](https://www.nuget.org/packages/fake-cli/)
+[EntityFramework.Extended](https://www.nuget.org/packages/EntityFramework.Extended/) |[ Z.EntityFramework.Plus.EFCore](https://www.nuget.org/packages/Z.EntityFramework.Plus.EFCore/), [Z.EntityFramework.Plus.EF6](https://www.nuget.org/packages/Z.EntityFramework.Plus.EF6/)
 [iTextSharp](https://www.nuget.org/packages/iTextSharp/) | [itext7](https://www.nuget.org/packages/itext7/)
 [Microsoft.Tpl.Dataflow](https://www.nuget.org/packages/Microsoft.Tpl.Dataflow/) | [System.Threading.Tasks.Dataflow](https://www.nuget.org/packages/System.Threading.Tasks.Dataflow/)
 [Microsoft.SourceLink.Vsts.Git](https://www.nuget.org/packages/Microsoft.SourceLink.Vsts.Git) | [Microsoft.SourceLink.AzureRepos.Git](https://www.nuget.org/packages/Microsoft.SourceLink.AzureRepos.Git/)
-[EntityFramework.Extended](https://www.nuget.org/packages/EntityFramework.Extended/) |[ Z.EntityFramework.Plus.EFCore](https://www.nuget.org/packages/Z.EntityFramework.Plus.EFCore/), [Z.EntityFramework.Plus.EF6](https://www.nuget.org/packages/Z.EntityFramework.Plus.EF6/)
 [ManagedEsent](https://www.nuget.org/packages/ManagedEsent/) | [Microsoft.Database.ManagedEsent](https://www.nuget.org/packages/Microsoft.Database.ManagedEsent/)
 [NuGet.Packaging.Core](https://www.nuget.org/packages/NuGet.Packaging.Core/5.3.0) | [NuGet.Packaging](https://www.nuget.org/packages/NuGet.Packaging )
+[WindowsAzure.Storage](https://www.nuget.org/packages/WindowsAzure.Storage) | [Azure.Storage.Blobs](https://www.nuget.org/packages/Azure.Storage.Blobs)
+
+
 
 ### What about package deprecation?
 
