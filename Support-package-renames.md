@@ -26,7 +26,7 @@ Package | Replacements
 
 Today, package authors can "rename" a package by deprecating it and adding a suggested alternative. In fact, packages like [`Fake`](https://www.nuget.org/packages/FAKE/) and [`NuGet.Packaging.Core`](https://www.nuget.org/packages/NuGet.Packaging.Core/5.3.0) have done exactly just that. This approach has a few flaws:
 
-1. **Package deprecations does not affect search results**. The old package is still discoverable. The package [`FAKE`](https://www.nuget.org/packages/FAKE/) has been renamed to [`fake-cli`](https://www.nuget.org/packages/fake-cli), however, [searching for "FAKE"](https://www.nuget.org/packages?q=FAKE) yields [`FAKE`](https://www.nuget.org/packages/FAKE/) as the first result and [`fake-cli`](https://www.nuget.org/packages/fake-cli) as the thirteenth result.
+1. **Package deprecations does not affect search results**. For example, the package [`FAKE`](https://www.nuget.org/packages/FAKE/) is deprecated and suggests [`fake-cli`](https://www.nuget.org/packages/fake-cli) as an alternative, however, [searching for "FAKE"](https://www.nuget.org/packages?q=FAKE) yields [`FAKE`](https://www.nuget.org/packages/FAKE/) as the first result and [`fake-cli`](https://www.nuget.org/packages/fake-cli) as the thirteenth result.
 1. **Package deprecations are version specific**. In other words, the author must deprecate each version of their package to effectively "rename" it. Furthermore, keeping deprecation messages consistent across many versions can be tricky. For example, notice how `NuGet.Packaging.Core` has inconsistent deprecations across versions [`5.3.0`](https://www.nuget.org/packages/NuGet.Packaging.Core/5.3.0) and [`5.4.0`](https://www.nuget.org/packages/NuGet.Packaging.Core/5.4.0).
 
 ## Solution
