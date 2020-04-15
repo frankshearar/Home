@@ -69,7 +69,7 @@ Opening the "Rename" section will show a message if popularity transfers are pen
 ![image](https://user-images.githubusercontent.com/737941/79151940-3794b580-7d80-11ea-82d8-09d4347dd235.png)
 
 ### Update the "Deprecation" section on the "Manage Package" page
-We will add a link to the "Deprecation" section:
+We will add a `rename a package` link to the "Deprecation" section:
 
 ![image](https://user-images.githubusercontent.com/737941/79291677-1c12d300-7e84-11ea-8ea5-355996eb6404.png)
 
@@ -85,7 +85,7 @@ If you chose a single `New package`, the message on the "Display Package" page w
 
 If you choose multiple `New package`s, the message on the "Display Package" page will read: `This package has been renamed or split into new packages`.
 
-    **NOTE**: This message only appears on the renamed package. The new packages' "Display Package" page won't say anything!
+> **NOTE**: This message only appears on the old package that was renamed. The new packages' "Display Package" page won't say anything!
 
 Below the `Additional Details` section is the free-form text provided by the package author. If no text was provided, the `Additional Details` section will be hidden.
 
