@@ -78,22 +78,22 @@ We are framing the appearance of a dependent package as an "endorsement" from th
 
 #### NuGet.org details page default/initial view
 
-![image](https://user-images.githubusercontent.com/15097183/78413368-e9d3bc80-75cb-11ea-8dc4-1cbfe9bd101a.png)
+![image](https://user-images.githubusercontent.com/15097183/79286022-29c05c80-7e74-11ea-9da7-becfcf757d4f.png)
 
 * "Dependents" was chosen as the name of the dropdown because it's a well known term in package management. However, there is some concern that it may be easily confused with "Dependencies" or unclear to beginners.
 * GitHub Usage and dependent packages are combined into a single dropdown because they have extremely similar purposes. Having separate dropdowns will also unnecessarily increase the space on the package details page taken up by various dependents of the focus package.
 
 #### Dependents expanded (package dependents tab)
 
-![image](https://user-images.githubusercontent.com/15097183/78589856-baa09380-77f5-11ea-8dfc-204e72029439.png)
+![image](https://user-images.githubusercontent.com/15097183/79286552-d5b67780-7e75-11ea-8167-a9106ab5a485.png)
 
 * The tabbed structure prevents the content of the dropdown from getting very long and forcing the user to scroll to see everything. 
 * Dependent packages are displayed by default because its more aligned with the NuGet platform and is likely a better/more intuitive trust indicator than GitHub Usage for the reasons stated in the problem background.
-* Owners and verified check marks are left off to be able to release this more quickly (MVP).
+* Owners and link to full list of dependent packages are left off to be able to release this more quickly (MVP).
 
 #### Dependents expanded (GitHub dependents tab)
 
-![image](https://user-images.githubusercontent.com/15097183/78589982-f20f4000-77f5-11ea-8ffe-56b9f921a345.png)
+![image](https://user-images.githubusercontent.com/15097183/79286317-1235a380-7e75-11ea-839f-278cb800fc7f.png)
 
 * No information has been changed in the GitHub dependents display. The only difference is that is will now be in a tabbed box.
 
@@ -116,9 +116,9 @@ Other:
 
 ### Future Mock Ups
 
-#### Package Usage expanded (w/ description, owners, verified check, and link to full list)
+#### Package Usage expanded w/owners and link to full list
 
-![image](https://user-images.githubusercontent.com/15097183/78413414-29020d80-75cc-11ea-8b7d-f02d73bb3ea0.png)
+![image](https://user-images.githubusercontent.com/15097183/79286859-bf5ceb80-7e76-11ea-9413-e63ab9ad8c62.png)
 
 #### Full list of dependent packages
 
@@ -128,7 +128,7 @@ Other:
 
 #### Visual Studio display
 
-![image](https://user-images.githubusercontent.com/15097183/78415294-ac742c80-75d5-11ea-832a-9ed462f0059a.png)
+![image](https://user-images.githubusercontent.com/15097183/79286116-6ee48e80-7e74-11ea-92dd-08c4a31a5bb4.png)
 
 ## Open Questions
 
