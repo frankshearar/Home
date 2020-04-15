@@ -9,7 +9,7 @@ The work for this feature and the discussion for this spec are tracked here - [N
 
 NuGet.org's search rankings is heavily influenced by packages' popularity. This leads to poor search quality when a popular package is renamed.
 
-For example, here are popular packages that have been renamed:
+For example, the following popular packages have been renamed:
 
 Package | Replacements
 -- | --
