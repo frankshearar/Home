@@ -101,7 +101,27 @@ Renamed packages will transfer a percentage of their downloads equally between t
 
 ### Visual Studio
 
-Visual Studio's search rankings will reflect popularity transfers due to package renames. However, package renames information will NOT appear in Visual studio. This will be added in the future.
+Visual Studio's search rankings will reflect popularity transfers due to package renames. However, package renames information will NOT appear in Visual Studio. This will be added in the future.
+
+> **NOTE**: The mock-ups below capture our vision for the experience on Visual Studio. These are early previews and may change!
+
+#### Show package renames on the "Browse" tab
+
+Customers should be notified that the package they are browsing has been renamed:
+
+![image](https://user-images.githubusercontent.com/737941/79392503-559d1a00-7f28-11ea-82a4-0e5a09dcf341.png)
+
+#### Show package renames on the "Installed" tab
+
+Customers should be notified that a package they have installed has been renamed:
+
+![image](https://user-images.githubusercontent.com/737941/79393361-0952d980-7f2a-11ea-9e4f-9f01a4eb773b.png)
+
+The "Installed" tab will have an "Info" icon if an installed package has been renamed. This will be replaced by a "Warning" icon if an installed package is deprecated.
+
+An "Info" icon will be added to the renamed package in the list of installed packages. This will be replaced by a "Warning" icon if the renamed package is also deprecated.
+
+The details pane on the right side displays the rename information. A package that is both renamed and deprecated will show the deprecated message first, followed by the renamed message.
 
 ## Feedback
 If you have feedback, feel free to reach out in the following ways:
