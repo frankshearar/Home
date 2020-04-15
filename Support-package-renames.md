@@ -21,7 +21,6 @@ Package | Replacements
 [ManagedEsent](https://www.nuget.org/packages/ManagedEsent/) | [Microsoft.Database.ManagedEsent](https://www.nuget.org/packages/Microsoft.Database.ManagedEsent/)
 [NuGet.Packaging.Core](https://www.nuget.org/packages/NuGet.Packaging.Core/5.3.0) | [NuGet.Packaging](https://www.nuget.org/packages/NuGet.Packaging )
 
-
 ### What about package deprecation?
 
 Today, package authors can "rename" a package by deprecating it and adding a suggested alternative. In fact, packages like [`Fake`](https://www.nuget.org/packages/FAKE/) and [`NuGet.Packaging.Core`](https://www.nuget.org/packages/NuGet.Packaging.Core/5.3.0) have done exactly just that. This approach has a few flaws:
@@ -31,13 +30,13 @@ Today, package authors can "rename" a package by deprecating it and adding a sug
 
 ## Solution
 
-* Add a "Rename" section to the "Manage Package" page
-  * Saving renames
-  * Pending renames
-* Update the "Deprecation" section on the "Manage Package" page
-* Show package renames on the "Display Package" page
-* Popularity Transfer
-* Visual Studio
+* [Add a "Rename" section to the "Manage Package" page](https://github.com/NuGet/Home/wiki/Support-package-renames#add-a-rename-section-to-the-manage-package-page)
+  * [Saving renames](https://github.com/NuGet/Home/wiki/Support-package-renames#saving-renames)
+  * [Pending renames](https://github.com/NuGet/Home/wiki/Support-package-renames#pending-renames)
+* [Update the "Deprecation" section on the "Manage Package" page](https://github.com/NuGet/Home/wiki/Support-package-renames#update-the-deprecation-section-on-the-manage-package-page)
+* [Show package renames on the "Display Package" page](https://github.com/NuGet/Home/wiki/Support-package-renames#show-package-renames-on-the-display-package-page)
+* [Popularity Transfers](https://github.com/NuGet/Home/wiki/Support-package-renames#popularity-transfers)
+* [Visual Studio](https://github.com/NuGet/Home/wiki/Support-package-renames#visual-studio)
 
 ### Add a "Rename" section to the "Manage Package" page
 
@@ -101,7 +100,7 @@ Renamed packages will transfer a percentage of their downloads equally between t
 
 Visual Studio's search rankings will reflect popularity transfers due to package renames. However, package renames information will NOT appear in Visual studio. This will be added in the future.
 
-### Feedback
+## Feedback
 If you have feedback, feel free to reach out in the following ways:
 
 * GitHub on [NuGetGallery#7896](https://github.com/NuGet/NuGetGallery/issues/7896)
