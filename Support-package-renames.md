@@ -22,8 +22,6 @@ Package | Replacements
 [NuGet.Packaging.Core](https://www.nuget.org/packages/NuGet.Packaging.Core/5.3.0) | [NuGet.Packaging](https://www.nuget.org/packages/NuGet.Packaging )
 [WindowsAzure.Storage](https://www.nuget.org/packages/WindowsAzure.Storage) | [Azure.Storage.Blobs](https://www.nuget.org/packages/Azure.Storage.Blobs)
 
-
-
 ### What about package deprecation?
 
 Today, package authors can "rename" a package by deprecating it and adding a suggested alternative. In fact, packages like [`Fake`](https://www.nuget.org/packages/FAKE/) and [`NuGet.Packaging.Core`](https://www.nuget.org/packages/NuGet.Packaging.Core/5.3.0) have done exactly just that. This approach has a few flaws:
@@ -39,10 +37,11 @@ Today, package authors can "rename" a package by deprecating it and adding a sug
 * [Update the "Deprecation" section on the "Manage Package" page](https://github.com/NuGet/Home/wiki/Support-package-renames#update-the-deprecation-section-on-the-manage-package-page)
 * [Show package renames on the "Display Package" page](https://github.com/NuGet/Home/wiki/Support-package-renames#show-package-renames-on-the-display-package-page)
 * [Popularity Transfers](https://github.com/NuGet/Home/wiki/Support-package-renames#popularity-transfers)
-* [Visual Studio (Preview)](https://github.com/NuGet/Home/wiki/Support-package-renames#visual-studio)
+* [Visual Studio (Preview)](https://github.com/NuGet/Home/wiki/Support-package-renames#visual-studio-preview)
   * [Show package renames on the "Browse" tab](https://github.com/NuGet/Home/wiki/Support-package-renames#show-package-renames-on-the-browse-tab)
   * [Show package renames on the "Installed" tab](https://github.com/NuGet/Home/wiki/Support-package-renames#show-package-renames-on-the-installed-tab)
   * [Show package renames on the "Updates" tab](https://github.com/NuGet/Home/wiki/Support-package-renames#show-package-renames-on-the-updates-tab)
+* [.NET Core CLI (Preview)](https://github.com/NuGet/Home/wiki/Support-package-renames#net-core-cli-preview)
 
 ### Add a "Rename" section to the "Manage Package" page
 
