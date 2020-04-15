@@ -104,7 +104,7 @@ Renamed packages will transfer a percentage of their downloads equally between t
 
 ### Visual Studio (Preview)
 
-Visual Studio's search rankings will reflect popularity transfers due to package renames. However, package renames information will NOT appear in Visual Studio. This will be added in the future.
+Visual Studio's search rankings will reflect popularity transfers due to package renames. For now, package renames information will NOT appear in Visual Studio. This will be added in the future.
 
 > **NOTE**: The mock-ups below capture our vision for the experience on Visual Studio. These are early previews and may change!
 
@@ -135,6 +135,10 @@ Customers should be notified that a package with updates has been renamed:
 An "Info" icon will be added to the renamed package in the list of package updates. This will be replaced by a "Warning" icon if the renamed package is also deprecated.
 
 The details pane on the right side displays the rename information. A package that is both renamed and deprecated will show the deprecated message first, followed by the renamed message.
+
+### .NET Core CLI (Preview)
+
+For now, package renames information will NOT appear in the .NET Core CLI. We will consider adding a `--renamed` option to the `dotnet list package` command.
 
 ## Feedback
 If you have feedback, feel free to reach out in the following ways:
