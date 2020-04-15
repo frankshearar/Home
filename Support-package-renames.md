@@ -1,7 +1,8 @@
-* Status: **Reviewing**
-* Author(s): [Loïc Sharma](https://github.com/loic-sharma)
-* Issue: [NuGetGallery#7896](https://github.com/NuGet/NuGetGallery/issues/7896)
-* Type: Feature
+Status: **Reviewing**
+Author: [Loïc Sharma](https://github.com/loic-sharma)
+
+## Issue
+The work for this feature and the discussion around the spec is tracked here - [NuGetGallery#7896](https://github.com/NuGet/NuGetGallery/issues/7896)
 
 ## Problem Background
 
@@ -17,8 +18,19 @@ Package | Replacements
 [Microsoft.SourceLink.Vsts.Git](https://www.nuget.org/packages/Microsoft.SourceLink.Vsts.Git) | [Microsoft.SourceLink.AzureRepos.Git](https://www.nuget.org/packages/Microsoft.SourceLink.AzureRepos.Git/)
 [EntityFramework.Extended](https://www.nuget.org/packages/EntityFramework.Extended/) |[ Z.EntityFramework.Plus.EFCore](https://www.nuget.org/packages/Z.EntityFramework.Plus.EFCore/), [Z.EntityFramework.Plus.EF6](https://www.nuget.org/packages/Z.EntityFramework.Plus.EF6/)
 [ManagedEsent](https://www.nuget.org/packages/ManagedEsent/) | [Microsoft.Database.ManagedEsent](https://www.nuget.org/packages/Microsoft.Database.ManagedEsent/)
+[NuGet.Packaging.Core](https://www.nuget.org/packages/NuGet.Packaging.Core/5.3.0) | [NuGet.Packaging](https://www.nuget.org/packages/NuGet.Packaging )
 
-## Target audience
+
+### What about package deprecation?
+
+Today, package authors can "rename" a package by deprecating it and adding a suggested alternative. In fact, packages like [`Fake`](https://www.nuget.org/packages/FAKE/) and [`NuGet.Packaging.Core`](https://www.nuget.org/packages/NuGet.Packaging.Core/5.3.0) have done exactly just that. This approach has a few flaws:
+
+1. **Package deprecations does not affect search results**. The old package is still discoverable.
+1. **Package deprecations are version specific**. In other words, the author must deprecate each version of their package to effectively "rename" it. Furthermore, keeping deprecation messages consistent across many versions can be tricky. For example, notice how `NuGet.Packaging.Core` has inconsistent deprecations across versions [`5.3.0`](https://www.nuget.org/packages/NuGet.Packaging.Core/5.3.0) and [`5.4.0`](https://www.nuget.org/packages/NuGet.Packaging.Core/5.4.0).
+
+
+
+### Target audience
 
 Package authors that would like to rename their popular packages.
 
@@ -77,7 +89,7 @@ Renamed packages will transfer a percentage of their downloads equally between t
 
 Visual Studio's search rankings will reflect popularity transfers due to package renames. However, package renames information will NOT appear in Visual studio. This will be added in the future.
 
-# Feedback
+## Feedback
 If you have feedback, feel free to reach out in the following ways:
 
 * GitHub on [NuGetGallery#7896](https://github.com/NuGet/NuGetGallery/issues/7896)
