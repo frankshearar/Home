@@ -104,4 +104,4 @@ Visual Studio's search rankings will reflect popularity transfers due to package
 If you have feedback, feel free to reach out in the following ways:
 
 * GitHub on [NuGetGallery#7896](https://github.com/NuGet/NuGetGallery/issues/7896)
-* Twitter at @sharmaloic
+* Twitter at [@sharmaloic](https://twitter.com/sharmaloic)
