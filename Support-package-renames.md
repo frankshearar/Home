@@ -39,7 +39,10 @@ Today, package authors can "rename" a package by deprecating it and adding a sug
 * [Update the "Deprecation" section on the "Manage Package" page](https://github.com/NuGet/Home/wiki/Support-package-renames#update-the-deprecation-section-on-the-manage-package-page)
 * [Show package renames on the "Display Package" page](https://github.com/NuGet/Home/wiki/Support-package-renames#show-package-renames-on-the-display-package-page)
 * [Popularity Transfers](https://github.com/NuGet/Home/wiki/Support-package-renames#popularity-transfers)
-* [Visual Studio](https://github.com/NuGet/Home/wiki/Support-package-renames#visual-studio)
+* [Visual Studio (Preview)](https://github.com/NuGet/Home/wiki/Support-package-renames#visual-studio)
+  * [Show package renames on the "Browse" tab](https://github.com/NuGet/Home/wiki/Support-package-renames#show-package-renames-on-the-browse-tab)
+  * [Show package renames on the "Installed" tab](https://github.com/NuGet/Home/wiki/Support-package-renames#show-package-renames-on-the-installed-tab)
+  * [Show package renames on the "Updates" tab](https://github.com/NuGet/Home/wiki/Support-package-renames#show-package-renames-on-the-updates-tab)
 
 ### Add a "Rename" section to the "Manage Package" page
 
@@ -99,7 +102,7 @@ Renamed packages will transfer a percentage of their downloads equally between t
 
 > **NOTE**: A package with both outgoing and incoming transfers will "ignore" the incoming downloads. The transferred incoming downloads are effectively lost.
 
-### Visual Studio
+### Visual Studio (Preview)
 
 Visual Studio's search rankings will reflect popularity transfers due to package renames. However, package renames information will NOT appear in Visual Studio. This will be added in the future.
 
