@@ -9,6 +9,7 @@
 * [[Package Vulnerability|Flag-vulnerable-packages]]
 * [[dotnet list package --vulnerable|dotnet-list-package---vulnerable]]
 * [Machine-readable output for dotnet list package](https://github.com/NuGet/Home/wiki/%5BSpec%5D-Machine-readable-output-for-dotnet-list-package)
+* [[Support Package Renames|Support-package-renames]]
 
 #### Reviewed
 
