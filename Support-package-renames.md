@@ -123,6 +123,16 @@ An "Info" icon will be added to the renamed package in the list of installed pac
 
 The details pane on the right side displays the rename information. A package that is both renamed and deprecated will show the deprecated message first, followed by the renamed message.
 
+#### Show package renames on the "Updates" tab
+
+Customers should be notified that a package with updates has been renamed:
+
+![image](https://user-images.githubusercontent.com/737941/79393958-3653bc00-7f2b-11ea-8965-1873624b5885.png)
+
+An "Info" icon will be added to the renamed package in the list of package updates. This will be replaced by a "Warning" icon if the renamed package is also deprecated.
+
+The details pane on the right side displays the rename information. A package that is both renamed and deprecated will show the deprecated message first, followed by the renamed message.
+
 ## Feedback
 If you have feedback, feel free to reach out in the following ways:
 
