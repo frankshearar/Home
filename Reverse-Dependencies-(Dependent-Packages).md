@@ -1,5 +1,5 @@
 * Status: In Progress
-* Author(s): Chris Gill (chgill), Joel Verhagen (jver)
+* Author(s): Chris Gill (chgill), David Cueva Cortez (t-dacue), Joel Verhagen (jver)
 * Issue: [Show dependent packages for a given package on the details page #4718](https://github.com/NuGet/NuGetGallery/issues/4718)
 * Type: Feature
 
