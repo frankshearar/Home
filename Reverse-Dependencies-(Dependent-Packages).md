@@ -36,7 +36,7 @@ In contrast, popular packages may be more likely to be recognized by NuGet users
 
 ## Who are the customers
 
-NuGet package consumers (trust indicator) and package authors (metric) on NuGet.org [and Visual Studio (TBD)]
+NuGet package consumers (trust indicator) and package authors (metric) on NuGet.org.
 
 ## Requirements
 
@@ -52,7 +52,7 @@ NuGet.org:
 NuGet.org:
 * Link to see all dependent packages sorted by popularity
 * Package owners
-* Filter search with `dependents:`?
+* Filter search with `dependents:` (TBD)
 
 Visual Studio:
 * Display top N popular dependent packages in VS
