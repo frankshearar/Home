@@ -7,9 +7,9 @@
 ## Problem Background
 
 **TL;DR:** 
-* For consumers, this is a package trust indicator 
-* For Authors, dependents can be a success metric/accolade
-* Package consumers are more likely to have context around NuGet usage than GitHub usage
+* For consumers, this is a package trust indicator.
+* For Authors, dependents can be a success metric/accolade,
+* Package consumers are more likely to have context around NuGet package usage/dependents than GitHub usage.
 
 Package consumers want to be able see what packages are depending on a particular package of interest for a couple key reasons:
 1. **Trust/quality indication** - Presumably, if popular/high-quality/many packages depend on a particular package, then that package is more likely to be high-quality itself.
