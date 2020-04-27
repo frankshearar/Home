@@ -21,7 +21,7 @@
 
 **TL;DR:** 
 * For consumers, this is a package trust indicator.
-* For Authors, dependents can be a success metric/accolade,
+* For authors, dependents can be a success metric/accolade,
 * Package consumers are more likely to have context around NuGet package usage/dependents than GitHub usage.
 
 Package consumers want to be able see what packages are depending on a particular package of interest for a couple key reasons:
