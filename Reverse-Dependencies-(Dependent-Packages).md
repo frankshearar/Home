@@ -83,7 +83,7 @@ For clarity, I'll be describing the package whose details page is being viewed a
 
 _Latest stable version_ depends on _any version_ of the focus package.
 
-This mean if a package depended on the focus package in version 2.0.0 but moved off of it for version 2.1.0, then it will no longer be displayed as a dependent. If a package is depending on version 1.0.0 of the focus package, but the latest version of the focus package is 1.1.0, it will still be displayed as a dependent regardless of which version of the focus package is currently being viewed.
+This means if a package depended on the focus package in version 2.0.0 but moved off of it for version 2.1.0, then it will no longer be displayed as a dependent. If a package is depending on version 1.0.0 of the focus package, but the latest version of the focus package is 1.1.0, it will still be displayed as a dependent regardless of which version of the focus package is currently being viewed.
 
 We are framing the appearance of a dependent package as an "endorsement" from that package. By using the focus package in their latest stable version, a package is essentially endorsing the focus package. We only display a package as a dependent if the latest stable version depends on the focus package because a transition away from the focus package may indicate they are no longer willing to endorse it. 
 
