@@ -4,7 +4,20 @@
 * Issue: [Show dependent packages for a given package on the details page #4718](https://github.com/NuGet/NuGetGallery/issues/4718)
 * Type: Feature
 
-## Problem Background
+## Table of Contents
+
+* [Problem background](#problem-background)
+* [Who are the customers](#who-are-the-customers)
+* [Requirements](#requirements)
+* [Goals](#goals)
+* [Non-goals](#non-goals)
+* [Solution](#solution)
+* [Future Work](#future-work)
+* [FAQ](#faq)
+* [Open questions](#open-questions)
+* [Considerations](#considerations)
+
+## Problem background
 
 **TL;DR:** 
 * For consumers, this is a package trust indicator.
@@ -19,11 +32,11 @@ _NuGet already shows GitHub Usage, what does showing dependent packages add?_
 
 Not all NuGet package consumers use GitHub or are interested in GitHub usages. Those individuals are also less likely to be familiar with what repo stars mean, or if they do, they may have little reference for what constitutes a high or low number of stars. This lack of context significantly reduces the impact of GitHub usage as a trust indicator.
 
-In contrast, popular packages may be more likely to be recognized by NuGet users since they may have seen them before in search results and total number of downloads is likely more straightforward to understand than GitHub stars. A user who is unsure how to interpret 15 stars on a repo is still likely to understand that 5 million downloads is a lot. Additionally, GitHub Usage can include repos that only transitively depend on the focus package, which can be somewhat misleading or unintuitive. 
+In contrast, popular packages may be more likely to be recognized by NuGet users since they may have seen them before in search results and total number of downloads may be more straightforward to understand than GitHub stars. A user who is unsure how to interpret 2K stars on a repo is still likely to understand that 5 million downloads is a lot. Additionally, GitHub Usage can include repos that only transitively depend on the focus package, which can be somewhat misleading or unintuitive. 
 
 ## Who are the customers
 
-NuGet package consumers (trust indicator) and package authors (metric) on both NuGet.org [and Visual Studio (TBD)]
+NuGet package consumers (trust indicator) and package authors (metric) on NuGet.org [and Visual Studio (TBD)]
 
 ## Requirements
 
@@ -54,7 +67,7 @@ Other
 
 ## Non-goals
 
-* All work listed under **Next steps** and **Future work** is out of scope for initial release.
+* All work listed under [Future work](#future-work) is out of scope for initial release.
 * Display complex information about TFMs and which version of a dependent depends on which version of the package.
 * Display transitive dependents.
 * Filter between pre-release and stable dependents.
@@ -70,7 +83,11 @@ For clarity, I'll be describing the package whose details page is being viewed a
 
 _Latest stable version_ depends on _any version_ of the focus package.
 
-We are framing the appearance of a dependent package as an "endorsement" from that package. By using the focus package in their latest stable version, they are essentially endorsing the focus package. We only display a package as a dependent if the latest stable version depends on the focus package because a transition away from the focus package may indicate they are no longer willing to endorse it. 
+This mean if a package depended on the focus package in version 2.0.0 but moved off of it for version 2.1.0, then it will no longer be displayed as a dependent. If a package is depending on version 1.0.0 of the focus package, but the latest version of the focus package is 1.1.0, it will still be displayed as a dependent regardless of which version of the focus package is currently being viewed.
+
+We are framing the appearance of a dependent package as an "endorsement" from that package. By using the focus package in their latest stable version, a package is essentially endorsing the focus package. We only display a package as a dependent if the latest stable version depends on the focus package because a transition away from the focus package may indicate they are no longer willing to endorse it. 
+
+For more details on this, please see the [FAQ section](#faq).
 
 ### Mock ups
 
@@ -90,12 +107,12 @@ We are framing the appearance of a dependent package as an "endorsement" from th
 * "How do I use this?" link at the bottom links to documentation describing NuGet's recommended process for evaluating package trust, as well as describing how our dependents calculation/display works. Link goes to here: [https://docs.microsoft.com/en-us/nuget/consume-packages/finding-and-choosing-packages#evaluating-packages](https://docs.microsoft.com/en-us/nuget/consume-packages/finding-and-choosing-packages#evaluating-packages)
 * Verified check marks lend an additional dimension of trust evaluation.
 
-## Future work (TBD)
+## Future work
 
 NuGet.org:
 * Link to see all dependent packages sorted by popularity
 * Package owners
-* Filter search with `dependents:`?
+* Filter search with `dependents:` (TBD)
 
 Visual Studio:
 * Display top N popular dependent packages in VS
@@ -110,13 +127,15 @@ Other:
 ![image](https://user-images.githubusercontent.com/15097183/80410017-b4df2080-887e-11ea-94bf-d5afda8bc442.png)
 
 * Owners info adds another potential trust indicator if the owner is recognizable (Microsoft, dotnet foundation, etc.).
-* "See all" link will open a new tab that displays all dependent packages as shown in the "Full list of dependent packages" section of this spec.
+* "See all" link will open a new tab that displays a [view of all dependent packages](#full-list-of-dependent-packages).
 
 #### Full list of dependent packages
 
 **Note:** Dependent package IDs don't match previous image here, but they will in the real deal.
 
 ![image](https://user-images.githubusercontent.com/15097183/78312974-3787f080-750a-11ea-8f73-0dbfd4575636.png)
+
+* **Caveat:** While the full list of dependent packages is surfaced using the NuGet.org search page UI, queries entered in the search bar will initiate a regular search. For example, searching for "Contoso" will bring search results from all of NuGet.org, not just from within the dependents of the focus package. To search for a specific package among the dependents, a search filter would be required which is being considered but is not currently planned.
 
 #### Visual Studio display 
 
@@ -146,6 +165,14 @@ A: No, GitHub Usage does not currently behave that way, and neither will the dep
 
 A: Unlisted and deprecated packages cannot be displayed as dependent packages.
 
+**Q: Can .NET tools be package dependents?**
+
+A: No.
+
+**Q: Are there currently plans for a "see all" view for the dependent GitHub repos?**
+
+A: It is a consideration for the future, but there are no plans for it at this time.
+
 ## Open Questions
 
 * What is the best way to surface this information in Visual Studio?
@@ -161,6 +188,9 @@ A: Unlisted and deprecated packages cannot be displayed as dependent packages.
 
 ![image](https://user-images.githubusercontent.com/15097183/80410651-cd036f80-887f-11ea-95b0-36be89257ce6.png)
 
+
 #### Alternative "Used By" section design
 
 ![image](https://user-images.githubusercontent.com/15097183/80410395-5a928f80-887f-11ea-8907-9c7c24c4964c.png)
+
+* While this design allows for more dependents to be shown (top 10 for both packages and repos), it places GitHub dependent information a click further away and presents some accessibility issues.
