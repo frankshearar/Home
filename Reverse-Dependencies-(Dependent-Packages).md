@@ -1,3 +1,4 @@
+
 * Status: In Progress
 * Author(s): Chris Gill (chgill), David Cueva Cortez (t-dacue)
 * Issue: [Show dependent packages for a given package on the details page #4718](https://github.com/NuGet/NuGetGallery/issues/4718)
@@ -78,24 +79,15 @@ We are framing the appearance of a dependent package as an "endorsement" from th
 
 #### NuGet.org details page default/initial view
 
-![image](https://user-images.githubusercontent.com/15097183/79286022-29c05c80-7e74-11ea-9da7-becfcf757d4f.png)
+![image](https://user-images.githubusercontent.com/15097183/80406423-e8b74780-8878-11ea-89ec-c15effd42bc9.png)
 
-* "Dependents" was chosen as the name of the dropdown because it's a well known term in package management. However, there is some concern that it may be easily confused with "Dependencies" or unclear to beginners.
-* GitHub Usage and dependent packages are combined into a single dropdown because they have extremely similar purposes. Having separate dropdowns will also unnecessarily increase the space on the package details page taken up by various dependents of the focus package.
+* GitHub and NuGet package dependents are combined into a single dropdown because they have extremely similar purposes. Having separate dropdowns will also unnecessarily increase the space on the package details page taken up by various dependents of the focus package.
 
 #### Dependents expanded (package dependents tab)
 
-![image](https://user-images.githubusercontent.com/15097183/79286552-d5b67780-7e75-11ea-8167-a9106ab5a485.png)
+![image](https://user-images.githubusercontent.com/15097183/80407810-0d142380-887b-11ea-8417-e489898cdb54.png)
 
-* The tabbed structure prevents the content of the dropdown from getting very long and forcing the user to scroll to see everything. 
-* Dependent packages are displayed by default because its more aligned with the NuGet platform and is likely a better/more intuitive trust indicator than GitHub Usage for the reasons stated in the problem background.
 * Owners and link to full list of dependent packages are left off to be able to release this more quickly (MVP).
-
-#### Dependents expanded (GitHub dependents tab)
-
-![image](https://user-images.githubusercontent.com/15097183/79286317-1235a380-7e75-11ea-839f-278cb800fc7f.png)
-
-* No information has been changed in the GitHub dependents display. The only difference is that is will now be in a tabbed box.
 
 ## Future Work (TBD)
 
@@ -118,7 +110,8 @@ Other:
 
 #### Package Usage expanded w/owners and link to full list
 
-![image](https://user-images.githubusercontent.com/15097183/79286859-bf5ceb80-7e76-11ea-9413-e63ab9ad8c62.png)
+![image](https://user-images.githubusercontent.com/15097183/80407434-7a738480-887a-11ea-81c7-8fa9707ac11d.png)
+
 
 #### Full list of dependent packages
 
@@ -126,7 +119,7 @@ Other:
 
 ![image](https://user-images.githubusercontent.com/15097183/78312974-3787f080-750a-11ea-8f73-0dbfd4575636.png)
 
-#### Visual Studio display
+#### Visual Studio display 
 
 ![image](https://user-images.githubusercontent.com/15097183/79286116-6ee48e80-7e74-11ea-92dd-08c4a31a5bb4.png)
 
@@ -137,9 +130,5 @@ Other:
 * Should we also enable a `dependents: <package ID>` search feature?
 
 ## Considerations
-
-*TBD*
-
-## References
 
 *TBD*
