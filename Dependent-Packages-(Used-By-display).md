@@ -141,7 +141,7 @@ Other:
 
 ![image](https://user-images.githubusercontent.com/15097183/79286116-6ee48e80-7e74-11ea-92dd-08c4a31a5bb4.png)
 
-Note: Very tentative design. "Dependent packages" is very unlikely to be the final wording due to concerns of confusion with "dependencies." Will likely require a separate research and design effort down the road.
+* ******Note:** Very tentative design. "Dependent packages" is very unlikely to be the final wording due to concerns of confusion with "dependencies." Will likely require a separate research and design effort down the road.
 
 ## FAQ
 
