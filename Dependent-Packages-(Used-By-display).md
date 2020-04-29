@@ -96,7 +96,8 @@ For more details on this, please see the [FAQ section](#faq).
 
 ![image](https://user-images.githubusercontent.com/15097183/80406423-e8b74780-8878-11ea-89ec-c15effd42bc9.png)
 
-* GitHub and NuGet package dependents are combined into a single dropdown because they have extremely similar purposes. Having separate dropdowns will also unnecessarily increase the space on the package details page taken up by various dependents of the focus package.
+* GitHub and NuGet package dependents are combined into a single "Used By" dropdown because they have extremely similar purposes. Having separate dropdowns will also unnecessarily increase the space on the package details page taken up by various dependents of the focus package.
+* "Used By" chosen for the title of the dependents drop-down because feedback indicated that the term "dependent" may be easily confused with "dependency." "Usage" was also considered to play off "GitHub Usage" but was decided against because it may create the expectation of usage examples rather than who uses the package.
 * "Used By" section on the sidebar makes dependent information more easily scannable and further hints at the information contained in the "Used By" dropdown. Clicking the links in on the sidebar will open the dropdown and scroll to the appropriate section. Putting the dependents links in the "Info" section risks overcrowding it and presents a challenge for clear naming.
 
 #### "Used By" expanded
