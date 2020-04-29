@@ -169,7 +169,7 @@ A: Unlisted and deprecated packages cannot be displayed as dependent packages.
 
 **Q: Can .NET tools be package dependents?**
 
-A: No.
+A: No - it is a consideration for the future, but there are no plans for it at this time.
 
 **Q: Are there currently plans for a "see all" view for the dependent GitHub repos?**
 
