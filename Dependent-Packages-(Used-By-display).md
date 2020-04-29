@@ -25,7 +25,7 @@
 * Package consumers are more likely to have context around NuGet package usage/dependents than GitHub usage.
 
 
-Package consumers want to be able see what packages are depending on a particular package of interest for a couple key reasons:
+Customers want to see what packages are depending on a package of interest for a couple key reasons:
 1. **Trust/quality indication** - Presumably, if popular/high-quality/many packages depend on a particular package, then that package is more likely to be high-quality itself.
 2. **Author metrics/accolades** - Authors are often interested in seeing how many and what unique packages are directly depending on their package. Total number of downloads doesn't tell the full the story since transitive downloads, upgrades, and redownloads all count. Having a high-profile package depend on your package can also be a big deal!
 
