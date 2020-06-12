@@ -1,5 +1,6 @@
 ## NuGet Restore No-Op
 
+A different no-op for VS was implemented in VS 2019.7, see [spec].(https://github.com/NuGet/Home/blob/dev/designs/VisualStudio-PartialRestoreOptimization.md)
 ### What is NuGet Restore No-Op
 Currently in 3 of the 4 NuGet Clients (NuGet.exe, dotnet.exe, MSBuild) we do a full restore at every restore call.
 The VS Client currently has a non-configurable no-op implemented. 
