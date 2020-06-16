@@ -14,13 +14,12 @@
 #### Reviewed
 
 * [[Enhanced package upload workflow|Enhanced package upload workflow]]
-* [[Organizations on NuGet.org]]
 * [[Packaging Icon, License and Documentation within the nupkg]]
-* [[Register package signing certificates]]
 * [[Replication API|[spec]-NuGet.org-replication-API]]
 
 #### [[Implemented|Implemented]]
-
+* [[Register package signing certificates]]
+* [[Organizations on NuGet.org]]
 * [[2 Factor Auth for NuGet.org sign in]]
 * [[Add nuget sources command to the dotnet CLI]]
 * [[Author Package Signing]]
