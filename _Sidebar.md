@@ -13,11 +13,11 @@
 
 #### Reviewed
 
-* [[Enhanced package upload workflow|Enhanced package upload workflow]]
 * [[Packaging Icon, License and Documentation within the nupkg]]
 * [[Replication API|[spec]-NuGet.org-replication-API]]
 
 #### [[Implemented|Implemented]]
+* [[Enhanced package upload workflow|Enhanced package upload workflow]]
 * [[Register package signing certificates]]
 * [[Organizations on NuGet.org]]
 * [[2 Factor Auth for NuGet.org sign in]]
