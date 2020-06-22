@@ -37,12 +37,14 @@ The solution consists of applying changes to 2 parts: Search service and Gallery
 For the Gallery side, a new UI will be added to the search result page to be able to access the advanced search features. Here are few mockups of possible solutions:
 
 ### Mockup
+#### Collapsed
+![Collapsed search panel](https://user-images.githubusercontent.com/65630625/85337567-bc9df880-b4ae-11ea-8a0d-f3fc66244b7b.png)
 
-**TODO**
-[[ressources/AdvancedSearch/MockCollapsed.png]]
+#### Expanded
+![Expanded search panel](https://user-images.githubusercontent.com/65630625/85337622-d3dce600-b4ae-11ea-8065-5da4a5a828ec.png)
 
-
-
+#### Mobile view
+![Mobile view](https://user-images.githubusercontent.com/65630625/85337737-fff86700-b4ae-11ea-8282-60f39a661ec6.png)
 
 
 ## How did we choose the "Sort by" and "Package type" parameters values
