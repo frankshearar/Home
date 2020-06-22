@@ -30,10 +30,8 @@ As for packages relevance, the current search algorithm doesn't work well if the
 
 # Solution
 
-The solution consists of applying changes to 2 parts: Search service and Gallery
-
 ## Gallery
-For the Gallery side, a new UI will be added to the search result page to be able to access the advanced search features. Here are few mockups of possible solutions:
+For the Gallery side, a new UI will be added to the search result page to be able to access the advanced search features. Here are the current mockups for our solution:
 
 ### Mockup
 #### Collapsed
