@@ -39,7 +39,7 @@ For the Gallery side, a new UI will be added to the search result page to be abl
 ### Mockup
 
 **TODO**
-
+[[ressources/AdvancedSearch/MockCollapsed.png]]
 
 
 
