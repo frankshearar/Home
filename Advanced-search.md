@@ -71,6 +71,14 @@ Adding more advanced searching criteria and filtering by specific fields are als
 
 We also think that filtering packages by Target Framework Moniker (TFM) would be a useful addition that will help   customers in their usage of our platform as well as help us in the future for implementing features such as package compatibility search (searching for packages that are compatible with our project).
 
-# Customer feeback
-
-**TODO**
+# Customer feedback
+* https://github.com/NuGet/NuGetGallery/issues/2636
+* https://github.com/NuGet/NuGetGallery/issues/3263 
+* https://github.com/NuGet/Home/issues/2585
+* https://github.com/NuGet/NuGetGallery/issues/695
+* https://github.com/NuGet/NuGetGallery/issues/1296
+* https://developercommunity.visualstudio.com/idea/867249/add-sorting-options-to-nuget-browse-screen.html
+* https://developercommunity.visualstudio.com/idea/894920/an-opinion-support-sorting-results-by-last-update.html
+* https://developercommunity.visualstudio.com/content/idea/583267/nuget-browser-have-sort-by-download-count.html
+* https://developercommunity.visualstudio.com/content/problem/56659/nuget-management-window-nuget-updates-can-not-be-s.html
+* https://developercommunity.visualstudio.com/idea/448475/add-filters-for-nuget-package-manager.html
