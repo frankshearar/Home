@@ -45,7 +45,7 @@ For the Gallery side, a new UI will be added to the search result page to be abl
 
 
 ## How we chose the "Sort by" and "Package type" parameters values
-Many of the selected options for sorting were chosen because our current search infrastructure already supports them or allows us to easily add them without impacting the current existing features. For example, the "Downloads" sort option will sort the search results by the total download count of the package (in descending order). As for the "Recently updated" it would sort packages by their "latest version's creation date".
+The selected options for sorting were chosen because they were highly requested according to our customer feedback. For example, the "Downloads" sort option will sort the search results by the total download count of the package (in descending order). As for the "Recently updated" it would sort packages by their "latest version's creation date".
 
 As for the package type filtering, since the field is customizable by the customer, we have many different package types that have extremely low usage.
 
