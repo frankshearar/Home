@@ -64,7 +64,7 @@ There are already some KPIs in place for the current search. The goal of this pr
 
 It is hard to measure success for the newly added advanced search. Thus, we will mainly look at customer behaviour and measure adoption using the collected telemetry.  For example, today we see that 0.8% of searches include the "hide prerelease" filter and we expect that number to not get lower.
 
-We will also ask for customer feedback from the NuGet authors DL and Twitter communities.
+We will also ask for customer feedback from different areas such as Twitter communities.
 
 # Future Work
 Adding those features to NuGet.org website will allow us to collect telemetry and measure the success of the newly added feature. The learning acquired with the release of the feature will help us shape a better experience for our customers as well as design a pleasant experience for our Visual Studio users.
