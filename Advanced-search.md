@@ -19,7 +19,7 @@ As of now, there are multiple different package types and it is difficult for us
 As for packages relevance, the current search algorithm doesn't work well if the best result's package ID is very different from common searches. For example, a search for "barcode" doesn't put the "zxing.*" packages at the top even if they are the most downloaded packages for that usage.
 
 # Goals
-* Create a pleasant user experience to access sorting/filtering features from NuGet.org 
+* Help customers find the packages they want faster with fewer irrelevant results
 	
 # Non-Goals
 * Improve search result relevance (scoring algorithm)
@@ -53,14 +53,14 @@ Thus, we looked at the current count of packages in  each category and included 
 
 # Measuring Success
 
-These are the current KPIs (Key Performance Indicators) and how we think they may be affected:
-* Bounce rate (May increase if we don't exclude advanced search from the results)
-* Average click index on first page (May improve since advanced search should bring the desired results close to the top)
-* Clicks on first page % (May improve since sorting & filtering brings the most wanted results close to the first page)
+These are the current KPIs (Key Performance Indicators) and how we think they will be affected:
+* Bounce rate (Will increase if we don't exclude advanced search from the results since each change to the search options constitutes a new search)
+* Average click index on first page (Will improve since advanced search should bring the desired results close to the top)
+* Clicks on first page % (Will improve since sorting & filtering brings the most wanted results close to the first page)
 
 There are already some KPIs in place for the current search. The goal of this project is to not affect them negatively.
 
-It is hard to measure success for the newly added advanced search. Thus, we will mainly look at customer behaviour and measure adoption using the collected telemetry.  For example, today we see that 0.8% of searches include the "hide prerelease" filter and we expect that number to not get lower.
+We will mainly look at customer behaviour and measure adoption using the collected telemetry to measure the success for the newly added features.  For example, today we see that 0.8% of searches include the "hide prerelease" filter and we expect that number to not get lower.
 
 We will also ask for customer feedback from different areas such as Twitter communities.
 
