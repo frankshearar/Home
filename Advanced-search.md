@@ -19,7 +19,7 @@ As of now, there are multiple different package types and it is difficult for us
 As for packages relevance, the current search algorithm doesn't work well if the best result's package ID is very different from common searches. For example, a search for "barcode" doesn't put the "zxing.*" packages at the top even if they are the most downloaded packages for that usage.
 
 # Goals
-* Help customers find the packages they want faster with fewer irrelevant results
+* Help customers find the packages they want faster and more easily by allowing them to narrow and reorder results through filters and sorting options.
 	
 # Non-Goals
 * Improve search result relevance (scoring algorithm)
@@ -58,9 +58,23 @@ These are the current KPIs (Key Performance Indicators) and how we think they wi
 * Average click index on first page (Will improve since advanced search should bring the desired results close to the top)
 * Clicks on first page % (Will improve since sorting & filtering brings the most wanted results close to the first page)
 
-We will mainly look at customer behaviour and measure adoption using the collected telemetry to measure the success for the newly added features.  For example, today we see that 0.8% of searches include the "hide prerelease" filter and we expect that number to not get lower.
+We will mainly look at customer behaviour and measure adoption using the collected telemetry to measure the success for the newly added features. For example, today we see that 0.8% of searches include the "hide prerelease" filter and we expect that number to not get lower.
 
 We will also ask for customer feedback from different areas such as Twitter communities.
+
+Suggested alternative {
+
+Success for this feature will be measured using our existing search KPIs, adoption/usage, and customer feedback.
+
+Today we primarily track the following metrics to gauge the success of search on nuget.org:
+* Average click index on first page (What is the average index or result order of the packages users click on?)
+* Clicks on first page % (How often do users click a result on the first page?)
+* Bounce rate (How often do users initiate a search and click on none of the results, initiate a new search, or navigate away?)
+
+A successful advanced search feature should improve "Average click index on first page" as well as "Clicks on first page %" since effective filtering and reordering should bring desired packages higher up in the results than they would otherwise be.
+
+It is unclear how "Bounce rate" may be affected since every applied change in filter configurations will count as a "bounce" in current telemetry. Therefore, we'll focus primarily on the other two search metrics/KPIs.
+}
 
 # Future Work
 Adding those features to NuGet.org website will allow us to collect telemetry and measure the success of the newly added feature. The learning acquired with the release of the feature will help us shape a better experience for our customers as well as design a pleasant experience for our Visual Studio users.
