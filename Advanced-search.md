@@ -58,8 +58,6 @@ These are the current KPIs (Key Performance Indicators) and how we think they wi
 * Average click index on first page (Will improve since advanced search should bring the desired results close to the top)
 * Clicks on first page % (Will improve since sorting & filtering brings the most wanted results close to the first page)
 
-There are already some KPIs in place for the current search. The goal of this project is to not affect them negatively.
-
 We will mainly look at customer behaviour and measure adoption using the collected telemetry to measure the success for the newly added features.  For example, today we see that 0.8% of searches include the "hide prerelease" filter and we expect that number to not get lower.
 
 We will also ask for customer feedback from different areas such as Twitter communities.
