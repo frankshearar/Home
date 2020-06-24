@@ -62,7 +62,7 @@ We will mainly look at customer behaviour and measure adoption using the collect
 
 We will also ask for customer feedback from different areas such as Twitter communities.
 
-Suggested alternative {
+**Suggested alternative** {
 
 Success for this feature will be measured using our existing search KPIs, adoption/usage, and customer feedback.
 
