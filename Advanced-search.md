@@ -52,18 +52,6 @@ As for the package type filtering, since the field is customizable by the custom
 Thus, we looked at the current count of packages in  each category and included the categories that contain the majority of our hosted packages. Today, 99.3% of packages are regular .NET dependencies. If we exclude dependencies, .NET Tools are 49% of the remaining packages, and .NET Templates are 30% of the remaining packages. Other package types make up a significantly smaller portion of our packages (single digits %).
 
 # Measuring Success
-
-These are the current KPIs (Key Performance Indicators) and how we think they will be affected:
-* Bounce rate (Will increase if we don't exclude advanced search from the results since each change to the search options constitutes a new search)
-* Average click index on first page (Will improve since advanced search should bring the desired results close to the top)
-* Clicks on first page % (Will improve since sorting & filtering brings the most wanted results close to the first page)
-
-We will mainly look at customer behaviour and measure adoption using the collected telemetry to measure the success for the newly added features. For example, today we see that 0.8% of searches include the "hide prerelease" filter and we expect that number to not get lower.
-
-We will also ask for customer feedback from different areas such as Twitter communities.
-
-**Suggested alternative** {
-
 Success for this feature will be measured using our existing search KPIs, adoption/usage, and customer feedback.
 
 Today we primarily track the following metrics to gauge the success of search on nuget.org:
@@ -74,7 +62,6 @@ Today we primarily track the following metrics to gauge the success of search on
 A successful advanced search feature should improve "Average click index on first page" as well as "Clicks on first page %" since effective filtering and reordering should bring desired packages higher up in the results than they would otherwise be.
 
 It is unclear how "Bounce rate" may be affected since every applied change in filter configurations will count as a "bounce" in current telemetry. Therefore, we'll focus primarily on the other two search metrics/KPIs.
-}
 
 # Future Work
 Adding those features to NuGet.org website will allow us to collect telemetry and measure the success of the newly added feature. The learning acquired with the release of the feature will help us shape a better experience for our customers as well as design a pleasant experience for our Visual Studio users.
