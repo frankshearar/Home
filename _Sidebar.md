@@ -10,6 +10,7 @@
 * [[dotnet list package --vulnerable|dotnet-list-package---vulnerable]]
 * [Machine-readable output for dotnet list package](https://github.com/NuGet/Home/wiki/%5BSpec%5D-Machine-readable-output-for-dotnet-list-package)
 * [[Support Package Renames|Support-package-renames]]
+* [[Advanced Search on NuGet.org|Advanced-Search-on-NuGet.org]]
 
 #### Reviewed
 
