@@ -1,4 +1,4 @@
-Status: **Reviewing**
+Status: **Abandoned**
 
 Author: [Loïc Sharma](https://github.com/loic-sharma)
 
