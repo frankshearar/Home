@@ -2,6 +2,7 @@
 
 ### Contributing
 
+* [[Submitting Bugs and Suggestions|Submitting-Bugs-and-Suggestions]]
 * [[Contribute To NuGet|Contribute-to-NuGet]]
     * [Up For Grabs](https://github.com/NuGet/Home/issues?q=is%3Aopen+is%3Aissue+label%3A%22Up+for+Grabs%22)
 
