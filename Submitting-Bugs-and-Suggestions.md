@@ -37,6 +37,8 @@ A good bug report shouldn’t leave others needing to ask you constantly for mor
 
 Suggestions and feature requests are welcomed. Before opening a suggestion or feature request, please take a moment to find out whether your idea fits with the scope and goals of the project. It’s up to you to make a strong case to convince the project maintainers and community the merits of the suggestion or feature. Please provide as much detail and context as possible.
 
+Additionally, do check the existing [Issues](https://github.com/NuGet/Home/issues), [Pull Requests](https://github.com/NuGet/Home/pulls), and [NuGet Designs](https://github.com/NuGet/Home/tree/dev/designs) to see if your idea is already captured. If it is, consider adding feedback to the existing issue, pull request, or contribute directly to the design.
+
 ## Pull requests
 Good pull requests of patches, improvements, new features, etc are great contributions. They should however remain focused in scope and avoid unrelated commits.
 
