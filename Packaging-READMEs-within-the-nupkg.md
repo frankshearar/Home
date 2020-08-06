@@ -22,7 +22,7 @@ Today, an author can include package documentation, but only post-upload. Due to
 
 ## Success: How do we know this is a real problem worth solving?
 
-Customer interviews regarding the NuGet.org experience consistently mention the lack of documentation as a barrier to learning more about a package. Other package managers that allows embedded READMEs as a part of pack has significantly higher rates of documentation inclusion, and we frequently here experience comparisons.
+Customer interviews regarding the NuGet.org experience consistently mention the lack of documentation as a barrier to learning more about a package. Other package managers that allows embedded READMEs as a part of pack has significantly higher rates of documentation inclusion, and we frequently hear experience comparisons.
 
 ## Audience: Who are we building for?
 
@@ -110,10 +110,15 @@ All NuGet customers will benefit from this feature:
 * readme is null -> warn on pack, push, upload. (users should remove that tag or add a meaningful readme.md file)
 
 #### Open questions
-* Can we make ReadMe links easily accessible or clickable from the dotnet CLI and/or nuget.exe?
-* Can we populate the "readme" field in the package properties if we detect a ReadMe.md at the package root even if the property isn't specified (like we will during pack).
-* Is there a way to preview how a markdown file will render on nuget.org without the manual upload process?
-* Is it possible for us to support GitHub's markdown flavor to ensure we don't have mismatching limitations?
+* If a README contains formatting or images that is unsupported by NuGet.org, should we:
+   * Reject the package and provide a strong error experience.
+   * Accept the package, surface warnings, and don't show the README.
+   * Accept the package, provide warnings, but still show the README with potentially missing or unformatted content.
+* Should we auto-detect and include a README if it exists at the package root? (Less effort on the package author's side, but they might be surprised if this was unintended.
+* Should we push for greater adoption of this feature by:
+   * Warning on pack if no README is included.
+   * Printing non-warning "soft suggestions" to include a README.
+   * Rely on evangelizing the feature or include it as part of a quality metric in the future.
 
 ***
 [Back to parent spec](https://github.com/NuGet/Home/wiki/Packaging-Icon,-License-and-Documentation-within-the-nupkg)
