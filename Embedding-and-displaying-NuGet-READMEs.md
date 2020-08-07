@@ -28,20 +28,6 @@ All NuGet customers will benefit from this feature:
 * Package authors will gain an easier workflow to attach relevant documentation with their packages and communicate important information about their packages to their customers.
 * Package consumers will gain the ability to learn what a packages does, how to use the package, and other relevant information that the package author felt was important to communicate.
 
-## What does this look like in the product?
-
-### In Visual Studio Project properties
-
-![image](https://user-images.githubusercontent.com/15097183/86620008-72b61780-bf70-11ea-9c3a-465e7ceec1ad.png)
-
-### On NuGet.org package details page
-
-![image](https://user-images.githubusercontent.com/16904420/52377004-7b6f8a80-2a18-11e9-897a-6d6b99bd6b90.png)
- 
-### In Visual Studio package details pane
-
-![image](https://user-images.githubusercontent.com/15097183/89691998-4b2fd300-d8bf-11ea-83c1-6b4205d33229.png)
-
 ****
 
 # Proposed design details
@@ -91,11 +77,7 @@ All NuGet customers will benefit from this feature:
 * It should be possible to have a URL to an on-page anchor to the readme section.
 *  The first n lines of the readme should be visible by default. The readme length is > n, display "show more". Clicking on "show more" should have the same behavior as today.
 
-![image](https://user-images.githubusercontent.com/16904420/52377004-7b6f8a80-2a18-11e9-897a-6d6b99bd6b90.png)
-
-#### Admin flow - Tentative based on frequency of relevant copyright scenario
-* Similar to icon, NuGet.org admin view to remove the package documentation and block it from being displayed on NuGet.org or in VS during browse from NuGet.org.
-![image](https://user-images.githubusercontent.com/16904420/52311447-d0010000-295b-11e9-89cc-b5142caaf672.png)
+![image](https://user-images.githubusercontent.com/15097183/89692184-de690880-d8bf-11ea-9010-fb2a32bd2e75.png)
 
 #### Validations
 > + pack means `nuget pack`
