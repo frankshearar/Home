@@ -77,7 +77,7 @@ All NuGet customers will benefit from this feature:
 * It should be possible to have a URL to an on-page anchor to the readme section.
 *  The first n lines of the readme should be visible by default. The readme length is > n, display "show more". Clicking on "show more" should have the same behavior as today.
 
-![image](https://user-images.githubusercontent.com/15097183/89692328-3142c000-d8c0-11ea-8a28-2949ebb5e799.png)
+![image](https://user-images.githubusercontent.com/15097183/89692400-6d762080-d8c0-11ea-8f37-7589bb83ca1b.png)
 
 #### Validations
 > + pack means `nuget pack`
