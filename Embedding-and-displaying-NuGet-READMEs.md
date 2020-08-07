@@ -40,7 +40,7 @@ All NuGet customers will benefit from this feature:
  
 ### In Visual Studio package details pane
 
-![image](https://user-images.githubusercontent.com/16904420/52244182-3f5ded80-2891-11e9-875c-beddcaf49e2b.png)
+![image](https://user-images.githubusercontent.com/15097183/89691998-4b2fd300-d8bf-11ea-83c1-6b4205d33229.png)
 
 ****
 
@@ -57,7 +57,7 @@ All NuGet customers will benefit from this feature:
   * Client will surface the readme URL served by the gallery
   * Clicking on the link will open the default browser and go to the package details page that contains readme (and that section will be expanded and scroll down so that the readme is at the top of the page)
   * We will only surface links to documentation for packages with embedded readmes. Legacy post-publish documentation that currently exists on nuget.org will not be linked in client due to low adoption.
-![image](https://user-images.githubusercontent.com/16904420/52244182-3f5ded80-2891-11e9-875c-beddcaf49e2b.png)
+![image](https://user-images.githubusercontent.com/15097183/89691998-4b2fd300-d8bf-11ea-83c1-6b4205d33229.png)
 * Stretch goal - Installed packages/folder based feeds/fallback folder
   * Client will provide a link to open the readme file from the nupkg/global packages folder/extracted location
   * Clicking on the link will open the file in the default application associated with `.md` extension
