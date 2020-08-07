@@ -1,5 +1,3 @@
-# Embedding and displaying NuGet READMEs
-
 * Status: **Reviewing**
 * Author(s): [Karan Nandwani](https://github.com/karann-msft) ([@karann9](https://twitter.com/karann9)) and [Christopher Gill](https://github.com/chgill-msft) ([@chrisraygill](https://twitter.com/chrisraygill))
 
