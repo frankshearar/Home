@@ -37,6 +37,7 @@ All NuGet customers will benefit from this feature:
   * Is a path relative to the package root to a readme file inside the package`
   * Supported formats - md
   * the user will need to ensure the readme file is packed by adding a files element. E.g. `<file src="..\assets\readme.md" target="readme.md" />`
+  * README.md files will not be automatically detected and included. Users are required to explicitly specify the file they want to use to avoid potential confusion and surprises.
 * Browse from NuGet.org
   * During package ingestion, nuget.org will extract and validate the md, and update the package details page with the content.
   * Client will surface the readme URL served by the gallery
