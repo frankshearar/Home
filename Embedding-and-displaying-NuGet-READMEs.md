@@ -103,6 +103,7 @@ A: No. Not all README files necessarily contain relevant package documentation t
 
 A: The package upload will succeed with warnings. Customer feedback has indicated that they would rather upload a README file with missing images or improperly formatted elements than delay a planned package publish or update. A README is not "essential" content and will likely still be helpful even with some errors.
 
+
 ***
 [Back to parent spec](https://github.com/NuGet/Home/wiki/Packaging-Icon,-License-and-Documentation-within-the-nupkg)
 
