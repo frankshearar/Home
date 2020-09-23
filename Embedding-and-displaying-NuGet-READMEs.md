@@ -1,5 +1,5 @@
 * Status: **Reviewing**
-* Author(s): [Karan Nandwani](https://github.com/karann-msft) ([@karann9](https://twitter.com/karann9)) and [Christopher Gill](https://github.com/chgill-msft) ([@chrisraygill](https://twitter.com/chrisraygill))
+* Authors: [Christopher Gill](https://github.com/chgill-msft) ([@chrisraygill](https://twitter.com/chrisraygill))
 
 ### Issue
 The work for this feature and the discussion around the readme specific spec is tracked by **Nuspec - documentation/readme url [#6873](https://github.com/NuGet/Home/issues/6873)**
@@ -32,12 +32,12 @@ All NuGet customers will benefit from this feature:
 
 # Proposed design details
 
-* The readme file will be a part of the nupkg
-* New nuspec property `<readme>readme.md</readme>`
-  * Is a path relative to the package root to a readme file inside the package`
+* The readme file will be embedded in the nupkg
+* New nuspec property `<readme>README.md</readme>`
+  * Will require a path relative to the package root to a readme file inside the package
   * Supported formats - md
   * the user will need to ensure the readme file is packed by adding a files element. E.g. `<file src="..\assets\readme.md" target="readme.md" />`
-  * README.md files will not be automatically detected and included. Users are required to explicitly specify the file they want to use to avoid potential confusion and surprises.
+  * README.md files will **not** be automatically detected and included. Users are required to explicitly specify the file they want to use to avoid potential confusion and surprises.
 * Browse from NuGet.org
   * During package ingestion, nuget.org will extract and validate the md, and update the package details page with the content.
   * Client will surface the readme URL served by the gallery
@@ -48,12 +48,12 @@ All NuGet customers will benefit from this feature:
   * Client will provide a link to open the readme file from the nupkg/global packages folder/extracted location
   * Clicking on the link will open the file in the default application associated with `.md` extension
   * Client will do the same validations and security checks as nuget.org before displaying md files.
-* Very strech goal - Render the ReadMe inside the Visual Studio NuGet UI so package consumers can learn about package and reference usage without having to leave VS. This would work a lot like the VS Code extension manager. (Would require a massive redesign of the Visual Studio NuGet UI)
+* Very strech goal - Render the ReadMe inside the Visual Studio NuGet UI so package consumers can learn about package and reference usage without having to leave VS. This would work a lot like the VS Code extension manager.
 
 
 ### Project properties
 
-![image](https://user-images.githubusercontent.com/15097183/86620008-72b61780-bf70-11ea-9c3a-465e7ceec1ad.png)
+![image](https://user-images.githubusercontent.com/15097183/93950924-e9161a80-fd12-11ea-9d0b-ae25c3bedb44.png)
 
 
 ```
@@ -70,14 +70,15 @@ All NuGet customers will benefit from this feature:
 * Upload from NuGet.org package preview - readme preview is rendered inline, similar to the license file.
 * To avoid making the validations page unnecessarily long, the preview box should have a set max height and be scrollable  
 
-![image](https://user-images.githubusercontent.com/16904420/52312144-57e80980-295e-11e9-95cf-cc33ac1261b3.png)
+![image](https://user-images.githubusercontent.com/15097183/93950678-26c67380-fd12-11ea-82ef-863a1430f414.png)
 
 * NuGet.org package edit page will no longer allow you to edit the readme. Readme will be immutable and the user must push a new version if they want to make changes to the readme.
-* Saying "readme" feels redundant. Also, readme itself tends to have headers. These headers should start from h2 instead of showing the word "Documentation" at h2.
 * It should be possible to have a URL to an on-page anchor to the readme section.
 *  The first n lines of the readme should be visible by default. The readme length is > n, display "show more". Clicking on "show more" should have the same behavior as today.
 
 ![image](https://user-images.githubusercontent.com/15097183/89692400-6d762080-d8c0-11ea-8f37-7589bb83ca1b.png)
+
+### 
 
 ### Validations
 > + pack means `nuget pack`
@@ -105,8 +106,3 @@ A: The package upload will succeed with warnings. Customer feedback has indicate
 
 
 ***
-[Back to parent spec](https://github.com/NuGet/Home/wiki/Packaging-Icon,-License-and-Documentation-within-the-nupkg)
-
-[Packaging Icon within the nupkg](https://github.com/NuGet/Home/wiki/Packaging-Icon-within-the-nupkg)
-
-[Packaging License within the nupkg](https://github.com/NuGet/Home/wiki/Packaging-License-within-the-nupkg)
