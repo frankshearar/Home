@@ -38,23 +38,30 @@ All NuGet customers will benefit from this feature:
   * Supported formats - md
   * the user will need to ensure the readme file is packed by adding a files element. E.g. `<file src="..\assets\readme.md" target="readme.md" />`
   * README.md files will **not** be automatically detected and included. Users are required to explicitly specify the file they want to use to avoid potential confusion and surprises.
+
+
 * Browse from NuGet.org
   * During package ingestion, nuget.org will extract and validate the md, and update the package details page with the content.
   * Client will surface the readme URL served by the gallery
   * Clicking on the link will open the default browser and go to the package details page that contains readme (and that section will be expanded and scroll down so that the readme is at the top of the page)
   * We will only surface links to documentation for packages with embedded readmes. Legacy post-publish documentation that currently exists on nuget.org will not be linked in client due to low adoption.
 ![image](https://user-images.githubusercontent.com/15097183/89691998-4b2fd300-d8bf-11ea-83c1-6b4205d33229.png)
+
+
 * Stretch goal - Installed packages/folder based feeds/fallback folder
   * Client will provide a link to open the readme file from the nupkg/global packages folder/extracted location
   * Clicking on the link will open the file in the default application associated with `.md` extension
   * Client will do the same validations and security checks as nuget.org before displaying md files.
+
+
 * Very strech goal - Render the ReadMe inside the Visual Studio NuGet UI so package consumers can learn about package and reference usage without having to leave VS. This would work a lot like the VS Code extension manager.
 
 
 ### Project properties
 
-![image](https://user-images.githubusercontent.com/15097183/93950924-e9161a80-fd12-11ea-9d0b-ae25c3bedb44.png)
+![image](https://user-images.githubusercontent.com/15097183/93951840-6fcbf700-fd15-11ea-97c1-0e5082953415.png)
 
+### Project file inclusion
 
 ```
     <PropertyGroup>
@@ -67,18 +74,21 @@ All NuGet customers will benefit from this feature:
 ```
 
 ### NuGet.org
+
+#### Package upload preview
+
 * Upload from NuGet.org package preview - readme preview is rendered inline, similar to the license file.
 * To avoid making the validations page unnecessarily long, the preview box should have a set max height and be scrollable  
 
 ![image](https://user-images.githubusercontent.com/15097183/93950678-26c67380-fd12-11ea-82ef-863a1430f414.png)
+
+#### Package details page
 
 * NuGet.org package edit page will no longer allow you to edit the readme. Readme will be immutable and the user must push a new version if they want to make changes to the readme.
 * It should be possible to have a URL to an on-page anchor to the readme section.
 *  The first n lines of the readme should be visible by default. The readme length is > n, display "show more". Clicking on "show more" should have the same behavior as today.
 
 ![image](https://user-images.githubusercontent.com/15097183/89692400-6d762080-d8c0-11ea-8f37-7589bb83ca1b.png)
-
-### 
 
 ### Validations
 > + pack means `nuget pack`
