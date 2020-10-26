@@ -22,7 +22,7 @@ Guidelines for bug reports:
 
 1. Validate your code - Ensure that your problem isn’t caused by an error in your code.
 1. Use the GitHub issue search - Check if the issue has already been reported.
-1. Check if the issue has been fixed - Try to reproduce the issue using the latest [Preview](https://www.visualstudio.com/vs/preview/) or `master` Build.
+1. Check if the issue has been fixed - Try to reproduce the issue using the latest [Preview](https://www.visualstudio.com/vs/preview/) or `dev` Build.
 1. Isolate the problem - Create a [minimal, complete, and verifiable example](https://stackoverflow.com/help/mcve) to demonstrate the problem.
 
 A good bug report shouldn’t leave others needing to ask you constantly for more information. Please try to be as detailed as possible in your report. Here are some tips that will help when filing an issue:
