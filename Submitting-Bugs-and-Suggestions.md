@@ -44,7 +44,7 @@ Good pull requests of patches, improvements, new features, etc are great contrib
 
 Before embarking on any significant pull request, please ask a maintainer if the scope of the pull request would be reasonable to merge into the project. Otherwise you can potentially waste a lot of time working on something that might not be relevant to the project’s goals.
 
-While creating a pull request, please also include the intent for which you'd like the changes to land. By default, we ask that you pull against the `master` branch. However if you'd like to see a change in the next service release or preview release of Visual Studio, please communicate with a maintainer of this project to understand if the changes will be able to make the intended release.
+While creating a pull request, please also include the intent for which you'd like the changes to land. By default, we ask that you pull against the `dev` branch. However if you'd like to see a change in the next service release or preview release of Visual Studio, please communicate with a maintainer of this project to understand if the changes will be able to make the intended release.
 
 ## Contributing Fixes
 If you are interested in fixing issues and contributing directly to the code base, please see the document [[Contribute To NuGet|Contribute-to-NuGet]].
