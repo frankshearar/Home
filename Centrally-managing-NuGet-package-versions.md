@@ -48,6 +48,7 @@ If a Directory.Packages.props file exists, all projects in that directory tree a
 
 In addition only specific types of projects will be supported for **Central Package Version Management**. Refer to [this](#what-is-currently-not-supported-in-central-package-version-management) to see the exclusions.
 
+Note: While this feature is in preview, the default will be opt-out, and customers will need to opt-in explicitly to use it, by setting `<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>` in their project file.
 
 **Transitive dependencies**: The versions for the packages defined in the Directory.Packages.props will win for direct and transitive dependency resolution.
 
