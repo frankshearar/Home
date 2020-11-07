@@ -1,5 +1,5 @@
 ![image](https://user-images.githubusercontent.com/14800916/71850448-29e8d900-3089-11ea-95d3-3c275711e933.png)
-Note: This feature is in development and is not yet complete. Some functionality is available as a preview.
+Note: This feature is in development and is not yet complete. Limited functionality is available as a preview.
 
 | | |
 |:-- |:--
