@@ -11,7 +11,7 @@ If you find your issue already exists, make relevant comments and add your [reac
 
 The NuGet project is distributed across multiple repositories, try to file the issue against the correct repository [Related Projects](https://github.com/NuGet/Home#repos-and-projects).
 
-If your issue is a question then please ask the question on [Stack Overflow](https://stackoverflow.com/questions/tagged/nuget) using the tag `nuget`.
+If your issue is a question then please ask the question on [Stack Overflow](https://stackoverflow.com/questions/tagged/nuget) using the tag `nuget`. Additionally, you can ask a question using [Microsoft Q&A](https://docs.microsoft.com/en-us/answers/topics/dotnet-package-management.html) under the `package management` section.
 
 If you cannot find an existing issue that describes your bug or feature, submit an issue using the guidelines below.
 
