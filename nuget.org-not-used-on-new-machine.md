@@ -36,7 +36,7 @@ rm ~/.nuget/NuGet/NuGet.Config
 
 ### Add nuget.org as a package source
 
-To add nuget.org as a package source in Visual Studio, open Tools->Options, NuGet Package Manager->Package Sources. Click the green +, enter nuget.org as the Name, and enter https://api.nuget.org/v3/index.json as the Source.
+To add nuget.org as a package source in Visual Studio, open Tools->Options, NuGet Package Manager->Package Sources. Click the green +, enter nuget.org as the Name, and enter https://api.nuget.org/v3/index.json as the Source. Click the Update button, then click the Ok button.
 
 To add nuget.org using the `dotnet` CLI (command line interface), run `dotnet nuget add source https://api.nuget.org/v3/index.json --name nuget.org`.
 
