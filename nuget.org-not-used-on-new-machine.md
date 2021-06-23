@@ -65,6 +65,8 @@ In early 2021, following a security researcher's blog post, guidance came out, f
 
 This is because the first time NuGet is run on a machine, it generates `NuGet.Config` with nuget.org as a package source. The customer removes nuget.org from the package sources. The next time NuGet runs, it sees the package sources in the user-profile `NuGet.Config` is empty, and the tracking file does not exist, so it adds nuget.org as a package source, and writes the tracking file. Finally, the customer can remove nuget.org as a package source, and subsequent times NuGet runs, even if the package sources list is empty, it sees the tracking file and does not attempt to add nuget.org again.
 
+As a result, [we modified NuGet to stop adding nuget.org when the packages sources list is empty](https://github.com/NuGet/NuGet.Client/pull/3907), thereby respecting customers wishes after they remove nuget.org themselves the first time.
+
 Chocolatey and the version of PowerShell that is built into Windows, used old versions of the NuGet SDK, with the bug that existed before 2016 where nuget.org was not added as a package source when the file was created for the first time. PowerShell Core (PowerShell 6 and above) has since updated to a newer version of NuGet which does not have this problem. Similarly Chocolately had forked NuGet.Core, which contained the bug where nuget.org was not added. After being advised of this issue, they updated their fork to stop writing NuGet.Config to the default location, since they don't use it.
 
 Going forward, as customers use newer versions of Chocolatey and PowerShell 7 or above, this issue should no longer occur.
