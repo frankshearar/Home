@@ -117,9 +117,10 @@ The full requirements for repository signatures and countersignatures will be de
 Signatures and countersignatures SHOULD include the `signature-time-stamp` attribute [[RFC 5126](https://tools.ietf.org/html/rfc5126#section-6.1.1)] to provide long-term validity even after the signing certificate's validity period has expired.
 If a signature or countersignature lacks a timestamp, then that signature or countersignature SHOULD be considered expired and subsequently ignored if the current time according to the package reader is outside of the signing certificate's validity period.  If specifically the primary signature's signing certificate has expired and the primary signature either lacks a timestamp or has a timestamp which fails to satisfy policy requirements (e.g.:  trust) not defined here, then a package reader MAY still use information in the signed CMS to verify package integrity but MUST otherwise treat the signature as expired and the package as unsigned.  An exception to signature expiration is that package readers MAY choose to treat timestamp signatures as non-expiring.
 
-A signed CMS certificates collection (`SignedData.certificates`) MUST contain all certificates, including the root certificate, from the complete chain that was successfully built at signing time for a signer's signing certificate.  If a timestamp signature does not already satisfy this requirement, the timestamp requestor MUST build the timestamp signing certificate's chain and add the certificates to the timestamp's signed CMS before adding the timestamp to the signature or countersignature being timestamped.
-
 A timestamp signing certificate MUST satisfy [minimum requirements](#CertificateMinimumRequirements) and the timestamp MUST use a [supported hash algorithm](#SupportedAlgorithms).
+
+### <a id="Certificates"></a> Certificates
+A signed CMS certificates collection (`SignedData.certificates`) MUST contain all certificates, including the root certificate, from the complete chain that was successfully built at signing time for a signer's signing certificate.  Note that a timestamp signature is also a signed CMS, and this requirement applies to timestamp signatures as well.  If a timestamp signature does not already satisfy this requirement, the timestamp requestor MUST build the timestamp signing certificate's chain and add the certificates to the timestamp's signed CMS before adding the timestamp to the signature or countersignature being timestamped.
 
 ## <a id="CertificateMinimumRequirements"></a> Certificate minimum requirements
 A NuGet package signing certificate MUST meet the following minimum requirements:
@@ -130,7 +131,7 @@ A timestamping certificate MUST meet the following minimum requirements:
 1. The certificate MUST be valid for the `id-kp-timeStamping` purpose [[RFC 5280 section 4.2.1.12](https://tools.ietf.org/html/rfc5280#section-4.2.1.12)].
 1. The certificate MUST have an RSA public key length of 2048 bits or higher.
 
-At signing time, a certificate MUST be within its validity period according to the package writer and MUST NOT be not revoked.  At validation time, the certificate's revocation status SHOULD be rechecked; however, package readers MAY fail open if revocation status is unavailable (e.g.:  a CRL is inaccessible).
+At signing time, a certificate MUST be within its validity period according to the package writer and MUST NOT be revoked.  At validation time, the certificate's revocation status SHOULD be rechecked; however, package readers MAY fail open if revocation status is unavailable (e.g.:  a CRL is inaccessible).
 
 Certificates MUST NOT have the lifetime signing EKU (1.3.6.1.4.1.311.10.3.13).
 
