@@ -77,7 +77,7 @@ The plugins will be discovered as follows:
     .NET Framework based plugins should be installed in:
     > %UserProfile%/.nuget/plugins/netfx
 
-    Each plugin will be installed in it's own folder.
+    Each plugin will be installed in its own folder.
 
     The plugin entry point will be the name of the installed folder, with the .dll extensions for .NET Core, and .exe extension for .NET Framework.
 
@@ -200,7 +200,7 @@ As a fallback, NuGet will use the credential plugins, if no other Credential Pro
 
 ## How does NuGet.exe work with the plugin
 
-In the old plugin model, NuGet.exe discovered the plugins next to it's executable location.
+In the old plugin model, NuGet.exe discovered the plugins next to its executable location.
 Now NuGet.exe will be able to depend on the plugins the same way dotnet.exe, msbuild.exe and Visual Studio do.
 That means, that the version of MsBuild that NuGet.exe uses (latest by default unless specifically specified) will dictate which built in plugins NuGet.exe discovers.
 

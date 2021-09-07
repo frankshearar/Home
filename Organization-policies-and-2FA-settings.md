@@ -54,7 +54,7 @@ Proposed storyboard:
 
 ### Other Organization policies (P2)
 There are other settings that can be implemented through Organization policies:
-* **Azure AD authentication based memberships** - An organization (on NuGet.org) can enforce that only it's company employees can be its members. This can be implemented if the company has a corresponding tenant registered with Azure AD and uses an email address belonging to the same tenant as the Organization's email address on NuGet.org. NuGet.org will deduce the tenant ID from the provided email address and auto-enable this policy setting. It can be unset by the Org's admins.
+* **Azure AD authentication based memberships** - An organization (on NuGet.org) can enforce that only its company employees can be its members. This can be implemented if the company has a corresponding tenant registered with Azure AD and uses an email address belonging to the same tenant as the Organization's email address on NuGet.org. NuGet.org will deduce the tenant ID from the provided email address and auto-enable this policy setting. It can be unset by the Org's admins.
 
 ![image](https://user-images.githubusercontent.com/14800916/37369992-1b14ca00-26c8-11e8-8626-d7687be853a0.png)
 

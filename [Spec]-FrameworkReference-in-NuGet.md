@@ -93,7 +93,7 @@ A nuspec would look like below:
 
 ## FrameworkReference in assets file
 
-As FrameworkReference are transitive in project-to-project and project-to-package scenarios, the FrameworkReference will be a part of the NuGet identifiable project information or commonly referred as the PackageSpec. A restore for the project requires knowledge of it's transitive project dependencies which include the FrameworkReferences.
+As FrameworkReference are transitive in project-to-project and project-to-package scenarios, the FrameworkReference will be a part of the NuGet identifiable project information or commonly referred as the PackageSpec. A restore for the project requires knowledge of its transitive project dependencies which include the FrameworkReferences.
 
 The package spec in the json will be updated as follows.
 
@@ -206,7 +206,7 @@ When all is specified, the FrameworkReference does not flow transitively or get 
 
 ### Nomination Updates
 
-Since the project-system is how NuGet gets all of it's information about projects in VS, the API will be updated to support FrameworkReference. As they'll be released together, the same API that adds support for `PackageDownload` will add support for FrameworkReference.
+Since the project-system is how NuGet gets all of its information about projects in VS, the API will be updated to support FrameworkReference. As they'll be released together, the same API that adds support for `PackageDownload` will add support for FrameworkReference.
 
 [Example](https://github.com/NuGet/NuGet.Client/blob/e8890282d9225d2aeb63deba3ae111f87cfc5673/src/NuGet.Clients/NuGet.SolutionRestoreManager.Interop/IVsTargetFrameworkInfo2.cs):
 

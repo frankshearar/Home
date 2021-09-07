@@ -17,7 +17,7 @@ All NuGet users who uses PackageReference to manage their NuGet dependencies and
 
 NuGet will introduce a new folder structure called `/embed` very much similar to existing folder `/lib`. Package authors will keep all their embed interop types assemblies inside this new folder as well inside `/lib` folder (to support `packages.config` based projects) and non-embed assemblies will continue to go into existing folders. This way NuGet knows which assemblies to be referenced vs linked.
 
-Next, NuGet will have a new section called `embed` in it's restore output file `obj/project.assets.json` for each embed type dependency apart from existing sections like `compile`, `runtime`, `build` etc.. This new section will let project system understand that assemblies inside it should be linked and not referenced in the consuming project. Since interop assemblies are duplicated in `/lib` folder as well so the same assemblies will also appear in `compile:` and `runtime:` section of `project.assets.json` file but those will be ignored.
+Next, NuGet will have a new section called `embed` in its restore output file `obj/project.assets.json` for each embed type dependency apart from existing sections like `compile`, `runtime`, `build` etc.. This new section will let project system understand that assemblies inside it should be linked and not referenced in the consuming project. Since interop assemblies are duplicated in `/lib` folder as well so the same assemblies will also appear in `compile:` and `runtime:` section of `project.assets.json` file but those will be ignored.
 
 ### Sample nupkg structure for interop package
 

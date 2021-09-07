@@ -149,7 +149,7 @@ Other:
 
 **Q: Why does the "latest stable version" of a package have to depend on the focus package to be displayed as a dependent? Why not any version or the latest including pre-release?**
 
-A: Dependent packages are framed as endorsements. If a package is no longer depending on the focus package in it's latest stable version, it is as if the focus package has lost that endorsement (perhaps in favor of another packages). Pre-release dependencies aren't considered a shift in endorsement in either direction as pre-releases maybe be used for experimenting with new dependencies that perhaps haven't been tested sufficiently to be considered stable. It is difficult to discern the a package author's rationale for moving toward or away from a dependency, so only displaying the latest stable version can be considered relying on an author's current best judgement.
+A: Dependent packages are framed as endorsements. If a package is no longer depending on the focus package in its latest stable version, it is as if the focus package has lost that endorsement (perhaps in favor of another packages). Pre-release dependencies aren't considered a shift in endorsement in either direction as pre-releases maybe be used for experimenting with new dependencies that perhaps haven't been tested sufficiently to be considered stable. It is difficult to discern the a package author's rationale for moving toward or away from a dependency, so only displaying the latest stable version can be considered relying on an author's current best judgement.
 
 **Q: Why "Used By" for the dropdown title as opposed to "Dependents?"**
 

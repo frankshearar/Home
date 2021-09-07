@@ -120,7 +120,7 @@ Custom licenses in combination with a standard licenses, are treated as custom l
 
 We believe that every NuGet package in the world should have either a license embedded or a License Identifier specified.
 When neither of the above two options is specified the NuGet client will warn. To improve this experience, we allow customers to specify "UNLICENSED" as a valid identifier.
-In this approach we are borrowing some learnings from NPM. This means that the package does not grant any permissions for it's re-use.
+In this approach we are borrowing some learnings from NPM. This means that the package does not grant any permissions for its re-use.
 Public feeds would normally reject such packages.
 
 ### Implementation
@@ -265,7 +265,7 @@ The following table refers to the pack validations.
 
 ### Visual Studio experience
 
-In Visual Studio, NuGet will do it's best effort to parse the expression. Unknown licenses are irrelevant in this context.
+In Visual Studio, NuGet will do its best effort to parse the expression. Unknown licenses are irrelevant in this context.
 
 To provide an optimal experience to the package consumers we will be doing a protocol update to allow the client to get the LicenseExpression.
 We will only be updating the V3 protocol. The V2 protocol is not considered.
@@ -306,7 +306,7 @@ The below table describes how it contributes to the overall experience.
 
 | | VS new clients | VS old clients |
 |-|----------------|----------------|
-|Browse|If the server is not hosting/advertising license expressions, the client shows the NuGet tools embedded link with instructions on how to find the license in question. | Whether the server sends license expressions is irrelevant. If the server is not hosting it's own licenses/expressions  the client shows the NuGet tools embedded link with instructions on how to find the license in question. |
+|Browse|If the server is not hosting/advertising license expressions, the client shows the NuGet tools embedded link with instructions on how to find the license in question. | Whether the server sends license expressions is irrelevant. If the server is not hosting its own licenses/expressions  the client shows the NuGet tools embedded link with instructions on how to find the license in question. |
 |Installed| N/A. The client will read the license expression/file and show that. | The clients shows the NuGet tools embedded with instructions on how to find the license in question.|
 
 ### References

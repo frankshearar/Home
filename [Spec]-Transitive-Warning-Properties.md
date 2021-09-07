@@ -71,7 +71,7 @@ When a warning is generated in restore, it is passed to `RestoreCollectorLogger`
 
 if the logger has the needed information, it invokes `TransitiveNoWarnUtils.CreatetransitiveWarningProperties`. In that method, for each restore target graphs we seed a queue with the parent project's direct dependencies. Then we traverse the closure in Breadth First style to visit each node in the closure. 
 If the node is a project then we get the warning properties of the project and then merge them with the warning properties seen along the path taken to reach the node.
-If the node is a package then we see if the path taken to this package has any `NoWarn` applicable to this package. If yes, then we intersect that with any `NoWarn` seen on all other paths to the package. If the result is an empty then we stop looking for that package because, we have 1 path with no `Nowarn` and thus it does not matter what other paths have since the warnings from the package will have at least one path for it's warnings.
+If the node is a package then we see if the path taken to this package has any `NoWarn` applicable to this package. If yes, then we intersect that with any `NoWarn` seen on all other paths to the package. If the result is an empty then we stop looking for that package because, we have 1 path with no `Nowarn` and thus it does not matter what other paths have since the warnings from the package will have at least one path for its warnings.
 
 The resulting collections are stored as a `Dictionary<string, HashSet<NuGetLogCode>>` resulting in a quick look up of a package ID to `NoWarn` Set of `NuGetLogCode`.
 

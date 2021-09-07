@@ -18,7 +18,7 @@ By default lock file name will be `packages.lock.json` file which will be create
 
 ## Description of a lock file
 
-Purpose of a lock file is to help lock down NuGet package's resolved version so that NuGet restore graph doesn't change if there is no explicit user change in the project or it's dependencies. Keeping that in mind, following will be the content of a lock file.
+Purpose of a lock file is to help lock down NuGet package's resolved version so that NuGet restore graph doesn't change if there is no explicit user change in the project or its dependencies. Keeping that in mind, following will be the content of a lock file.
 
 * Lock file version.
 * List of NuGet packages dependencies for each TFM of the project. When there are `RuntimeIdentifiers (Rids)` defined in the project, then each `{TFM}/{RID}` graph will only have those dependencies which are different than original `{TFM}` graph. Each dependency could of type:

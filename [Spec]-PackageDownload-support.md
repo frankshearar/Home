@@ -11,7 +11,7 @@
 
 Historically .NET Framework packs used to be separate installers. If you wanted to target .NET 4.6.2, you needed to install the .NET 4.6.2 targeting pack prior to building.
 In .NET Core 1.x & 2.x, the framework was all converted into packages. That evolved over the years leading to multiple meta packages with large graphs (Microsoft.NETCore.App, NETStandard.Library etc.). These meta packages were "auto-referenced" in the context of the NuGet graph.
-Each approach had it's pros and cons illustrated in the following design https://github.com/dotnet/designs-microsoft/pull/38.
+Each approach had its pros and cons illustrated in the following design https://github.com/dotnet/designs-microsoft/pull/38.
 
 A new hybrid approach, described in the spec linked above, for acquiring framework assets will be introduced in .NET Core 3.0, that leverages the strengths and eliminates some weaknesses of the previous 2 approaches.
 
